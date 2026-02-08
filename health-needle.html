@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Health Needle vs Noise — Infographic (Q&A Breakdown)</title>
+  <style>
+    :root{
+      --bg:#070A12;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.085);
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.55);
+
+      --good:#2be7a7;
+      --warn:#ffcf5a;
+      --bad:#ff5a7a;
+      --info:#6aa7ff;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 700px at 15% 20%, rgba(106,167,255,.16), transparent 60%),
+        radial-gradient(900px 600px at 75% 20%, rgba(43,231,167,.13), transparent 55%),
+        radial-gradient(900px 800px at 55% 85%, rgba(255,90,122,.10), transparent 60%),
+        linear-gradient(180deg, #050711 0%, #070A12 70%, #060815 100%);
+      color:var(--text);
+      font-family:var(--sans);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    header.hero{
+      position: relative;
+      padding: 24px 22px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius2);
+      overflow:hidden;
+    }
+    header.hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(700px 250px at 15% 0%, rgba(255,255,255,.10), transparent 65%),
+        radial-gradient(500px 220px at 90% 0%, rgba(255,255,255,.07), transparent 70%);
+      pointer-events:none;
+      filter: blur(0.5px);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap:14px;
+      position:relative;
+      z-index:1;
+      align-items:start;
+    }
+    .kicker{
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    h1{
+      margin: 8px 0 10px;
+      font-size: clamp(22px, 3.2vw, 38px);
+      line-height:1.08;
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size: 14.5px;
+      line-height:1.5;
+      max-width: 62ch;
+    }
+    .pillrow{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size: 12.5px;
+      white-space:nowrap;
+      user-select:none;
+    }
+    .dot{ width:8px; height:8px; border-radius:50%; background:var(--info); box-shadow: 0 0 0 4px rgba(106,167,255,.14); }
+    .dot.good{ background:var(--good); box-shadow: 0 0 0 4px rgba(43,231,167,.14); }
+    .dot.warn{ background:var(--warn); box-shadow: 0 0 0 4px rgba(255,207,90,.12); }
+    .dot.bad{ background:var(--bad); box-shadow: 0 0 0 4px rgba(255,90,122,.12); }
+
+    .controls{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:stretch;
+      justify-content:flex-start;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+    .btn .left{
+      display:flex; flex-direction:column; gap:4px; align-items:flex-start;
+    }
+    .btn .title{ font-weight: 650; font-size: 13.5px; }
+    .btn .hint{ font-size: 12px; color: var(--muted); }
+
+    .toggle{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .toggle .label{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .toggle .label b{ font-size: 13.5px; }
+    .toggle .label span{ font-size: 12px; color: var(--muted); }
+
+    .switch{
+      width: 54px; height: 32px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.14);
+      position:relative;
+      cursor:pointer;
+      flex:0 0 auto;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .switch:after{
+      content:"";
+      position:absolute; top:50%; left:4px;
+      transform: translateY(-50%);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 10px 18px rgba(0,0,0,.35);
+      transition: left .16s ease;
+    }
+    .switch.on{
+      background: rgba(43,231,167,.28);
+      border-color: rgba(43,231,167,.32);
+    }
+    .switch.on:after{ left: 26px; background: rgba(43,231,167,.92); }
+
+    main{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    section.card{
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card .hd{
+      padding: 16px 16px 12px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .card .hd h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.02em;
+    }
+    .card .hd p{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      max-width: 70ch;
+      line-height:1.5;
+    }
+    .tag{
+      font-size: 11px;
+      color: var(--muted);
+      padding:6px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      white-space:nowrap;
+      user-select:none;
+    }
+    .bd{ padding: 14px 16px 16px; }
+
+    /* Matrix */
+    .matrix{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .quad{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+      min-height: 180px;
+    }
+    .quad:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(400px 220px at 20% 0%, rgba(255,255,255,.08), transparent 62%);
+      pointer-events:none;
+    }
+    .quad h3{
+      margin:0 0 8px;
+      font-size: 13.5px;
+      letter-spacing:.02em;
+      position:relative;
+      z-index:1;
+    }
+    .quad p{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.5;
+      position:relative;
+      z-index:1;
+    }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; position:relative; z-index:1; }
+    .chip{
+      padding:7px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      user-select:none;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.20); background: rgba(255,255,255,.08); }
+    .chip.good{ border-color: rgba(43,231,167,.28); background: rgba(43,231,167,.10); }
+    .chip.warn{ border-color: rgba(255,207,90,.28); background: rgba(255,207,90,.10); }
+    .chip.bad{ border-color: rgba(255,90,122,.30); background: rgba(255,90,122,.10); }
+    .chip.info{ border-color: rgba(106,167,255,.30); background: rgba(106,167,255,.10); }
+
+    /* Metric cards */
+    .metric-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .metric-grid{ grid-template-columns: 1fr; }
+    }
+    .metric{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .metric .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
+    }
+    .metric h3{
+      margin:0;
+      font-size: 13.5px;
+    }
+    .metric .desc{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.45;
+    }
+    .bar{
+      margin-top: 10px;
+      height: 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width: 42%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(106,167,255,.85), rgba(43,231,167,.85));
+      box-shadow: 0 12px 22px rgba(0,0,0,.35);
+      transition: width .25s ease;
+    }
+    .barlabel{
+      margin-top: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color: var(--muted2);
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(7px);
+      z-index: 999;
+    }
+    .modal{
+      width: min(900px, 96vw);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+    }
+    .modal .mhd{
+      padding: 14px 16px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+    }
+    .modal .mhd .t{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .modal .mhd b{ font-size: 14px; letter-spacing:.02em; }
+    .modal .mhd span{ color: var(--muted); font-size: 12.5px; line-height:1.4; }
+    .x{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.88);
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-size: 18px;
+      display:grid; place-items:center;
+      transition: transform .12s ease, background .12s ease;
+      user-select:none;
+    }
+    .x:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+    .modal .mbd{
+      padding: 14px 16px 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .modal .mbd{ grid-template-columns: 1fr; }
+    }
+    .panel{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,.22);
+      padding: 12px;
+    }
+    .panel h4{
+      margin:0 0 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,.92);
+      letter-spacing:.02em;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .panel p, .panel li{
+      color: var(--muted);
+      font-size: 12.8px;
+      line-height: 1.55;
+    }
+    .panel ul{ margin: 8px 0 0; padding-left: 18px; }
+    .kbd{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 2px 6px;
+      border-radius: 8px;
+      display:inline-block;
+    }
+
+    /* Commentary layer */
+    .commentary{
+      display:none;
+      margin-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,.18);
+      padding-top: 10px;
+      color: rgba(255,255,255,.78);
+      font-size: 12.8px;
+      line-height: 1.6;
+    }
+    .commentary .note{
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(106,167,255,.22);
+      background: rgba(106,167,255,.10);
+      color: rgba(255,255,255,.84);
+    }
+    .commentary .warnbox{
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,207,90,.26);
+      background: rgba(255,207,90,.10);
+      color: rgba(255,255,255,.84);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 12px 4px 0;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align:center;
+    }
+    .smallprint{
+      display:inline-block;
+      max-width: 95ch;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="hero" id="top">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Infographic • Q&amp;A • Health Priorities</div>
+          <h1>Needle vs Noise: ce mută cu adevărat acul sănătății</h1>
+          <div class="subtitle">
+            Transcriptul compară riscuri cu impact masiv (diabet, fumat, obezitate, boală renală, alcool în exces)
+            cu “micro-îngrijorări” (ex: apă din sticlă de plastic ocazional, ramen/instant noodles).
+            Apoi propune un set de markeri “high-leverage” (VO₂max, visceral fat, Omega-3 index, CRP/inflamație, forță, sănătate mentală)
+            și răspunde la întrebări despre glycină/cancer, suplimente vs IQ, autophagy, plasma exchange, NAD injectabil, cortizol și mini-trambuline.
+          </div>
+
+          <div class="pillrow">
+            <span class="pill"><span class="dot bad"></span>Impact mare: fumat • diabet • obezitate • alcool excesiv</span>
+            <span class="pill"><span class="dot good"></span>Protectiv: VO₂max ridicat • forță • relații bune</span>
+            <span class="pill"><span class="dot info"></span>Markeri: visceral fat • Omega-3 index • CRP</span>
+            <span class="pill"><span class="dot warn"></span>Nuance: asociere vs cauzalitate • praguri “sweet spot”</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="toggle">
+            <div class="label">
+              <b>Commentary Layer</b>
+              <span>explică “ce înseamnă practic” + nuanțe</span>
+            </div>
+            <div class="switch" id="commentarySwitch" role="switch" aria-checked="false" tabindex="0"></div>
+          </div>
+
+          <div class="btn" id="btnOpenAll">
+            <div class="left">
+              <div class="title">Deschide “Quick Actions”</div>
+              <div class="hint">plan scurt pe 7 zile + testare</div>
+            </div>
+            <span class="kbd">↵</span>
+          </div>
+
+          <div class="btn" id="btnJump">
+            <div class="left">
+              <div class="title">Sari la “Marker Dashboard”</div>
+              <div class="hint">praguri și ținte din transcript</div>
+            </div>
+            <span class="kbd">J</span>
+          </div>
+
+          <div class="btn" id="btnShowGlossary">
+            <div class="left">
+              <div class="title">Glossary</div>
+              <div class="hint">CRP • VO₂max • autophagy • Omega-3 index</div>
+            </div>
+            <span class="kbd">G</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <div class="grid">
+        <section class="card" id="needleNoise">
+          <div class="hd">
+            <div>
+              <h2>1) Needle vs Noise Matrix</h2>
+              <p>Ideea centrală: nu toate “amenințările” au același impact. Prioritizează riscurile cu efect major pe mortalitate și boală cronică.</p>
+            </div>
+            <span class="tag">click pe chip pentru detalii</span>
+          </div>
+          <div class="bd">
+            <div class="matrix">
+              <div class="quad">
+                <h3>Impact mare • frecvent</h3>
+                <p>Factorii care domină riscul pe termen lung.</p>
+                <div class="chips">
+                  <span class="chip bad" data-key="smoking">Fumat</span>
+                  <span class="chip bad" data-key="diabetes">Diabet</span>
+                  <span class="chip bad" data-key="obesity">Obezitate</span>
+                  <span class="chip bad" data-key="kidney">Boală renală</span>
+                  <span class="chip bad" data-key="alcohol">Alcool în exces</span>
+                  <span class="chip bad" data-key="sleepDeprivation">Somn insuficient</span>
+                  <span class="chip bad" data-key="circadianMismatch">Mismatche circadiene</span>
+                </div>
+              </div>
+
+              <div class="quad">
+                <h3>Impact mare • protectiv</h3>
+                <p>Ținte care “rivalizează” cu factorii de risc (ca mărime a asocierii).</p>
+                <div class="chips">
+                  <span class="chip good" data-key="vo2max">VO₂max ridicat</span>
+                  <span class="chip good" data-key="visceralFat">Visceral fat scăzut</span>
+                  <span class="chip good" data-key="omega3">Omega-3 index ridicat</span>
+                  <span class="chip good" data-key="crp">CRP foarte scăzut</span>
+                  <span class="chip good" data-key="strength">Forță musculară</span>
+                  <span class="chip good" data-key="mentalHealth">Sănătate mentală</span>
+                </div>
+              </div>
+
+              <div class="quad">
+                <h3>Impact mic • “wellness noise”</h3>
+                <p>Nu “zero impact”, dar mic raportat la riscurile majore.</p>
+                <div class="chips">
+                  <span class="chip warn" data-key="plasticBottle">Apă din sticlă de plastic (ocazional)</span>
+                  <span class="chip warn" data-key="ramen">Ramen / instant noodles</span>
+                  <span class="chip warn" data-key="cityAir">Aer urban puțin poluat</span>
+                </div>
+              </div>
+
+              <div class="quad">
+                <h3>Intervenții scumpe / “biohacker”</h3>
+                <p>Interesante biologic, dar cu incertitudine despre valoarea reală vs cost.</p>
+                <div class="chips">
+                  <span class="chip info" data-key="plasmaExchange">Total Plasma Exchange</span>
+                  <span class="chip info" data-key="nadInjectable">NAD injectabil / IV</span>
+                  <span class="chip info" data-key="redLight">Red light therapy (scalp/skin)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="commentary" data-commentary>
+              <div class="note">
+                <b>Commentary:</b> Transcriptul insistă pe un principiu de “triage”: dacă ai riscuri mari (fumat, diabet, obezitate, alcool excesiv),
+                e ineficient să te blochezi în detalii mici. Nu înseamnă că detaliile sunt “fake”, ci că au <i>magnitudine</i> mult mai mică.
+              </div>
+              <div class="warnbox">
+                <b>Nuance:</b> El folosește limbaj de tip “rivalizează cu fumatul” pentru VO₂max scăzut vs ridicat, dar asta e o interpretare a asocierii,
+                nu o demonstrație directă că “VO₂max în sine” e cauzal în aceeași măsură. Practic, tot te ajută ca prioritate: aerobic + stil de viață.
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="card" id="markers">
+          <div class="hd">
+            <div>
+              <h2>2) Marker Dashboard</h2>
+              <p>Ținte și praguri menționate direct: VO₂max, visceral fat (g), Omega-3 index (%), CRP (mg/L), forță & “sweet spot” la masă musculară/BMI.</p>
+            </div>
+            <span class="tag">slider &amp; praguri</span>
+          </div>
+          <div class="bd">
+            <div class="metric-grid">
+
+              <div class="metric" data-metric="vo2">
+                <div class="top">
+                  <div>
+                    <h3>VO₂max (ml/kg/min)</h3>
+                    <div class="desc">Țintă: <b>≥ 50</b> ca “benchmark minimal”. Exemplu: 20 vs 50 ≈ <b>~4×</b> diferență de risc de mortalitate (asociere).</div>
+                  </div>
+                  <span class="tag" id="vo2Tag">value: 50</span>
+                </div>
+                <input id="vo2Slider" type="range" min="15" max="75" value="50" step="1" style="width:100%;margin-top:10px;" />
+                <div class="bar" aria-hidden="true"><i id="vo2Bar"></i></div>
+                <div class="barlabel"><span>scăzut</span><span id="vo2Label">50</span><span>ridicat</span></div>
+
+                <div class="commentary" data-commentary>
+                  <div class="note">
+                    <b>Commentary:</b> Deși VO₂max e “marker”, nu e doar un număr: îl crești prin comportamente (aerobic, HIIT, volum, consistență).
+                    Transcriptul recunoaște dezbaterea “cauzalitate vs stil de viață”, dar spune: “chiar și ca marker, e extrem de util”.
+                  </div>
+                </div>
+              </div>
+
+              <div class="metric" data-metric="visceral">
+                <div class="top">
+                  <div>
+                    <h3>Visceral Fat (g)</h3>
+                    <div class="desc">Populație generală: ~400–600 g (și crește cu vârsta). Țintă: <b>&lt;300 g</b>, optim <b>&lt;250 g</b>. Sweet spot: ~50–150 g (exemplu personal).</div>
+                  </div>
+                  <span class="tag" id="vfTag">value: 250</span>
+                </div>
+                <input id="vfSlider" type="range" min="50" max="900" value="250" step="10" style="width:100%;margin-top:10px;" />
+                <div class="bar" aria-hidden="true"><i id="vfBar"></i></div>
+                <div class="barlabel"><span>mai bine</span><span id="vfLabel">250</span><span>mai rău</span></div>
+
+                <div class="commentary" data-commentary>
+                  <div class="note">
+                    <b>Commentary:</b> Accentul e pe grăsimea “în jurul organelor”: asociată cu inflamație și disfuncție de organ.
+                    Măsurare: DEXA (bun suficient), MRI (mai precis).
+                  </div>
+                </div>
+              </div>
+
+              <div class="metric" data-metric="omega3">
+                <div class="top">
+                  <div>
+                    <h3>Omega-3 Index (%)</h3>
+                    <div class="desc">Fenomen “consistent” în date (asociere): index mai mare ↔ risc mai mic (demență, Alzheimer, boală cardiacă, mortalitate).
+                      Exemplu: Japonia ~8–12% vs SUA ~4% (explicat prin aportul de pește/seafood).</div>
+                  </div>
+                  <span class="tag" id="o3Tag">value: 8.0</span>
+                </div>
+                <input id="o3Slider" type="range" min="3" max="14" value="8" step="0.1" style="width:100%;margin-top:10px;" />
+                <div class="bar" aria-hidden="true"><i id="o3Bar"></i></div>
+                <div class="barlabel"><span>scăzut</span><span id="o3Label">8.0</span><span>ridicat</span></div>
+
+                <div class="commentary" data-commentary>
+                  <div class="warnbox">
+                    <b>Nuance:</b> El menționează că unele persoane convertesc mai slab ALA (din plante: chia, nuci) către DHA/EPA.
+                    Mesajul practic: <i>măsoară</i> (test de sânge), apoi ajustează sursa (seafood/alge/supliment).
+                  </div>
+                </div>
+              </div>
+
+              <div class="metric" data-metric="crp">
+                <div class="top">
+                  <div>
+                    <h3>CRP (mg/L)</h3>
+                    <div class="desc">“În intervalul normal, mai jos e mai bine”. Sweet spot menționat: <b>&lt;0.2</b>, ideal spre <b>0.1</b> sau “cât mai aproape de 0”.</div>
+                  </div>
+                  <span class="tag" id="crpTag">value: 0.20</span>
+                </div>
+                <input id="crpSlider" type="range" min="0" max="5" value="0.2" step="0.01" style="width:100%;margin-top:10px;" />
+                <div class="bar" aria-hidden="true"><i id="crpBar"></i></div>
+                <div class="barlabel"><span>mai bine</span><span id="crpLabel">0.20</span><span>mai rău</span></div>
+
+                <div class="commentary" data-commentary>
+                  <div class="note">
+                    <b>Commentary:</b> CRP e prezentat ca marker “ieftin & universal” pentru inflamație sistemică, dar nu e singurul marker.
+                    Nuanță de laborator: unele raportează doar până la 0.5/1.0, deci sub-optimul poate fi “ascuns” de rezoluție.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="commentary" data-commentary>
+              <div class="note">
+                <b>Commentary (de ansamblu):</b> Ordinea markerilor din transcript e “leverage-first”: (1) fitness cardio (VO₂max), (2) distribuția grăsimii (visceral),
+                (3) status lipidic/neuronal (Omega-3 index), (4) inflamația (CRP), (5) forță + funcționalitate, (6) sănătate mentală & relații.
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <section class="card" id="qa">
+        <div class="hd">
+          <div>
+            <h2>3) Q&amp;A Map</h2>
+            <p>Întrebări cheie + răspunsurile din transcript, structurate ca noduri: glycine/cancer, suplimente & IQ, autophagy, plasma exchange, NAD, cortizol, mini-trampoline.</p>
+          </div>
+          <span class="tag">click pe nod</span>
+        </div>
+        <div class="bd">
+          <div class="chips">
+            <span class="chip info" data-key="glycine">Glycină & “cancer”</span>
+            <span class="chip info" data-key="suppIQ">Suplimente & IQ</span>
+            <span class="chip info" data-key="autophagy">Autophagy pentru healthspan</span>
+            <span class="chip info" data-key="plasmaExchange">Total Plasma Exchange</span>
+            <span class="chip info" data-key="nadInjectable">NAD injectabil / IV</span>
+            <span class="chip info" data-key="cortisol">Cortizol + fasting / TRE</span>
+            <span class="chip info" data-key="trampoline">Mini-trampoline</span>
+            <span class="chip info" data-key="redLight">Red light hat / devices</span>
+          </div>
+
+          <div class="commentary" data-commentary>
+            <div class="warnbox">
+              <b>Nuance generală:</b> Multe afirmații sunt formulate ca “există dovezi consistente” sau “asociat cu”.
+              Asta e util pentru prioritizare, dar nu înlocuiește interpretarea medicală individuală (mai ales în boală activă).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="protocols">
+        <div class="hd">
+          <div>
+            <h2>4) Protocol Builder</h2>
+            <p>Rutină “low-cost, high-return” extrasă din discurs: somn/întuneric, exercițiu, TRE, saună, polifenoli, carbo seara când e nevoie.</p>
+          </div>
+          <span class="tag">7-day actions</span>
+        </div>
+        <div class="bd">
+          <div class="metric-grid">
+            <div class="panel">
+              <h4><span class="dot good"></span>Fundamente (Top Tier)</h4>
+              <ul>
+                <li><b>Nu fuma</b> (discurs: risc enorm, ex: până la “13,000%” la cancer pulmonar — exprimare de impact).</li>
+                <li><b>Alcool:</b> evită excesul (factor major de risc, OPEX sănătate pe termen lung).</li>
+                <li><b>Somn:</b> nu te priva; evită mismatche circadiene frecvente.</li>
+                <li><b>Greutate:</b> nu supra-ponderal / obez; accent pe <b>visceral fat</b>.</li>
+              </ul>
+              <div class="commentary" data-commentary>
+                <div class="note">
+                  <b>Commentary:</b> Aici e “triage-ul”. Dacă ăstea sunt neoptime, ele domină restul.
+                  De obicei, oamenii sar direct la “biohacking”, dar transcriptul pune întâi “big rocks”.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h4><span class="dot info"></span>Autophagy: “cel mai important e somnul”</h4>
+              <ul>
+                <li><b>Deep sleep + melatonină:</b> cameră pitch-black, elimină lumini mici (TV, încărcător, LED-uri). Sleep mask + eliminare surse.</li>
+                <li><b>Exercițiu:</b> aerobic + HIIT; HIIT “urcă autophagy” mai rapid; rezistență ajută și ea.</li>
+                <li><b>TRE:</b> ~6 ore fereastră (exemplu personal). Nu e nevoie de OMAD; “nu există dovezi că e mai bine”.</li>
+                <li><b>Saună:</b> regulat.</li>
+                <li><b>Polifenoli:</b> ceai verde, cafea, fructe/legume, ulei de măsline (menționate ca suport autophagy).</li>
+              </ul>
+              <div class="commentary" data-commentary>
+                <div class="warnbox">
+                  <b>Nuance:</b> “Extended fasting” poate crește autophagy, dar poate avea trade-offs (pierdere de masă musculară, tiroidă etc.).
+                  Mesajul: nu-l trata ca “singura cheie”.
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h4><span class="dot warn"></span>Când TRE/CR ridică cortizolul</h4>
+              <ul>
+                <li><b>Pas 1:</b> dacă ești deja slab/lean → <b>mărește caloriile</b>, oprește restricția cronică.</li>
+                <li><b>Pas 2:</b> dacă nu se fixează → <b>extinde eating window</b>, adaugă snack / mic dejun ocazional.</li>
+                <li><b>Pas 3:</b> ajustează <b>macro</b>: carbohidrații sunt “anti-cortizol” (insulină = semnal de abundență).</li>
+                <li><b>Carbo seara</b> → poate îmbunătăți somnul (serotonină → melatonină; tryptophan în creier).</li>
+                <li>Alți crescători de cortizol: stres, prea mult exercițiu, prea mult saună/cold.</li>
+              </ul>
+              <div class="commentary" data-commentary>
+                <div class="note">
+                  <b>Commentary:</b> Cortizolul nu e “rău” în sine (util dimineața, energizează), problema e cronicul / timingul greșit (înainte de somn).
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h4><span class="dot good"></span>Forță + sănătate mentală</h4>
+              <ul>
+                <li><b>Forță:</b> asociată cu longevitate; reflectă exercițiu & semnale anti-inflamatorii/metabolice.</li>
+                <li><b>Protecție la vârstnici:</b> reduce căderi/fragilitate; plus densitate osoasă.</li>
+                <li><b>“Prea mult”:</b> discursul avertizează asupra masei musculare extreme (ex: BMI ~30 cu BF mic sugerează steroizi sau masă disproporționată).</li>
+                <li><b>Țintă personală sugerată:</b> BMI ~27 (lean cu mușchi) ca “limită rezonabilă” în opinia lui.</li>
+                <li><b>Mental:</b> relații și suport social → reduce izolare/loneliness; influențează decizii sănătoase.</li>
+              </ul>
+              <div class="commentary" data-commentary>
+                <div class="warnbox">
+                  <b>Nuance:</b> Aici sunt judecăți practice (“în opinia lui”) mai mult decât praguri clinice oficiale.
+                  Totuși, ideea de “diminishing returns” și “trade-offs” e utilă.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="commentary" data-commentary>
+            <div class="note">
+              <b>Plan rapid (interpretare practică):</b>
+              <ol style="margin:8px 0 0; padding-left:18px;">
+                <li>În 7 zile: optimizează somnul (întuneric total) + 3 sesiuni aerobic + 2 rezistență + 1 HIIT scurt.</li>
+                <li>În 30 zile: măsoară (dacă poți) VO₂max estimat, CRP, Omega-3 index, DEXA (visceral).</li>
+                <li>În 90 zile: ajustează “diet + timing” doar după ce big rocks sunt stabile.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <span class="smallprint">
+        <b>Notă:</b> Infograficul reflectă strict ideile din transcript (Q&amp;A) și organizează logic argumentele (prioritizare, markeri, rutine).
+        Nu e sfat medical. Dacă ai condiții (ex: cancer, autoimun), discută cu un clinician înainte de suplimente/intervenții.
+      </span>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+      <div class="mhd">
+        <div class="t">
+          <b id="mtitle">Title</b>
+          <span id="msub">Subtitle</span>
+        </div>
+        <div class="x" id="closeBtn" aria-label="Close">×</div>
+      </div>
+      <div class="mbd">
+        <div class="panel">
+          <h4><span class="dot info"></span>Ce spune transcriptul</h4>
+          <div id="mBodyA"></div>
+        </div>
+        <div class="panel">
+          <h4><span class="dot warn"></span>Commentary / Nuanțe</h4>
+          <div id="mBodyB"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Data model (strictly from transcript content, structured) ---
+    const KB = {
+      smoking: {
+        title: "Fumat",
+        sub: "Impact enorm pe risc (exprimat ca ordin de mărime).",
+        says: `
+          <ul>
+            <li>Este dat ca exemplu de factor cu impact masiv: asociat cu creșteri extreme ale riscului de cancer pulmonar (menționat: “până la 13,000%”).</li>
+            <li>Comparat cu poluarea moderată: living într-un oraș “ușor poluat” = creștere mică relativ la fumat.</li>
+            <li>Prioritatea: “nu fuma” înainte să te blochezi în detalii minore.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Procentele din discurs sunt folosite ca retorică de impact; ideea principală e diferența de magnitudine între riscuri.</li>
+            <li>Mesajul practic: dacă ai un risc “top-tier”, îl optimizezi primul.</li>
+          </ul>`
+      },
+      diabetes: {
+        title: "Diabet",
+        sub: "Exemplu de problemă “mult peste” micro-îngrijorări.",
+        says: `
+          <ul>
+            <li>Diabetul e descris ca având asociere mult mai puternică cu mortalitatea și boala cardiacă decât factorii “trending” (plastic bottle, ramen etc.).</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Nu intră în protocol clinic aici; e folosit pentru ierarhizare a riscurilor.</li>
+          </ul>`
+      },
+      obesity: {
+        title: "Obezitate / Exces de grăsime",
+        sub: "Important, mai ales prin visceral fat.",
+        says: `
+          <ul>
+            <li>Excesul de grăsime e nociv, iar visceral fat (grăsimea din jurul organelor) e pus în prim-plan.</li>
+            <li>Menționează diferențe de impact pe sexe (mai nociv la bărbați), dar afirmă că visceral fat e nociv la ambele.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Pragurile de visceral fat sunt orientative (și dependente de metodă/echipament/populație).</li>
+          </ul>`
+      },
+      kidney: {
+        title: "Boală renală",
+        sub: "Factor major în “needle tier”.",
+        says: `
+          <ul>
+            <li>Listată între factorii care sunt “semnificativ mai răi” decât zgomotul wellness, în termeni de risc viitor.</li>
+          </ul>`,
+        nuance: `<ul><li>Nu oferă detalii, doar o poziționează ca prioritate mare.</li></ul>`
+      },
+      alcohol: {
+        title: "Alcool în exces",
+        sub: "Impact mare, simplu de înțeles.",
+        says: `
+          <ul>
+            <li>Încadrat ca factor “semnificativ mai rău” pentru sănătate pe termen lung.</li>
+          </ul>`,
+        nuance: `<ul><li>Mesajul e “evită excesul”, nu “zero absolut”.</li></ul>`
+      },
+      sleepDeprivation: {
+        title: "Somn insuficient",
+        sub: "Big rock + legat de autophagy & melatonină.",
+        says: `
+          <ul>
+            <li>Somnul prost și privarea de somn sunt în lista top de priorități.</li>
+            <li>În secțiunea autophagy: deep sleep + melatonina sunt descrise ca “absolute king” pentru repair/clearance.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Accentul e pe mediu (întuneric total) și consistență circadiană.</li>
+          </ul>`
+      },
+      circadianMismatch: {
+        title: "Mismatche circadiene",
+        sub: "Evitate “frecvent” pentru impact sistemic.",
+        says: `
+          <ul>
+            <li>Menționate ca parte din “nu te sabota”: evită mismatch-uri circadiene frecvente.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Nu definește exact “mismatch” (jet lag social, lumină nocturnă, orar instabil), dar legătura e făcută cu melatonina și somnul.</li>
+          </ul>`
+      },
+      vo2max: {
+        title: "VO₂max ridicat",
+        sub: "Unul dintre cei mai puternici predictori (asociere) ai supraviețuirii.",
+        says: `
+          <ul>
+            <li>VO₂max ridicat ↔ risc mai mic de mortalitate, boală cardiacă și alte boli.</li>
+            <li>Exemplu: VO₂max ~20 vs ~50 ml/kg/min ↔ până la ~4× diferență în risc (asociere).</li>
+            <li>Țintă recomandată: menține VO₂max peste <b>50</b> ca prag minim.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Transcriptul recunoaște dezbaterea “VO₂max cauzal vs marker de lifestyle”, dar îl recomandă ca prioritate.</li>
+            <li>Practic: îl crești prin aerobic constant + intervale (HIIT), iar beneficiile se suprapun cu stil de viață sănătos.</li>
+          </ul>`
+      },
+      visceralFat: {
+        title: "Visceral fat scăzut",
+        sub: "Grăsimea din jurul organelor: inflamație & disfuncție de organ.",
+        says: `
+          <ul>
+            <li>Visceral fat e “subteran” nociv chiar dacă “mănânci sănătos” în rest.</li>
+            <li>Populație generală: ~400–600 g; crește cu vârsta.</li>
+            <li>Țintă: &lt;300 g; optim &lt;250 g; sweet spot menționat ~50–150 g.</li>
+            <li>Măsurare: DEXA (suficient), MRI (mai precis).</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Valorile depind de metodă; ideea principală: visceral fat mic = marker puternic de sănătate.</li>
+          </ul>`
+      },
+      omega3: {
+        title: "Omega-3 index ridicat",
+        sub: "Asociat consistent cu risc mai mic de demență/Alzheimer/boală cardiacă.",
+        says: `
+          <ul>
+            <li>Index mare ↔ risc mai mic de demență, Alzheimer, mortalitate.</li>
+            <li>Exemplu comparativ: Japonia ~8–12% vs SUA ~4% (diferență de aport seafood).</li>
+            <li>Creștere: test de sânge; mănâncă mai mult seafood/pește; alternativ alge/unele plante (ALA), posibil supliment.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Menționează variabilitate genetică: unii convertesc slab ALA (chia/nuci) → DHA/EPA; de aceea, “măsoară”.</li>
+          </ul>`
+      },
+      crp: {
+        title: "Inflamație joasă (CRP)",
+        sub: "CRP ca marker universal/ieftin, cu “lower is better”.",
+        says: `
+          <ul>
+            <li>CRP scăzut ↔ risc mai mic de mortalitate, Alzheimer, diabet, boală renală, boală cardiacă.</li>
+            <li>Sweet spot: &lt;0.2 mg/L; ideal ~0.1; “cât mai aproape de 0”.</li>
+            <li>Nu doar CRP există, dar e cel mai comun și cel mai ieftin.</li>
+            <li>Laboratoare diferite: unele “taie” la 0.5/1.0; altele dau rezoluție 0.2/0.1.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>CRP poate urca de la visceral fat, somn prost, dietă, lifestyle; e util ca “tablou general”.</li>
+          </ul>`
+      },
+      strength: {
+        title: "Forță musculară",
+        sub: "Marker de exercițiu + protecție la căderi.",
+        says: `
+          <ul>
+            <li>Mai multă forță (fără steroizi) ↔ sănătate mai bună; reflectă exercițiu și beneficii anti-inflamatorii/metabolice.</li>
+            <li>Protecție la vârstă: mai puține căderi și fracturi (densitate osoasă & masă).</li>
+            <li>“Prea mult” poate fi rău: masă musculară extremă + BMI ~30 (mai ales cu BF mic) sugerează steroizi sau încărcare disproporționată.</li>
+            <li>Sugestie pragmatică: BMI ~27 (lean + mușchi) ca limită rezonabilă; exemplu personal: BMI ~25.5.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Partea cu BMI e o euristică personală, nu un guideline medical universal.</li>
+            <li>Mesajul: evită extremele, urmărește funcționalitate + sănătate.</li>
+          </ul>`
+      },
+      mentalHealth: {
+        title: "Sănătate mentală & relații",
+        sub: "Subestimată: influențează hormoni + decizii.",
+        says: `
+          <ul>
+            <li>Poate avea efect direct (stres hormoni vs “happiness hormones”) și indirect (decizii sănătoase, motivație).</li>
+            <li>Relațiile sunt sursa majoră: izolare/loneliness ↔ depresie/anxietate.</li>
+            <li>Nu contează “sute de prieteni”; contează sentimentul de suport accesibil.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Definiția “social isolation” e descrisă ca percepție subiectivă a suportului, nu doar numărul de interacțiuni.</li>
+          </ul>`
+      },
+      plasticBottle: {
+        title: "Apă din sticlă de plastic (ocazional)",
+        sub: "Nu ideal, dar mic relativ la “big rocks”.",
+        says: `
+          <ul>
+            <li>Folosit ca exemplu: “nu e bine”, dar comparativ cu diabet/obezitate e preocupare minoră în schema mare.</li>
+            <li>Menționează: nu există “studiu specific” citat aici despre plastic bottle & mortalitate, dar ideea e de magnitudine.</li>
+          </ul>`,
+        nuance: `<ul><li>Mesajul: evită obsesia pe detalii dacă ignori riscurile mari.</li></ul>`
+      },
+      ramen: {
+        title: "Ramen / instant noodles",
+        sub: "Exemplu de “fear-of-food” vs risc real.",
+        says: `
+          <ul>
+            <li>Încadrat la “mai mic” comparativ cu fumat/diabet/obezitate/alcool excesiv.</li>
+          </ul>`,
+        nuance: `<ul><li>Nu e “promovat”, doar re-încadrat ca prioritate mai mică.</li></ul>`
+      },
+      cityAir: {
+        title: "Aer urban ușor poluat",
+        sub: "Nu ideal, dar mult sub fumat ca impact (în discurs).",
+        says: `
+          <ul>
+            <li>Tratează poluarea moderată ca un risc “mic” relativ la fumat.</li>
+            <li>Recomandare: încearcă să respiri aer cât mai curat, dar realist.</li>
+          </ul>`,
+        nuance: `<ul><li>Argumentul e de comparație a magnitudinii, nu negarea riscului.</li></ul>`
+      },
+      glycine: {
+        title: "Glycină și ‘cancer’",
+        sub: "Nu “cauzează”, ci uneori e folosită de cancer pentru supraviețuire.",
+        says: `
+          <ul>
+            <li>Răspuns la îngrijorare: video-ul menționat nu spune “glycine crește cancer” (interpretarea publicului era greșită).</li>
+            <li>Ideea: cancerele pot utiliza nutrienți (glycine, taurine, glucoză, ketone etc.) pentru creștere/supraviețuire.</li>
+            <li>Glycina are roluri benefice: glutathione, collagen synthesis, creatine synthesis etc.</li>
+            <li>Lecție: dacă ai cancer sau risc crescut, poate e prudent să eviți; altfel nu e motiv să oprești automat.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Distincție cheie: “promovează creșterea” într-un context ≠ “cauzează apariția”.</li>
+            <li>Mesajul e orientativ; în boală activă deciziile sunt clinice.</li>
+          </ul>`
+      },
+      suppIQ: {
+        title: "Suplimente și IQ / cognitive function",
+        sub: "IQ e rezistent la boost-uri acute; suplimentele mai mult ‘restores baseline’.",
+        says: `
+          <ul>
+            <li>Diferență: funcție cognitivă acută (atenție, focus) vs IQ (standardizat, greu de schimbat rapid).</li>
+            <li>Creatina: poate ajuta pe termen scurt mai ales după sleep deprivation/stres.</li>
+            <li>Deficiențe severe (iodine în dezvoltare, B vitamins, iron etc.) pot afecta dezvoltarea cognitivă; corecția aduce la baseline.</li>
+            <li>Creșterea IQ pe termen lung: mai ales prin educație/învățare; “brain games” au evidență mai slabă.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Transcriptul pune accent pe fereastra dezvoltării (sarcină/early life) vs adulți.</li>
+          </ul>`
+      },
+      autophagy: {
+        title: "Autophagy pentru healthspan",
+        sub: "Focus modern: somn profund + melatonină, apoi exercițiu, TRE, saună, polifenoli.",
+        says: `
+          <ul>
+            <li>Spune că “dysfunctional autophagy” a fost adăugat ca hallmark of aging (îl motivează să fie “ahead of the curve”).</li>
+            <li>Prioritate: autophagy în deep sleep, coordonată cu melatonina.</li>
+            <li>Somn în întuneric total (elimină surse de lumină, sleep mask).</li>
+            <li>Exercițiu: cardio + HIIT (HIIT mai rapid), și rezistență.</li>
+            <li>TRE ~6 ore; nu OMAD; fasting extins nu e necesar și poate avea trade-offs.</li>
+            <li>Saună + polifenoli (green tea, coffee, olive oil etc.).</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Mesajul e: “nu te bloca într-un singur hack; ai multiple pârghii”.</li>
+          </ul>`
+      },
+      plasmaExchange: {
+        title: "Total Plasma Exchange (TPE)",
+        sub: "Interesant, scump, incert pe termen lung.",
+        says: `
+          <ul>
+            <li>Descris ca trend anti-aging; cost menționat: până la ~$10,000 în SUA.</li>
+            <li>Studiu: scade ‘biological age score’ după procedură, dar autorul e sceptic: efecte similare pot apărea și din lifestyle (calorie restriction etc.).</li>
+            <li>Folosire medicală: unele condiții autoimune (scade anticorpi/inflamație) — acolo are sens terapeutic.</li>
+            <li>Întrebarea mare: cât durează efectul și cât de des trebuie repetat? (incert).</li>
+            <li>Alternativ “mai ieftin” pentru microplastics: apheresis (menționat ca idee).</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Mesajul: poate fi “luxury therapy”, nu înlocuiește fundamentele.</li>
+            <li>Nu există concluzie fermă în transcript; e o poziție prudent-sceptică.</li>
+          </ul>`
+      },
+      nadInjectable: {
+        title: "NAD injectabil / IV",
+        sub: "Nu e ‘mai mult = mai bine’, mai ales dacă ești tânăr și ok energetic.",
+        says: `
+          <ul>
+            <li>Autorul spune că nu folosește: e tânăr, are energie; dacă vrea boost folosește opțiuni mai ieftine.</li>
+            <li>Argument de risk/reward: există ideea că unele cancere pot utiliza NAD pentru supraviețuire (nu spune că NAD “cauzează cancer”).</li>
+            <li>NAD nu e ca VO₂max: nu urmărești creștere nelimitată; depinde de context (fatigue, stress, jet lag).</li>
+            <li>Doze mari IV (NAD, vitamin C, glutathione) pot avea trade-offs; nu sunt “necesare” universal.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Punctul central: evită gândirea liniară “mai mult = mai bine”, mai ales când ocolești efortul biologic normal.</li>
+          </ul>`
+      },
+      cortisol: {
+        title: "Cortizol și time-restricted eating / calorie restriction",
+        sub: "Dacă e cronic ridicat, fă rollback: calorii ↑, window ↑, carbo ↑ (mai ales seara).",
+        says: `
+          <ul>
+            <li>Cortizolul are roluri: dimineața e util; problema e cronicul / timing greșit (seara).</li>
+            <li>Dacă TRE/CR îți cresc cortizolul: oprește restricția, mănâncă mai mult (mai ales dacă ești lean).</li>
+            <li>Dacă nu: extinde fereastra, adaugă snack / mic dejun uneori.</li>
+            <li>Carbohidrați: scad cortizolul prin insulină; carbo seara pot îmbunătăți somnul (serotonină → melatonină; tryptophan).</li>
+            <li>Alți factori: stres, prea mult exercițiu, saună/cold etc.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Recomandările sunt “order of operations” (ce faci întâi) — foarte util practic.</li>
+          </ul>`
+      },
+      trampoline: {
+        title: "Mini-trampoline / rebounding",
+        sub: "Poate ajuta VO₂max, densitate osoasă și lymph flow.",
+        says: `
+          <ul>
+            <li>Există evidență că poate îmbunătăți densitatea osoasă și VO₂max (mai ales dacă baseline e scăzut).</li>
+            <li>Beneficiu preferat de autor: lymphatic drainage (rebounding stimulează limfa).</li>
+            <li>Recomandă un obicei zilnic de “rebounding” — nu neapărat trambulină; poți să sari ușor și fără.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>Mesaj de prag: dacă ești deja top 5% la VO₂max/densitate osoasă, câștigul marginal poate fi mai mic.</li>
+          </ul>`
+      },
+      redLight: {
+        title: "Red light therapy (Bon Charge)",
+        sub: "Segment sponsor: scalp/hair + face mask (wrinkles/collagen).",
+        says: `
+          <ul>
+            <li>Menționează “red light hat” pentru scalp: hair growth + collagen synthesis în scalp.</li>
+            <li>Spune că există studii cu “split-face experiments” pentru LED face masks: îmbunătățiri la riduri/collagen.</li>
+            <li>Menționează panouri mari de lumină roșie pentru piele/energie.</li>
+          </ul>`,
+        nuance: `
+          <ul>
+            <li>E o inserție promoțională, nu parte din “big rocks”.</li>
+          </ul>`
+      }
+    };
+
+    // --- UI wiring ---
+    const backdrop = document.getElementById('backdrop');
+    const closeBtn = document.getElementById('closeBtn');
+    const mtitle = document.getElementById('mtitle');
+    const msub = document.getElementById('msub');
+    const mBodyA = document.getElementById('mBodyA');
+    const mBodyB = document.getElementById('mBodyB');
+
+    function openModal(key){
+      const item = KB[key];
+      if(!item) return;
+      mtitle.textContent = item.title;
+      msub.textContent = item.sub || "";
+      mBodyA.innerHTML = item.says || "";
+      mBodyB.innerHTML = item.nuance || "";
+      backdrop.style.display = "flex";
+      backdrop.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      backdrop.style.display = "none";
+      backdrop.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if(chip && chip.dataset.key){
+        openModal(chip.dataset.key);
+        return;
+      }
+      if(e.target === backdrop) closeModal();
+    });
+    closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if(e.key === "Escape") closeModal();
+    });
+
+    // Commentary toggle
+    const commentarySwitch = document.getElementById('commentarySwitch');
+    let commentaryOn = false;
+
+    function setCommentary(on){
+      commentaryOn = !!on;
+      commentarySwitch.classList.toggle('on', commentaryOn);
+      commentarySwitch.setAttribute("aria-checked", commentaryOn ? "true" : "false");
+      document.querySelectorAll('[data-commentary]').forEach(el => {
+        el.style.display = commentaryOn ? "block" : "none";
+      });
+    }
+
+    commentarySwitch.addEventListener('click', () => setCommentary(!commentaryOn));
+    commentarySwitch.addEventListener('keydown', (e) => {
+      if(e.key === "Enter" || e.key === " ") { e.preventDefault(); setCommentary(!commentaryOn); }
+    });
+
+    // Sliders
+    const vo2Slider = document.getElementById('vo2Slider');
+    const vfSlider  = document.getElementById('vfSlider');
+    const o3Slider  = document.getElementById('o3Slider');
+    const crpSlider = document.getElementById('crpSlider');
+
+    const vo2Bar = document.getElementById('vo2Bar');
+    const vfBar  = document.getElementById('vfBar');
+    const o3Bar  = document.getElementById('o3Bar');
+    const crpBar = document.getElementById('crpBar');
+
+    const vo2Label = document.getElementById('vo2Label');
+    const vfLabel  = document.getElementById('vfLabel');
+    const o3Label  = document.getElementById('o3Label');
+    const crpLabel = document.getElementById('crpLabel');
+
+    const vo2Tag = document.getElementById('vo2Tag');
+    const vfTag  = document.getElementById('vfTag');
+    const o3Tag  = document.getElementById('o3Tag');
+    const crpTag = document.getElementById('crpTag');
+
+    function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+
+    function updateVO2(){
+      const v = Number(vo2Slider.value);
+      vo2Label.textContent = v;
+      vo2Tag.textContent = "value: " + v;
+      // width mapping 15..75 => 6%..100%
+      const pct = ((v-15)/(75-15))*94 + 6;
+      vo2Bar.style.width = clamp(pct, 6, 100) + "%";
+      // tag color hints
+      if(v >= 50){ vo2Tag.style.borderColor = "rgba(43,231,167,.32)"; vo2Tag.style.background = "rgba(43,231,167,.10)"; }
+      else if(v >= 35){ vo2Tag.style.borderColor = "rgba(255,207,90,.30)"; vo2Tag.style.background = "rgba(255,207,90,.10)"; }
+      else { vo2Tag.style.borderColor = "rgba(255,90,122,.34)"; vo2Tag.style.background = "rgba(255,90,122,.10)"; }
+    }
+
+    function updateVF(){
+      const v = Number(vfSlider.value);
+      vfLabel.textContent = v;
+      vfTag.textContent = "value: " + v;
+      // here lower is better: 50..900 => bar fullness "badness"
+      const badness = ((v-50)/(900-50))*100;
+      vfBar.style.width = clamp(badness, 4, 100) + "%";
+      // color by thresholds: <250 good; <300 warn; else bad
+      if(v < 250){ vfTag.style.borderColor="rgba(43,231,167,.32)"; vfTag.style.background="rgba(43,231,167,.10)"; }
+      else if(v < 300){ vfTag.style.borderColor="rgba(255,207,90,.30)"; vfTag.style.background="rgba(255,207,90,.10)"; }
+      else { vfTag.style.borderColor="rgba(255,90,122,.34)"; vfTag.style.background="rgba(255,90,122,.10)"; }
+    }
+
+    function updateO3(){
+      const v = Number(o3Slider.value);
+      o3Label.textContent = v.toFixed(1);
+      o3Tag.textContent = "value: " + v.toFixed(1);
+      // 3..14 => 6..100
+      const pct = ((v-3)/(14-3))*94 + 6;
+      o3Bar.style.width = clamp(pct, 6, 100) + "%";
+      // heuristic colors: <6 low, 6-8 ok, >8 higher
+      if(v >= 8){ o3Tag.style.borderColor="rgba(43,231,167,.32)"; o3Tag.style.background="rgba(43,231,167,.10)"; }
+      else if(v >= 6){ o3Tag.style.borderColor="rgba(255,207,90,.30)"; o3Tag.style.background="rgba(255,207,90,.10)"; }
+      else { o3Tag.style.borderColor="rgba(255,90,122,.34)"; o3Tag.style.background="rgba(255,90,122,.10)"; }
+    }
+
+    function updateCRP(){
+      const v = Number(crpSlider.value);
+      crpLabel.textContent = v.toFixed(2);
+      crpTag.textContent = "value: " + v.toFixed(2);
+      // higher is worse: 0..5 => 0..100
+      const pct = (v/5)*100;
+      crpBar.style.width = clamp(pct, 2, 100) + "%";
+      // thresholds: <0.2 good; 0.2-1 ok; >1 worse
+      if(v < 0.2){ crpTag.style.borderColor="rgba(43,231,167,.32)"; crpTag.style.background="rgba(43,231,167,.10)"; }
+      else if(v < 1.0){ crpTag.style.borderColor="rgba(255,207,90,.30)"; crpTag.style.background="rgba(255,207,90,.10)"; }
+      else { crpTag.style.borderColor="rgba(255,90,122,.34)"; crpTag.style.background="rgba(255,90,122,.10)"; }
+    }
+
+    [vo2Slider, vfSlider, o3Slider, crpSlider].forEach(sl => {
+      sl.addEventListener('input', () => {
+        updateVO2(); updateVF(); updateO3(); updateCRP();
+      });
+    });
+    updateVO2(); updateVF(); updateO3(); updateCRP();
+
+    // Buttons
+    const btnOpenAll = document.getElementById('btnOpenAll');
+    const btnJump = document.getElementById('btnJump');
+    const btnShowGlossary = document.getElementById('btnShowGlossary');
+
+    btnOpenAll.addEventListener('click', () => openModal('autophagy'));
+    btnJump.addEventListener('click', () => document.getElementById('markers').scrollIntoView({behavior:'smooth'}));
+    btnShowGlossary.addEventListener('click', () => {
+      mtitle.textContent = "Glossary";
+      msub.textContent = "Termeni folosiți în transcript (definiții practice).";
+      mBodyA.innerHTML = `
+        <ul>
+          <li><b>VO₂max:</b> capacitatea maximă de utilizare a oxigenului (fitness cardio). În transcript, e marker major pentru mortalitate.</li>
+          <li><b>Visceral fat:</b> grăsime în jurul organelor, legată de inflamație și risc metabolic.</li>
+          <li><b>Omega-3 index:</b> indicator din sânge legat de statusul EPA/DHA; asociat cu risc neuro/cardiovascular.</li>
+          <li><b>CRP:</b> C-reactive protein; marker comun de inflamație sistemică (lower is better, în discurs).</li>
+          <li><b>Autophagy:</b> proces de “curățare” celulară; în transcript, optimizat prin somn profund, exercițiu, TRE etc.</li>
+          <li><b>TRE:</b> time-restricted eating (fereastră de alimentație limitată).</li>
+          <li><b>TPE:</b> total plasma exchange; procedură de filtrare/exchange a plasmei.</li>
+          <li><b>Rebounding:</b> sărituri ușoare (ex: mini-trambulină), propuse pentru lymph flow.</li>
+        </ul>`;
+      mBodyB.innerHTML = `
+        <ul>
+          <li><b>Asociere vs cauzalitate:</b> transcriptul folosește frecvent “associated with”; util pentru prioritizare, dar nu e “dovadă finală” de cauzalitate.</li>
+          <li><b>Sweet spot:</b> praguri orientative (ex: CRP &lt;0.2, visceral &lt;250g), folosite ca ținte practice, nu ca diagnostice.</li>
+        </ul>`;
+      backdrop.style.display = "flex";
+      backdrop.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if(e.key === "Enter" && document.activeElement === btnOpenAll) openModal('autophagy');
+      if(e.key.toLowerCase() === "j") document.getElementById('markers').scrollIntoView({behavior:'smooth'});
+      if(e.key.toLowerCase() === "g") btnShowGlossary.click();
+    });
+
+    // Start with commentary OFF by default
+    setCommentary(false);
+  </script>
+</body>
+</html>
