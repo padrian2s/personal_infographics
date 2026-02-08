@@ -26,12 +26,20 @@
             padding: 20px;
             overflow-y: auto;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            transition: margin-left 0.3s ease, width 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .sidebar.hidden {
             margin-left: -300px;
             width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            height: 0;
             padding: 0;
             overflow: hidden;
         }
@@ -81,6 +89,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            transition: all 0.3s ease;
         }
 
         .header h2 {
@@ -119,6 +128,36 @@
             background: rgba(0,0,0,0.2);
             padding: 2px 6px;
             border-radius: 3px;
+        }
+
+        .floating-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            width: 45px;
+            height: 45px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 9999;
+        }
+
+        .floating-toggle:hover {
+            background: rgba(41, 128, 185, 0.95);
+            transform: scale(1.1);
+        }
+
+        .floating-toggle.visible {
+            display: flex;
         }
 
         .iframe-container {
@@ -165,6 +204,8 @@
     </style>
 </head>
 <body>
+    <button class="floating-toggle" id="floatingToggle" title="Show controls (⌘B)">☰</button>
+
     <div class="sidebar">
         <h1>HTML Files</h1>
         <ul class="file-list" id="fileList"></ul>
@@ -173,7 +214,7 @@
     <div class="content">
         <div class="header">
             <button class="toggle-btn" id="toggleBtn" title="Toggle sidebar (Ctrl+B)">
-                <span id="toggleIcon">☰</span>
+                <span id="toggleIcon">✕</span>
                 <span class="shortcut-hint">Ctrl+B</span>
             </button>
             <h2 id="currentFile">Select a file to view</h2>
@@ -195,8 +236,10 @@
         const currentFileTitle = document.getElementById('currentFile');
         const iframeContainer = document.getElementById('iframeContainer');
         const sidebar = document.querySelector('.sidebar');
+        const header = document.querySelector('.header');
         const toggleBtn = document.getElementById('toggleBtn');
         const toggleIcon = document.getElementById('toggleIcon');
+        const floatingToggle = document.getElementById('floatingToggle');
 
         // Detect OS and update shortcut hint
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -206,14 +249,24 @@
         }
         toggleBtn.title = `Toggle sidebar (${isMac ? 'Cmd+B' : 'Ctrl+B'})`;
 
-        // Toggle sidebar function
+        // Toggle sidebar and header function
         function toggleSidebar() {
             sidebar.classList.toggle('hidden');
-            toggleIcon.textContent = sidebar.classList.contains('hidden') ? '☰' : '✕';
+            header.classList.toggle('hidden');
+            const isHidden = sidebar.classList.contains('hidden');
+            toggleIcon.textContent = isHidden ? '☰' : '✕';
+
+            // Show/hide floating toggle button
+            if (isHidden) {
+                floatingToggle.classList.add('visible');
+            } else {
+                floatingToggle.classList.remove('visible');
+            }
         }
 
         // Toggle button click handler
         toggleBtn.addEventListener('click', toggleSidebar);
+        floatingToggle.addEventListener('click', toggleSidebar);
 
         // Keyboard shortcut: Ctrl+B (Cmd+B on Mac)
         document.addEventListener('keydown', (e) => {
