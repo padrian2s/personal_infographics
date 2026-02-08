@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sophie’s Two-Week-ish Reading Vlog — Infographic</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1621;
+      --panel2:#0c121b;
+      --ink:#e9eef7;
+      --muted:#a9b4c7;
+      --faint:#6c7a93;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.06);
+      --accent:#7cf0c8;
+      --accent2:#86a7ff;
+      --warn:#ffcc66;
+      --bad:#ff6b8a;
+      --good:#66ff99;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(124,240,200,.10), transparent 60%),
+        radial-gradient(1100px 900px at 85% 20%, rgba(134,167,255,.12), transparent 60%),
+        radial-gradient(900px 600px at 35% 90%, rgba(255,204,102,.08), transparent 62%),
+        var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:28px 20px 90px;
+    }
+
+    /* Header */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:stretch;
+      margin-bottom:16px;
+    }
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroMain{
+      padding:22px 22px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .kicker{
+      font-family:var(--mono);
+      letter-spacing:.08em;
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+    h1{
+      margin:.35rem 0 .25rem;
+      line-height:1.08;
+      font-weight:800;
+      letter-spacing:-.02em;
+      font-size: clamp(28px, 3.2vw, 44px);
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+      max-width: 64ch;
+      margin: .4rem 0 1rem;
+    }
+    .metaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top:6px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.14);
+      font-size:13px;
+      color:var(--muted);
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;display:inline-block;
+      background:var(--accent);
+      box-shadow: 0 0 0 5px rgba(124,240,200,.12);
+    }
+    .dot.blue{background:var(--accent2); box-shadow:0 0 0 5px rgba(134,167,255,.12);}
+    .dot.warn{background:var(--warn); box-shadow:0 0 0 5px rgba(255,204,102,.12);}
+    .dot.bad{background:var(--bad); box-shadow:0 0 0 5px rgba(255,107,138,.12);}
+    .heroSide{
+      padding:18px 18px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .statGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .stat{
+      border:1px solid var(--line2);
+      border-radius:14px;
+      padding:12px 12px 10px;
+      background: rgba(0,0,0,.16);
+      min-height:74px;
+      position:relative;
+      overflow:hidden;
+    }
+    .stat .label{color:var(--muted); font-size:12px; letter-spacing:.06em; text-transform:uppercase; font-family:var(--mono)}
+    .stat .value{margin-top:8px; font-size:18px; font-weight:800}
+    .stat .note{margin-top:4px; font-size:12px; color:var(--faint)}
+    .mini{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line2);
+      background: rgba(0,0,0,.16);
+    }
+    .mini b{font-size:13px}
+    .mini span{color:var(--muted); font-size:12px}
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+    button, .ghostBtn{
+      appearance:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--ink);
+      padding:10px 12px;
+      border-radius: 14px;
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size:13px;
+    }
+    button:hover, .ghostBtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18)}
+    button:active{transform: translateY(0px) scale(.99)}
+    .ghostBtn{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    /* Controls */
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      padding:12px 12px;
+      margin: 14px 0 10px;
+    }
+    .controls .seg{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .tag{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.14);
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .tag[data-active="true"]{
+      color: var(--bg);
+      background: linear-gradient(90deg, rgba(124,240,200,.95), rgba(134,167,255,.95));
+      border-color: transparent;
+      font-weight:800;
+    }
+    .search{
+      flex:1;
+      min-width: 220px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.16);
+    }
+    .search input{
+      width:100%;
+      background:transparent;
+      border:none;
+      outline:none;
+      color:var(--ink);
+      font-size:13px;
+    }
+    .search small{color:var(--faint); font-family:var(--mono)}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:16px;
+      align-items:start;
+    }
+    @media (max-width: 1100px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    /* Timeline */
+    .timeline{
+      padding:14px;
+    }
+    .timelineHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      padding:6px 8px 10px;
+      border-bottom: 1px solid var(--line2);
+      margin-bottom:10px;
+    }
+    .timelineHead h2{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .timelineHead .hint{
+      color:var(--muted);
+      font-size:12px;
+      font-family:var(--mono);
+    }
+    .events{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .evt{
+      position:relative;
+      padding:12px 12px 12px 14px;
+      border-radius:16px;
+      border:1px solid var(--line2);
+      background: rgba(0,0,0,.16);
+      overflow:hidden;
+    }
+    .evt::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:4px;
+      background: linear-gradient(180deg, rgba(124,240,200,.9), rgba(134,167,255,.9));
+      opacity:.8;
+    }
+    .evt .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .evt .when{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .evt .chips{
+      display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .chip.story{border-color: rgba(134,167,255,.24); color:#c7d4ff}
+    .chip.essay{border-color: rgba(124,240,200,.22); color:#bff7e4}
+    .chip.life{border-color: rgba(255,204,102,.22); color:#ffe1a6}
+    .chip.mood{border-color: rgba(255,107,138,.25); color:#ffc2cf}
+    .evt h3{
+      margin:0 0 4px;
+      font-size:14px;
+      letter-spacing:-.01em;
+    }
+    .evt p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .evt details{
+      margin-top:8px;
+    }
+    .evt summary{
+      cursor:pointer;
+      color: var(--accent2);
+      font-family: var(--mono);
+      font-size: 12px;
+      list-style:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .evt summary::-webkit-details-marker{display:none}
+    .quote{
+      margin-top:8px;
+      padding:10px 10px 10px 12px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: #dfe7f7;
+      font-size: 12.7px;
+      line-height: 1.5;
+      position:relative;
+    }
+    .quote::before{
+      content:"“";
+      position:absolute;
+      left:10px;
+      top:-6px;
+      font-size: 22px;
+      color: rgba(255,255,255,.35);
+    }
+    .quote .src{
+      margin-top:8px;
+      color:var(--faint);
+      font-family:var(--mono);
+      font-size:11px;
+    }
+
+    /* Library */
+    .library{
+      padding:14px;
+    }
+    .library h2{
+      margin:0 0 6px;
+      font-size:16px;
+    }
+    .subtle{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .shelf{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 740px){
+      .shelf{grid-template-columns:1fr;}
+    }
+    .book{
+      border:1px solid var(--line2);
+      border-radius: 16px;
+      padding:12px 12px 10px;
+      background: rgba(0,0,0,.16);
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height: 160px;
+    }
+    .book[data-status="reading"]::after,
+    .book[data-status="read"]::after,
+    .book[data-status="planned"]::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(250px 160px at 20% 10%, rgba(124,240,200,.10), transparent 60%),
+        radial-gradient(250px 160px at 80% 20%, rgba(134,167,255,.10), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .bookTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      z-index:1;
+    }
+    .title{
+      font-weight:900;
+      letter-spacing:-.01em;
+      font-size:13.5px;
+      line-height:1.2;
+    }
+    .author{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:3px;
+    }
+    .book .meta{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      z-index:1;
+    }
+    .badge{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .badge.read{border-color: rgba(102,255,153,.24); color:#bfffd2}
+    .badge.reading{border-color: rgba(124,240,200,.24); color:#bff7e4}
+    .badge.planned{border-color: rgba(255,204,102,.24); color:#ffe1a6}
+    .badge.dnf{border-color: rgba(255,107,138,.25); color:#ffc2cf}
+    .desc{
+      color:var(--muted);
+      font-size:12.7px;
+      line-height:1.45;
+      z-index:1;
+    }
+    .actions{
+      margin-top:auto;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      z-index:1;
+    }
+    .tinyBtn{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      font-weight:800;
+      color:var(--ink);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .tinyBtn[aria-pressed="true"]{
+      background: rgba(124,240,200,.16);
+      border-color: rgba(124,240,200,.28);
+    }
+    .tinyBtn.danger[aria-pressed="true"]{
+      background: rgba(255,107,138,.16);
+      border-color: rgba(255,107,138,.28);
+    }
+
+    /* Right column */
+    .right{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .panel{
+      padding:14px;
+    }
+    .panel h2{
+      margin:0 0 8px;
+      font-size:16px;
+    }
+
+    /* Theme map */
+    .map{
+      border:1px solid var(--line2);
+      border-radius:16px;
+      background: rgba(0,0,0,.16);
+      padding:10px;
+      overflow:hidden;
+    }
+    .map svg{width:100%; height:auto; display:block}
+    .legend{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      font-family:var(--mono);
+    }
+    .legend .litem{display:flex; gap:6px; align-items:center}
+    .sw{width:10px; height:10px; border-radius:3px; background:var(--accent)}
+    .sw.b{background:var(--accent2)}
+    .sw.w{background:var(--warn)}
+    .sw.r{background:var(--bad)}
+
+    /* Commentary */
+    .commentary{
+      border:1px solid var(--line2);
+      border-radius: 16px;
+      background: rgba(0,0,0,.16);
+      padding:12px 12px;
+    }
+    .commentary .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .tab{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab[data-active="true"]{
+      color: var(--bg);
+      background: linear-gradient(90deg, rgba(124,240,200,.95), rgba(134,167,255,.95));
+      border-color: transparent;
+      font-weight:900;
+    }
+    .commentary .block{
+      display:none;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .commentary .block[data-show="true"]{display:block}
+    .commentary b{color:var(--ink)}
+    .callout{
+      margin-top:10px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      padding:10px;
+      color:#dfe7f7;
+      font-size:12.7px;
+      line-height:1.5;
+    }
+    .callout code{
+      font-family:var(--mono);
+      color:#d7e0ff;
+      font-size:11.5px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:16px;
+      padding:14px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+      text-align:center;
+    }
+    .footer code{font-family:var(--mono); color:#d7e0ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card heroMain">
+        <div class="kicker">Infographic / reading vlog / “two-week-ish” arc</div>
+        <h1>Street Books → Short Stories → Memory, Body, Audience</h1>
+        <p class="subtitle">
+          A visual digest of Sophie’s vlog: a found-book “taste test,” a February short-story project,
+          and a parallel inner narrative about focus, fatigue, performance vacuum, and getting back into the body.
+        </p>
+        <div class="metaRow">
+          <div class="pill"><span class="dot"></span> reading-as-archive</div>
+          <div class="pill"><span class="dot blue"></span> short stories (February)</div>
+          <div class="pill"><span class="dot warn"></span> essays + vignettes</div>
+          <div class="pill"><span class="dot bad"></span> overwhelm / grumpy days</div>
+        </div>
+        <div class="btnRow" style="margin-top:14px">
+          <button id="btnExpandAll" title="Open all quote/details blocks">Expand all highlights</button>
+          <button id="btnCollapseAll" title="Close all quote/details blocks">Collapse highlights</button>
+          <button id="btnReset" title="Clear saved progress (localStorage)">Reset saved progress</button>
+        </div>
+      </div>
+
+      <aside class="card heroSide">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="label">Core materials</div>
+            <div class="value" id="statItems">—</div>
+            <div class="note">books / essays / stories referenced</div>
+          </div>
+          <div class="stat">
+            <div class="label">Format mix</div>
+            <div class="value" id="statMix">—</div>
+            <div class="note">essay / story / memoir / meta</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mood vector</div>
+            <div class="value" id="statMood">—</div>
+            <div class="note">from grumpy → relief</div>
+          </div>
+          <div class="stat">
+            <div class="label">Project</div>
+            <div class="value">Daily stories</div>
+            <div class="note">a “book club” without a book</div>
+          </div>
+        </div>
+
+        <div class="mini">
+          <div>
+            <b>Found on the street</b><br/>
+            <span>Affinity gamble: “If you love their titles, we might match.”</span>
+          </div>
+          <div class="pill" title="Street box → curated by vibes"><span class="dot warn"></span> haul</div>
+        </div>
+
+        <div class="mini">
+          <div>
+            <b>Interstitial</b><br/>
+            <span>Marmite vs Vegemite: same job, different aftertaste.</span>
+          </div>
+          <div class="pill"><span class="dot"></span> palate</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- CONTROLS -->
+    <div class="card controls" role="region" aria-label="Filters">
+      <div class="seg" aria-label="Type filters">
+        <div class="tag" data-type="all" data-active="true">ALL</div>
+        <div class="tag" data-type="essay">ESSAYS</div>
+        <div class="tag" data-type="story">SHORT STORIES</div>
+        <div class="tag" data-type="memoir">MEMOIR</div>
+        <div class="tag" data-type="meta">META / VLOG</div>
+        <div class="tag" data-type="life">LIFE / BODY</div>
+      </div>
+      <div class="search" role="search" aria-label="Search titles and notes">
+        <small>SEARCH</small>
+        <input id="q" placeholder="Try: 'memory', 'Ellison', 'Berlin', 'Cixous', 'Vegemite'…" />
+      </div>
+    </div>
+
+    <section class="grid">
+      <!-- LEFT: Timeline + Library -->
+      <main class="left">
+        <!-- Timeline -->
+        <section class="card timeline" aria-label="Narrative timeline">
+          <div class="timelineHead">
+            <h2>Timeline: what happens (reading + life beats)</h2>
+            <div class="hint">Tap a card ▸ open highlights ▸ save progress</div>
+          </div>
+
+          <div class="events" id="events">
+            <!-- 1 -->
+            <article class="evt" data-types="meta life">
+              <div class="top">
+                <div class="when">Opening beat</div>
+                <div class="chips">
+                  <span class="chip life">LIFE</span><span class="chip">street haul</span><span class="chip">vlog premise</span>
+                </div>
+              </div>
+              <h3>Two-week-ish vlog + “street books” experiment</h3>
+              <p>
+                Sophie found a box of books on the street. She recognizes authors she likes,
+                so she treats it like a taste-test: “shared affinities” without knowing the specific titles.
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  The premise: pick from a street-box because the previous owner’s known favorites
+                  suggest overlap — then try “a taste” without committing to everything.
+                  <div class="src">Vlog setup • “I won’t read all of these… I’d like to get a taste…”</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 2 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">Current read (pocket-sized)</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip">diarykeeping</span><span class="chip">archive</span>
+                </div>
+              </div>
+              <h3>Sarah Manguso — <em>Ongoingness</em>: diarykeeping as life-shaping</h3>
+              <p>
+                A short, vignette-style personal essay about a meticulous diary practice—how it changes with life,
+                motherhood, memory, archive, and the impulse to narrativize.
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  Themes: <b>memory</b> (“what is a memory?”), <b>archive</b> (“what do we do when we keep a diary?”),
+                  and the subtle power of <b>narrativizing</b> (shaping your life as a story).
+                  <div class="src">Manguso • “The End of a Diary” section described in vlog</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 3 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">Street-box anchor</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip">audience</span><span class="chip">America</span>
+                </div>
+              </div>
+              <h3>Ralph Ellison — <em>Going to the Territory</em>: essays + the “American audience”</h3>
+              <p>
+                The first street-box book that pulled her in. She reads “The Little Man at Chehaw Station”
+                (published in the 1970s) about the complexity of the American audience—then later reads the title essay.
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  “Americans can be notoriously selective in the exercise of historical memory…”
+                  — Ellison’s point: what’s repressed still shapes events, and resurfaces under stress.
+                  <div class="src">Ellison • quoted passage read in vlog</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 4 -->
+            <article class="evt" data-types="memoir meta">
+              <div class="top">
+                <div class="when">Vibes pick</div>
+                <div class="chips">
+                  <span class="chip">edition</span><span class="chip">pioneering scholar</span><span class="chip memoir">MEMOIR</span>
+                </div>
+              </div>
+              <h3>Jane Ellen Harrison — <em>Reminiscences of a Student’s Life</em></h3>
+              <p>
+                Picked partly for “looks good” and the edition; described as witty, outspoken memoir of a pioneering archaeologist and scholar.
+                Mary Beard calls her “my hero.”
+              </p>
+            </article>
+
+            <!-- 5 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">NYRB intrigue</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip">cinema</span><span class="chip">public→private</span>
+                </div>
+              </div>
+              <h3>Esther Kinsky — elegy for cinema as shared space</h3>
+              <p>
+                An NYRB edition: an elegy/meditation on the shift from public cinema-viewing to private viewing.
+                Interested, but least likely to finish soon due to length.
+              </p>
+            </article>
+
+            <!-- 6 -->
+            <article class="evt" data-types="essay life">
+              <div class="top">
+                <div class="when">Body / memory overlap</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip life">LIFE</span><span class="chip">disability / motion</span>
+                </div>
+              </div>
+              <h3>Molly McCully Brown — <em>Places I’ve Taken My Body</em>: “Muscle Memory”</h3>
+              <p>
+                Reads the first essay and some more. A resonant meditation on lost motion, forgetting, and the difficulty of grieving what you can’t fully remember.
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  “I hadn’t realized how much motion I’d lost to forgetting until I tried to remember…”
+                  — bodies as maps you can’t always revisit; aging as memory buckling and fading.
+                  <div class="src">McCully Brown • quoted excerpt read in vlog</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 7 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Short-story project declared</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">Substack “book club”</span><span class="chip">daily reading</span>
+                </div>
+              </div>
+              <h3>February plan: “book club” without a book → daily short stories</h3>
+              <p>
+                She posts a February reading plan: instead of one book, read as many short stories as possible (ideally daily).
+                She asks viewers for recommendations and compiles them in a Substack post.
+              </p>
+            </article>
+
+            <!-- 8 -->
+            <article class="evt" data-types="meta mood">
+              <div class="top">
+                <div class="when">Rehearsal day</div>
+                <div class="chips">
+                  <span class="chip mood">MOOD</span><span class="chip">grumpy</span><span class="chip">reset ritual</span>
+                </div>
+              </div>
+              <h3>Long bad day → “derump” + hot shower</h3>
+              <p>After rehearsal: grumpy, exhausted—then chooses a simple reset.</p>
+            </article>
+
+            <!-- 9 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">Cixous + Lispector</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip">bilingual</span><span class="chip">translation difficulty</span>
+                </div>
+              </div>
+              <h3>Hélène Cixous on Clarice Lispector — “To Live the Orange” (French/English)</h3>
+              <p>
+                A collection of Cixous pieces on Lispector: two significant pieces, one very short in-between,
+                plus the approved English translation printed side-by-side with the French.
+                Translation is hard because of Cixous’s wordplay and linguistic “flights.”
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  The book becomes a double portrait: as much about <b>Cixous reading/writing as a woman</b>
+                  as about Lispector herself—language doing acrobatics while reflecting on selfhood.
+                  <div class="src">Cixous/Lispector • described in vlog</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 10 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Early February: first reads</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">mood/vibes</span><span class="chip">minimal plot</span>
+                </div>
+              </div>
+              <h3>Amina Cain — <em>Creature</em>: “A Threadless Way” & “Attached to a Self”</h3>
+              <p>
+                Two short, similar stories: “a body and a self in a setting.”
+                Less plot, more atmosphere—pensive, dreamy mood.
+              </p>
+            </article>
+
+            <!-- 11 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Speculative dystopia</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">Granta</span><span class="chip">nightmare dreamlike</span>
+                </div>
+              </div>
+              <h3>Camila Gurdova — “Waxy” (via <em>Granta</em>, also in <em>The Doll’s Alphabet</em>)</h3>
+              <p>
+                A dystopic speculative fiction where women have no rights or prospects, and must attach to men to operate.
+                Generalized setting + intense detail; dreamlike but nightmarish. Compels her to sample the whole collection.
+              </p>
+            </article>
+
+            <!-- 12 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Major discovery</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">posthumous 2015</span><span class="chip">California</span>
+                </div>
+              </div>
+              <h3>Lucia Berlin — <em>A Manual for Cleaning Women</em> (title story)</h3>
+              <p>
+                She reads the title story: “Bay Area feeling,” specific to place and texture (possibly 70s/80s vibe).
+                Wants to read more (there are 43 stories).
+              </p>
+            </article>
+
+            <!-- 13 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">More Berlin</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">good prose</span><span class="chip">Angel’s/On Hell’s Laundromat</span>
+                </div>
+              </div>
+              <h3>Lucia Berlin — “Angel’s Laundromat / On Hell’s Laundromat”</h3>
+              <p>
+                Didn’t leave as strong an impression, but still: good prose, good setups, good to live inside.
+              </p>
+            </article>
+
+            <!-- 14 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">Micro-vignettes</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY / VIGNETTES</span><span class="chip">2–3 pages</span>
+                </div>
+              </div>
+              <h3>Robert Walser — tiny Berlin stories (very short vignettes)</h3>
+              <p>
+                Two to three pages each: she samples a couple and expects to keep going.
+              </p>
+            </article>
+
+            <!-- 15 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Longer short story</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">Paris</span><span class="chip">crossroads</span>
+                </div>
+              </div>
+              <h3>Mavis Gallant — “Across the Bridge”</h3>
+              <p>
+                A portrait of a young woman in Paris, literally and metaphorically “across the bridge,” at a turning point.
+                “Pleasant” as a serious compliment: strong style and a comfortable world to inhabit.
+              </p>
+            </article>
+
+            <!-- 16 -->
+            <article class="evt" data-types="essay meta">
+              <div class="top">
+                <div class="when">Poetry essay + belief friction</div>
+                <div class="chips">
+                  <span class="chip essay">ESSAY</span><span class="chip">poetry</span><span class="chip">ghosts metaphor vs literal</span>
+                </div>
+              </div>
+              <h3>Dorothy Lasky — <em>Animal</em>: “Poetry, Ghosts, and the Shared Imagination”</h3>
+              <p>
+                She likes the idea of a shared, physical imagination in/through poetry,
+                but feels the essay goes too far into literal ghosts (she prefers the metaphor).
+              </p>
+              <details>
+                <summary>Highlights</summary>
+                <div class="quote">
+                  “the imagination is a physical space that one shares with other people…”
+                  — poems as haunted land; writing as building realities in others’ brains.
+                  <div class="src">Lasky • quoted excerpt read in vlog</div>
+                </div>
+              </details>
+            </article>
+
+            <!-- 17 -->
+            <article class="evt" data-types="story meta">
+              <div class="top">
+                <div class="when">Classic finally read</div>
+                <div class="chips">
+                  <span class="chip story">SHORT STORIES</span><span class="chip">night reading</span><span class="chip">affecting</span>
+                </div>
+              </div>
+              <h3>Shirley Jackson — “The Lottery”</h3>
+              <p>
+                Familiar with the story culturally, but reads it for the first time at night when she can’t sleep.
+                Finds it interesting, off-putting, and affecting.
+              </p>
+            </article>
+
+            <!-- 18 -->
+            <article class="evt" data-types="meta life mood">
+              <div class="top">
+                <div class="when">Interlude: taste test</div>
+                <div class="chips">
+                  <span class="chip life">LIFE</span><span class="chip mood">MOOD</span><span class="chip">Marmite vs Vegemite</span>
+                </div>
+              </div>
+              <h3>Marmite vs Vegemite (nobody asked, but we got it)</h3>
+              <p>
+                Both on heavily buttered toast. She likes both, but clearly prefers Marmite:
+                rounder, warmer, richer smell; Vegemite has a less pleasant aftertaste and a “chemical” smell.
+              </p>
+            </article>
+
+            <!-- 19 -->
+            <article class="evt" data-types="life mood meta">
+              <div class="top">
+                <div class="when">Body returns</div>
+                <div class="chips">
+                  <span class="chip life">LIFE</span><span class="chip mood">MOOD</span><span class="chip">PT / hospital</span>
+                </div>
+              </div>
+              <h3>Physical therapy at cancer hospital → a good day documented</h3>
+              <p>
+                After nightmares and low enthusiasm, she has a surprisingly good appointment in Midtown East,
+                walks Manhattan, feels better in her body, and notes how long she’s been “not okay” even pre-diagnosis.
+              </p>
+            </article>
+
+            <!-- 20 -->
+            <article class="evt" data-types="meta">
+              <div class="top">
+                <div class="when">Meta reflection</div>
+                <div class="chips">
+                  <span class="chip">focus</span><span class="chip">fragmentation</span><span class="chip">ouroboros</span>
+                </div>
+              </div>
+              <h3>Reading shorter pieces: focus exercise or contributor to scatter?</h3>
+              <p>
+                She notices being harried and pulled in many directions. Short stories and essays might correlate:
+                easier to begin/end, easier to start, but could also mirror a difficulty focusing on longer forms.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Library -->
+        <section class="card library" aria-label="Reading library">
+          <h2>Library: everything mentioned (click to mark your status)</h2>
+          <p class="subtle">
+            This shelf merges: street-box finds, current reads, and February short-story sampling.
+            Use buttons to mark: <b>Read</b>, <b>Reading</b>, <b>Not into it (for now)</b>. Saved locally in your browser.
+          </p>
+
+          <div class="shelf" id="shelf">
+            <!-- Books / items are injected by JS -->
+          </div>
+        </section>
+      </main>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="right">
+        <!-- Theme map -->
+        <section class="card panel" aria-label="Theme map">
+          <h2>Theme map: three gravity wells</h2>
+          <div class="map">
+            <svg viewBox="0 0 760 420" role="img" aria-label="Theme map with nodes">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="rgba(124,240,200,.95)"/>
+                  <stop offset="1" stop-color="rgba(134,167,255,.95)"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="5" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Connections -->
+              <g opacity=".65">
+                <path d="M190,110 C280,60 430,70 520,120" stroke="rgba(255,255,255,.20)" stroke-width="2" fill="none"/>
+                <path d="M520,120 C620,180 640,260 590,310" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none"/>
+                <path d="M190,110 C170,200 210,270 300,310" stroke="rgba(255,255,255,.16)" stroke-width="2" fill="none"/>
+                <path d="M300,310 C410,350 520,350 590,310" stroke="rgba(255,255,255,.14)" stroke-width="2" fill="none"/>
+                <path d="M300,310 C360,245 420,210 520,120" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none"/>
+              </g>
+
+              <!-- Hubs -->
+              <g filter="url(#glow)">
+                <circle cx="190" cy="110" r="68" fill="rgba(124,240,200,.14)" stroke="rgba(124,240,200,.45)" stroke-width="2"/>
+                <text x="190" y="104" fill="white" font-size="18" font-weight="800" text-anchor="middle">MEMORY</text>
+                <text x="190" y="126" fill="rgba(233,238,247,.85)" font-size="12" text-anchor="middle">diaries • archives • history</text>
+
+                <circle cx="520" cy="120" r="72" fill="rgba(134,167,255,.14)" stroke="rgba(134,167,255,.48)" stroke-width="2"/>
+                <text x="520" y="114" fill="white" font-size="18" font-weight="800" text-anchor="middle">TEXT</text>
+                <text x="520" y="136" fill="rgba(233,238,247,.85)" font-size="12" text-anchor="middle">short forms • translation • voice</text>
+
+                <circle cx="300" cy="310" r="78" fill="rgba(255,204,102,.12)" stroke="rgba(255,204,102,.44)" stroke-width="2"/>
+                <text x="300" y="304" fill="white" font-size="18" font-weight="800" text-anchor="middle">BODY</text>
+                <text x="300" y="326" fill="rgba(233,238,247,.85)" font-size="12" text-anchor="middle">motion • fatigue • recovery</text>
+
+                <circle cx="590" cy="310" r="62" fill="rgba(255,107,138,.10)" stroke="rgba(255,107,138,.44)" stroke-width="2"/>
+                <text x="590" y="304" fill="white" font-size="18" font-weight="800" text-anchor="middle">MOOD</text>
+                <text x="590" y="326" fill="rgba(233,238,247,.85)" font-size="12" text-anchor="middle">overwhelm • focus • relief</text>
+              </g>
+
+              <!-- Satellites -->
+              <g>
+                <rect x="78" y="210" width="210" height="54" rx="14" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.12)"/>
+                <text x="92" y="234" fill="rgba(233,238,247,.92)" font-size="13" font-weight="800">Manguso</text>
+                <text x="92" y="253" fill="rgba(169,180,199,.95)" font-size="12">diarykeeping → narrativizing</text>
+
+                <rect x="420" y="210" width="250" height="54" rx="14" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.12)"/>
+                <text x="434" y="234" fill="rgba(233,238,247,.92)" font-size="13" font-weight="800">Cixous ↔ Lispector</text>
+                <text x="434" y="253" fill="rgba(169,180,199,.95)" font-size="12">wordplay • bilingual pages • self-portrait</text>
+
+                <rect x="430" y="26" width="280" height="54" rx="14" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.12)"/>
+                <text x="444" y="50" fill="rgba(233,238,247,.92)" font-size="13" font-weight="800">Ellison</text>
+                <text x="444" y="69" fill="rgba(169,180,199,.95)" font-size="12">history repressed → returns under stress</text>
+
+                <rect x="52" y="24" width="300" height="54" rx="14" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.12)"/>
+                <text x="66" y="48" fill="rgba(233,238,247,.92)" font-size="13" font-weight="800">Street-box “affinity gamble”</text>
+                <text x="66" y="67" fill="rgba(169,180,199,.95)" font-size="12">taste test • editions • vibes</text>
+
+                <rect x="70" y="340" width="260" height="54" rx="14" fill="rgba(0,0,0,.22)" stroke="rgba(255,255,255,.12)"/>
+                <text x="84" y="364" fill="rgba(233,238,247,.92)" font-size="13" font-weight="800">McCully Brown</text>
+                <text x="84" y="383" fill="rgba(169,180,199,.95)" font-size="12">lost motion → memory buckles</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="legend" aria-label="Legend">
+            <div class="litem"><span class="sw"></span> memory/archive</div>
+            <div class="litem"><span class="sw b"></span> language/short forms</div>
+            <div class="litem"><span class="sw w"></span> body/recovery</div>
+            <div class="litem"><span class="sw r"></span> mood/focus</div>
+          </div>
+        </section>
+
+        <!-- Commentary -->
+        <section class="card panel" aria-label="Commentary">
+          <h2>Commentary: what the vlog is really doing</h2>
+
+          <div class="commentary">
+            <div class="tabs" role="tablist" aria-label="Commentary tabs">
+              <div class="tab" data-tab="t1" data-active="true" role="tab" tabindex="0">1) Structure</div>
+              <div class="tab" data-tab="t2" role="tab" tabindex="0">2) Themes</div>
+              <div class="tab" data-tab="t3" role="tab" tabindex="0">3) Focus & form</div>
+              <div class="tab" data-tab="t4" role="tab" tabindex="0">4) Why it lands</div>
+            </div>
+
+            <div class="block" data-id="t1" data-show="true">
+              The vlog isn’t “a single book review.” It’s a <b>portfolio of small readings</b> stitched together by a living narrator:
+              street-box discoveries, a February short-story commitment, and a personal body/mood line.
+              <div class="callout">
+                The storytelling engine is the <b>taste test</b>: pick books because the previous owner’s known favorites imply shared
+                sensibilities, then sample widely. It produces a curated randomness: <code>recognizable authors + unknown titles</code>.
+              </div>
+            </div>
+
+            <div class="block" data-id="t2">
+              Three major themes repeat across unrelated texts:
+              <br/><br/>
+              <b>• Archive & memory:</b> Manguso (diaries), Ellison (historical memory), McCully Brown (body memory), and even the vlog’s urge to “document good days.”
+              <br/><br/>
+              <b>• The body as story:</b> “Muscle Memory,” the cancer-hospital PT appointment, walking Manhattan, the promise of feeling better—life is read through sensation.
+              <br/><br/>
+              <b>• Audience & shared mind:</b> Ellison’s American audience, Lasky’s shared imagination in poetry, and Cixous’s translation problem (language as communal space).
+            </div>
+
+            <div class="block" data-id="t3">
+              Sophie notices an ouroboros:
+              she’s drawn to short pieces because focus is hard, and short pieces might also reinforce that fragmented mode.
+              But the same shortness becomes a <b>focus exercise</b> because each piece has a clean beginning/end.
+              <div class="callout">
+                In other words, short form functions as both <b>symptom</b> and <b>tool</b>.
+                The vlog stays honest by keeping both interpretations alive.
+              </div>
+            </div>
+
+            <div class="block" data-id="t4">
+              The emotional swing is the point:
+              nightmare morning → appointment → walking → “I feel the promise of in the future feeling better.”
+              That arc reframes the reading list as more than taste—reading becomes <b>self-regulation</b>.
+              <div class="callout">
+                Even the Marmite/Vegemite bit is a micro-version of the whole vlog:
+                two similar things, but one is <b>rounder / warmer</b> and one has an aftertaste.
+                It’s a sensory metaphor for her month: similar inputs, different internal results.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick guide -->
+        <section class="card panel" aria-label="How to use">
+          <h2>How to use this infographic</h2>
+          <p class="subtle" style="margin:0">
+            1) Filter by type (Essays / Short Stories / Life). 2) Search for a name. 3) Mark items in the shelf.
+            Progress is stored in <code>localStorage</code> (your browser only).
+          </p>
+        </section>
+      </aside>
+    </section>
+
+    <div class="card footer">
+      Built as a single-file HTML infographic. No external assets. <br/>
+      Tip: host this on GitHub Pages and it becomes a shareable “reading dashboard.”
+    </div>
+  </div>
+
+  <script>
+    // ---------- Data ----------
+    const ITEMS = [
+      {
+        id:"manguso-ongoingness",
+        title:"Ongoingness (The End of a Diary)",
+        author:"Sarah Manguso",
+        type:["essay","meta"],
+        statusHint:"reading",
+        notes:"Vignette-style personal essay about diarykeeping, memory, archive, motherhood, and narrativizing life. Pocket-sized: fits in coat pocket.",
+        tags:["diary","memory","archive","vignettes"]
+      },
+      {
+        id:"ellison-territory",
+        title:"Going to the Territory",
+        author:"Ralph Ellison",
+        type:["essay"],
+        statusHint:"reading",
+        notes:"Essay collection (17). Read: “The Little Man at Chehaw Station” (published in the 1970s) + later the title essay (address at Brown, 1979; reprinted 1980).",
+        tags:["audience","America","history","essays"]
+      },
+      {
+        id:"harrison-reminiscences",
+        title:"Reminiscences of a Student’s Life",
+        author:"Jane Ellen Harrison",
+        type:["memoir","meta"],
+        statusHint:"planned",
+        notes:"Picked partly for the edition + vibes. Memoir of pioneering archaeologist/scholar; Mary Beard calls her “my hero.”",
+        tags:["memoir","scholar","street-find"]
+      },
+      {
+        id:"kinsky-cinema",
+        title:"Elegy for the shared space of the cinema (NYRB edition)",
+        author:"Esther Kinsky",
+        type:["essay","meta"],
+        statusHint:"planned",
+        notes:"Meditation on the shift from public cinema-viewing to private viewing; intrigued but least likely soon due to length.",
+        tags:["cinema","public-private","NYRB"]
+      },
+      {
+        id:"mccullybrown-places",
+        title:"Places I’ve Taken My Body",
+        author:"Molly McCully Brown",
+        type:["essay","life"],
+        statusHint:"reading",
+        notes:"Reads the first essay “Muscle Memory” and some more. About lost motion, forgetting, and aging as memory buckling.",
+        tags:["body","disability","memory","motion"]
+      },
+      {
+        id:"minot-lust",
+        title:"Lust and Other Stories",
+        author:"Susan Minot",
+        type:["story","meta"],
+        statusHint:"planned",
+        notes:"Chosen for cover/title + stories format. Looked into stories; not hooked yet. Will give another shot.",
+        tags:["stories","not-hooked"]
+      },
+      {
+        id:"cixous-lispector",
+        title:"Cixous on Clarice Lispector (bilingual French/English) — incl. “To Live the Orange”",
+        author:"Hélène Cixous",
+        type:["essay","meta"],
+        statusHint:"reading",
+        notes:"Two major pieces (+ a tiny in-between), plus an approved English translation printed alongside the French. Translation is famously hard due to wordplay and linguistic flights.",
+        tags:["translation","bilingual","wordplay","women-writing"]
+      },
+      {
+        id:"berlin-manual",
+        title:"A Manual for Cleaning Women (title story)",
+        author:"Lucia Berlin",
+        type:["story"],
+        statusHint:"read",
+        notes:"Posthumously published collection (2015). She read the title story; very Bay Area California feel (70s/80s vibe uncertain). Wants more (43 stories).",
+        tags:["California","Bay Area","collection"]
+      },
+      {
+        id:"berlin-laundromat",
+        title:"Angel’s Laundromat / On Hell’s Laundromat (story mentioned)",
+        author:"Lucia Berlin",
+        type:["story"],
+        statusHint:"read",
+        notes:"Didn’t hit as strongly, but still good prose and interesting setups.",
+        tags:["prose","short-story"]
+      },
+      {
+        id:"cain-creature",
+        title:"Creature (two opening stories: “A Threadless Way” + “Attached to a Self”)",
+        author:"Amina Cain",
+        type:["story"],
+        statusHint:"read",
+        notes:"Short, similar pieces: mood & vibes; minimal plot; dreamy/pensive. May continue.",
+        tags:["vibes","minimal-plot","dreamy"]
+      },
+      {
+        id:"gurdova-waxy",
+        title:"“Waxy” (via Granta; also in The Doll’s Alphabet)",
+        author:"Camila Gurdova",
+        type:["story"],
+        statusHint:"read",
+        notes:"Dystopic speculative fiction: women with no rights/prospects; generalized setting + hyper-detail; dreamlike but nightmarish; compelling enough to consider the whole collection.",
+        tags:["dystopia","speculative","Granta"]
+      },
+      {
+        id:"walser-berlin",
+        title:"Berlin Stories (tiny vignettes sampled)",
+        author:"Robert Walser",
+        type:["essay","meta"],
+        statusHint:"reading",
+        notes:"Extremely short vignettes (2–3 pages). She sampled a couple and expects to read more.",
+        tags:["vignettes","miniature","Berlin"]
+      },
+      {
+        id:"gallant-across",
+        title:"“Across the Bridge”",
+        author:"Mavis Gallant",
+        type:["story"],
+        statusHint:"read",
+        notes:"Longer short story (~30ish pages). Portrait of a young woman in Paris at a crossroads. “Pleasant” as genuine praise: strong style, comfortable world to inhabit.",
+        tags:["Paris","crossroads","style"]
+      },
+      {
+        id:"lasky-animal",
+        title:"Animal (essay collection; read first essay)",
+        author:"Dorothy Lasky",
+        type:["essay","meta"],
+        statusHint:"read",
+        notes:"Essay: “Poetry, Ghosts, and the Shared Imagination.” Loves shared imagination idea; friction with literal belief in ghosts (prefers metaphor).",
+        tags:["poetry","ghosts","imagination"]
+      },
+      {
+        id:"jackson-lottery",
+        title:"“The Lottery”",
+        author:"Shirley Jackson",
+        type:["story"],
+        statusHint:"read",
+        notes:"First-time read despite cultural familiarity. Read at night when she couldn’t sleep; found it interesting, off-putting, and affecting.",
+        tags:["classic","affecting","night-reading"]
+      },
+      {
+        id:"life-rehearsal",
+        title:"Rehearsal day → grumpy → hot shower reset",
+        author:"Life beat",
+        type:["meta","life"],
+        statusHint:"read",
+        notes:"Long bad day; chooses a small ritual (“derump” with a hot shower).",
+        tags:["mood","ritual","reset"]
+      },
+      {
+        id:"life-pt",
+        title:"Cancer-hospital PT + long walk → ‘document the good day’",
+        author:"Life beat",
+        type:["meta","life"],
+        statusHint:"read",
+        notes:"Nightmare morning flips after a good PT appointment; walking Manhattan; renewed promise of feeling better; awareness of how long she’s been not okay (even pre-diagnosis).",
+        tags:["recovery","walking","PT","good-day"]
+      },
+      {
+        id:"interstitial-marmite",
+        title:"Marmite vs Vegemite taste test",
+        author:"Interstitial",
+        type:["meta","life"],
+        statusHint:"read",
+        notes:"Both on heavily buttered toast. Prefers Marmite: rounder/warmer/richer smell; Vegemite: unpleasant aftertaste + more ‘chemical’ smell.",
+        tags:["taste","smell","comparison"]
+      },
+      {
+        id:"project-feb",
+        title:"February: daily short-story project (Substack ‘book club’ without a book)",
+        author:"Project",
+        type:["meta"],
+        statusHint:"reading",
+        notes:"Reads as many short stories as possible; requests recommendations; compiles them; acknowledges the overwhelm of tracking many small reads.",
+        tags:["Substack","daily","short-stories"]
+      },
+      {
+        id:"street-haul",
+        title:"Street-box book haul (affinity gamble)",
+        author:"Vlog premise",
+        type:["meta"],
+        statusHint:"read",
+        notes:"Chooses books from a box because the previous owner’s known favorites suggest shared reading affinities; aims to ‘taste’ rather than finish all.",
+        tags:["street-find","vibes","editions"]
+      }
+    ];
+
+    // ---------- State ----------
+    const LS_KEY = "sophie_vlog_infographic_progress_v1";
+    let state = loadState();
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) return { statuses:{}, filters:{type:"all", q:""} };
+        const s = JSON.parse(raw);
+        return { statuses: s.statuses || {}, filters: s.filters || {type:"all", q:""} };
+      }catch(e){
+        return { statuses:{}, filters:{type:"all", q:""} };
+      }
+    }
+    function saveState(){
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    }
+
+    // ---------- Helpers ----------
+    const uniq = (arr)=> Array.from(new Set(arr));
+    const hasType = (itemTypes, activeType) => activeType==="all" || itemTypes.includes(activeType);
+    const norm = (s)=> (s||"").toLowerCase();
+    const matchesQuery = (item, q) => {
+      if(!q) return true;
+      const hay = norm(item.title+" "+item.author+" "+item.notes+" "+(item.tags||[]).join(" "));
+      return hay.includes(norm(q));
+    };
+
+    function computeStats(){
+      const total = ITEMS.length;
+      const types = uniq(ITEMS.flatMap(x=>x.type));
+      const mix = {
+        essay: ITEMS.filter(x=>x.type.includes("essay")).length,
+        story: ITEMS.filter(x=>x.type.includes("story")).length,
+        memoir: ITEMS.filter(x=>x.type.includes("memoir")).length,
+        meta: ITEMS.filter(x=>x.type.includes("meta")).length,
+        life: ITEMS.filter(x=>x.type.includes("life")).length,
+      };
+      // mood: crude indicator from life beats
+      const mood = "grumpy → relief";
+      return { total, types, mix, mood };
+    }
+
+    // ---------- Render: Shelf ----------
+    const shelfEl = document.getElementById("shelf");
+
+    function renderShelf(){
+      shelfEl.innerHTML = "";
+      const activeType = state.filters.type || "all";
+      const q = state.filters.q || "";
+
+      const visible = ITEMS.filter(it => hasType(it.type, activeType) && matchesQuery(it, q));
+
+      visible.forEach(it=>{
+        const status = state.statuses[it.id] || it.statusHint || "planned";
+        const book = document.createElement("div");
+        book.className = "book";
+        book.dataset.status = status;
+
+        const typeLabels = it.type.map(t=>t.toUpperCase()).join(" • ");
+        const tags = (it.tags||[]).slice(0,4).map(t=>`#${t}`).join(" ");
+
+        book.innerHTML = `
+          <div class="bookTop">
+            <div>
+              <div class="title">${escapeHTML(it.title)}</div>
+              <div class="author">${escapeHTML(it.author)}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="badge ${statusClass(status)}">${badgeLabel(status)}</div>
+              <div style="margin-top:6px; color: var(--faint); font-family: var(--mono); font-size: 11px;">${escapeHTML(typeLabels)}</div>
+            </div>
+          </div>
+
+          <div class="meta">
+            ${(it.type||[]).map(t=>`<span class="badge">${escapeHTML(t)}</span>`).join("")}
+            ${tags ? `<span class="badge">${escapeHTML(tags)}</span>` : ""}
+          </div>
+
+          <div class="desc">${escapeHTML(it.notes)}</div>
+
+          <div class="actions" aria-label="Mark status">
+            <button class="tinyBtn" data-act="read" aria-pressed="${status==="read"}">✓ Read</button>
+            <button class="tinyBtn" data-act="reading" aria-pressed="${status==="reading"}">↻ Reading</button>
+            <button class="tinyBtn danger" data-act="dnf" aria-pressed="${status==="dnf"}">✕ Not into it</button>
+            <button class="tinyBtn" data-act="planned" aria-pressed="${status==="planned"}">• Planned</button>
+          </div>
+        `;
+
+        book.querySelectorAll(".tinyBtn").forEach(btn=>{
+          btn.addEventListener("click", ()=>{
+            const act = btn.dataset.act;
+            state.statuses[it.id] = act;
+            saveState();
+            renderAll();
+          });
+        });
+
+        shelfEl.appendChild(book);
+      });
+
+      // empty state
+      if(visible.length===0){
+        const empty = document.createElement("div");
+        empty.className = "book";
+        empty.innerHTML = `
+          <div class="title">No matches</div>
+          <div class="desc">Try clearing filters or using a broader search query.</div>
+        `;
+        shelfEl.appendChild(empty);
+      }
+    }
+
+    function statusClass(s){
+      if(s==="read") return "read";
+      if(s==="reading") return "reading";
+      if(s==="planned") return "planned";
+      if(s==="dnf") return "dnf";
+      return "";
+    }
+    function badgeLabel(s){
+      if(s==="read") return "READ";
+      if(s==="reading") return "READING";
+      if(s==="planned") return "PLANNED";
+      if(s==="dnf") return "NOT INTO IT";
+      return "—";
+    }
+
+    // ---------- Render: Events filtering ----------
+    const eventsEl = document.getElementById("events");
+    function renderEvents(){
+      const activeType = state.filters.type || "all";
+      const q = state.filters.q || "";
+
+      const evts = Array.from(eventsEl.querySelectorAll(".evt"));
+      evts.forEach(e=>{
+        const types = (e.dataset.types||"").split(/\s+/).filter(Boolean);
+        const text = norm(e.innerText);
+        const okType = activeType==="all" || types.includes(activeType);
+        const okQ = !q || text.includes(norm(q));
+        e.style.display = (okType && okQ) ? "" : "none";
+      });
+    }
+
+    // ---------- Tabs ----------
+    document.querySelectorAll(".tab").forEach(t=>{
+      t.addEventListener("click", ()=> setTab(t.dataset.tab));
+      t.addEventListener("keydown", (e)=>{
+        if(e.key==="Enter" || e.key===" ") setTab(t.dataset.tab);
+      });
+    });
+
+    function setTab(id){
+      document.querySelectorAll(".tab").forEach(t=>{
+        t.dataset.active = (t.dataset.tab===id) ? "true" : "false";
+      });
+      document.querySelectorAll(".commentary .block").forEach(b=>{
+        b.dataset.show = (b.dataset.id===id) ? "true" : "false";
+      });
+    }
+
+    // ---------- Filters ----------
+    const tags = document.querySelectorAll(".tag");
+    tags.forEach(t=>{
+      t.addEventListener("click", ()=>{
+        const type = t.dataset.type;
+        state.filters.type = type;
+        tags.forEach(x=>x.dataset.active = (x.dataset.type===type) ? "true" : "false");
+        saveState();
+        renderAll();
+      });
+    });
+
+    const qEl = document.getElementById("q");
+    qEl.addEventListener("input", ()=>{
+      state.filters.q = qEl.value.trim();
+      saveState();
+      renderAll();
+    });
+
+    // ---------- Expand/Collapse ----------
+    document.getElementById("btnExpandAll").addEventListener("click", ()=>{
+      document.querySelectorAll(".evt details").forEach(d=> d.open = true);
+    });
+    document.getElementById("btnCollapseAll").addEventListener("click", ()=>{
+      document.querySelectorAll(".evt details").forEach(d=> d.open = false);
+    });
+
+    document.getElementById("btnReset").addEventListener("click", ()=>{
+      state = { statuses:{}, filters:{type:"all", q:""} };
+      saveState();
+      // reset UI filter tags + input
+      document.querySelectorAll(".tag").forEach(x=>x.dataset.active = (x.dataset.type==="all") ? "true" : "false");
+      qEl.value = "";
+      renderAll();
+    });
+
+    // ---------- Stats ----------
+    function renderStats(){
+      const { total, mix, mood } = computeStats();
+      document.getElementById("statItems").textContent = total;
+      document.getElementById("statMix").textContent = `${mix.essay}E / ${mix.story}S / ${mix.memoir}M`;
+      document.getElementById("statMood").textContent = mood;
+    }
+
+    // ---------- Init from saved state ----------
+    function initFromState(){
+      // filter tag
+      const t = state.filters.type || "all";
+      document.querySelectorAll(".tag").forEach(x=>x.dataset.active = (x.dataset.type===t) ? "true" : "false");
+      qEl.value = state.filters.q || "";
+    }
+
+    // ---------- Safety: escapeHTML ----------
+    function escapeHTML(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // ---------- Render all ----------
+    function renderAll(){
+      renderStats();
+      renderEvents();
+      renderShelf();
+    }
+
+    initFromState();
+    renderAll();
+  </script>
+</body>
+</html>

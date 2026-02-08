@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circadian Clock Dysfunction as a 13th Hallmark of Aging — Infographic</title>
+  <meta name="description" content="Interactive infographic explaining how circadian clock dysfunction may become a 13th hallmark of aging, how rhythms flatten with age, and practical entrainment levers." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <path d="M20,160 C110,40 220,200 320,90 C380,25 445,60 500,35" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M20,125 C120,35 230,210 330,115 C390,55 450,125 500,85" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <circle cx="362" cy="86" r="10" fill="rgba(255,255,255,.6)" />
+            <circle cx="207" cy="187" r="8" fill="rgba(255,255,255,.45)" />
+            <circle cx="92" cy="66" r="7" fill="rgba(255,255,255,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> aging mechanisms • circadian biology • actionable levers</div>
+          <h1>Circadian Clock Dysfunction: a likely “13th Hallmark of Aging”</h1>
+          <p class="subtitle">
+            Aging isn’t only wrinkles and joint pain—it’s a system-level drift in the biological programs that keep you synchronized with the day.
+            This page reframes aging through a simple idea: <b>your internal clock flattens with age</b>, and that “chronic jet lag” can amplify damage, inflammation, and disease risk.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Jump to the rhythm simulator</button>
+            <button class="btn" id="jumpFix">Jump to practical fixes</button>
+            <button class="btn" id="toggleNotes">Toggle commentary mode</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Hallmarks of aging</div>
+            <div class="value">9 (2013) → 12 (2023)</div>
+            <div class="note">This infographic argues for a plausible 13th: circadian clock dysfunction.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Core pattern</div>
+            <div class="value">Robust swings → flatline</div>
+            <div class="note">Cortisol, melatonin, temperature lose amplitude with age.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mechanistic bridge</div>
+            <div class="value">Misalignment → stress & repair load</div>
+            <div class="note">Chronic disruption correlates with higher inflammation & DNA damage.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Levers</div>
+            <div class="value">Light • timing • movement • food</div>
+            <div class="note">Entrainment cues can strengthen oscillation across the day.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- 2013/2023 hallmarks + 13th -->
+      <section class="card" aria-label="Hallmarks overview">
+        <div class="cardHeader">
+          <h2>From “Hallmarks of Aging” to a possible next addition</h2>
+          <div class="chip"><b>Big idea:</b> clocks coordinate everything</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                In 2013, López-Otín and colleagues popularized <b>nine hallmarks of aging</b>—a framework for the cellular and molecular drivers of aging.
+                In 2023, the list expanded with <b>three more</b> (e.g., chronic inflammation, loss of autophagy, gut dysbiosis).
+              </p>
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> Treat “hallmarks” as a map, not a final answer. Hallmarks are useful because they suggest interventions (measure → perturb → see if the aging trajectory shifts). A new hallmark usually gains traction when it explains multiple downstream issues <i>and</i> is measurable and modifiable.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding: 14px" aria-label="Hallmarks list">
+                <div class="small" style="margin-bottom:10px">A compact cheat sheet (not exhaustive; based on the text you provided):</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Genomic instability</span><span class="tag">2013</span></div>
+                  <div class="pill"><span>Telomere shortening</span><span class="tag">2013</span></div>
+                  <div class="pill"><span>Mitochondrial dysfunction</span><span class="tag">2013</span></div>
+                  <div class="pill"><span>Cellular senescence</span><span class="tag">2013</span></div>
+                  <div class="pill"><span>Chronic inflammation</span><span class="tag">2023</span></div>
+                  <div class="pill"><span>Loss of autophagy</span><span class="tag">2023</span></div>
+                  <div class="pill"><span>Gut dysbiosis</span><span class="tag">2023</span></div>
+                  <div class="pill"><span><b>Proposed:</b> circadian clock dysfunction</span><span class="tag">next?</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Why circadian dysfunction “fits”: it can influence metabolism, hormones, repair pathways, inflammation, and cancer biology through daily timing control.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Circadian basics + daily anchors -->
+      <section class="row">
+        <div class="card" aria-label="Circadian basics">
+          <div class="cardHeader">
+            <h2>What are circadian rhythms?</h2>
+            <div class="chip">~24h internal timekeeping</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Circadian rhythms are the body’s natural day–night cycles (roughly 24 hours). They regulate hormones, temperature, energy, strength, and blood pressure—
+              basically an internal clock that coordinates “when” biology happens.
+            </p>
+            <div class="row2">
+              <div class="risk">
+                <div class="rTop"><strong>Example daily anchor: testosterone</strong><span class="badge">peaks ~morning</span></div>
+                <p>Natural testosterone production tends to peak in the morning (often cited around ~9:00).</p>
+                <div class="meter" aria-label="Example timing"><i style="width: 62%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Example daily anchor: body temperature</strong><span class="badge">highest ~evening</span></div>
+                <p>Core temperature tends to be highest later in the day (often cited around ~18:00–19:00).</p>
+                <div class="meter" aria-label="Example timing"><i style="width: 72%"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Notice what’s being claimed: not just “hormones change,” but that <b>their timing and amplitude</b> carries information. Swings act like timestamps that tell the body what phase of the day it’s in.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Aging flattens rhythms">
+          <div class="cardHeader">
+            <h2>How aging changes the rhythm</h2>
+            <div class="chip"><b>Pattern:</b> amplitude loss</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Younger people tend to keep robust “peaks and valleys.” With aging, fluctuations in cortisol, melatonin, and temperature often become <b>blunted</b>—
+              closer to a <b>flatline</b>.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Rhythm simulator">
+              <svg viewBox="0 0 980 420" id="rhythmSvg" role="img" aria-label="Circadian rhythm curves for young vs old">
+                <defs>
+                  <linearGradient id="fade" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,255,255,.08)"/>
+                    <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="980" height="420" fill="rgba(0,0,0,.05)"/>
+
+                <!-- axes -->
+                <g opacity=".9">
+                  <path d="M70 44 L70 360 L940 360" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                  <path d="M70 360 L940 360" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                </g>
+
+                <!-- grid + time labels -->
+                <g id="grid"></g>
+
+                <!-- areas -->
+                <path id="areaCort" fill="rgba(122,215,255,.12)" stroke="none"></path>
+                <path id="areaMela" fill="rgba(187,167,255,.10)" stroke="none"></path>
+
+                <!-- curves -->
+                <path id="cortYoung" stroke="rgba(122,215,255,.95)" stroke-width="3" fill="none" stroke-linecap="round"></path>
+                <path id="melaYoung" stroke="rgba(187,167,255,.92)" stroke-width="3" fill="none" stroke-linecap="round"></path>
+
+                <path id="cortOld" stroke="rgba(122,215,255,.45)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="7 7"></path>
+                <path id="melaOld" stroke="rgba(187,167,255,.42)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="7 7"></path>
+
+                <!-- markers -->
+                <g id="markers"></g>
+
+                <!-- labels -->
+                <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                  <text x="70" y="26" fill="rgba(255,255,255,.88)" font-weight="700">Simulated day: cortisol vs melatonin</text>
+                  <text x="70" y="400" font-size="12" fill="rgba(255,255,255,.62)">Time →</text>
+                  <text x="12" y="220" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 12 220)">Level / amplitude</text>
+                </g>
+
+                <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.70)">
+                  <text x="742" y="74">solid = adult</text>
+                  <text x="742" y="94">dashed = older</text>
+                </g>
+              </svg>
+
+              <div class="legend" aria-label="Legend">
+                <div class="key"><span class="sw" style="background: rgba(122,215,255,.95)"></span> Cortisol (wake signal)</div>
+                <div class="key"><span class="sw" style="background: rgba(187,167,255,.92)"></span> Melatonin (sleep signal)</div>
+                <div class="key"><span class="sw" style="background: linear-gradient(90deg, rgba(122,215,255,.4), rgba(187,167,255,.4))"></span> “Flattening” with age</div>
+              </div>
+            </div>
+
+            <div class="controls" aria-label="Simulator controls">
+              <div class="control">
+                <label>
+                  <span>Age-like flattening</span>
+                  <span class="readout" id="ageReadout">50%</span>
+                </label>
+                <input id="ageSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">Higher = more “flatline” (lower peaks/valleys).</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Jet lag / misalignment</span>
+                  <span class="readout" id="lagReadout">2h</span>
+                </label>
+                <input id="lagSlider" type="range" min="0" max="12" value="2" />
+                <div class="small" style="margin-top:8px">Shifts internal clock away from light-dark schedule.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This simulator is <i>conceptual</i>—it translates the narration (“young swings, old flatline; add chronic jet lag”) into a visual you can poke. The point is the <b>signal</b> (amplitude + timing), not the exact units.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chronic jet lag concept + consequences -->
+      <section class="row">
+        <div class="card" aria-label="Chronic jet lag syndrome">
+          <div class="cardHeader">
+            <h2>“Chronic jet lag syndrome” (a mental model)</h2>
+            <div class="chip">when the body loses time cues</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              If hormone swings flatten, the body gets fewer “time stamps.” That can feel like being jet-lagged constantly: your system doesn’t strongly know
+              what part of the day it’s in.
+            </p>
+
+            <div class="flow" aria-label="Causal chain">
+              <div class="flowNode">
+                <h3>1) Flattened cortisol & melatonin</h3>
+                <p>Lower morning wake signal + weaker night sleep signal → less robust day/night contrast.</p>
+                <div class="meta">
+                  <span class="badge">lower amplitude</span><span class="badge">no strong anchors</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Sleep quality & duration degrade</h3>
+                <p>Shorter sleep, worse sleep architecture, more fragmented nights.</p>
+                <div class="meta"><span class="badge">fatigue</span><span class="badge">repair deficit</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Metabolic & inflammatory status worsens</h3>
+                <p>Mis-timed appetite, glucose handling, and immune signaling → higher baseline inflammation, poorer metabolic health.</p>
+                <div class="meta"><span class="badge">metabolic stress</span><span class="badge">inflammation</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) More damage signals over time</h3>
+                <p>Chronic disruption correlates with higher DNA damage and sustained stress load → potentially accelerating aging processes.</p>
+                <div class="meta"><span class="badge">repair load ↑</span><span class="badge">risk ↑</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is a systems argument: the clock doesn’t just control “sleep.” It schedules the whole maintenance crew. If scheduling fails, you don’t necessarily break one thing—you increase the chance that many things drift off-spec.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Health risks linked with disruption">
+          <div class="cardHeader">
+            <h2>What disruption is linked to</h2>
+            <div class="chip"><b>Claim:</b> broad disease risk</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The narration claims an “overwhelming” research base connecting circadian disruption with increased risk across multiple conditions.
+              Here’s a structured way to think about the scope.
+            </p>
+
+            <div class="riskGrid" aria-label="Risk categories">
+              <div class="risk">
+                <div class="rTop"><strong>Neurodegeneration</strong><span class="badge">brain</span></div>
+                <div class="meter"><i id="mNeuro" style="width:55%"></i></div>
+                <p>Sleep fragmentation + inflammation + mis-timed repair are framed as contributors.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Cancer</strong><span class="badge">growth control</span></div>
+                <div class="meter"><i id="mCancer" style="width:58%"></i></div>
+                <p>Timing affects cell cycle, DNA repair windows, and immune surveillance in many models.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Metabolic disease</strong><span class="badge">glucose/weight</span></div>
+                <div class="meter"><i id="mMet" style="width:62%"></i></div>
+                <p>Eating late + poor sleep can degrade insulin sensitivity and appetite signals.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Cardiovascular risk</strong><span class="badge">BP/heart</span></div>
+                <div class="meter"><i id="mCardio" style="width:60%"></i></div>
+                <p>Blood pressure and endothelial function follow daily rhythms; disruption may worsen strain.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              The meters above are not medical risk scores—just a visual reminder that the claim is “multi-system,” not “one symptom.”
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> It’s easy to overread this into “circadian disruption causes everything.” A safer framing is: circadian disruption is a <b>common amplifier</b> that can worsen multiple trajectories, especially alongside aging and existing vulnerabilities.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 features of circadian rhythms that degrade -->
+      <section class="card" aria-label="Three properties">
+        <div class="cardHeader">
+          <h2>The 3 circadian properties that degrade with aging</h2>
+          <div class="chip">oscillation • free-running • entrainment</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div class="flowNode">
+              <h3>1) Oscillation (amplitude)</h3>
+              <p>Big day/night swings: high cortisol in the morning, low in evening; high melatonin at night, low in morning.</p>
+              <div class="meta"><span class="badge">peaks & valleys</span><span class="badge">time stamps</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>2) Free-running (persistence)</h3>
+              <p>Even under constant conditions (e.g., a dark cave), rhythms continue to tick—your body keeps time without external cues.</p>
+              <div class="meta"><span class="badge">internal oscillator</span><span class="badge">stability</span></div>
+            </div>
+          </div>
+          <div style="height:10px"></div>
+          <div class="flowNode">
+            <h3>3) Entrainment (cue alignment)</h3>
+            <p>Rhythms align to external signals—especially light, but also movement, meal timing, and other environmental cues.</p>
+            <div class="meta"><span class="badge">light</span><span class="badge">movement</span><span class="badge">food timing</span><span class="badge">environment</span></div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Think of this as a control system: (1) output amplitude, (2) oscillator integrity, (3) input synchronization. Aging can degrade all three, and interventions mostly target (3) to indirectly improve (1).
+          </div>
+        </div>
+      </section>
+
+      <!-- Practical fixes checklist -->
+      <section class="row" aria-label="Practical fixes">
+        <div class="card" id="fix" aria-label="Fixing entrainment and oscillation">
+          <div class="cardHeader">
+            <h2>Fixing the clock: entrainment → oscillation</h2>
+            <div class="chip">build a stronger day/night contrast</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The main practical theme is simple: make mornings “bright and active,” nights “dim and quiet,” and keep timing consistent.
+              Below is a structured checklist based directly on the narration.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Bright light on waking</strong><em>10–15 minutes</em></div>
+                  <div class="d">Best from the sun; a bright lamp is “better than nothing.” Light is framed as the #1 circadian regulator.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Morning caffeine (optional)</strong><em>not late day</em></div>
+                  <div class="d">Proposed as potentially helpful for older adults: caffeine raises cortisol, anchoring morning wake signals. Keep it in the morning.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Exercise timing</strong><em>use as a cue</em></div>
+                  <div class="d">Earlier exercise shifts rhythms earlier; later exercise shifts later. Night exercise can disrupt sleep, with chronotype nuances.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Block blue light at night</strong><em>protect melatonin</em></div>
+                  <div class="d">Dim lights, use filters, or wear blue blockers to reduce melatonin suppression and support sleep quality.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Consistent sleep schedule</strong><em>regularity matters</em></div>
+                  <div class="d">The narration claims schedule regularity may be as important as total duration; irregularity keeps the body “guessing.”</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Regular meal timing</strong><em>avoid late eating</em></div>
+                  <div class="d">Eating at similar times strengthens food-driven rhythms. Avoid eating at night or too close to bedtime.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Melatonin (context-dependent)</strong><em>aging / travel</em></div>
+                  <div class="d">Suggested to “force” higher nighttime melatonin as it declines with age, and to help realign after time-zone changes.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculate my “clock alignment” score</button>
+              <button class="btn" id="resetBtn">Reset checklist</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is the “low-tech” strategy: cue your clock with consistent inputs. If you only do two things, the narration implies: (1) bright mornings, (2) dark nights.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="NAD loop">
+          <div class="cardHeader">
+            <h2>The NAD ↔ circadian “vicious cycle”</h2>
+            <div class="chip">metabolism meets timing</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The narration highlights NAD (a key co-enzyme in energy metabolism) as a metabolite that supports circadian robustness.
+              With age, NAD tends to decline—at the same time, circadian disruption increases.
+            </p>
+
+            <div class="viz" aria-label="Cycle diagram">
+              <svg viewBox="0 0 980 300" role="img" aria-label="Vicious cycle: circadian disruption lowers NAD and low NAD worsens disruption">
+                <defs>
+                  <linearGradient id="c1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.35)" />
+                    <stop offset="1" stop-color="rgba(122,215,255,.35)" />
+                  </linearGradient>
+                  <linearGradient id="c2" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+                    <stop offset="1" stop-color="rgba(187,167,255,.35)" />
+                  </linearGradient>
+                  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <rect x="0" y="0" width="980" height="300" fill="rgba(0,0,0,.04)"/>
+
+                <g filter="url(#soft)">
+                  <rect x="70" y="64" width="360" height="90" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.14)" />
+                  <text x="92" y="98" font-size="16" fill="rgba(255,255,255,.90)" font-weight="700">Circadian disruption</text>
+                  <text x="92" y="124" font-size="13" fill="rgba(255,255,255,.70)">flattened oscillations, chronic misalignment</text>
+
+                  <rect x="550" y="64" width="360" height="90" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.14)" />
+                  <text x="572" y="98" font-size="16" fill="rgba(255,255,255,.90)" font-weight="700">Lower NAD availability</text>
+                  <text x="572" y="124" font-size="13" fill="rgba(255,255,255,.70)">reduced production / recycling with age</text>
+
+                  <path d="M430 109 C470 55, 510 55, 550 109" fill="none" stroke="url(#c1)" stroke-width="10" stroke-linecap="round" opacity=".9" />
+                  <path d="M550 174 C510 228, 470 228, 430 174" fill="none" stroke="url(#c2)" stroke-width="10" stroke-linecap="round" opacity=".9" />
+
+                  <text x="452" y="78" font-size="12" fill="rgba(255,255,255,.72)">→ can reduce NAD</text>
+                  <text x="452" y="242" font-size="12" fill="rgba(255,255,255,.72)">→ can worsen rhythms</text>
+
+                  <rect x="70" y="188" width="840" height="78" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.10)" />
+                  <text x="92" y="218" font-size="14" fill="rgba(255,255,255,.86)" font-weight="700">Narration’s suggested NAD-supporting levers</text>
+                  <text x="92" y="242" font-size="12" fill="rgba(255,255,255,.70)">calorie restriction • time-restricted eating • exercise • dietary polyphenols • circadian alignment (and possibly NAD “boosters”)</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> “Vicious cycle” is a strong claim but a useful organizing idea: metabolic state (NAD) and timing state (circadian alignment) can reinforce each other. Interventions that improve one may help stabilize the other.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sponsor segment (kept, framed) -->
+      <section class="card" aria-label="Sauna segment">
+        <div class="cardHeader">
+          <h2>Sauna segment (as presented in the narration)</h2>
+          <div class="chip">heat stress → cardiovascular-like stimulus</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            The narration includes a sauna/infrared blanket segment claiming associations with lower cardiovascular and all-cause mortality.
+            It frames the mechanism as increased body temperature and heart rate (like a mild cardiovascular workout), improving arterial stiffness, endothelial function, blood flow,
+            immune function, blood pressure, and metabolic health.
+          </p>
+
+          <div class="row2">
+            <div class="risk">
+              <div class="rTop"><strong>Claimed associations</strong><span class="badge">observational</span></div>
+              <p>63% lower sudden cardiac death, 63% lower heart disease mortality, 46% lower hypertension risk, 40% lower all-cause mortality.</p>
+              <div class="meter"><i style="width:74%"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Claimed mechanism</strong><span class="badge">heat + heart rate</span></div>
+              <p>Elevated temperature above baseline is presented as the key (traditional sauna, infrared sauna, blanket, etc.).</p>
+              <div class="meter"><i style="width:66%"></i></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> This section is a sponsor-style insert in the narration. Treat it separately from the circadian argument: benefits may exist, but the causal strength depends on study type, population, and confounders. If you want, I can add a “evidence quality” badge system (RCT vs observational vs mechanistic) to every claim on this page.
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary + takeaways -->
+      <section class="card" aria-label="Takeaways">
+        <div class="cardHeader">
+          <h2>So what’s the thesis?</h2>
+          <div class="chip"><b>Thesis:</b> slow aging by reducing misalignment</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Why circadian dysfunction “looks like a hallmark”</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                It’s system-wide, touches many pathways, and is plausibly modifiable. The narrative links misalignment to worse sleep,
+                higher inflammation, higher DNA damage, and broad disease risk.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) What "fixing it" realistically means</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                You won't "cure aging," but you can reduce the penalty from chronic misalignment. Practical levers: bright mornings, dim nights,
+                consistent timing, movement, meal windows, and (where applicable) supplemental melatonin or NAD support.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) The big-picture framing</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Think of circadian health as a <b>meta-lever</b>: it doesn't fix one thing—it optimizes the scheduling of many repair, metabolic,
+                and inflammatory processes. The claim is that this "scheduling optimization" is enough to matter over decades.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Final note on evidence quality</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                This infographic translates a narration that makes strong claims. Some parts rest on robust mechanistic data (e.g., clock genes regulate metabolic pathways);
+                others cite observational studies with possible confounders (e.g., sauna associations). Where possible, I've marked "observational" vs. mechanistic,
+                but <b>treat everything here as hypothesis-generating</b> rather than clinical advice. If you want to act on any of this, consult with a
+                healthcare provider and look for RCTs or systematic reviews, not just one study or one anecdote.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="About commentary mode">
+        <div class="cardHeader">
+          <h2>About the "commentary mode" toggle</h2>
+          <div class="chip">interpretation vs. data</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, blue callout boxes (marked with <code>data-commentary</code>) offer meta-level commentary:
+            how strong is the claim? What alternative framings exist? What's the evidence quality?
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary mode" at the top to hide/show all commentary boxes at once.
+            This lets you switch between "here's what the narration says" and "here's my critical take on that claim."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; disclaimers:</b> This interactive infographic was generated to translate a provided narration about circadian dysfunction and aging.
+        It is not medical advice. Data visualization, simulator, and commentary are conceptual tools to help you think about the claims, not substitutes for primary research or clinical guidance.
+      </p>
+      <p style="margin-top:10px">
+        For questions, corrections, or to dive deeper: consult the original research literature on circadian biology, aging hallmarks, and chronotherapy.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Rhythm Simulator (SVG visualization)
+    // ──────────────────────────────────────────────────────
+    const ageSlider = document.getElementById('ageSlider');
+    const lagSlider = document.getElementById('lagSlider');
+    const ageReadout = document.getElementById('ageReadout');
+    const lagReadout = document.getElementById('lagReadout');
+
+    function renderRhythm() {
+      const ageFactor = parseInt(ageSlider.value) / 100; // 0 to 1
+      const lagHours = parseInt(lagSlider.value);
+
+      ageReadout.textContent = `${ageSlider.value}%`;
+      lagReadout.textContent = `${lagHours}h`;
+
+      const W = 980, H = 420;
+      const padding = 70;
+      const graphW = W - padding - 40;
+      const graphH = H - 100;
+
+      const hours = 24;
+      const points = 48;
+      const xScale = graphW / hours;
+      const yScale = graphH / 2;
+
+      // Cortisol: peaks ~9:00 (morning)
+      // Melatonin: peaks ~3:00 (night)
+      function cortisol(t, age, lag) {
+        const phase = ((t + lag) % 24);
+        const peakTime = 9;
+        const base = 0.3;
+        const amp = 1.0 - age * 0.7; // flatten with age
+        const shift = Math.cos(((phase - peakTime) / 24) * 2 * Math.PI);
+        return base + amp * Math.max(0, shift);
+      }
+
+      function melatonin(t, age, lag) {
+        const phase = ((t + lag) % 24);
+        const peakTime = 3;
+        const base = 0.2;
+        const amp = 1.0 - age * 0.7;
+        const shift = Math.cos(((phase - peakTime) / 24) * 2 * Math.PI);
+        return base + amp * Math.max(0, shift);
+      }
+
+      // Generate paths
+      let cortYoungPath = '', cortOldPath = '', melaYoungPath = '', melaOldPath = '';
+      let cortYoungArea = '', cortOldArea = '', melaYoungArea = '', melaOldArea = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = (i / points) * hours;
+        const x = padding + t * xScale;
+
+        const cy = cortisol(t, 0, 0);
+        const co = cortisol(t, ageFactor, lagHours);
+        const my = melatonin(t, 0, 0);
+        const mo = melatonin(t, ageFactor, lagHours);
+
+        const cYy = H - 60 - cy * yScale;
+        const cYo = H - 60 - co * yScale;
+        const mYy = H - 60 - my * yScale;
+        const mYo = H - 60 - mo * yScale;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        cortYoungPath += `${cmd}${x},${cYy} `;
+        cortOldPath += `${cmd}${x},${cYo} `;
+        melaYoungPath += `${cmd}${x},${mYy} `;
+        melaOldPath += `${cmd}${x},${mYo} `;
+      }
+
+      // Areas (filled regions under curves)
+      const baseline = H - 60;
+      cortYoungArea = `M${padding},${baseline} ${cortYoungPath} L${padding + graphW},${baseline} Z`;
+      melaYoungArea = `M${padding},${baseline} ${melaYoungPath} L${padding + graphW},${baseline} Z`;
+
+      document.getElementById('cortYoung').setAttribute('d', cortYoungPath);
+      document.getElementById('cortOld').setAttribute('d', cortOldPath);
+      document.getElementById('melaYoung').setAttribute('d', melaYoungPath);
+      document.getElementById('melaOld').setAttribute('d', melaOldPath);
+      document.getElementById('areaCort').setAttribute('d', cortYoungArea);
+      document.getElementById('areaMela').setAttribute('d', melaYoungArea);
+
+      // Grid lines & time labels
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      for (let h = 0; h <= 24; h += 3) {
+        const x = padding + h * xScale;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', 44);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', 360);
+        line.setAttribute('stroke', 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', 378);
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'rgba(255,255,255,.55)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = `${h}:00`;
+        grid.appendChild(label);
+      }
+    }
+
+    ageSlider.addEventListener('input', renderRhythm);
+    lagSlider.addEventListener('input', renderRhythm);
+    renderRhythm();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpFix').addEventListener('click', () => {
+      document.getElementById('fix').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Strong alignment! You're giving your clock consistent cues.`;
+      else if (pct >= 60) msg = `${pct}% – Good foundation. Consider strengthening the gaps.`;
+      else if (pct >= 40) msg = `${pct}% – Moderate. Pick 1–2 more levers to adopt consistently.`;
+      else msg = `${pct}% – Lots of room to improve. Start with bright mornings + dark nights.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Your alignment score:</b> ${msg}`;
+      showToast('Score calculated');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Checklist reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

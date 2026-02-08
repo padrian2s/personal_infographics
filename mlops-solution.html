@@ -1,0 +1,2073 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modern MLOps Solution — Interactive Infographic</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --panel:#0f1629;
+      --panel2:#0c1324;
+      --text:#e9eefc;
+      --muted:#a9b4d6;
+      --line:rgba(255,255,255,.10);
+      --accent:#5eead4;  /* teal */
+      --accent2:#60a5fa; /* blue */
+      --accent3:#a78bfa; /* purple */
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --good:#34d399;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 5%, rgba(94,234,212,.12), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(96,165,250,.12), transparent 55%),
+        radial-gradient(700px 600px at 60% 85%, rgba(167,139,250,.12), transparent 60%),
+        linear-gradient(180deg, #070a12, var(--bg));
+    }
+    a{color:var(--accent2); text-decoration:none}
+    .wrap{max-width:1200px; margin:0 auto; padding:28px 18px 40px}
+    header{
+      display:flex; gap:16px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      padding:20px 18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .title h1{margin:0 0 6px; font-weight:800; letter-spacing:.2px; font-size:28px}
+    .title p{margin:0; color:var(--muted); line-height:1.45; max-width:68ch}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
+    .chip{
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .chip b{color:var(--text); font-weight:700}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      background:linear-gradient(90deg, rgba(94,234,212,.08), transparent 45%);
+    }
+    .card .hd h2{margin:0; font-size:15px; letter-spacing:.25px}
+    .card .hd .sub{color:var(--muted); font-size:12px}
+    .card .bd{padding:14px 16px}
+    .twoCol{
+      display:grid; grid-template-columns: 1.05fr .95fr; gap:12px;
+    }
+    @media (max-width: 980px){ .twoCol{grid-template-columns:1fr} }
+    .muted{color:var(--muted)}
+    .mini{
+      font-family:var(--mono);
+      font-size:12px;
+      line-height:1.55;
+      color:#cbd5ff;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(0,0,0,.22);
+      overflow:auto;
+      max-height:260px;
+    }
+    .kpiRow{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px}
+    @media (max-width: 980px){ .kpiRow{grid-template-columns: repeat(2, 1fr)} }
+    .kpi{
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+    }
+    .kpi .label{color:var(--muted); font-size:11px; letter-spacing:.3px; text-transform:uppercase}
+    .kpi .value{margin-top:6px; font-size:18px; font-weight:800}
+    .kpi .hint{margin-top:4px; color:var(--muted); font-size:12px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .dot{width:10px; height:10px; border-radius:50%;}
+    .dot.a{background:var(--accent)}
+    .dot.b{background:var(--accent2)}
+    .dot.c{background:var(--accent3)}
+    .dot.w{background:var(--warn)}
+    .dot.g{background:var(--good)}
+    .dot.r{background:var(--bad)}
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 980px){ .controls{grid-template-columns:1fr} }
+    .ctrl{
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+    }
+    .ctrl label{display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:12px}
+    .ctrl input[type="range"]{width:100%; margin-top:8px}
+    .ctrl select, .ctrl input[type="number"]{
+      width:100%;
+      margin-top:8px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    button:hover{background:rgba(255,255,255,.07)}
+    button.primary{
+      background:linear-gradient(90deg, rgba(94,234,212,.22), rgba(96,165,250,.18));
+      border-color: rgba(94,234,212,.25);
+    }
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){ .split{grid-template-columns:1fr} }
+
+    /* Diagram */
+    .diagramWrap{
+      padding:14px 16px 18px;
+    }
+    svg{width:100%; height:auto; display:block}
+    /* D3 Graph Styles */
+    #d3-arch {
+      width: 100%;
+      height: 140px;
+      cursor: grab;
+    }
+    #d3-arch:active {
+      cursor: grabbing;
+    }
+    .d3-node {
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+    .d3-node:hover {
+      filter: brightness(1.2);
+    }
+    .d3-node rect {
+      stroke-width: 1.5;
+      rx: 14;
+      ry: 14;
+      transition: all 0.2s ease;
+    }
+    .d3-node.active rect {
+      stroke-width: 3;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    .d3-node.bad rect {
+      stroke: rgba(251,113,133,.9) !important;
+      fill: rgba(251,113,133,.15) !important;
+      filter: drop-shadow(0 0 10px rgba(251,113,133,.5));
+    }
+    .d3-node.warn rect {
+      stroke: rgba(251,191,36,.9) !important;
+      fill: rgba(251,191,36,.15) !important;
+      filter: drop-shadow(0 0 10px rgba(251,191,36,.5));
+    }
+    .d3-link {
+      stroke: rgba(255,255,255,.18);
+      stroke-width: 2;
+      fill: none;
+    }
+    .d3-link.hot {
+      stroke: rgba(96,165,250,.7);
+      stroke-width: 2.5;
+    }
+    .d3-label {
+      font-size: 12px;
+      fill: rgba(233,238,252,.9);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      pointer-events: none;
+    }
+    .d3-sublabel {
+      font-size: 10px;
+      fill: rgba(169,180,214,.85);
+      font-weight: 500;
+      pointer-events: none;
+    }
+    .d3-arrow {
+      fill: rgba(255,255,255,.25);
+    }
+    .material-icons {
+      font-size: 11px;
+      vertical-align: middle;
+      margin-right: 2px;
+    }
+    .d3-sublabel .material-icons {
+      font-size: 9px;
+    }
+    /* 3D View Styles */
+    #view3d {
+      position: relative;
+      background: radial-gradient(ellipse at center, #1a1a2e 0%, #0b0f19 100%);
+      border-radius: 12px;
+    }
+    #view3d canvas {
+      border-radius: 12px;
+    }
+    .three-tooltip {
+      position: absolute;
+      padding: 8px 12px;
+      background: rgba(15, 22, 41, 0.95);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: #e9eefc;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+      max-width: 200px;
+    }
+    .three-tooltip.visible {
+      opacity: 1;
+    }
+    .three-tooltip .tt-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .three-tooltip .tt-desc {
+      color: #a9b4d6;
+      font-size: 11px;
+    }
+    .three-controls {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    .three-controls button {
+      padding: 6px 10px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .three-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+    }
+    .label-3d {
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .label-3d.role-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 3px solid currentColor;
+      padding-left: 6px;
+    }
+    .label-3d.stage-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      background: rgba(0,0,0,0.7);
+    }
+    .label-3d.node-label {
+      font-size: 8px;
+      font-weight: 500;
+      background: rgba(10, 10, 20, 0.75);
+      padding: 3px 6px;
+      text-align: center;
+      max-width: 90px;
+      line-height: 1.2;
+      border-radius: 3px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .foot{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+      padding:0 2px;
+    }
+    .tag{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      color:#cbd5ff;
+      display:inline-block;
+      margin-left:8px;
+    }
+    .hr{height:1px; background:var(--line); margin:12px 0}
+    .list{
+      margin:0; padding-left:18px; color:var(--muted); line-height:1.55; font-size:13px;
+    }
+    .list li{margin:6px 0}
+    .callout{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:linear-gradient(90deg, rgba(167,139,250,.10), rgba(0,0,0,.18));
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .callout b{color:var(--text)}
+
+    /* 3D Galaxy Legend */
+    .legend-3d {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(10, 10, 30, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(100, 150, 255, 0.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: var(--sans);
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .legend-3d .legend-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .legend-3d .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      padding: 4px 0;
+    }
+    .legend-3d .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 8px currentColor;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Generic Modern MLOps Solution <span class="tag">platform-agnostic</span></h1>
+        <p>
+          An end-to-end reference architecture for shipping ML safely and fast:
+          <b>data → features → training → registry → deployment → monitoring</b>,
+          with interactive simulators for <b>latency/cost</b>, <b>drift & alerting</b>, and <b>release strategy</b>.
+        </p>
+      </div>
+      <div class="chips">
+        <div class="chip"><b>Goal:</b> reproducible + observable ML</div>
+        <div class="chip"><b>Principle:</b> everything versioned</div>
+        <div class="chip"><b>Pattern:</b> CI/CD for models</div>
+        <div class="chip"><b>Focus:</b> risk + ROI</div>
+      </div>
+    </header>
+
+    <!-- Full-width Architecture Panel -->
+    <section class="card" style="margin-top:18px;">
+      <div class="hd">
+        <div>
+          <h2>Reference Architecture <span class="tag">click nodes • drag to explore</span></h2>
+          <div class="sub">A practical MLOps "spine" — switch layers to see roles, cloud technologies, or OSS stacks.</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <select id="layerSelect" style="padding:8px 12px; border-radius:12px; border:1px solid var(--line); background:rgba(0,0,0,.25); color:var(--text); font-size:12px; cursor:pointer;">
+            <optgroup label="Views">
+              <option value="generic">Overview</option>
+              <option value="3d">3D Multi-Layer View</option>
+              <option value="roles">Roles & Ownership</option>
+            </optgroup>
+            <optgroup label="Role Perspectives">
+              <option value="data_scientist">Data Scientist</option>
+              <option value="ml_engineer">ML Engineer</option>
+              <option value="data_engineer">Data Engineer</option>
+              <option value="devops">DevOps / Platform</option>
+              <option value="business">Business / Product</option>
+            </optgroup>
+            <optgroup label="Technology Stacks">
+              <option value="aws">AWS Stack</option>
+              <option value="gcp">GCP Stack</option>
+              <option value="azure">Azure Stack</option>
+              <option value="kubeflow">Kubeflow / OSS</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      <div class="diagramWrap">
+        <svg id="d3-arch" role="img" aria-label="MLOps reference architecture diagram"></svg>
+        <div id="view3d" style="display:none; width:100%; height:420px; perspective:1200px; overflow:hidden;"></div>
+
+        <div id="layerLegend" class="foot" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <span class="pill"><span class="dot" style="background:#5eead4"></span> Data</span>
+          <span class="pill"><span class="dot" style="background:#60a5fa"></span> Features</span>
+          <span class="pill"><span class="dot" style="background:#a78bfa"></span> Training</span>
+          <span class="pill"><span class="dot" style="background:#f472b6"></span> Registry</span>
+          <span class="pill"><span class="dot" style="background:#fbbf24"></span> Serving</span>
+          <span class="pill"><span class="dot" style="background:#34d399"></span> Monitoring</span>
+          <span style="margin-left:auto; color:var(--muted); font-size:12px;">
+            Tip: treat models like products—define <b>SLOs</b>, <b>error budgets</b>, and a <b>rollback plan</b>.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-width Node Details Panel -->
+    <section class="card" style="margin-top:14px;">
+      <div class="hd">
+        <div>
+          <h2>What each layer does <span class="tag">click nodes above</span></h2>
+          <div class="sub">Understand "why it exists" and what to standardize at each stage.</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <span class="pill"><span class="dot a"></span><span id="tagA">lineage</span></span>
+          <span class="pill"><span class="dot b"></span><span id="tagB">SLOs</span></span>
+          <span class="pill"><span class="dot c"></span><span id="tagC">versioning</span></span>
+        </div>
+      </div>
+      <div class="bd" style="display:grid; grid-template-columns: 1fr 1fr 1.2fr; gap:20px;">
+        <div>
+          <div id="nodeTitle" style="font-weight:900; font-size:16px; margin-bottom:8px; color:var(--accent);">Data Sources</div>
+          <div id="nodeDesc" class="muted" style="line-height:1.55; font-size:13px;">
+            Ingest from production systems in batch or streaming mode. Standardize schemas, PII handling, and event contracts.
+          </div>
+          <div class="callout" id="nodeCallout" style="margin-top:12px;">
+            <b>Standardize:</b> source contracts, schema evolution, data access policies, and backfill strategy.
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:800; margin-bottom:8px;">Minimum viable MLOps checklist</div>
+          <ul class="list" style="font-size:12px;">
+            <li><b>Version</b> data, code, features, and model artifacts.</li>
+            <li><b>Automate</b> training + evaluation pipelines.</li>
+            <li><b>Gate deployments</b> with tests & eval thresholds.</li>
+            <li><b>Observe production</b>: drift, quality, latency, cost.</li>
+            <li><b>Close the loop</b>: feedback + retrain triggers.</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-weight:800; margin-bottom:8px;">Key principles</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+            <div class="kpi" style="padding:10px;">
+              <div class="label">Reproducibility</div>
+              <div style="font-size:12px; color:var(--muted); margin-top:4px;">Same inputs → same outputs</div>
+            </div>
+            <div class="kpi" style="padding:10px;">
+              <div class="label">Observability</div>
+              <div style="font-size:12px; color:var(--muted); margin-top:4px;">Know what's happening</div>
+            </div>
+            <div class="kpi" style="padding:10px;">
+              <div class="label">Automation</div>
+              <div style="font-size:12px; color:var(--muted); margin-top:4px;">Reduce manual toil</div>
+            </div>
+            <div class="kpi" style="padding:10px;">
+              <div class="label">Governance</div>
+              <div style="font-size:12px; color:var(--muted); margin-top:4px;">Audit trail & compliance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- Simulators -->
+      <section class="card">
+        <div class="hd">
+          <div>
+            <h2>Simulator #1 — Latency & Cost (Serving SLOs)</h2>
+            <div class="sub">Tune traffic, model size, batching, and autoscaling; watch SLO and spend.</div>
+          </div>
+          <div class="pill"><span class="dot g"></span> economics <span class="dot w"></span> tradeoffs</div>
+        </div>
+        <div class="bd">
+          <div class="controls">
+            <div class="ctrl">
+              <label><span>Requests per second (RPS)</span><span id="rpsV" class="muted">120</span></label>
+              <input id="rps" type="range" min="5" max="2000" value="120" />
+            </div>
+            <div class="ctrl">
+              <label><span>Model complexity</span><span id="cxV" class="muted">medium</span></label>
+              <select id="cx">
+                <option value="small">small (fast)</option>
+                <option value="medium" selected>medium</option>
+                <option value="large">large (slow)</option>
+              </select>
+            </div>
+
+            <div class="ctrl">
+              <label><span>Batching</span><span id="batchV" class="muted">4</span></label>
+              <input id="batch" type="range" min="1" max="32" value="4" />
+            </div>
+            <div class="ctrl">
+              <label><span>Autoscale target utilization</span><span id="utilV" class="muted">65%</span></label>
+              <input id="util" type="range" min="35" max="90" value="65" />
+            </div>
+
+            <div class="ctrl">
+              <label><span>Instance type</span><span id="instV" class="muted">CPU</span></label>
+              <select id="inst">
+                <option value="cpu" selected>CPU</option>
+                <option value="gpu">GPU</option>
+              </select>
+            </div>
+            <div class="ctrl">
+              <label><span>SLO (p95 latency)</span><span id="sloV" class="muted">250ms</span></label>
+              <input id="slo" type="range" min="50" max="800" value="250" />
+            </div>
+          </div>
+
+          <div class="kpiRow" style="margin-top:12px">
+            <div class="kpi">
+              <div class="label">Estimated p95 latency</div>
+              <div class="value" id="p95">—</div>
+              <div class="hint" id="p95Hint">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Instances needed</div>
+              <div class="value" id="instCount">—</div>
+              <div class="hint">Approx. steady-state</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Hourly cost</div>
+              <div class="value" id="costH">—</div>
+              <div class="hint" id="costHint">Compute only (toy model)</div>
+            </div>
+            <div class="kpi">
+              <div class="label">SLO status</div>
+              <div class="value" id="sloStatus">—</div>
+              <div class="hint">p95 vs target</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="mini" id="servingNote"></div>
+        </div>
+      </section>
+
+      <!-- RIGHT bottom: Drift + Release strategy -->
+      <section class="card">
+        <div class="hd">
+          <div>
+            <h2>Simulator #2 — Drift, Alerts & Release Strategy</h2>
+            <div class="sub">Explore how drift + guardrails influence rollback and retraining decisions.</div>
+          </div>
+          <div class="pill"><span class="dot a"></span> reliability <span class="dot r"></span> risk</div>
+        </div>
+        <div class="bd">
+          <div class="split">
+            <div>
+              <div style="font-weight:900; margin-bottom:8px;">Drift Simulator</div>
+
+              <div class="ctrl">
+                <label><span>Input drift (0–100)</span><span id="driftV" class="muted">22</span></label>
+                <input id="drift" type="range" min="0" max="100" value="22"/>
+              </div>
+
+              <div class="ctrl" style="margin-top:10px;">
+                <label><span>Label delay (hours)</span><span id="delayV" class="muted">24</span></label>
+                <input id="delay" type="range" min="0" max="168" value="24"/>
+              </div>
+
+              <div class="ctrl" style="margin-top:10px;">
+                <label><span>Alert threshold</span><span id="thrV" class="muted">35</span></label>
+                <input id="thr" type="range" min="5" max="80" value="35"/>
+              </div>
+
+              <div class="kpiRow" style="grid-template-columns:repeat(2,1fr); margin-top:10px;">
+                <div class="kpi">
+                  <div class="label">Projected quality</div>
+                  <div class="value" id="qual">—</div>
+                  <div class="hint" id="qualHint">Proxy for accuracy</div>
+                </div>
+                <div class="kpi">
+                  <div class="label">Action</div>
+                  <div class="value" id="action">—</div>
+                  <div class="hint" id="actionHint">Alerting policy</div>
+                </div>
+              </div>
+
+              <div class="btnRow">
+                <button id="btnNoise">simulate sudden shift</button>
+                <button id="btnReset">reset</button>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-weight:900; margin-bottom:8px;">Release Strategy</div>
+
+              <div class="ctrl">
+                <label><span>Strategy</span><span id="strV" class="muted">Canary</span></label>
+                <select id="str">
+                  <option value="shadow">Shadow (no user impact)</option>
+                  <option value="canary" selected>Canary</option>
+                  <option value="bluegreen">Blue/Green</option>
+                </select>
+              </div>
+
+              <div class="ctrl" style="margin-top:10px;">
+                <label><span>Canary traffic %</span><span id="canV" class="muted">10%</span></label>
+                <input id="can" type="range" min="1" max="50" value="10" />
+              </div>
+
+              <div class="ctrl" style="margin-top:10px;">
+                <label><span>Guardrail strictness</span><span id="guardV" class="muted">medium</span></label>
+                <select id="guard">
+                  <option value="low">low (fewer blocks)</option>
+                  <option value="medium" selected>medium</option>
+                  <option value="high">high (more blocks)</option>
+                </select>
+              </div>
+
+              <div class="kpiRow" style="grid-template-columns:repeat(2,1fr); margin-top:10px;">
+                <div class="kpi">
+                  <div class="label">Rollback sensitivity</div>
+                  <div class="value" id="rb">—</div>
+                  <div class="hint">Probability of rollback</div>
+                </div>
+                <div class="kpi">
+                  <div class="label">Risk score</div>
+                  <div class="value" id="risk">—</div>
+                  <div class="hint">Lower is better</div>
+                </div>
+              </div>
+
+              <div class="mini" style="margin-top:12px;" id="releaseNote"></div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="callout">
+            <b>Decision loop:</b> when drift rises, you can (1) <b>tighten guardrails</b>, (2) <b>roll back</b>, (3) <b>retrain</b>, or (4) <b>collect labels</b>.
+            Strong MLOps makes these actions fast, safe, and auditable.
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // -----------------------------
+    // Architecture node explanations
+    // -----------------------------
+    const NODE_INFO = {
+      sources: {
+        title: "Data Sources",
+        desc: "Ingest from production systems in batch or streaming mode. Standardize schemas, PII handling, and event contracts.",
+        callout: "Standardize: source contracts, schema evolution, data access policies, and backfill strategy.",
+        tags: ["contracts", "PII", "freshness"]
+      },
+      lakehouse: {
+        title: "Lakehouse / Warehouse",
+        desc: "Central governed store for analytics + ML. Add tests (nulls, ranges, joins), lineage, and data SLOs.",
+        callout: "Standardize: data quality rules, lineage, partitioning strategy, and SLO-driven alerts.",
+        tags: ["lineage", "quality", "SLOs"]
+      },
+      features: {
+        title: "Feature Store",
+        desc: "Ensure offline/online parity. Prevent training-serving skew via point-in-time joins and consistent definitions.",
+        callout: "Standardize: feature definitions, time-travel, online serving latency budgets, and ownership.",
+        tags: ["parity", "PIT", "ownership"]
+      },
+      training: {
+        title: "Training + Evaluation",
+        desc: "Repeatable pipelines with dataset + code versioning. Run evaluation suites, slices, and robustness tests.",
+        callout: "Standardize: pipeline templates, evaluation thresholds, fairness slices, and reproducible environments.",
+        tags: ["reproducible", "HPO", "eval gates"]
+      },
+      registry: {
+        title: "Experiment Tracker",
+        desc: "Track runs, params, metrics, and links to data/code. Makes progress measurable and debug-friendly.",
+        callout: "Standardize: run metadata, artifact storage, and comparison dashboards for model selection.",
+        tags: ["runs", "metadata", "comparisons"]
+      },
+      modelreg: {
+        title: "Model Registry",
+        desc: "A single source of truth for approved models, stages, and rollout history. Enables audits and rollbacks.",
+        callout: "Standardize: stage promotion policy, approvals, signatures, and retention/rollback rules.",
+        tags: ["stages", "approvals", "audit"]
+      },
+      deploy: {
+        title: "Serving / Inference",
+        desc: "Deploy as online API, batch jobs, or edge packages. Manage scaling, caching, and safe releases.",
+        callout: "Standardize: deployment patterns (canary/blue-green), autoscaling rules, and latency SLOs.",
+        tags: ["SLOs", "autoscale", "rollback"]
+      },
+      monitor: {
+        title: "Monitoring + Feedback",
+        desc: "Detect drift, data quality breaks, latency regressions, and business KPI drops. Trigger retraining safely.",
+        callout: "Standardize: drift metrics, alert playbooks, human-in-the-loop feedback, and retrain triggers.",
+        tags: ["drift", "alerts", "feedback"]
+      }
+    };
+
+    // D3 Force-Directed Graph Setup
+    // Color categories
+    const COLORS = {
+      data: "#5eead4",      // teal
+      features: "#60a5fa",  // blue
+      training: "#a78bfa",  // purple
+      registry: "#f472b6",  // pink
+      serving: "#fbbf24",   // amber
+      monitoring: "#34d399" // green
+    };
+
+    // Layer definitions for different views
+    const LAYERS = {
+      generic: {
+        name: "Conceptual",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "apps • DBs • files", sub2: "stream + batch" },
+          lakehouse: { label: "Lakehouse", sub1: "governed data", sub2: "quality + SLOs" },
+          features: { label: "Feature Store", sub1: "offline ↔ online", sub2: "point-in-time" },
+          training: { label: "Training", sub1: "pipelines • HPO", sub2: "reproducible" },
+          registry: { label: "Exp Tracker", sub1: "runs • metrics", sub2: "datasets + code" },
+          modelreg: { label: "Model Registry", sub1: "dev → prod", sub2: "approval + audit" },
+          deploy: { label: "Serving", sub1: "online • batch", sub2: "autoscaling" },
+          monitor: { label: "Monitoring", sub1: "drift • quality", sub2: "alerts + retrain" }
+        }
+      },
+      roles: {
+        name: "Roles & Ownership",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Data Engineer", sub2: "Platform Team" },
+          lakehouse: { label: "Lakehouse", sub1: "Data Engineer", sub2: "Analytics Eng" },
+          features: { label: "Feature Store", sub1: "ML Engineer", sub2: "Data Scientist" },
+          training: { label: "Training", sub1: "Data Scientist", sub2: "ML Engineer" },
+          registry: { label: "Exp Tracker", sub1: "Data Scientist", sub2: "ML Engineer" },
+          modelreg: { label: "Model Registry", sub1: "MLOps Engineer", sub2: "ML Engineer" },
+          deploy: { label: "Serving", sub1: "MLOps Engineer", sub2: "Platform Team" },
+          monitor: { label: "Monitoring", sub1: "MLOps Engineer", sub2: "SRE Team" }
+        }
+      },
+      aws: {
+        name: "AWS Stack",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Kinesis • RDS", sub2: "S3 • DMS" },
+          lakehouse: { label: "Lakehouse", sub1: "Redshift • Athena", sub2: "Glue Catalog" },
+          features: { label: "Feature Store", sub1: "SageMaker", sub2: "Feature Store" },
+          training: { label: "Training", sub1: "SageMaker", sub2: "Training Jobs" },
+          registry: { label: "Exp Tracker", sub1: "SageMaker", sub2: "Experiments" },
+          modelreg: { label: "Model Registry", sub1: "SageMaker", sub2: "Model Registry" },
+          deploy: { label: "Serving", sub1: "SageMaker Endpoints", sub2: "Lambda • ECS" },
+          monitor: { label: "Monitoring", sub1: "CloudWatch", sub2: "Model Monitor" }
+        }
+      },
+      gcp: {
+        name: "GCP Stack",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Pub/Sub • Cloud SQL", sub2: "GCS • Dataflow" },
+          lakehouse: { label: "Lakehouse", sub1: "BigQuery", sub2: "Dataplex" },
+          features: { label: "Feature Store", sub1: "Vertex AI", sub2: "Feature Store" },
+          training: { label: "Training", sub1: "Vertex AI", sub2: "Training" },
+          registry: { label: "Exp Tracker", sub1: "Vertex AI", sub2: "Experiments" },
+          modelreg: { label: "Model Registry", sub1: "Vertex AI", sub2: "Model Registry" },
+          deploy: { label: "Serving", sub1: "Vertex Endpoints", sub2: "Cloud Run" },
+          monitor: { label: "Monitoring", sub1: "Cloud Monitoring", sub2: "Vertex Model Mon" }
+        }
+      },
+      azure: {
+        name: "Azure Stack",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Event Hubs • SQL", sub2: "Blob • Data Factory" },
+          lakehouse: { label: "Lakehouse", sub1: "Synapse • Fabric", sub2: "Unity Catalog" },
+          features: { label: "Feature Store", sub1: "Azure ML", sub2: "Feature Store" },
+          training: { label: "Training", sub1: "Azure ML", sub2: "Compute Clusters" },
+          registry: { label: "Exp Tracker", sub1: "Azure ML", sub2: "Experiments" },
+          modelreg: { label: "Model Registry", sub1: "Azure ML", sub2: "Model Registry" },
+          deploy: { label: "Serving", sub1: "Managed Endpoints", sub2: "AKS • Functions" },
+          monitor: { label: "Monitoring", sub1: "App Insights", sub2: "Azure Monitor" }
+        }
+      },
+      kubeflow: {
+        name: "Kubeflow / OSS",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Kafka • Postgres", sub2: "MinIO • Airbyte" },
+          lakehouse: { label: "Lakehouse", sub1: "Delta Lake • Iceberg", sub2: "Hive Metastore" },
+          features: { label: "Feature Store", sub1: "Feast", sub2: "Tecton OSS" },
+          training: { label: "Training", sub1: "Kubeflow Pipelines", sub2: "Katib (HPO)" },
+          registry: { label: "Exp Tracker", sub1: "MLflow", sub2: "Experiments" },
+          modelreg: { label: "Model Registry", sub1: "MLflow", sub2: "Model Registry" },
+          deploy: { label: "Serving", sub1: "KServe • Seldon", sub2: "BentoML • Triton" },
+          monitor: { label: "Monitoring", sub1: "Prometheus", sub2: "Grafana • Evidently" }
+        }
+      },
+      data_scientist: {
+        name: "Data Scientist",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Explore datasets", sub2: "Understand domains" },
+          lakehouse: { label: "Lakehouse", sub1: "Query & analyze", sub2: "Build hypotheses" },
+          features: { label: "Feature Store", sub1: "Create features", sub2: "Reuse existing" },
+          training: { label: "Training", sub1: "Experiment", sub2: "Tune & validate" },
+          registry: { label: "Exp Tracker", sub1: "Log experiments", sub2: "Compare results" },
+          modelreg: { label: "Model Registry", sub1: "Submit models", sub2: "Request promotion" },
+          deploy: { label: "Serving", sub1: "Validate output", sub2: "A/B test ideas" },
+          monitor: { label: "Monitoring", sub1: "Analyze drift", sub2: "Trigger retrain" }
+        }
+      },
+      ml_engineer: {
+        name: "ML Engineer",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Build connectors", sub2: "Schema validation" },
+          lakehouse: { label: "Lakehouse", sub1: "Data pipelines", sub2: "Quality checks" },
+          features: { label: "Feature Store", sub1: "Feature pipelines", sub2: "Online/offline sync" },
+          training: { label: "Training", sub1: "Pipeline automation", sub2: "Distributed training" },
+          registry: { label: "Exp Tracker", sub1: "Artifact mgmt", sub2: "Reproducibility" },
+          modelreg: { label: "Model Registry", sub1: "CI/CD integration", sub2: "Version control" },
+          deploy: { label: "Serving", sub1: "Optimize latency", sub2: "Batch & streaming" },
+          monitor: { label: "Monitoring", sub1: "Alert pipelines", sub2: "Auto-retrain" }
+        }
+      },
+      data_engineer: {
+        name: "Data Engineer",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Ingestion infra", sub2: "CDC & streaming" },
+          lakehouse: { label: "Lakehouse", sub1: "Data modeling", sub2: "Partitioning & SLAs" },
+          features: { label: "Feature Store", sub1: "Storage layer", sub2: "Backfill support" },
+          training: { label: "Training", sub1: "Training data", sub2: "Data validation" },
+          registry: { label: "Exp Tracker", sub1: "Data lineage", sub2: "Dataset versions" },
+          modelreg: { label: "Model Registry", sub1: "Data contracts", sub2: "Schema registry" },
+          deploy: { label: "Serving", sub1: "Real-time data", sub2: "Feature serving" },
+          monitor: { label: "Monitoring", sub1: "Data quality", sub2: "Pipeline health" }
+        }
+      },
+      devops: {
+        name: "DevOps / Platform",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Security & IAM", sub2: "Network policies" },
+          lakehouse: { label: "Lakehouse", sub1: "Infrastructure", sub2: "Cost optimization" },
+          features: { label: "Feature Store", sub1: "Compute clusters", sub2: "Auto-scaling" },
+          training: { label: "Training", sub1: "Containers & K8s", sub2: "GPU scheduling" },
+          registry: { label: "Exp Tracker", sub1: "Storage & backup", sub2: "Access control" },
+          modelreg: { label: "Model Registry", sub1: "Artifact security", sub2: "Compliance" },
+          deploy: { label: "Serving", sub1: "Load balancing", sub2: "Blue/green deploy" },
+          monitor: { label: "Monitoring", sub1: "Infra monitoring", sub2: "Incident response" }
+        }
+      },
+      business: {
+        name: "Business / Product",
+        nodes: {
+          sources: { label: "Data Sources", sub1: "Define requirements", sub2: "Data privacy" },
+          lakehouse: { label: "Lakehouse", sub1: "Business metrics", sub2: "Self-serve BI" },
+          features: { label: "Feature Store", sub1: "Feature requests", sub2: "Domain expertise" },
+          training: { label: "Training", sub1: "Success criteria", sub2: "Fairness review" },
+          registry: { label: "Exp Tracker", sub1: "Progress tracking", sub2: "ROI analysis" },
+          modelreg: { label: "Model Registry", sub1: "Approval gates", sub2: "Risk assessment" },
+          deploy: { label: "Serving", sub1: "User impact", sub2: "Rollout strategy" },
+          monitor: { label: "Monitoring", sub1: "Business KPIs", sub2: "Customer feedback" }
+        }
+      }
+    };
+
+    const graphNodes = [
+      { id: "sources", color: COLORS.data, category: "data", row: 0, col: 0 },
+      { id: "lakehouse", color: COLORS.data, category: "data", row: 0, col: 1 },
+      { id: "features", color: COLORS.features, category: "features", row: 0, col: 2 },
+      { id: "training", color: COLORS.training, category: "training", row: 0, col: 3 },
+      { id: "registry", color: COLORS.registry, category: "registry", row: 0, col: 4 },
+      { id: "modelreg", color: COLORS.registry, category: "registry", row: 0, col: 5 },
+      { id: "deploy", color: COLORS.serving, category: "serving", row: 0, col: 6 },
+      { id: "monitor", color: COLORS.monitoring, category: "monitoring", row: 0, col: 7 }
+    ];
+
+    // Initialize labels from generic layer
+    graphNodes.forEach(n => {
+      const layerData = LAYERS.generic.nodes[n.id];
+      n.label = layerData.label;
+      n.sub1 = layerData.sub1;
+      n.sub2 = layerData.sub2;
+    });
+
+    const graphLinks = [
+      { source: "sources", target: "lakehouse" },
+      { source: "lakehouse", target: "features" },
+      { source: "features", target: "training" },
+      { source: "training", target: "registry" },
+      { source: "registry", target: "modelreg" },
+      { source: "modelreg", target: "deploy" },
+      { source: "deploy", target: "monitor" }
+    ];
+
+    // Initialize D3 graph
+    const svgEl = d3.select("#d3-arch");
+    const container = document.querySelector(".diagramWrap");
+    const width = container.clientWidth - 32;
+    const height = 140;
+
+    svgEl.attr("width", width).attr("height", height);
+
+    // Arrow marker
+    svgEl.append("defs").append("marker")
+      .attr("id", "d3-arrow")
+      .attr("viewBox", "0 0 10 10")
+      .attr("refX", 8)
+      .attr("refY", 5)
+      .attr("markerWidth", 5)
+      .attr("markerHeight", 5)
+      .attr("orient", "auto-start-reverse")
+      .append("path")
+      .attr("d", "M 0 0 L 10 5 L 0 10 z")
+      .attr("class", "d3-arrow");
+
+    const nodeWidth = 95;
+    const nodeHeight = 60;
+    const nodeSpacing = (width - 40) / 8;
+
+    // Position nodes in a single row
+    graphNodes.forEach(d => {
+      d.x = 30 + nodeSpacing / 2 + d.col * nodeSpacing;
+      d.y = height / 2;
+      d.fx = null;
+      d.fy = null;
+    });
+
+    // Create force simulation - gentler for single row
+    const simulation = d3.forceSimulation(graphNodes)
+      .force("link", d3.forceLink(graphLinks).id(d => d.id).distance(nodeSpacing).strength(0.2))
+      .force("charge", d3.forceManyBody().strength(-150))
+      .force("x", d3.forceX(d => 30 + nodeSpacing / 2 + d.col * nodeSpacing).strength(0.4))
+      .force("y", d3.forceY(height / 2).strength(0.5))
+      .force("collision", d3.forceCollide().radius(nodeWidth / 2 + 5))
+      .alphaDecay(0.03);
+
+    // Links
+    const links = svgEl.append("g")
+      .selectAll("path")
+      .data(graphLinks)
+      .join("path")
+      .attr("class", "d3-link")
+      .attr("marker-end", "url(#d3-arrow)");
+
+    // Nodes group
+    const nodes = svgEl.append("g")
+      .selectAll("g")
+      .data(graphNodes)
+      .join("g")
+      .attr("class", "d3-node")
+      .call(d3.drag()
+        .on("start", dragStarted)
+        .on("drag", dragged)
+        .on("end", dragEnded));
+
+    // Node rectangles with category colors
+    nodes.append("rect")
+      .attr("width", nodeWidth)
+      .attr("height", nodeHeight)
+      .attr("x", -nodeWidth / 2)
+      .attr("y", -nodeHeight / 2)
+      .style("stroke", d => d.color)
+      .style("fill", d => d.color + "15");
+
+    // Node labels (stored for layer updates)
+    const labelTexts = nodes.append("text")
+      .attr("class", "d3-label")
+      .attr("text-anchor", "middle")
+      .attr("y", -10)
+      .style("font-size", "10px")
+      .text(d => d.label);
+
+    // Sub-labels
+    const sub1Texts = nodes.append("text")
+      .attr("class", "d3-sublabel")
+      .attr("text-anchor", "middle")
+      .attr("y", 5)
+      .style("font-size", "8px")
+      .text(d => d.sub1);
+
+    const sub2Texts = nodes.append("text")
+      .attr("class", "d3-sublabel")
+      .attr("text-anchor", "middle")
+      .attr("y", 17)
+      .style("font-size", "8px")
+      .text(d => d.sub2);
+
+    // Click handler
+    nodes.on("click", (event, d) => {
+      event.stopPropagation();
+      setActiveNode(d.id);
+    });
+
+    // Track active node and links
+    let activeNodeId = "sources";
+    let d3NodeEls = null;
+    let d3LinkEls = null;
+
+    function setActiveNode(key) {
+      activeNodeId = key;
+      const info = NODE_INFO[key] || NODE_INFO.sources;
+
+      document.getElementById("nodeTitle").textContent = info.title;
+      document.getElementById("nodeDesc").textContent = info.desc;
+      document.getElementById("nodeCallout").innerHTML = "<b>Standardize:</b> " + info.callout.replace(/^Standardize:\s*/i,"");
+
+      document.getElementById("tagA").textContent = info.tags[0] || "lineage";
+      document.getElementById("tagB").textContent = info.tags[1] || "SLOs";
+      document.getElementById("tagC").textContent = info.tags[2] || "versioning";
+
+      // Update node states
+      nodes.classed("active", false).classed("warn", false).classed("bad", false);
+      nodes.filter(d => d.id === key).classed("active", true);
+
+      // Highlight connected links
+      const order = ["sources","lakehouse","features","training","registry","modelreg","deploy","monitor"];
+      const idx = order.indexOf(key);
+
+      links.classed("hot", (d, i) => i < idx);
+    }
+
+    // Store references for external use
+    d3NodeEls = nodes;
+    d3LinkEls = links;
+
+    // Expose for drift simulator
+    window.setD3NodeState = function(nodeId, state) {
+      nodes.filter(d => d.id === nodeId)
+        .classed("active", state === "active")
+        .classed("warn", state === "warn")
+        .classed("bad", state === "bad");
+    };
+
+    // Simulation tick
+    simulation.on("tick", () => {
+      links.attr("d", d => {
+        const dx = d.target.x - d.source.x;
+        // Calculate edge points on rectangle boundaries
+        const sourceX = d.source.x + nodeWidth / 2 + 2;
+        const targetX = d.target.x - nodeWidth / 2 - 2;
+
+        // Straight line for single row layout
+        return `M${sourceX},${d.source.y} L${targetX},${d.target.y}`;
+      });
+
+      nodes.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+
+    // Drag functions
+    function dragStarted(event, d) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+    function dragged(event, d) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+
+    function dragEnded(event, d) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+
+    // Initialize
+    setActiveNode("sources");
+
+    // Handle window resize
+    window.addEventListener("resize", () => {
+      const newWidth = container.clientWidth - 32;
+      svgEl.attr("width", newWidth);
+    });
+
+    // Layer switching
+    const layerSelect = document.getElementById("layerSelect");
+    const layerLegend = document.getElementById("layerLegend");
+
+    function switchLayer(layerKey) {
+      const layer = LAYERS[layerKey];
+
+      // Update node labels (skip for 3D view)
+      if (layer) {
+        graphNodes.forEach(n => {
+          const layerData = layer.nodes[n.id];
+          n.label = layerData.label;
+          n.sub1 = layerData.sub1;
+          n.sub2 = layerData.sub2;
+        });
+
+        // Update text elements
+        labelTexts.text(d => d.label);
+        sub1Texts.text(d => d.sub1);
+        sub2Texts.text(d => d.sub2);
+      }
+
+      // Update legend based on layer type
+      const legendConfig = {
+        "3d": {
+          pills: [
+            { color: "#f472b6", icon: "business", label: "Business" },
+            { color: "#a78bfa", icon: "science", label: "Data Scientist" },
+            { color: "#60a5fa", icon: "engineering", label: "ML Engineer" },
+            { color: "#5eead4", icon: "storage", label: "Data Engineer" },
+            { color: "#fbbf24", icon: "cloud", label: "DevOps" }
+          ],
+          tip: "<b>3D view</b> shows how different roles collaborate across the MLOps pipeline."
+        },
+        generic: {
+          pills: [
+            { color: "#5eead4", label: "Data" },
+            { color: "#60a5fa", label: "Features" },
+            { color: "#a78bfa", label: "Training" },
+            { color: "#f472b6", label: "Registry" },
+            { color: "#fbbf24", label: "Serving" },
+            { color: "#34d399", label: "Monitoring" }
+          ],
+          tip: "Tip: treat models like products—define <b>SLOs</b>, <b>error budgets</b>, and a <b>rollback plan</b>."
+        },
+        roles: {
+          pills: [
+            { color: "#5eead4", label: "Data Engineer" },
+            { color: "#60a5fa", label: "ML Engineer" },
+            { color: "#a78bfa", label: "Data Scientist" },
+            { color: "#f472b6", label: "MLOps Engineer" },
+            { color: "#fbbf24", label: "Platform Team" },
+            { color: "#34d399", label: "SRE Team" }
+          ],
+          tip: "Cross-functional collaboration is key to MLOps success."
+        },
+        data_scientist: {
+          pills: [
+            { color: "#a78bfa", icon: "science", label: "Experiment" },
+            { color: "#60a5fa", icon: "analytics", label: "Analyze" },
+            { color: "#f472b6", icon: "edit_note", label: "Document" },
+            { color: "#34d399", icon: "loop", label: "Iterate" }
+          ],
+          tip: "<b>Data Scientists</b> focus on experimentation, feature engineering, and model development."
+        },
+        ml_engineer: {
+          pills: [
+            { color: "#60a5fa", icon: "settings", label: "Automate" },
+            { color: "#a78bfa", icon: "account_tree", label: "Pipeline" },
+            { color: "#fbbf24", icon: "rocket_launch", label: "Deploy" },
+            { color: "#34d399", icon: "inventory_2", label: "Package" }
+          ],
+          tip: "<b>ML Engineers</b> bridge DS and DevOps—productionize models and build robust pipelines."
+        },
+        data_engineer: {
+          pills: [
+            { color: "#5eead4", icon: "input", label: "Ingest" },
+            { color: "#60a5fa", icon: "schema", label: "Model" },
+            { color: "#a78bfa", icon: "verified", label: "Validate" },
+            { color: "#34d399", icon: "high_quality", label: "Quality" }
+          ],
+          tip: "<b>Data Engineers</b> own data infrastructure, pipelines, and data quality."
+        },
+        devops: {
+          pills: [
+            { color: "#fbbf24", icon: "cloud", label: "Infra" },
+            { color: "#60a5fa", icon: "security", label: "Security" },
+            { color: "#a78bfa", icon: "view_in_ar", label: "Containers" },
+            { color: "#34d399", icon: "monitoring", label: "Monitor" }
+          ],
+          tip: "<b>DevOps/Platform</b> teams provide infrastructure, security, and operational excellence."
+        },
+        business: {
+          pills: [
+            { color: "#f472b6", icon: "assignment", label: "Requirements" },
+            { color: "#fbbf24", icon: "payments", label: "ROI" },
+            { color: "#60a5fa", icon: "task_alt", label: "Approval" },
+            { color: "#34d399", icon: "trending_up", label: "KPIs" }
+          ],
+          tip: "<b>Business/Product</b> defines success criteria, approves releases, and measures impact."
+        },
+        aws: {
+          pills: [
+            { color: "#ff9900", label: "AWS" },
+            { color: "#5eead4", label: "S3 / Kinesis" },
+            { color: "#a78bfa", label: "SageMaker" },
+            { color: "#34d399", label: "CloudWatch" }
+          ],
+          tip: "Fully managed ML with <b>SageMaker</b> ecosystem."
+        },
+        gcp: {
+          pills: [
+            { color: "#4285f4", label: "GCP" },
+            { color: "#5eead4", label: "BigQuery" },
+            { color: "#a78bfa", label: "Vertex AI" },
+            { color: "#34d399", label: "Cloud Monitoring" }
+          ],
+          tip: "Unified ML with <b>Vertex AI</b> platform."
+        },
+        azure: {
+          pills: [
+            { color: "#0078d4", label: "Azure" },
+            { color: "#5eead4", label: "Synapse / Fabric" },
+            { color: "#a78bfa", label: "Azure ML" },
+            { color: "#34d399", label: "App Insights" }
+          ],
+          tip: "Enterprise ML with <b>Azure Machine Learning</b>."
+        },
+        kubeflow: {
+          pills: [
+            { color: "#326ce5", label: "Kubernetes" },
+            { color: "#5eead4", label: "Delta / Iceberg" },
+            { color: "#0194e2", label: "MLflow" },
+            { color: "#a78bfa", label: "Kubeflow" },
+            { color: "#e6522c", label: "Prometheus" }
+          ],
+          tip: "Cloud-agnostic OSS stack on <b>Kubernetes</b>."
+        }
+      };
+
+      const config = legendConfig[layerKey] || legendConfig.generic;
+      const pillsHtml = config.pills.map(p => {
+        const iconHtml = p.icon ? `<span class="material-icons" style="color:${p.color}">${p.icon}</span>` : `<span class="dot" style="background:${p.color}"></span>`;
+        return `<span class="pill">${iconHtml} ${p.label}</span>`;
+      }).join("");
+
+      layerLegend.innerHTML = `
+        ${pillsHtml}
+        <span style="margin-left:auto; color:var(--muted); font-size:12px;">
+          ${config.tip}
+        </span>
+      `;
+    }
+
+    // Three.js Isometric 3D View Setup
+    const view3d = document.getElementById("view3d");
+    const svgContainer = document.getElementById("d3-arch");
+
+    const ROLES_3D = [
+      { key: "business", name: "Business", color: 0xf472b6, colorHex: "#f472b6" },
+      { key: "data_scientist", name: "Data Scientist", color: 0xa78bfa, colorHex: "#a78bfa" },
+      { key: "ml_engineer", name: "ML Engineer", color: 0x60a5fa, colorHex: "#60a5fa" },
+      { key: "data_engineer", name: "Data Engineer", color: 0x5eead4, colorHex: "#5eead4" },
+      { key: "devops", name: "DevOps", color: 0xfbbf24, colorHex: "#fbbf24" }
+    ];
+
+    const STAGES_3D = [
+      { key: "sources", name: "Data Sources", color: 0x5eead4 },
+      { key: "lakehouse", name: "Lakehouse", color: 0x5eead4 },
+      { key: "features", name: "Features", color: 0x60a5fa },
+      { key: "training", name: "Training", color: 0xa78bfa },
+      { key: "registry", name: "Tracking", color: 0xf472b6 },
+      { key: "modelreg", name: "Registry", color: 0xf472b6 },
+      { key: "deploy", name: "Serving", color: 0xfbbf24 },
+      { key: "monitor", name: "Monitor", color: 0x34d399 }
+    ];
+
+    let threeScene, threeCamera, threeRenderer, threeControls, cssRenderer;
+    let nodeMeshes = [];
+    let animationId = null;
+    let tooltip3d = null;
+    let raycaster, mouse;
+    let particles = [];
+    let glowMeshes = [];
+    let time3d = 0;
+
+    function create3DView() {
+      view3d.innerHTML = "";
+      nodeMeshes = [];
+      particles = [];
+      glowMeshes = [];
+      time3d = 0;
+
+      const width = view3d.clientWidth || 800;
+      const height = 500;
+
+      // Scene with fog for depth
+      threeScene = new THREE.Scene();
+      threeScene.fog = new THREE.FogExp2(0x0a0a1a, 0.015);
+
+      // Perspective camera for dramatic effect
+      threeCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+      threeCamera.position.set(0, 25, 35);
+      threeCamera.lookAt(0, 0, 0);
+
+      // WebGL Renderer with better quality
+      threeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      threeRenderer.setSize(width, height);
+      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      threeRenderer.setClearColor(0x0a0a1a, 1);
+      threeRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+      threeRenderer.toneMappingExposure = 1.2;
+      view3d.appendChild(threeRenderer.domElement);
+
+      // CSS2D Renderer for labels
+      cssRenderer = new THREE.CSS2DRenderer();
+      cssRenderer.setSize(width, height);
+      cssRenderer.domElement.style.position = 'absolute';
+      cssRenderer.domElement.style.top = '0';
+      cssRenderer.domElement.style.left = '0';
+      cssRenderer.domElement.style.pointerEvents = 'none';
+      view3d.appendChild(cssRenderer.domElement);
+
+      // Orbit Controls
+      threeControls = new THREE.OrbitControls(threeCamera, threeRenderer.domElement);
+      threeControls.enableDamping = true;
+      threeControls.dampingFactor = 0.05;
+      threeControls.minDistance = 15;
+      threeControls.maxDistance = 80;
+      threeControls.enableRotate = true;
+      threeControls.autoRotate = true;
+      threeControls.autoRotateSpeed = 0.5;
+      threeControls.maxPolarAngle = Math.PI / 2 + 0.3;
+
+      // Ambient light
+      const ambientLight = new THREE.AmbientLight(0x404060, 0.4);
+      threeScene.add(ambientLight);
+
+      // Main light
+      const mainLight = new THREE.DirectionalLight(0xffffff, 0.6);
+      mainLight.position.set(10, 30, 20);
+      threeScene.add(mainLight);
+
+      // Colored accent lights
+      const blueLight = new THREE.PointLight(0x60a5fa, 1, 50);
+      blueLight.position.set(-15, 10, -10);
+      threeScene.add(blueLight);
+
+      const purpleLight = new THREE.PointLight(0xa78bfa, 1, 50);
+      purpleLight.position.set(15, 10, 10);
+      threeScene.add(purpleLight);
+
+      const tealLight = new THREE.PointLight(0x5eead4, 0.8, 50);
+      tealLight.position.set(0, 15, -15);
+      threeScene.add(tealLight);
+
+      // Create starfield background
+      const starGeometry = new THREE.BufferGeometry();
+      const starCount = 1500;
+      const starPositions = new Float32Array(starCount * 3);
+      const starColors = new Float32Array(starCount * 3);
+
+      for (let i = 0; i < starCount; i++) {
+        const radius = 80 + Math.random() * 120;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI;
+
+        starPositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+        starPositions[i * 3 + 1] = radius * Math.cos(phi);
+        starPositions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+
+        const color = new THREE.Color();
+        color.setHSL(0.6 + Math.random() * 0.2, 0.3, 0.6 + Math.random() * 0.4);
+        starColors[i * 3] = color.r;
+        starColors[i * 3 + 1] = color.g;
+        starColors[i * 3 + 2] = color.b;
+      }
+
+      starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+      starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+      const starMaterial = new THREE.PointsMaterial({
+        size: 0.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        sizeAttenuation: true
+      });
+
+      const stars = new THREE.Points(starGeometry, starMaterial);
+      threeScene.add(stars);
+
+      // Pipeline path - curved arc layout
+      const stagePositions = [];
+      const stageSpacing = 5.5;
+      const curveRadius = 18;
+      const startAngle = Math.PI * 0.85;
+      const endAngle = Math.PI * 0.15;
+      const angleStep = (startAngle - endAngle) / (STAGES_3D.length - 1);
+
+      STAGES_3D.forEach((stage, i) => {
+        const angle = startAngle - i * angleStep;
+        const x = Math.cos(angle) * curveRadius;
+        const z = Math.sin(angle) * curveRadius - 5;
+        const y = Math.sin(i * 0.3) * 1.5; // Slight wave
+        stagePositions.push({ x, y, z, angle });
+      });
+
+      // Create glowing pipeline tube
+      const pipelineCurve = new THREE.CatmullRomCurve3(
+        stagePositions.map(p => new THREE.Vector3(p.x, p.y, p.z))
+      );
+
+      const tubeGeom = new THREE.TubeGeometry(pipelineCurve, 100, 0.15, 8, false);
+      const tubeMat = new THREE.MeshPhongMaterial({
+        color: 0x60a5fa,
+        transparent: true,
+        opacity: 0.3,
+        emissive: 0x60a5fa,
+        emissiveIntensity: 0.5
+      });
+      const tube = new THREE.Mesh(tubeGeom, tubeMat);
+      threeScene.add(tube);
+
+      // Outer glow tube
+      const glowTubeGeom = new THREE.TubeGeometry(pipelineCurve, 100, 0.4, 8, false);
+      const glowTubeMat = new THREE.MeshBasicMaterial({
+        color: 0x60a5fa,
+        transparent: true,
+        opacity: 0.1,
+        side: THREE.BackSide
+      });
+      const glowTube = new THREE.Mesh(glowTubeGeom, glowTubeMat);
+      threeScene.add(glowTube);
+
+      // Create flowing particles along pipeline
+      const particleCount = 80;
+      for (let i = 0; i < particleCount; i++) {
+        const particleGeom = new THREE.SphereGeometry(0.08, 8, 8);
+        const particleMat = new THREE.MeshBasicMaterial({
+          color: 0x60a5fa,
+          transparent: true,
+          opacity: 0.8
+        });
+        const particle = new THREE.Mesh(particleGeom, particleMat);
+        particle.userData.offset = Math.random();
+        particle.userData.speed = 0.1 + Math.random() * 0.15;
+        particles.push({ mesh: particle, curve: pipelineCurve });
+        threeScene.add(particle);
+      }
+
+      // Create stage nodes (main pipeline)
+      STAGES_3D.forEach((stage, i) => {
+        const pos = stagePositions[i];
+
+        // Main node - glowing crystal/gem
+        const nodeGeom = new THREE.IcosahedronGeometry(1.2, 1);
+        const nodeMat = new THREE.MeshPhongMaterial({
+          color: stage.color,
+          transparent: true,
+          opacity: 0.85,
+          shininess: 100,
+          emissive: stage.color,
+          emissiveIntensity: 0.3
+        });
+        const node = new THREE.Mesh(nodeGeom, nodeMat);
+        node.position.set(pos.x, pos.y + 1.5, pos.z);
+        node.userData = {
+          stageKey: stage.key,
+          stageName: stage.name,
+          isStageNode: true,
+          baseY: pos.y + 1.5,
+          phaseOffset: i * 0.5
+        };
+        threeScene.add(node);
+        nodeMeshes.push(node);
+        glowMeshes.push(node);
+
+        // Outer glow sphere
+        const glowGeom = new THREE.SphereGeometry(1.8, 16, 16);
+        const glowMat = new THREE.MeshBasicMaterial({
+          color: stage.color,
+          transparent: true,
+          opacity: 0.15,
+          side: THREE.BackSide
+        });
+        const glow = new THREE.Mesh(glowGeom, glowMat);
+        glow.position.copy(node.position);
+        threeScene.add(glow);
+        glow.userData.parentNode = node;
+        glowMeshes.push(glow);
+
+        // Orbiting ring
+        const ringGeom = new THREE.TorusGeometry(2, 0.05, 8, 32);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: stage.color,
+          transparent: true,
+          opacity: 0.5
+        });
+        const ring = new THREE.Mesh(ringGeom, ringMat);
+        ring.position.copy(node.position);
+        ring.rotation.x = Math.PI / 2;
+        ring.userData.rotSpeed = 0.5 + Math.random() * 0.5;
+        ring.userData.parentNode = node;
+        threeScene.add(ring);
+        glowMeshes.push(ring);
+
+        // Stage label
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'label-3d stage-label';
+        labelDiv.textContent = stage.name;
+        labelDiv.style.color = '#' + stage.color.toString(16).padStart(6, '0');
+        const label = new THREE.CSS2DObject(labelDiv);
+        label.position.set(pos.x, pos.y + 4, pos.z);
+        threeScene.add(label);
+
+        // Role orbs orbiting each stage
+        ROLES_3D.forEach((role, j) => {
+          const layerData = LAYERS[role.key];
+          const stageData = layerData.nodes[stage.key];
+
+          const orbitRadius = 3.5;
+          const orbitAngle = (j / ROLES_3D.length) * Math.PI * 2;
+          const orbitY = (j - 2) * 0.8;
+
+          // Role orb
+          const orbGeom = new THREE.SphereGeometry(0.45, 16, 16);
+          const orbMat = new THREE.MeshPhongMaterial({
+            color: role.color,
+            transparent: true,
+            opacity: 0.9,
+            shininess: 80,
+            emissive: role.color,
+            emissiveIntensity: 0.25
+          });
+          const orb = new THREE.Mesh(orbGeom, orbMat);
+
+          // Store orbit data
+          orb.userData = {
+            centerX: pos.x,
+            centerY: pos.y + 1.5,
+            centerZ: pos.z,
+            orbitRadius: orbitRadius,
+            orbitAngle: orbitAngle,
+            orbitY: orbitY,
+            orbitSpeed: 0.3 + j * 0.1,
+            roleKey: role.key,
+            roleName: role.name,
+            stageKey: stage.key,
+            stageName: stage.name,
+            sub1: stageData.sub1,
+            sub2: stageData.sub2,
+            isNode: true
+          };
+
+          // Initial position
+          orb.position.set(
+            pos.x + Math.cos(orbitAngle) * orbitRadius,
+            pos.y + 1.5 + orbitY,
+            pos.z + Math.sin(orbitAngle) * orbitRadius
+          );
+
+          threeScene.add(orb);
+          nodeMeshes.push(orb);
+
+          // Small glow for each orb
+          const orbGlowGeom = new THREE.SphereGeometry(0.65, 8, 8);
+          const orbGlowMat = new THREE.MeshBasicMaterial({
+            color: role.color,
+            transparent: true,
+            opacity: 0.2,
+            side: THREE.BackSide
+          });
+          const orbGlow = new THREE.Mesh(orbGlowGeom, orbGlowMat);
+          orbGlow.userData.parentOrb = orb;
+          threeScene.add(orbGlow);
+          glowMeshes.push(orbGlow);
+        });
+      });
+
+      // Color code legend (floating)
+      const legendDiv = document.createElement('div');
+      legendDiv.className = 'legend-3d';
+      legendDiv.innerHTML = `
+        <div class="legend-title">Roles (Orbiting Spheres)</div>
+        ${ROLES_3D.map(r => `
+          <div class="legend-item">
+            <span class="legend-dot" style="background:${r.colorHex}"></span>
+            ${r.name}
+          </div>
+        `).join('')}
+        <div class="legend-title" style="margin-top:12px;">Pipeline Stages (Crystals)</div>
+        ${STAGES_3D.map(s => `
+          <div class="legend-item">
+            <span class="legend-dot" style="background:#${s.color.toString(16).padStart(6, '0')}"></span>
+            ${s.name}
+          </div>
+        `).join('')}
+      `;
+      view3d.appendChild(legendDiv);
+
+      // Tooltip
+      tooltip3d = document.createElement('div');
+      tooltip3d.className = 'three-tooltip';
+      view3d.appendChild(tooltip3d);
+
+      // Raycaster
+      raycaster = new THREE.Raycaster();
+      mouse = new THREE.Vector2();
+
+      // Controls UI
+      const controlsDiv = document.createElement('div');
+      controlsDiv.className = 'three-controls';
+      controlsDiv.innerHTML = `
+        <button id="btn3dReset"><span class="material-icons" style="font-size:14px;">restart_alt</span> Reset</button>
+        <button id="btn3dRotate"><span class="material-icons" style="font-size:14px;">360</span> Pause</button>
+        <button id="btn3dTop"><span class="material-icons" style="font-size:14px;">visibility</span> Top</button>
+      `;
+      view3d.appendChild(controlsDiv);
+
+      document.getElementById('btn3dReset').addEventListener('click', () => {
+        threeCamera.position.set(0, 25, 35);
+        threeCamera.lookAt(0, 0, 0);
+        threeControls.reset();
+        threeControls.autoRotate = true;
+      });
+
+      document.getElementById('btn3dRotate').addEventListener('click', (e) => {
+        threeControls.autoRotate = !threeControls.autoRotate;
+        e.target.innerHTML = threeControls.autoRotate
+          ? '<span class="material-icons" style="font-size:14px;">360</span> Pause'
+          : '<span class="material-icons" style="font-size:14px;">360</span> Rotate';
+      });
+
+      document.getElementById('btn3dTop').addEventListener('click', () => {
+        threeCamera.position.set(0, 50, 1);
+        threeCamera.lookAt(0, 0, 0);
+      });
+
+      // Hint
+      const hint = document.createElement('div');
+      hint.className = 'three-hint';
+      hint.innerHTML = `<span class="material-icons" style="font-size:14px;">mouse</span> Drag to orbit • Scroll to zoom • Click node to explore`;
+      view3d.appendChild(hint);
+
+      // Mouse events
+      threeRenderer.domElement.addEventListener('mousemove', onMouseMove3D);
+      threeRenderer.domElement.addEventListener('click', onClick3D);
+
+      // Start animation
+      animate3D();
+    }
+
+    function onMouseMove3D(event) {
+      const rect = threeRenderer.domElement.getBoundingClientRect();
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, threeCamera);
+      const intersects = raycaster.intersectObjects(nodeMeshes);
+
+      // Reset hover states
+      nodeMeshes.forEach(mesh => {
+        if (mesh.userData.isNode || mesh.userData.isStageNode) {
+          mesh.material.emissiveIntensity = mesh.userData.isStageNode ? 0.3 : 0.25;
+        }
+      });
+
+      if (intersects.length > 0) {
+        const obj = intersects[0].object;
+        if (obj.userData.isNode) {
+          obj.material.emissiveIntensity = 0.7;
+
+          const data = obj.userData;
+          tooltip3d.innerHTML = `
+            <div class="tt-title">${data.roleName} → ${data.stageName}</div>
+            <div class="tt-desc">${data.sub1}<br>${data.sub2}</div>
+          `;
+          tooltip3d.style.left = (event.clientX - view3d.getBoundingClientRect().left + 15) + 'px';
+          tooltip3d.style.top = (event.clientY - view3d.getBoundingClientRect().top - 10) + 'px';
+          tooltip3d.classList.add('visible');
+          threeRenderer.domElement.style.cursor = 'pointer';
+          return;
+        } else if (obj.userData.isStageNode) {
+          obj.material.emissiveIntensity = 0.6;
+          tooltip3d.innerHTML = `
+            <div class="tt-title">${obj.userData.stageName}</div>
+            <div class="tt-desc">Click to see all roles</div>
+          `;
+          tooltip3d.style.left = (event.clientX - view3d.getBoundingClientRect().left + 15) + 'px';
+          tooltip3d.style.top = (event.clientY - view3d.getBoundingClientRect().top - 10) + 'px';
+          tooltip3d.classList.add('visible');
+          threeRenderer.domElement.style.cursor = 'pointer';
+          return;
+        }
+      }
+
+      tooltip3d.classList.remove('visible');
+      threeRenderer.domElement.style.cursor = 'grab';
+    }
+
+    function onClick3D(event) {
+      raycaster.setFromCamera(mouse, threeCamera);
+      const intersects = raycaster.intersectObjects(nodeMeshes);
+
+      if (intersects.length > 0) {
+        const obj = intersects[0].object;
+        if (obj.userData.isNode) {
+          const key = obj.userData.roleKey;
+          layerSelect.value = key;
+          show2DView();
+          switchLayer(key);
+        }
+      }
+    }
+
+    function animate3D() {
+      animationId = requestAnimationFrame(animate3D);
+      time3d += 0.016;
+
+      // Animate particles flowing along pipeline
+      particles.forEach(p => {
+        p.mesh.userData.offset += p.mesh.userData.speed * 0.01;
+        if (p.mesh.userData.offset > 1) p.mesh.userData.offset = 0;
+
+        const point = p.curve.getPoint(p.mesh.userData.offset);
+        p.mesh.position.copy(point);
+
+        // Pulse opacity
+        p.mesh.material.opacity = 0.5 + Math.sin(time3d * 3 + p.mesh.userData.offset * 10) * 0.3;
+      });
+
+      // Animate orbiting role orbs and glows
+      nodeMeshes.forEach(mesh => {
+        if (mesh.userData.isNode && mesh.userData.orbitRadius) {
+          const data = mesh.userData;
+          const newAngle = data.orbitAngle + time3d * data.orbitSpeed;
+
+          mesh.position.x = data.centerX + Math.cos(newAngle) * data.orbitRadius;
+          mesh.position.z = data.centerZ + Math.sin(newAngle) * data.orbitRadius;
+          mesh.position.y = data.centerY + data.orbitY + Math.sin(time3d * 2 + data.orbitAngle) * 0.2;
+        }
+
+        // Pulse stage nodes
+        if (mesh.userData.isStageNode) {
+          const pulse = 1 + Math.sin(time3d * 2 + mesh.userData.phaseOffset) * 0.05;
+          mesh.scale.set(pulse, pulse, pulse);
+          mesh.position.y = mesh.userData.baseY + Math.sin(time3d * 1.5 + mesh.userData.phaseOffset) * 0.15;
+        }
+      });
+
+      // Update glow positions and rings
+      glowMeshes.forEach(mesh => {
+        if (mesh.userData.parentNode) {
+          mesh.position.copy(mesh.userData.parentNode.position);
+          if (mesh.userData.rotSpeed) {
+            mesh.rotation.z += mesh.userData.rotSpeed * 0.01;
+          }
+        }
+        if (mesh.userData.parentOrb) {
+          mesh.position.copy(mesh.userData.parentOrb.position);
+        }
+      });
+
+      threeControls.update();
+      threeRenderer.render(threeScene, threeCamera);
+      cssRenderer.render(threeScene, threeCamera);
+    }
+
+    function destroy3DView() {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      if (threeRenderer) {
+        threeRenderer.dispose();
+      }
+      if (threeControls) {
+        threeControls.dispose();
+      }
+      view3d.innerHTML = "";
+    }
+
+    function show3DView() {
+      svgContainer.style.display = "none";
+      view3d.style.display = "block";
+      create3DView();
+    }
+
+    function show2DView() {
+      destroy3DView();
+      view3d.style.display = "none";
+      svgContainer.style.display = "block";
+    }
+
+    layerSelect.addEventListener("change", (e) => {
+      const value = e.target.value;
+      if (value === "3d") {
+        show3DView();
+      } else {
+        show2DView();
+      }
+      switchLayer(value);
+    });
+
+    // ------------------------------------
+    // Simulator #1: Latency & Cost (Toy)
+    // ------------------------------------
+    const $ = (id)=>document.getElementById(id);
+
+    const R = {
+      rps: $("rps"), cx: $("cx"), batch: $("batch"), util: $("util"), inst: $("inst"), slo: $("slo"),
+      rpsV: $("rpsV"), cxV: $("cxV"), batchV: $("batchV"), utilV: $("utilV"), instV: $("instV"), sloV: $("sloV"),
+      p95: $("p95"), p95Hint: $("p95Hint"), instCount: $("instCount"), costH: $("costH"), costHint: $("costHint"), sloStatus: $("sloStatus"),
+      note: $("servingNote")
+    };
+
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+    function fmt(n, d=0){ return Number(n).toFixed(d); }
+
+    function servingSim(){
+      const rps = Number(R.rps.value);
+      const batch = Number(R.batch.value);
+      const util = Number(R.util.value) / 100;
+      const slo = Number(R.slo.value);
+
+      const cx = R.cx.value;      // small/medium/large
+      const inst = R.inst.value;  // cpu/gpu
+
+      R.rpsV.textContent = rps;
+      R.batchV.textContent = batch;
+      R.utilV.textContent = Math.round(util*100) + "%";
+      R.cxV.textContent = cx;
+      R.instV.textContent = inst.toUpperCase();
+      R.sloV.textContent = slo + "ms";
+
+      // Base per-request compute time (ms) by complexity & hardware (toy)
+      const baseMs = (cx==="small") ? 18 : (cx==="medium") ? 45 : 95;
+      const hwFactor = (inst==="gpu") ? 0.55 : 1.0; // gpu is faster
+      const batchGain = 1 / (1 + Math.log2(batch)); // batching amortizes overhead
+      const queuePenalty = 1 + (rps/800) * (1/util); // overload increases tail latency
+
+      // Tail latency estimate
+      let p95 = baseMs * hwFactor * (0.9 + 1.6*batchGain) * queuePenalty;
+
+      // add networking/serialization overhead
+      p95 += (inst==="gpu") ? 12 : 18;
+
+      // Capacity per instance: how many rps one instance can handle
+      // smaller p95 -> higher throughput; batching helps throughput; gpu helps throughput
+      const perInstCapacity = clamp( (1000 / (baseMs*hwFactor)) * (1 + Math.log2(batch)) * util * 1.6, 5, 2500 );
+
+      const needed = Math.ceil(rps / perInstCapacity);
+      const minInst = Math.max(1, needed);
+
+      // Cost per hour (toy): CPU cheaper, GPU pricier
+      const costPerHour = (inst==="cpu") ? 0.55 : 2.85;
+      const estCostH = minInst * costPerHour;
+
+      // SLO
+      const ok = p95 <= slo;
+
+      // Render
+      R.p95.textContent = fmt(p95, 0) + "ms";
+      R.p95Hint.textContent = ok ? "Within SLO headroom" : "Exceeds SLO (tail latency)";
+      R.instCount.textContent = String(minInst);
+      R.costH.textContent = "$" + fmt(estCostH, 2) + "/hr";
+      R.sloStatus.textContent = ok ? "PASS" : "FAIL";
+      R.sloStatus.style.color = ok ? "var(--good)" : "var(--bad)";
+
+      const notes = [];
+      notes.push(`serving_plan {`);
+      notes.push(`  traffic_rps: ${rps}`);
+      notes.push(`  model: "${cx}"`);
+      notes.push(`  hardware: "${inst}"`);
+      notes.push(`  batching: ${batch}`);
+      notes.push(`  target_utilization: ${Math.round(util*100)}%`);
+      notes.push(`  p95_latency_ms: ${Math.round(p95)}`);
+      notes.push(`  slo_p95_ms: ${slo}`);
+      notes.push(`  instances: ${minInst}`);
+      notes.push(`  hourly_cost_usd: ${fmt(estCostH,2)}`);
+      notes.push(`  recommendation: "${ok ? "canary deploy + monitor drift & cost" : "reduce latency: smaller model, more instances, GPU, or tune batch/util"}"`);
+      notes.push(`}`);
+
+      R.note.textContent = notes.join("\n");
+    }
+
+    ["input","change"].forEach(ev=>{
+      [R.rps,R.cx,R.batch,R.util,R.inst,R.slo].forEach(el => el.addEventListener(ev, servingSim));
+    });
+    servingSim();
+
+    // ---------------------------------------------
+    // Simulator #2: Drift, Alerts & Release Strategy
+    // ---------------------------------------------
+    const D = {
+      drift:$("drift"), delay:$("delay"), thr:$("thr"),
+      driftV:$("driftV"), delayV:$("delayV"), thrV:$("thrV"),
+      qual:$("qual"), qualHint:$("qualHint"), action:$("action"), actionHint:$("actionHint"),
+      btnNoise:$("btnNoise"), btnReset:$("btnReset"),
+      str:$("str"), can:$("can"), guard:$("guard"),
+      strV:$("strV"), canV:$("canV"), guardV:$("guardV"),
+      rb:$("rb"), risk:$("risk"),
+      releaseNote:$("releaseNote")
+    };
+
+    function driftSim(){
+      const drift = Number(D.drift.value);
+      const delay = Number(D.delay.value);
+      const thr = Number(D.thr.value);
+
+      D.driftV.textContent = drift;
+      D.delayV.textContent = delay;
+      D.thrV.textContent = thr;
+
+      // Quality proxy: start ~92%, degrade with drift + delayed labels
+      let q = 0.92 - (drift/100)*0.45 - Math.log2(1+delay)/30;
+      q = clamp(q, 0.20, 0.95);
+
+      const qPct = Math.round(q*100);
+      D.qual.textContent = qPct + "%";
+      D.qual.style.color = qPct >= 85 ? "var(--good)" : qPct >= 70 ? "var(--warn)" : "var(--bad)";
+
+      // Action logic (toy)
+      let action, hint;
+      if(drift < thr * 0.7){
+        action = "observe";
+        hint = "No alert. Keep sampling + logging.";
+      } else if(drift < thr){
+        action = "warn";
+        hint = "Send warning; increase slice monitoring.";
+      } else {
+        // Above threshold
+        if(delay > 36){
+          action = "tighten + rollback?";
+          hint = "Labels are delayed; rely on guardrails & canary health. Consider rollback if KPIs drop.";
+        } else {
+          action = "alert + retrain";
+          hint = "Trigger investigation + retraining workflow. Consider temporary rule-based fallback.";
+        }
+      }
+      D.action.textContent = action;
+      D.action.style.color = (action==="observe") ? "var(--good)" : (action==="warn") ? "var(--warn)" : "var(--bad)";
+      D.actionHint.textContent = hint;
+
+      // Release strategy sim
+      const strategy = D.str.value;
+      const can = Number(D.can.value);
+      const guard = D.guard.value;
+
+      D.strV.textContent = strategy === "shadow" ? "Shadow" : strategy === "canary" ? "Canary" : "Blue/Green";
+      D.canV.textContent = can + "%";
+      D.guardV.textContent = guard;
+
+      // Compute rollback sensitivity (toy):
+      // more drift -> more rollback; more canary traffic -> earlier signal, but also more user exposure; higher guard -> less exposure
+      const guardFactor = (guard==="low") ? 1.15 : (guard==="medium") ? 1.0 : 0.82;
+      const stratFactor = (strategy==="shadow") ? 0.55 : (strategy==="canary") ? 1.0 : 1.15;
+
+      let rbProb = (drift/100) * 0.75 * stratFactor * (0.75 + can/100) * guardFactor;
+      rbProb = clamp(rbProb, 0.02, 0.98);
+
+      // Risk score: combine exposure + uncertainty (label delay) + predicted quality drop
+      let risk = 100 * ( (can/100) * stratFactor * guardFactor * 0.8 + (delay/168)*0.35 + (1-q)*0.9 );
+      risk = clamp(risk, 1, 99);
+
+      D.rb.textContent = Math.round(rbProb*100) + "%";
+      D.rb.style.color = rbProb < 0.25 ? "var(--good)" : rbProb < 0.5 ? "var(--warn)" : "var(--bad)";
+
+      D.risk.textContent = Math.round(risk);
+      D.risk.style.color = risk < 30 ? "var(--good)" : risk < 55 ? "var(--warn)" : "var(--bad)";
+
+      const lines = [];
+      lines.push(`release_plan {`);
+      lines.push(`  strategy: "${strategy}"`);
+      lines.push(`  canary_traffic_pct: ${can}`);
+      lines.push(`  guardrails: "${guard}"`);
+      lines.push(`  drift_index: ${drift}`);
+      lines.push(`  label_delay_hours: ${delay}`);
+      lines.push(`  projected_quality_pct: ${qPct}`);
+      lines.push(`  rollback_probability_pct: ${Math.round(rbProb*100)}`);
+      lines.push(`  risk_score: ${Math.round(risk)}`);
+      lines.push(`  gates: ["schema", "eval_thresholds", "p95_latency", "KPI_slices"]`);
+      lines.push(`  playbook: "${rbProb > 0.55 ? "Prepare rollback; reduce traffic; tighten guardrails; start retrain" : rbProb > 0.30 ? "Hold at canary; collect signal; monitor KPIs" : "Proceed gradually; keep monitoring"}"`);
+      lines.push(`}`);
+      D.releaseNote.textContent = lines.join("\n");
+    }
+
+    ["input","change"].forEach(ev=>{
+      [D.drift,D.delay,D.thr,D.str,D.can,D.guard].forEach(el => el.addEventListener(ev, driftSim));
+    });
+
+    D.btnNoise.addEventListener("click", ()=>{
+      // Sudden shift: bump drift + increase delay a bit
+      const bump = 18 + Math.random()*32;
+      D.drift.value = clamp(Number(D.drift.value) + bump, 0, 100);
+      D.delay.value = clamp(Number(D.delay.value) + 6 + Math.random()*18, 0, 168);
+      driftSim();
+
+      // Visual hint: mark monitoring node as warning/bad depending
+      const drift = Number(D.drift.value);
+      const thr = Number(D.thr.value);
+      if(drift >= thr) {
+        window.setD3NodeState("monitor", "bad");
+      } else if(drift >= thr*0.7) {
+        window.setD3NodeState("monitor", "warn");
+      } else {
+        window.setD3NodeState("monitor", "active");
+      }
+    });
+
+    D.btnReset.addEventListener("click", ()=>{
+      D.drift.value = 22; D.delay.value = 24; D.thr.value = 35;
+      D.str.value = "canary"; D.can.value = 10; D.guard.value = "medium";
+      driftSim();
+      setActiveNode("sources");
+    });
+
+    driftSim();
+  </script>
+</body>
+</html>

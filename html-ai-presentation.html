@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Living Work Theorem (LWT) — Executive Brief</title>
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1626;
+      --card:#121c2f;
+      --text:#e9eefc;
+      --muted:#b7c2e1;
+      --soft:#95a3c9;
+      --accent:#7c5cff;
+      --accent2:#2de2e6;
+      --good:#47d18c;
+      --warn:#ffd166;
+      --bad:#ff4d6d;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --radius: 18px;
+      --maxw: 1100px;
+      --h1: clamp(28px, 4vw, 54px);
+      --h2: clamp(18px, 2.2vw, 28px);
+      --p:  clamp(14px, 1.5vw, 18px);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 650px at 80% 30%, rgba(45,226,230,.14), transparent 60%),
+        radial-gradient(800px 600px at 50% 90%, rgba(71,209,140,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), #070a10 70%, #05070b);
+      overflow:hidden;
+    }
+
+    /* Deck */
+    .deck{
+      height:100%;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 22px 18px 16px;
+      gap: 14px;
+    }
+    header, footer{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    header .brand{
+      display:flex; gap:10px; align-items:center;
+      opacity:.95;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 30px rgba(124,92,255,.25);
+    }
+    header .brand .title{
+      font-weight:650;
+      letter-spacing:.2px;
+      color:var(--text);
+      font-size: 14px;
+    }
+    header .meta{
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      padding:6px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Stage */
+    main{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+      position:relative;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(15,22,38,.72);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .progress{
+      height:4px;
+      width:100%;
+      background: rgba(255,255,255,.06);
+    }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width .35s ease;
+    }
+
+    .slides{
+      height: calc(100% - 4px);
+      position:relative;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      padding: clamp(20px, 3vw, 44px);
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap: 18px;
+      opacity:0;
+      transform: translateX(24px) scale(.99);
+      transition: opacity .35s ease, transform .35s ease;
+      pointer-events:none;
+    }
+    .slide.active{
+      opacity:1;
+      transform: translateX(0px) scale(1);
+      pointer-events:auto;
+    }
+
+    .kicker{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .kicker .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(45,226,230,.12);
+    }
+
+    h1{
+      margin:10px 0 0;
+      font-size: var(--h1);
+      letter-spacing: -0.02em;
+      line-height:1.06;
+    }
+    h2{
+      margin:0;
+      font-size: var(--h2);
+      letter-spacing: -0.01em;
+      line-height:1.15;
+    }
+    p{
+      margin:0;
+      font-size: var(--p);
+      color: var(--muted);
+      line-height:1.55;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 940px){
+      .grid{grid-template-columns:1fr; }
+      header .meta{display:none;}
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(18,28,47,.7);
+      padding: 18px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    .card.soft{
+      background: rgba(255,255,255,.04);
+    }
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .li{
+      display:flex;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .li strong{
+      color: var(--text);
+      font-weight: 650;
+    }
+    .badge{
+      font-size: 12px;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width: fit-content;
+    }
+    .badge .b{ width:8px; height:8px; border-radius:50%; background: var(--accent);}
+    .badge.good .b{ background: var(--good); }
+    .badge.warn .b{ background: var(--warn); }
+    .badge.bad  .b{ background: var(--bad); }
+
+    .big-quote{
+      font-size: clamp(18px, 2.2vw, 26px);
+      line-height:1.25;
+      color: var(--text);
+      letter-spacing:-0.01em;
+      margin-top: 10px;
+    }
+    .quote-box{
+      padding: 18px 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(124,92,255,.28);
+      background: linear-gradient(180deg, rgba(124,92,255,.14), rgba(18,28,47,.35));
+    }
+
+    .stagebar{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .stage{
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .stage .name{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      font-weight:650;
+      color: var(--text);
+    }
+    .stage .desc{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.45;
+    }
+    .risk{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 760px){
+      .two-col{grid-template-columns:1fr;}
+    }
+
+    .metric{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .metric .label{ color: var(--soft); font-size: 12px; letter-spacing:.08em; text-transform:uppercase;}
+    .metric .value{ font-size: 18px; color: var(--text); font-weight:650;}
+    .metric .hint{ font-size: 13px; color: var(--muted); line-height:1.35;}
+
+    /* Footer controls */
+    footer{
+      gap: 12px;
+    }
+    .controls{
+      display:flex; gap:10px; align-items:center;
+    }
+    button{
+      cursor:pointer;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight:600;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+    }
+    button:active{ transform: translateY(1px); }
+    button:hover{ background: rgba(255,255,255,.08); }
+
+    .hintkeys{
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .key{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 8px;
+      border:1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .slide-count{
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    /* Tiny sparkline-esque divider */
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">Executive Brief: The Living Work Theorem (LWT)</div>
+      </div>
+      <div class="meta">
+        <span class="pill">AI adoption that compounds</span>
+        <span class="pill">Remove dead work • Amplify judgment</span>
+      </div>
+    </header>
+
+    <main aria-label="Slide deck">
+      <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
+      <div class="slides">
+
+        <!-- Slide 1 -->
+        <section class="slide active" data-title="Cover">
+          <div>
+            <div class="kicker"><span class="dot"></span> Why this matters now</div>
+            <h1>The Living Work Theorem</h1>
+            <p style="margin-top:10px; max-width: 70ch;">
+              A practical way for leadership teams to deploy AI across the company:
+              remove “dead work,” amplify human judgment, and stage adoption so results compound.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card quote-box">
+              <div class="badge"><span class="b"></span> Core theorem</div>
+              <div class="big-quote">
+                Any repetitive, dull, energy-draining task should be delegated to AI.<br/>
+                Any creative or judgment-based work should be amplified by AI.<br/>
+                AI should be introduced in stages to create compounding impact.
+              </div>
+              <div class="divider"></div>
+              <p><strong>One-line version:</strong> Automate what’s dead. Augment what’s alive. Stage AI so impact compounds.</p>
+            </div>
+            <div class="card soft">
+              <div class="badge good"><span class="b"></span> Outcomes leaders care about</div>
+              <div class="list">
+                <div class="li">
+                  <div style="min-width:12px; margin-top:5px; width:12px; height:12px; border-radius:50%; background:var(--good);"></div>
+                  <div><strong>Faster decisions</strong><br/><span style="color:var(--muted)">less time collecting context, more time choosing direction</span></div>
+                </div>
+                <div class="li">
+                  <div style="min-width:12px; margin-top:5px; width:12px; height:12px; border-radius:50%; background:var(--accent2);"></div>
+                  <div><strong>Higher execution quality</strong><br/><span style="color:var(--muted)">AI drafts + humans refine; fewer reworks</span></div>
+                </div>
+                <div class="li">
+                  <div style="min-width:12px; margin-top:5px; width:12px; height:12px; border-radius:50%; background:var(--warn);"></div>
+                  <div><strong>Reduced operational drag</strong><br/><span style="color:var(--muted)">automation replaces busywork, not accountability</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide" data-title="Dead work">
+          <div>
+            <div class="kicker"><span class="dot"></span> Axiom I</div>
+            <h1>Remove Dead Work</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              “Dead work” repeats, drains attention, and adds little insight. If a task can be described clearly,
+              it should not consume human attention repeatedly.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <div class="badge bad"><span class="b"></span> What counts as “dead work”</div>
+              <div class="list">
+                <div class="li"><div>🔁</div><div><strong>Repeated tasks</strong><br/><span style="color:var(--muted)">same steps, different inputs (reports, reconciliations, updates)</span></div></div>
+                <div class="li"><div>🧾</div><div><strong>Formatting & handoffs</strong><br/><span style="color:var(--muted)">copy/paste, reshaping info, filling templates</span></div></div>
+                <div class="li"><div>🔎</div><div><strong>Context gathering</strong><br/><span style="color:var(--muted)">reading threads, searching docs, summarizing decisions</span></div></div>
+                <div class="li"><div>📌</div><div><strong>Status reporting</strong><br/><span style="color:var(--muted)">updates that don’t change decisions</span></div></div>
+              </div>
+            </div>
+            <div class="card soft">
+              <div class="badge good"><span class="b"></span> What AI should do here</div>
+              <p style="margin-top:8px;">
+                AI doesn’t “replace jobs.” It replaces the parts of jobs that make work feel mechanical.
+              </p>
+              <div class="divider"></div>
+              <div class="two-col">
+                <div class="metric">
+                  <div class="label">pre-draft</div>
+                  <div class="value">First versions</div>
+                  <div class="hint">plans, PRDs, emails, QBR notes, slide skeletons</div>
+                </div>
+                <div class="metric">
+                  <div class="label">pre-analyze</div>
+                  <div class="value">Signal from noise</div>
+                  <div class="hint">summaries, anomalies, deltas, risks, blockers</div>
+                </div>
+                <div class="metric">
+                  <div class="label">pre-fill</div>
+                  <div class="value">Structured data</div>
+                  <div class="hint">forms, CRM entries, ticket templates, checklists</div>
+                </div>
+                <div class="metric">
+                  <div class="label">pre-decide</div>
+                  <div class="value">Options</div>
+                  <div class="hint">recommendations with pros/cons, not final authority</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide" data-title="Stage AI">
+          <div>
+            <div class="kicker"><span class="dot"></span> Axiom II</div>
+            <h1>Stage AI, Don’t Dump It</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              The fastest AI programs fail for one reason: they try to “automate everything” immediately.
+              Instead, build adoption in stages of increasing agency.
+            </p>
+          </div>
+          <div class="card">
+            <div class="badge"><span class="b"></span> Three-stage adoption model</div>
+            <div class="stagebar">
+              <div class="stage">
+                <div class="name">Stage 1 — Assist <span class="risk">LOW RISK</span></div>
+                <div class="desc">
+                  AI helps the person: drafts, explains, summarizes, generates variants.
+                  <br/><br/><strong>ROI:</strong> immediate productivity uplift with minimal process change.
+                </div>
+              </div>
+              <div class="stage">
+                <div class="name">Stage 2 — Prepare <span class="risk">MED RISK</span></div>
+                <div class="desc">
+                  AI works before you arrive: prepares options, flags risks, assembles context.
+                  <br/><br/><strong>ROI:</strong> decision cycles shrink; meeting load drops.
+                </div>
+              </div>
+              <div class="stage">
+                <div class="name">Stage 3 — Act <span class="risk">GUARDED</span></div>
+                <div class="desc">
+                  AI executes bounded actions with guardrails: create tickets, open PRs, run workflows.
+                  <br/><br/><strong>Rule:</strong> humans still own accountability.
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="two-col">
+              <div class="metric">
+                <div class="label">Leadership principle</div>
+                <div class="value">Humans own outcomes</div>
+                <div class="hint">AI owns preparation and repeatability, not responsibility.</div>
+              </div>
+              <div class="metric">
+                <div class="label">Guardrails</div>
+                <div class="value">Scope + auditability</div>
+                <div class="hint">bounded permissions, approvals, logs, rollback, “safe default”.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide" data-title="Use AI selectively">
+          <div>
+            <div class="kicker"><span class="dot"></span> Axiom III</div>
+            <h1>Use AI Everywhere, Selectively</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              Avoid the two extremes: “AI does everything” vs “AI is just chat.”
+              The goal is to touch everything, own nothing critical.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <div class="badge"><span class="b"></span> Where AI helps (by function)</div>
+              <div class="list">
+                <div class="li">
+                  <div>🧑‍💻</div>
+                  <div><strong>Engineering</strong><br/>
+                    <span style="color:var(--muted)">scaffolding, tests, refactors, docstrings, code reviews, migration drafts</span>
+                  </div>
+                </div>
+                <div class="li">
+                  <div>🎨</div>
+                  <div><strong>UI / Product</strong><br/>
+                    <span style="color:var(--muted)">wireframe variants, UX copy, component drafts, accessibility checks</span>
+                  </div>
+                </div>
+                <div class="li">
+                  <div>🧩</div>
+                  <div><strong>Operations</strong><br/>
+                    <span style="color:var(--muted)">ticket triage, runbook assistants, incident summaries, anomaly detection</span>
+                  </div>
+                </div>
+                <div class="li">
+                  <div>📈</div>
+                  <div><strong>Business</strong><br/>
+                    <span style="color:var(--muted)">scenario modeling, proposal drafts, contract summaries, pipeline insights</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card soft">
+              <div class="badge warn"><span class="b"></span> What stays human</div>
+              <p style="margin-top:8px;">AI accelerates. Humans decide.</p>
+              <div class="divider"></div>
+              <div class="list">
+                <div class="li">
+                  <div>🧭</div>
+                  <div><strong>Direction</strong><br/><span style="color:var(--muted)">strategy, priorities, tradeoffs, “what matters”</span></div>
+                </div>
+                <div class="li">
+                  <div>⚖️</div>
+                  <div><strong>Judgment</strong><br/><span style="color:var(--muted)">risk tolerance, ethics, customer impact, policy calls</span></div>
+                </div>
+                <div class="li">
+                  <div>🎯</div>
+                  <div><strong>Taste & quality bar</strong><br/><span style="color:var(--muted)">what “good” looks like, what we ship, what we don’t</span></div>
+                </div>
+                <div class="li">
+                  <div>🤝</div>
+                  <div><strong>Accountability</strong><br/><span style="color:var(--muted)">ownership remains human, always</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5 -->
+        <section class="slide" data-title="Impact metrics">
+          <div>
+            <div class="kicker"><span class="dot"></span> Axiom IV</div>
+            <h1>Optimize for Impact, Not Volume</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              More AI output can create more noise. Success is measured by fewer cycles and clearer decisions.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <div class="badge bad"><span class="b"></span> Bad signals</div>
+              <div class="list">
+                <div class="li"><div>📨</div><div><strong>More messages</strong><br/><span style="color:var(--muted)">AI increases chatter and coordination tax</span></div></div>
+                <div class="li"><div>📄</div><div><strong>More documents</strong><br/><span style="color:var(--muted)">lots of output, no improved decisions</span></div></div>
+                <div class="li"><div>📊</div><div><strong>More dashboards</strong><br/><span style="color:var(--muted)">more metrics, less clarity</span></div></div>
+              </div>
+            </div>
+            <div class="card soft">
+              <div class="badge good"><span class="b"></span> Good signals</div>
+              <div class="two-col">
+                <div class="metric">
+                  <div class="label">decision speed</div>
+                  <div class="value">Shorter cycles</div>
+                  <div class="hint">context arrives pre-assembled; fewer back-and-forths</div>
+                </div>
+                <div class="metric">
+                  <div class="label">execution quality</div>
+                  <div class="value">Less rework</div>
+                  <div class="hint">better first drafts, better test coverage, fewer misses</div>
+                </div>
+                <div class="metric">
+                  <div class="label">meeting load</div>
+                  <div class="value">Fewer meetings</div>
+                  <div class="hint">async briefs + clear options replace “status syncs”</div>
+                </div>
+                <div class="metric">
+                  <div class="label">risk control</div>
+                  <div class="value">Earlier warnings</div>
+                  <div class="hint">AI flags anomalies before they become incidents</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p><strong>Rule of thumb:</strong> If AI increases noise, you staged it wrong.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6 -->
+        <section class="slide" data-title="Operating model">
+          <div>
+            <div class="kicker"><span class="dot"></span> Corollary</div>
+            <h1>The Job Becomes a System</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              The company shifts from “people doing tasks” to “people designing systems that do tasks.”
+              This is how AI adoption compounds.
+            </p>
+          </div>
+          <div class="card">
+            <div class="badge"><span class="b"></span> What changes in practice</div>
+            <div class="two-col">
+              <div class="metric">
+                <div class="label">before</div>
+                <div class="value">Operator mode</div>
+                <div class="hint">humans gather context, draft docs, chase status, handoff information</div>
+              </div>
+              <div class="metric">
+                <div class="label">after</div>
+                <div class="value">Orchestrator mode</div>
+                <div class="hint">humans set direction; AI prepares; humans decide; AI executes bounded steps</div>
+              </div>
+              <div class="metric">
+                <div class="label">key capability</div>
+                <div class="value">Compounding briefs</div>
+                <div class="hint">daily/weekly AI brief: blockers, risks, opportunities, recommended actions</div>
+              </div>
+              <div class="metric">
+                <div class="label">culture shift</div>
+                <div class="value">Quality bar + guardrails</div>
+                <div class="hint">clear rules for what AI can do, how it’s audited, who approves</div>
+              </div>
+            </div>
+          </div>
+          <div class="grid" style="margin-top:18px;">
+            <div class="card soft">
+              <div class="badge good"><span class="b"></span> A simple executive mandate</div>
+              <p class="big-quote" style="margin-top:8px;">
+                “Every team must remove dead work, stage AI adoption, and measure impact by cycle time and rework.”
+              </p>
+            </div>
+            <div class="card soft">
+              <div class="badge warn"><span class="b"></span> 30-day starter plan</div>
+              <div class="list">
+                <div class="li"><div>1</div><div><strong>Inventory dead work</strong><br/><span style="color:var(--muted)">top 10 recurring tasks per team</span></div></div>
+                <div class="li"><div>2</div><div><strong>Ship Stage 1 + 2</strong><br/><span style="color:var(--muted)">assist + prepare in the highest-friction workflow</span></div></div>
+                <div class="li"><div>3</div><div><strong>Add guardrails</strong><br/><span style="color:var(--muted)">approvals, logging, rollback, policy</span></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 7 -->
+        <section class="slide" data-title="Close">
+          <div>
+            <div class="kicker"><span class="dot"></span> Closing</div>
+            <h1>What we want people to feel</h1>
+            <p style="margin-top:10px; max-width: 78ch;">
+              Not “AI is taking my job.” Instead: “My job finally feels alive.”
+              AI absorbs the dull repetition; humans focus on direction, quality, and outcomes.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card quote-box">
+              <div class="badge"><span class="b"></span> Final takeaway</div>
+              <div class="big-quote">
+                Automate what’s dead.<br/>
+                Augment what’s alive.<br/>
+                Stage AI so impact compounds.
+              </div>
+              <div class="divider"></div>
+              <p style="color:var(--muted)">
+                This is an operating model: not a tool rollout.
+              </p>
+            </div>
+            <div class="card soft">
+              <div class="badge good"><span class="b"></span> Questions executives ask</div>
+              <div class="list">
+                <div class="li"><div>❓</div><div><strong>Where do we start?</strong><br/><span style="color:var(--muted)">pick the highest-friction workflow and ship Stage 1 & 2 first</span></div></div>
+                <div class="li"><div>❓</div><div><strong>How do we control risk?</strong><br/><span style="color:var(--muted)">guardrails: scope, approvals, logging, rollback</span></div></div>
+                <div class="li"><div>❓</div><div><strong>How do we measure success?</strong><br/><span style="color:var(--muted)">cycle time, rework rate, meeting load, early risk detection</span></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer>
+      <div class="controls">
+        <button id="prevBtn" aria-label="Previous slide">← Prev</button>
+        <button id="nextBtn" aria-label="Next slide">Next →</button>
+        <div class="slide-count"><span id="countNow">1</span>/<span id="countAll">1</span> <span class="pill" id="slideTitle">Cover</span></div>
+      </div>
+      <div class="hintkeys">
+        <span>Navigate:</span>
+        <span class="key">←</span><span class="key">→</span>
+        <span class="key">Space</span>
+        <span class="key">Home</span><span class="key">End</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const progressBar = document.getElementById('progressBar');
+      const countNow = document.getElementById('countNow');
+      const countAll = document.getElementById('countAll');
+      const slideTitle = document.getElementById('slideTitle');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      countAll.textContent = slides.length;
+
+      let idx = 0;
+
+      function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+      function show(i){
+        idx = clamp(i, 0, slides.length - 1);
+        slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+        const pct = ((idx) / (slides.length - 1 || 1)) * 100;
+        progressBar.style.width = pct + '%';
+        countNow.textContent = (idx + 1);
+        slideTitle.textContent = slides[idx].dataset.title || ('Slide ' + (idx + 1));
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx === slides.length - 1;
+
+        // Update URL hash for easy sharing
+        history.replaceState(null, '', '#'+(idx+1));
+      }
+
+      function next(){ show(idx + 1); }
+      function prev(){ show(idx - 1); }
+
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+
+      document.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (key === 'ArrowRight' || key === ' ' || key === 'PageDown') { e.preventDefault(); next(); }
+        if (key === 'ArrowLeft'  || key === 'PageUp') { e.preventDefault(); prev(); }
+        if (key === 'Home') { e.preventDefault(); show(0); }
+        if (key === 'End')  { e.preventDefault(); show(slides.length - 1); }
+      });
+
+      // Start from hash if present
+      const hash = (location.hash || '').replace('#','');
+      const n = parseInt(hash, 10);
+      if (!isNaN(n) && n >= 1 && n <= slides.length) idx = n - 1;
+
+      show(idx);
+    })();
+  </script>
+</body>
+</html>

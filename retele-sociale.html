@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Social Media @16 — TikTok & Reddit: cum îți influențează gândirea + siguranță</title>
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#0e1630;
+      --card:#0f1b3a;
+      --card2:#0d1733;
+      --text:#eaf0ff;
+      --muted:#b9c4ea;
+      --accent:#7c5cff;
+      --accent2:#2de0c6;
+      --warn:#ffcc66;
+      --danger:#ff6b8b;
+      --ok:#64ffa7;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+      --border: 1px solid rgba(255,255,255,.09);
+    }
+    [data-theme="light"]{
+      --bg1:#f4f7ff;
+      --bg2:#eef3ff;
+      --card:#ffffff;
+      --card2:#ffffff;
+      --text:#0a1333;
+      --muted:#44507a;
+      --shadow: 0 18px 50px rgba(20,33,80,.12);
+      --border: 1px solid rgba(10,19,51,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 700px at 80% 20%, rgba(45,224,198,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .topbar{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      padding:12px 14px;
+      border:var(--border);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+      position:sticky; top:14px; z-index:10;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    [data-theme="light"] .topbar{background:rgba(255,255,255,.7)}
+    .brand{
+      display:flex; align-items:center; gap:10px; user-select:none;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 30px rgba(124,92,255,.25);
+      display:grid; place-items:center;
+      font-weight:900;
+    }
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+    }
+    .chip{
+      padding:9px 12px; border-radius:999px;
+      border:var(--border);
+      background:rgba(255,255,255,.03);
+      font-size:13px; color:var(--muted);
+      cursor:pointer;
+      transition:.2s transform, .2s background, .2s color;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .chip:hover{transform: translateY(-1px); color:var(--text); background:rgba(255,255,255,.06)}
+    .actions{display:flex; gap:10px; align-items:center}
+    .btn{
+      border:0;
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      color:var(--text);
+      background: rgba(255,255,255,.08);
+      border: var(--border);
+      transition: .2s transform, .2s background;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.12)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(45,224,198,.75));
+      border: 0;
+      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+      color: #081021;
+    }
+    .hero{
+      margin-top:18px;
+      border-radius: var(--radius);
+      border: var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-inner{padding:26px 26px 22px; display:grid; gap:18px}
+    .hero h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      max-width: 70ch;
+    }
+    .hero .badges{display:flex; gap:10px; flex-wrap:wrap}
+    .badge{
+      padding:8px 10px; border-radius:999px;
+      border: var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 940px){
+      .grid{grid-template-columns: 1fr}
+      .nav{display:none}
+    }
+    .card{
+      border: var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    [data-theme="light"] .card{background: rgba(255,255,255,.9)}
+    .card .hd{
+      padding:18px 18px 0;
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:12px;
+    }
+    .card h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .card .sub{
+      margin:6px 18px 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+    .card .bd{padding:16px 18px 18px}
+    .kpi{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .pill{
+      border: var(--border);
+      border-radius: 18px;
+      padding:14px;
+      background: rgba(0,0,0,.12);
+    }
+    [data-theme="light"] .pill{background: rgba(10,19,51,.04)}
+    .pill .t{font-size:12px;color:var(--muted)}
+    .pill .v{font-size:18px;font-weight:900;margin-top:6px}
+    .pill .hint{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+    .row{display:flex; gap:12px; flex-wrap:wrap}
+    .mini{
+      display:flex; gap:10px; align-items:center;
+      border: var(--border);
+      border-radius: 16px;
+      padding:10px 12px;
+      background: rgba(0,0,0,.12);
+      flex:1;
+      min-width: 210px;
+    }
+    [data-theme="light"] .mini{background: rgba(10,19,51,.04)}
+    .mini .icon{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      background: rgba(124,92,255,.18);
+      border: 1px solid rgba(124,92,255,.25);
+    }
+    .mini b{display:block}
+    .mini small{color:var(--muted)}
+    .divider{height:1px;background: rgba(255,255,255,.08); margin:14px 0}
+    [data-theme="light"] .divider{background: rgba(10,19,51,.08)}
+    .controls{display:grid; gap:10px}
+    label{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+    input[type="range"]{width:100%}
+    .meter{
+      height:10px;border-radius:999px;
+      background: rgba(255,255,255,.08);
+      overflow:hidden;
+      border: var(--border);
+    }
+    .bar{
+      height:100%;
+      width:30%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent), var(--danger));
+      border-radius:999px;
+      transition: width .25s ease;
+    }
+    .hintbox{
+      border: var(--border);
+      border-radius: 18px;
+      padding:14px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      line-height:1.5;
+      font-size:14px;
+    }
+    .hintbox strong{color:var(--text)}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      border: var(--border);
+      background: rgba(255,255,255,.03);
+      margin:6px 6px 0 0;
+      cursor:pointer;
+      user-select:none;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .tag.active{color:var(--text); background: rgba(124,92,255,.18); border-color: rgba(124,92,255,.25)}
+    .two{
+      display:grid; gap:12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 700px){.two{grid-template-columns:1fr}}
+    .checklist{
+      display:grid; gap:10px;
+    }
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      border: var(--border); border-radius: 18px;
+      padding:12px; background: rgba(0,0,0,.10);
+    }
+    [data-theme="light"] .check{background: rgba(10,19,51,.04)}
+    .check input{margin-top:3px}
+    .check .txt b{display:block}
+    .check .txt small{color:var(--muted);line-height:1.35}
+    .footer{
+      margin:18px 0 10px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+    .toast{
+      position: fixed;
+      left:50%; bottom:16px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.75);
+      color: #fff;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      opacity: 0;
+      pointer-events:none;
+      transition: .25s opacity, .25s transform;
+      display:flex; gap:10px; align-items:center;
+      z-index:50;
+    }
+    [data-theme="light"] .toast{background: rgba(10,19,51,.85)}
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-6px)}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    .quote{
+      border-left: 4px solid rgba(45,224,198,.6);
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(45,224,198,.06);
+      color: var(--muted);
+      line-height:1.5;
+      font-size:14px;
+    }
+    .danger{
+      color: var(--danger);
+      font-weight: 800;
+    }
+    .ok{
+      color: var(--ok);
+      font-weight: 800;
+    }
+    details{
+      border: var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+    }
+    summary{cursor:pointer;font-weight:800}
+    details p{color:var(--muted);line-height:1.5;margin:10px 0 0;font-size:14px}
+    .contract{
+      width:100%;
+      min-height: 140px;
+      border-radius: 18px;
+      border: var(--border);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
+      padding: 12px;
+      line-height: 1.45;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      outline: none;
+    }
+    [data-theme="light"] .contract{background: rgba(10,19,51,.04); color: var(--text)}
+    .smallbtn{padding:8px 10px;font-size:13px}
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <div class="topbar">
+      <div class="brand" title="Social Media @16">
+        <div class="logo">16</div>
+        <div>
+          Social Media <span style="opacity:.75">—</span> TikTok & Reddit
+          <div style="font-size:12px;color:var(--muted);font-weight:600">gândire în formare • filtrare info • siguranță</div>
+        </div>
+      </div>
+
+      <div class="nav" aria-label="Navigare">
+        <a class="chip" href="#algoritm">Algoritm</a>
+        <a class="chip" href="#influente">Influențe</a>
+        <a class="chip" href="#filtru">Filtrare</a>
+        <a class="chip" href="#siguranta">Siguranță</a>
+        <a class="chip" href="#plan">Plan smart</a>
+      </div>
+
+      <div class="actions">
+        <button class="btn smallbtn" id="themeBtn" title="Schimbă tema (dark/light)">🌙/☀️</button>
+        <button class="btn primary smallbtn" id="panicBtn" title="Mod focus: oprește scroll-ul automat și setează un timer">🧠 Focus</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>La 16 ani, social media îți poate „antrena” creierul. <br/>Hai s-o folosești <span style="background:linear-gradient(135deg,var(--accent2),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">în avantajul tău</span>.</h1>
+        <p>
+          TikTok și Reddit nu îți arată „adevărul” sau „ce e bine pentru tine”. Îți arată ce te ține mai mult în aplicație.
+          Asta îți influențează atenția, emoțiile, opiniile și felul în care te vezi pe tine și pe ceilalți.
+        </p>
+        <div class="badges">
+          <span class="badge">⚡ Clipuri scurte = recompensă rapidă</span>
+          <span class="badge">🫧 „Bule” = vezi aceeași idee tot mai des</span>
+          <span class="badge">🧠 La 16 ani identitatea se fixează mai repede</span>
+          <span class="badge">🛡️ Poți învăța filtre simple care chiar funcționează</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- LEFT COLUMN -->
+      <div class="card" id="algoritm">
+        <div class="hd">
+          <div>
+            <h2>1) Simulator: „DJ-ul algoritmului” 🎧</h2>
+            <div class="sub">Miști niște „butoane” (like, watch time, comentariu) și vezi cum crește riscul de a intra în spirală.</div>
+          </div>
+          <button class="btn smallbtn" id="resetSim">Reset</button>
+        </div>
+
+        <div class="bd">
+          <div class="kpi" aria-label="Indicatori">
+            <div class="pill">
+              <div class="t">Tip conținut recomandat</div>
+              <div class="v" id="recType">Mixt</div>
+              <div class="hint" id="recHint">Când interacționezi mult cu un subiect, primești tot mai mult din el.</div>
+            </div>
+            <div class="pill">
+              <div class="t">Risc de „bula”</div>
+              <div class="v" id="bubbleRisk">38%</div>
+              <div class="hint">Dacă vezi doar aceeași perspectivă, ți se pare că „toți” cred la fel.</div>
+            </div>
+            <div class="pill">
+              <div class="t">Mod gândire activat</div>
+              <div class="v" id="mode">Curios</div>
+              <div class="hint">Emoția (furie/frică) crește share-ul, nu adevărul.</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="controls">
+            <div>
+              <label>⏱️ Te uiți până la final (watch time) <span class="kbd" id="wtV">50</span></label>
+              <input id="wt" type="range" min="0" max="100" value="50" />
+            </div>
+            <div>
+              <label>❤️ Like-uri <span class="kbd" id="lkV">20</span></label>
+              <input id="lk" type="range" min="0" max="100" value="20" />
+            </div>
+            <div>
+              <label>💬 Comentarii (mai ales contraziceri) <span class="kbd" id="cmV">10</span></label>
+              <input id="cm" type="range" min="0" max="100" value="10" />
+            </div>
+            <div>
+              <label>🔁 Replay / rewatch <span class="kbd" id="rpV">10</span></label>
+              <input id="rp" type="range" min="0" max="100" value="10" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row" style="align-items:center">
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <b>„Spirala feed-ului”</b>
+                <span class="kbd" id="spiralLabel">Moderată</span>
+              </div>
+              <div class="meter" aria-label="Bară risc">
+                <div class="bar" id="riskBar" style="width:38%"></div>
+              </div>
+              <div style="color:var(--muted);font-size:13px;margin-top:8px;line-height:1.45">
+                Dacă interacționezi mult, algoritmul „înțelege” că asta te ține acolo → îți dă tot mai mult → devine greu să ieși.
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="hintbox">
+            <strong>De ținut minte:</strong> TikTok/Reddit optimizează pentru <b>timp petrecut</b>, nu pentru <b>adevăr</b>.
+            Tu poți „antrena” algoritmul înapoi: folosește <span class="kbd">Not interested</span>, urmărește surse bune, ieși când simți că te ia valul.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="card" id="influente">
+        <div class="hd">
+          <div>
+            <h2>2) Ce îți poate schimba în minte la 16 ani 🧩</h2>
+            <div class="sub">Pe scurt: atenția, emoțiile, opiniile și felul în care te compari cu alții.</div>
+          </div>
+          <button class="btn smallbtn" id="expandAll">Deschide tot</button>
+        </div>
+
+        <div class="bd">
+          <details>
+            <summary>⚡ Atenția & răbdarea</summary>
+            <p>
+              Clipurile scurte îți antrenează creierul să vrea „recompensă rapidă”.
+              Rezultat: teme, citit, învățat pot părea plictisitoare mai repede. Antidot: 1–2 sesiuni/zi de lucru fără scroll (25 min).
+            </p>
+          </details>
+          <div style="height:10px"></div>
+
+          <details>
+            <summary>🫧 Bula & camera cu ecou</summary>
+            <p>
+              Dacă vezi aceeași idee de 30 de ori, începe să pară „normală” și „evidentă”.
+              Reddit poate crea bule prin comunități; TikTok prin feed personalizat. Antidot: urmărește 2 perspective diferite pe același subiect.
+            </p>
+          </details>
+          <div style="height:10px"></div>
+
+          <details>
+            <summary>🔥 Emoție > adevăr</summary>
+            <p>
+              Viral = adesea șoc, furie, frică, rușine, scandal. Emoția te face să dai share. Antidot: dacă te aprinzi, respiră 10 secunde și întreabă „care e sursa?”
+            </p>
+          </details>
+          <div style="height:10px"></div>
+
+          <details>
+            <summary>🪞 Stima de sine & comparația</summary>
+            <p>
+              Vezi highlight-uri, filtre, editări. Compari „viața ta reală” cu „best-of-ul altora”.
+              Antidot: redu conturile care te fac să te simți prost și urmărește conținut care te ajută concret (sport, învățat, hobby).
+            </p>
+          </details>
+
+          <div class="divider"></div>
+
+          <div class="quote">
+            <b>Regula de aur:</b> dacă un video te face să simți <span class="danger">furie</span> sau <span class="danger">panică</span>,
+            e momentul perfect să verifici, nu să crezi.
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL WIDTH BELOW -->
+      <div class="card" id="filtru" style="grid-column: 1 / -1">
+        <div class="hd">
+          <div>
+            <h2>3) Filtrarea informațiilor: „Testul în 5 pași” ✅</h2>
+            <div class="sub">Bifează pașii când vezi ceva „wow”. Primești un scor de încredere.</div>
+          </div>
+          <button class="btn smallbtn" id="clearChecks">Golește</button>
+        </div>
+
+        <div class="bd">
+          <div class="two">
+            <div>
+              <div class="checklist" role="group" aria-label="Checklist 5 pași">
+                <div class="check">
+                  <input type="checkbox" class="fc" id="fc1" />
+                  <div class="txt">
+                    <b>1) Cine spune?</b>
+                    <small>Cont real / instituție / expert? Sau cont anonim care vrea doar reacții?</small>
+                  </div>
+                </div>
+                <div class="check">
+                  <input type="checkbox" class="fc" id="fc2" />
+                  <div class="txt">
+                    <b>2) Ce dovadă arată?</b>
+                    <small>Link, date, context. „Am auzit eu” nu e dovadă.</small>
+                  </div>
+                </div>
+                <div class="check">
+                  <input type="checkbox" class="fc" id="fc3" />
+                  <div class="txt">
+                    <b>3) Unde mai apare?</b>
+                    <small>Caută în 2–3 locuri diferite (nu doar reposturi cu aceeași frază).</small>
+                  </div>
+                </div>
+                <div class="check">
+                  <input type="checkbox" class="fc" id="fc4" />
+                  <div class="txt">
+                    <b>4) Care e scopul?</b>
+                    <small>Informare, reclamă, propaganda, rage-bait, trolling?</small>
+                  </div>
+                </div>
+                <div class="check">
+                  <input type="checkbox" class="fc" id="fc5" />
+                  <div class="txt">
+                    <b>5) Ce emoție îmi apasă butoanele?</b>
+                    <small>Dacă te manipulează prin frică/furie, încetinește.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="row">
+                <div class="mini">
+                  <div class="icon">🎯</div>
+                  <div>
+                    <b>Scor încredere</b>
+                    <small>Cu cât bifezi mai multe, cu atât ești mai protejat.</small>
+                  </div>
+                </div>
+                <div class="mini" style="justify-content:space-between">
+                  <div>
+                    <b id="trustScore">0 / 5</b>
+                    <small id="trustText">Încă nu ai verificat.</small>
+                  </div>
+                  <span class="kbd" id="trustBadge">LOW</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="hintbox" style="margin-bottom:12px">
+                <strong>Mini-truc pentru TikTok:</strong> dacă un clip face o afirmație mare în 10 secunde,
+                probabil lipsește contextul. Caută cuvintele-cheie în afara aplicației înainte să te convingă.
+              </div>
+
+              <div class="hintbox">
+                <strong>Mini-truc pentru Reddit:</strong> uită-te la:
+                <div style="margin-top:8px;display:grid;gap:6px">
+                  <span>• comentariile cele mai votate au <b>surse</b> sau doar „păreri tari”?</span>
+                  <span>• există <b>contra-argumente</b> decente sau e doar „noi vs ei”?</span>
+                  <span>• comunitatea are <b>reguli</b> și moderare sau e haos?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="hintbox">
+            <strong>Shortcut mental:</strong> „Dacă e prea perfect ca să fie adevărat, verifică.”  
+            „Dacă te enervează instant, verifică de două ori.”
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="siguranta">
+        <div class="hd">
+          <div>
+            <h2>4) Siguranță online 🛡️</h2>
+            <div class="sub">Reguli clare, fără dramă. Astea te protejează cel mai mult.</div>
+          </div>
+          <button class="btn smallbtn" id="copyRules">Copiază reguli</button>
+        </div>
+
+        <div class="bd">
+          <div class="checklist">
+            <div class="check">
+              <input type="checkbox" class="rule" />
+              <div class="txt">
+                <b>Nu posta date personale</b>
+                <small>Adresă, program zilnic, școală, locație live, număr — păstrează privat.</small>
+              </div>
+            </div>
+            <div class="check">
+              <input type="checkbox" class="rule" />
+              <div class="txt">
+                <b>Nu trimite poze intime</b>
+                <small>Chiar dacă „ai încredere”. Odată trimis, nu mai controlezi unde ajunge.</small>
+              </div>
+            </div>
+            <div class="check">
+              <input type="checkbox" class="rule" />
+              <div class="txt">
+                <b>Atenție la manipulare / presiune</b>
+                <small>Dacă cineva te grăbește sau te șantajează: oprește discuția + cere ajutor imediat.</small>
+              </div>
+            </div>
+            <div class="check">
+              <input type="checkbox" class="rule" />
+              <div class="txt">
+                <b>Setează-ți feed-ul</b>
+                <small>Folosește „Not interested”, dezabonează-te de la conturi toxice, limitează notificările.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="hintbox">
+            <strong>Semne că e momentul să ieși:</strong> scroll fără să-ți dai seama, te simți mai prost după,
+            te enervezi constant, nu mai ai chef de nimic offline. Asta nu e „slăbiciune” — e design.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="plan">
+        <div class="hd">
+          <div>
+            <h2>5) Plan smart: „Eu conduc aplicația” 🧠</h2>
+            <div class="sub">Construiești un mini-contract cu tine + timer pentru sesiuni.</div>
+          </div>
+          <button class="btn smallbtn" id="genContract">Generează</button>
+        </div>
+
+        <div class="bd">
+          <div class="two">
+            <div>
+              <div style="font-weight:900;margin-bottom:10px">Alege regulile tale</div>
+              <div class="checklist">
+                <div class="check"><input type="checkbox" class="plan" data-text="Max 45 min/zi TikTok/scroll (în 2 sesiuni)."><div class="txt"><b>Limită timp</b><small>Mai bine puțin și controlat, decât mult și automat.</small></div></div>
+                <div class="check"><input type="checkbox" class="plan" data-text="Nu încep ziua cu social media (primele 30 min fără)."><div class="txt"><b>Dimineața fără scroll</b><small>Îți setează tonul pentru toată ziua.</small></div></div>
+                <div class="check"><input type="checkbox" class="plan" data-text="Când mă enervează un clip, fac testul în 5 pași înainte să cred/dau share."><div class="txt"><b>Emoție = pauză</b><small>Furia e combustibil pentru viral.</small></div></div>
+                <div class="check"><input type="checkbox" class="plan" data-text="Urmăresc minim 2 surse cu perspective diferite pe subiecte importante."><div class="txt"><b>Anti-bulă</b><small>Îți păstrezi gândirea flexibilă.</small></div></div>
+                <div class="check"><input type="checkbox" class="plan" data-text="În fiecare zi fac ceva offline (sport / hobby / prieteni) înainte de scroll."><div class="txt"><b>Offline first</b><small>Rețeaua e condiment, nu masa principală.</small></div></div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="row">
+                <button class="btn primary" id="startTimer">⏳ Start timer 20 min</button>
+                <button class="btn" id="stopTimer">Stop</button>
+              </div>
+              <div style="margin-top:10px;color:var(--muted);font-size:14px;line-height:1.45">
+                Ideea: după 20 min, faci o pauză scurtă. Dacă vrei, mai faci încă o sesiune. Tu decizi, nu feed-ul.
+              </div>
+              <div class="divider"></div>
+
+              <div class="mini" style="justify-content:space-between">
+                <div>
+                  <b>Timer</b>
+                  <small id="timerText">Neactiv.</small>
+                </div>
+                <span class="kbd" id="timerBadge">00:00</span>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-weight:900;margin-bottom:10px">Contractul tău (copiabil)</div>
+              <textarea class="contract" id="contractBox" spellcheck="false">
+Contract @16 — Social Media (TikTok/Reddit)
+
+• Eu controlez timpul, nu algoritmul.
+• Dacă un conținut mă face să simt furie/panică, verific înainte să cred.
+• Nu postez date personale. Nu trimit poze intime.
+• Îmi construiesc feed-ul: urmăresc surse utile, ies din comunități toxice.
+
+Semnat: ____________   Data: ____________
+              </textarea>
+
+              <div class="row" style="margin-top:10px">
+                <button class="btn smallbtn" id="copyContract">Copiază contract</button>
+                <button class="btn smallbtn" id="saveContract">Salvează</button>
+                <button class="btn smallbtn" id="loadContract">Încarcă</button>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="hintbox">
+                <strong>Concluzie generală:</strong> Rețelele sociale nu sunt „bune” sau „rele” în sine.
+                Sunt instrumente care îți capturează atenția. La 16 ani, când identitatea și obiceiurile se fixează rapid,
+                cheia e <span class="ok">controlul timpului</span> + <span class="ok">filtrarea informației</span> + <span class="ok">siguranța personală</span>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1">
+        <div class="hd">
+          <div>
+            <h2>Bonus: „Anti-bulă” rapidă 🫧→🌈</h2>
+            <div class="sub">Selectează ce te prinde des. Vezi scorul de diversitate și un mic sfat.</div>
+          </div>
+          <button class="btn smallbtn" id="clearTopics">Golește</button>
+        </div>
+        <div class="bd">
+          <div id="topics">
+            <span class="tag" data-topic="drama">🔥 Drama/scandal</span>
+            <span class="tag" data-topic="fitness">🏃 Sport/fitness</span>
+            <span class="tag" data-topic="gaming">🎮 Gaming</span>
+            <span class="tag" data-topic="politica">🗳️ Politică</span>
+            <span class="tag" data-topic="relatii">💬 Relații</span>
+            <span class="tag" data-topic="stiinta">🧪 Știință</span>
+            <span class="tag" data-topic="bani">💸 Bani/„hustle”</span>
+            <span class="tag" data-topic="beauty">✨ Beauty/look</span>
+            <span class="tag" data-topic="meme">😂 Meme</span>
+            <span class="tag" data-topic="stiri">📰 Știri</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="two">
+            <div class="pill">
+              <div class="t">Scor diversitate</div>
+              <div class="v" id="divScore">—</div>
+              <div class="hint" id="divHint">Selectează minim 4 categorii diferite ca să nu te blochezi pe o singură zonă.</div>
+            </div>
+
+            <div class="hintbox" id="antiBubbleTip">
+              <strong>Sfat:</strong> dacă ai ales doar 1–2 categorii, feed-ul se va îngusta.
+              Alege intenționat 1 categorie „utilă” (educație/sport) + 1 categorie „relax” (meme).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Tip: apasă <span class="kbd">Ctrl</span> + <span class="kbd">F</span> ca să cauți rapid în pagină (ex: „bula”, „siguranță”, „timer”).
+    </div>
+  </div>
+
+  <div class="toast" id="toast">✅ Copiat</div>
+
+  <script>
+    // ---------- Theme ----------
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('sm16_theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? '' : 'light';
+      if (next) root.setAttribute('data-theme', next);
+      else root.removeAttribute('data-theme');
+      localStorage.setItem('sm16_theme', next || '');
+      toast(next ? '☀️ Tema light' : '🌙 Tema dark');
+    });
+
+    // ---------- Toast ----------
+    const toastEl = document.getElementById('toast');
+    let toastT;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(() => toastEl.classList.remove('show'), 1600);
+    }
+
+    // ---------- Algorithm simulator ----------
+    const wt = document.getElementById('wt');
+    const lk = document.getElementById('lk');
+    const cm = document.getElementById('cm');
+    const rp = document.getElementById('rp');
+    const wtV = document.getElementById('wtV');
+    const lkV = document.getElementById('lkV');
+    const cmV = document.getElementById('cmV');
+    const rpV = document.getElementById('rpV');
+
+    const riskBar = document.getElementById('riskBar');
+    const spiralLabel = document.getElementById('spiralLabel');
+    const bubbleRisk = document.getElementById('bubbleRisk');
+    const recType = document.getElementById('recType');
+    const recHint = document.getElementById('recHint');
+    const mode = document.getElementById('mode');
+
+    function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
+
+    function compute(){
+      const a = +wt.value, b = +lk.value, c = +cm.value, d = +rp.value;
+      wtV.textContent = a; lkV.textContent = b; cmV.textContent = c; rpV.textContent = d;
+
+      // risk score: watch time + rewatch strong, comments amplify
+      let score = (a*0.38) + (b*0.20) + (c*0.22) + (d*0.20);
+      score = clamp(score, 0, 100);
+
+      riskBar.style.width = score.toFixed(0) + '%';
+      bubbleRisk.textContent = score.toFixed(0) + '%';
+
+      let label = 'Scăzută';
+      if (score >= 70) label = 'Ridicată';
+      else if (score >= 45) label = 'Moderată';
+      spiralLabel.textContent = label;
+
+      // recommended content type
+      let type = 'Mixt';
+      let hint = 'Primești puțin din toate.';
+      if (a+b+d > 170 && c < 30){
+        type = 'Conținut similar (loop)';
+        hint = 'Ai semnale puternice de „îmi place asta”, primești tot mai mult din același tip.';
+      } else if (c >= 60){
+        type = 'Conținut conflictual';
+        hint = 'Comentariile multe (mai ales certuri) trimit semnal: „interacțiune”, deci primești subiecte care aprind.';
+      } else if (b >= 70){
+        type = 'Trenduri & recomandări';
+        hint = 'Like-urile multe duc către trenduri similare și conturi „din aceeași zonă”.';
+      } else if (a >= 70){
+        type = 'Deep-dive pe temă';
+        hint = 'Watch time mare: algoritmul crede că tema te prinde și îți îngustează feed-ul.';
+      }
+      recType.textContent = type;
+      recHint.textContent = hint;
+
+      // thinking mode
+      let m = 'Curios';
+      if (c >= 60 || score >= 75) m = 'Reactiv';
+      else if (score >= 50) m = 'Captivat';
+      mode.textContent = m;
+    }
+
+    [wt,lk,cm,rp].forEach(el => el.addEventListener('input', compute));
+    compute();
+
+    document.getElementById('resetSim').addEventListener('click', () => {
+      wt.value = 50; lk.value = 20; cm.value = 10; rp.value = 10;
+      compute();
+      toast('🔄 Simulator resetat');
+    });
+
+    // ---------- Expand all details ----------
+    const expandAll = document.getElementById('expandAll');
+    expandAll.addEventListener('click', () => {
+      document.querySelectorAll('#influente details').forEach(d => d.open = true);
+      toast('📂 Deschis');
+    });
+
+    // ---------- Fact-check score ----------
+    const fc = Array.from(document.querySelectorAll('.fc'));
+    const trustScore = document.getElementById('trustScore');
+    const trustText = document.getElementById('trustText');
+    const trustBadge = document.getElementById('trustBadge');
+
+    function updateTrust(){
+      const n = fc.filter(x => x.checked).length;
+      trustScore.textContent = `${n} / 5`;
+      let badge = 'LOW', text = 'Încă nu ai verificat.';
+      if (n === 0) { badge='LOW'; text='Încă nu ai verificat.'; }
+      else if (n <= 2) { badge='LOW'; text='E ușor să fii păcălit. Mai verifică.'; }
+      else if (n === 3) { badge='MED'; text='Ok-ish. Mai lipsește un pic.'; }
+      else if (n === 4) { badge='HIGH'; text='Foarte bine. Aproape complet.'; }
+      else { badge='MAX'; text='Excelent. Decizie informată.'; }
+      trustBadge.textContent = badge;
+      trustText.textContent = text;
+    }
+    fc.forEach(x => x.addEventListener('change', updateTrust));
+    updateTrust();
+
+    document.getElementById('clearChecks').addEventListener('click', () => {
+      fc.forEach(x => x.checked = false);
+      updateTrust();
+      toast('🧽 Checklist golit');
+    });
+
+    // ---------- Copy rules ----------
+    document.getElementById('copyRules').addEventListener('click', async () => {
+      const rules = [
+        "Siguranță online — reguli rapide:",
+        "1) Nu posta date personale (adresă, școală, program, locație live, număr).",
+        "2) Nu trimite poze intime — niciodată.",
+        "3) Dacă cineva te presează/șantajează: oprește discuția + cere ajutor imediat.",
+        "4) Antrenează feed-ul: Not interested, unfollow conturi toxice, notificări minime.",
+      ].join('\n');
+      try{
+        await navigator.clipboard.writeText(rules);
+        toast('✅ Reguli copiate');
+      }catch(e){
+        toast('⚠️ Nu pot copia (permisiuni).');
+      }
+    });
+
+    // ---------- Contract generator + copy/save/load ----------
+    const contractBox = document.getElementById('contractBox');
+    document.getElementById('genContract').addEventListener('click', () => {
+      const picks = Array.from(document.querySelectorAll('.plan'))
+        .filter(x => x.checked)
+        .map(x => "• " + x.dataset.text);
+
+      const base = [
+        "Contract @16 — Social Media (TikTok/Reddit)",
+        "",
+        "• Eu controlez timpul, nu algoritmul.",
+        "• Dacă un conținut mă face să simt furie/panică, verific înainte să cred.",
+        "• Nu postez date personale. Nu trimit poze intime.",
+      ];
+
+      const extra = picks.length ? ["", "Regulile mele alese:", ...picks] : ["", "Regulile mele alese:", "• (alege 1–3 reguli din stânga)"];
+      const end = ["", "Semnat: ____________   Data: ____________"];
+
+      contractBox.value = [...base, ...extra, ...end].join("\n");
+      toast('📝 Contract generat');
+    });
+
+    document.getElementById('copyContract').addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(contractBox.value);
+        toast('✅ Contract copiat');
+      }catch(e){
+        toast('⚠️ Nu pot copia (permisiuni).');
+      }
+    });
+
+    document.getElementById('saveContract').addEventListener('click', () => {
+      localStorage.setItem('sm16_contract', contractBox.value);
+      toast('💾 Salvat');
+    });
+    document.getElementById('loadContract').addEventListener('click', () => {
+      const v = localStorage.getItem('sm16_contract');
+      if (v){ contractBox.value = v; toast('📥 Încărcat'); }
+      else toast('ℹ️ N-ai nimic salvat încă');
+    });
+
+    // ---------- Topics diversity ----------
+    const topicTags = Array.from(document.querySelectorAll('#topics .tag'));
+    const divScore = document.getElementById('divScore');
+    const divHint = document.getElementById('divHint');
+    const antiTip = document.getElementById('antiBubbleTip');
+
+    function updateDiversity(){
+      const active = topicTags.filter(t => t.classList.contains('active')).length;
+      if (active === 0){
+        divScore.textContent = "—";
+        divHint.textContent = "Selectează 3–5 categorii ca să vezi scorul.";
+        antiTip.innerHTML = "<strong>Sfat:</strong> alege 1 categorie utilă (sport/știință) + 1 relax (meme) + 1 social (relații).";
+        return;
+      }
+      // simple scoring
+      const score = clamp(Math.round((active/6)*100), 10, 100);
+      divScore.textContent = score + "%";
+      let hint = "Bine. Mai adaugă încă 1 categorie diferită.";
+      if (active <= 2) hint = "Scăzut. Ești aproape de bulă.";
+      else if (active <= 4) hint = "Ok. Ai ceva diversitate.";
+      else hint = "Foarte bine. Feed-ul tău e mai echilibrat.";
+
+      divHint.textContent = hint;
+
+      if (active <= 2){
+        antiTip.innerHTML = "<strong>Anti-bulă:</strong> adaugă intenționat o categorie „utilă” + o categorie „neutră”. Exemplu: <b>sport</b> + <b>știință</b>.";
+      } else if (active <= 4){
+        antiTip.innerHTML = "<strong>Anti-bulă:</strong> dacă ai un subiect „fierbinte” (politică/dramă), pune lângă el o sursă calmă și explicativă (educație/știință).";
+      } else {
+        antiTip.innerHTML = "<strong>Excelent:</strong> diversitatea reduce manipularea. Dacă ceva te enervează, revino la testul în 5 pași înainte de share.";
+      }
+    }
+
+    topicTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        tag.classList.toggle('active');
+        updateDiversity();
+      });
+    });
+
+    document.getElementById('clearTopics').addEventListener('click', () => {
+      topicTags.forEach(t => t.classList.remove('active'));
+      updateDiversity();
+      toast('🧽 Categorii golite');
+    });
+
+    updateDiversity();
+
+    // ---------- Focus mode timer ----------
+    const panicBtn = document.getElementById('panicBtn');
+    const timerText = document.getElementById('timerText');
+    const timerBadge = document.getElementById('timerBadge');
+    const startTimer = document.getElementById('startTimer');
+    const stopTimer = document.getElementById('stopTimer');
+
+    let tInterval = null;
+    let tLeft = 0;
+
+    function fmt(sec){
+      const m = Math.floor(sec/60).toString().padStart(2,'0');
+      const s = Math.floor(sec%60).toString().padStart(2,'0');
+      return `${m}:${s}`;
+    }
+
+    function tick(){
+      tLeft--;
+      timerBadge.textContent = fmt(tLeft);
+      if (tLeft <= 0){
+        clearInterval(tInterval);
+        tInterval = null;
+        timerText.textContent = "Pauză! 2–5 minute fără ecran. 💧";
+        timerBadge.textContent = "00:00";
+        toast('⏸️ Pauză scurtă');
+      }
+    }
+
+    startTimer.addEventListener('click', () => {
+      if (tInterval) return toast('⏳ Timer deja merge');
+      tLeft = 20*60;
+      timerBadge.textContent = fmt(tLeft);
+      timerText.textContent = "Sesiune activă: 20 min. (apoi pauză scurtă)";
+      tInterval = setInterval(tick, 1000);
+      toast('▶️ Start 20 min');
+    });
+
+    stopTimer.addEventListener('click', () => {
+      if (!tInterval) return toast('ℹ️ Timer oprit deja');
+      clearInterval(tInterval);
+      tInterval = null;
+      timerText.textContent = "Oprit.";
+      timerBadge.textContent = "00:00";
+      toast('⏹️ Timer oprit');
+    });
+
+    panicBtn.addEventListener('click', () => {
+      // quick focus: start timer + scroll to plan section
+      document.getElementById('plan').scrollIntoView({behavior:'smooth', block:'start'});
+      if (!tInterval){
+        startTimer.click();
+      } else {
+        toast('🧠 Focus activ');
+      }
+    });
+
+    // Save simulator state (nice touch)
+    const simKeys = ['wt','lk','cm','rp'];
+    function saveSim(){
+      const state = { wt:wt.value, lk:lk.value, cm:cm.value, rp:rp.value };
+      localStorage.setItem('sm16_sim', JSON.stringify(state));
+    }
+    function loadSim(){
+      try{
+        const raw = localStorage.getItem('sm16_sim');
+        if (!raw) return;
+        const s = JSON.parse(raw);
+        if (s && s.wt!=null){ wt.value=s.wt; lk.value=s.lk; cm.value=s.cm; rp.value=s.rp; compute(); }
+      }catch(e){}
+    }
+    [wt,lk,cm,rp].forEach(el => el.addEventListener('change', saveSim));
+    loadSim();
+
+    // smooth anchors fallback
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>

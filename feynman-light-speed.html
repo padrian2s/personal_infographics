@@ -1,0 +1,1221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Speed of Light Isn’t “Just a Number” — An Interactive Infographic</title>
+  <meta name="description" content="Interactive infographic explaining why nothing goes faster than light: Newton → Rømer → Einstein → experiments, with live Lorentz math and spacetime visuals." />
+  <style>
+    :root{
+      --bg:#070A12;
+      --panel:#0C1020;
+      --panel2:#0D142A;
+      --card:#0B0F1E;
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.16);
+      --text:rgba(255,255,255,.86);
+      --muted:rgba(255,255,255,.64);
+      --faint:rgba(255,255,255,.42);
+
+      --accent:#7CF0FF;
+      --accent2:#B4FF7C;
+      --accent3:#FF6BD6;
+      --warn:#FFCA7A;
+
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --radius: 20px;
+      --radius2: 26px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; background: radial-gradient(1200px 900px at 20% 10%, rgba(124,240,255,.12), transparent 55%),
+                                      radial-gradient(1000px 800px at 80% 25%, rgba(255,107,214,.10), transparent 60%),
+                                      radial-gradient(900px 900px at 60% 90%, rgba(180,255,124,.08), transparent 55%),
+                                      var(--bg);
+              color: var(--text); margin: 0; font-family: var(--sans); }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: 1200px; margin: 0 auto; padding: 28px 18px 90px; }
+
+    /* Top hero */
+    .hero{
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(12,16,32,.92), rgba(9,12,24,.78));
+      border-radius: var(--radius2);
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 250px at 20% 10%, rgba(124,240,255,.14), transparent 65%),
+                  radial-gradient(520px 240px at 80% 10%, rgba(255,107,214,.12), transparent 62%),
+                  radial-gradient(520px 280px at 55% 100%, rgba(180,255,124,.10), transparent 62%);
+      pointer-events:none;
+      filter: blur(0.2px);
+    }
+    .hero-inner{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .kicker{
+      display:flex; align-items:center; gap:10px;
+      font-family: var(--mono);
+      letter-spacing:.08em; text-transform: uppercase;
+      color: var(--muted); font-size: 12px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.04);
+      padding: 6px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+    .dot{ width:8px; height:8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 16px rgba(124,240,255,.65); }
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .stat{
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(13,20,42,.86), rgba(10,13,27,.72));
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      position: relative;
+      overflow:hidden;
+    }
+    .stat .label{
+      font-family: var(--mono);
+      color: var(--faint);
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .stat .value{
+      margin-top: 8px;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+    }
+    .stat .sub{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .stat-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    /* Layout grid */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(11,15,30,.86), rgba(8,10,18,.70));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .card-header{
+      padding: 18px 18px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.00));
+    }
+    .card-title{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-title small{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      color: var(--faint);
+      white-space: nowrap;
+    }
+    .card-body{
+      padding: 16px 18px 18px;
+    }
+
+    .rows{ display:grid; gap: 12px; }
+    .row{
+      display:grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .badge{
+      width:18px; height:18px;
+      border-radius: 6px;
+      background: rgba(124,240,255,.14);
+      border: 1px solid rgba(124,240,255,.26);
+      box-shadow: 0 0 18px rgba(124,240,255,.10);
+      margin-top: 2px;
+      position: relative;
+    }
+    .badge.b2{ background: rgba(180,255,124,.12); border-color: rgba(180,255,124,.26); box-shadow: 0 0 18px rgba(180,255,124,.10); }
+    .badge.b3{ background: rgba(255,107,214,.12); border-color: rgba(255,107,214,.26); box-shadow: 0 0 18px rgba(255,107,214,.10); }
+    .badge.b4{ background: rgba(255,202,122,.12); border-color: rgba(255,202,122,.26); box-shadow: 0 0 18px rgba(255,202,122,.10); }
+
+    .p{ margin: 0; color: var(--muted); line-height: 1.55; font-size: 14px; }
+    .p strong{ color: var(--text); font-weight: 650; }
+    .mini{
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .mono{ font-family: var(--mono); }
+
+    /* Timeline */
+    .timeline{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .t-item{
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px 12px;
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .t-year{
+      font-family: var(--mono);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-size: 12px;
+    }
+    .t-item h4{
+      margin:0 0 4px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+    .t-item p{ margin:0; color: var(--muted); font-size: 13px; line-height:1.45; }
+
+    /* Interactive lab */
+    .lab{
+      display:grid;
+      gap: 14px;
+    }
+    .controls{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px 12px;
+    }
+    .controls .top{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .controls .top .hint{
+      color: var(--faint);
+      font-size: 12px;
+      font-family: var(--mono);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+    }
+    .slider{
+      width:100%;
+      appearance: none;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,240,255,.55), rgba(255,107,214,.45));
+      outline: none;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .slider::-webkit-slider-thumb{
+      -webkit-appearance: none;
+      appearance:none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow: 0 10px 30px rgba(0,0,0,.50), 0 0 18px rgba(124,240,255,.25);
+      cursor: pointer;
+    }
+    .kv{
+      margin-top: 10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .k{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 10px;
+    }
+    .k .k-label{
+      color: var(--faint);
+      font-size: 11px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+    }
+    .k .k-val{
+      margin-top: 6px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .k .k-sub{
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .viz{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
+      position: relative;
+      min-height: 280px;
+    }
+    .viz canvas{
+      width: 100%;
+      height: 280px;
+      display:block;
+    }
+    .viz .overlay{
+      position:absolute; inset: 0;
+      pointer-events:none;
+      background:
+        radial-gradient(600px 280px at 20% 30%, rgba(124,240,255,.12), transparent 60%),
+        radial-gradient(520px 320px at 80% 60%, rgba(255,107,214,.10), transparent 60%);
+      mix-blend-mode: screen;
+      opacity:.85;
+    }
+    .viz .caption{
+      position:absolute;
+      left: 12px; bottom: 10px;
+      right: 12px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      pointer-events:none;
+    }
+    .viz .caption .left{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .viz .caption .right{
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+      text-align:right;
+      max-width: 45%;
+    }
+
+    /* Toggle */
+    .toggles{
+      display:flex; flex-wrap: wrap; gap: 8px;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor:pointer;
+      user-select:none;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .btn[data-on="true"]{
+      background: rgba(124,240,255,.10);
+      border-color: rgba(124,240,255,.28);
+      box-shadow: 0 0 16px rgba(124,240,255,.10);
+    }
+    .btn .ic{ width:10px; height:10px; border-radius: 50%; background: rgba(255,255,255,.55); }
+    .btn[data-on="true"] .ic{ background: var(--accent); box-shadow: 0 0 12px rgba(124,240,255,.45); }
+
+    /* Bottom commentary */
+    .commentary{
+      margin-top: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(13,20,42,.65), rgba(8,10,18,.70));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .commentary .card-body{ padding-top: 14px; }
+    .quote{
+      border-left: 3px solid rgba(124,240,255,.55);
+      padding-left: 12px;
+      margin: 10px 0 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13.5px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 18px;
+      color: var(--faint);
+      font-size: 12px;
+      text-align:center;
+      line-height: 1.4;
+      font-family: var(--mono);
+      letter-spacing:.02em;
+    }
+
+    /* Subtle motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">
+            <span class="pill"><span class="dot"></span> interactive physics infographic</span>
+            <span class="pill">cause → effect</span>
+            <span class="pill">space ↔ time</span>
+          </div>
+          <h1>The Speed of Light Isn’t Just “Fast.”<br/>It’s the Universe’s Geometry.</h1>
+          <p class="lead">
+            The question isn’t “how fast is light?” (you can memorize <span class="mono">299,792,458 m/s</span>).
+            The question is: <strong>why does reality refuse to define “faster” in any meaningful way</strong>?
+            Follow the chain: falling apples → orbiting Moon → tides → Jupiter’s moons → the shock of constant <span class="mono">c</span> → time dilation, length contraction, and the hard wall at light-speed.
+          </p>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="label">c — the conversion factor</div>
+            <div class="value"><span class="mono">299,792,458</span> m/s</div>
+            <div class="sub">Not just “a speed.” It stitches meters and seconds into one spacetime fabric.</div>
+          </div>
+          <div class="stat">
+            <div class="label">why the limit exists</div>
+            <div class="value">Because “now” can’t outrun itself</div>
+            <div class="sub">There’s a maximum rate for information / causality to propagate through spacetime.</div>
+          </div>
+          <div class="stat">
+            <div class="label">the weirdest punchline</div>
+            <div class="value">Time & space bend to protect c</div>
+            <div class="sub">Move faster → your time slows, your lengths contract, so everyone still measures the same <span class="mono">c</span>.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Main grid">
+
+      <!-- LEFT COLUMN: Story / reasoning chain -->
+      <article class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            The Avalanche of Discovery
+            <small>Newton → Rømer → Einstein</small>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div class="rows">
+            <div class="row">
+              <div class="badge"></div>
+              <p class="p">
+                <strong>Start “boring”:</strong> drop anything, it falls. Galileo measured a simple rule of motion. It looks local, everyday.
+                But the Moon forces the upgrade: it’s <strong>falling</strong> too — it just has enough sideways speed to keep missing Earth.
+                Orbit = <strong>continuous falling + sideways motion</strong>.
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="badge b2"></div>
+              <p class="p">
+                <strong>Newton’s inverse-square insight:</strong> if gravity weakens with distance as <span class="mono">1/r²</span>,
+                then at the Moon (≈ 60× farther from Earth’s center than we are), gravity is <span class="mono">60² = 3600×</span> weaker.
+                That predicts exactly how far the Moon “drops” toward Earth each second while it orbits. Two independent facts click into one law.
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="badge b3"></div>
+              <p class="p">
+                <strong>Tides become explainable:</strong> not one bulge, but two.
+                Near-side water is pulled a bit more; far-side water is pulled a bit less than Earth’s center — so relative to Earth you get
+                a second bulge. The “two tides per day” puzzle dissolves into gradients of gravitational pull (and the Earth–Moon barycenter story).
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="badge b4"></div>
+              <p class="p">
+                <strong>Then a weird discrepancy:</strong> Jupiter’s moons appear early/late by minutes — correlated with Jupiter being nearer/farther.
+                Instead of ditching gravity, the leap is: <strong>light takes time to travel</strong>.
+                That correction becomes the first real demonstration that light is not instantaneous — and it even yields a value for its speed.
+              </p>
+            </div>
+          </div>
+
+          <div class="mini">
+            <strong>Meta-lesson (the “avalanche”):</strong> when a law is good, it becomes a tool. You trust it enough that mismatch points to
+            a different hidden phenomenon. Gravity helps reveal light’s finite speed; light’s constancy forces a rewrite of space and time.
+          </div>
+
+          <div class="timeline" aria-label="Timeline">
+            <div class="t-item">
+              <div class="t-year">1600s</div>
+              <div>
+                <h4>Gravity unifies Earth & sky</h4>
+                <p>Falling objects and orbiting bodies become the same story: acceleration + sideways motion.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-year">1670s</div>
+              <div>
+                <h4>Light is finite (via Jupiter’s moons)</h4>
+                <p>Timing offsets vary with distance → evidence light propagation takes time → estimate for <span class="mono">c</span>.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-year">1905</div>
+              <div>
+                <h4>Constant c forces spacetime</h4>
+                <p>If everyone measures the same <span class="mono">c</span>, then time and distance are not absolute— they transform.</p>
+              </div>
+            </div>
+            <div class="t-item">
+              <div class="t-year">Today</div>
+              <div>
+                <h4>Reality checks everywhere</h4>
+                <p>Particle accelerators, muons, and GPS all require relativistic corrections or they fail.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- RIGHT COLUMN: Interactive lab -->
+      <aside class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            Relativity Lab
+            <small>drag the speed</small>
+          </h2>
+        </div>
+
+        <div class="card-body">
+          <div class="lab">
+
+            <div class="controls" aria-label="Controls">
+              <div class="top">
+                <div class="hint">choose v as a fraction of c</div>
+                <div class="toggles" role="group" aria-label="Visualization toggles">
+                  <button class="btn" id="tglGrid" data-on="true" type="button"><span class="ic"></span>Grid</button>
+                  <button class="btn" id="tglCone" data-on="true" type="button"><span class="ic"></span>Light cone</button>
+                  <button class="btn" id="tglTrain" data-on="true" type="button"><span class="ic"></span>Train</button>
+                  <button class="btn" id="tglClock" data-on="true" type="button"><span class="ic"></span>Clock</button>
+                </div>
+              </div>
+
+              <input id="vSlider" class="slider" type="range" min="0" max="0.999999" step="0.000001" value="0.50" aria-label="Velocity slider" />
+
+              <div class="kv">
+                <div class="k">
+                  <div class="k-label">v / c</div>
+                  <div class="k-val mono" id="vOverC">0.500000</div>
+                  <div class="k-sub">Train speed as a fraction of <span class="mono">c</span>.</div>
+                </div>
+                <div class="k">
+                  <div class="k-label">Lorentz factor γ</div>
+                  <div class="k-val mono" id="gamma">1.154701</div>
+                  <div class="k-sub">Time dilation: moving clocks tick slower by <span class="mono">1/γ</span>.</div>
+                </div>
+                <div class="k">
+                  <div class="k-label">time rate</div>
+                  <div class="k-val mono" id="timeRate">0.866025×</div>
+                  <div class="k-sub">Your moving clock vs a “rest” clock.</div>
+                </div>
+                <div class="k">
+                  <div class="k-label">length factor</div>
+                  <div class="k-val mono" id="lengthFactor">0.866025×</div>
+                  <div class="k-sub">Length contraction along direction of motion.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="viz" aria-label="Visualization">
+              <canvas id="canvas" width="960" height="420"></canvas>
+              <div class="overlay"></div>
+              <div class="caption">
+                <div class="left" id="captionLeft">
+                  Light’s speed doesn’t “add” with your speed — the geometry changes so everyone still measures the same <span class="mono">c</span>.
+                </div>
+                <div class="right" id="captionRight">spacetime diagram (conceptual)</div>
+              </div>
+            </div>
+
+            <div class="mini" id="miniExplainer">
+              <strong>Interpretation:</strong> as <span class="mono">v → c</span>, <span class="mono">γ → ∞</span>. “Harder to accelerate” isn’t just weak engines —
+              it’s that the required energy grows without bound. Massless things (like photons) live on the light-cone: they “use up” all motion in space and none in time.
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+    </section>
+
+    <!-- Experiments / evidence -->
+    <section class="grid" aria-label="Evidence grid" style="margin-top:14px;">
+      <article class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            The Constant-Speed Shock
+            <small>why this breaks intuition</small>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div class="rows">
+            <div class="row">
+              <div class="badge"></div>
+              <p class="p">
+                <strong>Everyday speeds add.</strong> Walk forward on a moving train, your ground-speed increases. That’s classical velocity addition.
+              </p>
+            </div>
+            <div class="row">
+              <div class="badge b3"></div>
+              <p class="p">
+                <strong>Light refuses to add.</strong> Shine a flashlight while moving fast — you still measure the same light speed.
+                The “missing” speed doesn’t vanish: it reappears as <strong>time dilation</strong> and <strong>length contraction</strong>.
+              </p>
+            </div>
+            <div class="row">
+              <div class="badge b2"></div>
+              <p class="p">
+                <strong>Einstein’s move:</strong> stop treating space and time as separate fixed containers.
+                They’re flexible coordinates of one structure: <strong>spacetime</strong>.
+                Keeping <span class="mono">c</span> invariant is not a rule slapped on physics —
+                it’s what the geometry forces if you want causality to be consistent.
+              </p>
+            </div>
+            <div class="mini">
+              <strong>Key idea:</strong> <span class="mono">c</span> is a “conversion rate” between meters and seconds built into the universe.
+              Even if there were no light, there would still be a maximum causal speed — light just happens to travel at it.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            The Wall at Light-Speed
+            <small>not a fuel problem</small>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div class="rows">
+            <div class="row">
+              <div class="badge b4"></div>
+              <p class="p">
+                <strong>As you accelerate, inertia “rises.”</strong> In modern terms: energy and momentum grow with <span class="mono">γ</span>.
+                Near <span class="mono">c</span>, a tiny extra speed costs an enormous energy increase.
+              </p>
+            </div>
+            <div class="row">
+              <div class="badge b3"></div>
+              <p class="p">
+                <strong>To reach <span class="mono">c</span> with mass would require infinite energy.</strong>
+                That’s why nothing massive reaches light-speed. It’s not an engineering limit; it’s a mathematical cliff from spacetime geometry.
+              </p>
+            </div>
+            <div class="row">
+              <div class="badge b2"></div>
+              <p class="p">
+                <strong>Photons are different.</strong> They’re massless, and so they live on the light cone: they must move at <span class="mono">c</span>.
+                Pushing “beyond” would mean a world where cause/effect order can break.
+              </p>
+            </div>
+            <div class="mini">
+              <strong>Geometric phrasing:</strong> you can’t have “less than zero” motion through time.
+              If you spent 100% of your motion budget in space, you’d have 0 left for time — that’s the light-speed limit in one sentence.
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Tests -->
+    <section class="card" style="margin-top:14px;" aria-label="Experimental confirmations">
+      <div class="card-header">
+        <h2 class="card-title">
+          Reality Checks
+          <small>this isn’t philosophy</small>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="rows">
+          <div class="row">
+            <div class="badge"></div>
+            <p class="p">
+              <strong>Particle accelerators:</strong> push particles to <span class="mono">99.9999%</span> of <span class="mono">c</span>.
+              Their behavior matches the “harder and harder to accelerate” curve predicted by relativity.
+            </p>
+          </div>
+          <div class="row">
+            <div class="badge b2"></div>
+            <p class="p">
+              <strong>Muons from cosmic rays:</strong> they should decay before reaching the ground — yet many arrive.
+              Time dilation explains it cleanly: from our frame their lifetimes look longer; from their frame the atmosphere is length-contracted.
+            </p>
+          </div>
+          <div class="row">
+            <div class="badge b3"></div>
+            <p class="p">
+              <strong>GPS:</strong> satellites move fast and sit in a different gravitational potential.
+              If you don’t correct for relativistic time differences, positioning drifts dramatically (practically unusable in short time).
+            </p>
+          </div>
+        </div>
+
+        <div class="mini">
+          <strong>Bottom line:</strong> the light-speed limit is as tested as physics gets. It’s baked into the operational world:
+          telecom timing, navigation, accelerator engineering, and precision clocks.
+        </div>
+      </div>
+    </section>
+
+    <!-- Commentary / Interpretation -->
+    <section class="commentary" aria-label="Commentary">
+      <div class="card-header">
+        <h2 class="card-title">
+          Commentary
+          <small>what this story is really saying</small>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="quote">
+          This narrative isn’t “Einstein said so.” It’s a chain: a law predicts; mismatch appears; instead of abandoning the law,
+          you infer a hidden constraint — and it opens a new layer of reality.
+        </div>
+
+        <div class="rows">
+          <div class="row">
+            <div class="badge"></div>
+            <p class="p">
+              <strong>1) The speed limit is not about light.</strong> The “limit” is the maximum speed at which information can travel.
+              Light is simply one carrier that saturates that bound because it’s massless.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="badge b2"></div>
+            <p class="p">
+              <strong>2) The surprise is how the universe preserves consistency.</strong>
+              If all observers must agree on cause/effect ordering, spacetime transformations must exist — and those transformations enforce invariant <span class="mono">c</span>.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="badge b3"></div>
+            <p class="p">
+              <strong>3) “Why can’t you go faster?” becomes “what would faster even mean?”</strong>
+              Past the light-cone, the geometry makes “before/after” unstable across frames. The concept of a universal “now” breaks.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="badge b4"></div>
+            <p class="p">
+              <strong>4) The emotional arc matters:</strong>
+              physics is not comforting. It’s a machine for discovering the constraints reality actually runs on —
+              often by forcing your intuition to fail in public.
+            </p>
+          </div>
+        </div>
+
+        <div class="mini">
+          <strong>Takeaway:</strong> <span class="mono">c</span> is the number that tells you space and time are one thing.
+          It’s the edge of the map where “faster” stops being a normal idea and becomes a question about geometry.
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      built as a single-file infographic • no libraries • conceptual diagrams (not to scale) •
+      tip: drag v close to 1.0 and watch γ explode
+    </div>
+
+  </div>
+
+  <script>
+    // ======== Utilities
+    const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+    const fmt = (x, d=6) => Number(x).toFixed(d);
+    const fmtShort = (x) => {
+      if (!isFinite(x)) return "∞";
+      if (x >= 1000) return x.toExponential(3);
+      if (x >= 100) return x.toFixed(2);
+      if (x >= 10) return x.toFixed(3);
+      return x.toFixed(6);
+    };
+
+    // ======== DOM
+    const vSlider = document.getElementById("vSlider");
+    const vOverCEl = document.getElementById("vOverC");
+    const gammaEl = document.getElementById("gamma");
+    const timeRateEl = document.getElementById("timeRate");
+    const lengthFactorEl = document.getElementById("lengthFactor");
+    const miniExplainer = document.getElementById("miniExplainer");
+
+    const tglGrid = document.getElementById("tglGrid");
+    const tglCone = document.getElementById("tglCone");
+    const tglTrain = document.getElementById("tglTrain");
+    const tglClock = document.getElementById("tglClock");
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // HiDPI scaling
+    function resizeCanvas(){
+      const cssW = canvas.clientWidth;
+      const cssH = canvas.clientHeight;
+      const dpr = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+      canvas.width = Math.floor(cssW * dpr);
+      canvas.height = Math.floor(cssH * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0); // draw in CSS pixels
+      draw();
+    }
+    window.addEventListener("resize", resizeCanvas);
+
+    // ======== State
+    const state = {
+      v: parseFloat(vSlider.value),
+      showGrid: true,
+      showCone: true,
+      showTrain: true,
+      showClock: true,
+      t: 0
+    };
+
+    function toggle(btn, key){
+      const on = btn.getAttribute("data-on") === "true";
+      btn.setAttribute("data-on", String(!on));
+      state[key] = !on;
+      draw();
+    }
+    tglGrid.addEventListener("click", () => toggle(tglGrid, "showGrid"));
+    tglCone.addEventListener("click", () => toggle(tglCone, "showCone"));
+    tglTrain.addEventListener("click", () => toggle(tglTrain, "showTrain"));
+    tglClock.addEventListener("click", () => toggle(tglClock, "showClock"));
+
+    // ======== Physics (dimensionless: c=1 units for diagram)
+    function gammaFromV(v){
+      const vv = clamp(v, 0, 0.999999999999);
+      return 1 / Math.sqrt(1 - vv*vv);
+    }
+
+    // ======== Drawing helpers
+    function clear(){
+      ctx.clearRect(0,0,canvas.clientWidth, canvas.clientHeight);
+      // background wash
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      const g = ctx.createLinearGradient(0,0,0,h);
+      g.addColorStop(0, "rgba(255,255,255,0.02)");
+      g.addColorStop(1, "rgba(0,0,0,0.25)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,w,h);
+    }
+
+    function drawGrid(){
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      ctx.save();
+      ctx.globalAlpha = 0.28;
+      ctx.strokeStyle = "rgba(255,255,255,0.10)";
+      ctx.lineWidth = 1;
+
+      const step = 28;
+      for(let x=0; x<=w; x+=step){
+        ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+      }
+      for(let y=0; y<=h; y+=step){
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+      }
+
+      // axes
+      ctx.globalAlpha = 0.55;
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.beginPath(); ctx.moveTo(w*0.5, 0); ctx.lineTo(w*0.5, h); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, h*0.5); ctx.lineTo(w, h*0.5); ctx.stroke();
+
+      ctx.restore();
+    }
+
+    function drawLightCone(){
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      const cx = w*0.5, cy = h*0.78; // event origin slightly lower
+      const scale = Math.min(w, h) * 0.62;
+
+      ctx.save();
+      ctx.lineWidth = 2;
+
+      // cone fill
+      ctx.globalAlpha = 0.12;
+      ctx.fillStyle = "rgba(124,240,255,0.26)";
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx - scale*0.45, cy - scale*0.75);
+      ctx.lineTo(cx + scale*0.45, cy - scale*0.75);
+      ctx.closePath();
+      ctx.fill();
+
+      // boundaries
+      ctx.globalAlpha = 0.85;
+      ctx.strokeStyle = "rgba(124,240,255,0.70)";
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx - scale*0.45, cy - scale*0.75);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + scale*0.45, cy - scale*0.75);
+      ctx.stroke();
+
+      // labels
+      ctx.globalAlpha = 0.75;
+      ctx.fillStyle = "rgba(255,255,255,0.75)";
+      ctx.font = "12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace";
+      ctx.fillText("future", cx + 8, cy - scale*0.75 - 8);
+      ctx.fillText("event", cx + 8, cy + 16);
+      ctx.fillText("past", cx + 8, cy + 42);
+
+      ctx.restore();
+
+      return {cx, cy, scale};
+    }
+
+    function drawTrainAndFlash(diag, v){
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      const {cx, cy, scale} = diag;
+      const trainY = cy + 38;
+      const baseLen = scale * 0.55;
+
+      const gamma = gammaFromV(v);
+      const contracted = baseLen / gamma;
+
+      // map v to visual drift
+      const drift = (v) * (scale*0.28);
+
+      ctx.save();
+
+      // Track line
+      ctx.globalAlpha = 0.45;
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(cx - scale*0.62, trainY + 24);
+      ctx.lineTo(cx + scale*0.62, trainY + 24);
+      ctx.stroke();
+
+      // Train body
+      const trainX = cx - contracted*0.5 + drift;
+      const bodyH = 26;
+      const bodyR = 10;
+
+      // glow
+      ctx.globalAlpha = 0.20;
+      ctx.fillStyle = "rgba(255,107,214,0.25)";
+      roundRect(ctx, trainX-6, trainY-6, contracted+12, bodyH+12, bodyR+6);
+      ctx.fill();
+
+      // body
+      ctx.globalAlpha = 0.95;
+      ctx.fillStyle = "rgba(255,255,255,0.10)";
+      ctx.strokeStyle = "rgba(255,255,255,0.20)";
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, trainX, trainY, contracted, bodyH, bodyR);
+      ctx.fill(); ctx.stroke();
+
+      // windows
+      ctx.globalAlpha = 0.70;
+      ctx.fillStyle = "rgba(124,240,255,0.20)";
+      const winCount = 4;
+      for(let i=0;i<winCount;i++){
+        const wx = trainX + contracted*(0.10 + i*(0.18));
+        roundRect(ctx, wx, trainY+6, contracted*0.12, 12, 5);
+        ctx.fill();
+      }
+
+      // wheels
+      ctx.globalAlpha = 0.75;
+      ctx.fillStyle = "rgba(255,255,255,0.18)";
+      circle(ctx, trainX + contracted*0.22, trainY + bodyH + 16, 7);
+      circle(ctx, trainX + contracted*0.78, trainY + bodyH + 16, 7);
+
+      // Flashlight emission point
+      const fx = trainX + contracted*0.72;
+      const fy = trainY + bodyH*0.5;
+
+      // Light pulse going forward (always c in diagram)
+      const t = (state.t % 1); // 0..1
+      const rayLen = scale * 0.55;
+      const px = fx + rayLen * t;
+      const py = fy - (rayLen * t) * 0.35; // tilt upward to hint spacetime
+
+      // ray
+      ctx.globalAlpha = 0.75;
+      ctx.strokeStyle = "rgba(124,240,255,0.85)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(fx, fy);
+      ctx.lineTo(px, py);
+      ctx.stroke();
+
+      // pulse head
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = "rgba(124,240,255,0.95)";
+      circle(ctx, px, py, 4.2);
+
+      // label
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = "rgba(255,255,255,0.75)";
+      ctx.font = "12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace";
+      ctx.fillText("train length contracts by 1/γ", cx - scale*0.62 + 8, trainY - 10);
+      ctx.fillText("flashlight pulse (still c)", fx + 6, fy - 12);
+
+      ctx.restore();
+    }
+
+    function drawClock(diag, v){
+      const {cx, cy, scale} = diag;
+      const gamma = gammaFromV(v);
+      const rate = 1 / gamma;
+
+      ctx.save();
+
+      // Two clocks: rest vs moving
+      const x0 = cx - scale*0.58;
+      const y0 = cy - scale*0.58;
+      const gap = 90;
+
+      drawClockFace(x0, y0, 34, state.t*2*Math.PI, "rest clock", "ticks at 1.000×");
+      drawClockFace(x0 + gap, y0, 34, state.t*2*Math.PI*rate, "moving clock", "ticks at " + (rate).toFixed(6) + "×");
+
+      // Small arrow
+      ctx.globalAlpha = 0.70;
+      ctx.strokeStyle = "rgba(255,255,255,0.22)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x0 + 44, y0);
+      ctx.lineTo(x0 + gap - 44, y0);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(255,255,255,0.30)";
+      triangle(ctx, x0 + gap - 40, y0, 10, 8, 0);
+
+      ctx.restore();
+    }
+
+    function drawClockFace(x, y, r, angle, title, subtitle){
+      ctx.save();
+      // halo
+      ctx.globalAlpha = 0.18;
+      ctx.fillStyle = "rgba(180,255,124,0.22)";
+      circle(ctx, x, y, r+10);
+
+      // face
+      ctx.globalAlpha = 0.90;
+      ctx.fillStyle = "rgba(0,0,0,0.22)";
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.lineWidth = 1.5;
+      circle(ctx, x, y, r); ctx.fill(); ctx.stroke();
+
+      // ticks
+      ctx.globalAlpha = 0.55;
+      ctx.strokeStyle = "rgba(255,255,255,0.16)";
+      for(let i=0;i<12;i++){
+        const a = i*Math.PI/6;
+        const x1 = x + Math.cos(a)*(r-4);
+        const y1 = y + Math.sin(a)*(r-4);
+        const x2 = x + Math.cos(a)*(r-10);
+        const y2 = y + Math.sin(a)*(r-10);
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+      }
+
+      // hand
+      ctx.globalAlpha = 0.95;
+      ctx.strokeStyle = "rgba(124,240,255,0.85)";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + Math.cos(angle - Math.PI/2)*(r-12), y + Math.sin(angle - Math.PI/2)*(r-12));
+      ctx.stroke();
+
+      // labels
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = "rgba(255,255,255,0.75)";
+      ctx.font = "11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace";
+      ctx.fillText(title, x - r, y + r + 16);
+      ctx.globalAlpha = 0.65;
+      ctx.fillText(subtitle, x - r, y + r + 30);
+
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, w, h, r){
+      const rr = Math.min(r, w/2, h/2);
+      ctx.beginPath();
+      ctx.moveTo(x+rr,y);
+      ctx.arcTo(x+w,y, x+w,y+h, rr);
+      ctx.arcTo(x+w,y+h, x,y+h, rr);
+      ctx.arcTo(x,y+h, x,y, rr);
+      ctx.arcTo(x,y, x+w,y, rr);
+      ctx.closePath();
+    }
+    function circle(ctx, x, y, r){
+      ctx.beginPath();
+      ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.closePath();
+      ctx.fill();
+    }
+    function triangle(ctx, x, y, w, h, rot){
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(-w, -h);
+      ctx.lineTo(-w, h);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function draw(){
+      clear();
+
+      const v = clamp(state.v, 0, 0.999999);
+      const g = gammaFromV(v);
+      const rate = 1/g;
+      const len = 1/g;
+
+      // UI numbers
+      vOverCEl.textContent = fmt(v, 6);
+      gammaEl.textContent = fmtShort(g);
+      timeRateEl.textContent = (rate).toFixed(6) + "×";
+      lengthFactorEl.textContent = (len).toFixed(6) + "×";
+
+      // update mini explainer with contextual feel
+      const vibe =
+        (v < 0.2) ? "At low speeds, γ ≈ 1. Classical intuition works; relativity hides."
+      : (v < 0.7) ? "Now relativity becomes visible: clocks slow and lengths shrink enough to keep c invariant."
+      : (v < 0.95) ? "Near c, γ rises steeply: the energy cost for tiny speed gains becomes brutal."
+      : (v < 0.99999) ? "You’re in the asymptote: γ is huge, contraction is extreme, and “more speed” becomes almost meaningless."
+      : "You’re basically at the cliff edge: γ is astronomical. The next digit costs a ridiculous amount of energy.";
+
+      miniExplainer.innerHTML =
+        "<strong>Interpretation:</strong> as <span class='mono'>v → c</span>, <span class='mono'>γ → ∞</span>. " +
+        "The closer you get, the more spacetime 'pays' by slowing your time and shrinking lengths—so light remains " +
+        "<span class='mono'>c</span> for everyone.<br/><span style='color:rgba(255,255,255,.62)'>" + vibe + "</span>";
+
+      if (state.showGrid) drawGrid();
+
+      const diag = state.showCone ? drawLightCone() : {cx: canvas.clientWidth*0.5, cy: canvas.clientHeight*0.78, scale: Math.min(canvas.clientWidth, canvas.clientHeight)*0.62};
+
+      if (state.showTrain) drawTrainAndFlash(diag, v);
+      if (state.showClock) drawClock(diag, v);
+
+      // top annotation text
+      ctx.save();
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = "rgba(255,255,255,0.78)";
+      ctx.font = "12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace";
+      ctx.fillText("Conceptual map: not to scale • c=1 units • geometry-first intuition", 12, 18);
+
+      // c wall hint
+      ctx.globalAlpha = 0.65;
+      ctx.fillStyle = "rgba(255,202,122,0.85)";
+      const wallText = (v > 0.92) ? "You are sliding along the asymptote: c is a wall of geometry." : "c is the edge of causal influence (light cone).";
+      ctx.fillText(wallText, 12, 38);
+      ctx.restore();
+    }
+
+    // animate for pulse
+    function tick(){
+      state.t += 0.010;
+      draw();
+      requestAnimationFrame(tick);
+    }
+
+    // slider
+    vSlider.addEventListener("input", (e)=>{
+      state.v = parseFloat(e.target.value);
+      draw();
+    });
+
+    // init
+    resizeCanvas();
+    tick();
+  </script>
+</body>
+</html>

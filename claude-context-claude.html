@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Window Dynamics | Claude Code Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #161618;
+            --bg-hover: #1c1c1f;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-muted: #6e6e73;
+            --accent-orange: #ff6b35;
+            --accent-cyan: #00d4aa;
+            --accent-purple: #a78bfa;
+            --accent-amber: #fbbf24;
+            --accent-red: #ef4444;
+            --border: #2a2a2e;
+            --gradient-orange: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            --gradient-cyan: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            --gradient-purple: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 53, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 24px;
+            padding: 6px 12px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+
+        .theme-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .theme-tag {
+            font-size: 12px;
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .theme-tag::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .theme-tag.performance::before { background: var(--accent-orange); }
+        .theme-tag.architecture::before { background: var(--accent-cyan); }
+        .theme-tag.strategy::before { background: var(--accent-purple); }
+        .theme-tag.tools::before { background: var(--accent-amber); }
+
+        /* Overview Section */
+        .overview {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .overview h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .overview h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .signal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .signal-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .signal-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .signal-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .signal-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Expandable Stories */
+        .stories {
+            padding: 60px 0;
+        }
+
+        .stories h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .stories-intro {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .story {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .story:hover {
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .story-number {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            min-width: 32px;
+        }
+
+        .story-title-wrap {
+            flex: 1;
+        }
+
+        .story-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .story-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .story-toggle {
+            color: var(--text-muted);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+            margin-top: 4px;
+        }
+
+        .story.expanded .story-toggle {
+            transform: rotate(180deg);
+        }
+
+        .story-content {
+            display: none;
+            padding: 0 24px 24px 76px;
+            border-top: 1px solid var(--border);
+            margin-top: 0;
+            animation: slideDown 0.3s ease;
+        }
+
+        .story.expanded .story-content {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .story-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-top: 24px;
+        }
+
+        .story-content h4 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+        }
+
+        .story-content ul {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        .story-content li {
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .story-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .heuristic {
+            background: rgba(167, 139, 250, 0.1);
+            border-left: 3px solid var(--accent-purple);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .heuristic strong {
+            color: var(--accent-purple);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .heuristic p {
+            margin: 8px 0 0 !important;
+            padding: 0 !important;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Simulator Section */
+        .simulator-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .simulator-section h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .simulator-intro {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .simulators {
+            display: grid;
+            gap: 24px;
+        }
+
+        .simulator {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .simulator h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .simulator h3::before {
+            content: '◆';
+            color: var(--accent-cyan);
+            font-size: 10px;
+        }
+
+        .slider-group {
+            margin-bottom: 20px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .slider-label span {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .slider-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--gradient-orange);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .result-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .result-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .result-value.optimal { color: var(--accent-cyan); }
+        .result-value.warning { color: var(--accent-amber); }
+        .result-value.danger { color: var(--accent-red); }
+
+        .result-detail {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* Visual Graph */
+        .performance-graph {
+            margin-top: 40px;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .graph-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .graph-title::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--gradient-cyan);
+            border-radius: 3px;
+        }
+
+        .graph-container {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            padding: 20px 0;
+        }
+
+        .graph-bar-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .graph-bar {
+            width: 100%;
+            background: var(--bg-primary);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .graph-bar-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .graph-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .zone-indicator {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--text-muted);
+            padding: 0 4px;
+        }
+
+        .zone-marker {
+            position: absolute;
+            top: 20px;
+            bottom: 28px;
+            border-left: 1px dashed var(--accent-cyan);
+            opacity: 0.5;
+        }
+
+        .zone-marker.start { left: 40%; }
+        .zone-marker.end { left: 70%; }
+
+        .zone-label {
+            position: absolute;
+            top: 0;
+            left: 40%;
+            width: 30%;
+            text-align: center;
+            font-size: 10px;
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Checklist Section */
+        .checklist-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .checklist-section h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .checklist-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .checklist-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent-amber);
+        }
+
+        .checklist-card ul {
+            list-style: none;
+        }
+
+        .checklist-card li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .checklist-card li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .meta-lesson {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .meta-lesson strong {
+            color: var(--accent-orange);
+        }
+
+        .meta-lesson p {
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        footer a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            header { padding: 60px 0 40px; }
+            .story-header { padding: 20px; }
+            .story-content { padding: 0 20px 20px 20px; }
+            .story-number { display: none; }
+            .simulator { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <div class="tag">Infographic • Ianuarie 2026 • Multi-Agent Orchestration</div>
+            <h1>Context Window Dynamics:<br>The Memory-Performance Paradox</h1>
+            <p class="subtitle">
+                Cum să extragi maximum de funcționalitate din Claude Code păstrând echilibrul fin 
+                între context bogat și raționament clar. Un ghid pentru orchestrarea la scală.
+            </p>
+            <div class="theme-tags">
+                <span class="theme-tag performance">Performanță & Scaling</span>
+                <span class="theme-tag architecture">Arhitectură Multi-Agent</span>
+                <span class="theme-tag strategy">Strategii de Compactare</span>
+                <span class="theme-tag tools">Tools & Hooks</span>
+            </div>
+        </header>
+
+        <section class="overview">
+            <h2>Anatomia problemei</h2>
+            <div class="signal-grid">
+                <div class="signal-card">
+                    <div class="signal-type">Constraint</div>
+                    <div class="signal-title">Attention Dilution</div>
+                    <div class="signal-desc">Context plin → atenție fragmentată → raționament superficial pe task-ul curent.</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-type">Sweet Spot</div>
+                    <div class="signal-title">40-70% Fill Rate</div>
+                    <div class="signal-desc">Zona optimă: suficient context pentru decizii, suficient spațiu pentru gândire.</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-type">Paradox</div>
+                    <div class="signal-title">Iluzia Completitudinii</div>
+                    <div class="signal-desc">Agentul "știe tot" dar nu mai poate sintetiza. 50 tab-uri deschise, zero focus.</div>
+                </div>
+                <div class="signal-card">
+                    <div class="signal-type">Solution</div>
+                    <div class="signal-title">Stateless Workers</div>
+                    <div class="signal-desc">Starea globală trăiește în afara contextului. Agenții primesc doar slice-uri.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stories">
+            <h2>5 Strategii de Optimizare</h2>
+            <p class="stories-intro">Click pentru detalii • Implementează progresiv</p>
+
+            <article class="story">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <span class="story-number">1</span>
+                    <div class="story-title-wrap">
+                        <div class="story-title">Compactare Agresivă — nu aștepta saturația</div>
+                        <div class="story-subtitle">Folosește /compact proactiv la ~50% pentru sarcini complexe, nu la warning</div>
+                    </div>
+                    <span class="story-toggle">▾</span>
+                </div>
+                <div class="story-content">
+                    <p>Promptul automat de compactare vine prea târziu. Până atunci, ai pierdut deja 
+                    capacitate de raționament pe parcursul a zeci de interacțiuni. Compactarea preventivă 
+                    păstrează claritatea mentală a agentului.</p>
+                    
+                    <h4>Pattern de implementare</h4>
+                    <ul>
+                        <li>Monitorizează procentul de context folosit (vizibil în UI)</li>
+                        <li>La 50% pe task-uri complexe → /compact manual</li>
+                        <li>La 60-65% pe task-uri simple → /compact</li>
+                        <li>Niciodată peste 80% pentru muncă creativă sau arhitecturală</li>
+                    </ul>
+
+                    <div class="heuristic">
+                        <strong>Heuristică:</strong>
+                        <p>Dacă observi că agentul repetă informații sau uită instrucțiuni recente, 
+                        ești deja în zona de degradare. Compactează imediat.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <span class="story-number">2</span>
+                    <div class="story-title-wrap">
+                        <div class="story-title">Ierarhizare prin CLAUDE.md — meta vs detalii</div>
+                        <div class="story-subtitle">Separă instrucțiunile arhitecturale de context task-specific</div>
+                    </div>
+                    <span class="story-toggle">▾</span>
+                </div>
+                <div class="story-content">
+                    <p>CLAUDE.md ar trebui să conțină doar principii, convenții și pattern-uri. 
+                    Detaliile specifice (schema DB, API specs, business logic) le injectezi per-task 
+                    prin sub-agenți care primesc doar ce e relevant pentru ei.</p>
+                    
+                    <h4>Ce pune în CLAUDE.md</h4>
+                    <ul>
+                        <li>Convenții de cod și structură de proiect</li>
+                        <li>Pattern-uri arhitecturale (nu implementări)</li>
+                        <li>Reguli de comunicare și raportare</li>
+                        <li>Granițe și responsabilități ale agenților</li>
+                    </ul>
+
+                    <h4>Ce NU pune în CLAUDE.md</h4>
+                    <ul>
+                        <li>Schema completă a bazei de date</li>
+                        <li>Documentație API exhaustivă</li>
+                        <li>Exemple de cod lungi</li>
+                        <li>Orice informație care se schimbă frecvent</li>
+                    </ul>
+
+                    <div class="heuristic">
+                        <strong>Heuristică:</strong>
+                        <p>Dacă o informație din CLAUDE.md nu e relevantă pentru 80%+ din task-uri, 
+                        nu ar trebui să fie acolo.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <span class="story-number">3</span>
+                    <div class="story-title-wrap">
+                        <div class="story-title">Modularizare prin Sub-Agenți Efemeri</div>
+                        <div class="story-subtitle">Orchestrator minimal + workers specializați care mor după task</div>
+                    </div>
+                    <span class="story-toggle">▾</span>
+                </div>
+                <div class="story-content">
+                    <p>În loc să încarci un singur agent cu tot contextul pentru sute de entități, 
+                    distribuie munca. Orchestratorul ține doar schema globală și delegă. Sub-agenții 
+                    primesc context minimal, execută, raportează rezultatul, și dispar.</p>
+                    
+                    <h4>Arhitectura recomandată</h4>
+                    <ul>
+                        <li><strong>Orchestrator:</strong> 20-30% context max, doar meta-view</li>
+                        <li><strong>API Designer:</strong> primește doar schema pentru 10-20 endpoints</li>
+                        <li><strong>DB Architect:</strong> primește doar entitățile relevante pentru task</li>
+                        <li><strong>Security Auditor:</strong> primește output-ul de review, nu tot codul</li>
+                    </ul>
+
+                    <h4>Beneficii la scală</h4>
+                    <ul>
+                        <li>Paralelism natural — 5-10 sub-agenți simultan</li>
+                        <li>Failure isolation — un agent blocat nu blochează tot</li>
+                        <li>Context fresh — fiecare worker începe curat</li>
+                    </ul>
+
+                    <div class="heuristic">
+                        <strong>Heuristică:</strong>
+                        <p>Dacă un sub-agent are nevoie de context de la alt sub-agent, 
+                        treci prin orchestrator cu un rezumat, nu cu raw data.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <span class="story-number">4</span>
+                    <div class="story-title-wrap">
+                        <div class="story-title">Checkpointing Explicit — state dump înainte de reset</div>
+                        <div class="story-subtitle">Forțează agentul să externalizeze starea înainte de compactare</div>
+                    </div>
+                    <span class="story-toggle">▾</span>
+                </div>
+                <div class="story-content">
+                    <p>Înainte de orice compactare sau switch de context major, cere agentului să 
+                    scrie un "state dump" structurat într-un fișier. După compactare, reîncarci 
+                    doar ce e relevant pentru faza următoare.</p>
+                    
+                    <h4>Format recomandat pentru checkpoint</h4>
+                    <ul>
+                        <li><strong>Completed:</strong> ce s-a finalizat și e stabil</li>
+                        <li><strong>In Progress:</strong> ce e parțial, cu starea curentă</li>
+                        <li><strong>Blocked:</strong> ce așteaptă input sau dependențe</li>
+                        <li><strong>Decisions:</strong> alegeri făcute și rațiunea lor</li>
+                        <li><strong>Next:</strong> pașii imediat următori</li>
+                    </ul>
+
+                    <h4>Workflow</h4>
+                    <ul>
+                        <li>Pre-compact: "Scrie starea curentă în .state/checkpoint.md"</li>
+                        <li>Compact: /compact</li>
+                        <li>Post-compact: "Citește .state/checkpoint.md, continuă de la [secțiune]"</li>
+                    </ul>
+
+                    <div class="heuristic">
+                        <strong>Heuristică:</strong>
+                        <p>Checkpoint-ul bun e cel pe care l-ai putea da unui alt developer 
+                        și ar înțelege exact unde să continue.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="story">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <span class="story-number">5</span>
+                    <div class="story-title-wrap">
+                        <div class="story-title">Hook-uri pentru Auto-Management</div>
+                        <div class="story-subtitle">Automatizează monitorizarea și acțiunile preventive</div>
+                    </div>
+                    <span class="story-toggle">▾</span>
+                </div>
+                <div class="story-content">
+                    <p>Claude Code suportă hooks care pot trigger-ui acțiuni bazate pe evenimente. 
+                    Configurează hooks care monitorizează starea și execută automat salvări, 
+                    compactări sau notificări.</p>
+                    
+                    <h4>Hook-uri utile</h4>
+                    <ul>
+                        <li><strong>Pre-message:</strong> verifică dimensiunea contextului</li>
+                        <li><strong>Post-tool:</strong> loghează acțiuni pentru audit</li>
+                        <li><strong>On-error:</strong> salvează state pentru recovery</li>
+                        <li><strong>Periodic:</strong> checkpoint automat la N mesaje</li>
+                    </ul>
+
+                    <h4>Exemplu de automatizare</h4>
+                    <ul>
+                        <li>La 60% context → auto-checkpoint</li>
+                        <li>La 75% context → warning în orchestrator</li>
+                        <li>La error → dump state + notificare</li>
+                        <li>La task complete → cleanup + raport</li>
+                    </ul>
+
+                    <div class="heuristic">
+                        <strong>Heuristică:</strong>
+                        <p>Hook-urile bune sunt invizibile — funcționează în background 
+                        și intervin doar când e necesar.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="simulator-section">
+            <h2>Simulatoare Interactive</h2>
+            <p class="simulator-intro">Ajustează parametrii • Observă impactul</p>
+
+            <div class="simulators">
+                <div class="simulator">
+                    <h3>Context Fill vs Performance</h3>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Context Window Fill Rate</span>
+                            <span class="slider-value" id="fill-value">50%</span>
+                        </div>
+                        <input type="range" min="10" max="100" value="50" id="fill-slider" oninput="updateSimulator()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Task Complexity</span>
+                            <span class="slider-value" id="complexity-value">5/10</span>
+                        </div>
+                        <input type="range" min="1" max="10" value="5" id="complexity-slider" oninput="updateSimulator()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Context Relevance</span>
+                            <span class="slider-value" id="relevance-value">7/10</span>
+                        </div>
+                        <input type="range" min="1" max="10" value="7" id="relevance-slider" oninput="updateSimulator()">
+                    </div>
+
+                    <div class="result-box">
+                        <div class="result-label">Expected Reasoning Quality</div>
+                        <div class="result-value optimal" id="quality-result">Optimal</div>
+                        <div class="result-detail" id="quality-detail">
+                            Context moderat cu relevanță ridicată. Agentul are suficient spațiu pentru raționament profund.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simulator">
+                    <h3>Multi-Agent Distribution</h3>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Number of Parallel Agents</span>
+                            <span class="slider-value" id="agents-value">5</span>
+                        </div>
+                        <input type="range" min="1" max="20" value="5" id="agents-slider" oninput="updateAgentSimulator()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Context per Agent</span>
+                            <span class="slider-value" id="agent-context-value">30%</span>
+                        </div>
+                        <input type="range" min="10" max="80" value="30" id="agent-context-slider" oninput="updateAgentSimulator()">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Orchestrator Overhead</span>
+                            <span class="slider-value" id="overhead-value">20%</span>
+                        </div>
+                        <input type="range" min="5" max="50" value="20" id="overhead-slider" oninput="updateAgentSimulator()">
+                    </div>
+
+                    <div class="result-box">
+                        <div class="result-label">System Efficiency Score</div>
+                        <div class="result-value optimal" id="efficiency-result">High</div>
+                        <div class="result-detail" id="efficiency-detail">
+                            Distribuție eficientă. Fiecare agent operează în zona optimă.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-graph">
+                <div class="graph-title">Performance vs Context Fill — Curba de Degradare</div>
+                <div class="graph-container" id="perf-graph">
+                    <div class="zone-label">SWEET SPOT</div>
+                    <div class="zone-marker start"></div>
+                    <div class="zone-marker end"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="checklist-section">
+            <h2>Checklist de Implementare</h2>
+            
+            <div class="checklist-grid">
+                <div class="checklist-card">
+                    <h4>◆ Pentru Orchestrator</h4>
+                    <ul>
+                        <li>CLAUDE.md conține doar meta-instrucțiuni</li>
+                        <li>State globală persistată în fișiere externe</li>
+                        <li>Sub-agenți primesc doar slice-uri relevante</li>
+                        <li>Checkpoint automat la 50% context</li>
+                        <li>Recovery plan pentru fiecare fază critică</li>
+                    </ul>
+                </div>
+                <div class="checklist-card">
+                    <h4>◆ Pentru Sub-Agenți</h4>
+                    <ul>
+                        <li>Context minimal — doar ce e necesar pentru task</li>
+                        <li>Output structurat și parsabil</li>
+                        <li>Raportare clară: done/blocked/needs-input</li>
+                        <li>Cleanup după finalizare</li>
+                        <li>Fără dependențe între sub-agenți</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="meta-lesson">
+                <strong>Meta-Lecție:</strong>
+                <p>Contextul nu e memorie — e atenție. Tratează-l ca pe cel mai prețios buget pe care îl ai. 
+                Fiecare token irelevant costă claritate pe care nu o mai recuperezi. 
+                Sistemele care scalează sunt cele care țin agenții "flămânzi" de context, nu "sătui".</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Context Window Dynamics • Multi-Agent Orchestration Guide • 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleStory(header) {
+            const story = header.closest('.story');
+            story.classList.toggle('expanded');
+        }
+
+        function updateSimulator() {
+            const fill = parseInt(document.getElementById('fill-slider').value);
+            const complexity = parseInt(document.getElementById('complexity-slider').value);
+            const relevance = parseInt(document.getElementById('relevance-slider').value);
+
+            document.getElementById('fill-value').textContent = fill + '%';
+            document.getElementById('complexity-value').textContent = complexity + '/10';
+            document.getElementById('relevance-value').textContent = relevance + '/10';
+
+            // Calculate quality
+            let baseQuality = 100;
+            
+            // Penalty for high fill
+            if (fill > 70) {
+                baseQuality -= (fill - 70) * 2;
+            } else if (fill < 30) {
+                baseQuality -= (30 - fill) * 0.5;
+            }
+            
+            // Complexity impact
+            if (fill > 60 && complexity > 6) {
+                baseQuality -= (complexity - 6) * 5;
+            }
+            
+            // Relevance bonus
+            baseQuality += (relevance - 5) * 3;
+            
+            baseQuality = Math.max(20, Math.min(100, baseQuality));
+
+            const resultEl = document.getElementById('quality-result');
+            const detailEl = document.getElementById('quality-detail');
+
+            if (baseQuality >= 80) {
+                resultEl.textContent = 'Optimal (' + Math.round(baseQuality) + '%)';
+                resultEl.className = 'result-value optimal';
+                detailEl.textContent = 'Echilibru bun între context și capacitate. Agentul poate raționa profund.';
+            } else if (baseQuality >= 60) {
+                resultEl.textContent = 'Acceptabil (' + Math.round(baseQuality) + '%)';
+                resultEl.className = 'result-value warning';
+                detailEl.textContent = 'Performanță rezonabilă dar nu ideală. Consideră compactare pentru task-uri critice.';
+            } else {
+                resultEl.textContent = 'Degradat (' + Math.round(baseQuality) + '%)';
+                resultEl.className = 'result-value danger';
+                detailEl.textContent = 'Atenție fragmentată. Compactare urgentă necesară. Risc de erori și omisiuni.';
+            }
+
+            updateGraph(fill);
+        }
+
+        function updateAgentSimulator() {
+            const agents = parseInt(document.getElementById('agents-slider').value);
+            const agentContext = parseInt(document.getElementById('agent-context-slider').value);
+            const overhead = parseInt(document.getElementById('overhead-slider').value);
+
+            document.getElementById('agents-value').textContent = agents;
+            document.getElementById('agent-context-value').textContent = agentContext + '%';
+            document.getElementById('overhead-value').textContent = overhead + '%';
+
+            // Calculate efficiency
+            let efficiency = 100;
+            
+            // Penalty for too many agents with high context
+            if (agents > 10 && agentContext > 50) {
+                efficiency -= 20;
+            }
+            
+            // Penalty for high overhead
+            efficiency -= overhead * 0.5;
+            
+            // Bonus for balanced distribution
+            if (agentContext >= 20 && agentContext <= 50 && agents >= 3 && agents <= 10) {
+                efficiency += 10;
+            }
+            
+            // Penalty for single agent with high context
+            if (agents <= 2 && agentContext > 60) {
+                efficiency -= 15;
+            }
+
+            efficiency = Math.max(30, Math.min(100, efficiency));
+
+            const resultEl = document.getElementById('efficiency-result');
+            const detailEl = document.getElementById('efficiency-detail');
+
+            if (efficiency >= 80) {
+                resultEl.textContent = 'High (' + Math.round(efficiency) + '%)';
+                resultEl.className = 'result-value optimal';
+                detailEl.textContent = 'Distribuție eficientă. Fiecare agent operează în zona optimă cu overhead controlat.';
+            } else if (efficiency >= 60) {
+                resultEl.textContent = 'Medium (' + Math.round(efficiency) + '%)';
+                resultEl.className = 'result-value warning';
+                detailEl.textContent = 'Funcțional dar suboptimal. Ajustează context per agent sau reduce overhead-ul.';
+            } else {
+                resultEl.textContent = 'Low (' + Math.round(efficiency) + '%)';
+                resultEl.className = 'result-value danger';
+                detailEl.textContent = 'Overhead prea mare sau distribuție ineficientă. Reconsideră arhitectura.';
+            }
+        }
+
+        function updateGraph(currentFill) {
+            const container = document.getElementById('perf-graph');
+            
+            // Clear existing bars
+            const existingBars = container.querySelectorAll('.graph-bar-wrap');
+            existingBars.forEach(bar => bar.remove());
+            
+            // Performance curve data (inverted U shape with peak around 50-60%)
+            const data = [
+                { fill: 10, perf: 45 },
+                { fill: 20, perf: 65 },
+                { fill: 30, perf: 80 },
+                { fill: 40, perf: 92 },
+                { fill: 50, perf: 98 },
+                { fill: 60, perf: 95 },
+                { fill: 70, perf: 85 },
+                { fill: 80, perf: 65 },
+                { fill: 90, perf: 40 },
+                { fill: 100, perf: 25 }
+            ];
+
+            data.forEach(point => {
+                const wrap = document.createElement('div');
+                wrap.className = 'graph-bar-wrap';
+                
+                const bar = document.createElement('div');
+                bar.className = 'graph-bar';
+                bar.style.height = '160px';
+                
+                const fill = document.createElement('div');
+                fill.className = 'graph-bar-fill';
+                fill.style.height = point.perf + '%';
+                
+                // Color based on zone
+                if (point.fill >= 40 && point.fill <= 70) {
+                    fill.style.background = 'var(--gradient-cyan)';
+                } else if (point.fill < 40) {
+                    fill.style.background = 'var(--gradient-purple)';
+                } else {
+                    fill.style.background = 'var(--gradient-orange)';
+                }
+                
+                // Highlight current
+                if (Math.abs(point.fill - currentFill) < 10) {
+                    fill.style.boxShadow = '0 0 20px rgba(255, 107, 53, 0.5)';
+                }
+                
+                bar.appendChild(fill);
+                wrap.appendChild(bar);
+                
+                const label = document.createElement('div');
+                label.className = 'graph-label';
+                label.textContent = point.fill + '%';
+                wrap.appendChild(label);
+                
+                container.appendChild(wrap);
+            });
+        }
+
+        // Initialize
+        updateSimulator();
+        updateAgentSimulator();
+    </script>
+</body>
+</html>

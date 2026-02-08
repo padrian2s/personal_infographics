@@ -1,0 +1,1919 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Energy Is Not a Thing — It Keeps Score (Infographics)</title>
+  <meta name="description" content="Interactive infographics: energy is not a substance; it's an accounting constraint emerging from symmetry." />
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1022;
+      --panel:#0E1630cc;
+      --card:#0E1733;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#AAB6DA;
+      --muted2:#7E8AB8;
+      --line:#1E2A55;
+      --glow:#7AA7FF;
+      --glow2:#A78BFA;
+      --ok:#6EE7B7;
+      --warn:#FDE68A;
+      --bad:#FDA4AF;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --shadow2: 0 16px 60px rgba(0,0,0,.55);
+
+      --radius: 18px;
+      --radius2: 26px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(122,167,255,.22), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(167,139,250,.18), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(110,231,183,.12), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1250px, 92vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ---------- Top hero ---------- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(122,167,255,.22);
+      background: linear-gradient(180deg, rgba(14,22,48,.66), rgba(11,16,34,.62));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 22px 22px 18px 22px;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(800px 280px at 20% 15%, rgba(122,167,255,.22), transparent 70%),
+        radial-gradient(700px 300px at 80% 35%, rgba(167,139,250,.18), transparent 68%),
+        radial-gradient(500px 260px at 40% 85%, rgba(110,231,183,.12), transparent 66%);
+      pointer-events:none;
+      filter: blur(0px);
+      opacity:.9;
+    }
+    .heroInner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:8px 8px 0 8px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.06;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size: 14.5px;
+      line-height:1.45;
+      max-width: 72ch;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:2px;
+    }
+    .chip{
+      border:1px solid rgba(234,240,255,.14);
+      background: rgba(7,10,18,.35);
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size:12.5px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .chip b{
+      color:var(--ink);
+      font-weight:650;
+    }
+    .chip i{
+      width:10px; height:10px; border-radius:999px;
+      display:inline-block;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.05);
+    }
+    .i1{background:var(--glow)}
+    .i2{background:var(--glow2)}
+    .i3{background:var(--ok)}
+    .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;
+      border:1px solid rgba(234,240,255,.14);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(7,10,18,.25), rgba(7,10,18,.55));
+      overflow:hidden;
+      padding: 14px;
+      min-height: 190px;
+    }
+    .heroViz canvas{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+    }
+    .heroViz .legend{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .legendRow{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .legendDot{
+      width:12px; height:12px;
+      border-radius:999px;
+      margin-top:3px;
+      background: rgba(122,167,255,.95);
+      box-shadow: 0 0 18px rgba(122,167,255,.6);
+      flex:0 0 auto;
+    }
+    .legendDot.p{ background: rgba(167,139,250,.95); box-shadow: 0 0 18px rgba(167,139,250,.55); }
+    .legendDot.t{ background: rgba(110,231,183,.95); box-shadow: 0 0 18px rgba(110,231,183,.5); }
+    .legendText{
+      font-size: 12.7px;
+      line-height:1.35;
+      color:var(--muted);
+    }
+    .legendText b{ color:var(--ink); font-weight:700 }
+
+    /* ---------- Layout columns ---------- */
+    .main{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .side{
+      position:sticky;
+      top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      padding-bottom: 18px;
+    }
+
+    /* ---------- Cards ---------- */
+    .card{
+      border:1px solid rgba(234,240,255,.13);
+      background: linear-gradient(180deg, rgba(14,23,51,.72), rgba(11,18,40,.68));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      padding: 16px 16px 10px 16px;
+      border-bottom:1px solid rgba(234,240,255,.08);
+      background: linear-gradient(180deg, rgba(7,10,18,.18), transparent);
+    }
+    .cardHeader h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: -.01em;
+    }
+    .cardHeader p{
+      margin:5px 0 0 0;
+      color:var(--muted);
+      font-size: 13px;
+      line-height:1.35;
+      max-width: 70ch;
+    }
+    .cardBody{ padding: 14px 16px 16px 16px; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+    }
+    .mini{
+      border:1px solid rgba(234,240,255,.12);
+      background: linear-gradient(180deg, rgba(7,10,18,.26), rgba(7,10,18,.55));
+      border-radius: 16px;
+      padding: 12px;
+      min-height: 120px;
+      position:relative;
+      overflow:hidden;
+    }
+    .mini h3{
+      margin:0;
+      font-size: 13.5px;
+      letter-spacing:-.01em;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .mini p{
+      margin:8px 0 0 0;
+      color:var(--muted);
+      font-size: 12.8px;
+      line-height:1.4;
+    }
+    .badge{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(234,240,255,.14);
+      color: rgba(234,240,255,.9);
+      background: rgba(0,0,0,.18);
+    }
+    .kpi{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi .n{
+      font-size: 28px;
+      letter-spacing:-.02em;
+      font-weight: 760;
+    }
+    .kpi .l{
+      font-size: 12px;
+      color:var(--muted2);
+      line-height:1.25;
+      max-width: 34ch;
+    }
+
+    /* ---------- Interactive controls ---------- */
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top: 10px;
+    }
+    .control{
+      flex: 1 1 180px;
+      border:1px solid rgba(234,240,255,.12);
+      background: rgba(7,10,18,.35);
+      border-radius: 14px;
+      padding: 10px;
+      min-width: 160px;
+    }
+    .control label{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 12px;
+      color:var(--muted);
+      margin-bottom: 8px;
+    }
+    .control input[type="range"]{
+      width:100%;
+      accent-color: var(--glow);
+    }
+    .control .value{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(234,240,255,.92);
+    }
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    button{
+      border:1px solid rgba(234,240,255,.14);
+      background: linear-gradient(180deg, rgba(122,167,255,.16), rgba(7,10,18,.35));
+      color: var(--ink);
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 650;
+      letter-spacing:-.01em;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+    }
+    button:hover{ transform: translateY(-1px); border-color: rgba(122,167,255,.35); }
+    button:active{ transform: translateY(0px); }
+    .ghost{
+      background: rgba(7,10,18,.25);
+    }
+    .danger{
+      background: linear-gradient(180deg, rgba(253,164,175,.14), rgba(7,10,18,.35));
+      border-color: rgba(253,164,175,.24);
+    }
+    .pill{
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: rgba(234,240,255,.9);
+      border: 1px solid rgba(234,240,255,.14);
+      background: rgba(0,0,0,.18);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    /* ---------- Diagram: Pendulum + accounting ---------- */
+    .vizBox{
+      border:1px solid rgba(234,240,255,.12);
+      background: linear-gradient(180deg, rgba(7,10,18,.25), rgba(7,10,18,.55));
+      border-radius: 18px;
+      overflow:hidden;
+      position:relative;
+      padding: 12px;
+    }
+    .vizTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .vizTop .left{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .vizTop .left .t{
+      font-size:13.2px;
+      font-weight: 720;
+      letter-spacing:-.01em;
+    }
+    .vizTop .left .d{
+      font-size: 12.2px;
+      color: var(--muted);
+      max-width: 70ch;
+      line-height:1.35;
+    }
+    .vizTop .right{
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    }
+
+    .bars{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .bar{
+      border:1px solid rgba(234,240,255,.12);
+      border-radius: 14px;
+      padding: 10px;
+      background: rgba(0,0,0,.16);
+    }
+    .barHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom: 8px;
+      gap:10px;
+    }
+    .barHead .name{
+      font-size:12.5px;
+      color: var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .sw{
+      width:10px; height:10px; border-radius:999px; display:inline-block;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.05);
+    }
+    .sw.p{ background: var(--glow2); }
+    .sw.k{ background: var(--glow); }
+    .sw.t{ background: var(--ok); }
+
+    .barHead .num{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(234,240,255,.9);
+    }
+    .barTrack{
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(234,240,255,.08);
+      overflow:hidden;
+      position:relative;
+    }
+    .barFill{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(122,167,255,.85), rgba(167,139,250,.85));
+      box-shadow: 0 0 18px rgba(122,167,255,.18);
+      transition: width .12s linear;
+    }
+    .barFill.p{ background: linear-gradient(90deg, rgba(167,139,250,.9), rgba(122,167,255,.75)); }
+    .barFill.t{ background: linear-gradient(90deg, rgba(110,231,183,.9), rgba(122,167,255,.55)); }
+
+    /* ---------- Commentary panel ---------- */
+    .commentary{
+      border:1px solid rgba(234,240,255,.14);
+      background: linear-gradient(180deg, rgba(14,22,48,.72), rgba(11,18,40,.68));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .commentaryHeader{
+      padding: 14px 14px 10px 14px;
+      border-bottom:1px solid rgba(234,240,255,.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .commentaryHeader .h{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .commentaryHeader .h b{
+      font-size: 13.5px;
+      letter-spacing:-.01em;
+    }
+    .commentaryHeader .h span{
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.35;
+    }
+    .toggle{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      font-size: 12px;
+      color: var(--muted);
+      user-select:none;
+    }
+    .switch{
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      border:1px solid rgba(234,240,255,.18);
+      background: rgba(0,0,0,.22);
+      position:relative;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+    .knob{
+      width: 18px;
+      height: 18px;
+      border-radius:999px;
+      background: rgba(234,240,255,.88);
+      position:absolute;
+      top: 2.5px;
+      left: 3px;
+      transition: left .14s ease, background .14s ease;
+      box-shadow: 0 6px 16px rgba(0,0,0,.45);
+    }
+    .switch.on{
+      background: rgba(122,167,255,.22);
+      border-color: rgba(122,167,255,.35);
+    }
+    .switch.on .knob{ left: 22px; background: rgba(234,240,255,.95); }
+
+    .commentaryBody{
+      padding: 12px 14px 14px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .note{
+      border:1px solid rgba(234,240,255,.12);
+      background: rgba(7,10,18,.32);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .note h4{
+      margin:0 0 6px 0;
+      font-size: 12.8px;
+      letter-spacing:-.01em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .note p{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.6px;
+      line-height:1.48;
+    }
+    .quote{
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height:1.5;
+      color: rgba(234,240,255,.9);
+      border-left: 3px solid rgba(122,167,255,.6);
+      padding-left: 10px;
+      margin-top: 8px;
+    }
+
+    /* ---------- Timeline / Flow ---------- */
+    .flow{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .step{
+      display:grid;
+      grid-template-columns: auto 1fr;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px;
+      border-radius: 16px;
+      border:1px solid rgba(234,240,255,.10);
+      background: rgba(0,0,0,.14);
+    }
+    .step .id{
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(234,240,255,.9);
+      border:1px solid rgba(234,240,255,.14);
+      background: rgba(0,0,0,.18);
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin-top: 2px;
+      white-space:nowrap;
+    }
+    .step .txt b{ color: var(--ink); }
+    .step .txt{
+      color: var(--muted);
+      font-size: 12.8px;
+      line-height:1.42;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer{
+      grid-column: 1 / -1;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height:1.45;
+      opacity:.95;
+      border:1px solid rgba(234,240,255,.10);
+      background: rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    .footer b{ color: rgba(234,240,255,.92) }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns: 1fr; }
+      .side{ position:relative; top:0; }
+      .heroInner{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    /* ---------- Micro animations ---------- */
+    .pulse{
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(122,167,255,0)); }
+      50%{ filter: drop-shadow(0 0 14px rgba(122,167,255,.28)); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-label="Energy is not a thing">
+      <div class="heroInner">
+        <div class="title">
+          <h1>Energy is not a thing.<br/>It’s a constraint that keeps score.</h1>
+          <p class="sub">
+            The familiar “fuel in a tank” picture feels safe — but it quietly smuggles in a false idea:
+            that energy is a substance living inside objects. This infographic treats energy as what it is in practice:
+            a <b>numerical bookkeeping rule</b> that stays balanced — and tells you what <b>cannot</b> happen, not why something happens.
+          </p>
+          <div class="chips" aria-label="Key claims">
+            <div class="chip"><i class="i1"></i><b>Not a substance</b> → not located “inside” objects</div>
+            <div class="chip"><i class="i2"></i><b>Reference-dependent</b> → zero choice changes values</div>
+            <div class="chip"><i class="i3"></i><b>Conservation</b> → a rule from symmetry</div>
+            <div class="chip"><i class="i4"></i><b>Explains nothing</b> → checks legality of outcomes</div>
+          </div>
+        </div>
+
+        <div class="heroViz" aria-label="Abstract score field visualization">
+          <canvas id="scoreField" aria-hidden="true"></canvas>
+          <div class="legend">
+            <div class="legendRow">
+              <span class="legendDot"></span>
+              <div class="legendText"><b>Score</b> stays balanced: the equations refuse drift.</div>
+            </div>
+            <div class="legendRow">
+              <span class="legendDot p"></span>
+              <div class="legendText"><b>Categories</b> (potential / kinetic / thermal) are optional slices.</div>
+            </div>
+            <div class="legendRow">
+              <span class="legendDot t"></span>
+              <div class="legendText"><b>Reality</b> is interactions + forces; energy is the constraint overlay.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="main">
+      <!-- Card 1: The quiet mistake -->
+      <section class="card" aria-label="The quiet mistake">
+        <header class="cardHeader">
+          <div>
+            <h2>The quiet mistake: treating a number like a thing</h2>
+            <p>
+              We say energy is “stored,” “flows,” “gets used up.” That language points at a substance.
+              But you can point to a car, a spring, a hot mug — and your finger never lands on “energy.”
+            </p>
+          </div>
+          <span class="badge">Misconception → Correction</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="grid3">
+            <div class="mini">
+              <h3>🧠 Intuition (feels solid)</h3>
+              <p>Energy sits inside objects like fuel. It moves around unchanged. Conservation “protects” a real stuff.</p>
+              <div class="kpi">
+                <div class="n" style="color:var(--warn)">Comfort</div>
+                <div class="l">Visualization feels like understanding.</div>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>🔎 Crack in the picture</h3>
+              <p>Change the <b>zero reference</b> and the energy value changes — with nothing physically happening.</p>
+              <div class="kpi">
+                <div class="n" style="color:var(--bad)">Uh-oh</div>
+                <div class="l">Real substances don’t behave like that.</div>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>🧾 What it really is</h3>
+              <p>Energy is a <b>numerical assignment to a situation</b> that stays balanced across time evolution.</p>
+              <div class="kpi">
+                <div class="n" style="color:var(--ok)">Clarity</div>
+                <div class="l">Bookkeeping can be exact without being tangible.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow" aria-label="Reasoning flow">
+            <div class="step">
+              <div class="id">STEP 01</div>
+              <div class="txt">You can <b>point to effects</b> (motion, heat, light), but not to “energy” itself.</div>
+            </div>
+            <div class="step">
+              <div class="id">STEP 02</div>
+              <div class="txt">Lift a book: you say it “has more energy,” yet the book didn’t gain a physical ingredient.</div>
+            </div>
+            <div class="step">
+              <div class="id">STEP 03</div>
+              <div class="txt">Change the reference: the number changes again. That’s a hallmark of a <b>description</b>, not a substance.</div>
+            </div>
+            <div class="step">
+              <div class="id">STEP 04</div>
+              <div class="txt">So the honest statement is: energy is a <b>score</b> assigned to situations that must remain consistent.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Reference point simulator -->
+      <section class="card" aria-label="Reference point simulator">
+        <header class="cardHeader">
+          <div>
+            <h2>Interactive: the “zero level” changes the number, not the world</h2>
+            <p>
+              Move the reference plane. Notice how potential energy values shift while the “total bookkeeping” can still stay consistent.
+              This is why energy behaves like an accounting entry.
+            </p>
+          </div>
+          <span class="badge">Reference dependence</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="vizBox" role="group" aria-label="Book on table visualization">
+            <div class="vizTop">
+              <div class="left">
+                <div class="t">Book + Gravity: “Energy belongs to the situation”</div>
+                <div class="d">Potential energy here is computed as <span class="pill">E = m·g·(h − h₀)</span>. Changing <span class="pill">h₀</span> changes E without moving the book.</div>
+              </div>
+              <div class="right">
+                <span class="pill">m = <span id="mVal">2.0</span> kg</span>
+                <span class="pill">g = 9.81</span>
+                <span class="pill">h = <span id="hVal">1.0</span> m</span>
+                <span class="pill">h₀ = <span id="h0Val">0.0</span> m</span>
+              </div>
+            </div>
+
+            <svg id="bookSvg" viewBox="0 0 820 240" width="100%" height="240" aria-label="Book and reference plane">
+              <defs>
+                <linearGradient id="gLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="rgba(122,167,255,.0)"/>
+                  <stop offset="0.5" stop-color="rgba(122,167,255,.7)"/>
+                  <stop offset="1" stop-color="rgba(122,167,255,.0)"/>
+                </linearGradient>
+                <linearGradient id="gBook" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="rgba(167,139,250,.85)"/>
+                  <stop offset="1" stop-color="rgba(122,167,255,.55)"/>
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feColorMatrix in="blur" type="matrix"
+                    values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 .55 0" result="glow"/>
+                  <feMerge>
+                    <feMergeNode in="glow"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- background grid -->
+              <g opacity=".35">
+                <rect x="0" y="0" width="820" height="240" fill="rgba(0,0,0,.0)"/>
+                <g stroke="rgba(234,240,255,.08)">
+                  <path d="M0 200 H820" />
+                  <path d="M0 160 H820" />
+                  <path d="M0 120 H820" />
+                  <path d="M0 80 H820" />
+                  <path d="M0 40 H820" />
+                  <path d="M100 0 V240" />
+                  <path d="M200 0 V240" />
+                  <path d="M300 0 V240" />
+                  <path d="M400 0 V240" />
+                  <path d="M500 0 V240" />
+                  <path d="M600 0 V240" />
+                  <path d="M700 0 V240" />
+                </g>
+              </g>
+
+              <!-- table -->
+              <g>
+                <rect x="70" y="190" width="680" height="22" rx="10" fill="rgba(234,240,255,.08)" stroke="rgba(234,240,255,.12)"/>
+                <rect x="70" y="212" width="680" height="6" rx="3" fill="rgba(234,240,255,.06)"/>
+                <text x="78" y="205" fill="rgba(234,240,255,.72)" font-size="12" font-family="ui-monospace, Menlo, monospace">TABLE</text>
+              </g>
+
+              <!-- reference plane (h0) -->
+              <g id="refPlane">
+                <path id="refLine" d="M70 160 H750" stroke="url(#gLine)" stroke-width="3" />
+                <text id="refText" x="755" y="164" fill="rgba(234,240,255,.78)" font-size="12" font-family="ui-monospace, Menlo, monospace">h₀</text>
+              </g>
+
+              <!-- book -->
+              <g id="bookGroup" filter="url(#softGlow)">
+                <rect id="book" x="560" y="120" width="110" height="46" rx="10" fill="url(#gBook)" stroke="rgba(234,240,255,.18)"/>
+                <path d="M570 130 H660" stroke="rgba(234,240,255,.24)" />
+                <path d="M570 142 H650" stroke="rgba(234,240,255,.18)" />
+                <path d="M570 154 H645" stroke="rgba(234,240,255,.14)" />
+                <text x="572" y="112" fill="rgba(234,240,255,.75)" font-size="12" font-family="ui-monospace, Menlo, monospace">BOOK</text>
+              </g>
+
+              <!-- height marker -->
+              <g id="hMarker" opacity=".9">
+                <path id="hLine" d="M540 166 V190" stroke="rgba(234,240,255,.22)" stroke-width="2"/>
+                <path id="hArrow1" d="M540 166 l-6 8 M540 166 l6 8" stroke="rgba(234,240,255,.22)" stroke-width="2" fill="none"/>
+                <path id="hArrow2" d="M540 190 l-6 -8 M540 190 l6 -8" stroke="rgba(234,240,255,.22)" stroke-width="2" fill="none"/>
+                <text id="hText" x="548" y="182" fill="rgba(234,240,255,.78)" font-size="12" font-family="ui-monospace, Menlo, monospace">h</text>
+              </g>
+
+              <!-- numeric readout -->
+              <g>
+                <rect x="70" y="18" width="360" height="58" rx="14" fill="rgba(0,0,0,.18)" stroke="rgba(234,240,255,.12)"/>
+                <text x="86" y="42" fill="rgba(234,240,255,.86)" font-size="12" font-family="ui-monospace, Menlo, monospace">Potential energy</text>
+                <text id="eRead" x="86" y="64" fill="rgba(122,167,255,.92)" font-size="18" font-family="ui-monospace, Menlo, monospace">E = 19.62 J</text>
+              </g>
+
+              <!-- warning -->
+              <g id="warnBox" opacity=".0">
+                <rect x="450" y="18" width="300" height="58" rx="14" fill="rgba(0,0,0,.18)" stroke="rgba(253,164,175,.35)"/>
+                <text x="466" y="42" fill="rgba(234,240,255,.86)" font-size="12" font-family="ui-monospace, Menlo, monospace">Notice</text>
+                <text x="466" y="64" fill="rgba(253,164,175,.88)" font-size="12" font-family="ui-monospace, Menlo, monospace">Change h₀ ⇒ E changes, object doesn’t.</text>
+              </g>
+            </svg>
+
+            <div class="controls" aria-label="Controls for reference dependence">
+              <div class="control">
+                <label>
+                  <span>Book height (h)</span>
+                  <span class="value"><span id="hOut">1.00</span> m</span>
+                </label>
+                <input id="hRange" type="range" min="0.2" max="1.8" step="0.01" value="1.00"/>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Zero reference (h₀)</span>
+                  <span class="value"><span id="h0Out">0.00</span> m</span>
+                </label>
+                <input id="h0Range" type="range" min="-0.6" max="1.6" step="0.01" value="0.00"/>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Mass (m)</span>
+                  <span class="value"><span id="mOut">2.00</span> kg</span>
+                </label>
+                <input id="mRange" type="range" min="0.5" max="10" step="0.1" value="2.0"/>
+              </div>
+            </div>
+
+            <div class="btnRow">
+              <button id="btnSnapTable" class="ghost" title="Set reference to tabletop">
+                ↧ Snap h₀ to table
+                <span class="pill">h₀ ≈ 0.0</span>
+              </button>
+              <button id="btnShiftRef" title="Shift reference without moving the book">
+                ⇄ Shift reference only
+                <span class="pill">Δh₀</span>
+              </button>
+              <button id="btnReset" class="danger" title="Reset">
+                ⟲ Reset
+              </button>
+            </div>
+
+          </div>
+
+          <div style="margin-top:12px; color:var(--muted); font-size:12.8px; line-height:1.45;">
+            <b>Interpretation:</b> If energy were a physical “stuff,” changing your measuring zero wouldn’t change how much stuff exists.
+            But here the number changes purely because the <i>description</i> changed. That’s the “polite collapse” of the fuel metaphor.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Conservation without substance -->
+      <section class="card" aria-label="Conservation without substance">
+        <header class="cardHeader">
+          <div>
+            <h2>Conservation protects a relationship, not a substance</h2>
+            <p>
+              In the pendulum story, it feels like “energy” sloshes between containers (potential ↔ kinetic).
+              But what actually moves is the pendulum; the “moving thing” is your numerical partition.
+            </p>
+          </div>
+          <span class="badge">Rule ≠ Thing</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="vizBox" aria-label="Pendulum accounting simulator">
+            <div class="vizTop">
+              <div class="left">
+                <div class="t">Interactive: “sloshing” is just bookkeeping</div>
+                <div class="d">
+                  Drag the bob or hit <span class="pill">Run</span>. The split between potential and kinetic changes, but the total stays constant.
+                  Toggle “friction” to watch kinetic bleed into thermal — not as a costume change, but as a re-labeling of motion distribution.
+                </div>
+              </div>
+              <div class="right">
+                <button id="btnRun" class="pulse">▶ Run</button>
+                <button id="btnPause" class="ghost">❚❚ Pause</button>
+                <button id="btnFriction" class="ghost">🟢 Friction: OFF</button>
+              </div>
+            </div>
+
+            <svg id="pendSvg" viewBox="0 0 820 300" width="100%" height="300" aria-label="Pendulum diagram">
+              <defs>
+                <linearGradient id="rodGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="rgba(234,240,255,.28)"/>
+                  <stop offset="1" stop-color="rgba(234,240,255,.10)"/>
+                </linearGradient>
+                <filter id="bobGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="8" result="b"/>
+                  <feColorMatrix in="b" type="matrix"
+                    values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 .45 0" result="g"/>
+                  <feMerge>
+                    <feMergeNode in="g"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- background -->
+              <rect x="0" y="0" width="820" height="300" fill="rgba(0,0,0,.0)"/>
+              <g opacity=".4" stroke="rgba(234,240,255,.08)">
+                <path d="M0 260 H820" />
+                <path d="M0 220 H820" />
+                <path d="M0 180 H820" />
+                <path d="M0 140 H820" />
+                <path d="M0 100 H820" />
+                <path d="M0 60 H820" />
+                <path d="M100 0 V300" />
+                <path d="M200 0 V300" />
+                <path d="M300 0 V300" />
+                <path d="M400 0 V300" />
+                <path d="M500 0 V300" />
+                <path d="M600 0 V300" />
+                <path d="M700 0 V300" />
+              </g>
+
+              <!-- pivot -->
+              <g>
+                <circle cx="410" cy="60" r="8" fill="rgba(234,240,255,.75)"/>
+                <circle cx="410" cy="60" r="16" fill="rgba(234,240,255,.08)" stroke="rgba(234,240,255,.12)"/>
+                <text x="430" y="64" fill="rgba(234,240,255,.70)" font-size="12" font-family="ui-monospace, Menlo, monospace">pivot</text>
+              </g>
+
+              <!-- equilibrium vertical -->
+              <path d="M410 60 V260" stroke="rgba(234,240,255,.12)" stroke-dasharray="6 6"/>
+
+              <!-- arc -->
+              <path d="M280 240 A210 210 0 0 1 540 240" fill="none" stroke="rgba(122,167,255,.14)" stroke-width="2"/>
+              <text x="556" y="245" fill="rgba(122,167,255,.65)" font-size="12" font-family="ui-monospace, Menlo, monospace">path (many possible)</text>
+
+              <!-- rod + bob (updated by JS) -->
+              <g id="pendulum">
+                <path id="rod" d="M410 60 L520 220" stroke="url(#rodGrad)" stroke-width="6" stroke-linecap="round"/>
+                <circle id="bob" cx="520" cy="220" r="18" fill="rgba(122,167,255,.85)" filter="url(#bobGlow)" />
+              </g>
+
+              <!-- draggable handle -->
+              <circle id="handle" cx="520" cy="220" r="26" fill="rgba(0,0,0,.0)" stroke="rgba(234,240,255,.10)"/>
+
+              <!-- labels -->
+              <g>
+                <rect x="24" y="18" width="360" height="72" rx="14" fill="rgba(0,0,0,.18)" stroke="rgba(234,240,255,.12)"/>
+                <text x="40" y="44" fill="rgba(234,240,255,.86)" font-size="12" font-family="ui-monospace, Menlo, monospace">Key idea</text>
+                <text x="40" y="66" fill="rgba(234,240,255,.72)" font-size="12" font-family="ui-monospace, Menlo, monospace">
+                  Energy “moves” only as numbers in your partition.
+                </text>
+              </g>
+            </svg>
+
+            <div class="bars" aria-label="Energy bars">
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw p"></span>Potential (choice-dependent)</div>
+                  <div class="num"><span id="potNum">0.00</span></div>
+                </div>
+                <div class="barTrack"><div id="potFill" class="barFill p"></div></div>
+              </div>
+
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw k"></span>Kinetic</div>
+                  <div class="num"><span id="kinNum">0.00</span></div>
+                </div>
+                <div class="barTrack"><div id="kinFill" class="barFill"></div></div>
+              </div>
+
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw t"></span>Thermal (when friction ON)</div>
+                  <div class="num"><span id="thNum">0.00</span></div>
+                </div>
+                <div class="barTrack"><div id="thFill" class="barFill t"></div></div>
+              </div>
+
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw" style="background:rgba(234,240,255,.75)"></span>Total (invariant)</div>
+                  <div class="num"><span id="totNum">0.00</span></div>
+                </div>
+                <div class="barTrack"><div id="totFill" class="barFill" style="background:linear-gradient(90deg, rgba(234,240,255,.55), rgba(234,240,255,.18));"></div></div>
+              </div>
+            </div>
+
+            <div class="controls" aria-label="Accounting controls">
+              <div class="control">
+                <label>
+                  <span>Reference offset (adds to potential)</span>
+                  <span class="value">Δ = <span id="refOut">0.00</span></span>
+                </label>
+                <input id="refRange" type="range" min="-1" max="1" step="0.01" value="0" />
+              </div>
+              <div class="control">
+                <label>
+                  <span>Time symmetry “strictness”</span>
+                  <span class="value"><span id="symOut">1.00</span></span>
+                </label>
+                <input id="symRange" type="range" min="0.7" max="1" step="0.01" value="1" />
+              </div>
+              <div class="control">
+                <label>
+                  <span>Friction strength (if ON)</span>
+                  <span class="value"><span id="frOut">0.08</span></span>
+                </label>
+                <input id="frRange" type="range" min="0.01" max="0.20" step="0.01" value="0.08" />
+              </div>
+            </div>
+
+            <div style="margin-top:12px; color:var(--muted); font-size:12.8px; line-height:1.45;">
+              <b>What this shows:</b> you can change the <i>split</i> (what you call “potential” vs “kinetic”) with reference choices —
+              yet the total stays fixed. That’s conservation as a <b>relationship</b>, not “a substance refusing to disappear.”
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: What energy can and cannot do -->
+      <section class="card" aria-label="Energy cannot explain causation">
+        <header class="cardHeader">
+          <div>
+            <h2>Energy doesn’t cause anything. It permits or forbids outcomes.</h2>
+            <p>
+              Saying “it happened because energy converted” feels like an explanation, but it’s not.
+              Forces and interactions drive motion; energy checks whether the before/after bookkeeping is legal.
+            </p>
+          </div>
+          <span class="badge">Causation vs Constraint</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="grid2">
+            <div class="mini">
+              <h3>✅ What energy is good for</h3>
+              <p>
+                • Bounding what’s possible<br/>
+                • Spotting impossible claims (“more out than in”)<br/>
+                • Predicting endpoints / speeds / limits<br/>
+                • Compressing complex behavior into a single invariant
+              </p>
+              <div class="kpi">
+                <div class="n" style="color:var(--ok)">Constraint</div>
+                <div class="l">A universal consistency check.</div>
+              </div>
+            </div>
+
+            <div class="mini">
+              <h3>❌ What energy cannot do</h3>
+              <p>
+                • Tell you the path taken<br/>
+                • Choose between behaviors with same total<br/>
+                • Replace forces / interactions / dynamics<br/>
+                • Become a “stuff” you can locate in space
+              </p>
+              <div class="kpi">
+                <div class="n" style="color:var(--bad)">Not cause</div>
+                <div class="l">It never “pushes” the world.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow">
+            <div class="step">
+              <div class="id">EXAMPLE</div>
+              <div class="txt">
+                “The stone falls because potential turns into kinetic” feels complete — but the causal core is:
+                <b>gravity accelerates it</b>. Energy only tallies the before/after and caps what can happen.
+              </div>
+            </div>
+            <div class="step">
+              <div class="id">KEY SHIFT</div>
+              <div class="txt">
+                Energy is not the story. It’s the <b>bookkeeping rule</b> every story must obey.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Card 5: Many kinds of energy are human partitions -->
+      <section class="card" aria-label="Many energies are optional partitions">
+        <header class="cardHeader">
+          <div>
+            <h2>“Kinds of energy” are accounting categories — not nature’s taxonomy</h2>
+            <p>
+              Kinetic, potential, thermal, chemical, field… feels like a list of substances.
+              But theories slice the same conserved total differently depending on convenience.
+            </p>
+          </div>
+          <span class="badge">Optional partitions</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="grid3">
+            <div class="mini">
+              <h3>📦 The temptation</h3>
+              <p>Many boxes imply many “things.” When friction happens, you imagine a costume change: kinetic → thermal.</p>
+            </div>
+            <div class="mini">
+              <h3>🧩 The reality</h3>
+              <p>Microscopic motions redistribute; your labels follow. The partition changes because it helps calculation, not because nature declared a boundary.</p>
+            </div>
+            <div class="mini">
+              <h3>🧠 The punchline</h3>
+              <p>There is one conserved number. Everything else is a bookkeeping strategy.</p>
+            </div>
+          </div>
+
+          <div class="vizBox" style="margin-top:12px;">
+            <div class="vizTop">
+              <div class="left">
+                <div class="t">Partition builder: slice the same “total” however you want</div>
+                <div class="d">Drag sliders to “invent” categories. The total stays; category names are yours.</div>
+              </div>
+              <div class="right">
+                <span class="pill">Total = <span id="partTot">100</span></span>
+                <button id="btnRandomize" class="ghost">🎲 Randomize</button>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label><span>“Kinetic”</span><span class="value"><span id="pKin">35</span></span></label>
+                <input id="sKin" type="range" min="0" max="100" step="1" value="35"/>
+              </div>
+              <div class="control">
+                <label><span>“Potential”</span><span class="value"><span id="pPot">35</span></span></label>
+                <input id="sPot" type="range" min="0" max="100" step="1" value="35"/>
+              </div>
+              <div class="control">
+                <label><span>“Thermal”</span><span class="value"><span id="pTh">30</span></span></label>
+                <input id="sTh" type="range" min="0" max="100" step="1" value="30"/>
+              </div>
+            </div>
+
+            <div class="bars" style="grid-template-columns: 1fr;">
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw k"></span>Chosen partition (arbitrary labels)</div>
+                  <div class="num"><span id="partRead">K 35 | P 35 | T 30</span></div>
+                </div>
+                <div class="barTrack">
+                  <div id="segKin" class="barFill" style="width:35%; border-radius:999px 0 0 999px;"></div>
+                  <div id="segPot" class="barFill p" style="width:35%; margin-left:35%; border-radius:0;"></div>
+                  <div id="segTh" class="barFill t" style="width:30%; margin-left:70%; border-radius:0 999px 999px 0;"></div>
+                </div>
+              </div>
+              <div class="bar">
+                <div class="barHead">
+                  <div class="name"><span class="sw" style="background:rgba(234,240,255,.75)"></span>Total (the only invariant)</div>
+                  <div class="num"><span id="partInvariant">100</span></div>
+                </div>
+                <div class="barTrack"><div class="barFill" style="width:100%; background:linear-gradient(90deg, rgba(234,240,255,.45), rgba(234,240,255,.16));"></div></div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; color:var(--muted); font-size:12.8px; line-height:1.45;">
+              <b>Takeaway:</b> if categories can be redefined, invented, merged, or removed across theories,
+              they’re not “substances.” They’re human-friendly partitions of a single conserved score.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Symmetry → conservation -->
+      <section class="card" aria-label="Symmetry and conservation">
+        <header class="cardHeader">
+          <div>
+            <h2>Why conservation feels “cosmic”: it drops out of symmetry</h2>
+            <p>
+              The deepest point in the text: conservation isn’t guarding a reservoir.
+              It’s what you get when the laws don’t change over time — a structural constraint of the equations.
+            </p>
+          </div>
+          <span class="badge">Symmetry → invariant</span>
+        </header>
+
+        <div class="cardBody">
+          <div class="grid2">
+            <div class="mini">
+              <h3>⏱️ Time-translation symmetry</h3>
+              <p>If doing the same experiment tomorrow uses the same laws as today, the math yields a conserved quantity.</p>
+              <div class="kpi">
+                <div class="n" style="color:var(--glow)">Same laws</div>
+                <div class="l">“Time behaves the same today as yesterday.”</div>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>🔒 Conserved quantity</h3>
+              <p>That conserved quantity is what we call <b>energy</b>. It stays fixed because the structure demands it.</p>
+              <div class="kpi">
+                <div class="n" style="color:var(--ok)">Same total</div>
+                <div class="l">Not a “tank” — an invariant.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow" style="margin-top:12px;">
+            <div class="step">
+              <div class="id">DISCIPLINE</div>
+              <div class="txt">
+                Stop inventing stories when the numbers already work. Accept abstraction without apology.
+              </div>
+            </div>
+            <div class="step">
+              <div class="id">AWE</div>
+              <div class="txt">
+                Reality isn’t obligated to be visualizable. Energy “works without a picture.”
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px; color:var(--muted); font-size:12.8px; line-height:1.45;">
+            This is the “cold clarity” ending: understanding may mean surrendering comfort-first intuition,
+            and treating physics as a network of <b>restrictions</b> more than a gallery of mechanisms.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SIDE: Commentary -->
+    <aside class="side" aria-label="Commentary panel">
+      <section class="commentary">
+        <div class="commentaryHeader">
+          <div class="h">
+            <b>Commentary layer</b>
+            <span>Read the text as an argument about language, intuition, and what counts as “explanation.”</span>
+          </div>
+          <div class="toggle" title="Toggle concise vs expanded commentary">
+            <span>Expanded</span>
+            <div id="cSwitch" class="switch on" role="switch" aria-checked="true" tabindex="0">
+              <div class="knob"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commentaryBody" id="commentaryBody">
+          <div class="note">
+            <h4>1) The “polite mistake” is linguistic</h4>
+            <p>
+              The text attacks verbs like “stored,” “flows,” “used up.” Those verbs imply a thing.
+              The critique is not that energy is useless — it’s that the metaphor becomes a belief and blocks deeper thinking.
+            </p>
+            <div class="quote">If you insist every concept must have a picture, you quietly limit what reality is allowed to be.</div>
+          </div>
+
+          <div class="note">
+            <h4>2) Reference dependence is the tell</h4>
+            <p>
+              A real “substance” shouldn’t change when you change the zero point.
+              Energy assignments do — because they’re <b>situational numbers</b>. The world didn’t change; your bookkeeping did.
+            </p>
+          </div>
+
+          <div class="note">
+            <h4>3) Conservation is not a cosmic warehouse</h4>
+            <p>
+              Conservation looks like “something indestructible survives,” but it’s really a fixed relationship demanded by the laws.
+              The strongest version: energy is conserved because of <b>time symmetry</b>.
+            </p>
+          </div>
+
+          <div class="note">
+            <h4>4) “Energy explains” is a category error</h4>
+            <p>
+              The text draws a sharp line:
+              <b>forces/interactions</b> cause motion; energy is a constraint that checks legality.
+              Saying “it happened because energy converted” is rhetorical closure, not mechanism.
+            </p>
+          </div>
+
+          <div class="note">
+            <h4>5) Many energies are optional partitions</h4>
+            <p>
+              “Kinds of energy” shift across theories because they’re human slicing strategies.
+              The only non-optional thing is the total conserved number.
+            </p>
+          </div>
+
+          <div class="note">
+            <h4>6) Why :contentReference[oaicite:1]{index=1} matters here</h4>
+            <p>
+              The argument uses his stance as a discipline: refuse comforting pictures when honesty is “it’s a number that stays the same.”
+              That is not anti-intuition — it’s anti-fake-intuition.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Quick glossary">
+        <header class="cardHeader">
+          <div>
+            <h2>Mini glossary (clean meanings)</h2>
+            <p>Small anchor points so the abstraction doesn’t feel like hand-waving.</p>
+          </div>
+        </header>
+        <div class="cardBody">
+          <div class="flow">
+            <div class="step">
+              <div class="id">Energy</div>
+              <div class="txt">A computed number assigned to a system/situation; conserved under time symmetry.</div>
+            </div>
+            <div class="step">
+              <div class="id">Conserved</div>
+              <div class="txt">Doesn’t change as the system evolves (given the same laws).</div>
+            </div>
+            <div class="step">
+              <div class="id">Explains</div>
+              <div class="txt">In dynamics: a mechanism (forces/interactions). Energy is not that; it’s a constraint.</div>
+            </div>
+            <div class="step">
+              <div class="id">“Kinds”</div>
+              <div class="txt">Bookkeeping categories (kinetic/potential/thermal) chosen for convenience, not fundamental substances.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Footer -->
+    <div class="footer" aria-label="Footer note">
+      <b>Design note:</b> This page intentionally separates “mechanism” (forces, interactions) from “accounting” (energy).
+      If you want, I can generate a version with a second lens for <b>Noether’s theorem</b> visuals or add a “common classroom misconceptions” quiz mode.
+    </div>
+  </div>
+
+  <script>
+    /* ---------------------------
+      HERO: score field particles
+    ----------------------------*/
+    (function heroField(){
+      const canvas = document.getElementById('scoreField');
+      const ctx = canvas.getContext('2d');
+      let w=0,h=0, dpr= Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const N = 120;
+      const pts = Array.from({length:N}, ()=>({
+        x: Math.random(), y: Math.random(),
+        vx: (Math.random()-.5)*0.12, vy: (Math.random()-.5)*0.12,
+        k: Math.random()
+      }));
+
+      function resize(){
+        const r = canvas.getBoundingClientRect();
+        w = Math.max(1, Math.floor(r.width));
+        h = Math.max(1, Math.floor(r.height));
+        canvas.width = Math.floor(w*dpr);
+        canvas.height = Math.floor(h*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      window.addEventListener('resize', resize, {passive:true});
+      resize();
+
+      let t0 = performance.now();
+      function tick(t){
+        const dt = Math.min(0.05, (t - t0)/1000);
+        t0 = t;
+
+        ctx.clearRect(0,0,w,h);
+
+        // subtle gradient wash
+        const g = ctx.createRadialGradient(w*0.25,h*0.2, 20, w*0.25,h*0.2, Math.max(w,h));
+        g.addColorStop(0, 'rgba(122,167,255,0.12)');
+        g.addColorStop(0.5, 'rgba(167,139,250,0.08)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,w,h);
+
+        // points move
+        for(const p of pts){
+          p.x += p.vx*dt;
+          p.y += p.vy*dt;
+
+          // wrap
+          if(p.x<0) p.x+=1;
+          if(p.x>1) p.x-=1;
+          if(p.y<0) p.y+=1;
+          if(p.y>1) p.y-=1;
+        }
+
+        // connections
+        for(let i=0;i<N;i++){
+          const a = pts[i];
+          const ax=a.x*w, ay=a.y*h;
+          for(let j=i+1;j<N;j++){
+            const b = pts[j];
+            const bx=b.x*w, by=b.y*h;
+            const dx=ax-bx, dy=ay-by;
+            const d2=dx*dx+dy*dy;
+            if(d2 < 160*160){
+              const d = Math.sqrt(d2);
+              const alpha = (1 - d/160) * 0.22;
+              // hue blend (score categories)
+              const mix = (a.k + b.k)*0.5;
+              let col = `rgba(122,167,255,${alpha})`;
+              if(mix>0.66) col = `rgba(167,139,250,${alpha})`;
+              else if(mix<0.33) col = `rgba(110,231,183,${alpha*0.95})`;
+              ctx.strokeStyle = col;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(ax,ay);
+              ctx.lineTo(bx,by);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // points
+        for(const p of pts){
+          const x=p.x*w, y=p.y*h;
+          const glow = 6 + p.k*8;
+          ctx.fillStyle = `rgba(234,240,255,0.08)`;
+          ctx.beginPath();
+          ctx.arc(x,y,glow,0,Math.PI*2);
+          ctx.fill();
+
+          let core='rgba(122,167,255,0.85)';
+          if(p.k>0.66) core='rgba(167,139,250,0.85)';
+          if(p.k<0.33) core='rgba(110,231,183,0.8)';
+          ctx.fillStyle = core;
+          ctx.beginPath();
+          ctx.arc(x,y,2.2,0,Math.PI*2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    /* ---------------------------
+      BOOK: reference dependence
+    ----------------------------*/
+    (function bookSim(){
+      const hR = document.getElementById('hRange');
+      const h0R = document.getElementById('h0Range');
+      const mR = document.getElementById('mRange');
+
+      const hOut = document.getElementById('hOut');
+      const h0Out = document.getElementById('h0Out');
+      const mOut = document.getElementById('mOut');
+
+      const hVal = document.getElementById('hVal');
+      const h0Val = document.getElementById('h0Val');
+      const mVal = document.getElementById('mVal');
+
+      const eRead = document.getElementById('eRead');
+      const book = document.getElementById('book');
+      const bookGroup = document.getElementById('bookGroup');
+      const refLine = document.getElementById('refLine');
+      const refText = document.getElementById('refText');
+      const warnBox = document.getElementById('warnBox');
+      const hLine = document.getElementById('hLine');
+      const hText = document.getElementById('hText');
+
+      const btnSnap = document.getElementById('btnSnapTable');
+      const btnShift = document.getElementById('btnShiftRef');
+      const btnReset = document.getElementById('btnReset');
+
+      const g = 9.81;
+
+      // map meters to svg y (higher h => smaller y)
+      const yTable = 190;        // table top y reference in svg
+      const pxPerM = 55;         // scale
+      const bookHeightPx = 46;   // svg book rect height
+
+      let lastH0 = parseFloat(h0R.value);
+
+      function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
+
+      function update(){
+        const h = parseFloat(hR.value);
+        const h0 = parseFloat(h0R.value);
+        const m = parseFloat(mR.value);
+
+        hOut.textContent = h.toFixed(2);
+        h0Out.textContent = h0.toFixed(2);
+        mOut.textContent = m.toFixed(2);
+
+        hVal.textContent = h.toFixed(1);
+        h0Val.textContent = h0.toFixed(1);
+        mVal.textContent = m.toFixed(1);
+
+        const dh = (h - h0);
+        const E = m * g * dh;
+
+        eRead.textContent = `E = ${E.toFixed(2)} J`;
+
+        // place book at height h above table:
+        const yBookTop = yTable - (h*pxPerM) - bookHeightPx;
+        book.setAttribute('y', String(yBookTop));
+        book.setAttribute('x', "560");
+
+        // update height marker between book bottom and table
+        const yBookBottom = yBookTop + bookHeightPx;
+        hLine.setAttribute('d', `M540 ${yBookBottom} V${yTable}`);
+        hText.setAttribute('y', String((yBookBottom + yTable)/2 + 4));
+
+        // reference plane at h0 relative to table
+        const yRef = yTable - (h0*pxPerM);
+        refLine.setAttribute('d', `M70 ${yRef} H750`);
+        refText.setAttribute('y', String(yRef + 4));
+
+        // show warning when h0 changes but h same (shift only)
+        const dh0 = Math.abs(h0 - lastH0);
+        warnBox.setAttribute('opacity', dh0 > 0.15 ? "1.0" : "0.0");
+
+        lastH0 = h0;
+      }
+
+      function reset(){
+        hR.value = "1.00";
+        h0R.value = "0.00";
+        mR.value = "2.0";
+        lastH0 = 0;
+        update();
+        warnBox.setAttribute('opacity', "0.0");
+      }
+
+      btnSnap.addEventListener('click', ()=>{
+        h0R.value = "0.00";
+        update();
+      });
+
+      btnShift.addEventListener('click', ()=>{
+        // shift h0 only, keep h fixed
+        const h0 = parseFloat(h0R.value);
+        const step = (Math.random() < 0.5 ? -1 : 1) * (0.25 + Math.random()*0.25);
+        h0R.value = String(clamp(h0 + step, parseFloat(h0R.min), parseFloat(h0R.max)));
+        update();
+      });
+
+      btnReset.addEventListener('click', reset);
+
+      hR.addEventListener('input', update);
+      h0R.addEventListener('input', update);
+      mR.addEventListener('input', update);
+
+      reset();
+    })();
+
+    /* ---------------------------
+      PENDULUM: conservation vs partitions
+    ----------------------------*/
+    (function pendulumSim(){
+      const svg = document.getElementById('pendSvg');
+      const rod = document.getElementById('rod');
+      const bob = document.getElementById('bob');
+      const handle = document.getElementById('handle');
+
+      const potNum = document.getElementById('potNum');
+      const kinNum = document.getElementById('kinNum');
+      const thNum  = document.getElementById('thNum');
+      const totNum = document.getElementById('totNum');
+
+      const potFill = document.getElementById('potFill');
+      const kinFill = document.getElementById('kinFill');
+      const thFill  = document.getElementById('thFill');
+      const totFill = document.getElementById('totFill');
+
+      const refRange = document.getElementById('refRange');
+      const symRange = document.getElementById('symRange');
+      const frRange  = document.getElementById('frRange');
+
+      const refOut = document.getElementById('refOut');
+      const symOut = document.getElementById('symOut');
+      const frOut  = document.getElementById('frOut');
+
+      const btnRun = document.getElementById('btnRun');
+      const btnPause = document.getElementById('btnPause');
+      const btnFriction = document.getElementById('btnFriction');
+
+      // Pendulum model (simple): angle theta, angular velocity omega
+      const pivot = {x:410, y:60};
+      const L = 170; // length in svg px, treated as unit length for energy calc
+      const g = 9.81;
+      const m = 1.0;
+
+      // energy scale
+      const E0 = 10.0; // chosen "total" scale for visualization
+      let thermal = 0.0;
+
+      let theta = 0.75; // rad
+      let omega = 0.0;
+      let running = false;
+      let frictionOn = false;
+
+      // draggable
+      let dragging = false;
+
+      function setGeometry(){
+        const x = pivot.x + L * Math.sin(theta);
+        const y = pivot.y + L * Math.cos(theta);
+        rod.setAttribute('d', `M${pivot.x} ${pivot.y} L${x} ${y}`);
+        bob.setAttribute('cx', x);
+        bob.setAttribute('cy', y);
+        handle.setAttribute('cx', x);
+        handle.setAttribute('cy', y);
+      }
+
+      function computeE(){
+        // height relative to lowest point: h = L(1 - cos theta)
+        const h = (1 - Math.cos(theta));
+        // potential (scaled)
+        let Ep = m*g*h;
+
+        // kinetic
+        let Ek = 0.5 * (omega*omega);
+
+        // normalize to a target total using a scale factor
+        // total = Ep + Ek + thermal, but thermal may accumulate if friction
+        const rawTotal = Ep + Ek + thermal;
+        const targetTotal = E0;
+
+        // "time symmetry strictness": if < 1, we allow tiny drift to visualize symmetry breaking,
+        // but we keep a displayed "total" that reflects the chosen strictness.
+        const strict = parseFloat(symRange.value);
+
+        // rescale displayed Ep/Ek/thermal to sit on target total (for stable bars)
+        const scale = rawTotal > 1e-9 ? (targetTotal / rawTotal) : 1.0;
+        Ep *= scale; Ek *= scale; thermal *= scale;
+
+        // reference offset adds to potential as a bookkeeping change
+        const ref = parseFloat(refRange.value);
+        const EpShifted = Ep + ref*2.0; // arbitrary shift magnitude
+
+        // total displayed: enforce invariance depending on strictness
+        // strict=1 => exact E0; strict<1 => allow small wobble
+        const wobble = (1 - strict) * (Math.sin(performance.now()*0.001)*0.25);
+        const totalDisplayed = targetTotal + wobble;
+
+        // keep bar values non-negative by adjusting a hidden "baseline" (just for display)
+        const baseline = Math.min(0, EpShifted);
+        const EpD = EpShifted - baseline;
+        const EkD = Ek;
+        const ThD = thermal;
+        const TotD = totalDisplayed - baseline;
+
+        return {EpD, EkD, ThD, TotD, baseline, strict};
+      }
+
+      function updateBars(){
+        refOut.textContent = parseFloat(refRange.value).toFixed(2);
+        symOut.textContent = parseFloat(symRange.value).toFixed(2);
+        frOut.textContent  = parseFloat(frRange.value).toFixed(2);
+
+        const {EpD, EkD, ThD, TotD} = computeE();
+
+        // text
+        potNum.textContent = EpD.toFixed(2);
+        kinNum.textContent = EkD.toFixed(2);
+        thNum.textContent  = ThD.toFixed(2);
+        totNum.textContent = TotD.toFixed(2);
+
+        // bar widths relative to total
+        const toPct = (x)=> (TotD>1e-6 ? (x/TotD)*100 : 0);
+        potFill.style.width = `${Math.max(0, Math.min(100, toPct(EpD)))}%`;
+        kinFill.style.width = `${Math.max(0, Math.min(100, toPct(EkD)))}%`;
+        thFill.style.width  = `${Math.max(0, Math.min(100, toPct(ThD)))}%`;
+        totFill.style.width = `100%`;
+      }
+
+      function step(dt){
+        // dynamics: theta'' + (g/L)*sin(theta) = 0 ; simple
+        const acc = -(g / 9.0) * Math.sin(theta); // fudge factor for pleasant motion
+
+        omega += acc * dt;
+        theta += omega * dt;
+
+        // friction moves some kinetic into thermal
+        if(frictionOn){
+          const fr = parseFloat(frRange.value);
+          const loss = Math.abs(omega) * fr * dt;
+          // reduce omega magnitude slightly
+          const sign = omega >= 0 ? 1 : -1;
+          omega = sign * Math.max(0, Math.abs(omega) - loss);
+          thermal += loss * 2.5; // deposit to thermal bucket (scaled)
+        }
+
+        // clamp theta to avoid weirdness
+        const limit = 1.18;
+        if(theta > limit){ theta = limit; omega *= -0.85; }
+        if(theta < -limit){ theta = -limit; omega *= -0.85; }
+      }
+
+      // run loop
+      let last = performance.now();
+      function loop(t){
+        const dt = Math.min(0.033, (t-last)/1000);
+        last = t;
+
+        if(running && !dragging){
+          step(dt);
+          setGeometry();
+          updateBars();
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+      // controls
+      btnRun.addEventListener('click', ()=>{ running = true; });
+      btnPause.addEventListener('click', ()=>{ running = false; });
+      btnFriction.addEventListener('click', ()=>{
+        frictionOn = !frictionOn;
+        btnFriction.textContent = frictionOn ? "🟠 Friction: ON" : "🟢 Friction: OFF";
+      });
+      [refRange, symRange, frRange].forEach(el=> el.addEventListener('input', updateBars));
+
+      // drag logic
+      function svgPoint(evt){
+        const pt = svg.createSVGPoint();
+        pt.x = evt.clientX;
+        pt.y = evt.clientY;
+        const ctm = svg.getScreenCTM().inverse();
+        return pt.matrixTransform(ctm);
+      }
+      function setThetaFromPoint(p){
+        const dx = p.x - pivot.x;
+        const dy = p.y - pivot.y;
+        // theta measured from vertical: sin = dx/L, cos = dy/L
+        const ang = Math.atan2(dx, dy);
+        theta = Math.max(-1.18, Math.min(1.18, ang));
+        omega = 0.0;
+      }
+
+      function onDown(e){
+        dragging = true;
+        running = false;
+        const p = svgPoint(e);
+        setThetaFromPoint(p);
+        setGeometry();
+        updateBars();
+        e.preventDefault();
+      }
+      function onMove(e){
+        if(!dragging) return;
+        const p = svgPoint(e);
+        setThetaFromPoint(p);
+        setGeometry();
+        updateBars();
+        e.preventDefault();
+      }
+      function onUp(){
+        dragging = false;
+      }
+      handle.addEventListener('pointerdown', onDown);
+      window.addEventListener('pointermove', onMove, {passive:false});
+      window.addEventListener('pointerup', onUp);
+
+      // init
+      setGeometry();
+      updateBars();
+    })();
+
+    /* ---------------------------
+      PARTITION BUILDER
+    ----------------------------*/
+    (function partition(){
+      const total = 100;
+
+      const sKin = document.getElementById('sKin');
+      const sPot = document.getElementById('sPot');
+      const sTh  = document.getElementById('sTh');
+
+      const pKin = document.getElementById('pKin');
+      const pPot = document.getElementById('pPot');
+      const pTh  = document.getElementById('pTh');
+
+      const partRead = document.getElementById('partRead');
+      const partInvariant = document.getElementById('partInvariant');
+      const partTot = document.getElementById('partTot');
+
+      const segKin = document.getElementById('segKin');
+      const segPot = document.getElementById('segPot');
+      const segTh  = document.getElementById('segTh');
+
+      const btnRandomize = document.getElementById('btnRandomize');
+
+      function renormalize(){
+        let k = parseInt(sKin.value,10);
+        let p = parseInt(sPot.value,10);
+        let t = parseInt(sTh.value,10);
+        const sum = k+p+t;
+
+        if(sum === total) return {k,p,t};
+        if(sum === 0) return {k:0,p:0,t:0};
+
+        // scale to 100 preserving ratios
+        const fk = k/sum, fp=p/sum, ft=t/sum;
+        k = Math.floor(fk*total);
+        p = Math.floor(fp*total);
+        t = total - k - p;
+
+        sKin.value = String(k);
+        sPot.value = String(p);
+        sTh.value = String(t);
+
+        return {k,p,t};
+      }
+
+      function render(){
+        const {k,p,t} = renormalize();
+
+        pKin.textContent = k;
+        pPot.textContent = p;
+        pTh.textContent  = t;
+
+        partRead.textContent = `K ${k} | P ${p} | T ${t}`;
+        partInvariant.textContent = total;
+        partTot.textContent = total;
+
+        segKin.style.width = `${k}%`;
+        segPot.style.width = `${p}%`;
+        segTh.style.width  = `${t}%`;
+
+        segPot.style.marginLeft = `${k}%`;
+        segTh.style.marginLeft  = `${k+p}%`;
+
+        // rounded corners
+        segKin.style.borderRadius = k>0 ? "999px 0 0 999px" : "999px";
+        segPot.style.borderRadius = (k>0 && t>0) ? "0" : (k===0 ? "999px 0 0 999px" : "0 999px 999px 0");
+        segTh.style.borderRadius  = t>0 ? "0 999px 999px 0" : "0";
+      }
+
+      function randomize(){
+        // random composition
+        let a = Math.floor(Math.random()*101);
+        let b = Math.floor(Math.random()*(101-a));
+        let c = 100-a-b;
+        sKin.value = String(a);
+        sPot.value = String(b);
+        sTh.value  = String(c);
+        render();
+      }
+
+      [sKin,sPot,sTh].forEach(el => el.addEventListener('input', render));
+      btnRandomize.addEventListener('click', randomize);
+
+      render();
+    })();
+
+    /* ---------------------------
+      COMMENTARY TOGGLE
+    ----------------------------*/
+    (function commentaryToggle(){
+      const sw = document.getElementById('cSwitch');
+      const body = document.getElementById('commentaryBody');
+
+      function setExpanded(on){
+        sw.classList.toggle('on', on);
+        sw.setAttribute('aria-checked', on ? 'true' : 'false');
+
+        // In concise mode we keep only the key notes (hide extras)
+        const notes = Array.from(body.querySelectorAll('.note'));
+        notes.forEach((n, idx)=>{
+          // show first 4 always; last 2 only expanded
+          if(idx >= 4) n.style.display = on ? 'block' : 'none';
+        });
+      }
+
+      let expanded = true;
+      sw.addEventListener('click', ()=>{
+        expanded = !expanded;
+        setExpanded(expanded);
+      });
+
+      sw.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          expanded = !expanded;
+          setExpanded(expanded);
+        }
+      });
+
+      setExpanded(true);
+    })();
+  </script>
+</body>
+</html>

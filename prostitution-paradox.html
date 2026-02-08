@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Prostitution Paradox: Prohibition, Reality, and Who Benefits</title>
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1624;
+      --panel2:#0c1320;
+      --text:#e7eefc;
+      --muted:#a8b3cc;
+      --faint:#6f7a93;
+      --line:rgba(255,255,255,.10);
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --info:#60a5fa;
+      --accent:#a78bfa;
+      --ink:#0b1020;
+      --shadow: 0 14px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(167,139,250,.20), transparent 55%),
+                  radial-gradient(900px 600px at 85% 15%, rgba(96,165,250,.16), transparent 55%),
+                  radial-gradient(800px 600px at 55% 80%, rgba(34,197,94,.10), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.4;
+    }
+    a{ color:inherit; }
+    .wrap{ max-width:1180px; margin:0 auto; padding:28px 18px 44px; }
+    header{
+      display:grid;
+      gap:14px;
+      padding:22px 22px 18px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    header:before{
+      content:"";
+      position:absolute;
+      inset:-2px -2px auto auto;
+      width:520px; height:260px;
+      background: radial-gradient(closest-side, rgba(167,139,250,.28), transparent 65%);
+      filter: blur(4px);
+      transform: translate(18%, -18%);
+      pointer-events:none;
+    }
+    .kicker{
+      color:var(--muted);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(26px, 3.2vw, 42px);
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+    .sub{
+      color:var(--muted);
+      max-width: 84ch;
+      font-size: 14.5px;
+    }
+    .chips{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:6px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      padding:8px 10px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: var(--muted);
+      display:flex; align-items:center; gap:8px;
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; }
+    .dot.info{ background: var(--info); }
+    .dot.warn{ background: var(--warn); }
+    .dot.good{ background: var(--good); }
+    .dot.bad{ background: var(--bad); }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: 0 10px 32px rgba(0,0,0,.38);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      background: rgba(0,0,0,.10);
+    }
+    .title{
+      margin:0;
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+    .hint{
+      font-size:12px;
+      color: var(--faint);
+      margin-top:3px;
+      max-width: 60ch;
+    }
+    .card .bd{ padding:16px 18px 18px; }
+    .muted{ color:var(--muted); }
+
+    /* Toggle */
+    .toggleRow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top:2px;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      padding:8px 10px;
+      border-radius: 12px;
+      font-size:12.5px;
+      cursor:pointer;
+      display:flex; align-items:center; gap:8px;
+      transition: transform .08s ease, background .2s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{ background: rgba(255,255,255,.06); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.on{
+      border-color: rgba(167,139,250,.55);
+      background: rgba(167,139,250,.14);
+    }
+
+    /* Flow */
+    .flow{
+      display:grid;
+      gap:12px;
+    }
+    .lane{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+    }
+    .laneHeader{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:4px;
+    }
+    .laneHeader .label{
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: var(--muted);
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.12);
+      color: var(--muted);
+    }
+    .nodes{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+    }
+    .node{
+      grid-column: span 12;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+    }
+    .node h3{
+      margin:0 0 6px;
+      font-size: 14px;
+      letter-spacing: -.01em;
+    }
+    .node p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .node .tagRow{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top:10px;
+    }
+    .tag{
+      font-size: 11.5px;
+      padding:5px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color: var(--muted);
+      background: rgba(0,0,0,.10);
+    }
+    .tag.good{ border-color: rgba(34,197,94,.40); background: rgba(34,197,94,.10); color: rgba(183,255,210,.92); }
+    .tag.warn{ border-color: rgba(245,158,11,.45); background: rgba(245,158,11,.12); color: rgba(255,232,198,.92); }
+    .tag.bad{ border-color: rgba(239,68,68,.45); background: rgba(239,68,68,.10); color: rgba(255,205,205,.92); }
+    .tag.info{ border-color: rgba(96,165,250,.50); background: rgba(96,165,250,.10); color: rgba(210,232,255,.95); }
+
+    .arrow{
+      display:flex; align-items:center; justify-content:center;
+      color: var(--faint);
+      font-size: 12px;
+      gap:8px;
+      padding:0 6px;
+    }
+    .arrow:before, .arrow:after{
+      content:"";
+      height:1px;
+      background: var(--line);
+      flex:1;
+    }
+
+    /* Stakeholders */
+    .stakeGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .stake{
+      grid-column: span 6;
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.14);
+    }
+    @media (max-width: 980px){
+      .stake{ grid-column: span 12; }
+    }
+    .stakeTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .stake h4{ margin:0; font-size: 14px; }
+    .stake p{ margin:8px 0 0; color: var(--muted); font-size: 13px; }
+    .meters{ margin-top:12px; display:grid; gap:8px; }
+    .meter{
+      display:grid;
+      grid-template-columns: 160px 1fr 44px;
+      gap:10px;
+      align-items:center;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .bar{
+      height:10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      position:relative;
+    }
+    .fill{
+      height:100%;
+      width:50%;
+      background: linear-gradient(90deg, rgba(96,165,250,.55), rgba(167,139,250,.55));
+      border-radius:999px;
+    }
+    .score{ font-variant-numeric: tabular-nums; color: var(--text); text-align:right; }
+
+    /* Policy comparison */
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,.10);
+    }
+    .table th, .table td{
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size: 13px;
+    }
+    .table th{
+      text-align:left;
+      color: var(--muted);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size: 11.5px;
+      background: rgba(255,255,255,.04);
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.12);
+      color: var(--muted);
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .pill.good{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.10); }
+    .pill.warn{ border-color: rgba(245,158,11,.50); background: rgba(245,158,11,.12); }
+    .pill.bad{ border-color: rgba(239,68,68,.50); background: rgba(239,68,68,.10); }
+    .pill.info{ border-color: rgba(96,165,250,.55); background: rgba(96,165,250,.10); }
+
+    /* Callouts */
+    .callout{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      padding:14px;
+      display:grid;
+      gap:8px;
+    }
+    .callout strong{ font-size: 13px; }
+    .callout span{ color: var(--muted); font-size: 13px; }
+
+    footer{
+      margin-top:16px;
+      color: var(--faint);
+      font-size: 12px;
+      padding: 10px 2px 0;
+    }
+    .small{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Mode switch: show/hide content blocks */
+    [data-mode]{ display:none; }
+    body.mode-prohibition [data-mode="prohibition"]{ display:block; }
+    body.mode-legalization [data-mode="legalization"]{ display:block; }
+    body.mode-mixed [data-mode="mixed"]{ display:block; }
+
+    /* Tiny icon */
+    .ico{
+      width:14px; height:14px; border-radius:4px;
+      background: rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      display:inline-block;
+      position:relative;
+    }
+    .ico:after{
+      content:"";
+      position:absolute; inset:3px;
+      border-radius:3px;
+      background: rgba(167,139,250,.25);
+    }
+  </style>
+</head>
+<body class="mode-mixed">
+  <div class="wrap">
+    <header>
+      <div class="kicker">HTML INFOGRAPHIC • policy + ethics + incentives</div>
+      <h1>The “Prostitution Paradox”</h1>
+      <div class="sub">
+        The user’s claim (in plain terms): <span class="muted">“If it’s not legalized, it becomes illegal — and the people who profit most are intermediaries (pimps / organized crime). Moral opposition (including from religious institutions) may feel protective, but can still increase harm if it pushes the market underground.”</span><br/>
+        This infographic breaks the argument into <span class="muted">incentives</span>, <span class="muted">visibility</span>, and <span class="muted">who gets leverage</span>—without assuming any one institution is “the pimp.”
+      </div>
+      <div class="chips">
+        <div class="chip"><span class="dot info"></span> Reality: demand persists</div>
+        <div class="chip"><span class="dot warn"></span> Risk: underground markets</div>
+        <div class="chip"><span class="dot bad"></span> Coercion & exploitation</div>
+        <div class="chip"><span class="dot good"></span> Goal: reduce harm</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- LEFT: Core paradox & flows -->
+      <section class="card">
+        <div class="hd">
+          <div>
+            <h2 class="title">1) The paradox in one sentence</h2>
+            <div class="hint">If sex work persists regardless of law, then policy mainly decides <b>who controls it</b> (worker vs intermediaries), <b>how visible it is</b>, and <b>how safe it is</b>.</div>
+          </div>
+          <div class="toggleRow" aria-label="mode toggle">
+            <button class="btn" id="btnProhibition" title="View prohibition dynamics">
+              <span class="ico"></span> Prohibition
+            </button>
+            <button class="btn" id="btnLegalization" title="View legalization/regulation dynamics">
+              <span class="ico"></span> Legalization
+            </button>
+            <button class="btn on" id="btnMixed" title="View mixed models (partial / decriminalization / enforcement tradeoffs)">
+              <span class="ico"></span> Mixed reality
+            </button>
+          </div>
+        </div>
+
+        <div class="bd">
+          <div class="flow">
+            <!-- Prohibition lane -->
+            <div class="lane" data-mode="prohibition">
+              <div class="laneHeader">
+                <div class="label">PROHIBITION / CRIMINALIZATION</div>
+                <div class="badge">High stigma • High enforcement pressure</div>
+              </div>
+              <div class="nodes">
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Demand doesn’t disappear — it relocates</h3>
+                  <p>When the activity is illegal, buyers and sellers optimize for secrecy, not safety. That shifts power toward anyone who can provide “cover”: intermediaries, corrupt gatekeepers, or organized crime.</p>
+                  <div class="tagRow">
+                    <span class="tag warn">Low visibility</span>
+                    <span class="tag bad">Higher coercion risk</span>
+                    <span class="tag warn">Harder health outreach</span>
+                    <span class="tag bad">Police leverage / extortion risk</span>
+                  </div>
+                </div>
+
+                <div class="arrow">market goes underground</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Safety becomes a private good</h3>
+                  <p>Protection and dispute resolution can’t rely on normal institutions (contracts, labor rights, courts). So people pay “taxes” in the form of cut-taking, dependency, or control.</p>
+                  <div class="tagRow">
+                    <span class="tag bad">Intermediary rents</span>
+                    <span class="tag warn">No formal workplace standards</span>
+                    <span class="tag bad">Exit is harder</span>
+                  </div>
+                </div>
+
+                <div class="arrow">who benefits most?</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Top winners: those who can manage illegality</h3>
+                  <p>Not “society,” not necessarily the worker—often the people who can broker secrecy, transportation, protection, and client screening, especially if they use force or debt.</p>
+                  <div class="tagRow">
+                    <span class="tag bad">Pimps / organized crime</span>
+                    <span class="tag warn">Corrupt gatekeepers</span>
+                    <span class="tag warn">Predatory clients</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legalization lane -->
+            <div class="lane" data-mode="legalization">
+              <div class="laneHeader">
+                <div class="label">LEGALIZATION / REGULATION</div>
+                <div class="badge">Higher visibility • Rules & oversight</div>
+              </div>
+              <div class="nodes">
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Demand becomes governable</h3>
+                  <p>Legal channels can impose standards: workplace safety, contracts, inspections, taxation, and health services. The goal is to reduce harm—without pretending demand vanishes.</p>
+                  <div class="tagRow">
+                    <span class="tag good">Health outreach</span>
+                    <span class="tag good">Safer client screening</span>
+                    <span class="tag info">Data & visibility</span>
+                    <span class="tag warn">Needs enforcement capacity</span>
+                  </div>
+                </div>
+
+                <div class="arrow">but regulation has tradeoffs</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Bad regulation can recreate shadows</h3>
+                  <p>If compliance is expensive or stigmatizing (registries, intrusive checks, zoning traps), some workers get pushed back underground—recreating the original problem.</p>
+                  <div class="tagRow">
+                    <span class="tag warn">Two-tier market risk</span>
+                    <span class="tag warn">Exclusion of migrants</span>
+                    <span class="tag warn">Privacy concerns</span>
+                    <span class="tag bad">Underground persists</span>
+                  </div>
+                </div>
+
+                <div class="arrow">who benefits most?</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Winners depend on design</h3>
+                  <p>Best-case: more worker agency and safer conditions. Worst-case: licensed middlemen capture the market (legal “pimps”) while the most vulnerable remain illegal.</p>
+                  <div class="tagRow">
+                    <span class="tag good">Worker leverage (best)</span>
+                    <span class="tag warn">Broker capture (worst)</span>
+                    <span class="tag info">Accountability via law</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mixed lane -->
+            <div class="lane" data-mode="mixed">
+              <div class="laneHeader">
+                <div class="label">MIXED REALITY (what most places end up with)</div>
+                <div class="badge">Selective enforcement • Partial legality</div>
+              </div>
+              <div class="nodes">
+                <div class="node" style="grid-column: span 12;">
+                  <h3>The real paradox: “illegal” doesn’t mean “gone”</h3>
+                  <p>Sex work is extremely old and tends to persist across cultures. So law often changes <b>risk distribution</b>, not existence: who gets punished, who gets protected, and who gets power.</p>
+                  <div class="tagRow">
+                    <span class="tag info">Persistence of demand</span>
+                    <span class="tag warn">Selective enforcement</span>
+                    <span class="tag bad">Vulnerable people pay the price</span>
+                  </div>
+                </div>
+
+                <div class="arrow">incentives rearrange</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>When stigma + illegality combine, intermediaries gain leverage</h3>
+                  <p>Even if some institutions argue against legalization for moral reasons, the unintended effect can be: more secrecy → more dependency on “protectors” → more exploitation opportunities.</p>
+                  <div class="tagRow">
+                    <span class="tag warn">Stigma tax</span>
+                    <span class="tag bad">Coercion potential</span>
+                    <span class="tag info">Unintended consequences</span>
+                  </div>
+                </div>
+
+                <div class="arrow">so what’s the “church” part?</div>
+
+                <div class="node" style="grid-column: span 12;">
+                  <h3>Moral institutions influence norms — but outcomes depend on policy details</h3>
+                  <p>Religious organizations (including churches) often oppose legalization to reduce vice or protect families. That stance isn’t automatically “pimping.” The question is: <b>does the policy they support actually reduce harm</b>, or does it shift harm underground?</p>
+                  <div class="tagRow">
+                    <span class="tag info">Norm-setting power</span>
+                    <span class="tag warn">Policy-outcome gap</span>
+                    <span class="tag good">Potential: exit support</span>
+                    <span class="tag bad">Potential: stigma amplification</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout" style="margin-top:12px;">
+                <strong>Key idea</strong>
+                <span>
+                  You can argue “prostitution shouldn’t exist” morally, and still accept that <b>policy must manage reality</b>.
+                  The paradox is when a moral position unintentionally increases the power of exploiters by pushing the market into darkness.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Stakeholders & incentives -->
+      <aside class="card">
+        <div class="hd">
+          <div>
+            <h2 class="title">2) Who has leverage, and why</h2>
+            <div class="hint">Toggle modes on the left. These “meters” shift with visibility and legality.</div>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="stakeGrid">
+            <div class="stake">
+              <div class="stakeTop">
+                <div>
+                  <h4>Sex workers (varied situations)</h4>
+                  <p>Outcomes vary widely: from agency to coercion. Policy should prioritize safety, exit options, and reduced exploitation.</p>
+                </div>
+                <span class="pill info">primary stakeholder</span>
+              </div>
+              <div class="meters" data-role="workers"></div>
+            </div>
+
+            <div class="stake">
+              <div class="stakeTop">
+                <div>
+                  <h4>Intermediaries (pimps / brokers)</h4>
+                  <p>In illegal markets, intermediaries often gain power by providing secrecy and “protection” — sometimes through control or violence.</p>
+                </div>
+                <span class="pill bad">risk of capture</span>
+              </div>
+              <div class="meters" data-role="intermediaries"></div>
+            </div>
+
+            <div class="stake">
+              <div class="stakeTop">
+                <div>
+                  <h4>Clients / buyers</h4>
+                  <p>Legal clarity can improve accountability. Underground markets can reduce screening and increase predatory behavior.</p>
+                </div>
+                <span class="pill warn">mixed incentives</span>
+              </div>
+              <div class="meters" data-role="clients"></div>
+            </div>
+
+            <div class="stake">
+              <div class="stakeTop">
+                <div>
+                  <h4>State (police, courts, health services)</h4>
+                  <p>Can either reduce harm through regulation and services—or create leverage and fear through aggressive enforcement.</p>
+                </div>
+                <span class="pill info">implementation matters</span>
+              </div>
+              <div class="meters" data-role="state"></div>
+            </div>
+
+            <div class="stake" style="grid-column: span 12;">
+              <div class="stakeTop">
+                <div>
+                  <h4>Moral institutions (e.g., churches) & civil society</h4>
+                  <p>
+                    They shape norms and political pressure. They can reduce harm by funding shelters, counseling, and exit pathways—
+                    or increase harm if advocacy produces stigma + punitive policy without safety nets.
+                  </p>
+                </div>
+                <span class="pill warn">norm power</span>
+              </div>
+              <div class="meters" data-role="institutions"></div>
+              <div class="small" style="margin-top:10px;">
+                Note: calling “the church” a “pimp” is rhetorically sharp, but it blurs an important distinction:
+                <b>benefiting from a policy outcome</b> vs <b>directly exploiting people</b>.
+                The useful critique is: “Does the stance reduce harm in reality?”
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Policy options -->
+    <section class="card" style="margin-top:16px;">
+      <div class="hd">
+        <div>
+          <h2 class="title">3) Policy designs: what changes the harm curve?</h2>
+          <div class="hint">Not “legal vs illegal” only—design details decide whether the vulnerable move toward safety or toward shadows.</div>
+        </div>
+      </div>
+      <div class="bd">
+        <table class="table" role="table" aria-label="Policy comparison">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Model</th>
+              <th>What it tries to do</th>
+              <th style="width: 26%;">Where it can fail</th>
+              <th style="width: 22%;">Harm-reduction levers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="pill bad">Full criminalization</span></td>
+              <td>Suppress the market through punishment and stigma.</td>
+              <td>Creates secrecy, leverage for intermediaries, and barriers to reporting violence.</td>
+              <td>
+                <span class="pill warn">non-punitive health outreach</span><br/>
+                <span class="pill warn">anti-corruption safeguards</span><br/>
+                <span class="pill warn">victim-first reporting</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="pill info">Decriminalization (workers)</span></td>
+              <td>Reduce penalties on sellers to lower fear and improve access to services.</td>
+              <td>If buyers/venues remain heavily criminalized, market may still stay underground.</td>
+              <td>
+                <span class="pill good">safe reporting</span><br/>
+                <span class="pill good">exit supports</span><br/>
+                <span class="pill warn">clear anti-trafficking enforcement</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="pill warn">“Nordic model” (criminalize buyers)</span></td>
+              <td>Reduce demand by punishing buyers, not sellers.</td>
+              <td>Can still push transactions into secrecy; screening time shrinks.</td>
+              <td>
+                <span class="pill good">service funding</span><br/>
+                <span class="pill warn">privacy-protecting outreach</span><br/>
+                <span class="pill warn">avoid policing-by-proxy</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="pill good">Legalization + regulation</span></td>
+              <td>Bring it into the open, set standards, reduce violence/STD risks, enable labor protections.</td>
+              <td>If compliance is rigid (registries, licensing, raids), vulnerable groups stay illegal.</td>
+              <td>
+                <span class="pill good">low-barrier compliance</span><br/>
+                <span class="pill info">privacy protections</span><br/>
+                <span class="pill good">worker-led governance</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:14px;">
+          <div class="callout">
+            <strong>Design principle: reduce the “stigma tax”</strong>
+            <span>When stigma is high, people accept worse deals and avoid institutions. Policies that lower fear (without enabling trafficking) tend to improve safety outcomes.</span>
+          </div>
+          <div class="callout">
+            <strong>Design principle: punish coercion, not survival</strong>
+            <span>Target force, fraud, debt bondage, trafficking, and violent intermediaries—while keeping health + exit services accessible without self-incrimination.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="card" style="margin-top:16px;">
+      <div class="hd">
+        <div>
+          <h2 class="title">4) The “paradox” distilled</h2>
+          <div class="hint">A practical framing of your argument, sharpened but fair.</div>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="callout">
+          <strong>If the activity persists, law decides who holds the bargaining power.</strong>
+          <span>
+            <b>When illegal:</b> secrecy becomes the scarce asset → intermediaries and coercive actors often gain leverage.<br/>
+            <b>When regulated well:</b> visibility and rights can shift power toward workers and reduce violence.<br/>
+            <b>When regulated badly:</b> a two-tier system forms → the safest are legal, the most vulnerable remain underground.
+          </span>
+        </div>
+
+        <div class="callout" style="margin-top:12px;">
+          <strong>Where “the church” fits (without caricature)</strong>
+          <span>
+            Churches and other moral institutions often influence policy through values and politics.
+            The strongest critique isn’t “they are pimps,” but: <b>does opposing legalization reduce harm, or does it unintentionally empower exploiters by pushing the market underground?</b>
+            If an institution wants to “protect,” the measurable test is support for <b>harm reduction</b> and <b>exit pathways</b>, not only prohibition.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built as a neutral, incentives-first infographic. It discusses policy effects and harm reduction; it does not accuse any specific organization of criminal activity.
+    </footer>
+  </div>
+
+  <script>
+    // --- Mode switching ---
+    const body = document.body;
+    const btnProhibition = document.getElementById('btnProhibition');
+    const btnLegalization = document.getElementById('btnLegalization');
+    const btnMixed = document.getElementById('btnMixed');
+
+    function setMode(mode){
+      body.classList.remove('mode-prohibition','mode-legalization','mode-mixed');
+      body.classList.add('mode-' + mode);
+
+      btnProhibition.classList.toggle('on', mode === 'prohibition');
+      btnLegalization.classList.toggle('on', mode === 'legalization');
+      btnMixed.classList.toggle('on', mode === 'mixed');
+
+      renderMeters(mode);
+    }
+
+    btnProhibition.addEventListener('click', ()=> setMode('prohibition'));
+    btnLegalization.addEventListener('click', ()=> setMode('legalization'));
+    btnMixed.addEventListener('click', ()=> setMode('mixed'));
+
+    // --- Stakeholder meters: simple illustrative (not empirical) ---
+    // Scores are "who has leverage / who is exposed to harm" type heuristics for visualization.
+    const meterDefs = [
+      { key:'safety', label:'Safety & ability to report', max:100 },
+      { key:'intermediaryPower', label:'Intermediary leverage', max:100 },
+      { key:'stateLeverage', label:'State enforcement leverage', max:100 },
+      { key:'stigma', label:'Stigma pressure', max:100 },
+    ];
+
+    const profiles = {
+      prohibition: {
+        workers:       { safety:25, intermediaryPower:75, stateLeverage:70, stigma:85 },
+        intermediaries:{ safety:80, intermediaryPower:90, stateLeverage:30, stigma:25 },
+        clients:       { safety:45, intermediaryPower:35, stateLeverage:55, stigma:55 },
+        state:         { safety:55, intermediaryPower:20, stateLeverage:85, stigma:30 },
+        institutions:  { safety:40, intermediaryPower:15, stateLeverage:55, stigma:80 },
+      },
+      legalization: {
+        workers:       { safety:70, intermediaryPower:35, stateLeverage:40, stigma:55 },
+        intermediaries:{ safety:60, intermediaryPower:45, stateLeverage:55, stigma:35 },
+        clients:       { safety:65, intermediaryPower:25, stateLeverage:45, stigma:45 },
+        state:         { safety:70, intermediaryPower:15, stateLeverage:60, stigma:25 },
+        institutions:  { safety:60, intermediaryPower:10, stateLeverage:40, stigma:55 },
+      },
+      mixed: {
+        workers:       { safety:50, intermediaryPower:55, stateLeverage:55, stigma:75 },
+        intermediaries:{ safety:70, intermediaryPower:70, stateLeverage:45, stigma:30 },
+        clients:       { safety:55, intermediaryPower:30, stateLeverage:50, stigma:50 },
+        state:         { safety:65, intermediaryPower:15, stateLeverage:70, stigma:25 },
+        institutions:  { safety:55, intermediaryPower:12, stateLeverage:45, stigma:70 },
+      }
+    };
+
+    function meterRowHTML(label, value){
+      const pct = Math.max(0, Math.min(100, value));
+      return `
+        <div class="meter">
+          <div>${label}</div>
+          <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+          <div class="score">${pct}</div>
+        </div>
+      `;
+    }
+
+    function renderMeters(mode){
+      document.querySelectorAll('.meters').forEach(el=>{
+        const role = el.getAttribute('data-role');
+        const data = profiles[mode][role];
+        el.innerHTML = meterDefs.map(d=> meterRowHTML(d.label, data[d.key])).join('');
+      });
+    }
+
+    // initial render
+    setMode('mixed');
+  </script>
+</body>
+</html>

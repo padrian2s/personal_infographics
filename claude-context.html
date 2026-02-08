@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dinamica memory–performanță (Context Window)</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#0f1620;
+      --card2:#0c131c;
+      --text:#e8eef7;
+      --muted:#a7b4c7;
+      --line:#223043;
+      --good:#49d18f;
+      --warn:#ffd166;
+      --bad:#ff5c7a;
+      --accent:#7aa7ff;
+      --accent2:#a78bfa;
+      --paper: rgba(255,255,255,.04);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(122,167,255,.16), transparent 60%),
+        radial-gradient(1200px 700px at 90% 15%, rgba(167,139,250,.16), transparent 55%),
+        radial-gradient(1000px 900px at 50% 100%, rgba(73,209,143,.12), transparent 55%),
+        linear-gradient(180deg, #060a0f, #070b10 40%, #060a0f);
+    }
+
+    .wrap{ max-width:1180px; margin:0 auto; padding:28px 18px 56px; }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .title{
+      flex:1 1 520px;
+      padding:18px 18px 14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .title:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 220px at 20% 20%, rgba(122,167,255,.18), transparent 65%),
+        radial-gradient(700px 220px at 80% 0%, rgba(167,139,250,.18), transparent 60%);
+      pointer-events:none;
+      filter:blur(2px);
+      opacity:.9;
+    }
+    .title > *{ position:relative; }
+    h1{ margin:0 0 8px; font-size:22px; letter-spacing:.2px; }
+    .subtitle{ margin:0; color:var(--muted); line-height:1.35; max-width:70ch; }
+
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      user-select:none;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(122,167,255,.12);
+    }
+    .dot.good{ background:var(--good); box-shadow:0 0 0 4px rgba(73,209,143,.12); }
+    .dot.warn{ background:var(--warn); box-shadow:0 0 0 4px rgba(255,209,102,.12); }
+    .dot.bad{  background:var(--bad);  box-shadow:0 0 0 4px rgba(255,92,122,.12); }
+
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns: 1.2fr .8fr;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .card .hd h2{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.2px;
+      color:#f0f6ff;
+    }
+    .card .bd{ padding:14px 16px 16px; }
+
+    .muted{ color:var(--muted); }
+
+    /* Simulator */
+    .sim{
+      display:grid;
+      gap:14px;
+      grid-template-columns: 1fr;
+    }
+    .simRow{
+      display:grid;
+      gap:12px;
+      grid-template-columns: 1fr 1fr;
+      align-items:stretch;
+    }
+    @media (max-width: 680px){
+      .simRow{ grid-template-columns:1fr; }
+    }
+
+    .panel{
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px;
+      overflow:hidden;
+    }
+
+    .kpi{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .kpiBox{
+      flex:1 1 160px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:10px 12px;
+    }
+    .kpiLabel{ font-size:11px; color:var(--muted); }
+    .kpiValue{ font-size:18px; margin-top:4px; letter-spacing:.2px; }
+    .kpiHint{ font-size:12px; color:var(--muted); margin-top:6px; line-height:1.3; }
+
+    .sliderWrap{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    input[type="range"]{
+      width: min(520px, 100%);
+      accent-color: var(--accent);
+    }
+    .rangeVal{
+      font-family:var(--mono);
+      font-size:12px;
+      color:#d6e2ff;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+
+    .meter{
+      position:relative;
+      height:12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .meter > span{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:40%;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(73,209,143,.95), rgba(122,167,255,.95), rgba(255,92,122,.95));
+      filter:saturate(1.1);
+    }
+
+    /* Strategies */
+    .strategyGrid{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    @media (max-width: 900px){
+      .strategyGrid{ grid-template-columns:1fr; }
+    }
+    .strategy{
+      background:rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px 12px 12px;
+      display:grid;
+      gap:8px;
+    }
+    .strategyTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .badge{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:6px 8px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:#d6e2ff;
+      white-space:nowrap;
+    }
+    .strategy h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+    .strategy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.35;
+      font-size:13px;
+    }
+    .mini{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+    .tag{
+      font-size:11px;
+      padding:6px 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+    }
+
+    /* Paradox */
+    .paradox{
+      padding:14px 16px 16px;
+      background:
+        radial-gradient(700px 240px at 15% 20%, rgba(255,209,102,.14), transparent 60%),
+        radial-gradient(700px 260px at 90% 40%, rgba(255,92,122,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+    }
+    .quote{
+      margin:10px 0 0;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,.16);
+      background:rgba(0,0,0,.15);
+      color:#dbe7ff;
+      line-height:1.45;
+    }
+    .quote strong{ color:#fff; }
+    .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      align-items:center;
+    }
+    button{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;
+      transition: transform .08s ease, background .15s ease;
+    }
+    button:hover{ background:rgba(255,255,255,.06); }
+    button:active{ transform: translateY(1px); }
+    .btnPrimary{
+      border-color: rgba(122,167,255,.35);
+      background: rgba(122,167,255,.10);
+    }
+    .btnPrimary:hover{ background: rgba(122,167,255,.14); }
+    .footer{
+      margin-top:14px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    /* tiny flow diagram */
+    .flow{
+      width:100%;
+      height:160px;
+      display:block;
+    }
+    .legend{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .legend span{ display:inline-flex; align-items:center; gap:8px; }
+    .sq{ width:10px; height:10px; border-radius:3px; background:var(--accent); }
+    .sq2{ background:var(--good); }
+    .sq3{ background:var(--warn); }
+    .sq4{ background:var(--bad); }
+
+    /* code-ish */
+    pre{
+      margin:10px 0 0;
+      padding:12px;
+      border-radius:16px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:auto;
+      color:#dbe7ff;
+      font-family:var(--mono);
+      font-size:12px;
+      line-height:1.35;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <section class="title">
+        <h1>Dinamica <span style="color:var(--accent)">memory</span>–<span style="color:var(--accent2)">performanță</span> în context window</h1>
+        <p class="subtitle">
+          Contextul e un <strong>buffer de lucru</strong>: pe măsură ce se umple, crește costul de atenție pentru “ce e deja acolo”,
+          iar raționamentul profund rămâne fără spațiu respirabil.
+        </p>
+        <div class="chips">
+          <div class="chip"><span class="dot good"></span> Sweet spot: <strong>40–70%</strong></div>
+          <div class="chip"><span class="dot warn"></span> Risc: <strong>attention dilution</strong></div>
+          <div class="chip"><span class="dot bad"></span> Saturație: <strong>iluzie de “știe tot”</strong></div>
+        </div>
+      </section>
+    </header>
+
+    <section class="grid">
+      <!-- Simulator -->
+      <article class="card">
+        <div class="hd">
+          <h2>Simulator: cât context “mănâncă” raționamentul?</h2>
+          <span class="badge" title="Heuristică vizuală">Heuristic model</span>
+        </div>
+        <div class="bd sim">
+          <div class="panel">
+            <div class="sliderWrap">
+              <label for="ctx" class="muted" style="min-width: 180px;">Umplere context window</label>
+              <input id="ctx" type="range" min="0" max="100" value="55" />
+              <span class="rangeVal" id="ctxVal">55%</span>
+            </div>
+
+            <div class="kpi">
+              <div class="kpiBox">
+                <div class="kpiLabel">Calitate raționament</div>
+                <div class="kpiValue" id="reasonKpi">—</div>
+                <div class="kpiHint" id="reasonHint">—</div>
+              </div>
+              <div class="kpiBox">
+                <div class="kpiLabel">Risc de “diluție”</div>
+                <div class="kpiValue" id="dilutionKpi">—</div>
+                <div class="kpiHint">Cât de probabil e ca semnalul relevant să se piardă în zgomot.</div>
+              </div>
+              <div class="kpiBox">
+                <div class="kpiLabel">Cost “scanare” context</div>
+                <div class="kpiValue" id="scanKpi">—</div>
+                <div class="kpiHint">Cu cât crește, cu atât agentul “rumegă” mai mult decât “gândește”.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <div class="muted" style="font-size:12px; margin-bottom:6px;">
+                “Spațiu pentru raționament” (metaforic)
+              </div>
+              <div class="meter" aria-label="Reasoning headroom">
+                <span id="meterFill"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="simRow">
+            <div class="panel">
+              <div class="muted" style="font-size:12px; margin-bottom:8px;">Zonare (vizual)</div>
+              <svg class="flow" viewBox="0 0 740 160" role="img" aria-label="Zonare context">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(73,209,143,.95)"/>
+                    <stop offset=".6" stop-color="rgba(255,209,102,.95)"/>
+                    <stop offset="1" stop-color="rgba(255,92,122,.95)"/>
+                  </linearGradient>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- base bar -->
+                <rect x="20" y="38" width="700" height="22" rx="11" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+                <rect x="20" y="38" width="700" height="22" rx="11" fill="url(#g1)" opacity=".55"/>
+
+                <!-- sweet spot markers -->
+                <rect x="20" y="74" width="280" height="10" rx="5" fill="rgba(73,209,143,.35)"/>
+                <rect x="300" y="74" width="210" height="10" rx="5" fill="rgba(255,209,102,.35)"/>
+                <rect x="510" y="74" width="210" height="10" rx="5" fill="rgba(255,92,122,.30)"/>
+
+                <text x="20" y="24" fill="rgba(255,255,255,.82)" font-size="12">0%</text>
+                <text x="700" y="24" fill="rgba(255,255,255,.82)" font-size="12">100%</text>
+
+                <text x="90" y="112" fill="rgba(255,255,255,.78)" font-size="12">Prea puțin context</text>
+                <text x="320" y="112" fill="rgba(255,255,255,.78)" font-size="12">Zona optimă (40–70%)</text>
+                <text x="560" y="112" fill="rgba(255,255,255,.78)" font-size="12">Prea mult (diluție)</text>
+
+                <!-- current pointer -->
+                <g id="pointer" filter="url(#glow)">
+                  <line id="pLine" x1="405" y1="28" x2="405" y2="92" stroke="rgba(255,255,255,.9)" stroke-width="2"/>
+                  <circle id="pDot" cx="405" cy="38" r="6" fill="rgba(255,255,255,.92)"/>
+                </g>
+
+                <text id="pLabel" x="405" y="148" text-anchor="middle" fill="rgba(214,226,255,.95)" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+                  ctx=55%
+                </text>
+              </svg>
+
+              <div class="legend">
+                <span><i class="sq sq2"></i> semnal / suficient context</span>
+                <span><i class="sq sq3"></i> echilibru</span>
+                <span><i class="sq sq4"></i> zgomot / diluție</span>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="muted" style="font-size:12px; margin-bottom:8px;">Heuristică simplă (ca “state model”)</div>
+              <pre id="stateDump">—</pre>
+              <div class="muted" style="font-size:12px; margin-top:10px;">
+                Tip: înainte de compactare, cere agentului un <strong>state dump structurat</strong> — apoi reîncarci doar ce e relevant.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar: Sweet spot + quick rules -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Reguli rapide (de ținut minte)</h2>
+          <span class="badge">Ops playbook</span>
+        </div>
+        <div class="bd">
+          <div class="strategy" style="margin-bottom:12px;">
+            <div class="strategyTop">
+              <h3>Sweet spot practic</h3>
+              <span class="badge">40–70%</span>
+            </div>
+            <p>
+              Sub 40%: agentul “nu vede” suficient ca să ia decizii informate.
+              Peste 70%: crește riscul de <em>attention dilution</em> — semnalul se pierde în zgomot.
+            </p>
+            <div class="mini">
+              <span class="tag">păstrează esențialul</span>
+              <span class="tag">taie atașamentele</span>
+              <span class="tag">mută detaliile în sub-agenți</span>
+            </div>
+          </div>
+
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>Heuristică de trigger</h3>
+              <span class="badge">~50% (complex)</span>
+            </div>
+            <p>
+              Nu aștepta compactarea automată. Dacă task-ul e complex, compactează devreme (~50%) ca să eviți scăderea bruscă a clarității.
+            </p>
+            <div class="mini">
+              <span class="tag">checkpoint</span>
+              <span class="tag">compact</span>
+              <span class="tag">resume</span>
+            </div>
+          </div>
+
+          <div class="footer">
+            Metafora utilă: un developer cu <strong>50 de tab-uri</strong> deschise.
+            Tehnic “are acces la tot”, practic nu mai poate gândi clar.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Strategies -->
+    <section class="card" style="margin-top:14px;">
+      <div class="hd">
+        <h2>Strategii practice pentru orchestrare multi-agent</h2>
+        <span class="badge">5 patterns</span>
+      </div>
+      <div class="bd">
+        <div class="strategyGrid">
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>1) Compactare agresivă</h3>
+              <span class="badge">/compact devreme</span>
+            </div>
+            <p>
+              Folosește compactarea înainte de saturație. La task-uri grele, tratează ~50% ca prag “de siguranță”.
+            </p>
+            <div class="mini">
+              <span class="tag">reduce zgomotul</span>
+              <span class="tag">crește headroom</span>
+            </div>
+          </div>
+
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>2) Ierarhizare prin CLAUDE.md</h3>
+              <span class="badge">meta-only</span>
+            </div>
+            <p>
+              Ține acolo doar reguli arhitecturale și convenții. Detaliile specifice intră “pe felie” prin sub-agenți.
+            </p>
+            <div class="mini">
+              <span class="tag">stabilitate</span>
+              <span class="tag">instrucțiuni scurte</span>
+            </div>
+          </div>
+
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>3) Modularizare prin sub-agenți</h3>
+              <span class="badge">orchestrator + ephemerals</span>
+            </div>
+            <p>
+              Orchestratorul păstrează schema globală. Sub-agenții primesc context minim, execută, raportează, apoi “mor”.
+            </p>
+            <div class="mini">
+              <span class="tag">separare de concerns</span>
+              <span class="tag">cost control</span>
+            </div>
+          </div>
+
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>4) Checkpointing explicit</h3>
+              <span class="badge">state dump</span>
+            </div>
+            <p>
+              Înainte de compactare, cere un dump structurat (decizii, ipoteze, TODO, invariants). După, reîncarci doar ce contează.
+            </p>
+            <div class="mini">
+              <span class="tag">reproducibilitate</span>
+              <span class="tag">continuitate</span>
+            </div>
+          </div>
+
+          <div class="strategy">
+            <div class="strategyTop">
+              <h3>5) Hook-uri pentru auto-management</h3>
+              <span class="badge">auto-trigger</span>
+            </div>
+            <p>
+              Monitorizezi dimensiunea contextului și declanșezi automat: checkpoint → compactare → rehidratare selectivă.
+            </p>
+            <div class="mini">
+              <span class="tag">guardrails</span>
+              <span class="tag">observability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paradox -->
+    <section class="card" style="margin-top:14px;">
+      <div class="hd">
+        <h2>Paradoxul central</h2>
+        <span class="badge">anti-pattern</span>
+      </div>
+      <div class="paradox">
+        <div class="quote">
+          <strong>Memoria plină</strong> dă iluzia de performanță (“agentul știe tot”) dar degradează raționamentul.
+          Când contextul devine prea dens, agentul începe să caute și să recite, în loc să sintetizeze și să decidă.
+        </div>
+
+        <div class="cta">
+          <button class="btnPrimary" id="btnDemo">Simulează: “saturație”</button>
+          <button id="btnSweet">Simulează: “sweet spot”</button>
+          <button id="btnLow">Simulează: “prea puțin”</button>
+        </div>
+
+        <div class="footer">
+          Dacă vrei să aprofundăm pentru orchestrarea ta: pot să-ți schițez un “orchestrator loop” (cu checkpoint + compact + rehydration),
+          plus un format de <span style="font-family:var(--mono);">STATE_DUMP.json</span> pe care să-l folosească sub-agenții.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('ctx');
+    const ctxVal = document.getElementById('ctxVal');
+
+    const reasonKpi = document.getElementById('reasonKpi');
+    const dilutionKpi = document.getElementById('dilutionKpi');
+    const scanKpi = document.getElementById('scanKpi');
+    const reasonHint = document.getElementById('reasonHint');
+    const meterFill = document.getElementById('meterFill');
+
+    const pLine = document.getElementById('pLine');
+    const pDot = document.getElementById('pDot');
+    const pLabel = document.getElementById('pLabel');
+
+    const stateDump = document.getElementById('stateDump');
+
+    function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+
+    // Heuristic model:
+    // - Reasoning quality peaks around mid (55%) and declines as context too low/high.
+    // - Dilution rises sharply after ~70%.
+    // - Scan cost increases non-linearly with fill.
+    function compute(fill){
+      const f = fill / 100;
+
+      // Reasoning: inverted "U" (parabola-like) centered ~0.55, plus penalties at extremes
+      const peak = 0.55;
+      const spread = 0.55; // wider = gentler curve
+      let reasoning = 1 - Math.pow((f - peak) / spread, 2);
+      reasoning = clamp(reasoning, 0, 1);
+
+      // If too high, extra penalty ("attention dilution")
+      const highPenalty = clamp((f - 0.70) / 0.30, 0, 1);
+      reasoning = clamp(reasoning - 0.35 * Math.pow(highPenalty, 1.3), 0, 1);
+
+      // If too low, missing context penalty
+      const lowPenalty = clamp((0.40 - f) / 0.40, 0, 1);
+      reasoning = clamp(reasoning - 0.25 * Math.pow(lowPenalty, 1.2), 0, 1);
+
+      // Dilution risk: low until ~0.6 then ramps, steep after 0.7
+      let dilution = clamp((f - 0.58) / 0.42, 0, 1);
+      dilution = clamp(0.15 + 0.85 * Math.pow(dilution, 1.25), 0, 1);
+
+      // Scan cost: convex growth
+      let scan = clamp(Math.pow(f, 1.7), 0, 1);
+
+      return { reasoning, dilution, scan };
+    }
+
+    function pct(x){ return Math.round(x * 100) + "%"; }
+
+    function labelReasoning(r, fill){
+      if (fill < 40) return ["Scăzut", "Prea puțin context → decizii fragile / multe întrebări de clarificare."];
+      if (fill >= 40 && fill <= 70) {
+        if (r > 0.78) return ["Ridicat", "Zonă bună: suficient context, încă există headroom pentru sinteză."];
+        return ["Bun", "Ești în sweet spot, dar contextul începe să ceară atenție."];
+      }
+      if (fill > 70 && fill < 85) return ["În scădere", "Începe diluția: semnalul relevant se pierde printre detalii."];
+      return ["Slab", "Saturație: agentul “scanează” și recită mai mult decât raționează."];
+    }
+
+    function colorForFill(fill){
+      if (fill < 40) return "rgba(255,209,102,.95)";
+      if (fill <= 70) return "rgba(73,209,143,.95)";
+      if (fill < 85) return "rgba(255,209,102,.95)";
+      return "rgba(255,92,122,.95)";
+    }
+
+    function render(fill){
+      ctxVal.textContent = fill + "%";
+      const { reasoning, dilution, scan } = compute(fill);
+
+      const [rLabel, rHint] = labelReasoning(reasoning, fill);
+      reasonKpi.textContent = `${rLabel} · ${pct(reasoning)}`;
+      reasonHint.textContent = rHint;
+
+      dilutionKpi.textContent = pct(dilution);
+      scanKpi.textContent = pct(scan);
+
+      // meter shows "reasoning headroom" (inverse of scan+some dilution)
+      const headroom = clamp(1 - (0.55*scan + 0.45*dilution), 0, 1);
+      meterFill.style.width = (headroom * 100) + "%";
+
+      // pointer on bar (x from 20..720)
+      const x = 20 + (700 * (fill/100));
+      pLine.setAttribute("x1", x);
+      pLine.setAttribute("x2", x);
+      pDot.setAttribute("cx", x);
+      pLabel.setAttribute("x", x);
+      pLabel.textContent = `ctx=${fill}%`;
+
+      // pointer color
+      const c = colorForFill(fill);
+      pDot.setAttribute("fill", c);
+
+      // state dump
+      const mode =
+        fill < 40 ? "UNDERCONTEXT" :
+        fill <= 70 ? "OPTIMAL" :
+        fill < 85 ? "DILUTION_RISK" : "SATURATED";
+
+      const rec =
+        mode === "UNDERCONTEXT" ? "Injectează context selectiv via sub-agent (slice relevant) + clarifică obiectivul." :
+        mode === "OPTIMAL" ? "Continuă; păstrează doar invariants + decizii. Pregătește checkpoint dacă task-ul se ramifică." :
+        mode === "DILUTION_RISK" ? "Fă checkpoint + compactare; mută detaliile în sub-agenți efemeri." :
+        "Forțează STATE_DUMP, compactează agresiv, reîncarcă doar schema + decizii + TODO curent.";
+
+      const dump = {
+        ctx_fill_pct: fill,
+        mode,
+        metrics: {
+          reasoning_quality_pct: Math.round(reasoning*100),
+          dilution_risk_pct: Math.round(dilution*100),
+          scan_cost_pct: Math.round(scan*100),
+        },
+        recommended_action: rec,
+        next_checkpoint: mode === "OPTIMAL" ? "when branching or before long subtask" : "now",
+        keep_in_context: [
+          "goal / definition of done",
+          "current plan (short)",
+          "invariants / constraints",
+          "key decisions + rationale",
+          "open TODO (top 5)"
+        ]
+      };
+
+      stateDump.textContent = JSON.stringify(dump, null, 2);
+    }
+
+    ctx.addEventListener('input', e => render(parseInt(e.target.value, 10)));
+
+    // quick demo buttons
+    document.getElementById('btnDemo').addEventListener('click', () => { ctx.value = 90; render(90); });
+    document.getElementById('btnSweet').addEventListener('click', () => { ctx.value = 55; render(55); });
+    document.getElementById('btnLow').addEventListener('click', () => { ctx.value = 20; render(20); });
+
+    render(parseInt(ctx.value, 10));
+  </script>
+</body>
+</html>
