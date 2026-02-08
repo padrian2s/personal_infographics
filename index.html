@@ -26,6 +26,14 @@
             padding: 20px;
             overflow-y: auto;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            margin-left: -300px;
+            width: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
         .sidebar h1 {
@@ -70,11 +78,47 @@
             background: white;
             border-bottom: 1px solid #e0e0e0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .header h2 {
             color: #2c3e50;
             font-size: 20px;
+            flex: 1;
+        }
+
+        .toggle-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .toggle-btn:active {
+            transform: translateY(0);
+        }
+
+        .shortcut-hint {
+            font-size: 11px;
+            opacity: 0.8;
+            background: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
         }
 
         .iframe-container {
@@ -100,12 +144,22 @@
 
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                height: 200px;
+                position: absolute;
+                width: 80%;
+                height: 100%;
+                z-index: 1000;
+            }
+
+            .sidebar.hidden {
+                margin-left: -80%;
             }
 
             body {
                 flex-direction: column;
+            }
+
+            .shortcut-hint {
+                display: none;
             }
         }
     </style>
@@ -118,6 +172,10 @@
 
     <div class="content">
         <div class="header">
+            <button class="toggle-btn" id="toggleBtn" title="Toggle sidebar (Ctrl+B)">
+                <span id="toggleIcon">☰</span>
+                <span class="shortcut-hint">Ctrl+B</span>
+            </button>
             <h2 id="currentFile">Select a file to view</h2>
         </div>
         <div class="iframe-container" id="iframeContainer">
@@ -129,45 +187,69 @@
 
     <script>
         // ========================================
-        // FILE CONFIGURATION
-        // Add or remove HTML files here
-        // ========================================
-        const htmlFiles = [
-            'circadian-dysfunction.html',
-            'claude-context-claude.html',
-            'claude-context.html',
-            'feynman-energy.html',
-            'feynman-light-speed.html',
-            'geopolitica-euronews-analiza.html',
-            'html-ai-presentation.html',
-            'mlops-solution.html',
-            'paradox-business.html',
-            'prostitution-paradox.html',
-            'retele-sociale.html',
-            'sophie-reading-vlog.html',
-            'suplements.html'
-        ];
-
-        // ========================================
         // Application Logic
+        // Automatically loads HTML files from files.json
+        // Run ./update-files.sh to refresh the file list
         // ========================================
         const fileList = document.getElementById('fileList');
         const currentFileTitle = document.getElementById('currentFile');
         const iframeContainer = document.getElementById('iframeContainer');
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const toggleIcon = document.getElementById('toggleIcon');
 
-        // Generate file list
-        htmlFiles.forEach((file, index) => {
-            const li = document.createElement('li');
-            li.className = 'file-item';
-            li.textContent = file;
-            li.onclick = () => loadFile(file, li);
-            fileList.appendChild(li);
+        // Detect OS and update shortcut hint
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const shortcutHint = document.querySelector('.shortcut-hint');
+        if (shortcutHint) {
+            shortcutHint.textContent = isMac ? '⌘B' : 'Ctrl+B';
+        }
+        toggleBtn.title = `Toggle sidebar (${isMac ? 'Cmd+B' : 'Ctrl+B'})`;
 
-            // Auto-load first file
-            if (index === 0) {
-                loadFile(file, li);
+        // Toggle sidebar function
+        function toggleSidebar() {
+            sidebar.classList.toggle('hidden');
+            toggleIcon.textContent = sidebar.classList.contains('hidden') ? '☰' : '✕';
+        }
+
+        // Toggle button click handler
+        toggleBtn.addEventListener('click', toggleSidebar);
+
+        // Keyboard shortcut: Ctrl+B (Cmd+B on Mac)
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+                e.preventDefault();
+                toggleSidebar();
             }
         });
+
+        // Fetch and load HTML files from files.json
+        fetch('files.json')
+            .then(response => response.json())
+            .then(htmlFiles => {
+                if (htmlFiles.length === 0) {
+                    fileList.innerHTML = '<li style="color: #95a5a6; padding: 10px;">No HTML files found</li>';
+                    return;
+                }
+
+                // Generate file list
+                htmlFiles.forEach((file, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'file-item';
+                    li.textContent = file;
+                    li.onclick = () => loadFile(file, li);
+                    fileList.appendChild(li);
+
+                    // Auto-load first file
+                    if (index === 0) {
+                        loadFile(file, li);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading files:', error);
+                fileList.innerHTML = '<li style="color: #e74c3c; padding: 10px;">Error loading files.json<br>Run ./update-files.sh</li>';
+            });
 
         function loadFile(filename, element) {
             // Remove active class from all items
