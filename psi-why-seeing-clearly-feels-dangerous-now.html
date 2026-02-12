@@ -1,0 +1,1826 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why Seeing Clearly Feels Dangerous Now — Interactive Infographic</title>
+  <meta name="description" content="An interactive psychological infographic exploring the hidden costs of self-awareness: why clarity creates dissonance, isolation, and grief before it becomes freedom." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,122,153,.07), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 260px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(260px 200px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Pills / tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Flow nodes */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk / meter grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Phase timeline */
+    .phaseTimeline{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px){
+      .phaseTimeline{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 480px){
+      .phaseTimeline{grid-template-columns: 1fr}
+    }
+    .phase{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      text-align:center;
+      transition: border-color .25s ease, background .25s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .phase:hover{border-color: rgba(255,255,255,.28);background: rgba(255,255,255,.06)}
+    .phase.active{border-color: var(--violet);background: rgba(187,167,255,.10)}
+    .phase .phaseNum{
+      font-size: 11px;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 6px;
+    }
+    .phase .phaseTitle{
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .phase .phaseSub{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .phaseDetail{
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .phaseDetail .pdTitle{font-size: 15px;font-weight:700;margin-bottom: 8px}
+    .phaseDetail .pdBody{color:var(--muted);font-size:13px;line-height:1.6}
+    .phaseDetail .pdQuote{
+      border-left: 3px solid var(--violet);
+      padding: 8px 12px;
+      background: rgba(187,167,255,.06);
+      border-radius: 0 14px 14px 0;
+      margin-top: 10px;
+      font-style: italic;
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* Gauge cluster */
+    .gaugeCluster{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 740px){
+      .gaugeCluster{grid-template-columns: repeat(2, 1fr)}
+    }
+    .gauge{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      text-align: center;
+    }
+    .gauge .gLabel{font-size: 11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+    .gauge .gRing{
+      width: 80px;height:80px;margin:0 auto;position:relative;
+    }
+    .gauge .gValue{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      font-size:18px;font-weight:700;
+    }
+    .gauge .gNote{font-size:11px;color:var(--muted);margin-top:6px}
+
+    /* Spectrum bar */
+    .spectrumBar{
+      height: 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      position: relative;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+    .spectrumFill{
+      height: 100%;
+      border-radius: 14px;
+      transition: width .5s ease, background .5s ease;
+    }
+    .spectrumMarker{
+      position: absolute;
+      top: -4px;
+      width: 3px;
+      height: 36px;
+      background: white;
+      border-radius: 2px;
+      transition: left .5s ease;
+      box-shadow: 0 0 12px rgba(255,255,255,.4);
+    }
+    .spectrumLabels{
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Insight blocks */
+    .insightGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 740px){
+      .insightGrid{grid-template-columns: 1fr}
+    }
+    .insight{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .insight .iIcon{font-size: 22px;margin-bottom: 8px;display:block}
+    .insight h4{margin: 0 0 6px;font-size: 14px}
+    .insight p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Hallmarks list reused */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 260" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.40)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Eye shape: two arcs forming an almond/eye -->
+            <path d="M80,130 Q260,30 440,130 Q260,230 80,130 Z" fill="none" stroke="url(#g1)" stroke-width="4" opacity=".5" />
+            <circle cx="260" cy="130" r="42" fill="none" stroke="url(#g2)" stroke-width="3" opacity=".6"/>
+            <circle cx="260" cy="130" r="18" fill="rgba(187,167,255,.3)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+            <circle cx="260" cy="130" r="6" fill="rgba(255,255,255,.6)"/>
+            <!-- Radiating awareness lines -->
+            <line x1="260" y1="60" x2="260" y2="20" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+            <line x1="320" y1="78" x2="355" y2="45" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="200" y1="78" x2="165" y2="45" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="350" y1="100" x2="400" y2="70" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <line x1="170" y1="100" x2="120" y2="70" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <!-- Fracture lines suggesting cost/danger -->
+            <path d="M260,172 L268,210 L254,215 L262,250" fill="none" stroke="rgba(255,122,153,.3)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M230,170 L218,205 L232,212 L222,240" fill="none" stroke="rgba(255,122,153,.2)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M290,170 L302,205 L288,212 L298,240" fill="none" stroke="rgba(255,122,153,.2)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> jungian psychology &bull; self-awareness &bull; shadow work</div>
+          <h1>Why Seeing Clearly Feels Dangerous Now</h1>
+          <p class="subtitle">
+            Clarity is sold as liberation. Nobody warns you about the cost. This infographic maps the hidden psychological journey
+            from comfortable ignorance through painful dissonance to hard-won integrity&mdash;and why <b>most people secretly wish they could unsee</b> what awareness showed them.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Jump to the awareness simulator</button>
+            <button class="btn" id="jumpAssess">Jump to self-assessment</button>
+            <button class="btn" id="toggleNotes">Toggle commentary mode</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Core paradox</div>
+            <div class="value">Clarity = Freedom + Pain</div>
+            <div class="note">Self-awareness removes comfort before it builds integrity.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Hidden cost</div>
+            <div class="value">Not sadness. Dissonance.</div>
+            <div class="note">Living between who you were and who you're becoming.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Social price</div>
+            <div class="value">Belonging becomes conditional</div>
+            <div class="note">Connection built on mutual blindness weakens.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Final reward</div>
+            <div class="value">Not happiness. Integrity.</div>
+            <div class="note">Inner experience aligns with outer life.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Section 1: The Comfort of Not Seeing -->
+      <section class="card" aria-label="Before clarity">
+        <div class="cardHeader">
+          <h2>Before Clarity: The Comfort of Filtered Perception</h2>
+          <div class="chip"><b>Phase 0:</b> unconscious comfort</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Before clarity arrives, life feels <b>manageable</b>&mdash;not because it is easy, but because it is <b>filtered</b>.
+                You don't see everything. You don't question every impulse. You live with assumptions, and assumptions create comfort.
+              </p>
+              <p class="muted">
+                This stage isn't ignorance in the negative sense. It's a protective system: your mind limits perception to
+                maintain stability. You couldn't have seen clearly before without losing your footing.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> Jung described this as the <i>persona</i>&mdash;a socially constructed mask that allows us to function.
+                The persona isn't false per se; it's a necessary adaptation. Problems arise only when we mistake the mask for the face beneath it.
+                The "comfort of not seeing" is the comfort of unexamined persona identification.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Filters that maintain comfort">
+                <div class="small" style="margin-bottom:10px">The protective filters that keep life "manageable":</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Unquestioned assumptions</span><span class="tag">belief</span></div>
+                  <div class="pill"><span>Automatic mirroring</span><span class="tag">social</span></div>
+                  <div class="pill"><span>Self-justifying narratives</span><span class="tag">ego</span></div>
+                  <div class="pill"><span>Selective attention</span><span class="tag">filter</span></div>
+                  <div class="pill"><span>Habitual responses</span><span class="tag">auto</span></div>
+                  <div class="pill"><span>Identity as armor</span><span class="tag">defense</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">These aren't weaknesses. They're stabilizers. Clarity begins when they dissolve.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: The Eight Phases Journey -->
+      <section class="card" aria-label="Journey phases">
+        <div class="cardHeader">
+          <h2>The Eight Phases of Clarity's Cost</h2>
+          <div class="chip">click each phase to explore</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            The journey from unconscious comfort to conscious integrity follows a recognizable arc.
+            Each phase carries a distinct cost&mdash;and a distinct form of growth. Click a phase to explore.
+          </p>
+
+          <div class="phaseTimeline" id="phaseTimeline">
+            <div class="phase active" data-phase="0">
+              <div class="phaseNum">Phase 1</div>
+              <div class="phaseTitle">Awakening</div>
+              <div class="phaseSub">Empowering at first</div>
+            </div>
+            <div class="phase" data-phase="1">
+              <div class="phaseNum">Phase 2</div>
+              <div class="phaseTitle">Weight</div>
+              <div class="phaseSub">Life becomes heavier</div>
+            </div>
+            <div class="phase" data-phase="2">
+              <div class="phaseNum">Phase 3</div>
+              <div class="phaseTitle">Social Cost</div>
+              <div class="phaseSub">Mirroring breaks down</div>
+            </div>
+            <div class="phase" data-phase="3">
+              <div class="phaseNum">Phase 4</div>
+              <div class="phaseTitle">Isolation</div>
+              <div class="phaseSub">Unfamiliarity, not loneliness</div>
+            </div>
+            <div class="phase" data-phase="4">
+              <div class="phaseNum">Phase 5</div>
+              <div class="phaseTitle">Inward Turn</div>
+              <div class="phaseSub">Awareness turns on you</div>
+            </div>
+            <div class="phase" data-phase="5">
+              <div class="phaseNum">Phase 6</div>
+              <div class="phaseTitle">Hovering</div>
+              <div class="phaseSub">Between two identities</div>
+            </div>
+            <div class="phase" data-phase="6">
+              <div class="phaseNum">Phase 7</div>
+              <div class="phaseTitle">Demand</div>
+              <div class="phaseSub">Clarity pressures action</div>
+            </div>
+            <div class="phase" data-phase="7">
+              <div class="phaseNum">Phase 8</div>
+              <div class="phaseTitle">Integrity</div>
+              <div class="phaseSub">The quiet reward</div>
+            </div>
+          </div>
+
+          <div class="phaseDetail" id="phaseDetail">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Awareness Simulator + Costs Diagram -->
+      <section class="row">
+        <div class="card" id="vizCard" aria-label="Awareness simulator">
+          <div class="cardHeader">
+            <h2>The Awareness-Cost Simulator</h2>
+            <div class="chip">interactive visualization</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              As awareness increases, multiple psychological dimensions shift simultaneously.
+              Drag the slider to see how comfort, social friction, authenticity, and internal pressure change.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Awareness cost curves">
+              <svg viewBox="0 0 980 420" id="costSvg" role="img" aria-label="Cost-benefit curves of increasing clarity">
+                <defs>
+                  <linearGradient id="comfortGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.6)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.6)"/>
+                  </linearGradient>
+                  <linearGradient id="authGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.6)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="980" height="420" fill="rgba(0,0,0,.05)"/>
+                <!-- axes -->
+                <g opacity=".9">
+                  <path d="M70 44 L70 360 L940 360" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                </g>
+                <!-- grid -->
+                <g id="costGrid"></g>
+                <!-- curves drawn by JS -->
+                <path id="comfortCurve" stroke="var(--good)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+                <path id="frictionCurve" stroke="var(--bad)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+                <path id="authCurve" stroke="var(--violet)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+                <path id="pressureCurve" stroke="var(--orange)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+                <!-- awareness marker line -->
+                <line id="awareMarker" x1="200" y1="44" x2="200" y2="360" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-dasharray="6 4"/>
+                <circle id="awareMarkerDot" cx="200" cy="44" r="5" fill="white" opacity=".8"/>
+                <!-- labels -->
+                <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                  <text x="70" y="26" fill="rgba(255,255,255,.88)" font-weight="700">Psychological dimensions across awareness levels</text>
+                  <text x="70" y="400" font-size="12" fill="rgba(255,255,255,.62)">Awareness level &rarr;</text>
+                  <text x="12" y="220" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 12 220)">Intensity</text>
+                </g>
+              </svg>
+
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: var(--good)"></span> Comfort / ease</div>
+                <div class="key"><span class="sw" style="background: var(--bad)"></span> Social friction</div>
+                <div class="key"><span class="sw" style="background: var(--violet)"></span> Authenticity</div>
+                <div class="key"><span class="sw" style="background: var(--orange)"></span> Internal pressure</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Awareness Level</span>
+                  <span class="readout" id="awareReadout">50%</span>
+                </label>
+                <input id="awareSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">0% = fully unconscious. 100% = deep self-awareness.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Current Status</span>
+                  <span class="readout" id="statusReadout" style="color:var(--warn)">Dissonance Zone</span>
+                </label>
+                <div style="margin-top:10px">
+                  <div class="spectrumBar">
+                    <div class="spectrumFill" id="spectrumFill" style="width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--violet))"></div>
+                    <div class="spectrumMarker" id="spectrumMarker" style="left:50%"></div>
+                  </div>
+                  <div class="spectrumLabels">
+                    <span>Comfort</span>
+                    <span>Dissonance</span>
+                    <span>Integrity</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This simulator is conceptual. The key insight is that comfort and authenticity
+              are <i>inversely correlated</i> during the middle phases. Only at high awareness levels does authenticity
+              begin to generate its own form of peace&mdash;what the text calls "integrity."
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Cost taxonomy">
+          <div class="cardHeader">
+            <h2>Taxonomy of Costs</h2>
+            <div class="chip"><b>4 domains</b> affected</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Clarity doesn't extract a single price. It taxes four distinct domains simultaneously.
+              Each cost feels different, but they compound.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Perceptual Weight</strong><span class="badge">internal</span></div>
+                <div class="meter"><i style="width:72%"></i></div>
+                <p>Life becomes heavier internally. Entertainment feels thinner, conversations repetitive, ambitions hollow.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Social Friction</strong><span class="badge">relational</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>You stop mirroring unconsciously. The glue of belonging weakens. Connection requires performance you refuse to give.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Self-Confrontation</strong><span class="badge">identity</span></div>
+                <div class="meter"><i style="width:80%"></i></div>
+                <p>You see how often you chose ease over honesty. Grief for versions of yourself that were never fully lived.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Action Pressure</strong><span class="badge">behavioral</span></div>
+                <div class="meter"><i style="width:58%"></i></div>
+                <p>Awareness demands change. Inaction feels dishonest. The gap between knowing and doing becomes unbearable.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">These meters represent subjective intensity, not clinical measurement. They illustrate the multi-domain nature of the cost.</div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The text makes an important distinction: the cost is not pain or sadness.
+              It is <b>dissonance</b>&mdash;the friction between what you now see and how you still live.
+              This framing separates clarity-costs from depression, which matters clinically.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: The Social Mechanism -->
+      <section class="card" aria-label="Social cost mechanism">
+        <div class="cardHeader">
+          <h2>How Clarity Disrupts Social Connection</h2>
+          <div class="chip">the mirroring mechanism</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>1) Mirroring weakens</h3>
+                  <p>You stop automatically reflecting others' emotions, beliefs, and patterns back at them. You become less predictable, less "easy to read."</p>
+                  <div class="meta"><span class="badge">unconscious process</span><span class="badge">social glue</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>2) Others sense the shift</h3>
+                  <p>They may not know why, but they feel something about you is no longer automatic. You speak less, react slower, choose words carefully.</p>
+                  <div class="meta"><span class="badge">subtle distance</span><span class="badge">not rejection</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>3) Dynamic tests relationships</h3>
+                  <p>Some relationships adapt. Others drift. Belonging used to be effortless&mdash;now it feels conditional on shrinking your perception.</p>
+                  <div class="meta"><span class="badge">adaptation</span><span class="badge">or drift</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>4) Holding back as integrity</h3>
+                  <p>You want connection but refuse to perform. This holding back isn't avoidance&mdash;it's integrity. You won't trade awareness for belonging.</p>
+                  <div class="meta"><span class="badge">conscious choice</span><span class="badge">not withdrawal</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding: 14px" aria-label="Mutual blindness diagram">
+                <svg viewBox="0 0 440 380" role="img" aria-label="Social connection built on mutual blindness vs awareness">
+                  <defs>
+                    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#softGlow)">
+                    <!-- Before: mutual blindness -->
+                    <text x="110" y="24" font-size="13" fill="rgba(255,255,255,.75)" text-anchor="middle" font-weight="700">Before clarity</text>
+                    <circle cx="70" cy="90" r="35" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.4)" stroke-width="2"/>
+                    <circle cx="150" cy="90" r="35" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.4)" stroke-width="2"/>
+                    <text x="70" y="94" font-size="11" fill="rgba(255,255,255,.7)" text-anchor="middle">You</text>
+                    <text x="150" y="94" font-size="11" fill="rgba(255,255,255,.7)" text-anchor="middle">Other</text>
+                    <!-- Overlap / mirroring -->
+                    <ellipse cx="110" cy="90" rx="20" ry="30" fill="rgba(117,240,182,.18)" stroke="none"/>
+                    <text x="110" y="148" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">Automatic mirroring = belonging</text>
+
+                    <!-- After: awareness gap -->
+                    <text x="330" y="24" font-size="13" fill="rgba(255,255,255,.75)" text-anchor="middle" font-weight="700">After clarity</text>
+                    <circle cx="290" cy="90" r="35" fill="rgba(187,167,255,.12)" stroke="rgba(187,167,255,.5)" stroke-width="2"/>
+                    <circle cx="380" cy="90" r="35" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+                    <text x="290" y="94" font-size="11" fill="rgba(255,255,255,.7)" text-anchor="middle">You</text>
+                    <text x="380" y="94" font-size="11" fill="rgba(255,255,255,.7)" text-anchor="middle">Other</text>
+                    <!-- Gap -->
+                    <line x1="325" y1="75" x2="345" y2="75" stroke="rgba(255,122,153,.4)" stroke-width="2" stroke-dasharray="4 3"/>
+                    <line x1="325" y1="90" x2="345" y2="90" stroke="rgba(255,122,153,.4)" stroke-width="2" stroke-dasharray="4 3"/>
+                    <line x1="325" y1="105" x2="345" y2="105" stroke="rgba(255,122,153,.4)" stroke-width="2" stroke-dasharray="4 3"/>
+                    <text x="330" y="148" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">Mirroring breaks = distance</text>
+
+                    <!-- What you now see -->
+                    <text x="220" y="190" font-size="13" fill="rgba(255,255,255,.8)" text-anchor="middle" font-weight="700">What clarity reveals in social spaces</text>
+
+                    <rect x="20" y="210" width="190" height="38" rx="10" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="115" y="234" font-size="11" fill="rgba(255,255,255,.65)" text-anchor="middle">People speak to protect identity</text>
+
+                    <rect x="230" y="210" width="190" height="38" rx="10" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="325" y="234" font-size="11" fill="rgba(255,255,255,.65)" text-anchor="middle">Emotions managed, not examined</text>
+
+                    <rect x="20" y="260" width="190" height="38" rx="10" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="115" y="284" font-size="11" fill="rgba(255,255,255,.65)" text-anchor="middle">Contradictions go unnamed</text>
+
+                    <rect x="230" y="260" width="190" height="38" rx="10" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="325" y="284" font-size="11" fill="rgba(255,255,255,.65)" text-anchor="middle">Comfort chosen over truth</text>
+
+                    <rect x="125" y="310" width="190" height="38" rx="10" fill="rgba(0,0,0,.20)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="220" y="334" font-size="11" fill="rgba(255,255,255,.65)" text-anchor="middle">Predictable reactions on loop</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> The text frames isolation not as rejection by others, but as <b>unfamiliarity</b>.
+                The aware person hasn't been expelled&mdash;they've stopped participating in the mutual blindness that social cohesion often requires.
+                This reframe is important: it means the problem isn't "other people" but the <i>structure of unconscious connection itself</i>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: The Inward Turn -->
+      <section class="row">
+        <div class="card" aria-label="Inward turn">
+          <div class="cardHeader">
+            <h2>The Inward Turn: When Awareness Confronts the Self</h2>
+            <div class="chip"><b>Hardest phase:</b> self-confrontation</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              At first, clarity is directed outward&mdash;you notice patterns in others, in systems, in relationships.
+              That feels validating. Then awareness <b>turns back on you</b>, and this is where discomfort sharpens.
+            </p>
+
+            <div class="insightGrid">
+              <div class="insight">
+                <span class="iIcon" style="color:var(--bad)">&#9670;</span>
+                <h4>Past Reframes</h4>
+                <p>Moments you once justified now feel unfinished. Decisions you defended now feel misaligned. Not because you were wrong&mdash;because you were unaware.</p>
+              </div>
+              <div class="insight">
+                <span class="iIcon" style="color:var(--violet)">&#9670;</span>
+                <h4>Quiet Grief</h4>
+                <p>Not grief for people or events, but for versions of yourself that were never fully lived. Energy spent maintaining stability instead of pursuing truth.</p>
+              </div>
+              <div class="insight">
+                <span class="iIcon" style="color:var(--orange)">&#9670;</span>
+                <h4>Excuses Dissolve</h4>
+                <p>You can no longer say "I didn't know." You did know. You just didn't trust yourself yet. This removes the comfort of self-deception entirely.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flowNode" style="margin-top:4px">
+              <h3>The Protective Timing of Awareness</h3>
+              <p>Clarity doesn't arrive when you demand it&mdash;it arrives when your system is ready to handle it.
+              Your mind protected you by limiting perception. Now perception has expanded, and expansion always brings strain.
+              This is not failure. This is readiness.</p>
+              <div class="meta"><span class="badge">self-regulation</span><span class="badge">not pathology</span><span class="badge">readiness</span></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is closely related to Jung's concept of the <i>shadow</i>&mdash;the aspects of ourselves we've repressed or refused to acknowledge.
+              The "quiet grief" described here is what happens when shadow material surfaces: you don't encounter a monster, but a <b>mourning</b> for the life you
+              could have lived had you been conscious sooner. Jung would say this grief is the price of individuation.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="The hovering space">
+          <div class="cardHeader">
+            <h2>The Hovering: Between Two Identities</h2>
+            <div class="chip">neither asleep nor aligned</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              You see what must change, but you're not ready to change everything yet. This gap creates tension.
+              You feel pulled between insight and inertia.
+            </p>
+
+            <div class="viz" style="padding: 14px" aria-label="Identity tension diagram">
+              <svg viewBox="0 0 440 280" role="img" aria-label="Tension between old identity and new identity">
+                <defs>
+                  <linearGradient id="tensionGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,210,122,.35)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.35)"/>
+                  </linearGradient>
+                  <filter id="tensionGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#tensionGlow)">
+                  <!-- Old identity -->
+                  <rect x="20" y="40" width="160" height="100" rx="16" fill="rgba(0,0,0,.22)" stroke="rgba(255,210,122,.4)" stroke-width="2"/>
+                  <text x="100" y="72" font-size="14" fill="rgba(255,210,122,.9)" text-anchor="middle" font-weight="700">Old Identity</text>
+                  <text x="100" y="94" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Belonged everywhere</text>
+                  <text x="100" y="112" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Comfortable &bull; Automatic</text>
+                  <text x="100" y="130" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Filtered &bull; Stable</text>
+
+                  <!-- New identity -->
+                  <rect x="260" y="40" width="160" height="100" rx="16" fill="rgba(0,0,0,.22)" stroke="rgba(187,167,255,.5)" stroke-width="2"/>
+                  <text x="340" y="72" font-size="14" fill="rgba(187,167,255,.9)" text-anchor="middle" font-weight="700">Emerging Identity</text>
+                  <text x="340" y="94" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Belongs only where real</text>
+                  <text x="340" y="112" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Honest &bull; Intentional</text>
+                  <text x="340" y="130" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Clear &bull; Aligned</text>
+
+                  <!-- Tension zone -->
+                  <path d="M180 90 Q220 50 260 90" fill="none" stroke="url(#tensionGrad)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                  <path d="M180 90 Q220 130 260 90" fill="none" stroke="url(#tensionGrad)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                  <text x="220" y="96" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">TENSION</text>
+
+                  <!-- The in-between -->
+                  <rect x="80" y="180" width="280" height="80" rx="16" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                  <text x="220" y="210" font-size="13" fill="rgba(255,255,255,.8)" text-anchor="middle" font-weight="700">The In-Between Space</text>
+                  <text x="220" y="232" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">No applause. No certainty. No clear validation.</text>
+                  <text x="220" y="248" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Only honesty.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="row2">
+              <div class="flowNode">
+                <h3>Symptoms of hovering</h3>
+                <p>Small things irritate. Repetition drains. Meaningless tasks feel disproportionately heavy. Habit without intention feels empty.</p>
+                <div class="meta"><span class="badge">restlessness</span><span class="badge">irritability</span><span class="badge">loss of meaning</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>What it is NOT</h3>
+                <p>This isn't numbness, cynicism, or depression. It's <b>discernment</b>&mdash;learning the difference between noise and meaning, attachment and connection, familiarity and truth.</p>
+                <div class="meta"><span class="badge">not pathology</span><span class="badge">discernment</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This "hovering" state maps onto what developmental psychologists call a <i>liminal period</i>&mdash;a threshold
+              between two stages of identity. It's uncomfortable because the old structure has dissolved but the new one hasn't solidified.
+              Forcing premature resolution (going back to sleep OR rushing forward) usually backfires.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Clarity as Demand + The Transformation -->
+      <section class="row">
+        <div class="card" aria-label="Clarity as demand">
+          <div class="cardHeader">
+            <h2>When Clarity Stops Observing and Starts Demanding</h2>
+            <div class="chip"><b>Turning point:</b> passive &rarr; active</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Eventually, observation is no longer enough. Awareness turns into pressure&mdash;not external, internal.
+              Remaining the same now feels dishonest. Clarity asks questions that won't stop waiting for answers.
+            </p>
+
+            <div class="viz" style="padding: 14px" aria-label="Questions that clarity asks">
+              <svg viewBox="0 0 440 240" role="img">
+                <defs>
+                  <filter id="qGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#qGlow)">
+                  <!-- Central "eye" of awareness -->
+                  <circle cx="220" cy="120" r="60" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.3)" stroke-width="2"/>
+                  <circle cx="220" cy="120" r="30" fill="rgba(187,167,255,.10)" stroke="rgba(187,167,255,.4)" stroke-width="2"/>
+                  <circle cx="220" cy="120" r="8" fill="rgba(255,255,255,.5)"/>
+                  <text x="220" y="190" font-size="12" fill="rgba(255,255,255,.6)" text-anchor="middle">AWARENESS</text>
+
+                  <!-- Radiating questions -->
+                  <line x1="162" y1="95" x2="60" y2="40" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                  <text x="55" y="35" font-size="10" fill="rgba(255,179,138,.8)" text-anchor="end" font-style="italic">"Why are you still here?"</text>
+
+                  <line x1="280" y1="95" x2="380" y2="38" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                  <text x="385" y="33" font-size="10" fill="rgba(255,179,138,.8)" font-style="italic">"Why are you still agreeing?"</text>
+
+                  <line x1="162" y1="145" x2="40" y2="200" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                  <text x="35" y="215" font-size="10" fill="rgba(255,179,138,.8)" text-anchor="end" font-style="italic">"Why do you tolerate this?"</text>
+
+                  <line x1="280" y1="145" x2="400" y2="200" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                  <text x="405" y="215" font-size="10" fill="rgba(255,179,138,.8)" font-style="italic">"Is this still you?"</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="flowNode" style="margin-top:10px">
+              <h3>The Accumulation Effect</h3>
+              <p>The cost increases every day you live against what you know. You feel it as restlessness, irritability,
+              a subtle loss of meaning. Life doesn't fall apart&mdash;it <b>flattens</b>. Routine becomes heavier. Motivation becomes unreliable.</p>
+              <div class="meta"><span class="badge">compounding cost</span><span class="badge">not punishment</span><span class="badge">consequence</span></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The text carefully distinguishes between "consequence" and "punishment."
+              Clarity doesn't punish inaction&mdash;it simply makes inaction <i>felt</i>. This is an important reframe:
+              the discomfort isn't a sign that something is wrong with you. It's a signal that your awareness
+              has outgrown your current life structure.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="The quiet reward">
+          <div class="cardHeader">
+            <h2>The Quiet Reward: From Burden to Integrity</h2>
+            <div class="chip" style="border-color: rgba(117,240,182,.3)"><b>Resolution:</b> alignment</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The final transformation happens not through a dramatic moment, but through accumulated honest choices.
+              Each aligned action reduces internal resistance. Each avoided choice increases it.
+            </p>
+
+            <div class="insightGrid">
+              <div class="insight">
+                <span class="iIcon" style="color:var(--good)">&#9670;</span>
+                <h4>Aligned = Lighter</h4>
+                <p>Even difficult actions feel lighter when they match what you know. Easy actions feel heavy when they betray it.</p>
+              </div>
+              <div class="insight">
+                <span class="iIcon" style="color:var(--good)">&#9670;</span>
+                <h4>Less Internal Debate</h4>
+                <p>Decisions come faster. Boundaries feel natural, not defensive. Silence feels intentional, not fearful.</p>
+              </div>
+              <div class="insight">
+                <span class="iIcon" style="color:var(--good)">&#9670;</span>
+                <h4>Integrity, Not Happiness</h4>
+                <p>Inner experience matches outer life closely enough that you no longer feel divided. Division was always the real cost.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>What You Stop Doing</h3>
+                <p>Forcing yourself into roles that don't fit. Maintaining identities that require constant effort.
+                Explaining yourself to environments that don't listen. Not aggressively, not rebelliously&mdash;calmly.</p>
+                <div class="meta"><span class="badge">simplicity over performance</span><span class="badge">coherence over approval</span><span class="badge">truth over comfort</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>What You Gain</h3>
+                <p>Trust in your reactions. Faster recovery from disappointment. Less need to justify your path.
+                No need to convince anyone you've changed. You can feel it.</p>
+                <div class="meta"><span class="badge">self-trust</span><span class="badge">resilience</span><span class="badge">quiet confidence</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The text's final claim&mdash;"the cost of <i>not</i> seeing clearly was living fragmented"&mdash;reframes the entire narrative.
+              The pain wasn't caused by awareness. The pain was always there; awareness simply made it <i>visible</i>.
+              Integrity doesn't mean life becomes easy. It means the <b>division</b> ends, and that alone is relief, because pretending was exhausting.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Self-Assessment -->
+      <section class="card" id="assess" aria-label="Self-assessment">
+        <div class="cardHeader">
+          <h2>Where Are You on the Clarity Journey?</h2>
+          <div class="chip">interactive self-assessment</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            These are not diagnostic questions. They're reflection prompts based on the patterns described in the text.
+            Check the ones that resonate, then see where your experience clusters.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item" data-stage="early">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>You notice gaps between what people say and do</strong><em>early awareness</em></div>
+                <div class="d">The first sign: you see through surface-level communication to underlying patterns.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="early">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Entertainment and conversations feel thinner</strong><em>perceptual shift</em></div>
+                <div class="d">Content that once engaged you now feels repetitive or shallow. Not cynicism&mdash;changed threshold.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="social">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>You speak less and react slower in groups</strong><em>social friction</em></div>
+                <div class="d">You choose words more carefully. Others may sense you're less "automatic" than before.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="social">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Belonging feels conditional now</strong><em>mirroring loss</em></div>
+                <div class="d">You sense that many spaces require you to shrink curiosity or dull perception to fit in.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="inward">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>You see past compromises clearly</strong><em>self-confrontation</em></div>
+                <div class="d">Moments you once justified now feel unfinished. You recognize where you chose ease over honesty.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="inward">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>You feel grief for unlived versions of yourself</strong><em>shadow integration</em></div>
+                <div class="d">Not dramatic grief&mdash;a quiet recognition of energy spent maintaining stability instead of truth.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="hover">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Small tasks feel disproportionately draining</strong><em>hovering</em></div>
+                <div class="d">Routine without intention feels empty. Habit feels heavier. Motivation is unreliable.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="hover">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>You're between who you were and who you're becoming</strong><em>liminal state</em></div>
+                <div class="d">The old identity doesn't fit, but the new one hasn't solidified. No validation, only honesty.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="demand">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inaction feels increasingly dishonest</strong><em>clarity demands</em></div>
+                <div class="d">You know what needs to change. The cost of not changing accumulates daily as restlessness and flatness.</div>
+              </div>
+            </div>
+            <div class="item" data-stage="integrity">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Aligned actions feel lighter, misaligned actions feel heavier</strong><em>integrity forming</em></div>
+                <div class="d">Your body and energy confirm alignment. Less internal debate. Boundaries feel natural.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Reveal your clarity profile</button>
+            <button class="btn" id="resetBtn">Reset assessment</button>
+          </div>
+          <div id="scoreOut" style="margin-top:12px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> This assessment is reflective, not diagnostic. There is no "correct" pattern.
+            People often find themselves in multiple phases simultaneously. The value is in naming where you are,
+            not in reaching a destination. Awareness of your phase is itself a form of the clarity being described.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Gauges - Dynamic reading based on slider -->
+      <section class="card" aria-label="Dynamic psychological gauges">
+        <div class="cardHeader">
+          <h2>Real-Time Psychological State (linked to awareness slider above)</h2>
+          <div class="chip">adjust the slider to update</div>
+        </div>
+        <div class="cardBody">
+          <div class="gaugeCluster" id="gaugeCluster">
+            <div class="gauge">
+              <div class="gLabel">Comfort</div>
+              <div class="gRing">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+                  <circle id="gComfort" cx="50" cy="50" r="38" fill="none" stroke="var(--good)" stroke-width="8"
+                    stroke-dasharray="239" stroke-dashoffset="120" stroke-linecap="round"
+                    transform="rotate(-90 50 50)" style="transition: stroke-dashoffset .5s ease, stroke .5s ease"/>
+                </svg>
+                <div class="gValue" id="gComfortVal">50%</div>
+              </div>
+              <div class="gNote">Ease of daily life</div>
+            </div>
+            <div class="gauge">
+              <div class="gLabel">Friction</div>
+              <div class="gRing">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+                  <circle id="gFriction" cx="50" cy="50" r="38" fill="none" stroke="var(--bad)" stroke-width="8"
+                    stroke-dasharray="239" stroke-dashoffset="120" stroke-linecap="round"
+                    transform="rotate(-90 50 50)" style="transition: stroke-dashoffset .5s ease, stroke .5s ease"/>
+                </svg>
+                <div class="gValue" id="gFrictionVal">50%</div>
+              </div>
+              <div class="gNote">Social dissonance</div>
+            </div>
+            <div class="gauge">
+              <div class="gLabel">Authenticity</div>
+              <div class="gRing">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+                  <circle id="gAuth" cx="50" cy="50" r="38" fill="none" stroke="var(--violet)" stroke-width="8"
+                    stroke-dasharray="239" stroke-dashoffset="120" stroke-linecap="round"
+                    transform="rotate(-90 50 50)" style="transition: stroke-dashoffset .5s ease, stroke .5s ease"/>
+                </svg>
+                <div class="gValue" id="gAuthVal">50%</div>
+              </div>
+              <div class="gNote">Self-honesty level</div>
+            </div>
+            <div class="gauge">
+              <div class="gLabel">Integrity</div>
+              <div class="gRing">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+                  <circle id="gInteg" cx="50" cy="50" r="38" fill="none" stroke="var(--cyan)" stroke-width="8"
+                    stroke-dasharray="239" stroke-dashoffset="120" stroke-linecap="round"
+                    transform="rotate(-90 50 50)" style="transition: stroke-dashoffset .5s ease, stroke .5s ease"/>
+                </svg>
+                <div class="gValue" id="gIntegVal">50%</div>
+              </div>
+              <div class="gNote">Inner-outer alignment</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Key Reframes -->
+      <section class="card" aria-label="Key reframes">
+        <div class="cardHeader">
+          <h2>The Critical Reframes: What This Isn't</h2>
+          <div class="chip">correcting common misreadings</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Not cynicism &mdash; Discernment</h3>
+                  <p>You're learning the difference between noise and meaning, between attachment and connection, between familiarity and truth.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Not withdrawal &mdash; Integrity</h3>
+                  <p>Holding back isn't avoidance. It's refusal to trade awareness for belonging. You want connection but won't perform for it.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Not loneliness &mdash; Unfamiliarity</h3>
+                  <p>You can be surrounded by people and feel separate. Not because you feel misunderstood&mdash;because you see too much to fully merge.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Not punishment &mdash; Consequence</h3>
+                  <p>The daily cost of living against what you know isn't punishment. It's the natural result of awareness outgrowing your current structure.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Not depression &mdash; Transition</h3>
+                  <p>The hovering phase looks like depression from outside but is structurally different: you're between identities, not without one.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Not loss &mdash; Release</h3>
+                  <p>The cost of seeing clearly was never "new damage." It was making <b>visible</b> the fragmentation that was always there. Pretending was exhausting.</p>
+                  <div class="meta"><span class="badge" style="border-color: rgba(117,240,182,.3);color:var(--good)">reframe</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 10: Summary thesis -->
+      <section class="card" aria-label="Final thesis">
+        <div class="cardHeader">
+          <h2>The Thesis: What This All Means</h2>
+          <div class="chip"><b>Thesis:</b> the division was always the real cost</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">The cost of not seeing clearly</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Living fragmented. Inner experience disconnected from outer life. Energy drained by performance.
+                Choices made from fear. Relationships built on mutual blindness. Grief deferred, not avoided.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">The cost of seeing clearly</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Being unable to return to fragmentation. The temporary burden of dissonance, isolation, grief, and
+                the pressure to act. But eventually: integrity, where your inner experience matches your outer life
+                closely enough that you no longer feel divided.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">The final equation</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Clarity doesn't erase joy&mdash;it <b>redefines</b> it. The joy you're capable of now requires honesty.
+                And honesty requires restructuring. The restructuring is uncomfortable because nothing external confirms your progress.
+                But the internal shifts are real: you trust yourself more, pause longer, tolerate discomfort instead of escaping it.
+              </p>
+              <div class="hr"></div>
+              <p class="muted" style="margin:0;line-height:1.6">
+                These changes are invisible but significant. They are preparing you for a life that doesn't rely on pretending.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Final analysis: psychological depth vs. pop simplification</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                This text operates at a genuinely useful level of psychological insight. Its strongest contribution is the
+                taxonomy of costs (perceptual weight, social friction, self-confrontation, action pressure) and the careful
+                distinction between clarity-dissonance and clinical depression.
+              </p>
+              <p style="margin-top:8px">
+                Where it could be stronger: it doesn't discuss <b>when clarity becomes rumination</b> (a real clinical risk),
+                or when "seeing too much" is actually hypervigilance from unresolved trauma rather than genuine insight.
+                The text assumes all clarity is <i>valid</i> clarity, but in practice, some "seeing" is projection.
+              </p>
+              <p style="margin-top:8px">
+                The most powerful insight: "the cost of not seeing clearly was living fragmented." This reframes the entire
+                experience from "clarity damaged me" to "clarity revealed damage that was already there." That single reframe
+                can change how someone relates to their own awareness process.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="About commentary mode">
+        <div class="cardHeader">
+          <h2>About the "commentary mode" toggle</h2>
+          <div class="chip">interpretation vs. source</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, purple callout boxes (marked with <code>data-commentary</code>) offer meta-level analysis:
+            how does this map to established psychology? What are the limits of the claims? What alternative framings exist?
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary mode" at the top to hide/show all commentary boxes at once.
+            This lets you switch between "here's what the text says" and "here's a critical psychological perspective on that claim."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; disclaimers:</b> This interactive infographic was generated from a psychological essay on the costs of self-awareness and clarity.
+        It is not clinical advice. The visualizations, simulators, and commentary are conceptual tools to help you think about the ideas presented.
+        If you are experiencing persistent distress, please consult a qualified mental health professional.
+      </p>
+      <p style="margin-top:10px">
+        The concepts discussed draw on Jungian psychology, developmental theory, and existential philosophy.
+        For deeper exploration: Carl Jung's <i>The Undiscovered Self</i>, Irvin Yalom's <i>Existential Psychotherapy</i>, and Robert Kegan's <i>The Evolving Self</i>.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Phase data
+    // ──────────────────────────────────────────────────────
+    const phases = [
+      {
+        title: 'Phase 1: The Awakening',
+        body: 'Clarity begins by sharpening perception. You start noticing the gap between what people say and what they do, between what you want and what you tolerate. At first this feels empowering — you feel alert, more awake, more aware. You see through surface patterns for the first time.',
+        quote: '"Seeing clearly removes comfort. It sharpens perception. You start noticing the gap between what people say and what they do."'
+      },
+      {
+        title: 'Phase 2: The Weight',
+        body: 'Soon something shifts. Clarity doesn\'t only reveal truth — it reveals compromise. You see how often you chose ease over honesty. Entertainment feels thinner, conversations feel repetitive, certain ambitions feel hollow. Life becomes heavier, not externally, but internally. You can no longer numb yourself with distraction.',
+        quote: '"Your body reacts. Your energy drops. Your mind resists. You begin to sense when something drains you, even if it looks harmless on the surface."'
+      },
+      {
+        title: 'Phase 3: The Social Cost',
+        body: 'You speak less. React slower. Choose words carefully. Others sense that something about you is no longer automatic. You\'re not as easy to read, not as easy to predict. Mirroring — the unconscious social glue — weakens. Some relationships adapt. Others drift. You realize how much social connection was built on mutual blindness.',
+        quote: '"You realize how many spaces required you to shrink curiosity, silence insight, or dull your perception. You didn\'t notice this before. Now you do."'
+      },
+      {
+        title: 'Phase 4: Isolation as Unfamiliarity',
+        body: 'The isolation isn\'t loneliness — it\'s unfamiliarity. You can be surrounded by people and still feel separate. Not because you feel misunderstood, but because you see too much to fully merge. You want connection but refuse to perform. This holding back isn\'t avoidance — it\'s integrity.',
+        quote: '"You are no longer willing to trade awareness for belonging. This is one of the heaviest costs."'
+      },
+      {
+        title: 'Phase 5: The Inward Turn',
+        body: 'Awareness turns back on you. You see how much of your personality was shaped by adaptation — when to speak, when to stay quiet, when to agree, when to soften your edges. Clarity reframes your past: moments you justified now feel unfinished. A quiet grief emerges — not for events, but for versions of yourself that were never fully lived.',
+        quote: '"You can no longer say \'I didn\'t know.\' You did know, but you didn\'t trust yourself yet."'
+      },
+      {
+        title: 'Phase 6: The Hovering',
+        body: 'You see what must change but aren\'t ready to change everything yet. You\'re standing between two identities: the one that belonged everywhere and the one that belongs only where it\'s real. Small things irritate. Repetition drains. Habit without intention feels empty. This isn\'t numbness — it\'s discernment being born.',
+        quote: '"You are no longer asleep, but not yet fully aligned. You carry clarity into environments that haven\'t changed."'
+      },
+      {
+        title: 'Phase 7: Clarity Demands Action',
+        body: 'Observation is no longer enough. Awareness becomes internal pressure. You feel increasing discomfort with inaction — not impatience, but dishonesty in remaining the same. The questions don\'t shout. They wait. And because they wait, you can\'t escape them. The cost accumulates every day you live against what you know.',
+        quote: '"Life doesn\'t fall apart. It flattens. Routine becomes heavier. Motivation becomes unreliable."'
+      },
+      {
+        title: 'Phase 8: Integrity (The Quiet Reward)',
+        body: 'You stop forcing yourself into roles that don\'t fit. You choose simplicity over performance, coherence over approval, truth over comfort. Your decisions come with less internal debate. Boundaries feel natural. Silence feels intentional. The reward isn\'t happiness — it\'s integrity: inner experience matching outer life.',
+        quote: '"The cost of not seeing clearly was living fragmented. The cost of seeing clearly is being unable to return to fragmentation."'
+      }
+    ];
+
+    // ──────────────────────────────────────────────────────
+    // Phase timeline interaction
+    // ──────────────────────────────────────────────────────
+    const phaseEls = document.querySelectorAll('.phase');
+    const phaseDetail = document.getElementById('phaseDetail');
+
+    function showPhase(idx) {
+      phaseEls.forEach(el => el.classList.remove('active'));
+      phaseEls[idx].classList.add('active');
+      const p = phases[idx];
+      phaseDetail.innerHTML = `
+        <div class="pdTitle">${p.title}</div>
+        <div class="pdBody">${p.body}</div>
+        <div class="pdQuote">${p.quote}</div>
+      `;
+    }
+
+    phaseEls.forEach((el, i) => {
+      el.addEventListener('click', () => showPhase(i));
+    });
+    showPhase(0);
+
+    // ──────────────────────────────────────────────────────
+    // Awareness-Cost Simulator
+    // ──────────────────────────────────────────────────────
+    const awareSlider = document.getElementById('awareSlider');
+    const awareReadout = document.getElementById('awareReadout');
+    const statusReadout = document.getElementById('statusReadout');
+    const spectrumFill = document.getElementById('spectrumFill');
+    const spectrumMarker = document.getElementById('spectrumMarker');
+
+    // Curve functions (awareness 0-1 => value 0-1)
+    function comfortCurve(a) {
+      // Starts high, drops steeply, slight recovery at very high awareness
+      return Math.max(0.05, 0.95 - 0.85 * Math.pow(a, 0.6) + 0.15 * Math.pow(a, 4));
+    }
+
+    function frictionCurve(a) {
+      // Bell curve peaking around 0.5-0.65
+      return 0.05 + 0.9 * Math.exp(-Math.pow((a - 0.55) / 0.22, 2));
+    }
+
+    function authCurve(a) {
+      // Starts low, grows steadily
+      return 0.05 + 0.90 * Math.pow(a, 1.2);
+    }
+
+    function pressureCurve(a) {
+      // Rises then falls as integrity forms
+      return 0.05 + 0.85 * Math.pow(a, 1.5) * Math.exp(-1.5 * Math.pow(a - 0.7, 2) / (a > 0.7 ? 0.3 : 10));
+    }
+
+    function integrityCurve(a) {
+      // Very low until awareness is high, then rises sharply
+      return 0.02 + 0.95 * Math.pow(Math.max(0, a - 0.4) / 0.6, 2.5);
+    }
+
+    function renderCostChart() {
+      const awareness = parseInt(awareSlider.value) / 100;
+      awareReadout.textContent = `${awareSlider.value}%`;
+
+      // Update status
+      let status, statusColor;
+      if (awareness < 0.2) { status = 'Unconscious Comfort'; statusColor = 'var(--good)'; }
+      else if (awareness < 0.4) { status = 'Early Awakening'; statusColor = 'var(--cyan)'; }
+      else if (awareness < 0.6) { status = 'Dissonance Zone'; statusColor = 'var(--warn)'; }
+      else if (awareness < 0.8) { status = 'Hovering / Pressure'; statusColor = 'var(--orange)'; }
+      else { status = 'Approaching Integrity'; statusColor = 'var(--good)'; }
+      statusReadout.textContent = status;
+      statusReadout.style.color = statusColor;
+
+      // Spectrum bar
+      spectrumFill.style.width = `${awareness * 100}%`;
+      spectrumMarker.style.left = `${awareness * 100}%`;
+
+      const W = 980, H = 420;
+      const pad = 70, rightPad = 40;
+      const graphW = W - pad - rightPad;
+      const graphH = H - 100;
+      const pts = 60;
+
+      const curveFns = [comfortCurve, frictionCurve, authCurve, pressureCurve];
+      const curveIds = ['comfortCurve', 'frictionCurve', 'authCurve', 'pressureCurve'];
+
+      for (let c = 0; c < curveFns.length; c++) {
+        let path = '';
+        for (let i = 0; i <= pts; i++) {
+          const a = i / pts;
+          const x = pad + a * graphW;
+          const y = H - 60 - curveFns[c](a) * graphH;
+          path += (i === 0 ? 'M' : 'L') + `${x},${y} `;
+        }
+        document.getElementById(curveIds[c]).setAttribute('d', path);
+      }
+
+      // Awareness marker line
+      const markerX = pad + awareness * graphW;
+      document.getElementById('awareMarker').setAttribute('x1', markerX);
+      document.getElementById('awareMarker').setAttribute('x2', markerX);
+      document.getElementById('awareMarkerDot').setAttribute('cx', markerX);
+
+      // Grid
+      const grid = document.getElementById('costGrid');
+      grid.innerHTML = '';
+      const labels = ['0%', '20%', '40%', '60%', '80%', '100%'];
+      for (let i = 0; i <= 5; i++) {
+        const x = pad + (i / 5) * graphW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', 44);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', 360);
+        line.setAttribute('stroke', 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', 378);
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'rgba(255,255,255,.55)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = labels[i];
+        grid.appendChild(label);
+      }
+
+      // Update gauges
+      updateGauges(awareness);
+    }
+
+    function updateGauges(a) {
+      const circumference = 2 * Math.PI * 38; // ~238.76
+
+      const comfort = comfortCurve(a);
+      const friction = frictionCurve(a);
+      const auth = authCurve(a);
+      const integ = integrityCurve(a);
+
+      setGauge('gComfort', 'gComfortVal', comfort, circumference);
+      setGauge('gFriction', 'gFrictionVal', friction, circumference);
+      setGauge('gAuth', 'gAuthVal', auth, circumference);
+      setGauge('gInteg', 'gIntegVal', integ, circumference);
+    }
+
+    function setGauge(circleId, valId, value, circ) {
+      const offset = circ * (1 - value);
+      document.getElementById(circleId).style.strokeDashoffset = offset;
+      document.getElementById(valId).textContent = Math.round(value * 100) + '%';
+    }
+
+    awareSlider.addEventListener('input', renderCostChart);
+    renderCostChart();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpAssess').addEventListener('click', () => {
+      document.getElementById('assess').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Self-assessment scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const items = document.querySelectorAll('#checklist .item');
+      const stages = { early: 0, social: 0, inward: 0, hover: 0, demand: 0, integrity: 0 };
+      const stageTotals = { early: 0, social: 0, inward: 0, hover: 0, demand: 0, integrity: 0 };
+
+      items.forEach((item, i) => {
+        const stage = item.getAttribute('data-stage');
+        stageTotals[stage]++;
+        if (checkboxes[i].checked) stages[stage]++;
+      });
+
+      const total = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+      // Find dominant stage
+      let dominant = '';
+      let maxRatio = 0;
+      const stageLabels = {
+        early: 'Early Awakening',
+        social: 'Social Friction',
+        inward: 'Inward Turn',
+        hover: 'Hovering Between Identities',
+        demand: 'Clarity Demanding Action',
+        integrity: 'Approaching Integrity'
+      };
+
+      const stageColors = {
+        early: 'var(--cyan)',
+        social: 'var(--warn)',
+        inward: 'var(--bad)',
+        hover: 'var(--orange)',
+        demand: 'var(--violet)',
+        integrity: 'var(--good)'
+      };
+
+      for (const [key, val] of Object.entries(stages)) {
+        const ratio = val / stageTotals[key];
+        if (ratio > maxRatio) { maxRatio = ratio; dominant = key; }
+      }
+
+      let html = '<div style="margin-top:4px">';
+      html += `<p style="font-size:14px;font-weight:700;margin:0 0 8px">Your clarity profile: <span style="color:${stageColors[dominant]}">${stageLabels[dominant]}</span></p>`;
+      html += `<p class="muted" style="margin:0 0 10px;font-size:13px">${total} of ${checkboxes.length} markers resonated. Here's your stage breakdown:</p>`;
+
+      html += '<div style="display:grid;gap:6px">';
+      for (const [key, val] of Object.entries(stages)) {
+        const pct = Math.round((val / stageTotals[key]) * 100);
+        html += `<div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:12px;width:160px;color:var(--muted)">${stageLabels[key]}</span>
+          <div style="flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${stageColors[key]};border-radius:4px;transition:width .5s ease"></div>
+          </div>
+          <span style="font-size:11px;color:var(--faint);width:32px;text-align:right">${pct}%</span>
+        </div>`;
+      }
+      html += '</div>';
+
+      if (total === 0) {
+        html = '<p class="muted" style="margin:0;font-size:13px">No items checked. Either you haven\'t begun the clarity journey, or you\'re being very honest about not resonating yet. Both are valid.</p>';
+      }
+
+      html += '</div>';
+      document.getElementById('scoreOut').innerHTML = html;
+      showToast('Clarity profile generated');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Assessment reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

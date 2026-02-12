@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why You're Always the One Who Understands — and Gets Nothing Back</title>
+  <meta name="description" content="Interactive infographic exploring the psychology of over-empathy: how understanding everyone while no one understands you creates invisible exhaustion, and how Jungian integration offers a way forward." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 260px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(260px 200px at 60% 45%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+      cursor:pointer;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .item:hover{border-color: rgba(255,255,255,.22)}
+    .item.checked{border-color: rgba(187,167,255,.35); background: rgba(187,167,255,.06)}
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--bad));filter:saturate(1.1);transition: width .6s ease}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Quote blocks */
+    .quote{
+      border-left: 3px solid rgba(255,122,153,.6);
+      padding: 12px 14px;
+      background: rgba(255,122,153,.06);
+      border-radius: 14px;
+      margin: 10px 0;
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .quote .attr{font-style:normal;font-size:12px;color:var(--muted);margin-top:6px}
+
+    /* Phase cards */
+    .phaseGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 740px){
+      .phaseGrid{grid-template-columns:1fr}
+    }
+    .phase{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+      text-align: center;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .phase:hover{border-color: rgba(255,255,255,.28); transform: translateY(-2px)}
+    .phase .phaseNum{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:36px;height:36px;border-radius:99px;
+      font-weight:700;font-size:16px;
+      margin-bottom:10px;
+    }
+    .phase h3{margin:0 0 8px;font-size:14px}
+    .phase p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    /* Spectrum bar */
+    .spectrum{
+      height:8px;border-radius:99px;
+      background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));
+      margin: 10px 0;
+      position:relative;
+    }
+    .spectrumMarker{
+      position:absolute;top:-6px;
+      width:20px;height:20px;border-radius:99px;
+      border:2px solid white;
+      background: var(--bg);
+      transition: left .4s ease;
+      box-shadow: 0 0 12px rgba(0,0,0,.5);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    /* Energy flow animation */
+    @keyframes pulse{
+      0%,100%{opacity:.3;transform:scale(.95)}
+      50%{opacity:.8;transform:scale(1.05)}
+    }
+    .pulseGlow{animation: pulse 3s ease-in-out infinite}
+
+    @keyframes flowRight{
+      0%{transform:translateX(-10px);opacity:0}
+      50%{opacity:1}
+      100%{transform:translateX(10px);opacity:0}
+    }
+    .flowArrow{animation: flowRight 2s ease-in-out infinite}
+
+    /* Pattern recognition items */
+    .patternList{
+      display:grid;
+      gap: 8px;
+    }
+    .patternItem{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(0,0,0,.14);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor:pointer;
+      transition: all .2s ease;
+      user-select:none;
+    }
+    .patternItem:hover{border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.04)}
+    .patternItem.active{border-color: rgba(187,167,255,.4); background: rgba(187,167,255,.08); color: var(--text)}
+    .patternItem .ico{
+      width:24px;height:24px;border-radius:99px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.2);
+      flex-shrink:0;
+      transition: all .2s ease;
+    }
+    .patternItem.active .ico{border-color: rgba(187,167,255,.5); background: rgba(187,167,255,.15)}
+
+    /* Concept grid */
+    .conceptGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 740px){.conceptGrid{grid-template-columns:1fr}}
+    .concept{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .concept h4{margin:0 0 6px;font-size:13px;letter-spacing:.04em}
+    .concept p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 260" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.30)" />
+            </linearGradient>
+            <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="rgba(187,167,255,.40)" />
+              <stop offset="1" stop-color="rgba(187,167,255,0)" />
+            </radialGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="12" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="18" />
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Central figure silhouette - giving outward -->
+            <circle cx="260" cy="130" r="55" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".5"/>
+            <circle cx="260" cy="130" r="30" fill="none" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+            <!-- Hollow center -->
+            <circle cx="260" cy="130" r="12" fill="rgba(0,0,0,.3)" stroke="rgba(255,122,153,.4)" stroke-width="1"/>
+            <!-- Energy rays going outward -->
+            <line x1="315" y1="130" x2="400" y2="100" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+            <line x1="315" y1="130" x2="410" y2="140" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" opacity=".45"/>
+            <line x1="300" y1="85" x2="370" y2="50" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
+            <line x1="300" y1="175" x2="380" y2="200" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+            <line x1="205" y1="130" x2="120" y2="110" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" opacity=".3"/>
+            <line x1="220" y1="85" x2="160" y2="45" stroke="url(#g2)" stroke-width="1.5" stroke-linecap="round" opacity=".25"/>
+            <!-- Small receiver circles (others) -->
+            <circle cx="405" cy="98" r="14" fill="rgba(255,179,138,.15)" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+            <circle cx="415" cy="142" r="11" fill="rgba(255,210,122,.12)" stroke="rgba(255,210,122,.25)" stroke-width="1.5"/>
+            <circle cx="375" cy="48" r="10" fill="rgba(122,215,255,.12)" stroke="rgba(122,215,255,.25)" stroke-width="1.5"/>
+            <circle cx="385" cy="202" r="12" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.25)" stroke-width="1.5"/>
+            <!-- No rays returning to center -->
+            <!-- Subtle glow around hollow center -->
+            <circle cx="260" cy="130" r="45" fill="url(#rg1)" opacity=".25" class="pulseGlow"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> jungian psychology &bull; empathy &bull; shadow work</div>
+          <h1>Why You're Always the One Who Understands &mdash; and Gets Nothing Back</h1>
+          <p class="subtitle">
+            There is a particular kind of exhaustion that doesn't come from doing too much, but from being too understanding.
+            This infographic maps the hidden psychology of <b>one-directional empathy</b>&mdash;how it forms, what it costs, and how Jungian integration offers a way out.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Jump to energy flow</button>
+            <button class="btn" id="jumpShifts">Jump to the 3 shifts</button>
+            <button class="btn" id="toggleNotes">Toggle commentary</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Core pattern</div>
+            <div class="value" style="color:var(--bad)">Empathy &rarr; Self-erasure</div>
+            <div class="note">Understanding without boundaries becomes invisible self-abandonment.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Origin</div>
+            <div class="value">Childhood adaptation</div>
+            <div class="note">Reading moods prevented conflict. Being reasonable earned approval.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Jungian mechanism</div>
+            <div class="value" style="color:var(--violet)">One-sided persona</div>
+            <div class="note">Over-identifying as "the understanding one" grows the shadow.</div>
+          </div>
+          <div class="stat">
+            <div class="label">The way out</div>
+            <div class="value" style="color:var(--good)">Integration, not hardening</div>
+            <div class="note">Invite assertion back. Allow psychic tension. Reclaim anger as signal.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Section 1: The Dangerous Sentence -->
+      <section class="card" aria-label="The dangerous sentence">
+        <div class="cardHeader">
+          <h2>The Most Dangerous Sentence: "I Get It"</h2>
+          <div class="chip"><b>Trap:</b> closes the emotional loop</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Most people who resonate with this pain don't see themselves as victims. They see themselves as mature, emotionally intelligent, empathetic.
+                They say <b>"It's okay. I get it. He didn't mean it like that. She's been through a lot."</b>
+              </p>
+              <p class="muted">
+                That sentence&mdash;"I get it"&mdash;becomes the most dangerous sentence in their inner world because it does three things simultaneously:
+              </p>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>1) Ends the conversation</h3>
+                  <p>No further exploration is needed. The matter is "resolved" before you've even expressed how you feel.</p>
+                  <div class="meta"><span class="badge" style="color:var(--bad)">premature closure</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>2) Prevents confrontation</h3>
+                  <p>The other person never has to sit with the discomfort of having hurt you. Your understanding absorbs the impact.</p>
+                  <div class="meta"><span class="badge" style="color:var(--warn)">no friction</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>3) Blocks reciprocity</h3>
+                  <p>If you already understand, they don't need to explain, reflect, or make it right. The balance stays broken.</p>
+                  <div class="meta"><span class="badge" style="color:var(--orange)">one-way flow</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Emotional loop diagram">
+                <svg viewBox="0 0 420 340" role="img" aria-label="How I get it closes the loop">
+                  <defs>
+                    <linearGradient id="loopG1" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                    </linearGradient>
+                    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#s1)">
+                    <!-- Circular loop -->
+                    <circle cx="210" cy="160" r="110" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="30"/>
+                    <path d="M210,50 A110,110 0 1,1 100,160" fill="none" stroke="url(#loopG1)" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+                    <!-- Arrow at end -->
+                    <polygon points="96,148 108,162 92,168" fill="rgba(187,167,255,.6)"/>
+                    <!-- Center text -->
+                    <text x="210" y="140" text-anchor="middle" font-size="15" fill="rgba(255,255,255,.85)" font-weight="700">"I get it"</text>
+                    <text x="210" y="162" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.55)">loop closes here</text>
+                    <!-- Labels around the loop -->
+                    <text x="330" y="100" text-anchor="middle" font-size="11" fill="rgba(255,122,153,.8)">someone hurts you</text>
+                    <text x="340" y="230" text-anchor="middle" font-size="11" fill="rgba(255,210,122,.7)">you explain it away</text>
+                    <text x="210" y="295" text-anchor="middle" font-size="11" fill="rgba(122,215,255,.7)">you absorb the pain</text>
+                    <text x="80" y="230" text-anchor="middle" font-size="11" fill="rgba(187,167,255,.7)">they never know</text>
+                    <!-- X mark where reciprocity should be -->
+                    <text x="90" y="100" text-anchor="middle" font-size="18" fill="rgba(255,122,153,.5)">x</text>
+                    <text x="66" y="82" text-anchor="middle" font-size="9" fill="rgba(255,122,153,.5)">reciprocity blocked</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> The loop is self-reinforcing. Each time you say "I get it," you train yourself that your feelings are secondary&mdash;and you train others that no repair is needed. It's not one event; it's a <i>pattern architecture</i>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Childhood Origin + Jungian Shadow -->
+      <section class="row">
+        <div class="card" aria-label="Childhood origin">
+          <div class="cardHeader">
+            <h2>The Childhood Origin: Empathy as Survival</h2>
+            <div class="chip">role adoption</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In Jungian psychology, this pattern isn't random. Many people who are always understanding adopted that role <b>early in life</b>, often as children.
+            </p>
+            <div class="quote">
+              "They learned unconsciously that being perceptive, calm, and emotionally aware made environments safer&mdash;that reading moods prevented conflict,
+              that being the reasonable one earned approval. So empathy became survival."
+            </div>
+            <p class="muted">
+              What once protected you now quietly costs you. Because <b>empathy without boundaries does not remain empathy</b>&mdash;it becomes self-erasure.
+            </p>
+
+            <div class="hr"></div>
+            <div class="small" style="margin-bottom:8px">What the child learned (and what it costs the adult):</div>
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Read moods early</strong><span class="badge" style="color:var(--cyan)">child skill</span></div>
+                <p>Hyper-vigilance to emotional atmospheres. Kept you safe then. Keeps you exhausted now.</p>
+                <div class="meter"><i style="width:75%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Be the reasonable one</strong><span class="badge" style="color:var(--cyan)">child skill</span></div>
+                <p>De-escalation through self-suppression. You earned approval but lost your voice.</p>
+                <div class="meter"><i style="width:68%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Explain their behavior</strong><span class="badge" style="color:var(--warn)">adult cost</span></div>
+                <p>You make others innocent and yourself invisible. Your needs become "unreasonable."</p>
+                <div class="meter"><i style="width:82%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Absorb without releasing</strong><span class="badge" style="color:var(--bad)">adult cost</span></div>
+                <p>People vent, process, lean on you&mdash;then leave lighter. You stay heavy.</p>
+                <div class="meter"><i style="width:88%"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The key insight is that this is <i>adaptive</i>, not pathological. You were not "too sensitive"&mdash;you were smart enough to read the room. The problem is that adaptations made in childhood don't auto-update for adult contexts where you have more agency.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Persona and shadow">
+          <div class="cardHeader">
+            <h2>The One-Sided Persona &amp; the Growing Shadow</h2>
+            <div class="chip"><b>Jung:</b> what you disown grows</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              You over-identify with being the understanding one, the emotionally strong one, the safe one.
+              Jung called this a <b>one-sided persona</b>. And every time you do that, your shadow grows.
+            </p>
+
+            <div class="viz" aria-label="Persona vs Shadow visualization">
+              <svg viewBox="0 0 460 320" role="img" id="shadowSvg">
+                <defs>
+                  <linearGradient id="personaG" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.1)"/>
+                  </linearGradient>
+                  <linearGradient id="shadowG" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,122,153,.1)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.35)"/>
+                  </linearGradient>
+                  <filter id="s2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <!-- Dividing line -->
+                <line x1="230" y1="30" x2="230" y2="290" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="4 4"/>
+                <text x="230" y="20" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)" letter-spacing=".1em">PERSONA | SHADOW</text>
+                <g filter="url(#s2)">
+                  <!-- Persona side (left) -->
+                  <rect x="30" y="45" width="180" height="240" rx="18" fill="url(#personaG)" stroke="rgba(187,167,255,.3)" stroke-width="1"/>
+                  <text x="120" y="75" text-anchor="middle" font-size="13" fill="rgba(187,167,255,.9)" font-weight="700">What you show</text>
+                  <text x="120" y="106" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">understanding</text>
+                  <text x="120" y="128" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">patience</text>
+                  <text x="120" y="150" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">emotional strength</text>
+                  <text x="120" y="172" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">calmness</text>
+                  <text x="120" y="194" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">self-sufficiency</text>
+                  <text x="120" y="216" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">safety for others</text>
+                  <text x="120" y="248" text-anchor="middle" font-size="10" fill="rgba(187,167,255,.6)">over-developed</text>
+                  <text x="120" y="268" text-anchor="middle" font-size="10" fill="rgba(187,167,255,.5)">rigid, compulsive</text>
+
+                  <!-- Shadow side (right) -->
+                  <rect id="shadowRect" x="250" y="45" width="180" height="240" rx="18" fill="url(#shadowG)" stroke="rgba(255,122,153,.3)" stroke-width="1"/>
+                  <text x="340" y="75" text-anchor="middle" font-size="13" fill="rgba(255,122,153,.9)" font-weight="700">What you disown</text>
+                  <text x="340" y="106" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">anger</text>
+                  <text x="340" y="128" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">neediness</text>
+                  <text x="340" y="150" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">desire to be chosen</text>
+                  <text x="340" y="172" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">frustration</text>
+                  <text x="340" y="194" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">wish to be prioritized</text>
+                  <text x="340" y="216" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">self-advocacy</text>
+                  <text x="340" y="248" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.6)">repressed, fermenting</text>
+                  <text x="340" y="268" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.5)">leaks as resentment</text>
+                </g>
+              </svg>
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: rgba(187,167,255,.7)"></span> Persona (what you show)</div>
+                <div class="key"><span class="sw" style="background: rgba(255,122,153,.7)"></span> Shadow (what you disown)</div>
+              </div>
+            </div>
+
+            <div class="quote">
+              "The shadow is not evil. It is everything you disown to maintain an identity. Underground emotions do not disappear. They ferment."
+            </div>
+
+            <div class="small">The result: you care deeply but you're tired of caring. You love but you're quietly bitter. You understand but you're starting to feel used.</div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Jung's insight is that the psyche always seeks equilibrium. When energy flows only one direction&mdash;outward through empathy&mdash;the psyche compensates through resentment, fatigue, or sudden emotional collapse. The shadow <i>will</i> express itself eventually, whether you invite it or not.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: The Structural Problem + Energy Flow Viz -->
+      <section class="card" id="energyViz" aria-label="The structural problem">
+        <div class="cardHeader">
+          <h2>The Structural Problem: Why People Take Without Giving Back</h2>
+          <div class="chip"><b>Key:</b> pattern, not personality</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                People don't take from you because they are malicious. They take because <b>the relationship structure allows it</b>.
+                Human beings are deeply unconscious in how they relate. They respond to patterns, not intentions.
+              </p>
+              <div class="quote">
+                "You don't demand clarity. You don't insist on reciprocity. You don't make emotional absence uncomfortable.
+                So the psyche of the other person relaxes&mdash;not consciously, instinctively."
+              </div>
+              <p class="muted">
+                In Jungian terms, this is a <b>failure of psychic tension</b>. Jung believed growth happens when opposing forces are held in tension&mdash;need and restraint,
+                closeness and distance, giving and receiving. When you collapse that tension by understanding everything, the other person doesn't need to grow.
+              </p>
+
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode">
+                  <h3>No boundary = no guilt</h3>
+                  <p>People feel guilty only when they sense they've violated a boundary. If there is no boundary, there is no guilt&mdash;only convenience.</p>
+                  <div class="meta"><span class="badge" style="color:var(--bad)">structural</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Emotional utility, not emotional equal</h3>
+                  <p>They vent endlessly but disappear when you need support. They lean during chaos but vanish during calm. Utilities are used, not cherished.</p>
+                  <div class="meta"><span class="badge" style="color:var(--warn)">imbalance</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Your empathy cushions their underdevelopment</h3>
+                  <p>Your understanding removes friction at your own expense. They don't feel the weight of losing you. Cushions don't inspire change.</p>
+                  <div class="meta"><span class="badge" style="color:var(--orange)">stagnation</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="small" style="margin-bottom:8px">Interactive: Adjust the balance of emotional energy in the relationship</div>
+              <div class="viz" id="viz" aria-label="Energy flow visualization">
+                <svg viewBox="0 0 440 380" role="img" id="energySvg">
+                  <defs>
+                    <linearGradient id="eg1" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(187,167,255,.6)"/>
+                      <stop offset="1" stop-color="rgba(255,179,138,.4)"/>
+                    </linearGradient>
+                    <linearGradient id="eg2" x1="1" x2="0" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(117,240,182,.5)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,.4)"/>
+                    </linearGradient>
+                    <filter id="s3" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#s3)">
+                    <!-- You (left) -->
+                    <circle id="youCircle" cx="110" cy="190" r="55" fill="rgba(187,167,255,.12)" stroke="rgba(187,167,255,.4)" stroke-width="2"/>
+                    <text x="110" y="185" text-anchor="middle" font-size="14" fill="rgba(187,167,255,.9)" font-weight="700">You</text>
+                    <text x="110" y="205" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" id="youLabel">giving 85%</text>
+
+                    <!-- Them (right) -->
+                    <circle id="themCircle" cx="330" cy="190" r="55" fill="rgba(255,179,138,.12)" stroke="rgba(255,179,138,.4)" stroke-width="2"/>
+                    <text x="330" y="185" text-anchor="middle" font-size="14" fill="rgba(255,179,138,.9)" font-weight="700">Them</text>
+                    <text x="330" y="205" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" id="themLabel">giving 15%</text>
+
+                    <!-- Outgoing energy (thick) -->
+                    <path id="energyOut" d="M165,175 C220,140 260,140 275,175" fill="none" stroke="url(#eg1)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                    <text x="220" y="138" text-anchor="middle" font-size="10" fill="rgba(187,167,255,.6)" id="outLabel">empathy, labor, care</text>
+
+                    <!-- Returning energy (thin) -->
+                    <path id="energyIn" d="M275,205 C260,240 220,240 165,205" fill="none" stroke="url(#eg2)" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+                    <text x="220" y="258" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.45)" id="inLabel">little returns</text>
+
+                    <!-- Drain indicator -->
+                    <text x="110" y="270" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.6)" id="drainLabel">energy: draining</text>
+                    <rect x="70" y="278" width="80" height="6" rx="3" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.08)"/>
+                    <rect id="drainBar" x="70" y="278" width="20" height="6" rx="3" fill="rgba(255,122,153,.6)"/>
+                  </g>
+
+                  <!-- Status text -->
+                  <text x="220" y="340" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)" id="balanceStatus">Severely imbalanced</text>
+                </svg>
+              </div>
+
+              <div class="controls" style="grid-template-columns:1fr">
+                <div class="control">
+                  <label>
+                    <span>Your giving level</span>
+                    <span class="readout" id="giveReadout">85%</span>
+                  </label>
+                  <input id="giveSlider" type="range" min="10" max="100" value="85" />
+                  <div class="small" style="margin-top:8px">Slide left to model what happens when you stop over-giving.</div>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> The critical reframe: this isn't about what's wrong with <i>them</i>. It's about the <b>relational structure</b> you unknowingly built. People don't withhold because they're cruel&mdash;they withhold because the relationship taught them you will be okay without reciprocity. Not because you are okay, but because you <i>appear</i> self-contained.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: The Psychological Trap -->
+      <section class="row">
+        <div class="card" aria-label="The psychological trap">
+          <div class="cardHeader">
+            <h2>The Psychological Trap</h2>
+            <div class="chip">understanding =/= intimacy</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Understanding became a <b>substitute for intimacy</b>. Instead of being known, you became accommodating.
+              Instead of being met, you became adaptable. Instead of being held, you became strong.
+            </p>
+
+            <div class="conceptGrid">
+              <div class="concept">
+                <h4 style="color:var(--bad)">What you wanted</h4>
+                <p>To be known. To be chosen&mdash;not just relied on. To be prioritized without explaining yourself.</p>
+              </div>
+              <div class="concept">
+                <h4 style="color:var(--warn)">What you settled for</h4>
+                <p>Being needed. Being the safe one. Being told "you always understand."</p>
+              </div>
+              <div class="concept">
+                <h4 style="color:var(--violet)">What you told yourself</h4>
+                <p>"Understanding others means not needing anything back." This is the trap.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quote">
+              "Silence does not teach people to care. It teaches them that silence is acceptable."
+            </div>
+
+            <p class="muted">
+              You confuse boundaries with punishment. Expression with aggression. Self-assertion with selfishness.
+              So instead, you wait. You hope they'll notice. But <b>hope is not a psychological strategy</b>.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is perhaps the most painful insight: the very thing you're best at&mdash;understanding others&mdash;has become the mechanism that prevents you from getting what you actually need. The skill itself is not the problem. The <i>exclusivity</i> of that skill is.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Pattern recognition">
+          <div class="cardHeader">
+            <h2>Do You Recognize These Patterns?</h2>
+            <div class="chip" id="patternCount"><b>0</b>/10 recognized</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Click any pattern you recognize in yourself. This isn't a diagnostic&mdash;it's a mirror.
+            </p>
+            <div class="patternList" id="patternList">
+              <div class="patternItem" data-idx="0">
+                <div class="ico">1</div>
+                <span>You always check in first&mdash;no one checks on you</span>
+              </div>
+              <div class="patternItem" data-idx="1">
+                <div class="ico">2</div>
+                <span>You remember details others forget about you</span>
+              </div>
+              <div class="patternItem" data-idx="2">
+                <div class="ico">3</div>
+                <span>People vent to you endlessly but vanish when you need support</span>
+              </div>
+              <div class="patternItem" data-idx="3">
+                <div class="ico">4</div>
+                <span>You explain others' hurtful behavior before they have to</span>
+              </div>
+              <div class="patternItem" data-idx="4">
+                <div class="ico">5</div>
+                <span>You interpret your own needs as "unreasonable" or "too much"</span>
+              </div>
+              <div class="patternItem" data-idx="5">
+                <div class="ico">6</div>
+                <span>You feel invisible in your own emotional life</span>
+              </div>
+              <div class="patternItem" data-idx="6">
+                <div class="ico">7</div>
+                <span>You hold space no one holds for you</span>
+              </div>
+              <div class="patternItem" data-idx="7">
+                <div class="ico">8</div>
+                <span>You forgive before others even acknowledge what they did</span>
+              </div>
+              <div class="patternItem" data-idx="8">
+                <div class="ico">9</div>
+                <span>You've stopped expecting to be truly understood</span>
+              </div>
+              <div class="patternItem" data-idx="9">
+                <div class="ico">10</div>
+                <span>You care deeply but you're also tired of caring</span>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small" id="patternResult" style="min-height:36px"></div>
+
+            <div class="spectrum" id="patternSpectrum">
+              <div class="spectrumMarker" id="patternMarker" style="left:0%"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span class="small" style="color:var(--good)">Mild pattern</span>
+              <span class="small" style="color:var(--bad)">Deep pattern</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: The Harsh Truths -->
+      <section class="card" aria-label="Harsh truths">
+        <div class="cardHeader">
+          <h2>The Harsh Truths</h2>
+          <div class="chip"><b>Reframe:</b> friction is meaningful</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            These are the uncomfortable recognitions that precede change. Not to punish yourself&mdash;but to see clearly.
+          </p>
+          <div class="split">
+            <div>
+              <details>
+                <summary><strong>"People respect what costs them something"</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p>Effort, adjustment, discomfort. When being in your life costs nothing emotionally, it is unconsciously valued less.
+                  This doesn't mean you should become transactional. It means you must <b>allow friction</b>. Friction is what makes presence meaningful.</p>
+                  <p>Right now, your understanding removes friction at your own expense. People don't feel the weight of losing you.
+                  They don't feel urgency to meet you where you are because <i>you're always already there</i>.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary><strong>"You are not too understanding. You are underexpressed."</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p>You have insight without assertion. Empathy without demand. Awareness without self-advocacy.
+                  And the psyche does not reward imbalance&mdash;it punishes it with emptiness.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary><strong>"You are overgiving to avoid something"</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p>People are not stealing from you. You are overgiving to avoid conflict, rejection, or abandonment. That doesn't make you weak&mdash;it makes you adaptive.
+                  But <b>adaptations that are never updated become self-betrayal</b>.</p>
+                </div>
+              </details>
+            </div>
+            <div>
+              <details>
+                <summary><strong>"If it collapses when you stop overgiving, it was never mutual"</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p>If a relationship collapses when you stop overgiving, it was never mutual. It was <b>managed</b>. You were the glue. And glue gets used up.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary><strong>"Being good will not make people give back"</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p>People don't reciprocate because you deserve it. They reciprocate because the relationship <b>requires</b> it.
+                  And requirement is not cruelty. It is structure.</p>
+                </div>
+              </details>
+
+              <details data-commentary>
+                <summary><strong>Analysis: the false binary</strong><span class="hint">expand</span></summary>
+                <div class="detailBody">
+                  <p><b>Commentary:</b> Most people stay stuck because they believe there are only two options: be understanding and be drained, or set boundaries and become cruel.
+                  That belief is the final illusion. The goal was never to become <i>harder</i>&mdash;it was to become more <b>solid</b>. In Jungian terms: integration, not repression or rebellion.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: The Three Shifts -->
+      <section class="card" id="shifts" aria-label="The three shifts">
+        <div class="cardHeader">
+          <h2>The Three Shifts: From Over-Empathy to Integration</h2>
+          <div class="chip"><b>Jung:</b> invite the opposite back</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Carl Jung believed that when a trait is overdeveloped, its opposite must be consciously invited back into the psyche.
+            You have overdeveloped understanding. So what must return is <b>assertion</b>&mdash;not aggression, not explanation, but <i>presence</i>.
+          </p>
+
+          <div class="phaseGrid">
+            <div class="phase">
+              <div class="phaseNum" style="background:rgba(187,167,255,.15);border:1px solid rgba(187,167,255,.35);color:var(--violet)">1</div>
+              <h3>Stop Pre-Understanding</h3>
+              <p>Stop filling emotional gaps before they are acknowledged. Instead of saying "I get it," <b>pause</b>.
+              Let behavior sit unanswered. That pause creates psychic tension&mdash;and tension reveals who is willing to meet you.</p>
+            </div>
+            <div class="phase">
+              <div class="phaseNum" style="background:rgba(122,215,255,.15);border:1px solid rgba(122,215,255,.35);color:var(--cyan)">2</div>
+              <h3>Allow Your Absence</h3>
+              <p>Stop overfunctioning. Don't check in first. Don't rescue silence. Don't maintain closeness alone.
+              Let the relationship reflect its <b>actual balance</b>. This is terrifying&mdash;but clarity always hurts before it heals.</p>
+            </div>
+            <div class="phase">
+              <div class="phaseNum" style="background:rgba(255,122,153,.15);border:1px solid rgba(255,122,153,.35);color:var(--bad)">3</div>
+              <h3>Reclaim Anger as Information</h3>
+              <p>Anger tells you where you have abandoned yourself. Don't act it out&mdash;listen to its message:
+              <b>"This mattered. This crossed a line. I needed more."</b> Honor that message internally, and you stop leaking resentment externally.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="small" style="margin-bottom:10px">Track your shift progress (these are internal practices, not behaviors to perform):</div>
+          <div class="checklist" id="shiftChecklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Withhold premature empathy</strong><em>shift 1</em></div>
+                <div class="d">When someone hurts you, resist the urge to explain it away. Let the discomfort exist without you resolving it for them.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Let silences be revealing</strong><em>shift 2</em></div>
+                <div class="d">Don't fill every silence or gap. Let the space show you who reaches toward you and who only waits to be reached.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Notice anger without suppressing it</strong><em>shift 3</em></div>
+                <div class="d">When you feel resentment, ask: "What boundary did I fail to hold? What need did I dismiss as unreasonable?"</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Express needs without justification</strong><em>all shifts</em></div>
+                <div class="d">You don't need to explain your boundaries. You don't need to announce your self-respect. Your nervous system will change first.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Accept that some will fall away</strong><em>integration</em></div>
+                <div class="d">People will adjust or fall away. Both outcomes are alignment. If it was only held together by your overgiving, it was never mutual.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="shiftScoreBtn">Check integration progress</button>
+            <button class="btn" id="shiftResetBtn">Reset</button>
+          </div>
+          <div class="small" id="shiftScoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Notice the framing is <i>not</i> "become selfish" or "stop caring." It's about moving from unconscious over-giving to <b>conscious relating</b>. The warmth stays. What changes is the porousness&mdash;you become warm but no longer permeable.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: The Quiet Transformation -->
+      <section class="card" aria-label="Transformation">
+        <div class="cardHeader">
+          <h2>The Quiet Transformation</h2>
+          <div class="chip"><b>Outcome:</b> precision, not loss</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="viz" aria-label="Transformation visualization" style="padding:14px">
+                <svg viewBox="0 0 420 260" role="img">
+                  <defs>
+                    <linearGradient id="tg1" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.4)"/>
+                    </linearGradient>
+                    <filter id="s4" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#s4)">
+                    <!-- Before: scattered giving -->
+                    <text x="105" y="24" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)" letter-spacing=".1em">BEFORE</text>
+                    <circle cx="105" cy="130" r="40" fill="rgba(187,167,255,.1)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <text x="105" y="126" text-anchor="middle" font-size="11" fill="rgba(187,167,255,.8)">You</text>
+                    <text x="105" y="142" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">over-giving</text>
+                    <!-- Scattered arrows going out -->
+                    <line x1="145" y1="110" x2="188" y2="60" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <line x1="145" y1="130" x2="195" y2="130" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <line x1="145" y1="150" x2="188" y2="200" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <line x1="125" y1="170" x2="140" y2="220" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                    <line x1="85" y1="170" x2="60" y2="218" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                    <line x1="65" y1="130" x2="20" y2="120" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                    <!-- Small empty circles (unreturned) -->
+                    <circle cx="192" cy="56" r="10" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                    <circle cx="198" cy="130" r="10" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                    <circle cx="192" cy="204" r="10" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                    <circle cx="142" cy="224" r="8" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                    <circle cx="56" cy="222" r="8" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                    <circle cx="16" cy="118" r="8" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+                    <!-- Arrow between -->
+                    <path d="M220,130 L240,130" stroke="rgba(255,255,255,.25)" stroke-width="1.5" marker-end="url(#arrowMark)"/>
+                    <text x="230" y="118" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.35)">shift</text>
+
+                    <!-- After: selective, mutual -->
+                    <text x="340" y="24" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)" letter-spacing=".1em">AFTER</text>
+                    <circle cx="340" cy="130" r="40" fill="rgba(117,240,182,.1)" stroke="rgba(117,240,182,.35)" stroke-width="1.5"/>
+                    <text x="340" y="126" text-anchor="middle" font-size="11" fill="rgba(117,240,182,.8)">You</text>
+                    <text x="340" y="142" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">integrated</text>
+                    <!-- Fewer arrows, bidirectional -->
+                    <line x1="380" y1="110" x2="408" y2="80" stroke="url(#tg1)" stroke-width="2"/>
+                    <line x1="408" y1="86" x2="385" y2="115" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                    <line x1="380" y1="150" x2="408" y2="180" stroke="url(#tg1)" stroke-width="2"/>
+                    <line x1="408" y1="174" x2="385" y2="148" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                    <!-- Mutual circles (filled) -->
+                    <circle cx="412" cy="76" r="10" fill="rgba(117,240,182,.15)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                    <circle cx="412" cy="184" r="10" fill="rgba(117,240,182,.15)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+
+                    <!-- Faded distant circles (released) -->
+                    <circle cx="300" cy="60" r="7" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="3 3"/>
+                    <circle cx="290" cy="200" r="7" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="3 3"/>
+                    <text x="290" y="230" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.2)">fell away</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div class="quote">
+                "You stop being the one who understands everyone and become someone who is understood by the right people. That's not loss. That's precision."
+              </div>
+
+              <p class="muted">
+                You're not broken. You're not naive. You adapted early and now it's time to evolve.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3 style="color:var(--good)">What changes</h3>
+                  <p>Your availability changes. Your responses change. Your tolerance changes. Your nervous system changes first&mdash;before any announcement.</p>
+                  <div class="meta">
+                    <span class="badge" style="color:var(--good)">organic</span>
+                    <span class="badge" style="color:var(--good)">internal-first</span>
+                  </div>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--cyan)">What remains</h3>
+                  <p>Your warmth. Your capacity for depth. Your ability to see people. But now it's offered from solidity, not from a need to be needed.</p>
+                  <div class="meta">
+                    <span class="badge" style="color:var(--cyan)">warm but not porous</span>
+                  </div>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--violet)">What emerges</h3>
+                  <p>Fewer relationships, but mutual ones. Less exhaustion, more aliveness. Not "being there for everyone"&mdash;but being present with the right ones.</p>
+                  <div class="meta">
+                    <span class="badge" style="color:var(--violet)">precision</span>
+                    <span class="badge" style="color:var(--violet)">reciprocity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> The final line is the thesis in one sentence: "Understanding shouldn't cost you yourself." The entire argument builds to this: empathy is not the problem. <b>Empathy without structure, assertion, and boundaries</b> is the problem. Integration means keeping the gift while building the container.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Jungian Concepts Summary -->
+      <section class="card" aria-label="Jungian concepts">
+        <div class="cardHeader">
+          <h2>Jungian Concepts at a Glance</h2>
+          <div class="chip">reference glossary</div>
+        </div>
+        <div class="cardBody">
+          <div class="conceptGrid" style="grid-template-columns: repeat(4, 1fr)">
+            <div class="concept">
+              <h4 style="color:var(--violet)">Persona</h4>
+              <p>The mask you wear. Here: "the understanding one." Over-identification with one role starves the rest of the psyche.</p>
+            </div>
+            <div class="concept">
+              <h4 style="color:var(--bad)">Shadow</h4>
+              <p>Everything you disown. Here: anger, neediness, desire to be chosen. It doesn't vanish&mdash;it ferments underground.</p>
+            </div>
+            <div class="concept">
+              <h4 style="color:var(--cyan)">Psychic Tension</h4>
+              <p>Growth requires opposing forces held in balance. Collapsing tension through premature understanding prevents evolution.</p>
+            </div>
+            <div class="concept">
+              <h4 style="color:var(--good)">Integration</h4>
+              <p>Consciously inviting suppressed qualities back. Not becoming them&mdash;but making room for them alongside empathy.</p>
+            </div>
+          </div>
+          <div class="callout" data-commentary style="margin-top:12px">
+            <b>Commentary:</b> Jung's framework is useful here because it doesn't pathologize empathy. It contextualizes it within a system that requires <b>balance</b>. The problem is never one quality&mdash;it's always the exclusion of its complement.
+          </div>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="About commentary">
+        <div class="cardHeader">
+          <h2>About the Commentary Toggle</h2>
+          <div class="chip">interpretation vs. content</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, purple callout boxes (marked with <code>data-commentary</code>) offer meta-level analysis:
+            what's the deeper mechanism? What alternative framings exist? What's the psychological nuance?
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary" at the top to hide/show all commentary at once.
+            This lets you switch between "here's the core message" and "here's the analytical layer."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; context:</b> This interactive infographic was generated to visualize the psychological dynamics discussed in the source material about one-directional empathy, drawing on Jungian concepts of persona, shadow, and integration.
+        It is not clinical advice or a diagnostic tool&mdash;it's an invitation to self-reflection.
+      </p>
+      <p style="margin-top:10px">
+        "Understanding shouldn't cost you yourself."
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Energy Flow Visualization (interactive SVG)
+    // ──────────────────────────────────────────────────────
+    const giveSlider = document.getElementById('giveSlider');
+    const giveReadout = document.getElementById('giveReadout');
+
+    function renderEnergy() {
+      const give = parseInt(giveSlider.value);
+      const receive = Math.max(5, Math.min(90, 100 - give + Math.floor(Math.random() * 10)));
+      giveReadout.textContent = give + '%';
+
+      // Update labels
+      document.getElementById('youLabel').textContent = 'giving ' + give + '%';
+      document.getElementById('themLabel').textContent = 'giving ' + (100 - give) + '%';
+
+      // Update outgoing energy thickness
+      const outWidth = 2 + (give / 100) * 10;
+      const outOpacity = 0.3 + (give / 100) * 0.5;
+      document.getElementById('energyOut').setAttribute('stroke-width', outWidth);
+      document.getElementById('energyOut').setAttribute('opacity', outOpacity);
+
+      // Update incoming energy thickness
+      const inWidth = 1 + ((100 - give) / 100) * 8;
+      const inOpacity = 0.15 + ((100 - give) / 100) * 0.6;
+      document.getElementById('energyIn').setAttribute('stroke-width', inWidth);
+      document.getElementById('energyIn').setAttribute('opacity', inOpacity);
+
+      // Update drain bar
+      const drainPct = Math.max(0, (give - 50) * 2);
+      document.getElementById('drainBar').setAttribute('width', (drainPct / 100) * 80);
+      if (drainPct > 60) {
+        document.getElementById('drainBar').setAttribute('fill', 'rgba(255,122,153,.7)');
+        document.getElementById('drainLabel').textContent = 'energy: depleting';
+        document.getElementById('drainLabel').setAttribute('fill', 'rgba(255,122,153,.7)');
+      } else if (drainPct > 20) {
+        document.getElementById('drainBar').setAttribute('fill', 'rgba(255,210,122,.6)');
+        document.getElementById('drainLabel').textContent = 'energy: strained';
+        document.getElementById('drainLabel').setAttribute('fill', 'rgba(255,210,122,.6)');
+      } else {
+        document.getElementById('drainBar').setAttribute('fill', 'rgba(117,240,182,.6)');
+        document.getElementById('drainLabel').textContent = 'energy: balanced';
+        document.getElementById('drainLabel').setAttribute('fill', 'rgba(117,240,182,.6)');
+      }
+
+      // Update labels
+      if (give > 70) {
+        document.getElementById('outLabel').textContent = 'empathy, labor, care';
+        document.getElementById('inLabel').textContent = 'little returns';
+      } else if (give > 55) {
+        document.getElementById('outLabel').textContent = 'care, presence';
+        document.getElementById('inLabel').textContent = 'some returns';
+      } else {
+        document.getElementById('outLabel').textContent = 'mutual care';
+        document.getElementById('inLabel').textContent = 'mutual care';
+      }
+
+      // Update balance status
+      const diff = Math.abs(give - 50);
+      let status = '';
+      if (diff > 30) status = 'Severely imbalanced \u2014 you are an emotional utility';
+      else if (diff > 20) status = 'Significantly imbalanced \u2014 resentment builds';
+      else if (diff > 10) status = 'Slightly off-center \u2014 room to improve';
+      else status = 'Near balance \u2014 mutual and sustainable';
+      document.getElementById('balanceStatus').textContent = status;
+
+      // Circle sizes
+      const youR = 45 + (give / 100) * 20;
+      const themR = 45 + ((100 - give) / 100) * 20;
+      document.getElementById('youCircle').setAttribute('r', youR);
+      document.getElementById('themCircle').setAttribute('r', themR);
+    }
+
+    giveSlider.addEventListener('input', renderEnergy);
+    renderEnergy();
+
+    // ──────────────────────────────────────────────────────
+    // Pattern Recognition Interactive
+    // ──────────────────────────────────────────────────────
+    const patternItems = document.querySelectorAll('.patternItem');
+    const patternCount = document.getElementById('patternCount');
+    const patternResult = document.getElementById('patternResult');
+    const patternMarker = document.getElementById('patternMarker');
+
+    patternItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+        updatePatternScore();
+      });
+    });
+
+    function updatePatternScore() {
+      const active = document.querySelectorAll('.patternItem.active').length;
+      const total = patternItems.length;
+      patternCount.innerHTML = '<b>' + active + '</b>/' + total + ' recognized';
+
+      const pct = (active / total) * 100;
+      patternMarker.style.left = Math.max(0, Math.min(95, pct - 2.5)) + '%';
+
+      if (active === 0) {
+        patternResult.innerHTML = '';
+      } else if (active <= 3) {
+        patternResult.innerHTML = '<b>Mild recognition.</b> Some tendencies toward one-directional empathy, but likely manageable with awareness.';
+      } else if (active <= 6) {
+        patternResult.innerHTML = '<b>Moderate pattern.</b> These patterns are actively shaping your relationships. The three shifts above are worth exploring seriously.';
+      } else if (active <= 8) {
+        patternResult.innerHTML = '<b>Deep pattern.</b> This is a core dynamic in your relational life. The exhaustion you feel is structural, not personal weakness. Integration work is important.';
+      } else {
+        patternResult.innerHTML = '<b>Pervasive pattern.</b> You have been running this program for a long time. The good news: recognition is the first shift. You are not broken\u2014you adapted. Now it\'s time to evolve.';
+      }
+    }
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('energyViz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpShifts').addEventListener('click', () => {
+      document.getElementById('shifts').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Shift Checklist scoring
+    // ──────────────────────────────────────────────────────
+    // Add click-to-check for items
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (e.target.type === 'checkbox') return;
+        const cb = item.querySelector('input[type="checkbox"]');
+        cb.checked = !cb.checked;
+        item.classList.toggle('checked', cb.checked);
+      });
+      const cb = item.querySelector('input[type="checkbox"]');
+      if (cb) cb.addEventListener('change', () => item.classList.toggle('checked', cb.checked));
+    });
+
+    document.getElementById('shiftScoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#shiftChecklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 80) msg = pct + '% \u2014 Deep integration work underway. You are reclaiming yourself.';
+      else if (pct >= 60) msg = pct + '% \u2014 Good momentum. The hardest part is staying with the discomfort.';
+      else if (pct >= 40) msg = pct + '% \u2014 Beginning shifts. One practice at a time is enough.';
+      else msg = pct + '% \u2014 Early stage. Start with just one shift: withholding premature empathy.';
+
+      document.getElementById('shiftScoreOut').innerHTML = '<b>Integration progress:</b> ' + msg;
+      showToast('Progress checked');
+    });
+
+    document.getElementById('shiftResetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#shiftChecklist input[type="checkbox"]');
+      checkboxes.forEach(cb => { cb.checked = false; cb.closest('.item').classList.remove('checked'); });
+      document.getElementById('shiftScoreOut').innerHTML = '';
+      showToast('Checklist reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

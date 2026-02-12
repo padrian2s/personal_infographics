@@ -1,0 +1,1634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desire Returns After Emotional Shutdown -- Carl Jung | Interactive Infographic</title>
+  <meta name="description" content="Interactive infographic exploring Carl Jung's perspective on how desire withdraws during emotional shutdown and the psychological process through which it returns -- not through force, but through safety and permission." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --rose: #ff9ec4;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,158,196,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.07), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--rose)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill & tag */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{
+      width:100%;margin-top:10px;
+      accent-color: var(--violet);
+    }
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;border-radius:99px;filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Phase cards special styling */
+    .phaseGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 860px){
+      .phaseGrid{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 500px){
+      .phaseGrid{grid-template-columns: 1fr}
+    }
+    .phaseCard{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+      text-align:center;
+      transition: border-color .2s ease, background .2s ease;
+      cursor: default;
+    }
+    .phaseCard:hover{
+      border-color: rgba(187,167,255,.35);
+      background: rgba(187,167,255,.06);
+    }
+    .phaseCard .phaseNum{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:32px;height:32px;border-radius:99px;
+      background: rgba(187,167,255,.15);
+      color: var(--violet);
+      font-weight:700;font-size:14px;
+      margin-bottom:8px;
+    }
+    .phaseCard h4{margin:0 0 6px;font-size:13px;color:var(--text)}
+    .phaseCard p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Spectrum bar */
+    .spectrum{
+      display:flex;
+      align-items:stretch;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      height:48px;
+      margin:10px 0;
+    }
+    .spectrum .seg{
+      flex:1;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      transition: flex .3s ease;
+    }
+
+    /* Quote block */
+    .quote{
+      border: 1px solid rgba(187,167,255,.2);
+      border-radius: 16px;
+      background: rgba(187,167,255,.06);
+      padding: 16px;
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .quote::before{
+      content: '\201C';
+      font-size: 48px;
+      position: absolute;
+      top: 4px; left: 12px;
+      color: rgba(187,167,255,.3);
+      font-style: normal;
+      line-height:1;
+    }
+    .quote .attr{
+      margin-top:8px;
+      font-style:normal;
+      font-size:12px;
+      color:var(--faint);
+    }
+
+    /* Toggle switch */
+    .toggleWrap{
+      display:flex;align-items:center;gap:12px;
+      font-size:13px;
+      color: var(--muted);
+    }
+    .toggle{
+      position:relative;
+      width:44px;height:24px;
+      border-radius:99px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.3);
+      cursor:pointer;
+      transition: background .2s ease;
+    }
+    .toggle.on{background: rgba(187,167,255,.3);border-color: rgba(187,167,255,.5)}
+    .toggle .knob{
+      position:absolute;
+      top:2px;left:2px;
+      width:18px;height:18px;
+      border-radius:99px;
+      background:white;
+      transition: transform .2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    }
+    .toggle.on .knob{transform: translateX(20px)}
+
+    /* Three column grid */
+    .tri{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 740px){
+      .tri{grid-template-columns:1fr}
+    }
+
+    /* Misconception vs Reality */
+    .vsGrid{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+    @media (max-width: 640px){
+      .vsGrid{grid-template-columns:1fr; gap: 10px}
+      .vsDivider{display:none}
+    }
+    .vsCol{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .vsCol h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+    .vsCol ul{margin:0;padding:0 0 0 16px;list-style:none}
+    .vsCol ul li{position:relative;padding:6px 0;font-size:13px;color:var(--muted);line-height:1.5}
+    .vsCol ul li::before{content:'';position:absolute;left:-16px;top:12px;width:6px;height:6px;border-radius:99px}
+    .vsCol.wrong ul li::before{background: var(--bad)}
+    .vsCol.right ul li::before{background: var(--good)}
+    .vsDivider{
+      display:flex;align-items:center;justify-content:center;
+      width:40px;
+      font-size:11px;
+      font-weight:700;
+      color:var(--faint);
+      letter-spacing:.12em;
+    }
+
+    /* Animated wave dots */
+    @keyframes pulse{
+      0%,100%{opacity:.3;transform:scale(.8)}
+      50%{opacity:1;transform:scale(1.2)}
+    }
+    .pulseDot{
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+    .floatAnim{
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .heroArt{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,158,196,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Desire's wave: approach, retreat, approach -->
+            <path d="M20,150 C60,80 100,180 160,100 C200,50 240,160 300,90 C340,40 380,130 440,70 C470,45 500,60 510,40" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M20,170 C80,130 120,190 180,140 C220,100 260,170 320,130 C360,100 400,155 460,110" fill="none" stroke="url(#g2)" stroke-width="7" stroke-linecap="round" opacity=".5" />
+            <!-- Symbolic dots: fragments of returning desire -->
+            <circle cx="160" cy="100" r="8" fill="rgba(255,255,255,.5)" class="pulseDot" />
+            <circle cx="300" cy="90" r="10" fill="rgba(255,255,255,.6)" class="pulseDot" style="animation-delay:.8s" />
+            <circle cx="440" cy="70" r="12" fill="rgba(255,255,255,.7)" class="pulseDot" style="animation-delay:1.6s" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> Jungian psychology &bull; emotional shutdown &bull; instinct &amp; desire</div>
+          <h1>Desire Returns After Emotional Shutdown</h1>
+          <p class="subtitle">
+            Emotional shutdown is not the death of desire -- it is its protective withdrawal. Carl Jung believed that when feeling becomes unsafe, the psyche places desire <b>behind glass</b>: visible but untouchable. This page maps the psychological architecture of how desire withdraws, what keeps it hidden, and the conditions under which it quietly returns.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Jump to the wave simulator</button>
+            <button class="btn" id="jumpPhases">Jump to phases of return</button>
+            <button class="btn" id="toggleNotes">Toggle commentary mode</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Core insight</div>
+            <div class="value">Withdrawal, not loss</div>
+            <div class="note">Desire does not die during shutdown. It retreats behind protective glass.</div>
+          </div>
+          <div class="stat">
+            <div class="label">What brings it back</div>
+            <div class="value" style="color:var(--good)">Permission, not pressure</div>
+            <div class="note">Instinct responds to safety, not stimulation or effort.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Key distinction</div>
+            <div class="value" style="color:var(--violet)">Intensity &ne; Aliveness</div>
+            <div class="note">Intensity comes from tension. Aliveness comes from flow.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Return pattern</div>
+            <div class="value" style="color:var(--cyan)">Fragments &rarr; Warmth &rarr; Flow</div>
+            <div class="note">Desire returns in waves, not as a single event.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Section 1: Why Shutdown Happens -->
+      <section class="card" aria-label="Why emotional shutdown happens">
+        <div class="cardHeader">
+          <h2>Why the psyche shuts down desire</h2>
+          <div class="chip"><b>Mechanism:</b> protective withdrawal</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Emotional shutdown does not happen because desire is weak. It happens because the psyche becomes overwhelmed by <b>too much regulation, too much control, too much self-monitoring</b>. At some point, feeling deeply became associated with cost -- conflict, disappointment, emotional overload, or repeated self-betrayal.
+              </p>
+              <p class="muted">
+                So the psyche adapted. It did not erase desire. It placed it <b>behind glass</b>. You became functional, stable, self-aware. But aliveness slowly faded.
+              </p>
+              <div class="quote" style="margin-top:12px">
+                <div style="padding-left:24px">Instinct retreats when consciousness becomes too dominant. When the ego monitors every feeling, instinct no longer feels welcome.</div>
+                <div class="attr">-- Carl Jung's framework, as interpreted</div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Triggers of shutdown">
+                <div class="small" style="margin-bottom:10px">Common triggers that teach the psyche to withdraw desire:</div>
+                <div class="flow">
+                  <div class="pill"><span>Repeated emotional conflict</span><span class="tag">pain</span></div>
+                  <div class="pill"><span>Chronic disappointment</span><span class="tag">loss</span></div>
+                  <div class="pill"><span>Emotional overload / flooding</span><span class="tag">overwhelm</span></div>
+                  <div class="pill"><span>Self-betrayal (ignoring own needs)</span><span class="tag">erosion</span></div>
+                  <div class="pill"><span>Over-adaptation to others</span><span class="tag">cost</span></div>
+                  <div class="pill"><span>Hyper-vigilant self-monitoring</span><span class="tag">control</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Result: the psyche learns that wanting is disruptive, inconvenient, or dangerous. Shutdown is the protective response.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Notice the key framing: shutdown is <i>adaptive</i>, not pathological. The psyche is doing what it was designed to do -- protect against overwhelm. Problems arise only when the protection becomes permanent, outlasting the original threat. This reframes "I can't feel anything" from brokenness into intelligence.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: The Nature of Desire -->
+      <section class="row">
+        <div class="card" aria-label="What desire actually is">
+          <div class="cardHeader">
+            <h2>What desire actually is (and is not)</h2>
+            <div class="chip">instinct, not decision</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung distinguished desire from thought or intention. Desire is a <b>movement of instinct</b> -- it cannot be summoned through effort, manufactured by will, or commanded by insight alone.
+            </p>
+
+            <div class="vsGrid">
+              <div class="vsCol wrong">
+                <h4 style="color:var(--bad)">Desire is NOT</h4>
+                <ul>
+                  <li>A thought you can think into existence</li>
+                  <li>A decision you make consciously</li>
+                  <li>Something you summon with effort</li>
+                  <li>Responsive to pressure or discipline</li>
+                  <li>A tool for achieving outcomes</li>
+                  <li>Something that needs justification</li>
+                </ul>
+              </div>
+              <div class="vsDivider">VS</div>
+              <div class="vsCol right">
+                <h4 style="color:var(--good)">Desire IS</h4>
+                <ul>
+                  <li>A movement of instinct</li>
+                  <li>Responsive to <b>permission</b></li>
+                  <li>A signal showing where life wants to move</li>
+                  <li>Something that grows in safety</li>
+                  <li>An indicator of what's been excluded</li>
+                  <li>Something that needs <b>space</b></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is one of Jung's most counterintuitive ideas: you cannot <i>think</i> your way back to wanting. Insight prepares the ground, but instinct grows on its own schedule. Emotionally intelligent people often struggle here precisely because they try to understand desire before letting it exist.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="The flatness of shutdown">
+          <div class="cardHeader">
+            <h2>The architecture of flatness</h2>
+            <div class="chip"><b>Key:</b> absence of movement</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Emotional shutdown feels <b>flat rather than painful</b>. Pain still requires feeling. Shutdown is the absence of movement itself. The nervous system remains alert even when nothing is happening -- it has learned vigilance.
+            </p>
+
+            <div class="viz" aria-label="Emotional spectrum visualization">
+              <svg viewBox="0 0 480 200" role="img" aria-label="Visual showing the spectrum from pain through flatness to aliveness">
+                <defs>
+                  <linearGradient id="specGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.6)" />
+                    <stop offset=".35" stop-color="rgba(255,255,255,.15)" />
+                    <stop offset=".5" stop-color="rgba(255,255,255,.08)" />
+                    <stop offset=".65" stop-color="rgba(255,255,255,.15)" />
+                    <stop offset="1" stop-color="rgba(117,240,182,.6)" />
+                  </linearGradient>
+                  <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <!-- Spectrum bar -->
+                <rect x="30" y="70" width="420" height="24" rx="12" fill="url(#specGrad)" opacity=".8" />
+                <rect x="30" y="70" width="420" height="24" rx="12" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1" />
+
+                <!-- Labels -->
+                <text x="30" y="55" font-size="12" fill="rgba(255,122,153,.9)" font-weight="600">PAIN</text>
+                <text x="210" y="55" font-size="12" fill="rgba(255,255,255,.5)" text-anchor="middle" font-weight="600">FLATNESS</text>
+                <text x="450" y="55" font-size="12" fill="rgba(117,240,182,.9)" text-anchor="end" font-weight="600">ALIVENESS</text>
+
+                <text x="30" y="115" font-size="10" fill="rgba(255,255,255,.45)">Still feeling</text>
+                <text x="180" y="115" font-size="10" fill="rgba(255,255,255,.45)">Shutdown zone</text>
+                <text x="370" y="115" font-size="10" fill="rgba(255,255,255,.45)">Desire returns</text>
+
+                <!-- Shutdown marker -->
+                <g filter="url(#glow2)">
+                  <circle id="shutdownMarker" cx="210" cy="82" r="8" fill="rgba(255,255,255,.7)" />
+                </g>
+                <text x="240" y="55" font-size="10" fill="rgba(255,255,255,.35)">&larr; where most people are stuck</text>
+
+                <!-- Descriptions below -->
+                <text x="30" y="145" font-size="11" fill="rgba(255,255,255,.5)">Pain requires</text>
+                <text x="30" y="160" font-size="11" fill="rgba(255,255,255,.5)">feeling to exist</text>
+                <text x="175" y="145" font-size="11" fill="rgba(255,255,255,.5)">No movement.</text>
+                <text x="175" y="160" font-size="11" fill="rgba(255,255,255,.5)">Vigilance without signal.</text>
+                <text x="370" y="145" font-size="11" fill="rgba(255,255,255,.5)">Flow, not urgency.</text>
+                <text x="370" y="160" font-size="11" fill="rgba(255,255,255,.5)">Warmth, not fire.</text>
+              </svg>
+            </div>
+
+            <div class="riskGrid" style="margin-top:12px">
+              <div class="risk">
+                <div class="rTop"><strong>Ego monitoring</strong><span class="badge" style="color:var(--bad)">high</span></div>
+                <div class="meter"><i style="width:85%;background:linear-gradient(90deg, var(--warn), var(--bad))"></i></div>
+                <p>When the ego watches every feeling, instinct cannot move freely.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Instinct welcomeness</strong><span class="badge" style="color:var(--bad)">low</span></div>
+                <div class="meter"><i style="width:15%;background:linear-gradient(90deg, var(--good), var(--cyan))"></i></div>
+                <p>Instinct has been told it is not welcome. It becomes shy and waits.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The phrase "flat rather than painful" is clinically important. Many people in shutdown assume they are "fine" because they are not suffering acutely. But the absence of pain is not the presence of health. Flatness is its own signal -- it means the system has traded aliveness for stability.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Wave Simulator -->
+      <section class="card" id="waveSection" aria-label="Wave pattern of desire's return">
+        <div class="cardHeader">
+          <h2>The wave pattern: how desire returns</h2>
+          <div class="chip"><b>Pattern:</b> approach, retreat, approach</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Desire does not return all at once. It comes in waves -- approach, retreat, approach again. Each time you allow desire to approach without shutting it down, trust builds. Not consciously, but somatically. The body learns that feeling is no longer dangerous.
+          </p>
+
+          <div class="viz" id="viz" aria-label="Wave simulator">
+            <svg viewBox="0 0 980 380" id="waveSvg" role="img" aria-label="Animated wave pattern showing desire's approach and retreat">
+              <defs>
+                <linearGradient id="waveGrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(187,167,255,.15)"/>
+                  <stop offset="1" stop-color="rgba(187,167,255,0)"/>
+                </linearGradient>
+                <linearGradient id="safeGrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(117,240,182,.12)"/>
+                  <stop offset="1" stop-color="rgba(117,240,182,0)"/>
+                </linearGradient>
+                <filter id="waveGlow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.05)"/>
+
+              <!-- Grid -->
+              <g id="waveGrid"></g>
+
+              <!-- Safety threshold line -->
+              <line id="safetyLine" x1="70" x2="940" stroke="rgba(117,240,182,.25)" stroke-width="1" stroke-dasharray="6 4" />
+              <text id="safetyLabel" font-size="11" fill="rgba(117,240,182,.6)" font-family="var(--sans)">safety threshold</text>
+
+              <!-- Flatline reference -->
+              <line id="flatline" x1="70" x2="940" stroke="rgba(255,122,153,.2)" stroke-width="1" stroke-dasharray="3 6" />
+              <text id="flatlineLabel" font-size="11" fill="rgba(255,122,153,.5)" font-family="var(--sans)">shutdown baseline</text>
+
+              <!-- Wave area fill -->
+              <path id="waveArea" fill="url(#waveGrad)" stroke="none" />
+
+              <!-- Main wave -->
+              <path id="wavePath" stroke="rgba(187,167,255,.9)" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#waveGlow)" />
+
+              <!-- With-permission wave -->
+              <path id="permissionPath" stroke="rgba(117,240,182,.7)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="8 4" />
+
+              <!-- Peak markers -->
+              <g id="peakMarkers"></g>
+
+              <!-- Labels -->
+              <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                <text x="70" y="26" fill="rgba(255,255,255,.88)" font-weight="700">Desire's return: approach-retreat waves</text>
+                <text x="70" y="365" font-size="12" fill="rgba(255,255,255,.5)">Time (weeks/months) &rarr;</text>
+                <text x="12" y="200" font-size="12" fill="rgba(255,255,255,.5)" transform="rotate(-90 12 200)">Desire intensity</text>
+              </g>
+            </svg>
+
+            <div class="legend" aria-label="Legend">
+              <div class="key"><span class="sw" style="background: rgba(187,167,255,.9)"></span> Desire's natural wave</div>
+              <div class="key"><span class="sw" style="background: rgba(117,240,182,.7)"></span> With permission &amp; safety</div>
+              <div class="key"><span class="sw" style="background: rgba(255,122,153,.4)"></span> Shutdown baseline</div>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="Simulator controls">
+            <div class="control">
+              <label>
+                <span>Internal safety level</span>
+                <span class="readout" id="safetyReadout">40%</span>
+              </label>
+              <input id="safetySlider" type="range" min="0" max="100" value="40" />
+              <div class="small" style="margin-top:8px">How much does the psyche feel permission to want? Higher = more waves reach full amplitude.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Ego interrogation</span>
+                <span class="readout" id="egoReadout">60%</span>
+              </label>
+              <input id="egoSlider" type="range" min="0" max="100" value="60" />
+              <div class="small" style="margin-top:8px">How quickly does the mind analyze/suppress emerging desire? Higher = waves collapse faster.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> This simulator illustrates Jung's core claim: desire does not return as a single breakthrough. It tests the environment through repeated cycles. Each wave that is <i>allowed</i> (not interrogated, not suppressed) builds somatic trust. The green "permission" line shows what happens when the ego steps back enough for instinct to lead.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Phases of Return -->
+      <section class="card" id="phases" aria-label="Phases of desire's return">
+        <div class="cardHeader">
+          <h2>The four phases of desire's return</h2>
+          <div class="chip"><b>Process:</b> fragments &rarr; warmth &rarr; experience &rarr; flow</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Jung described a natural sequence through which instinct re-emerges after suppression. Each phase has distinct characteristics, common mistakes, and what it needs from you.
+          </p>
+
+          <div class="phaseGrid" id="phaseCards">
+            <div class="phaseCard" data-phase="1">
+              <div class="phaseNum">1</div>
+              <h4>Fragments</h4>
+              <p>Fleeting interest, brief warmth, a subtle pull that vanishes before it becomes clear. Instinct is testing: "Is it safe?"</p>
+            </div>
+            <div class="phaseCard" data-phase="2">
+              <div class="phaseNum">2</div>
+              <h4>Warmth</h4>
+              <p>Desire returns not as fire but as warmth. Body sensations, comfort in closeness, presence over urgency. Quiet and embodied.</p>
+            </div>
+            <div class="phaseCard" data-phase="3">
+              <div class="phaseNum">3</div>
+              <h4>Experience</h4>
+              <p>Fantasy loses its pull. Simple presence becomes more meaningful. Less imagery, more sensation. Desire moves from mind to body.</p>
+            </div>
+            <div class="phaseCard" data-phase="4">
+              <div class="phaseNum">4</div>
+              <h4>Flow</h4>
+              <p>Consciousness steps back just enough for instinct to lead. Not control, not collapse, but cooperation. Aliveness, not intensity.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Phase detail panels -->
+          <div id="phaseDetail" style="margin-top:4px">
+            <details open data-phase-detail="1">
+              <summary><strong>Phase 1: Fragments -- what to expect and what to avoid</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  The early return of desire often feels <b>confusing rather than pleasurable</b>. Brief moments of interest that disappear quickly. A flicker of attraction that fades. A sense of closeness that feels warm, then suddenly distant.
+                </p>
+                <p>
+                  Many people interpret this inconsistency as proof something is still wrong. But Jung would say <b>this inconsistency is a sign of healing, not failure</b>. Instinct returns in fragments before it returns as flow.
+                </p>
+                <div class="row2" style="margin-top:10px">
+                  <div class="risk">
+                    <div class="rTop"><strong>Common mistake</strong><span class="badge" style="color:var(--bad)">avoid</span></div>
+                    <p>Interrogating the feeling: "What does this mean? Where is this going? Why do I feel this now?" Interrogation feels like control, and instinct tightens again.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>What helps</strong><span class="badge" style="color:var(--good)">practice</span></div>
+                    <p>Recognition without amplification. Notice small movements without interrogating them. A curiosity that lasts two seconds. Let it exist without defining it.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details data-phase-detail="2">
+              <summary><strong>Phase 2: Warmth -- the body before the mind</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  In emotionally shut-down people, desire often returns first <b>in the body, not the mind</b> -- through sensation, through comfort, through presence. If the mind immediately steps in to evaluate, the body withdraws again.
+                </p>
+                <p>
+                  Jung believed this mind-body split was one of the great illnesses of modern consciousness. Warmth only grows when it is not constantly checked.
+                </p>
+                <div class="row2" style="margin-top:10px">
+                  <div class="risk">
+                    <div class="rTop"><strong>Why it feels "wrong"</strong><span class="badge" style="color:var(--warn)">insight</span></div>
+                    <p>Emotionally intelligent people expect desire to be coherent, predictable, explainable. This quieter, embodied desire can feel anticlimactic -- they confuse intensity with aliveness.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>Sensitivity =/= weakness</strong><span class="badge" style="color:var(--violet)">reframe</span></div>
+                    <p>When shutdown lifts, feeling returns non-selectively. You feel more -- not just pleasure, but uncertainty. Some retreat, mistaking sensitivity for regression. But sensitivity is contact.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details data-phase-detail="3">
+              <summary><strong>Phase 3: From fantasy to experience</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  During emotional shutdown, desire often survives only <b>in imagination</b> -- in thought, in memory, in longing that never reaches action. When desire returns, it tries to move out of the mind and into the body.
+                </p>
+                <p>
+                  You may notice that fantasy loses its pull while <b>simple presence becomes more meaningful</b>. Less imagery, more sensation. For emotionally intelligent people, this can feel anticlimactic. They are used to understanding desire mentally. But instinct does not live in explanation. It lives in immediacy.
+                </p>
+                <div class="row2" style="margin-top:10px">
+                  <div class="risk">
+                    <div class="rTop"><strong>Don't use desire</strong><span class="badge" style="color:var(--bad)">warning</span></div>
+                    <p>Trying to channel desire toward outcomes -- connection, validation, relief -- turns it into pressure. And pressure recreates shutdown. Desire is a signal, not a tool.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>Tolerate the guilt</strong><span class="badge" style="color:var(--warn)">process</span></div>
+                    <p>Guilt for wanting, needing, feeling something that can't be justified. This is residue of over-adaptation. It fades when instinct is allowed to exist without defense.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details data-phase-detail="4">
+              <summary><strong>Phase 4: Flow -- cooperation between ego and instinct</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  True aliveness emerges when <b>consciousness steps back just enough for instinct to lead without being abandoned</b>. Not control, not collapse, but cooperation. This is Jung's vision of psychological maturity.
+                </p>
+                <p>
+                  Desire does not return to the old version of you. It returns to who you are <b>now</b> -- quieter, more embodied, less dramatic. And it returns in relationship: you feel more impacted by others, more responsive to closeness, more affected by presence.
+                </p>
+                <div class="row2" style="margin-top:10px">
+                  <div class="risk">
+                    <div class="rTop"><strong>Not dependence</strong><span class="badge" style="color:var(--cyan)">distinction</span></div>
+                    <p>Too much autonomy starves desire. Desire grows in exchange, in resonance, in mutual presence. The goal is permeability, not dependence.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>The psyche heals when...</strong><span class="badge" style="color:var(--good)">goal</span></div>
+                    <p>...it can be touched without being invaded. When desire is trusted. When the body learns that feeling is no longer dangerous.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> These phases are not rigid stages but overlapping tendencies. Someone might experience fragments and warmth simultaneously, or oscillate between phases. The value of the framework is recognizing that what feels like failure (inconsistency, confusion, quiet desire) is often evidence of progress.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Misconceptions & Ego Traps -->
+      <section class="row">
+        <div class="card" aria-label="Common misconceptions">
+          <div class="cardHeader">
+            <h2>What people get wrong</h2>
+            <div class="chip"><b>Ego traps:</b> 5 misconceptions</div>
+          </div>
+          <div class="cardBody">
+            <div class="checklist" id="misconceptions">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"More stimulation will bring it back"</strong><em>myth</em></div>
+                  <div class="d">More novelty, more intensity, more effort -- these only exhaust the system further. Desire returns through safety, not stimulation.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"I need to feel ready first"</strong><em>myth</em></div>
+                  <div class="d">Readiness is an ego concept. Instinct doesn't wait for readiness. It responds to invitation -- small invitations. Letting a moment linger instead of closing it.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"Inconsistent desire means it's broken"</strong><em>myth</em></div>
+                  <div class="d">Inconsistency is a sign of healing, not failure. Instinct returns in fragments before it returns as flow. Each flicker is the psyche testing the environment.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"It should feel like it used to"</strong><em>myth</em></div>
+                  <div class="d">Desire does not return to the old version of you. It returns to who you are now -- quieter, more embodied, less dramatic. That old intensity belonged to a different psychic structure.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"Desire needs to be understood before it's felt"</strong><em>myth</em></div>
+                  <div class="d">Emotionally intelligent people want to understand desire before letting it exist. But instinct cannot be commanded by insight alone. Insight prepares the ground; instinct grows on its own schedule.</div>
+                </div>
+              </div>
+            </div>
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="mythScore">How many do I still believe?</button>
+              <button class="btn" id="mythReset">Reset</button>
+            </div>
+            <div class="small" id="mythOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Check the boxes for myths you have <i>released</i>. The ones that remain unchecked are worth sitting with -- not as things to fix, but as places where the ego still protects against instinct. Awareness alone begins to soften them.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Intensity vs aliveness">
+          <div class="cardHeader">
+            <h2>Intensity vs. Aliveness</h2>
+            <div class="chip"><b>Key distinction:</b> tension vs. flow</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              One of Jung's most important distinctions: people often confuse intense desire with being alive. But intensity often comes from <b>tension</b>, while aliveness comes from <b>flow</b>. Desire after shutdown is not about escape or urgency -- it is about presence.
+            </p>
+
+            <div class="viz" aria-label="Intensity vs Aliveness comparison">
+              <svg viewBox="0 0 480 280" role="img">
+                <defs>
+                  <linearGradient id="intensityGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,0)" />
+                    <stop offset="1" stop-color="rgba(255,122,153,.3)" />
+                  </linearGradient>
+                  <linearGradient id="alivenessGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,0)" />
+                    <stop offset="1" stop-color="rgba(117,240,182,.3)" />
+                  </linearGradient>
+                </defs>
+
+                <!-- Intensity column -->
+                <rect x="40" y="30" width="180" height="220" rx="16" fill="url(#intensityGrad)" stroke="rgba(255,122,153,.25)" stroke-width="1" />
+                <text x="130" y="60" text-anchor="middle" font-size="15" fill="rgba(255,122,153,.9)" font-weight="700">INTENSITY</text>
+                <text x="130" y="82" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">from tension</text>
+
+                <text x="60" y="115" font-size="12" fill="rgba(255,255,255,.65)">Consuming</text>
+                <text x="60" y="140" font-size="12" fill="rgba(255,255,255,.65)">Urgent</text>
+                <text x="60" y="165" font-size="12" fill="rgba(255,255,255,.65)">Dramatic</text>
+                <text x="60" y="190" font-size="12" fill="rgba(255,255,255,.65)">Escape-driven</text>
+                <text x="60" y="215" font-size="12" fill="rgba(255,255,255,.65)">Burns out</text>
+
+                <!-- Arrow -->
+                <text x="240" y="150" text-anchor="middle" font-size="20" fill="rgba(255,255,255,.3)" font-family="var(--sans)">&ne;</text>
+
+                <!-- Aliveness column -->
+                <rect x="260" y="30" width="180" height="220" rx="16" fill="url(#alivenessGrad)" stroke="rgba(117,240,182,.25)" stroke-width="1" />
+                <text x="350" y="60" text-anchor="middle" font-size="15" fill="rgba(117,240,182,.9)" font-weight="700">ALIVENESS</text>
+                <text x="350" y="82" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">from flow</text>
+
+                <text x="280" y="115" font-size="12" fill="rgba(255,255,255,.65)">Present</text>
+                <text x="280" y="140" font-size="12" fill="rgba(255,255,255,.65)">Quiet</text>
+                <text x="280" y="165" font-size="12" fill="rgba(255,255,255,.65)">Embodied</text>
+                <text x="280" y="190" font-size="12" fill="rgba(255,255,255,.65)">Contact-driven</text>
+                <text x="280" y="215" font-size="12" fill="rgba(255,255,255,.65)">Sustains</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="tri">
+              <div class="flowNode">
+                <h3>Control</h3>
+                <p>Ego manages every impulse. Safe but lifeless. Functional but flat.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">shutdown</span></div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                <h3>Cooperation</h3>
+                <p>Ego steps back enough for instinct to lead without being abandoned. Jung's ideal.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">aliveness</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Collapse</h3>
+                <p>Ego dissolves completely. Instinct without containment. Overwhelming.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">flooding</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This three-way model is crucial. People recovering from shutdown often fear that letting desire in means losing control (collapse). But Jung's "cooperation" is a third option: the ego stays present as witness and container, but stops directing. Think of it as the ego becoming a riverbank rather than a dam.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Self-assessment -->
+      <section class="card" aria-label="Self-assessment tool">
+        <div class="cardHeader">
+          <h2>Where are you in this process?</h2>
+          <div class="chip"><b>Interactive:</b> self-assessment</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            This is not a diagnostic tool. It is a mirror -- a way to notice where your psyche might be in the shutdown-to-return spectrum. Check the statements that resonate with your current experience.
+          </p>
+
+          <div class="checklist" id="assessment">
+            <div class="item" data-group="shutdown">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I don't feel much anymore"</strong><em>shutdown signal</em></div>
+                <div class="d">Even when things are good, the system is still guarding. Flatness has become the default.</div>
+              </div>
+            </div>
+            <div class="item" data-group="shutdown">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I analyze feelings before allowing them"</strong><em>control pattern</em></div>
+                <div class="d">You want to understand desire before letting it exist. The mind interrogates what the body tries to feel.</div>
+              </div>
+            </div>
+            <div class="item" data-group="fragments">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I notice brief flickers of interest that vanish"</strong><em>phase 1 signal</em></div>
+                <div class="d">Instinct is testing the environment. Small moments of wanting that appear and disappear quickly.</div>
+              </div>
+            </div>
+            <div class="item" data-group="fragments">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"Closeness confuses me more than it excites me"</strong><em>phase 1 signal</em></div>
+                <div class="d">The early return of desire feels confusing rather than pleasurable. This inconsistency is a sign of healing.</div>
+              </div>
+            </div>
+            <div class="item" data-group="warmth">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I feel things in my body before my mind catches up"</strong><em>phase 2 signal</em></div>
+                <div class="d">Desire returning through sensation, comfort, and presence rather than through thought or decision.</div>
+              </div>
+            </div>
+            <div class="item" data-group="warmth">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I feel more sensitive lately, not just to pleasure"</strong><em>phase 2 signal</em></div>
+                <div class="d">When shutdown lifts, feeling returns non-selectively. More pleasure, but also more uncertainty.</div>
+              </div>
+            </div>
+            <div class="item" data-group="experience">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"Fantasy feels less interesting than real presence"</strong><em>phase 3 signal</em></div>
+                <div class="d">Desire is moving from imagination to embodiment. Less mental imagery, more felt immediacy.</div>
+              </div>
+            </div>
+            <div class="item" data-group="flow">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"I can want something without needing to control what it means"</strong><em>phase 4 signal</em></div>
+                <div class="d">Cooperation between ego and instinct. Desire exists without needing justification or direction.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="assessBtn">Show my position</button>
+            <button class="btn" id="assessReset">Reset</button>
+          </div>
+          <div id="assessOut" style="margin-top:12px"></div>
+        </div>
+      </section>
+
+      <!-- Section 7: The relational dimension -->
+      <section class="card" aria-label="Desire returns in relationship">
+        <div class="cardHeader">
+          <h2>Desire returns in relationship</h2>
+          <div class="chip"><b>Jung:</b> permeability, not dependence</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Desire does not return in isolation. It returns in relationship -- not necessarily romantic at first, but relational. You feel more impacted by others, more affected by presence, more responsive to closeness.
+              </p>
+              <p class="muted">
+                This can feel overwhelming if you have been emotionally self-contained for a long time. The temptation is to pull back into autonomy, to reassert control. But Jung warned that <b>too much autonomy starves desire</b>. Desire grows in exchange, in resonance, in mutual presence.
+              </p>
+
+              <div class="viz" style="padding:14px;margin-top:10px" aria-label="Permeability model">
+                <svg viewBox="0 0 420 180" role="img">
+                  <defs>
+                    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <!-- Self circle -->
+                  <circle cx="150" cy="90" r="60" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.35)" stroke-width="2" />
+                  <text x="150" y="86" text-anchor="middle" font-size="13" fill="rgba(187,167,255,.85)" font-weight="600">Self</text>
+                  <text x="150" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">permeable</text>
+
+                  <!-- Other circle -->
+                  <circle cx="270" cy="90" r="60" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.35)" stroke-width="2" />
+                  <text x="270" y="86" text-anchor="middle" font-size="13" fill="rgba(122,215,255,.85)" font-weight="600">Other</text>
+                  <text x="270" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">present</text>
+
+                  <!-- Overlap zone -->
+                  <g filter="url(#softGlow)">
+                    <ellipse cx="210" cy="90" rx="30" ry="45" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.25)" stroke-width="1" />
+                    <text x="210" y="86" text-anchor="middle" font-size="10" fill="rgba(117,240,182,.8)" font-weight="600">Resonance</text>
+                    <text x="210" y="100" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">desire grows</text>
+                    <text x="210" y="112" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">here</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div class="quote">
+                <div style="padding-left:24px">The psyche heals when it can be touched without being invaded.</div>
+                <div class="attr">-- Jungian principle</div>
+              </div>
+              <div style="height:12px"></div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>What "touched without invaded" means</h3>
+                  <p>Permeability: allowing influence without losing yourself. The psyche can receive without being overwhelmed. Closeness without collapse.</p>
+                  <div class="meta">
+                    <span class="badge" style="color:var(--good)">not dependence</span>
+                    <span class="badge" style="color:var(--good)">not isolation</span>
+                  </div>
+                </div>
+                <div class="flowNode">
+                  <h3>Small invitations that rebuild trust</h3>
+                  <p>Letting a moment linger instead of closing it. Letting warmth exist without defining it. Letting closeness happen without requiring an outcome.</p>
+                  <div class="meta">
+                    <span class="badge">linger</span>
+                    <span class="badge">allow</span>
+                    <span class="badge">no outcome needed</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> This is perhaps the most practically important section. Shutdown often creates a fortress of self-sufficiency. Recovery requires tolerating the vulnerability of needing others again -- which feels dangerous precisely because it was once costly. The Venn diagram above captures Jung's middle path: overlap without merger.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Summary -->
+      <section class="card" aria-label="Takeaways">
+        <div class="cardHeader">
+          <h2>The thesis, in full</h2>
+          <div class="chip"><b>Thesis:</b> permission, not force</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Shutdown is protective, not pathological</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                The psyche withdrew desire because feeling had become too costly. The "flatness" you experience is the psyche keeping you functional at the expense of aliveness. This was intelligent adaptation, not failure.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Desire returns through safety, not effort</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Stimulation, pressure, discipline -- these all recreate the conditions of shutdown. Desire responds to one thing: the felt sense that wanting is no longer dangerous. Internal safety, not external circumstances.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) The return is gradual and often confusing</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fragments before flow. Warmth before fire. Confusion before clarity. Each wave of desire that is allowed to exist (not interrogated, not suppressed, not used) builds somatic trust.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Aliveness, not intensity, is the goal</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                The desire that returns will be different from what you remember. Quieter, more embodied, less dramatic. Do not dismiss it for lacking the urgency of the past. That urgency came from tension. What returns now comes from flow.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">5) Cooperation is the endpoint</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Not control (shutdown), not collapse (overwhelm), but cooperation: consciousness steps back just enough for instinct to lead without being abandoned. The ego becomes a riverbank, not a dam.
+              </p>
+              <div style="height:14px"></div>
+              <div class="quote">
+                <div style="padding-left:24px">Desire doesn't return to overwhelm you. It returns when you're finally ready to let life move through you.</div>
+                <div class="attr">-- closing principle</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Final commentary: who this framework helps most</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                This Jungian framework is particularly relevant for people who are <b>functionally fine but experientially flat</b> -- high-functioning individuals who stopped feeling without realizing when or why. It is less about diagnosing a disorder and more about recognizing a pattern: the psyche's tendency to sacrifice aliveness for safety, and the specific conditions under which it reverses that trade.
+              </p>
+              <p>
+                If you notice small flickers of wanting -- brief warmth or moments of closeness that confuse you more than excite you -- do not try to amplify them. Just notice them. That noticing, without interrogation, is the invitation instinct has been waiting for.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary toggle -->
+      <section class="card" aria-label="About commentary mode">
+        <div class="cardHeader">
+          <h2>About the "commentary mode" toggle</h2>
+          <div class="chip">interpretation vs. content</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, violet callout boxes (marked with <code>data-commentary</code>) offer meta-level commentary: how this maps to clinical psychology, alternative framings, and practical implications of the Jungian concepts presented.
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary mode" at the top to hide/show all commentary boxes at once.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; disclaimers:</b> This interactive infographic was generated to translate a narration about Carl Jung's perspective on desire and emotional shutdown.
+        It is not clinical advice. The visualizations, self-assessment tools, and commentary are conceptual frameworks to help you think about the psychological concepts, not substitutes for therapy or professional guidance.
+      </p>
+      <p style="margin-top:10px">
+        Based on Jungian analytical psychology. For deeper exploration, consult Jung's writings on instinct, individuation, and the relationship between consciousness and the unconscious.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Wave Simulator
+    // ──────────────────────────────────────────────────────
+    const safetySlider = document.getElementById('safetySlider');
+    const egoSlider = document.getElementById('egoSlider');
+    const safetyReadout = document.getElementById('safetyReadout');
+    const egoReadout = document.getElementById('egoReadout');
+
+    function renderWave() {
+      const safety = parseInt(safetySlider.value) / 100;
+      const ego = parseInt(egoSlider.value) / 100;
+
+      safetyReadout.textContent = safetySlider.value + '%';
+      egoReadout.textContent = egoSlider.value + '%';
+
+      const W = 980, H = 380;
+      const padL = 70, padR = 40, padT = 40, padB = 40;
+      const graphW = W - padL - padR;
+      const graphH = H - padT - padB;
+      const baseline = padT + graphH * 0.75;
+      const safetyY = padT + graphH * (1 - safety) * 0.7;
+
+      // Update safety and flatline reference lines
+      document.getElementById('safetyLine').setAttribute('y1', safetyY);
+      document.getElementById('safetyLine').setAttribute('y2', safetyY);
+      document.getElementById('safetyLabel').setAttribute('x', '75');
+      document.getElementById('safetyLabel').setAttribute('y', safetyY - 6);
+
+      const flatY = baseline;
+      document.getElementById('flatline').setAttribute('y1', flatY);
+      document.getElementById('flatline').setAttribute('y2', flatY);
+      document.getElementById('flatlineLabel').setAttribute('x', '75');
+      document.getElementById('flatlineLabel').setAttribute('y', flatY + 16);
+
+      // Wave grid
+      const grid = document.getElementById('waveGrid');
+      grid.innerHTML = '';
+      for (let i = 0; i <= 10; i++) {
+        const x = padL + (i / 10) * graphW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', padT);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', H - padB);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+      }
+
+      // Generate wave
+      const points = 200;
+      let wavePath = '';
+      let waveAreaPath = '';
+      let permPath = '';
+      const markers = document.getElementById('peakMarkers');
+      markers.innerHTML = '';
+
+      const dampingFactor = 1 - ego * 0.7;
+      const growthFactor = safety * 0.8 + 0.2;
+      const waves = 6;
+
+      for (let i = 0; i <= points; i++) {
+        const t = i / points;
+        const x = padL + t * graphW;
+
+        // Natural desire wave: oscillating with growing envelope
+        const envelope = Math.min(1, t * 2.5 * growthFactor);
+        const osc = Math.sin(t * waves * Math.PI * 2);
+        const retreat = Math.max(0, osc) * 0.7 + Math.max(0, -osc) * 0.3;
+        const amplitude = graphH * 0.55 * envelope * dampingFactor;
+        const y = baseline - retreat * amplitude;
+
+        // Permission wave: same but with full safety
+        const permEnvelope = Math.min(1, t * 3.0);
+        const permAmplitude = graphH * 0.55 * permEnvelope;
+        const permY = baseline - Math.max(0, osc) * permAmplitude * 0.85;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        wavePath += cmd + x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+        permPath += cmd + x.toFixed(1) + ',' + permY.toFixed(1) + ' ';
+
+        if (i === 0) waveAreaPath = 'M' + x.toFixed(1) + ',' + baseline + ' L' + x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+        else waveAreaPath += 'L' + x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+
+        // Add peak markers
+        if (i > 0 && i < points && osc > 0.98) {
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', x.toFixed(1));
+          circle.setAttribute('cy', y.toFixed(1));
+          circle.setAttribute('r', '5');
+          circle.setAttribute('fill', 'rgba(187,167,255,.8)');
+          circle.setAttribute('stroke', 'rgba(255,255,255,.3)');
+          circle.setAttribute('stroke-width', '1');
+          markers.appendChild(circle);
+
+          // Label
+          const labels = ['flicker', 'warmth', 'presence', 'contact', 'flow', 'alive'];
+          const labelIdx = Math.min(labels.length - 1, Math.floor(t * labels.length));
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', x.toFixed(1));
+          text.setAttribute('y', (y - 12).toFixed(1));
+          text.setAttribute('font-size', '10');
+          text.setAttribute('fill', 'rgba(187,167,255,.65)');
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('font-family', 'var(--sans)');
+          text.textContent = labels[labelIdx];
+          markers.appendChild(text);
+        }
+      }
+
+      waveAreaPath += 'L' + (padL + graphW).toFixed(1) + ',' + baseline + ' Z';
+
+      document.getElementById('wavePath').setAttribute('d', wavePath);
+      document.getElementById('waveArea').setAttribute('d', waveAreaPath);
+      document.getElementById('permissionPath').setAttribute('d', permPath);
+    }
+
+    safetySlider.addEventListener('input', renderWave);
+    egoSlider.addEventListener('input', renderWave);
+    renderWave();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', function() {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpPhases').addEventListener('click', function() {
+      document.getElementById('phases').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    var commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      var items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Myth scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('mythScore').addEventListener('click', function() {
+      var cbs = document.querySelectorAll('#misconceptions input[type="checkbox"]');
+      var released = Array.from(cbs).filter(function(cb) { return cb.checked; }).length;
+      var total = cbs.length;
+      var remaining = total - released;
+
+      var msg = '';
+      if (remaining === 0) msg = 'You have released all 5 myths. Your psyche is making space for instinct.';
+      else if (remaining <= 2) msg = remaining + ' myth' + (remaining > 1 ? 's' : '') + ' still held. Notice without forcing -- awareness is enough.';
+      else msg = remaining + ' myths still held. These are places where the ego protects against instinct. Sit with them gently.';
+
+      document.getElementById('mythOut').innerHTML = '<b>Myths released:</b> ' + released + '/' + total + '. ' + msg;
+      showToast('Assessment complete');
+    });
+
+    document.getElementById('mythReset').addEventListener('click', function() {
+      document.querySelectorAll('#misconceptions input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+      document.getElementById('mythOut').innerHTML = '';
+      showToast('Reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Self-assessment
+    // ──────────────────────────────────────────────────────
+    document.getElementById('assessBtn').addEventListener('click', function() {
+      var groups = { shutdown: 0, fragments: 0, warmth: 0, experience: 0, flow: 0 };
+      var items = document.querySelectorAll('#assessment .item');
+      items.forEach(function(item) {
+        var cb = item.querySelector('input[type="checkbox"]');
+        if (cb.checked) {
+          var g = item.getAttribute('data-group');
+          if (groups[g] !== undefined) groups[g]++;
+        }
+      });
+
+      var out = document.getElementById('assessOut');
+      var phases = [];
+      if (groups.shutdown > 0) phases.push({ name: 'Still in shutdown', color: 'var(--bad)', count: groups.shutdown, desc: 'The psyche is still guarding. This is not failure -- it is protection. The goal is not to force past it, but to create enough safety that it becomes unnecessary.' });
+      if (groups.fragments > 0) phases.push({ name: 'Phase 1: Fragments', color: 'var(--violet)', count: groups.fragments, desc: 'Instinct is testing the environment. These brief flickers are the psyche asking "Is it safe?" The most important thing you can do: notice without interrogating.' });
+      if (groups.warmth > 0) phases.push({ name: 'Phase 2: Warmth', color: 'var(--cyan)', count: groups.warmth, desc: 'Desire is returning through the body. Sensitivity is increasing -- not just to pleasure but to everything. This is contact, not weakness.' });
+      if (groups.experience > 0) phases.push({ name: 'Phase 3: Experience', color: 'var(--orange)', count: groups.experience, desc: 'Fantasy is giving way to presence. Desire is moving from imagination to embodiment. Let it arrive without channeling it toward outcomes.' });
+      if (groups.flow > 0) phases.push({ name: 'Phase 4: Flow', color: 'var(--good)', count: groups.flow, desc: 'Ego and instinct are beginning to cooperate. Desire can exist without needing justification. This is aliveness.' });
+
+      if (phases.length === 0) {
+        out.innerHTML = '<div class="flowNode"><p class="muted">Select the statements that resonate with your current experience to see where you might be in the process.</p></div>';
+      } else {
+        var html = '';
+        phases.forEach(function(p) {
+          html += '<div class="flowNode" style="border-color: ' + p.color + '30; margin-bottom: 10px">';
+          html += '<h3 style="color:' + p.color + '">' + p.name + ' <span class="badge">' + p.count + ' signal' + (p.count > 1 ? 's' : '') + '</span></h3>';
+          html += '<p>' + p.desc + '</p>';
+          html += '</div>';
+        });
+        if (phases.length > 1) {
+          html += '<div class="small" style="margin-top:6px">Multiple phases detected -- this is normal. The process is not linear. You can be in shutdown in some areas of life while experiencing fragments or warmth in others.</div>';
+        }
+        out.innerHTML = html;
+      }
+      showToast('Position mapped');
+    });
+
+    document.getElementById('assessReset').addEventListener('click', function() {
+      document.querySelectorAll('#assessment input[type="checkbox"]').forEach(function(cb) { cb.checked = false; });
+      document.getElementById('assessOut').innerHTML = '';
+      showToast('Reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why Self-Control Feels Exhausting (And It's Not Your Fault) — Infographic</title>
+  <meta name="description" content="Interactive infographic exploring the Jungian psychology behind self-control: why willpower fails, how the shadow rebounds, and why integration beats force." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Pill / Tag */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Battery viz */
+    .batteryWrap{display:flex;align-items:center;gap:16px;margin:14px 0}
+    .batteryShell{width:100%;height:40px;border:2px solid rgba(255,255,255,.2);border-radius:10px;position:relative;overflow:hidden;background:rgba(0,0,0,.2)}
+    .batteryShell .tip{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:6px;height:18px;background:rgba(255,255,255,.15);border-radius:0 4px 4px 0}
+    .batteryFill{height:100%;border-radius:8px;transition:width .5s ease, background .5s ease}
+    .batteryLabel{font-family:var(--mono);font-size:13px;min-width:40px;text-align:right}
+
+    /* Psyche diagram */
+    .psycheViz{position:relative;min-height:280px}
+
+    /* Cycle arrow connector */
+    .cycleConnector{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px 0;
+      color:var(--faint);
+      font-size:18px;
+    }
+
+    /* Quote block */
+    .quote{
+      border-left: 3px solid var(--violet);
+      padding:12px 16px;
+      background:rgba(187,167,255,.06);
+      border-radius:0 14px 14px 0;
+      margin:12px 0;
+      font-style:italic;
+      color:rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .quote .attr{font-style:normal;font-size:12px;color:var(--faint);margin-top:6px}
+
+    /* Three pillars */
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:740px){.pillars{grid-template-columns:1fr}}
+    .pillar{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:16px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .pillar .icon{font-size:32px;margin-bottom:8px;display:block;filter:drop-shadow(0 0 12px rgba(187,167,255,.3))}
+    .pillar h3{margin:0 0 8px;font-size:15px}
+    .pillar p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .pillar .glow{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:120px;height:120px;border-radius:50%;opacity:.08;pointer-events:none}
+
+    /* Scenario cards */
+    .scenarioGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:640px){.scenarioGrid{grid-template-columns:1fr}}
+    .scenario{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px;
+    }
+    .scenario h4{margin:0 0 6px;font-size:13px;display:flex;align-items:center;gap:8px}
+    .scenario p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Toggle switch */
+    .toggleWrap{display:flex;align-items:center;gap:12px;padding:8px 0}
+    .toggle{
+      position:relative;width:48px;height:26px;background:rgba(255,255,255,.1);border-radius:999px;cursor:pointer;
+      border:1px solid rgba(255,255,255,.15);transition:background .2s;flex-shrink:0;
+    }
+    .toggle.active{background:rgba(187,167,255,.3);border-color:rgba(187,167,255,.4)}
+    .toggle .knob{
+      position:absolute;top:3px;left:3px;width:18px;height:18px;background:white;border-radius:50%;
+      transition:transform .2s;box-shadow:0 2px 6px rgba(0,0,0,.3);
+    }
+    .toggle.active .knob{transform:translateX(22px)}
+    .toggleLabel{font-size:13px;color:var(--muted)}
+
+    /* Spectrum bar */
+    .spectrum{
+      height:8px;border-radius:99px;margin:10px 0 4px;
+      background:linear-gradient(90deg, var(--bad), var(--warn), var(--good));
+      position:relative;
+    }
+    .spectrum .marker{
+      position:absolute;top:-4px;width:16px;height:16px;border-radius:50%;
+      background:white;border:2px solid rgba(0,0,0,.3);
+      box-shadow:0 2px 8px rgba(0,0,0,.4);
+      transition:left .4s ease;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(117,240,182,.35)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.45)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Split psyche: two intertwining paths -->
+            <path d="M40,180 C100,60 160,180 220,80 C280,0 340,160 400,60 C440,10 480,80 510,40" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M40,60 C100,180 160,40 220,140 C280,220 340,60 400,160 C440,210 480,140 510,180" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".5" />
+            <!-- Tension points where paths cross -->
+            <circle cx="140" cy="120" r="10" fill="rgba(255,255,255,.5)" />
+            <circle cx="280" cy="110" r="8" fill="rgba(255,255,255,.4)" />
+            <circle cx="400" cy="110" r="9" fill="rgba(255,255,255,.45)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> jungian psychology &bull; self-control &bull; shadow integration</div>
+          <h1>Why Self-Control Feels Exhausting (And It's Not Your Fault)</h1>
+          <p class="subtitle">
+            Most people treat self-control as a test of strength. But psychology reveals something counterintuitive:
+            <b>the harder you force discipline, the more you guarantee its collapse.</b> True self-control is not an act of force. It is an act of awareness, design, and integration.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpPsyche">The divided psyche</button>
+            <button class="btn" id="jumpBattery">Willpower battery</button>
+            <button class="btn" id="jumpPillars">The three pillars</button>
+            <button class="btn" id="toggleNotes">Toggle commentary</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key insights">
+          <div class="stat">
+            <div class="label">Core misconception</div>
+            <div class="value" style="color:var(--bad)">Force = Control</div>
+            <div class="note">Self-control built on willpower alone always has an expiration date.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Jungian insight</div>
+            <div class="value" style="color:var(--violet)">Psyche is divided</div>
+            <div class="note">Growth-seeking vs comfort-seeking parts are in constant negotiation.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Real lever</div>
+            <div class="value" style="color:var(--good)">Design > Discipline</div>
+            <div class="note">Structure your environment so the right choice happens by default.</div>
+          </div>
+          <div class="stat">
+            <div class="label">End state</div>
+            <div class="value" style="color:var(--cyan)">Integration, not suppression</div>
+            <div class="note">When conscious and unconscious align, discipline feels like peace.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: The Misconception -->
+      <section class="card" aria-label="The misconception about self-control">
+        <div class="cardHeader">
+          <h2>The misconception: self-control as strength</h2>
+          <div class="chip"><b>Key reframe:</b> awareness over force</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Most people believe self-control is about <b>forcing</b> yourself to do what is right, about saying no harder than everyone else. But if that were true, the strongest people would never break. They would never relapse, never procrastinate, never fall back into patterns they swore they were done with.
+              </p>
+              <p class="muted">
+                Yet they do. Not because they are weak, but because <b>self-control is misunderstood at its core.</b> When you try to control yourself using willpower alone, you are already fighting too late. By the time temptation arrives, the decision has often already been made quietly, unconsciously, beneath awareness.
+              </p>
+              <div class="quote">
+                "True self-control is not an act of force. It is an act of awareness. And that is what most people miss."
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Force vs Awareness comparison">
+                <div class="small" style="margin-bottom:10px">Two mental models of self-control:</div>
+                <div class="scenarioGrid">
+                  <div class="scenario" style="border-color:rgba(255,122,153,.25)">
+                    <h4><span style="color:var(--bad)">&#9679;</span> The Force Model</h4>
+                    <p>Willpower as muscle. Push harder. White-knuckle through temptation. Shame yourself for failure. Repeat until collapse.</p>
+                    <div style="margin-top:8px">
+                      <span class="tag" style="border-color:rgba(255,122,153,.25);color:var(--bad)">unstable</span>
+                      <span class="tag" style="border-color:rgba(255,122,153,.25);color:var(--bad)">exhausting</span>
+                    </div>
+                  </div>
+                  <div class="scenario" style="border-color:rgba(117,240,182,.25)">
+                    <h4><span style="color:var(--good)">&#9679;</span> The Awareness Model</h4>
+                    <p>Design your environment. Understand your unconscious. Integrate conflicting parts. Remove the need to decide.</p>
+                    <div style="margin-top:8px">
+                      <span class="tag" style="border-color:rgba(117,240,182,.25);color:var(--good)">sustainable</span>
+                      <span class="tag" style="border-color:rgba(117,240,182,.25);color:var(--good)">quiet</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout" data-commentary>
+                <b>Commentary:</b> This reframe is powerful because it shifts the locus of failure from character to architecture. You did not "fail" at self-control; you relied on a strategy (raw willpower) that psychology has shown to be inherently limited. The question becomes: <i>what strategy are you using?</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: The Divided Psyche -->
+      <section class="row">
+        <div class="card" id="psycheCard" aria-label="The divided psyche">
+          <div class="cardHeader">
+            <h2>Jung's divided psyche: the inner conflict</h2>
+            <div class="chip">conscious vs unconscious</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              According to Carl Jung, the psyche is not unified. It is divided. There is the part of you that wants <b>growth, meaning, and long-term fulfillment</b>. And there is another part that wants <b>comfort, relief, and immediate safety</b>. When self-control fails, these two parts are in conflict. And force never resolves inner conflict. It only suppresses it.
+            </p>
+
+            <div class="viz" aria-label="Divided psyche visualization">
+              <svg viewBox="0 0 980 340" id="psycheSvg" role="img" aria-label="Conscious vs unconscious psyche diagram">
+                <defs>
+                  <linearGradient id="gConscious" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(122,215,255,.4)" />
+                    <stop offset="1" stop-color="rgba(122,215,255,.05)" />
+                  </linearGradient>
+                  <linearGradient id="gUnconscious" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,122,153,.05)" />
+                    <stop offset="1" stop-color="rgba(255,122,153,.3)" />
+                  </linearGradient>
+                  <filter id="psycheGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                <rect x="0" y="0" width="980" height="340" fill="rgba(0,0,0,.04)"/>
+
+                <!-- Dividing line -->
+                <line x1="40" y1="170" x2="940" y2="170" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="6 4"/>
+                <text x="490" y="165" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif,system-ui">THRESHOLD OF AWARENESS</text>
+
+                <g filter="url(#psycheGlow)">
+                  <!-- Conscious zone -->
+                  <rect x="60" y="24" width="380" height="120" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(122,215,255,.3)" />
+                  <text x="82" y="56" font-size="15" fill="var(--cyan)" font-weight="700" font-family="ui-sans-serif,system-ui">Conscious Mind</text>
+                  <text x="82" y="78" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Goals, rules, plans, "should"</text>
+                  <text x="82" y="98" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Wants: growth, meaning, discipline</text>
+                  <text x="82" y="118" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Strategy: force, willpower, resistance</text>
+                  <text x="82" y="134" font-size="11" fill="rgba(122,215,255,.6)" font-family="var(--mono)">~ "I should be better"</text>
+
+                  <!-- Unconscious zone -->
+                  <rect x="60" y="196" width="380" height="120" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)" />
+                  <text x="82" y="228" font-size="15" fill="var(--bad)" font-weight="700" font-family="ui-sans-serif,system-ui">Unconscious Mind</text>
+                  <text x="82" y="250" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Needs, fears, unmet desires, shadow</text>
+                  <text x="82" y="270" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Wants: comfort, relief, safety</text>
+                  <text x="82" y="290" font-size="12" fill="rgba(255,255,255,.65)" font-family="ui-sans-serif,system-ui">Strategy: avoidance, impulse, rebellion</text>
+                  <text x="82" y="306" font-size="11" fill="rgba(255,122,153,.6)" font-family="var(--mono)">~ "I just need a break"</text>
+
+                  <!-- Tension arrows -->
+                  <path d="M490,80 L490,260" stroke="rgba(255,210,122,.5)" stroke-width="3" fill="none" marker-end="url(#arrowDown)" marker-start="url(#arrowUp)"/>
+                  <text x="504" y="164" font-size="13" fill="var(--warn)" font-weight="700" font-family="ui-sans-serif,system-ui">CONFLICT</text>
+                  <text x="504" y="182" font-size="11" fill="rgba(255,255,255,.5)" font-family="ui-sans-serif,system-ui">Force creates resistance</text>
+
+                  <!-- Result boxes -->
+                  <rect x="580" y="24" width="360" height="76" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.25)" />
+                  <text x="602" y="52" font-size="14" fill="var(--bad)" font-weight="700" font-family="ui-sans-serif,system-ui">Suppression Path (force)</text>
+                  <text x="602" y="72" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif,system-ui">Push down urges &rarr; shadow grows &rarr; rebound</text>
+                  <text x="602" y="90" font-size="11" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif,system-ui">"The stronger the suppression, the stronger the rebound"</text>
+
+                  <rect x="580" y="118" width="360" height="76" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.25)" />
+                  <text x="602" y="146" font-size="14" fill="var(--good)" font-weight="700" font-family="ui-sans-serif,system-ui">Integration Path (awareness)</text>
+                  <text x="602" y="166" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif,system-ui">Understand urges &rarr; negotiate &rarr; alignment</text>
+                  <text x="602" y="184" font-size="11" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif,system-ui">"The psyche responds to understanding, not force"</text>
+
+                  <!-- Inner voices -->
+                  <rect x="580" y="218" width="360" height="98" rx="18" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.08)" />
+                  <text x="602" y="244" font-size="13" fill="rgba(255,255,255,.75)" font-weight="700" font-family="ui-sans-serif,system-ui">The negotiation voices:</text>
+                  <text x="602" y="266" font-size="12" fill="rgba(255,255,255,.5)" font-style="italic" font-family="ui-sans-serif,system-ui">"I'll start tomorrow."</text>
+                  <text x="602" y="284" font-size="12" fill="rgba(255,255,255,.5)" font-style="italic" font-family="ui-sans-serif,system-ui">"Just this once." &middot; "I deserve this."</text>
+                  <text x="602" y="302" font-size="11" fill="rgba(255,210,122,.6)" font-family="ui-sans-serif,system-ui">These are not excuses. They are signals from the unconscious.</text>
+                </g>
+
+                <defs>
+                  <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                    <path d="M0,0 L8,4 L0,8" fill="rgba(255,210,122,.5)"/>
+                  </marker>
+                  <marker id="arrowUp" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                    <path d="M8,0 L0,4 L8,8" fill="rgba(255,210,122,.5)"/>
+                  </marker>
+                </defs>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary (Jung):</b> Jung's model of the psyche is not about weakness. It is about <i>structure</i>. The unconscious is not your enemy; it is a part of you with legitimate needs. When those needs go unacknowledged, they do not vanish. They find backdoors. The "negotiation voices" (I'll start tomorrow, just this once) are the unconscious pushing back against a conscious plan it was never consulted about.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Willpower Battery -->
+        <div class="card" id="batteryCard" aria-label="Willpower as finite resource">
+          <div class="cardHeader">
+            <h2>Willpower is a battery, not a trait</h2>
+            <div class="chip"><b>Model:</b> depletion + compensation</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Every decision costs energy. Every act of resistance drains mental resources. When you rely on motivation, you are burning fuel constantly. The brain is an energy-saving machine. Eventually the battery empties, and <b>the unconscious takes control.</b>
+            </p>
+
+            <div class="viz" aria-label="Willpower battery simulator">
+              <div class="small" style="margin-bottom:10px">Simulate a typical day. Each drain event costs willpower. Watch the battery deplete:</div>
+
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+                <div class="batteryShell" style="flex:1">
+                  <div class="batteryFill" id="batteryFill" style="width:100%;background:linear-gradient(90deg, var(--good), var(--cyan))"></div>
+                </div>
+                <div class="batteryLabel" id="batteryPct">100%</div>
+              </div>
+
+              <div class="spectrum" id="stateSpectrum">
+                <div class="marker" id="stateMarker" style="left:calc(100% - 16px)"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+                <span class="small" style="color:var(--bad)">Shadow takes over</span>
+                <span class="small" style="color:var(--good)">Full self-regulation</span>
+              </div>
+
+              <div id="drainLog" class="small" style="min-height:24px;color:var(--warn);margin-bottom:10px"></div>
+
+              <div class="scenarioGrid" id="drainButtons">
+                <button class="btn" data-drain="8" data-label="Resist phone on waking">Resist phone on waking <span class="tag">-8%</span></button>
+                <button class="btn" data-drain="5" data-label="Choose healthy breakfast">Choose healthy breakfast <span class="tag">-5%</span></button>
+                <button class="btn" data-drain="12" data-label="Suppress frustration at work">Suppress frustration at work <span class="tag">-12%</span></button>
+                <button class="btn" data-drain="10" data-label="Push through boring task">Push through boring task <span class="tag">-10%</span></button>
+                <button class="btn" data-drain="7" data-label="Resist snacking">Resist snacking <span class="tag">-7%</span></button>
+                <button class="btn" data-drain="15" data-label="Handle emotional conflict">Handle emotional conflict <span class="tag">-15%</span></button>
+                <button class="btn" data-drain="6" data-label="Skip social media scroll">Skip social media scroll <span class="tag">-6%</span></button>
+                <button class="btn" data-drain="10" data-label="Stay patient while exhausted">Stay patient while exhausted <span class="tag">-10%</span></button>
+              </div>
+
+              <div class="hr"></div>
+              <div class="btnRow">
+                <button class="btn" id="resetBattery">Reset battery (new day)</button>
+                <button class="btn" id="restoreBtn">Add rest/recovery (+20%)</button>
+              </div>
+              <div id="batteryMsg" class="small" style="margin-top:8px"></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The "ego depletion" model (Baumeister) is debated in psychology, but the <i>experiential</i> reality is clear: people consistently lose self-control at predictable moments. Late at night. After stress. After rejection. After exhaustion. After long periods of being strong. This is not random failure. It is pattern, and the pattern reveals that whatever self-control is, it has a cost.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: The Shadow Rebound Cycle -->
+      <section class="card" aria-label="The shadow rebound cycle">
+        <div class="cardHeader">
+          <h2>The shadow rebound: why breakdowns follow discipline</h2>
+          <div class="chip">Jung's compensation principle</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                You diet perfectly for weeks, then binge. You stay productive for months, then collapse. You stay calm for days, then explode. People call this <b>lack of consistency</b>. Psychology calls it <b>compensation</b>.
+              </p>
+              <p class="muted">
+                The psyche always seeks balance. Whatever is denied expression in consciousness will return from the unconscious, often in distorted form. This is the shadow at work. When you suppress desire, emotion, or rest, it does not disappear. It waits. And it returns when your guard is down.
+              </p>
+              <div class="quote">
+                "The stronger the suppression, the stronger the rebound. Self-control built on shame is unstable."
+              </div>
+              <p class="muted">
+                This is why moralizing self-control backfires. When you label urges as evil, you push them into the shadow. And shadow material does not obey rules. It erupts.
+              </p>
+            </div>
+            <div>
+              <div class="viz" aria-label="Shadow rebound cycle diagram">
+                <svg viewBox="0 0 440 480" role="img" aria-label="Cyclic pattern: discipline, depletion, collapse, shame, repeat">
+                  <defs>
+                    <filter id="cycleGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <g filter="url(#cycleGlow)">
+                    <!-- Central cycle arrows -->
+                    <path d="M220,50 A170,170 0 0,1 390,220" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M390,220 A170,170 0 0,1 220,390" fill="none" stroke="rgba(255,210,122,.4)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M220,390 A170,170 0 0,1 50,220" fill="none" stroke="rgba(255,122,153,.4)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M50,220 A170,170 0 0,1 220,50" fill="none" stroke="rgba(187,167,255,.4)" stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- Arrow heads -->
+                    <polygon points="385,215 395,225 380,225" fill="rgba(122,215,255,.5)"/>
+                    <polygon points="225,385 215,395 215,380" fill="rgba(255,210,122,.5)"/>
+                    <polygon points="55,225 45,215 60,215" fill="rgba(255,122,153,.5)"/>
+                    <polygon points="215,55 225,45 225,60" fill="rgba(187,167,255,.5)"/>
+
+                    <!-- Stage 1: Discipline -->
+                    <rect x="152" y="10" width="136" height="60" rx="14" fill="rgba(0,0,0,.25)" stroke="rgba(122,215,255,.35)"/>
+                    <text x="220" y="36" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="700" font-family="ui-sans-serif,system-ui">DISCIPLINE</text>
+                    <text x="220" y="54" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" font-family="ui-sans-serif,system-ui">"I'm doing great"</text>
+
+                    <!-- Stage 2: Depletion -->
+                    <rect x="322" y="190" width="118" height="60" rx="14" fill="rgba(0,0,0,.25)" stroke="rgba(255,210,122,.35)"/>
+                    <text x="381" y="216" text-anchor="middle" font-size="13" fill="var(--warn)" font-weight="700" font-family="ui-sans-serif,system-ui">DEPLETION</text>
+                    <text x="381" y="234" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" font-family="ui-sans-serif,system-ui">"I'm so tired"</text>
+
+                    <!-- Stage 3: Collapse -->
+                    <rect x="152" y="370" width="136" height="60" rx="14" fill="rgba(0,0,0,.25)" stroke="rgba(255,122,153,.35)"/>
+                    <text x="220" y="396" text-anchor="middle" font-size="13" fill="var(--bad)" font-weight="700" font-family="ui-sans-serif,system-ui">COLLAPSE</text>
+                    <text x="220" y="414" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" font-family="ui-sans-serif,system-ui">"I failed again"</text>
+
+                    <!-- Stage 4: Shame -->
+                    <rect x="0" y="190" width="118" height="60" rx="14" fill="rgba(0,0,0,.25)" stroke="rgba(187,167,255,.35)"/>
+                    <text x="59" y="216" text-anchor="middle" font-size="13" fill="var(--violet)" font-weight="700" font-family="ui-sans-serif,system-ui">SHAME</text>
+                    <text x="59" y="234" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" font-family="ui-sans-serif,system-ui">"I'm so weak"</text>
+
+                    <!-- Center label -->
+                    <text x="220" y="215" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.7)" font-weight="700" font-family="ui-sans-serif,system-ui">THE CYCLE</text>
+                    <text x="220" y="235" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.4)" font-family="ui-sans-serif,system-ui">most people are trapped here</text>
+                  </g>
+
+                  <!-- Exit arrow -->
+                  <line x1="220" y1="250" x2="220" y2="460" stroke="rgba(117,240,182,.4)" stroke-width="2" stroke-dasharray="5 4"/>
+                  <polygon points="212,455 228,455 220,470" fill="rgba(117,240,182,.5)"/>
+                  <text x="220" y="478" text-anchor="middle" font-size="12" fill="var(--good)" font-weight="700" font-family="ui-sans-serif,system-ui">EXIT: INTEGRATION</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary (Shadow Dynamics):</b> This cycle is the engine of chronic self-sabotage. The critical insight is that <b>shame is not the exit.</b> Shame is stage 4 of the cycle, feeding right back into stage 1 (renewed, desperate discipline). The actual exit is <i>downward</i>: into understanding, integration, and negotiation with the unconscious. You do not break the cycle by trying harder. You break it by stepping off.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Design over Discipline -->
+      <section class="row">
+        <div class="card" aria-label="Design over discipline">
+          <div class="cardHeader">
+            <h2>Discipline is about design, not willpower</h2>
+            <div class="chip"><b>Principle:</b> reduce friction</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              People who appear highly disciplined are rarely fighting temptation all day. They do not wake up more motivated than you. They do not have superhuman willpower. They simply <b>removed the need to decide.</b> They structured their lives so the wrong choice requires effort and the right choice happens by default.
+            </p>
+
+            <div class="viz" aria-label="Environment triggers">
+              <div class="small" style="margin-bottom:10px">Your environment is a silent decision maker. Every object around you is a suggestion:</div>
+              <div class="riskGrid">
+                <div class="risk">
+                  <div class="rTop"><strong>Phone within reach</strong><span class="badge" style="color:var(--bad)">will be used</span></div>
+                  <div class="meter"><i style="width:85%"></i></div>
+                  <p>Not because you are weak, but because proximity creates automatic behavior.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Unhealthy food in sight</strong><span class="badge" style="color:var(--bad)">will be eaten</span></div>
+                  <div class="meter"><i style="width:78%"></i></div>
+                  <p>Your nervous system evolved for survival, not discipline. It chooses what feels easiest.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Distractions in proximity</strong><span class="badge" style="color:var(--warn)">pull attention</span></div>
+                  <div class="meter"><i style="width:72%"></i></div>
+                  <p>Especially under stress, the brain defaults to relief-seeking mode.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Structured environment</strong><span class="badge" style="color:var(--good)">reduces decisions</span></div>
+                  <div class="meter"><i style="width:25%"></i></div>
+                  <p>When good choices are frictionless, self-control improves without extra effort.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              <b>The formula:</b> Real self-control engineers surroundings so bad choices feel inconvenient and good choices feel natural. This is not laziness. This is intelligence.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is choice architecture applied to the self. The implication is radical: the person who puts their phone in another room is not exercising less discipline than the person who white-knuckles through notifications. They are exercising <i>more</i> discipline, because they are designing the system rather than fighting it moment by moment.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stress and emotional regulation">
+          <div class="cardHeader">
+            <h2>You cannot out-discipline an exhausted nervous system</h2>
+            <div class="chip">emotional regulation</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              When you are tired, anxious, lonely, or overwhelmed, self-control collapses. Not because you lack discipline, but because the brain shifts into <b>relief-seeking mode</b>. In this state, long-term goals lose emotional weight. Short-term comfort becomes king.
+            </p>
+
+            <div class="quote">
+              "No habit system survives chronic stress. No willpower beats unresolved emotional pressure. Before asking 'Why can't I control myself?' ask instead: 'What is my mind trying to escape?'"
+            </div>
+
+            <div class="flow" aria-label="Emotional state and self-control">
+              <div class="flowNode">
+                <h3>When the nervous system is calm</h3>
+                <p>Discipline feels easy. Long-term goals carry emotional weight. You can delay gratification naturally.</p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(117,240,182,.25);color:var(--good)">regulated</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.25);color:var(--good)">aligned</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.25);color:var(--good)">clear</span>
+                </div>
+              </div>
+              <div class="cycleConnector">&#8595;</div>
+              <div class="flowNode">
+                <h3>When the nervous system is dysregulated</h3>
+                <p>Discipline feels impossible. Survival takes priority. The brain seeks immediate relief above all else.</p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(255,122,153,.25);color:var(--bad)">stressed</span>
+                  <span class="badge" style="border-color:rgba(255,122,153,.25);color:var(--bad)">depleted</span>
+                  <span class="badge" style="border-color:rgba(255,122,153,.25);color:var(--bad)">reactive</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="small" style="margin-bottom:10px">Common "triggers" that shift the nervous system into relief-seeking mode:</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span class="pill" style="padding:8px 12px;min-height:auto"><span>Late at night</span><span class="tag">fatigue</span></span>
+              <span class="pill" style="padding:8px 12px;min-height:auto"><span>After rejection</span><span class="tag">emotional</span></span>
+              <span class="pill" style="padding:8px 12px;min-height:auto"><span>After exhaustion</span><span class="tag">physical</span></span>
+              <span class="pill" style="padding:8px 12px;min-height:auto"><span>After emotional stress</span><span class="tag">cortisol</span></span>
+              <span class="pill" style="padding:8px 12px;min-height:auto"><span>After long periods of "being strong"</span><span class="tag">depletion</span></span>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is arguably the most important practical insight in the entire presentation. Self-control is <b>downstream</b> of emotional regulation. If your emotional baseline is chronic stress, no amount of habit-stacking, productivity hacks, or morning routines will hold. The foundation comes first: rest, safety, emotional grounding.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: The Three Pillars -->
+      <section class="card" id="pillarsCard" aria-label="Three pillars of lasting self-control">
+        <div class="cardHeader">
+          <h2>The three pillars of self-control that actually lasts</h2>
+          <div class="chip"><b>Framework:</b> identity + environment + regulation</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            The highest form of self-control is almost invisible. No struggle, no inner arguments, no dramatic resistance. Just absence of temptation. This happens when three things align. Miss even one, and discipline becomes fragile.
+          </p>
+
+          <div class="pillars">
+            <div class="pillar">
+              <div class="glow" style="background:var(--violet)"></div>
+              <span class="icon">&#9670;</span>
+              <h3 style="color:var(--violet)">Identity</h3>
+              <p>When you say "I'm trying to change," your mind keeps the option of failure open. When you say "This is who I am," behavior follows effortlessly. Identity removes negotiation.</p>
+              <div class="hr"></div>
+              <div class="small">"A person who identifies as disciplined does not constantly ask whether to act disciplined. They simply act."</div>
+            </div>
+            <div class="pillar">
+              <div class="glow" style="background:var(--cyan)"></div>
+              <span class="icon">&#9678;</span>
+              <h3 style="color:var(--cyan)">Environment</h3>
+              <p>Your surroundings are a silent decision maker. If they constantly trigger old patterns, you rely on willpower every day. Real self-control engineers the space so good choices feel natural.</p>
+              <div class="hr"></div>
+              <div class="small">"This is not discipline. This is design."</div>
+            </div>
+            <div class="pillar">
+              <div class="glow" style="background:var(--good)"></div>
+              <span class="icon">&#9829;</span>
+              <h3 style="color:var(--good)">Emotional Regulation</h3>
+              <p>If your life lacks rest, safety, and emotional grounding, no habit system will survive. When the nervous system is calm, discipline feels easy. When it is dysregulated, discipline feels impossible.</p>
+              <div class="hr"></div>
+              <div class="small">"The mind seeks relief before meaning."</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Interactive self-assessment -->
+          <h3 style="margin:0 0 10px;font-size:14px">Self-assessment: how aligned are your three pillars?</h3>
+          <div class="controls" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="control">
+              <label>
+                <span>Identity alignment</span>
+                <span class="readout" id="idReadout">5</span>
+              </label>
+              <input id="idSlider" type="range" min="1" max="10" value="5" />
+              <div class="small" style="margin-top:6px">Do you <i>identify</i> as the person you want to be?</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Environment design</span>
+                <span class="readout" id="envReadout">5</span>
+              </label>
+              <input id="envSlider" type="range" min="1" max="10" value="5" />
+              <div class="small" style="margin-top:6px">Is your environment designed to support good defaults?</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Emotional regulation</span>
+                <span class="readout" id="emoReadout">5</span>
+              </label>
+              <input id="emoSlider" type="range" min="1" max="10" value="5" />
+              <div class="small" style="margin-top:6px">Is your nervous system generally calm and rested?</div>
+            </div>
+          </div>
+
+          <div class="viz" style="margin-top:12px" id="pillarViz" aria-label="Pillar alignment visualization">
+            <svg viewBox="0 0 980 260" id="pillarSvg" role="img">
+              <defs>
+                <linearGradient id="gId" x1="0" x2="0" y1="1" y2="0">
+                  <stop offset="0" stop-color="rgba(187,167,255,.1)"/>
+                  <stop offset="1" stop-color="rgba(187,167,255,.5)"/>
+                </linearGradient>
+                <linearGradient id="gEnv" x1="0" x2="0" y1="1" y2="0">
+                  <stop offset="0" stop-color="rgba(122,215,255,.1)"/>
+                  <stop offset="1" stop-color="rgba(122,215,255,.5)"/>
+                </linearGradient>
+                <linearGradient id="gEmo" x1="0" x2="0" y1="1" y2="0">
+                  <stop offset="0" stop-color="rgba(117,240,182,.1)"/>
+                  <stop offset="1" stop-color="rgba(117,240,182,.5)"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="980" height="260" fill="rgba(0,0,0,.04)"/>
+
+              <!-- Baseline -->
+              <line x1="80" y1="220" x2="900" y2="220" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+
+              <!-- Pillar bars -->
+              <rect id="barId" x="160" y="120" width="160" height="100" rx="8" fill="url(#gId)" stroke="rgba(187,167,255,.3)" stroke-width="1"/>
+              <rect id="barEnv" x="410" y="120" width="160" height="100" rx="8" fill="url(#gEnv)" stroke="rgba(122,215,255,.3)" stroke-width="1"/>
+              <rect id="barEmo" x="660" y="120" width="160" height="100" rx="8" fill="url(#gEmo)" stroke="rgba(117,240,182,.3)" stroke-width="1"/>
+
+              <!-- Labels -->
+              <text id="lblId" x="240" y="240" text-anchor="middle" font-size="12" fill="var(--violet)" font-family="ui-sans-serif,system-ui">Identity: 5/10</text>
+              <text id="lblEnv" x="490" y="240" text-anchor="middle" font-size="12" fill="var(--cyan)" font-family="ui-sans-serif,system-ui">Environment: 5/10</text>
+              <text id="lblEmo" x="740" y="240" text-anchor="middle" font-size="12" fill="var(--good)" font-family="ui-sans-serif,system-ui">Emotional Reg: 5/10</text>
+
+              <!-- Score -->
+              <text id="pillarScore" x="490" y="30" text-anchor="middle" font-size="16" fill="rgba(255,255,255,.85)" font-weight="700" font-family="ui-sans-serif,system-ui">Alignment Score: 50%</text>
+              <text id="pillarMsg" x="490" y="52" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.55)" font-family="ui-sans-serif,system-ui">Moderate foundation. Identify and strengthen the weakest pillar.</text>
+            </svg>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> The three-pillar model explains why "discipline advice" often fails. Telling someone to wake up at 5 AM (behavior) without addressing whether they identify as an early riser (identity), whether their bedroom supports sleep (environment), or whether they are chronically exhausted (emotional regulation) is like building a house starting with the roof.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 7: Integration - The Resolution -->
+      <section class="card" aria-label="Integration over suppression">
+        <div class="cardHeader">
+          <h2>The resolution: integration, not suppression</h2>
+          <div class="chip"><b>End state:</b> wholeness over strength</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Self-control is not about becoming rigid. It is about becoming <b>integrated</b>. When the conscious and unconscious stop fighting, energy stops leaking. And when energy stops leaking, discipline becomes natural.
+              </p>
+              <p class="muted">
+                At this point, self-control no longer feels like control. It feels like <b>clarity</b>. You do not need to force yourself. You do not need to motivate yourself. You simply act in alignment.
+              </p>
+
+              <div class="quote">
+                "The most disciplined people rarely talk about discipline. They don't experience it as effort. They experience it as peace."
+              </div>
+
+              <div class="flow">
+                <div class="flowNode" style="border-color:rgba(255,122,153,.2)">
+                  <h3 style="color:var(--bad)">What integration is NOT</h3>
+                  <p>Dominating desire. Suppressing emotion. Moralizing urges. Shaming yourself into compliance. "Being stronger."</p>
+                </div>
+                <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
+                  <h3 style="color:var(--good)">What integration IS</h3>
+                  <p>Understanding desire. Negotiating with the unconscious. Asking "What is unmet?" Redesigning life so desire no longer sabotages you.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Integration spectrum">
+                <svg viewBox="0 0 440 400" role="img" aria-label="Spectrum from suppression to integration">
+                  <defs>
+                    <linearGradient id="specGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(255,122,153,.3)"/>
+                      <stop offset=".5" stop-color="rgba(255,210,122,.2)"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.3)"/>
+                    </linearGradient>
+                    <filter id="specGlow" x="-10%" y="-10%" width="120%" height="120%">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <rect x="0" y="0" width="440" height="400" fill="rgba(0,0,0,.04)"/>
+
+                  <!-- Spectrum bar -->
+                  <rect x="30" y="30" width="380" height="340" rx="20" fill="url(#specGrad)" opacity=".15"/>
+                  <rect x="30" y="30" width="380" height="340" rx="20" fill="none" stroke="rgba(255,255,255,.1)"/>
+
+                  <g filter="url(#specGlow)" font-family="ui-sans-serif,system-ui">
+                    <!-- Level 1: Suppression -->
+                    <rect x="60" y="50" width="320" height="56" rx="12" fill="rgba(0,0,0,.25)" stroke="rgba(255,122,153,.25)"/>
+                    <text x="80" y="72" font-size="13" fill="var(--bad)" font-weight="700">Suppression</text>
+                    <text x="80" y="92" font-size="11" fill="rgba(255,255,255,.55)">"I must destroy this urge."</text>
+                    <text x="350" y="78" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">inner war</text>
+
+                    <!-- Level 2: Resistance -->
+                    <rect x="60" y="120" width="320" height="56" rx="12" fill="rgba(0,0,0,.25)" stroke="rgba(255,179,138,.25)"/>
+                    <text x="80" y="142" font-size="13" fill="var(--orange)" font-weight="700">White-knuckle Resistance</text>
+                    <text x="80" y="162" font-size="11" fill="rgba(255,255,255,.55)">"I won't give in. Not today."</text>
+                    <text x="350" y="148" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">exhausting</text>
+
+                    <!-- Level 3: Negotiation -->
+                    <rect x="60" y="190" width="320" height="56" rx="12" fill="rgba(0,0,0,.25)" stroke="rgba(255,210,122,.25)"/>
+                    <text x="80" y="212" font-size="13" fill="var(--warn)" font-weight="700">Negotiation</text>
+                    <text x="80" y="232" font-size="11" fill="rgba(255,255,255,.55)">"What do I actually need right now?"</text>
+                    <text x="350" y="218" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">awareness</text>
+
+                    <!-- Level 4: Design -->
+                    <rect x="60" y="260" width="320" height="56" rx="12" fill="rgba(0,0,0,.25)" stroke="rgba(122,215,255,.25)"/>
+                    <text x="80" y="282" font-size="13" fill="var(--cyan)" font-weight="700">Design</text>
+                    <text x="80" y="302" font-size="11" fill="rgba(255,255,255,.55)">"I've removed the trigger entirely."</text>
+                    <text x="350" y="288" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">engineering</text>
+
+                    <!-- Level 5: Integration -->
+                    <rect x="60" y="330" width="320" height="56" rx="12" fill="rgba(0,0,0,.25)" stroke="rgba(117,240,182,.3)"/>
+                    <text x="80" y="352" font-size="13" fill="var(--good)" font-weight="700">Integration</text>
+                    <text x="80" y="372" font-size="11" fill="rgba(255,255,255,.55)">"There's nothing to resist. I'm aligned."</text>
+                    <text x="350" y="358" font-size="10" fill="rgba(117,240,182,.5)" text-anchor="end">peace</text>
+                  </g>
+
+                  <!-- Arrow on side -->
+                  <line x1="42" y1="70" x2="42" y2="360" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <polygon points="38,356 46,356 42,368" fill="rgba(117,240,182,.4)"/>
+                  <text x="18" y="220" font-size="10" fill="rgba(255,255,255,.3)" transform="rotate(-90 18 220)" text-anchor="middle" font-family="ui-sans-serif,system-ui">MATURITY</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary (Final Synthesis):</b> The five levels form a maturity model of self-control. Most self-help advice operates at levels 1-2 (try harder, resist more). Practical design (level 3-4) is more effective. But the Jungian insight goes further: level 5, integration, is where the need for "control" dissolves entirely because the parts of the psyche are no longer at war. The question is not "How do I become stronger?" but "How do I become more whole?"
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 8: Self-Inquiry Checklist -->
+      <section class="row">
+        <div class="card" aria-label="Self-inquiry questions">
+          <div class="cardHeader">
+            <h2>Self-inquiry: the better questions</h2>
+            <div class="chip">awareness practice</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung believed that what we call "bad habits" are often unintegrated parts of the psyche seeking expression. Instead of fighting them, ask better questions. Check off the ones you are willing to sit with honestly.
+            </p>
+
+            <div class="checklist" id="inquiryChecklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>What am I depriving myself of?</strong><em>needs audit</em></div>
+                  <div class="d">Chronic deprivation drives the intensity of urges. Identify what has been neglected: rest, play, connection, pleasure, meaning.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>What emotion am I avoiding?</strong><em>emotional clarity</em></div>
+                  <div class="d">Most compulsive behavior is an escape from an uncomfortable feeling. Name the feeling before trying to control the behavior.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>What need is unmet?</strong><em>root cause</em></div>
+                  <div class="d">Behind every "bad habit" is a legitimate need being met through an illegitimate channel. Find the need, find a healthier channel.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>What is my mind trying to escape?</strong><em>nervous system</em></div>
+                  <div class="d">Self-control collapses when the nervous system is overwhelmed. Before blaming willpower, check: Am I exhausted? Anxious? Lonely?</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Am I using shame as motivation?</strong><em>shadow check</em></div>
+                  <div class="d">Shame creates inner resistance, and resistance breeds rebellion. If discipline is powered by self-hatred, it will collapse.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Who am I being, not just what am I doing?</strong><em>identity</em></div>
+                  <div class="d">Behavior follows identity more reliably than rules. Shift from "I'm trying to change" to "This is who I am."</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="inquiryScore">Check my inquiry depth</button>
+              <button class="btn" id="inquiryReset">Reset</button>
+            </div>
+            <div class="small" id="inquiryOut" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Key takeaways">
+          <div class="cardHeader">
+            <h2>The thesis, distilled</h2>
+            <div class="chip"><b>Core message:</b> wholeness over willpower</div>
+          </div>
+          <div class="cardBody">
+            <div class="flow">
+              <div class="flowNode">
+                <h3>1) Self-control is not about strength</h3>
+                <p>It is about understanding the divided psyche. The conscious mind wants growth; the unconscious wants safety. Force does not resolve this conflict. It suppresses it, guaranteeing a rebound.</p>
+                <div class="meta"><span class="badge">Jungian model</span><span class="badge">shadow dynamics</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Willpower is a finite, depletable resource</h3>
+                <p>Every decision, every suppression, every act of resistance drains the same battery. Breakdowns follow discipline not randomly but predictably: after stress, fatigue, or sustained effort.</p>
+                <div class="meta"><span class="badge">ego depletion</span><span class="badge">compensation</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) The solution is design + integration</h3>
+                <p>Structure your environment so the right choice is the default. Address emotional needs before they become compulsions. Shift your identity so behavior aligns without negotiation.</p>
+                <div class="meta"><span class="badge">3 pillars</span><span class="badge">maturity model</span></div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                <h3 style="color:var(--good)">4) The end state is peace, not control</h3>
+                <p>When your inner world is aligned, discipline stops feeling like pain. It starts feeling like peace. Don't ask "How do I become stronger?" Ask "How do I become more whole?"</p>
+                <div class="meta"><span class="badge" style="color:var(--good);border-color:rgba(117,240,182,.25)">integration</span><span class="badge" style="color:var(--good);border-color:rgba(117,240,182,.25)">alignment</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <details data-commentary>
+              <summary><strong>On the limits of this framework</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  This presentation draws heavily on Jungian analytical psychology and the ego-depletion model. Both have critics. Jung's shadow concept is more metaphorical than empirical; ego depletion has faced replication challenges (though the phenomenological experience of willpower "running out" is nearly universal).
+                </p>
+                <p style="margin-top:8px">
+                  The strength of this framework is its <b>practical synthesis</b>: it explains why people fail at self-control in predictable, patterned ways, and offers structural solutions (design, emotional regulation, identity) rather than just motivational ones. Treat it as a useful map, not a final truth.
+                </p>
+              </div>
+            </details>
+
+            <details data-commentary>
+              <summary><strong>Recommended further reading</strong><span class="hint">click to expand</span></summary>
+              <div class="detailBody">
+                <p>
+                  &bull; Carl Jung, <i>The Undiscovered Self</i> (on the divided psyche)<br/>
+                  &bull; Roy Baumeister, <i>Willpower: Rediscovering the Greatest Human Strength</i> (ego depletion)<br/>
+                  &bull; James Clear, <i>Atomic Habits</i> (environment design and identity-based habits)<br/>
+                  &bull; Bessel van der Kolk, <i>The Body Keeps the Score</i> (nervous system regulation)<br/>
+                  &bull; Robert A. Johnson, <i>Owning Your Own Shadow</i> (shadow integration)
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="About commentary mode">
+        <div class="cardHeader">
+          <h2>About the commentary toggle</h2>
+          <div class="chip">interpretation vs. presentation</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, violet callout boxes (marked with <code>data-commentary</code>) offer meta-level analysis:
+            What is the evidence quality? What alternative framings exist? What are the limits of the claim?
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary" at the top to hide or show all commentary at once.
+            This lets you switch between "what the presentation says" and "a critical psychological perspective on those claims."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; disclaimers:</b> This interactive infographic was generated from a narration exploring Jungian perspectives on self-control and willpower.
+        It is not clinical psychological advice. Visualizations, simulators, and commentary are conceptual tools to illuminate the psychological framework, not substitutes for therapy or professional guidance.
+      </p>
+      <p style="margin-top:10px">
+        Source material draws on concepts from Carl Jung (shadow, psychic compensation, individuation), Roy Baumeister (ego depletion), and behavioral design (choice architecture).
+        For personal application, consult a qualified mental health professional.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Willpower Battery Simulator
+    // ──────────────────────────────────────────────────────
+    let battery = 100;
+
+    function updateBattery() {
+      const fill = document.getElementById('batteryFill');
+      const pct = document.getElementById('batteryPct');
+      const marker = document.getElementById('stateMarker');
+      const msg = document.getElementById('batteryMsg');
+
+      battery = Math.max(0, Math.min(100, battery));
+      fill.style.width = battery + '%';
+      pct.textContent = battery + '%';
+
+      // Color
+      if (battery > 60) {
+        fill.style.background = 'linear-gradient(90deg, var(--good), var(--cyan))';
+      } else if (battery > 30) {
+        fill.style.background = 'linear-gradient(90deg, var(--warn), var(--orange))';
+      } else {
+        fill.style.background = 'linear-gradient(90deg, var(--bad), var(--orange))';
+      }
+
+      // Marker
+      marker.style.left = 'calc(' + battery + '% - 8px)';
+
+      // Message
+      if (battery <= 0) {
+        msg.innerHTML = '<span style="color:var(--bad)"><b>Battery empty.</b> The unconscious has taken control. This is when binges, explosions, and relapses happen. Not weakness. Depletion.</span>';
+      } else if (battery <= 20) {
+        msg.innerHTML = '<span style="color:var(--bad)">Danger zone. Your brain is now in pure relief-seeking mode. Long-term goals have lost all emotional weight.</span>';
+      } else if (battery <= 40) {
+        msg.innerHTML = '<span style="color:var(--warn)">Running low. Decision fatigue is setting in. Temptation resistance is significantly impaired.</span>';
+      } else if (battery <= 60) {
+        msg.innerHTML = '<span style="color:var(--warn)">Moderate. You can still make good choices, but stress or one more drain could tip you.</span>';
+      } else {
+        msg.innerHTML = '<span style="color:var(--good)">Good reserves. Self-regulation is functioning well.</span>';
+      }
+    }
+
+    document.getElementById('drainButtons').addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-drain]');
+      if (!btn) return;
+      const drain = parseInt(btn.dataset.drain);
+      const label = btn.dataset.label;
+      battery -= drain;
+      document.getElementById('drainLog').textContent = 'Drained: ' + label + ' (-' + drain + '%)';
+      updateBattery();
+      if (battery <= 0) {
+        showToast('Battery depleted. The shadow takes over.');
+      }
+    });
+
+    document.getElementById('resetBattery').addEventListener('click', function() {
+      battery = 100;
+      document.getElementById('drainLog').textContent = '';
+      updateBattery();
+      showToast('New day. Battery fully charged.');
+    });
+
+    document.getElementById('restoreBtn').addEventListener('click', function() {
+      battery = Math.min(100, battery + 20);
+      document.getElementById('drainLog').textContent = 'Restored: rest, safety, emotional grounding (+20%)';
+      updateBattery();
+      showToast('Rest restores what willpower cannot.');
+    });
+
+    updateBattery();
+
+    // ──────────────────────────────────────────────────────
+    // Three Pillars Assessment
+    // ──────────────────────────────────────────────────────
+    const idSlider = document.getElementById('idSlider');
+    const envSlider = document.getElementById('envSlider');
+    const emoSlider = document.getElementById('emoSlider');
+
+    function renderPillars() {
+      const idVal = parseInt(idSlider.value);
+      const envVal = parseInt(envSlider.value);
+      const emoVal = parseInt(emoSlider.value);
+
+      document.getElementById('idReadout').textContent = idVal;
+      document.getElementById('envReadout').textContent = envVal;
+      document.getElementById('emoReadout').textContent = emoVal;
+
+      const maxH = 180;
+      const baseY = 220;
+
+      // Bar heights
+      const idH = (idVal / 10) * maxH;
+      const envH = (envVal / 10) * maxH;
+      const emoH = (emoVal / 10) * maxH;
+
+      document.getElementById('barId').setAttribute('y', baseY - idH);
+      document.getElementById('barId').setAttribute('height', idH);
+      document.getElementById('barEnv').setAttribute('y', baseY - envH);
+      document.getElementById('barEnv').setAttribute('height', envH);
+      document.getElementById('barEmo').setAttribute('y', baseY - emoH);
+      document.getElementById('barEmo').setAttribute('height', emoH);
+
+      // Labels
+      document.getElementById('lblId').textContent = 'Identity: ' + idVal + '/10';
+      document.getElementById('lblEnv').textContent = 'Environment: ' + envVal + '/10';
+      document.getElementById('lblEmo').textContent = 'Emotional Reg: ' + emoVal + '/10';
+
+      // Score - use the weakest pillar heavily (bottleneck model)
+      const min = Math.min(idVal, envVal, emoVal);
+      const avg = (idVal + envVal + emoVal) / 3;
+      const score = Math.round((min * 0.5 + avg * 0.5) * 10);
+
+      let msg = '';
+      if (score >= 80) msg = 'Strong alignment. Self-control likely feels natural and quiet.';
+      else if (score >= 60) msg = 'Good foundation. Identify and strengthen the weakest pillar.';
+      else if (score >= 40) msg = 'Moderate. The weakest pillar is likely causing most failures.';
+      else msg = 'Fragile foundation. Focus on the weakest pillar before adding discipline.';
+
+      document.getElementById('pillarScore').textContent = 'Alignment Score: ' + score + '%';
+      document.getElementById('pillarMsg').textContent = msg;
+    }
+
+    idSlider.addEventListener('input', renderPillars);
+    envSlider.addEventListener('input', renderPillars);
+    emoSlider.addEventListener('input', renderPillars);
+    renderPillars();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpPsyche').addEventListener('click', function() {
+      document.getElementById('psycheCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpBattery').addEventListener('click', function() {
+      document.getElementById('batteryCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpPillars').addEventListener('click', function() {
+      document.getElementById('pillarsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Inquiry Checklist
+    // ──────────────────────────────────────────────────────
+    document.getElementById('inquiryScore').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#inquiryChecklist input[type="checkbox"]');
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      var total = checkboxes.length;
+      var pct = Math.round((checked / total) * 100);
+
+      var msg = '';
+      if (pct >= 83) msg = pct + '% -- Deep self-inquiry. You are approaching these patterns with genuine awareness.';
+      else if (pct >= 50) msg = pct + '% -- Good start. Consider sitting with the unchecked questions longer.';
+      else if (pct >= 17) msg = pct + '% -- Beginning to look inward. The unchecked questions may be the most important ones.';
+      else msg = pct + '% -- These questions deserve attention. The ones you avoid are often the ones that matter most.';
+
+      document.getElementById('inquiryOut').innerHTML = '<b>Inquiry depth:</b> ' + msg;
+      showToast('Inquiry depth assessed');
+    });
+
+    document.getElementById('inquiryReset').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#inquiryChecklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+      document.getElementById('inquiryOut').innerHTML = '';
+      showToast('Inquiry checklist reset');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2400);
+    }
+  </script>
+</body>
+</html>

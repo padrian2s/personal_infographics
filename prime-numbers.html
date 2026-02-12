@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prime Numbers, Patterns & the Foundations of Mathematics — Infographic</title>
+  <meta name="description" content="Interactive infographic exploring prime numbers, the twin prime conjecture, pseudorandomness in cryptography, AI in mathematics, and the nature of mathematical truth — based on a conversation with Terence Tao." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --gold: #ffe066;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,224,102,.06), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--gold), var(--violet)); box-shadow: 0 0 22px rgba(255,224,102,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Hallmarks / pill list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,224,102,.7);
+      padding: 10px 12px;
+      background: rgba(255,224,102,.06);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Prime number grid */
+    .primeGrid{
+      display:grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 3px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .primeGrid .cell{
+      aspect-ratio: 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: background .15s, border-color .15s;
+    }
+    .primeGrid .cell.prime{
+      background: rgba(122,215,255,.14);
+      border-color: rgba(122,215,255,.25);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    .primeGrid .cell.twin{
+      background: rgba(187,167,255,.18);
+      border-color: rgba(187,167,255,.35);
+      color: var(--violet);
+    }
+    .primeGrid .cell.composite{
+      background: rgba(255,255,255,.03);
+      color: var(--faint);
+    }
+
+    /* Quote */
+    .quote{
+      border-left: 3px solid rgba(187,167,255,.6);
+      padding: 10px 14px;
+      background: rgba(187,167,255,.06);
+      border-radius: 14px;
+      margin-top: 10px;
+      font-style: italic;
+      color: rgba(255,255,255,.80);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .quote .attr{font-style:normal;font-size:12px;color:var(--muted);margin-top:6px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,224,102,.45)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.40)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- scattered primes as dots -->
+            <circle cx="47" cy="140" r="5" fill="rgba(255,224,102,.5)" />
+            <circle cx="89" cy="78" r="7" fill="rgba(122,215,255,.5)" />
+            <circle cx="143" cy="165" r="4" fill="rgba(187,167,255,.5)" />
+            <circle cx="197" cy="52" r="6" fill="rgba(255,224,102,.4)" />
+            <circle cx="251" cy="130" r="8" fill="rgba(122,215,255,.45)" />
+            <circle cx="308" cy="88" r="5" fill="rgba(187,167,255,.45)" />
+            <circle cx="362" cy="155" r="7" fill="rgba(255,224,102,.4)" />
+            <circle cx="419" cy="65" r="6" fill="rgba(122,215,255,.5)" />
+            <circle cx="472" cy="120" r="9" fill="rgba(187,167,255,.5)" />
+            <!-- connecting lines suggesting patterns -->
+            <path d="M47,140 C100,60 160,190 251,130 C310,95 380,170 472,120" fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <path d="M89,78 C150,40 220,110 308,88 C370,70 430,100 472,120" fill="none" stroke="url(#g2)" stroke-width="4" stroke-linecap="round" opacity=".4" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> number theory &bull; cryptography &bull; mathematical truth</div>
+          <h1>Prime Numbers, Patterns & the Foundations of Mathematics</h1>
+          <p class="subtitle">
+            Every time you send an encrypted message, buy something online, or enter a password, you're betting your security on a pattern in prime numbers that no mathematician has ever been able to prove. This page distills a conversation with Fields Medalist <b>Terence Tao</b> into an interactive guide to the atoms of multiplication, the limits of proof, and why it all matters.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Jump to the prime explorer</button>
+            <button class="btn" id="jumpCrypto">Jump to cryptography</button>
+            <button class="btn" id="toggleNotes">Toggle commentary mode</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Core object</div>
+            <div class="value">Prime numbers</div>
+            <div class="note">The "atoms of multiplication" — every integer factors into primes in exactly one way.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Open for</div>
+            <div class="value">300+ years</div>
+            <div class="note">The twin prime conjecture remains unproven despite trillions of verified cases.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Security assumption</div>
+            <div class="value">Primes are pseudorandom</div>
+            <div class="note">Modern encryption assumes no hidden pattern — but we can't prove there isn't one.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Tao's verdict</div>
+            <div class="value">Math is both invented & discovered</div>
+            <div class="note">We discover structure but invent the language to describe it.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- What are primes? -->
+      <section class="row">
+        <div class="card" aria-label="What are prime numbers?">
+          <div class="cardHeader">
+            <h2>What are prime numbers?</h2>
+            <div class="chip">the atoms of multiplication</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              A prime number is divisible only by 1 and itself: 2, 3, 5, 7, 11, 13 ...
+              Euclid proved over 2,000 years ago that primes never end — there are infinitely many.
+              They are the fundamental building blocks: every whole number greater than 1 can be broken into primes in exactly one way.
+            </p>
+
+            <div class="quote">
+              "Primes are like the atoms of multiplication."
+              <div class="attr">— Terence Tao</div>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div class="flowNode">
+              <h3>The fundamental theorem of arithmetic</h3>
+              <p>Any integer can be broken into primes in exactly one way (up to reordering). Example: 12 = 2 &times; 2 &times; 3. This is why 1 was removed from the prime list — including it would break uniqueness (12 = 1 &times; 2 &times; 2 &times; 3 = 1 &times; 1 &times; 2 &times; 2 &times; 3 ...).</p>
+              <div class="meta">
+                <span class="badge">unique factorization</span>
+                <span class="badge">Euclid ~300 BCE</span>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Tao notes that "1 used to be prime about 100 years ago." The redefinition wasn't arbitrary — it was driven by the need to preserve the fundamental theorem. Definitions in math evolve to match deeper understanding, just like the definition of "planet" changed.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="primeExplorer" aria-label="Interactive prime explorer">
+          <div class="cardHeader">
+            <h2>Interactive prime explorer</h2>
+            <div class="chip"><b>1–100</b> number grid</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Primes are highlighted below. Twin primes (pairs differing by 2) get a special color.
+              Use the slider to explore larger ranges.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Prime number grid">
+              <div class="primeGrid" id="primeGridEl"></div>
+            </div>
+
+            <div class="legend" aria-label="Legend">
+              <div class="key"><span class="sw" style="background: rgba(122,215,255,.7)"></span> Prime</div>
+              <div class="key"><span class="sw" style="background: rgba(187,167,255,.7)"></span> Twin prime</div>
+              <div class="key"><span class="sw" style="background: rgba(255,255,255,.15)"></span> Composite</div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Range start</span>
+                  <span class="readout" id="rangeReadout">1–100</span>
+                </label>
+                <input id="rangeSlider" type="range" min="0" max="9" value="0" />
+                <div class="small" style="margin-top:8px">Slide to explore blocks of 100 numbers.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Stats</span>
+                </label>
+                <div class="small" id="primeStats" style="margin-top:6px">25 primes in 1–100</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Notice how primes thin out as numbers grow — but they never stop. The <b>prime number theorem</b> says roughly 1 in every ln(n) numbers near n is prime. At 1,000, about 1 in 7; at 1,000,000, about 1 in 14.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Twin primes + gaps visualization -->
+      <section class="card" aria-label="Twin prime conjecture">
+        <div class="cardHeader">
+          <h2>The twin prime conjecture: 300 years and counting</h2>
+          <div class="chip"><b>Unsolved:</b> do twin primes go on forever?</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Twin primes are pairs that differ by 2 — the closest two primes can be (after 2 and 3).
+                Examples: (3,5), (5,7), (11,13), (17,19), (29,31), (41,43) ...
+              </p>
+              <p class="muted">
+                We've found trillions of twin primes by computer. But <b>no one has ever proven they continue forever</b>.
+                The twin prime conjecture — at least 300 years old — remains one of the great open problems in mathematics.
+              </p>
+              <div class="flowNode">
+                <h3>Tao's framing</h3>
+                <p>"We believe primes are pseudorandom — statistically indistinguishable from random noise once you exclude obvious patterns like being odd. A random sequence of the same density would produce twin primes infinitely often. But primes aren't random — they're deterministic. We just can't prove they act random enough."</p>
+                <div class="meta">
+                  <span class="badge">pseudorandomness</span>
+                  <span class="badge">heuristic evidence</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Prime gaps visualization">
+                <svg viewBox="0 0 460 320" id="gapsSvg" role="img" aria-label="Gaps between consecutive primes">
+                  <text x="12" y="18" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700" font-family="ui-sans-serif, system-ui">Gaps between consecutive primes (2–200)</text>
+                  <g id="gapsChart"></g>
+                  <text x="12" y="310" font-size="11" fill="rgba(255,255,255,.55)" font-family="ui-sans-serif, system-ui">Prime index &rarr;</text>
+                </svg>
+              </div>
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: rgba(122,215,255,.7)"></span> Gap = 2 (twin prime)</div>
+                <div class="key"><span class="sw" style="background: rgba(255,179,138,.5)"></span> Gap &gt; 2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> In 2013, Yitang Zhang proved a breakthrough: there are infinitely many prime pairs with gap at most 70,000,000. The Polymath project (which Tao helped lead) reduced this to 246. The twin prime conjecture asks if it can be brought down to 2. The gap between 246 and 2 remains stubbornly open.
+          </div>
+        </div>
+      </section>
+
+      <!-- Erdős discrepancy + pseudorandomness -->
+      <section class="row">
+        <div class="card" aria-label="Erdős discrepancy problem">
+          <div class="cardHeader">
+            <h2>The Erdős discrepancy problem</h2>
+            <div class="chip">solved by Tao (2015)</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Paul Erdős asked: can you create an infinitely long sequence of +1s and &minus;1s that stays
+              "perfectly balanced" no matter how you slice it?
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>The setup</h3>
+                <p>Take a sequence of +1s and &minus;1s. Look at the whole thing: roughly equal pluses and minuses? Good. Now look at only the even-indexed terms. Still balanced? Look at every 3rd term. Every 5th. Every nth.</p>
+                <div class="meta"><span class="badge">subsequences</span><span class="badge">arithmetic progressions</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>The question</h3>
+                <p>Can you design a sequence that stays balanced (discrepancy &le; some fixed constant) across <b>all</b> such subsequences, forever?</p>
+                <div class="meta"><span class="badge">bounded discrepancy?</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Tao's answer: No.</h3>
+                <p>Eventually, the imbalance <b>must</b> grow to infinity — no matter how cleverly you design the sequence. The divergence is extremely slow (logarithmic or worse), but it's inevitable.</p>
+                <div class="meta"><span class="badge">information theory</span><span class="badge">number theory</span><span class="badge" style="color:var(--good)">solved</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> A computer (SAT solver) had already shown that past 1,161 elements, the discrepancy must exceed &plusmn;2. But that's a finite check. Tao proved the general result for <i>all</i> lengths — a fundamentally different kind of certainty. This illustrates the gap between computational evidence and mathematical proof.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="crypto" aria-label="Cryptography and pseudorandomness">
+          <div class="cardHeader">
+            <h2>Primes, pseudorandomness & your passwords</h2>
+            <div class="chip"><b>Stakes:</b> all digital security</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Modern encryption — HTTPS, WhatsApp, banking, cryptocurrency — relies on primes having <b>no exploitable pattern</b>.
+              Mathematical routines use primes to scramble data so that what's transmitted looks indistinguishable from random noise.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>The assumption</strong><span class="badge">unproven</span></div>
+                <p>Primes are pseudorandom: once you exclude obvious biases (they're odd, avoid multiples of small primes), no statistical test can distinguish them from true random numbers.</p>
+                <div class="meter"><i style="width:45%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>The risk</strong><span class="badge">theoretical</span></div>
+                <p>An undiscovered pattern in primes could present a vulnerability. Tao: "We occasionally get a shock" — some crypto systems have migrated due to discovered weaknesses in elliptic curves and other structures.</p>
+                <div class="meter"><i style="width:30%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Quantum threat</strong><span class="badge">emerging</span></div>
+                <p>Shor's algorithm on a quantum computer could factor large numbers efficiently, breaking RSA. This is a physics-enabled attack on a mathematical assumption.</p>
+                <div class="meter"><i style="width:55%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Benford's law</strong><span class="badge">pattern detection</span></div>
+                <p>~30% of naturally occurring numbers start with "1." Humans generating fake data don't reproduce this, enabling fraud detection. Primes also follow Benford's law.</p>
+                <div class="meter"><i style="width:50%"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The honest framing is: we have extremely strong <i>heuristic</i> and <i>computational</i> evidence that primes are pseudorandom. But mathematical proof of this — the kind that provides 100% certainty — remains elusive. Our entire digital security infrastructure is built on a well-tested but technically unproven assumption.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Complex numbers + high dimensions -->
+      <section class="row">
+        <div class="card" aria-label="Complex numbers and square roots">
+          <div class="cardHeader">
+            <h2>Why the square root of &minus;1 changed everything</h2>
+            <div class="chip">complex numbers</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The real numbers are one-dimensional and "almost" algebraically complete — every odd-degree polynomial has a root.
+              But equations like x&sup2; + 1 = 0 have no solution. The fix: make the number system <b>twice as big</b> by adding &radic;&minus;1.
+            </p>
+
+            <div class="split">
+              <div class="flowNode">
+                <h3>Why "twice as big"?</h3>
+                <p>About half of all polynomials are solvable in the reals (odd degree), half aren't (even degree). Doubling the number system — from 1D reals to 2D complex numbers — gives you algebraic completeness: <b>every</b> polynomial has a root.</p>
+                <div class="meta"><span class="badge">fundamental theorem of algebra</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Why square root specifically?</h3>
+                <p>To double a number system, you add a square root of something that doesn't yet have one. To triple it, you'd add a cube root. The geometry of physics (Euclidean space, wave functions) naturally calls for doubling — hence the ubiquity of &radic;&minus;1 in quantum mechanics, electromagnetism, and signal processing.</p>
+                <div class="meta"><span class="badge">i = &radic;&minus;1</span><span class="badge">physics everywhere</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Tao's explanation is elegant: historically, complex numbers were discovered through solving cubics (Cardano, 16th century). But <i>in retrospect</i>, the deeper reason is algebraic: the reals needed to be exactly doubled, and the natural way to double a number system is to adjoin a square root. This is why &radic;&minus;1 isn't arbitrary — it's structurally inevitable.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="High-dimensional geometry">
+          <div class="cardHeader">
+            <h2>When intuition fails: high-dimensional geometry</h2>
+            <div class="chip">data science meets geometry</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Low-dimensional intuition can be dangerously wrong in higher dimensions. A ball inscribed in a cube occupies ~75% of the square (2D), ~52% of the cube (3D) — but in 1,000 dimensions?
+            </p>
+
+            <div class="flowNode">
+              <h3>The shrinking ball</h3>
+              <p>A 1,000-dimensional ball inscribed in a 1,000-dimensional cube occupies roughly <b>0.00001%</b> of the cube's volume. Balls become "incredibly poor space-filling" in high dimensions.</p>
+              <div class="meta"><span class="badge">curse of dimensionality</span><span class="badge">data science</span></div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <div class="viz" aria-label="Ball-in-cube volume ratio">
+              <svg viewBox="0 0 460 200" id="dimSvg" role="img">
+                <text x="12" y="18" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700" font-family="ui-sans-serif, system-ui">Ball-in-cube volume ratio by dimension</text>
+                <g id="dimChart"></g>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Tao connects this to data science: when measuring errors in 1,000 dimensions, the choice between "ball-shaped" (RMS) and "cube-shaped" (max error) error bars becomes consequential. Also relevant: Simons' discovery that minimal surfaces (smooth in dimensions &lt;8) can develop singularities starting in dimension 8.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is a recurring theme: mathematical truths that hold for small cases can break at specific thresholds. Mathematical induction (if it works for n, does n+1 follow?) is powerful but not universal. Sometimes dimension 8 is where things break. Don't assume patterns continue forever — that's the whole lesson of the twin prime problem too.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI in mathematics -->
+      <section class="card" aria-label="AI in mathematics">
+        <div class="cardHeader">
+          <h2>AI in mathematics: powerful tools, fundamental limits</h2>
+          <div class="chip"><b>Tao's take:</b> complement, don't replace</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">What AI does well</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Literature review</h3>
+                  <p>A researcher might remember 6 of 12 known attack strategies for a problem. An LLM can prompt you with the missing 6. "They may also hallucinate 3 more that don't exist."</p>
+                  <div class="meta"><span class="badge">recall aid</span><span class="badge">needs verification</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Pattern detection</h3>
+                  <p>Neural networks discovered an unknown correlation between knot invariants (signature vs. hyperbolic invariants) by analyzing 1 million knots. The black-box prediction was then "probed" by adjusting inputs, leading to a provable theorem.</p>
+                  <div class="meta"><span class="badge">knot theory</span><span class="badge">DeepMind 2021</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Scale on medium problems</h3>
+                  <p>"Their best use case is not the most high-profile problems but the millions of medium difficulty problems. Even if they only solve 10%, that's 100,000 problems solved."</p>
+                  <div class="meta"><span class="badge">long tail</span><span class="badge">scale advantage</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">What AI gets wrong</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Not grounded</h3>
+                  <p>"It's probabilistic. Once they go off the rails, they can go really off the rails." Output looks like reasoning but isn't rooted in real understanding.</p>
+                  <div class="meta"><span class="badge">hallucination</span><span class="badge">weak students analogy</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Contamination problem</h3>
+                  <p>When an AI "proves" a textbook theorem, it may simply be reproducing memorized training data. Hard to tell genuine reasoning from recall.</p>
+                  <div class="meta"><span class="badge">training data leakage</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Can't do novel science (yet)</h3>
+                  <p>When given Mercury's orbital data and asked to discover general relativity, AI was "completely unable." It required human discretization that ruined the physics.</p>
+                  <div class="meta"><span class="badge">Keating test</span><span class="badge">novel predictions</span></div>
+                </div>
+              </div>
+
+              <div class="quote" style="margin-top:12px">
+                "You cannot scale a graduate student this way. Not legally. Or ethically."
+                <div class="attr">— Terence Tao, on AI's scaling advantage</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Tao's framing is balanced: AI is a <b>complement</b> to human mathematicians, not a replacement. The key insight is that AI's value multiplied by verification creates a reliable pipeline. Without verification, AI output in mathematics is untrustworthy. The hope: formal proof verification systems (like Lean) could filter out hallucinations automatically.
+          </div>
+        </div>
+      </section>
+
+      <!-- Compressed sensing -->
+      <section class="row">
+        <div class="card" aria-label="Compressed sensing">
+          <div class="cardHeader">
+            <h2>Compressed sensing: math that speeds up your MRI</h2>
+            <div class="chip"><b>10&times; faster</b> medical imaging</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Tao was discussing linear algebra with engineers who reported "amazing" results: reconstructing images from far fewer measurements than traditional imaging required. He tried to <b>disprove</b> their claims and ended up proving why it works.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>1) The problem</h3>
+                <p>Traditional MRI takes many measurements (slow, expensive, uncomfortable for patients). Can you reconstruct a full image from a fraction of the data?</p>
+                <div class="meta"><span class="badge">underdetermined systems</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) The math</h3>
+                <p>If the signal is "sparse" (most coefficients are zero in some basis), you can solve an underdetermined system of linear equations and recover the full signal. Tao and Candès proved rigorous guarantees.</p>
+                <div class="meta"><span class="badge">sparsity</span><span class="badge">L1 minimization</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) The impact</h3>
+                <p>Major MRI manufacturers now use compressed sensing. Scans that took 30 minutes can be done in 3. "You never know" when pure math will find practical application.</p>
+                <div class="meta"><span class="badge">Siemens</span><span class="badge">GE</span><span class="badge" style="color:var(--good)">deployed</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is a poster child for "unreasonable effectiveness." Tao's work was driven by curiosity about linear algebra, not by a desire to improve MRI machines. The practical application emerged because someone in engineering had a problem that mapped onto the same mathematical structure.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Proof techniques">
+          <div class="cardHeader">
+            <h2>The mathematician's toolkit</h2>
+            <div class="chip">how proofs actually work</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Mathematical proof isn't just deduction. Different proof strategies are like different tools — and the best mathematicians choose the right one for the job.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Proof by contradiction</h3>
+                <p>Hardy: "In chess, a player may offer a pawn or a bishop. A mathematician offers the entire game." Assume the conclusion is false — then show it leads to absurdity. Even kids discover this: "No matter what number you say, I say that number plus one."</p>
+                <div class="meta"><span class="badge">Tao's favorite</span><span class="badge">reductio ad absurdum</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Mathematical induction</h3>
+                <p>Like dominoes: prove the first case, prove each case implies the next, and all cases follow. "But it's really important that your arguments are 100% watertight. If the 97th domino doesn't tip the 98th, it stops there."</p>
+                <div class="meta"><span class="badge">domino chain</span><span class="badge">limits at dim 8</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Unexpected connections</h3>
+                <p>"The type of proof I like best: ones that make unexpected connections between different areas — discrete and continuous mathematics, physics and combinatorics. Those feel like magic."</p>
+                <div class="meta"><span class="badge">cross-domain</span><span class="badge">Tao's favorite style</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Tao also describes a "game theory" mindset for epsilon-delta proofs (the bane of undergraduates): think of it as chess — for every epsilon your opponent plays, you need a delta to counter it. Metaphors from economics, games, and physics can unlock mathematical insights.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Invented or discovered? + Gauge theory -->
+      <section class="row">
+        <div class="card" aria-label="Is math invented or discovered?">
+          <div class="cardHeader">
+            <h2>Is mathematics invented or discovered?</h2>
+            <div class="chip"><b>Tao:</b> "Definitely both"</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The classic philosophical question. Tao's answer aligns with most working mathematicians — and his explanation reveals something deeper about how mathematical language evolves.
+            </p>
+
+            <div class="split">
+              <div class="flowNode">
+                <h3>The "discovered" part</h3>
+                <p>"There is an innate mathematical structure which we are trying to discover." The structure exists independently — prime numbers would be prime even without humans to count them.</p>
+                <div class="meta"><span class="badge">Platonic ideal</span><span class="badge">structure exists</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>The "invented" part</h3>
+                <p>"We had to invent mathematical language. Initially it's not very good." Over time, the language is optimized for efficiency — and that optimization process "naturally converges to the Platonic ideal."</p>
+                <div class="meta"><span class="badge">language evolves</span><span class="badge">compression</span></div>
+              </div>
+            </div>
+
+            <div class="quote" style="margin-top:12px">
+              "When you optimize a language for efficiency, you're basically trying to compress a description of the universe into as minimal and elegant a form as possible. And so when you're doing that, you are somehow getting to the essence of how the universe actually works."
+              <div class="attr">— Terence Tao</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This is a subtle position. It's not "math is just a human game" (pure invention) nor "math exists in some heaven" (pure discovery). It's: the <b>structure</b> is discovered, the <b>representation</b> is invented, and the process of refining representation converges toward truth. Science works the same way — models are invented, reality is discovered, and good models get closer over time.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Gauge theory and currency">
+          <div class="cardHeader">
+            <h2>Gauge theory explained via currency exchange</h2>
+            <div class="chip">Galileo's compass to Einstein</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Gauge theory sounds intimidating, but Tao explains it through currency: quantities that can be measured by numbers
+              but <b>the choice of units depends on where you are</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>The analogy</h3>
+                <p>Your wealth is a real quantity, but measured in dollars, euros, or yen depending on location. As you move between countries, numbers change — your wealth doesn't. Gauge theory manages these "conversions" for physics.</p>
+                <div class="meta"><span class="badge">gauge = unit choice</span><span class="badge">location-dependent</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>The curvature connection</h3>
+                <p>Convert dollars → euros → pounds → dollars. You might not get back exactly what you started with (exchange fees). That "discrepancy around a loop" is analogous to <b>curvature</b> — and it's gauge-invariant (doesn't depend on which currency you started in).</p>
+                <div class="meta"><span class="badge">holonomy</span><span class="badge">gauge invariance</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              The conversation references Galileo's <i>Compasso Geometrico</i> (1606) — essentially an early slide rule that included instructions for currency exchange. Tao notes: "Currency exchange is actually a very good example" of gauge theory.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> Tao's metaphorical approach is characteristic: economics for inequality proofs, game theory for analysis, physics for geometry. The message is that mathematical thinking benefits from diverse mental models — and the best insights come from "unexpected connections between different areas."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education + future -->
+      <section class="card" aria-label="Future of math education">
+        <div class="cardHeader">
+          <h2>The future of mathematical education</h2>
+          <div class="chip">critical thinking over memorization</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">The problem</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                AI can already solve most undergraduate-level math homework. The old model — authority transmits knowledge, student absorbs it — is broken. Meanwhile, AI-generated content looks "flawless" but often contains "fundamental mistakes."
+              </p>
+
+              <div class="quote" style="margin-top:12px">
+                "Our ability to produce high quality presentation has far outpaced our ability to produce high quality content."
+                <div class="attr">— Terence Tao</div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Tao's vision</h3>
+              <div class="checklist" id="eduChecklist">
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Teach validation, not just absorption</strong></div>
+                    <div class="d">Students need training in how to evaluate information quality, not just acquire knowledge from authority.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Use AI as the student, not the teacher</strong></div>
+                    <div class="d">"Here is a question I gave to ChatGPT. Its answer is wrong. Please critique it and correct it." Inversion of the traditional model.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Make math more collaborative</strong></div>
+                    <div class="d">Tao's highest priority: modernizing mathematical workflows — more collaboration, more accessibility, more integration with new tools. "The way we've done mathematics has not changed fundamentally in centuries."</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Bridge math and other sciences</strong></div>
+                    <div class="d">"We don't collaborate as much with the other sciences as we ought to, especially the new data-driven sciences." Social network analysis, genomics, climate modeling all need mathematical foundations.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Tao's framing echoes a broader concern: in an age where presentation quality doesn't correlate with content quality, the ability to <b>evaluate and critique</b> becomes more valuable than the ability to <b>produce</b>. This applies beyond math — to science journalism, policy, and any field where AI can generate polished but unreliable output.
+          </div>
+        </div>
+      </section>
+
+      <!-- Key people mentioned -->
+      <section class="card" aria-label="Key figures">
+        <div class="cardHeader">
+          <h2>The cast: mathematicians & ideas referenced</h2>
+          <div class="chip">people behind the proofs</div>
+        </div>
+        <div class="cardBody">
+          <div class="hallmarks">
+            <div class="pill"><span>Terence Tao</span><span class="tag">Fields 2006</span></div>
+            <div class="pill"><span>Paul Erdős</span><span class="tag">prolific</span></div>
+            <div class="pill"><span>Euclid</span><span class="tag">~300 BCE</span></div>
+            <div class="pill"><span>Jim Simons</span><span class="tag">minimal surfaces</span></div>
+            <div class="pill"><span>Edward Witten</span><span class="tag">Fields 1990</span></div>
+            <div class="pill"><span>Yitang Zhang</span><span class="tag">prime gaps</span></div>
+            <div class="pill"><span>Claude Shannon</span><span class="tag">information theory</span></div>
+            <div class="pill"><span>Galileo Galilei</span><span class="tag">compasso</span></div>
+            <div class="pill"><span>G.H. Hardy</span><span class="tag">proof & beauty</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary takeaways -->
+      <section class="card" aria-label="Takeaways">
+        <div class="cardHeader">
+          <h2>So what are the big ideas?</h2>
+          <div class="chip"><b>Thesis:</b> math grounds reality</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Primes are simple to define, impossible to fully understand</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                "Atoms of multiplication" — divisible only by 1 and themselves. Yet after 2,000+ years, we can't prove basic conjectures about their distribution. Our digital security rests on this gap.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Proof is the gold standard — and it's rare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Computational evidence (trillions of cases) isn't proof. A SAT solver checking 1,161 elements isn't proof. Only a watertight argument covering <b>all</b> cases counts. This distinction separates mathematics from all other disciplines.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Unexpected connections are where the magic is</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Currency exchange explains gauge theory. Economics explains inequalities. Chess explains proof by contradiction. Linear algebra speeds up MRI machines. The deepest insights come from bridging domains.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) AI is a complement, not a successor</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                AI excels at scale (millions of medium problems) and recall (literature review). It fails at novelty and grounding. The future: AI generates candidates, formal systems verify, humans guide. "You cannot scale a graduate student. Not legally."
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>The unreasonable effectiveness of mathematics</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                Wigner's famous observation — that mathematics developed for abstract reasons keeps turning out to describe the physical world — runs throughout this conversation. But Tao adds a twist: the effectiveness runs both ways. Physics illuminates mathematics (quantum computing, string theory, compressed sensing), and mathematics constrains physics (Gödel's limits, complexity theory, proof requirements). The two disciplines aren't separate — they're different views of the same underlying structure, accessed through different methods.
+              </p>
+            </div>
+          </details>
+
+          <details data-commentary>
+            <summary><strong>On aging and mathematical productivity</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                The trope that mathematicians peak by 30 gets nuanced treatment. Tao (in his 50s) describes a shift: young mathematicians have raw energy and try "all kinds of crazy things." Older mathematicians have wisdom — his PhD advisor could solve in 10 seconds what took Tao hours, by recognizing patterns from decades of experience. "I think as you get older you find different ways to do mathematics which may not be as flashy but can be more productive."
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary mode explainer -->
+      <section class="card" aria-label="About commentary mode">
+        <div class="cardHeader">
+          <h2>About the "commentary mode" toggle</h2>
+          <div class="chip">analysis vs. summary</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, gold callout boxes offer meta-level commentary:
+            what's the evidence quality? What alternative framings exist? What should you be skeptical about?
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary mode" at the top to hide/show all commentary boxes at once.
+            This lets you switch between "here's what Tao said" and "here's the critical context around that claim."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits & disclaimers:</b> This interactive infographic was generated from a transcript of a conversation between a physicist interviewer and Fields Medalist Terence Tao.
+        Mathematical claims have been represented faithfully but may reflect conversational simplification. For rigorous treatments, consult primary research literature and peer-reviewed sources.
+      </p>
+      <p style="margin-top:10px">
+        The Erdős number of this page: &infin;. The Bacon number: also &infin;. The Erdős-Bacon number: undefined.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Prime number utilities
+    // ──────────────────────────────────────────────────────
+    function isPrime(n) {
+      if (n < 2) return false;
+      if (n < 4) return true;
+      if (n % 2 === 0 || n % 3 === 0) return false;
+      for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) return false;
+      }
+      return true;
+    }
+
+    function getPrimesInRange(start, end) {
+      const primes = [];
+      for (let i = start; i <= end; i++) {
+        if (isPrime(i)) primes.push(i);
+      }
+      return primes;
+    }
+
+    // ──────────────────────────────────────────────────────
+    // Prime Grid Explorer
+    // ──────────────────────────────────────────────────────
+    const rangeSlider = document.getElementById('rangeSlider');
+    const rangeReadout = document.getElementById('rangeReadout');
+    const primeGridEl = document.getElementById('primeGridEl');
+    const primeStats = document.getElementById('primeStats');
+
+    function renderPrimeGrid() {
+      const block = parseInt(rangeSlider.value);
+      const start = block * 100 + 1;
+      const end = start + 99;
+      rangeReadout.textContent = `${start}–${end}`;
+
+      const primes = new Set(getPrimesInRange(start, end));
+
+      // Find twin primes
+      const twins = new Set();
+      for (const p of primes) {
+        if (primes.has(p + 2) || primes.has(p - 2)) {
+          twins.add(p);
+        }
+        // Also check outside range
+        if (isPrime(p - 2) || isPrime(p + 2)) {
+          twins.add(p);
+        }
+      }
+
+      primeGridEl.innerHTML = '';
+      let primeCount = 0;
+      let twinCount = 0;
+
+      for (let i = start; i <= end; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.textContent = i;
+
+        if (primes.has(i)) {
+          primeCount++;
+          if (twins.has(i)) {
+            cell.classList.add('twin');
+            twinCount++;
+          } else {
+            cell.classList.add('prime');
+          }
+        } else {
+          cell.classList.add('composite');
+        }
+
+        primeGridEl.appendChild(cell);
+      }
+
+      primeStats.innerHTML = `<b>${primeCount}</b> primes in ${start}–${end} &nbsp;|&nbsp; <b>${twinCount}</b> part of a twin pair`;
+    }
+
+    rangeSlider.addEventListener('input', renderPrimeGrid);
+    renderPrimeGrid();
+
+    // ──────────────────────────────────────────────────────
+    // Prime Gaps Chart
+    // ──────────────────────────────────────────────────────
+    function renderGapsChart() {
+      const primes = getPrimesInRange(2, 200);
+      const gaps = [];
+      for (let i = 1; i < primes.length; i++) {
+        gaps.push({ prime: primes[i], gap: primes[i] - primes[i - 1] });
+      }
+
+      const chart = document.getElementById('gapsChart');
+      chart.innerHTML = '';
+
+      const maxGap = Math.max(...gaps.map(g => g.gap));
+      const barW = 440 / gaps.length - 1;
+      const chartH = 250;
+      const offsetY = 35;
+
+      gaps.forEach((g, i) => {
+        const x = 12 + i * (barW + 1);
+        const h = (g.gap / maxGap) * chartH;
+        const y = offsetY + chartH - h;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', Math.max(barW, 2));
+        rect.setAttribute('height', h);
+        rect.setAttribute('rx', '2');
+        rect.setAttribute('fill', g.gap === 2 ? 'rgba(122,215,255,.6)' : 'rgba(255,179,138,.35)');
+        chart.appendChild(rect);
+
+        // Label gap=2 bars
+        if (g.gap === 2 && i < 20) {
+          const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          label.setAttribute('x', x + barW / 2);
+          label.setAttribute('y', y - 4);
+          label.setAttribute('font-size', '8');
+          label.setAttribute('fill', 'rgba(122,215,255,.7)');
+          label.setAttribute('text-anchor', 'middle');
+          label.setAttribute('font-family', 'ui-monospace, monospace');
+          label.textContent = '2';
+          chart.appendChild(label);
+        }
+      });
+    }
+    renderGapsChart();
+
+    // ──────────────────────────────────────────────────────
+    // Ball-in-cube dimension chart
+    // ──────────────────────────────────────────────────────
+    function renderDimChart() {
+      const chart = document.getElementById('dimChart');
+      chart.innerHTML = '';
+
+      // Volume of n-ball inscribed in unit n-cube: (pi^(n/2)) / (2^n * gamma(n/2 + 1))
+      // Ratio to cube volume (which is 1 for unit cube)
+      const dims = [1, 2, 3, 4, 5, 6, 8, 10, 15, 20, 50, 100];
+      const ratios = dims.map(n => {
+        // V_ball / V_cube = pi^(n/2) / (2^n * gamma(n/2+1))
+        // Use log to avoid overflow
+        const logRatio = (n / 2) * Math.log(Math.PI) - n * Math.log(2) - logGamma(n / 2 + 1);
+        return Math.exp(logRatio);
+      });
+
+      function logGamma(z) {
+        // Stirling approx for large z, Lanczos for small z
+        if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - logGamma(1 - z);
+        z -= 1;
+        const g = 7;
+        const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313,
+          -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+        let x = c[0];
+        for (let i = 1; i < g + 2; i++) x += c[i] / (z + i);
+        const t = z + g + 0.5;
+        return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+      }
+
+      const barW = 28;
+      const chartH = 140;
+      const offsetY = 35;
+      const maxRatio = Math.max(...ratios);
+
+      dims.forEach((d, i) => {
+        const x = 30 + i * 36;
+        const ratio = ratios[i];
+        const h = Math.max((ratio / maxRatio) * chartH, 2);
+        const y = offsetY + chartH - h;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', barW);
+        rect.setAttribute('height', h);
+        rect.setAttribute('rx', '4');
+        const alpha = Math.max(0.15, ratio / maxRatio * 0.7);
+        rect.setAttribute('fill', `rgba(255,224,102,${alpha + 0.15})`);
+        chart.appendChild(rect);
+
+        // Dimension label
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x + barW / 2);
+        label.setAttribute('y', offsetY + chartH + 16);
+        label.setAttribute('font-size', '10');
+        label.setAttribute('fill', 'rgba(255,255,255,.6)');
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-family', 'ui-monospace, monospace');
+        label.textContent = `${d}D`;
+        chart.appendChild(label);
+
+        // Ratio label
+        const pct = ratio * 100;
+        const pctLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        pctLabel.setAttribute('x', x + barW / 2);
+        pctLabel.setAttribute('y', y - 4);
+        pctLabel.setAttribute('font-size', '9');
+        pctLabel.setAttribute('fill', 'rgba(255,255,255,.6)');
+        pctLabel.setAttribute('text-anchor', 'middle');
+        pctLabel.setAttribute('font-family', 'ui-monospace, monospace');
+        pctLabel.textContent = pct >= 1 ? `${pct.toFixed(0)}%` : pct >= 0.01 ? `${pct.toFixed(1)}%` : '<0.01%';
+        chart.appendChild(pctLabel);
+      });
+    }
+    renderDimChart();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('primeExplorer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCrypto').addEventListener('click', () => {
+      document.getElementById('crypto').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

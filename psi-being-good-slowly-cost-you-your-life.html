@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Being Good Slowly Cost You Your Life — Psychological Infographic</title>
+  <meta name="description" content="Interactive infographic exploring how chronic people-pleasing, self-denial, and goodness-as-survival erode authenticity, vitality, and meaning over a lifetime." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 260px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(260px 200px at 65% 45%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills & Tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input[type="checkbox"]{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;border-radius:99px;transition: width .6s ease}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+    .callout.warm{
+      border-left-color: rgba(255,179,138,.7);
+      background: rgba(255,179,138,.08);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    /* Dual view cards */
+    .dualView{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    @media (max-width:640px){
+      .dualView{grid-template-columns:1fr}
+    }
+    .dualSide{
+      padding: 14px;
+      position:relative;
+    }
+    .dualSide.outside{
+      background: rgba(117,240,182,.06);
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .dualSide.inside{
+      background: rgba(255,122,153,.06);
+    }
+    @media (max-width:640px){
+      .dualSide.outside{border-right:none;border-bottom: 1px solid rgba(255,255,255,.08)}
+    }
+    .dualSide h4{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+    .dualSide.outside h4{color:var(--good)}
+    .dualSide.inside h4{color:var(--bad)}
+    .dualSide ul{margin:0;padding:0 0 0 16px;list-style:none}
+    .dualSide li{position:relative;padding:4px 0;font-size:13px;color:var(--muted);line-height:1.5}
+    .dualSide li::before{content:"";position:absolute;left:-14px;top:11px;width:6px;height:6px;border-radius:99px}
+    .dualSide.outside li::before{background:var(--good)}
+    .dualSide.inside li::before{background:var(--bad)}
+
+    /* Erosion timeline */
+    .timeline{
+      position:relative;
+      padding-left: 24px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:7px;top:0;bottom:0;
+      width:2px;
+      background: linear-gradient(180deg, var(--violet), var(--bad), rgba(255,122,153,.3));
+    }
+    .timeNode{
+      position:relative;
+      padding: 0 0 20px 16px;
+    }
+    .timeNode:last-child{padding-bottom:0}
+    .timeNode::before{
+      content:"";
+      position:absolute;
+      left:-20px;top:4px;
+      width:12px;height:12px;
+      border-radius:99px;
+      border:2px solid rgba(255,255,255,.2);
+      background: var(--bg);
+    }
+    .timeNode.active::before{
+      border-color: var(--violet);
+      background: var(--violet);
+      box-shadow: 0 0 12px rgba(187,167,255,.4);
+    }
+    .timeNode h4{margin:0 0 4px;font-size:14px;color:var(--text)}
+    .timeNode p{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+
+    /* Spectrum slider */
+    .spectrum{
+      position:relative;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+    }
+    .spectrumBar{
+      height:8px;
+      border-radius:99px;
+      background: linear-gradient(90deg, var(--bad), var(--warn), var(--good));
+      margin:12px 0 8px;
+      position:relative;
+    }
+    .spectrumLabels{
+      display:flex;
+      justify-content:space-between;
+      font-size:11px;
+      color:var(--faint);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    /* Quote block */
+    .quoteBlock{
+      border: 1px solid rgba(187,167,255,.2);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(187,167,255,.05);
+      position:relative;
+    }
+    .quoteBlock::before{
+      content:"\201C";
+      position:absolute;
+      top:-4px;left:12px;
+      font-size:48px;
+      color:rgba(187,167,255,.3);
+      font-family:Georgia,serif;
+      line-height:1;
+    }
+    .quoteBlock p{
+      margin:0;
+      padding-left:4px;
+      font-size:14px;
+      line-height:1.6;
+      color:var(--text);
+      font-style:italic;
+    }
+    .quoteBlock .src{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--faint);
+      font-style:normal;
+    }
+
+    /* 3-col grid */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width:740px){
+      .grid3{grid-template-columns:1fr}
+    }
+
+    /* Animate fade in */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .card{animation: fadeUp .5s ease both}
+    .card:nth-child(2){animation-delay:.05s}
+    .card:nth-child(3){animation-delay:.1s}
+    .card:nth-child(4){animation-delay:.15s}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .heroArt{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 260" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.5)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.5)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.4)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="dissolve" x="-10%" y="-10%" width="120%" height="120%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="5" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Silhouette dissolving — representing self-erasure -->
+            <g opacity=".6">
+              <!-- Solid figure on left -->
+              <ellipse cx="180" cy="80" rx="22" ry="26" fill="url(#g1)" opacity=".8"/>
+              <rect x="164" y="106" width="32" height="55" rx="12" fill="url(#g1)" opacity=".7"/>
+              <!-- Dissolving figure on right -->
+              <g filter="url(#dissolve)" opacity=".4">
+                <ellipse cx="320" cy="80" rx="22" ry="26" fill="url(#g2)"/>
+                <rect x="304" y="106" width="32" height="55" rx="12" fill="url(#g2)"/>
+              </g>
+              <!-- Particles floating away -->
+              <circle cx="350" cy="70" r="3" fill="rgba(255,255,255,.4)"/>
+              <circle cx="370" cy="90" r="2" fill="rgba(255,255,255,.3)"/>
+              <circle cx="360" cy="110" r="2.5" fill="rgba(255,255,255,.25)"/>
+              <circle cx="380" cy="75" r="1.8" fill="rgba(255,255,255,.2)"/>
+              <circle cx="390" cy="100" r="2" fill="rgba(255,255,255,.15)"/>
+              <circle cx="345" cy="130" r="1.5" fill="rgba(255,255,255,.2)"/>
+              <circle cx="400" cy="85" r="1.5" fill="rgba(255,255,255,.1)"/>
+            </g>
+            <!-- Connecting arc showing transformation -->
+            <path d="M210,100 C240,50 280,50 310,100" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <!-- Mask / cage lines -->
+            <path d="M155,130 Q180,180 205,130" fill="none" stroke="rgba(187,167,255,.25)" stroke-width="1.5"/>
+            <path d="M160,135 Q180,175 200,135" fill="none" stroke="rgba(187,167,255,.18)" stroke-width="1"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> depth psychology &bull; self-betrayal &bull; inner freedom</div>
+          <h1>Being Good Slowly Cost You Your Life</h1>
+          <p class="subtitle">
+            Most people who hate their lives do not look miserable. They look responsible. They look kind.
+            They look like they did everything right. This infographic maps the hidden architecture of
+            <b>how chronic goodness erodes authenticity</b>, and the psychological path back to wholeness.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpCycle">Jump to the trap cycle</button>
+            <button class="btn" id="jumpAssess">Self-assessment</button>
+            <button class="btn" id="toggleNotes">Toggle commentary</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key claims summarized">
+          <div class="stat">
+            <div class="label">Core paradox</div>
+            <div class="value">Good <span style="color:var(--faint)">=</span> Empty</div>
+            <div class="note">Virtue that requires self-erasure does not produce fulfillment.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Root cause</div>
+            <div class="value" style="font-size:16px">Conditional love</div>
+            <div class="note">Being "easy" = safety. The rule: my needs come second.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Hidden symptom</div>
+            <div class="value" style="font-size:16px">Quiet resentment</div>
+            <div class="note">Not rage, but fatigue without cause, boredom no rest fixes.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Exit path</div>
+            <div class="value" style="font-size:16px">Alignment &gt; Approval</div>
+            <div class="note">Honesty replaces performance. Relationships clarify.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- ===== SECTION 1: The Paradox ===== -->
+      <section class="card" aria-label="The Paradox">
+        <div class="cardHeader">
+          <h2>The Paradox: Looking Right, Feeling Wrong</h2>
+          <div class="chip"><b>Thesis:</b> goodness as camouflage</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="quoteBlock">
+                <p>They followed rules that were never meant to lead to fulfillment. They became agreeable instead of authentic, helpful instead of honest, reliable instead of alive.</p>
+              </div>
+              <div style="height:12px"></div>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Good people are taught early that wanting more is selfish. That discomfort should be tolerated.
+                That endurance is a virtue. So they endure jobs that hollow them out, relationships built on their
+                self-denial, routines that numb rather than nourish. Over time, <b>endurance becomes identity</b>.
+                And identity becomes a prison that looks like stability.
+              </p>
+            </div>
+            <div>
+              <div class="dualView">
+                <div class="dualSide outside">
+                  <h4>What Others See</h4>
+                  <ul>
+                    <li>Reliable and responsible</li>
+                    <li>Always understanding</li>
+                    <li>Mature and composed</li>
+                    <li>Never complains</li>
+                    <li>Selfless and giving</li>
+                    <li>Stable and predictable</li>
+                  </ul>
+                </div>
+                <div class="dualSide inside">
+                  <h4>What They Feel</h4>
+                  <ul>
+                    <li>Trapped and invisible</li>
+                    <li>Exhausted from adapting</li>
+                    <li>Quietly resentful</li>
+                    <li>Afraid to want anything</li>
+                    <li>Hollow and depleted</li>
+                    <li>Life as obligation</li>
+                  </ul>
+                </div>
+              </div>
+              <div style="height:10px"></div>
+              <div class="small">This is the fundamental split. The surface and the interior tell completely different stories.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> This isn't about ungrateful people. The argument is structural: when the <i>mechanism</i> for earning love is self-suppression, fulfillment becomes logically impossible. You cannot subtract yourself from your life and expect it to feel like yours.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 2: The Hidden Symptoms ===== -->
+      <section class="row">
+        <div class="card" aria-label="Hidden Symptoms">
+          <div class="cardHeader">
+            <h2>The Hidden Symptoms</h2>
+            <div class="chip">what self-betrayal looks like</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              The hatred does not show up as rage. It shows up as subtle, persistent signals that something essential
+              has been abandoned. These are not malfunctions. They are <b>corrections</b>.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Fatigue without cause</strong><span class="badge" style="color:var(--bad)">energy</span></div>
+                <div class="meter"><i style="width:78%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                <p>Rest doesn't fix it because the exhaustion is not physical. It's the cost of constant self-monitoring and accommodation.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Irritation at small things</strong><span class="badge" style="color:var(--warn)">signal</span></div>
+                <div class="meter"><i style="width:65%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                <p>Micro-frustrations are overflow from macro-suppression. Small triggers carry the weight of unspoken accumulated resentment.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Boredom no rest fixes</strong><span class="badge" style="color:var(--violet)">meaning</span></div>
+                <div class="meter"><i style="width:72%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+                <p>Not a lack of stimulation but a lack of meaning. The psyche protests when life becomes an obligation rather than an expression.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Envy toward the free</strong><span class="badge" style="color:var(--orange)">desire</span></div>
+                <div class="meter"><i style="width:58%;background:linear-gradient(90deg,var(--warn),var(--orange))"></i></div>
+                <p>Envy toward those who live differently is not pettiness. It's a compass pointing toward what was sacrificed.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Escape fantasies</strong><span class="badge" style="color:var(--cyan)">protest</span></div>
+                <div class="meter"><i style="width:62%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+                <p>Fantasies of leaving everything behind that never turn into action. The imagination rehearses what the body is forbidden to do.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Gratitude as weapon</strong><span class="badge" style="color:var(--bad)">trap</span></div>
+                <div class="meter"><i style="width:70%;background:linear-gradient(90deg,var(--orange),var(--bad))"></i></div>
+                <p>"I should be grateful" becomes a tool to silence legitimate dissatisfaction. Gratitude used to suppress truth is avoidance dressed as morality.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> These symptoms are often misdiagnosed as laziness, depression, or lack of motivation. But the underlying truth is simpler: these people are living against their nature. The psyche is protesting the trade-off, not malfunctioning.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Anger Economics">
+          <div class="cardHeader">
+            <h2>The Economics of Suppressed Anger</h2>
+            <div class="chip"><b>Key:</b> anger is information</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Good people suppress anger first. It feels unacceptable, too sharp, too disruptive.
+              But anger is not cruelty. It is a signal of violated boundaries, unspoken needs, denied instincts.
+            </p>
+
+            <div class="viz" aria-label="Anger transformation diagram">
+              <svg viewBox="0 0 460 380" role="img" aria-label="How suppressed anger transforms over time">
+                <defs>
+                  <linearGradient id="angerG" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,179,138,.6)"/>
+                    <stop offset=".5" stop-color="rgba(255,122,153,.5)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                  </linearGradient>
+                  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="460" height="380" fill="rgba(0,0,0,.04)"/>
+
+                <g filter="url(#softGlow)">
+                  <!-- Anger source -->
+                  <rect x="145" y="18" width="170" height="50" rx="14" fill="rgba(255,179,138,.15)" stroke="rgba(255,179,138,.4)" stroke-width="1.5"/>
+                  <text x="230" y="40" text-anchor="middle" font-size="13" fill="rgba(255,179,138,.95)" font-weight="700">Healthy Anger</text>
+                  <text x="230" y="56" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">boundary signal, information</text>
+
+                  <!-- Suppression gate -->
+                  <line x1="230" y1="68" x2="230" y2="98" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+                  <rect x="170" y="98" width="120" height="36" rx="10" fill="rgba(255,122,153,.12)" stroke="rgba(255,122,153,.35)" stroke-width="1.5"/>
+                  <text x="230" y="120" text-anchor="middle" font-size="12" fill="var(--bad)" font-weight="600">SUPPRESSED</text>
+
+                  <!-- Branch down -->
+                  <line x1="230" y1="134" x2="230" y2="158" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+
+                  <!-- Transformation stages -->
+                  <rect x="110" y="158" width="110" height="44" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                  <text x="165" y="177" text-anchor="middle" font-size="12" fill="var(--warn)" font-weight="600">Bitterness</text>
+                  <text x="165" y="192" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">chronic edge</text>
+
+                  <rect x="240" y="158" width="110" height="44" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                  <text x="295" y="177" text-anchor="middle" font-size="12" fill="var(--warn)" font-weight="600">Cynicism</text>
+                  <text x="295" y="192" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">worldview hardens</text>
+
+                  <line x1="230" y1="158" x2="165" y2="158" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+                  <line x1="230" y1="158" x2="295" y2="158" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+
+                  <!-- Converge -->
+                  <line x1="165" y1="202" x2="165" y2="228" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+                  <line x1="295" y1="202" x2="295" y2="228" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+                  <line x1="165" y1="228" x2="295" y2="228" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+                  <line x1="230" y1="228" x2="230" y2="248" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+
+                  <rect x="140" y="248" width="180" height="44" rx="12" fill="rgba(255,122,153,.1)" stroke="rgba(255,122,153,.3)" stroke-width="1.5"/>
+                  <text x="230" y="267" text-anchor="middle" font-size="12" fill="var(--bad)" font-weight="600">Contempt for Life</text>
+                  <text x="230" y="282" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">"why does nothing feel right?"</text>
+
+                  <line x1="230" y1="292" x2="230" y2="316" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+
+                  <rect x="130" y="316" width="200" height="44" rx="12" fill="rgba(187,167,255,.1)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                  <text x="230" y="335" text-anchor="middle" font-size="12" fill="var(--violet)" font-weight="600">Total Exhaustion</text>
+                  <text x="230" y="350" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">the cost of being liked</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="quoteBlock" style="margin-top:12px">
+              <p>This is why some of the kindest people feel the most exhausted. They are carrying the emotional cost of being liked.</p>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> The tragedy is that they believe this resentment makes them bad. So they suppress it further, deepening the split. Outwardly they remain good. Inwardly they feel trapped. This is not a personal failure. It is a psychological consequence.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 3: The Origin Story ===== -->
+      <section class="card" aria-label="Childhood Origins">
+        <div class="cardHeader">
+          <h2>The Origin: How "Good" Became Survival</h2>
+          <div class="chip"><b>Root:</b> conditional love in childhood</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0;line-height:1.6">
+                This pattern does not begin with adulthood choices. It begins with <b>early adaptation</b>.
+                Most good people learned very young that love was conditional -- not stated openly, implied subtly.
+                They learned that being easy made things smoother, being quiet avoided conflict, being helpful earned approval.
+              </p>
+
+              <div class="timeline" style="margin-top:14px">
+                <div class="timeNode active">
+                  <h4>Childhood: The Rule Forms</h4>
+                  <p>"My needs come second." Harmony keeps me safe. Being good = being loved.</p>
+                </div>
+                <div class="timeNode active">
+                  <h4>Adolescence: The Skill Develops</h4>
+                  <p>Reading rooms, sensing moods, adjusting before anyone asks. Adults praise it: "You're so mature."</p>
+                </div>
+                <div class="timeNode active">
+                  <h4>Adulthood: The Rule Refines</h4>
+                  <p>People-pleasing, overexplaining, difficulty saying no, guilt after choosing oneself.</p>
+                </div>
+                <div class="timeNode">
+                  <h4>Midlife: The Protest Builds</h4>
+                  <p>Anxiety, numbness, fantasies of escape. Not malfunctions -- corrections.</p>
+                </div>
+                <div class="timeNode">
+                  <h4>Breaking Point: The Question</h4>
+                  <p>"I did everything right. So why does it feel wrong?"</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Erosion visualization">
+                <svg viewBox="0 0 440 340" role="img" aria-label="How desire erodes over a lifetime">
+                  <defs>
+                    <linearGradient id="erodeG" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(117,240,182,.6)"/>
+                      <stop offset=".5" stop-color="rgba(255,210,122,.5)"/>
+                      <stop offset="1" stop-color="rgba(255,122,153,.5)"/>
+                    </linearGradient>
+                    <linearGradient id="fadeDown" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(117,240,182,.15)"/>
+                      <stop offset="1" stop-color="transparent"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="340" fill="rgba(0,0,0,.04)"/>
+
+                  <!-- Axes -->
+                  <line x1="50" y1="20" x2="50" y2="280" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+                  <line x1="50" y1="280" x2="420" y2="280" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+
+                  <!-- Y-axis label -->
+                  <text x="14" y="155" font-size="10" fill="rgba(255,255,255,.5)" transform="rotate(-90 14 155)" text-anchor="middle">VITALITY / DESIRE</text>
+
+                  <!-- X-axis labels -->
+                  <text x="90" y="300" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Child</text>
+                  <text x="175" y="300" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Teen</text>
+                  <text x="260" y="300" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Adult</text>
+                  <text x="345" y="300" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Midlife</text>
+
+                  <!-- Area under curve -->
+                  <path d="M50,60 C120,55 160,90 200,130 C240,170 300,220 400,260 L400,280 L50,280 Z" fill="url(#fadeDown)"/>
+
+                  <!-- Main curve: desire/vitality declining -->
+                  <path d="M50,60 C120,55 160,90 200,130 C240,170 300,220 400,260" fill="none" stroke="url(#erodeG)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Annotations -->
+                  <circle cx="90" cy="62" r="5" fill="rgba(117,240,182,.8)"/>
+                  <text x="100" y="56" font-size="10" fill="rgba(117,240,182,.8)">desire is natural</text>
+
+                  <circle cx="200" cy="130" r="5" fill="rgba(255,210,122,.8)"/>
+                  <text x="210" y="124" font-size="10" fill="rgba(255,210,122,.8)">softened to "preference"</text>
+
+                  <circle cx="345" cy="235" r="5" fill="rgba(255,122,153,.8)"/>
+                  <text x="240" y="240" font-size="10" fill="rgba(255,122,153,.8)">postponed indefinitely</text>
+
+                  <!-- Suppression events (small arrows pushing down) -->
+                  <g opacity=".5">
+                    <line x1="120" y1="40" x2="120" y2="58" stroke="var(--bad)" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+                    <line x1="170" y1="60" x2="170" y2="95" stroke="var(--bad)" stroke-width="1.5"/>
+                    <line x1="240" y1="110" x2="240" y2="165" stroke="var(--bad)" stroke-width="1.5"/>
+                    <line x1="310" y1="160" x2="310" y2="215" stroke="var(--bad)" stroke-width="1.5"/>
+                  </g>
+
+                  <text x="225" y="330" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">LIFE STAGE --- each red line = a boundary swallowed</text>
+                </svg>
+              </div>
+
+              <div style="height:10px"></div>
+              <div class="flowNode">
+                <h3>The Nervous System Memory</h3>
+                <p>Good people confuse discomfort with danger because in early life, discomfort <i>did</i> have consequences: withdrawal, coldness, disapproval. So the nervous system stays alert -- always scanning, always accommodating. This constant vigilance drains vitality.</p>
+                <div class="meta">
+                  <span class="badge">hypervigilance</span>
+                  <span class="badge">people-reading</span>
+                  <span class="badge">pre-emptive adapting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> The phrase "You're so mature" said to a child is often evidence of parentification, not genuine maturity. The child learned to monitor the emotional state of others before their own -- a survival skill that becomes a life-long prison. The question is not "why are you this way?" but "what was the original threat that made self-erasure feel necessary?"
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 4: The Trap Cycle (SVG) ===== -->
+      <section class="card" id="cycle" aria-label="The Goodness Trap Cycle">
+        <div class="cardHeader">
+          <h2>The Goodness Trap: A Self-Reinforcing Cycle</h2>
+          <div class="chip"><b>Pattern:</b> self-perpetuating loop</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            The reason this pattern persists is that it feeds itself. Each suppression creates guilt, and guilt
+            drives more suppression. The cycle accelerates silently until life feels like an obligation.
+          </p>
+
+          <div class="viz" id="cycleViz" aria-label="Cycle diagram">
+            <svg viewBox="0 0 780 420" role="img" aria-label="The self-reinforcing cycle of the goodness trap">
+              <defs>
+                <linearGradient id="cyc1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(187,167,255,.5)"/>
+                  <stop offset="1" stop-color="rgba(255,122,153,.5)"/>
+                </linearGradient>
+                <linearGradient id="cyc2" x1="1" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(255,179,138,.5)"/>
+                  <stop offset="1" stop-color="rgba(255,210,122,.5)"/>
+                </linearGradient>
+                <filter id="cycGlow" x="-15%" y="-15%" width="130%" height="130%">
+                  <feGaussianBlur stdDeviation="8" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="780" height="420" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#cycGlow)">
+                <!-- Central cycle arrows (circular) -->
+                <path d="M390,80 C520,80 620,160 620,210 C620,260 520,340 390,340 C260,340 160,260 160,210 C160,160 260,80 390,80" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="40" stroke-linecap="round"/>
+
+                <!-- Directional arcs -->
+                <path d="M420,82 C540,85 610,150 615,210" fill="none" stroke="url(#cyc1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                <path d="M615,220 C605,290 530,340 400,342" fill="none" stroke="url(#cyc2)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                <path d="M370,342 C240,335 170,280 165,220" fill="none" stroke="url(#cyc1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                <path d="M165,200 C175,130 250,85 370,82" fill="none" stroke="url(#cyc2)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+
+                <!-- Arrow heads -->
+                <polygon points="615,210 605,200 605,220" fill="rgba(187,167,255,.6)"/>
+                <polygon points="400,342 410,332 410,352" fill="rgba(255,179,138,.6)"/>
+                <polygon points="165,220 175,230 175,210" fill="rgba(187,167,255,.6)"/>
+                <polygon points="370,82 360,92 360,72" fill="rgba(255,179,138,.6)"/>
+
+                <!-- Nodes -->
+                <!-- Top: Need for approval -->
+                <rect x="305" y="42" width="170" height="52" rx="16" fill="rgba(0,0,0,.25)" stroke="rgba(187,167,255,.4)" stroke-width="1.5"/>
+                <text x="390" y="64" text-anchor="middle" font-size="13" fill="var(--violet)" font-weight="700">Need for Approval</text>
+                <text x="390" y="80" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">"love was conditional"</text>
+
+                <!-- Right: Self-suppression -->
+                <rect x="620" y="184" width="150" height="52" rx="16" fill="rgba(0,0,0,.25)" stroke="rgba(255,122,153,.4)" stroke-width="1.5"/>
+                <text x="695" y="206" text-anchor="middle" font-size="13" fill="var(--bad)" font-weight="700">Self-Suppression</text>
+                <text x="695" y="222" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">silence needs & anger</text>
+
+                <!-- Bottom: Resentment builds -->
+                <rect x="305" y="338" width="170" height="52" rx="16" fill="rgba(0,0,0,.25)" stroke="rgba(255,179,138,.4)" stroke-width="1.5"/>
+                <text x="390" y="360" text-anchor="middle" font-size="13" fill="var(--orange)" font-weight="700">Resentment Builds</text>
+                <text x="390" y="376" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">fatigue, boredom, envy</text>
+
+                <!-- Left: Guilt & shame -->
+                <rect x="10" y="184" width="150" height="52" rx="16" fill="rgba(0,0,0,.25)" stroke="rgba(255,210,122,.4)" stroke-width="1.5"/>
+                <text x="85" y="206" text-anchor="middle" font-size="13" fill="var(--warn)" font-weight="700">Guilt & Shame</text>
+                <text x="85" y="222" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">"this makes me bad"</text>
+
+                <!-- Center label -->
+                <text x="390" y="205" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.35)" font-weight="700">THE TRAP</text>
+                <text x="390" y="222" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.25)">self-reinforcing</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <div class="key"><span class="sw" style="background:var(--violet)"></span> Approval-seeking</div>
+            <div class="key"><span class="sw" style="background:var(--bad)"></span> Self-suppression</div>
+            <div class="key"><span class="sw" style="background:var(--orange)"></span> Accumulated resentment</div>
+            <div class="key"><span class="sw" style="background:var(--warn)"></span> Guilt feedback</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> Notice: each node in the cycle <i>reinforces</i> the next. Guilt from resentment drives more approval-seeking. More approval-seeking requires more suppression. More suppression builds more resentment. Breaking the cycle requires intervening at one of these nodes -- typically by questioning the guilt response itself.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 5: What Gets Sacrificed ===== -->
+      <section class="row">
+        <div class="card" aria-label="What Gets Sacrificed">
+          <div class="cardHeader">
+            <h2>The Cost Ledger: What Gets Sacrificed</h2>
+            <div class="chip">the price of being liked</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Every trade-off has a cost. Here is the invisible ledger that accumulates when goodness replaces authenticity.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Boundaries Swallowed</h3>
+                <p>Every time a boundary is swallowed, tension accumulates. The body keeps score even when the mind rationalizes.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">tension</span><span class="badge">physical cost</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Truths Silenced</h3>
+                <p>Every time a truth is silenced, energy drains. Maintaining a false self requires constant effort -- like holding a pose all day.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">energy drain</span><span class="badge">cognitive load</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Desires Postponed</h3>
+                <p>Every time desire is postponed, meaning erodes. Desire is softened into "preference," and preference is postponed indefinitely.</p>
+                <div class="meta"><span class="badge" style="color:var(--orange)">meaning loss</span><span class="badge">life shrinks</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Self-Respect Traded</h3>
+                <p>Adaptation without reciprocity breeds resentment. Being the one who always adapts means never being fully met.</p>
+                <div class="meta"><span class="badge" style="color:var(--violet)">resentment</span><span class="badge">invisibility</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quoteBlock">
+              <p>You cannot build a meaningful life by subtracting yourself from it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Interactive Erosion Meter">
+          <div class="cardHeader">
+            <h2>The Erosion Meter</h2>
+            <div class="chip"><b>Interactive:</b> see the accumulation</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Adjust the sliders to see how self-denial accumulates over time. Each factor compounds the others.
+            </p>
+
+            <div class="controls" style="grid-template-columns:1fr">
+              <div class="control">
+                <label>
+                  <span>Boundaries swallowed (per week)</span>
+                  <span class="readout" id="boundaryRead">3</span>
+                </label>
+                <input id="boundarySlider" type="range" min="0" max="10" value="3" />
+              </div>
+              <div class="control">
+                <label>
+                  <span>Truths silenced (per week)</span>
+                  <span class="readout" id="truthRead">4</span>
+                </label>
+                <input id="truthSlider" type="range" min="0" max="10" value="4" />
+              </div>
+              <div class="control">
+                <label>
+                  <span>Desires postponed (per month)</span>
+                  <span class="readout" id="desireRead">5</span>
+                </label>
+                <input id="desireSlider" type="range" min="0" max="10" value="5" />
+              </div>
+              <div class="control">
+                <label>
+                  <span>Years of this pattern</span>
+                  <span class="readout" id="yearsRead">10</span>
+                </label>
+                <input id="yearsSlider" type="range" min="1" max="40" value="10" />
+              </div>
+            </div>
+
+            <div style="height:14px"></div>
+
+            <div class="viz" style="padding:16px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+                <span class="small" style="text-transform:uppercase;letter-spacing:.1em">Accumulated self-betrayal load</span>
+                <span class="mono" style="font-size:18px;font-weight:700;color:var(--text)" id="loadNumber">0</span>
+              </div>
+              <div class="meter" style="height:16px">
+                <i id="loadBar" style="width:0%;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad));transition:width .4s ease"></i>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:6px">
+                <span class="small">Sustainable</span>
+                <span class="small">Chronic strain</span>
+                <span class="small">Breaking point</span>
+              </div>
+              <div class="hr"></div>
+              <p class="small" id="loadMessage" style="margin:0;line-height:1.5"></p>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Commentary:</b> This meter is conceptual, not clinical. But the principle is real: self-denial compounds. One swallowed boundary is manageable. Thousands over years create a person who no longer recognizes what they want -- because wanting itself was slowly trained out of them.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 6: The Turning Point ===== -->
+      <section class="card" aria-label="The Turning Point">
+        <div class="cardHeader">
+          <h2>The Turning Point: What Happens When You Change</h2>
+          <div class="chip"><b>Phase:</b> alignment over approval</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0;line-height:1.6">
+                When a good person stops trying to be good all the time, something unsettling happens first.
+                They feel <b>wrong</b>. Not immoral, not cruel -- just wrong. Because for years, goodness was their compass.
+              </p>
+
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode" style="border-color:rgba(255,122,153,.25)">
+                  <h3 style="color:var(--bad)">1) The Panic Phase</h3>
+                  <p>Honesty replaces politeness. The nervous system panics. Guilt rises immediately -- not because harm was done, but because a familiar role was abandoned.</p>
+                  <div class="meta"><span class="badge">guilt (habitual, not moral)</span></div>
+                </div>
+                <div class="flowNode" style="border-color:rgba(255,210,122,.25)">
+                  <h3 style="color:var(--warn)">2) The Resistance Phase</h3>
+                  <p>Systems that benefited from your silence destabilize. They try to restore the old balance. "You're changing. You're becoming difficult. You're not the same."</p>
+                  <div class="meta"><span class="badge">external pushback</span><span class="badge">old voices</span></div>
+                </div>
+                <div class="flowNode" style="border-color:rgba(255,179,138,.25)">
+                  <h3 style="color:var(--orange)">3) The Clarifying Phase</h3>
+                  <p>Relationships change. Some deepen, some fracture, some reveal they were never mutual to begin with. Painful, but clarifying.</p>
+                  <div class="meta"><span class="badge">some deepen</span><span class="badge">some fracture</span><span class="badge">truth emerges</span></div>
+                </div>
+                <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                  <h3 style="color:var(--good)">4) The Integration Phase</h3>
+                  <p>Energy returns as steadiness. Decisions feel lighter because they are aligned. Rest feels restorative because it is deserved. Desire feels alive because it is no longer negotiated away.</p>
+                  <div class="meta"><span class="badge">alignment</span><span class="badge">clarity</span><span class="badge">vitality returns</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Recovery visualization">
+                <svg viewBox="0 0 440 400" role="img" aria-label="The shift from performance to authenticity">
+                  <defs>
+                    <linearGradient id="recG" x1="0" x2="0" y1="1" y2="0">
+                      <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                      <stop offset=".4" stop-color="rgba(255,210,122,.4)"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.5)"/>
+                    </linearGradient>
+                    <linearGradient id="recFade" x1="0" x2="0" y1="1" y2="0">
+                      <stop offset="0" stop-color="transparent"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.12)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="400" fill="rgba(0,0,0,.04)"/>
+
+                  <!-- Axes -->
+                  <line x1="50" y1="20" x2="50" y2="340" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+                  <line x1="50" y1="340" x2="420" y2="340" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+
+                  <text x="14" y="180" font-size="10" fill="rgba(255,255,255,.5)" transform="rotate(-90 14 180)" text-anchor="middle">AUTHENTICITY / VITALITY</text>
+                  <text x="235" y="370" font-size="10" fill="rgba(255,255,255,.45)" text-anchor="middle">TIME AFTER CHOOSING ALIGNMENT</text>
+
+                  <!-- Area under recovery curve -->
+                  <path d="M50,310 C100,320 140,330 180,300 C220,270 260,180 320,120 C360,80 400,60 420,50 L420,340 L50,340 Z" fill="url(#recFade)"/>
+
+                  <!-- Recovery curve (J-shaped: dips then rises) -->
+                  <path d="M50,310 C100,320 140,330 180,300 C220,270 260,180 320,120 C360,80 400,60 420,50" fill="none" stroke="url(#recG)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Phase annotations -->
+                  <rect x="60" y="290" width="80" height="24" rx="8" fill="rgba(255,122,153,.15)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="100" y="306" text-anchor="middle" font-size="10" fill="var(--bad)">Panic</text>
+
+                  <rect x="140" y="305" width="80" height="24" rx="8" fill="rgba(255,210,122,.15)" stroke="rgba(255,210,122,.3)"/>
+                  <text x="180" y="321" text-anchor="middle" font-size="10" fill="var(--warn)">Dip</text>
+
+                  <rect x="250" y="170" width="90" height="24" rx="8" fill="rgba(255,179,138,.15)" stroke="rgba(255,179,138,.3)"/>
+                  <text x="295" y="186" text-anchor="middle" font-size="10" fill="var(--orange)">Clarifying</text>
+
+                  <rect x="350" y="40" width="85" height="24" rx="8" fill="rgba(117,240,182,.15)" stroke="rgba(117,240,182,.3)"/>
+                  <text x="392" y="56" text-anchor="middle" font-size="10" fill="var(--good)">Integration</text>
+
+                  <!-- The dip point marker -->
+                  <circle cx="160" cy="330" r="5" fill="var(--bad)" opacity=".8"/>
+                  <text x="160" y="355" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">Feels worst here</text>
+
+                  <!-- "Most retreat here" arrow -->
+                  <line x1="160" y1="258" x2="160" y2="278" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="160" y="254" text-anchor="middle" font-size="9" fill="var(--warn)">Most retreat here</text>
+                </svg>
+              </div>
+
+              <div style="height:10px"></div>
+              <div class="quoteBlock">
+                <p>A good person who learns to be honest does not become cruel. They become clear.</p>
+              </div>
+
+              <div style="height:10px"></div>
+              <div class="flowNode">
+                <h3>What Clarity Looks Like</h3>
+                <p>They stop explaining themselves endlessly. They stop volunteering for their own depletion. They stop equating love with endurance. And slowly, life regains texture.</p>
+                <div class="meta">
+                  <span class="badge" style="color:var(--good)">energy returns</span>
+                  <span class="badge" style="color:var(--good)">decisions lighten</span>
+                  <span class="badge" style="color:var(--good)">rest restores</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Commentary:</b> The J-curve shape is critical. Things feel <i>worse</i> before they feel better. Guilt, resistance from others, destabilized relationships -- this is expected, not evidence of wrongdoing. Many people retreat at the dip and return to self-suppression, interpreting the discomfort as proof that self-advocacy is selfish. The distinction matters: guilt in this case is not moral. It is habitual. It is the residue of old conditioning.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 7: Self-Assessment ===== -->
+      <section class="card" id="assess" aria-label="Self-Assessment">
+        <div class="cardHeader">
+          <h2>Self-Assessment: Where Are You Being Good at the Cost of Being Real?</h2>
+          <div class="chip"><b>Interactive:</b> honest inventory</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            This is not a diagnostic. It's an honest inventory of patterns that may be costing you more than you realize.
+            Check the ones that resonate.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I often say yes when I mean no</strong><em>boundaries</em></div>
+                <div class="d">I agree to things to avoid tension, even when it costs me energy, time, or self-respect.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I overexplain my decisions</strong><em>approval</em></div>
+                <div class="d">I feel the need to justify choices that shouldn't require justification, as though my preferences need permission.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I feel guilty when I choose myself</strong><em>conditioning</em></div>
+                <div class="d">Prioritizing my own needs triggers an immediate sense of selfishness, even when the choice is reasonable.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I feel exhausted but can't explain why</strong><em>energy</em></div>
+                <div class="d">Rest doesn't fix it. The fatigue comes from constant self-monitoring, accommodation, and emotional labor.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I am irritated by small things disproportionately</strong><em>overflow</em></div>
+                <div class="d">Minor frustrations carry the weight of years of unspoken resentment. The reaction doesn't match the trigger.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I fantasize about escape but never act</strong><em>protest</em></div>
+                <div class="d">Quitting everything, moving away, starting over -- the fantasy is persistent but never becomes a plan.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I tell myself "I should be grateful"</strong><em>suppression</em></div>
+                <div class="d">I use gratitude to silence legitimate dissatisfaction. Being grateful and being unsatisfied can coexist.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I feel envy toward people who live differently</strong><em>compass</em></div>
+                <div class="d">Not pettiness -- a compass pointing toward what I sacrificed. The envy is information about unlived potential.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Relationships depend on my flexibility</strong><em>reciprocity</em></div>
+                <div class="d">If I stopped adapting, accommodating, and being "easy," some relationships would not survive.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>I can't remember the last time I wanted something strongly</strong><em>desire</em></div>
+                <div class="d">Desire has been softened into "preference" and preference has been postponed so long it feels like nothing.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">See my pattern profile</button>
+            <button class="btn" id="resetBtn">Reset</button>
+          </div>
+          <div id="scoreOut" style="margin-top:12px"></div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 8: The Resolution ===== -->
+      <section class="card" aria-label="The Resolution">
+        <div class="cardHeader">
+          <h2>The Resolution: What Changes When Alignment Replaces Performance</h2>
+          <div class="chip"><b>Thesis:</b> honesty is enough</div>
+        </div>
+        <div class="cardBody">
+          <div class="grid3">
+            <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
+              <h3 style="color:var(--good)">Energy Returns</h3>
+              <p>Not as excitement, but as <b>steadiness</b>. The constant drain of self-monitoring stops. Vitality is no longer consumed by maintaining a false self.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(122,215,255,.2)">
+              <h3 style="color:var(--cyan)">Decisions Lighten</h3>
+              <p>Choices feel lighter because they are <b>aligned</b>. When you stop asking "what will they think?" and start asking "what is true?" -- clarity replaces anxiety.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(187,167,255,.2)">
+              <h3 style="color:var(--violet)">Rest Restores</h3>
+              <p>Rest feels restorative because it is <b>deserved</b>. You are no longer resting from the performance of being someone you're not.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(255,179,138,.2)">
+              <h3 style="color:var(--orange)">Desire Revives</h3>
+              <p>Desire feels alive because it is <b>no longer negotiated away</b>. Wanting something stops feeling dangerous and starts feeling like information.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(255,210,122,.2)">
+              <h3 style="color:var(--warn)">Hatred Dissolves</h3>
+              <p>The quiet hatred dissolves. Not because life becomes perfect, but because <b>life becomes truthful</b>.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(255,122,153,.2)">
+              <h3 style="color:var(--bad)">Relationships Clarify</h3>
+              <p>You see who benefits from your silence, who thrives on your flexibility, who only feels safe when you are small. This is not accusation. It is <b>information</b>.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="quoteBlock" style="border-color:rgba(117,240,182,.2);background:rgba(117,240,182,.05)">
+            <p>Good people do not hate their lives because they are broken. They hate their lives because they were trained to abandon themselves politely. The moment the training is questioned, everything begins to shift. Not dramatically, but honestly. And honesty is enough.</p>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <details data-commentary>
+            <summary><strong>What "alignment over approval" actually means in practice</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                Alignment does not mean becoming selfish, aggressive, or uncaring. It means developing the ability to say
+                "this matters to me" <b>without justification, without apology</b>. It means recognizing that kindness without
+                boundaries is self-erasure. It means understanding that the discomfort of growth is not the same as the
+                danger your nervous system was trained to detect.
+              </p>
+              <p style="margin-top:8px">
+                Practically, it looks like: pausing before saying yes. Tolerating the guilt of choosing yourself.
+                Letting some relationships shift. Accepting that "you've changed" is not an accusation -- it's a description.
+                And remembering that you don't need to stop being a good person. You just need to stop disappearing to maintain it.
+              </p>
+            </div>
+          </details>
+
+          <details data-commentary>
+            <summary><strong>Psychological framework: where does this map to clinical concepts?</strong><span class="hint">click to expand</span></summary>
+            <div class="detailBody">
+              <p>
+                The patterns described here overlap with several established psychological concepts: <b>fawning</b> as a trauma response
+                (Pete Walker), <b>codependency</b> (Melody Beattie), the <b>false self</b> (Donald Winnicott), <b>parentification</b>
+                (family systems theory), and <b>people-pleasing as a survival adaptation</b> (developmental psychology).
+              </p>
+              <p style="margin-top:8px">
+                The "quiet hatred" described is consistent with what existential therapists call <b>ontological guilt</b> -- the guilt
+                of not living in accordance with your own nature (Rollo May, Irvin Yalom). This is distinct from moral guilt and
+                represents the psyche's awareness that something essential has been traded away.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 9: The Spectrum ===== -->
+      <section class="card" aria-label="Alignment spectrum">
+        <div class="cardHeader">
+          <h2>The Alignment Spectrum</h2>
+          <div class="chip"><b>Tool:</b> where are you?</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Use the slider to reflect on where you currently sit between full self-suppression and authentic alignment.
+            This is not a score -- it's an awareness tool.
+          </p>
+
+          <div class="spectrum">
+            <div class="control" style="border:none;padding:0">
+              <label>
+                <span>Your current position</span>
+                <span class="readout" id="spectrumRead">50%</span>
+              </label>
+              <input id="spectrumSlider" type="range" min="0" max="100" value="50" />
+            </div>
+            <div class="spectrumBar"></div>
+            <div class="spectrumLabels">
+              <span>Full self-suppression</span>
+              <span>Aware but stuck</span>
+              <span>Authentic alignment</span>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+          <div class="viz" style="padding:14px">
+            <p class="muted" style="margin:0;font-size:13px;line-height:1.6" id="spectrumMessage">
+              Move the slider to see a reflection of where you might be in this journey.
+            </p>
+          </div>
+
+          <div class="callout warm" data-commentary>
+            <b>Final reflection:</b> You don't need to stop being a good person. You just need to stop disappearing to maintain it.
+            Where are you still being good at the cost of being real? Not to confess -- but to make it conscious.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== About Commentary ===== -->
+      <section class="card" aria-label="About commentary">
+        <div class="cardHeader">
+          <h2>About the commentary toggle</h2>
+          <div class="chip">interpretation vs. content</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Throughout this page, violet callout boxes (marked with <code>data-commentary</code>) offer meta-level commentary:
+            psychological frameworks, clinical parallels, and critical analysis of the claims being made.
+          </p>
+          <p class="muted">
+            By default, commentary is <b>visible</b>. Click "Toggle commentary" at the top to hide/show all commentary boxes at once.
+            This lets you switch between the raw psychological content and a more analytical lens.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credits &amp; disclaimers:</b> This interactive infographic was generated to translate and visualize psychological content about self-betrayal, people-pleasing, and the cost of chronic goodness.
+        It is not clinical advice or diagnosis. The visualizations, self-assessment, and commentary are conceptual tools to help you think about these patterns, not substitutes for therapeutic guidance.
+      </p>
+      <p style="margin-top:10px">
+        If these patterns resonate deeply, consider working with a therapist trained in developmental trauma, attachment, or existential approaches.
+        The concepts draw from the work of Winnicott (false self), Pete Walker (fawn response), and existential psychology (ontological guilt).
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ────────────────────────────────────────────
+    // Erosion Meter (interactive sliders)
+    // ────────────────────────────────────────────
+    const boundarySlider = document.getElementById('boundarySlider');
+    const truthSlider = document.getElementById('truthSlider');
+    const desireSlider = document.getElementById('desireSlider');
+    const yearsSlider = document.getElementById('yearsSlider');
+
+    function updateErosionMeter() {
+      const boundaries = parseInt(boundarySlider.value);
+      const truths = parseInt(truthSlider.value);
+      const desires = parseInt(desireSlider.value);
+      const years = parseInt(yearsSlider.value);
+
+      document.getElementById('boundaryRead').textContent = boundaries;
+      document.getElementById('truthRead').textContent = truths;
+      document.getElementById('desireRead').textContent = desires;
+      document.getElementById('yearsRead').textContent = years;
+
+      // Calculate load (conceptual)
+      const weeklyLoad = (boundaries * 3) + (truths * 2.5) + (desires * 1.5);
+      const totalLoad = Math.round(weeklyLoad * 52 * years);
+      const maxLoad = (10 * 3 + 10 * 2.5 + 10 * 1.5) * 52 * 40; // max possible
+      const pct = Math.min(100, Math.round((totalLoad / maxLoad) * 100));
+
+      document.getElementById('loadNumber').textContent = totalLoad.toLocaleString();
+      document.getElementById('loadBar').style.width = pct + '%';
+
+      let message = '';
+      if (pct < 15) {
+        message = 'Low accumulation. Either you set boundaries well, or this pattern has not had long to build. The psyche can recover from short periods of self-denial.';
+      } else if (pct < 35) {
+        message = 'Moderate load. There are likely areas where you are more accommodating than you realize. The fatigue may feel "normal" because you have adapted to it. Consider: what would change if you said no to one thing this week?';
+      } else if (pct < 60) {
+        message = 'Significant accumulation. At this level, symptoms like unexplained fatigue, irritability, and boredom that rest does not fix are expected. The psyche is protesting. The question is whether you are listening.';
+      } else if (pct < 80) {
+        message = 'Heavy load. Years of compounded self-denial create a person who may no longer recognize what they want -- because wanting itself was trained out of them. The escape fantasies, the envy, the quiet resentment: they are all signals, not flaws.';
+      } else {
+        message = 'Critical accumulation. At this level, the gap between the outer self and the inner self is vast. Life likely feels like an obligation, not an expression. This is not depression -- it is the natural consequence of decades of self-erasure. The exit path begins with one honest act of self-respect.';
+      }
+
+      document.getElementById('loadMessage').textContent = message;
+    }
+
+    boundarySlider.addEventListener('input', updateErosionMeter);
+    truthSlider.addEventListener('input', updateErosionMeter);
+    desireSlider.addEventListener('input', updateErosionMeter);
+    yearsSlider.addEventListener('input', updateErosionMeter);
+    updateErosionMeter();
+
+    // ────────────────────────────────────────────
+    // Alignment Spectrum Slider
+    // ────────────────────────────────────────────
+    const spectrumSlider = document.getElementById('spectrumSlider');
+    const spectrumRead = document.getElementById('spectrumRead');
+    const spectrumMessage = document.getElementById('spectrumMessage');
+
+    const spectrumMessages = [
+      { max: 15, text: 'Deep self-suppression. You may have spent so long adapting that your own wants feel foreign. The rule "my needs come second" is running most of your decisions. The first step is not action -- it is recognition. Notice where you are automatically accommodating without being asked.' },
+      { max: 30, text: 'Heavy suppression with emerging awareness. You are beginning to sense the cost, but the guilt of self-advocacy still overpowers the desire for change. This is the stage where symptoms (fatigue, irritation, boredom) are loudest. They are not problems to solve -- they are messages to hear.' },
+      { max: 50, text: 'Aware but stuck. You know something is off. You can name the patterns. But knowledge alone does not change the nervous system. The gap between understanding and acting is where most people stall. One small boundary -- held with discomfort but without apology -- is worth more than a year of insight.' },
+      { max: 70, text: 'Active transition. You are beginning to choose alignment over approval in some areas. It feels uncomfortable, even wrong. Others may be pushing back. The guilt is present but you are learning to sit with it. This is the hardest phase. It is also the most transformative.' },
+      { max: 85, text: 'Growing alignment. You have learned that discomfort during boundary-setting is not danger -- it is old conditioning. Relationships are clarifying. Energy is returning. You are no longer performing goodness; you are practicing honesty. The quiet resentment is fading.' },
+      { max: 100, text: 'Authentic alignment. Goodness is a choice, not a survival mechanism. You can be kind without being self-erasing. You can say no without guilt. You can want things without apology. Life has texture again -- not because it is perfect, but because it is truthful.' }
+    ];
+
+    function updateSpectrum() {
+      const val = parseInt(spectrumSlider.value);
+      spectrumRead.textContent = val + '%';
+
+      const entry = spectrumMessages.find(m => val <= m.max) || spectrumMessages[spectrumMessages.length - 1];
+      spectrumMessage.textContent = entry.text;
+    }
+
+    spectrumSlider.addEventListener('input', updateSpectrum);
+    updateSpectrum();
+
+    // ────────────────────────────────────────────
+    // Self-Assessment Scoring
+    // ────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+
+      let html = '';
+
+      if (checked === 0) {
+        html = '<p class="muted" style="margin:0;line-height:1.6">No patterns selected. Either you have strong self-alignment, or there may be areas worth re-examining with more honesty. The hardest patterns to see are the ones disguised as virtues.</p>';
+      } else if (checked <= 3) {
+        html = `<div class="flowNode" style="border-color:rgba(117,240,182,.2)"><h3 style="color:var(--good)">${checked} of ${total} patterns recognized</h3><p>Some areas of self-suppression are present but not dominant. You likely have a foundation of self-awareness. Focus on the specific patterns you checked -- they are pointing to where the next boundary needs to be set.</p></div>`;
+      } else if (checked <= 6) {
+        html = `<div class="flowNode" style="border-color:rgba(255,210,122,.2)"><h3 style="color:var(--warn)">${checked} of ${total} patterns recognized</h3><p>A significant portion of your life is shaped by these patterns. The fatigue you feel is not laziness -- it is the cost of chronic self-monitoring. The envy, the escape fantasies, the inexplicable boredom: they are your psyche's protest. Consider: what is one truth you have been silencing?</p></div>`;
+      } else if (checked <= 8) {
+        html = `<div class="flowNode" style="border-color:rgba(255,179,138,.2)"><h3 style="color:var(--orange)">${checked} of ${total} patterns recognized</h3><p>Most of these patterns are active in your life. This means the "goodness trap" is deeply embedded. Your identity may be fused with accommodation. The critical insight: self-respect is not selfishness. The guilt you feel when choosing yourself is habitual, not moral. One honest conversation, one held boundary, one unapologetic desire -- start there.</p></div>`;
+      } else {
+        html = `<div class="flowNode" style="border-color:rgba(255,122,153,.2)"><h3 style="color:var(--bad)">${checked} of ${total} patterns recognized</h3><p>Nearly all patterns are present. Life likely feels more like obligation than expression. This is not a flaw in you -- it is a consequence of a system that rewarded your self-erasure. The quiet hatred you may feel is not ingratitude. It is the psyche's protest that something essential was traded away. The exit begins with recognizing that you have been trained to disappear, and that the training can be questioned.</p></div>`;
+      }
+
+      document.getElementById('scoreOut').innerHTML = html;
+      showToast('Pattern profile generated');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Assessment reset');
+    });
+
+    // ────────────────────────────────────────────
+    // Navigation buttons
+    // ────────────────────────────────────────────
+    document.getElementById('jumpCycle').addEventListener('click', () => {
+      document.getElementById('cycle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpAssess').addEventListener('click', () => {
+      document.getElementById('assess').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ────────────────────────────────────────────
+    // Commentary toggle
+    // ────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    // ────────────────────────────────────────────
+    // Toast notification
+    // ────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

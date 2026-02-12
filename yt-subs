@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# yt-subs — Download English subtitles from YouTube as clean text
+#
+# Usage:
+#   yt-subs URL [URL ...]
+#   yt-subs -f urls.txt
+#   echo "URL" | yt-subs -
+#
+# Options:
+#   -f FILE   Read URLs from file (one per line)
+#   -          Read URLs from stdin
+#   -p PREFIX Prefix prepended to output filenames
+#   -o DIR    Output directory (default: current directory)
+#   -k        Keep raw .vtt files alongside .txt
+#   -v        Verbose output
+#   -h        Show this help
+
+OUTDIR="."
+PREFIX=""
+KEEP_VTT=false
+VERBOSE=false
+URLS=()
+
+usage() {
+  sed -n '3,14p' "$0" | sed 's/^# \?//'
+  exit 0
+}
+
+log() { if $VERBOSE; then printf "\033[0;36m▸\033[0m %s\n" "$*"; fi; }
+info() { printf "\033[0;32m✓\033[0m %s\n" "$*"; }
+warn() { printf "\033[0;33m⚠\033[0m %s\n" "$*" >&2; }
+fail() { printf "\033[0;31m✗\033[0m %s\n" "$*" >&2; }
+
+# ── Parse arguments ──────────────────────────────────────
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help) usage ;;
+    -f)
+      shift
+      [[ $# -eq 0 ]] && { fail "-f requires a filename"; exit 1; }
+      while IFS= read -r line; do
+        line="${line%%#*}"          # strip comments
+        line="$(echo "$line" | xargs)" # trim whitespace
+        [[ -n "$line" ]] && URLS+=("$line")
+      done < "$1"
+      ;;
+    -)
+      while IFS= read -r line; do
+        line="${line%%#*}"
+        line="$(echo "$line" | xargs)"
+        [[ -n "$line" ]] && URLS+=("$line")
+      done
+      ;;
+    -p)
+      shift
+      [[ $# -eq 0 ]] && { fail "-p requires a prefix"; exit 1; }
+      PREFIX="$1"
+      ;;
+    -o)
+      shift
+      [[ $# -eq 0 ]] && { fail "-o requires a directory"; exit 1; }
+      OUTDIR="$1"
+      ;;
+    -k) KEEP_VTT=true ;;
+    -v) VERBOSE=true ;;
+    *)  URLS+=("$1") ;;
+  esac
+  shift
+done
+
+if [[ ${#URLS[@]} -eq 0 ]]; then
+  fail "No URLs provided. Run with -h for help."
+  exit 1
+fi
+
+# ── Check dependencies ───────────────────────────────────
+if ! command -v yt-dlp &>/dev/null; then
+  fail "yt-dlp is required. Install: brew install yt-dlp"
+  exit 1
+fi
+if ! command -v python3 &>/dev/null; then
+  fail "python3 is required."
+  exit 1
+fi
+
+mkdir -p "$OUTDIR"
+
+# ── VTT → clean text converter ───────────────────────────
+vtt_to_txt() {
+  python3 -c "
+import re, sys
+
+with open(sys.argv[1], 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# Strip WEBVTT header block
+content = re.sub(r'^WEBVTT\n.*?\n\n', '', content, count=1, flags=re.DOTALL)
+
+lines = content.split('\n')
+text_lines = []
+prev = ''
+
+for line in lines:
+    line = line.strip()
+    if not line:
+        continue
+    # Skip timestamps, metadata, positioning
+    if re.match(r'^\d{2}:\d{2}', line):
+        continue
+    if re.match(r'^(Kind|Language):', line):
+        continue
+    if 'align:' in line or 'position:' in line:
+        continue
+    # Strip HTML tags and entities
+    line = re.sub(r'<[^>]+>', '', line)
+    line = re.sub(r'&nbsp;', ' ', line)
+    line = re.sub(r'&amp;', '&', line)
+    line = re.sub(r'&lt;', '<', line)
+    line = re.sub(r'&gt;', '>', line)
+    line = re.sub(r'&#?\w+;', '', line)
+    line = re.sub(r'  +', ' ', line).strip()
+    if not line or line == prev:
+        continue
+    text_lines.append(line)
+    prev = line
+
+raw = ' '.join(text_lines)
+# Clean up common artifacts
+raw = re.sub(r'>>', '', raw)
+raw = re.sub(r'  +', ' ', raw)
+raw = raw.strip()
+
+# Break into paragraphs (~4 sentences each)
+sentences = re.split(r'(?<=[.!?])\s+', raw)
+paragraphs, current = [], []
+for s in sentences:
+    current.append(s)
+    if len(current) >= 4:
+        paragraphs.append(' '.join(current))
+        current = []
+if current:
+    paragraphs.append(' '.join(current))
+
+print('\n\n'.join(paragraphs))
+" "$1"
+}
+
+# ── Process each URL ─────────────────────────────────────
+OK=0
+FAIL=0
+
+for url in "${URLS[@]}"; do
+  log "Processing: $url"
+
+  # Get video title for filename
+  TITLE=$(yt-dlp --print "%(title)s" --no-warnings "$url" 2>/dev/null || echo "")
+  if [[ -z "$TITLE" ]]; then
+    warn "Could not fetch title for $url — skipping"
+    ((FAIL++)) || true
+    continue
+  fi
+
+  # Sanitize title for filename
+  SAFE=$(echo "$TITLE" | sed 's/[^a-zA-Z0-9 _-]//g' | sed 's/  */ /g' | sed 's/^ *//;s/ *$//' | tr ' ' '-' | tr '[:upper:]' '[:lower:]' | cut -c1-80)
+  [[ -z "$SAFE" ]] && SAFE="video"
+
+  VTTFILE=$(mktemp "${TMPDIR:-/tmp}/ytsubs-XXXXXX")
+  VTTPATH="${VTTFILE}.en.vtt"
+
+  log "Downloading subtitles for: $TITLE"
+
+  # Try manual subs first, fall back to auto-generated
+  if ! yt-dlp --write-sub --sub-lang en --skip-download --sub-format vtt \
+       -o "$VTTFILE" --no-warnings "$url" 2>/dev/null \
+     || [[ ! -f "$VTTPATH" ]]; then
+
+    # Auto-generated subs
+    if ! yt-dlp --write-auto-sub --sub-lang en --skip-download --sub-format vtt \
+         -o "$VTTFILE" --no-warnings "$url" 2>/dev/null; then
+      warn "No English subtitles available for: $TITLE"
+      rm -f "$VTTFILE" "$VTTPATH" 2>/dev/null
+      ((FAIL++)) || true
+      continue
+    fi
+  fi
+
+  if [[ ! -f "$VTTPATH" ]]; then
+    warn "No English subtitles found for: $TITLE"
+    rm -f "$VTTFILE" 2>/dev/null
+    ((FAIL++)) || true
+    continue
+  fi
+
+  # Convert VTT → clean text
+  FNAME="${PREFIX}${SAFE}"
+  OUTFILE="$OUTDIR/${FNAME}.txt"
+  if vtt_to_txt "$VTTPATH" > "$OUTFILE"; then
+    CHARS=$(wc -c < "$OUTFILE" | tr -d ' ')
+    info "$TITLE → ${FNAME}.txt (${CHARS} chars)"
+    ((OK++)) || true
+  else
+    fail "Conversion failed for: $TITLE"
+    rm -f "$OUTFILE" 2>/dev/null
+    ((FAIL++)) || true
+  fi
+
+  # Keep or discard VTT
+  if $KEEP_VTT; then
+    mv "$VTTPATH" "$OUTDIR/${FNAME}.en.vtt"
+  else
+    rm -f "$VTTPATH"
+  fi
+  rm -f "$VTTFILE" 2>/dev/null
+
+done
+
+# ── Summary ──────────────────────────────────────────────
+echo ""
+if [[ $OK -gt 0 ]]; then
+  info "Done: $OK succeeded, $FAIL failed"
+else
+  fail "Done: $OK succeeded, $FAIL failed"
+  exit 1
+fi
