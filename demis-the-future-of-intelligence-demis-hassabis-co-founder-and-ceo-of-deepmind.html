@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viitorul Inteligenței — Demis Hassabis, CEO Google DeepMind — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre viziunea lui Demis Hassabis privind viitorul inteligenței artificiale: AGI, AlphaFold, modele ale lumii, fuziune nucleară și impactul asupra societății." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:0;position:relative}
+    .timeline::before{content:'';position:absolute;left:16px;top:12px;bottom:12px;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet),var(--orange));opacity:.35;border-radius:2px}
+    .tEntry{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:8px 0}
+    .tDot{width:12px;height:12px;border-radius:99px;margin-top:4px;justify-self:center;border:2px solid rgba(255,255,255,.2);position:relative;z-index:1}
+
+    /* Progress bars */
+    .progressBar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:6px}
+    .progressBar > i{display:block;height:100%;border-radius:99px;transition:width .4s ease}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Neural network abstract -->
+            <circle cx="100" cy="60" r="18" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".7"/>
+            <circle cx="200" cy="140" r="22" fill="none" stroke="url(#g2)" stroke-width="2.5" opacity=".7"/>
+            <circle cx="320" cy="70" r="20" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".6"/>
+            <circle cx="420" cy="150" r="16" fill="none" stroke="url(#g2)" stroke-width="2.5" opacity=".7"/>
+            <circle cx="260" cy="180" r="14" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".5"/>
+            <circle cx="460" cy="60" r="12" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".5"/>
+            <path d="M118,60 L178,140" stroke="url(#g1)" stroke-width="1.5" opacity=".4"/>
+            <path d="M222,140 L300,70" stroke="url(#g2)" stroke-width="1.5" opacity=".4"/>
+            <path d="M340,70 L404,150" stroke="url(#g1)" stroke-width="1.5" opacity=".4"/>
+            <path d="M200,118 L260,180" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <path d="M274,180 L404,150" stroke="url(#g1)" stroke-width="1.5" opacity=".3"/>
+            <path d="M320,90 L460,60" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <path d="M100,78 L260,166" stroke="url(#g1)" stroke-width="1" opacity=".2"/>
+            <circle cx="100" cy="60" r="5" fill="rgba(122,215,255,.6)"/>
+            <circle cx="320" cy="70" r="6" fill="rgba(187,167,255,.5)"/>
+            <circle cx="420" cy="150" r="4" fill="rgba(255,179,138,.5)"/>
+            <circle cx="200" cy="140" r="5" fill="rgba(117,240,182,.5)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> inteligenta artificiala &bull; agi &bull; viitorul stiintei</div>
+          <h1>Viitorul Inteligentei: Demis Hassabis si viziunea Google DeepMind</h1>
+          <p class="subtitle">
+            Demis Hassabis, co-fondator si CEO al Google DeepMind, laureatul Premiului Nobel pentru Chimie 2024, prezinta viziunea sa despre drumul catre inteligenta artificiala generala (AGI), modelele lumii, fuziunea nucleara si transformarea societatii.
+            Aceasta pagina traduce <b>toate temele majore</b> din conversatia sa cu Prof. Hannah Fry intr-un format vizual si usor de inteles.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpRoadmap">Drumul catre AGI</button>
+            <button class="btn" id="jumpWorld">Modele ale lumii</button>
+            <button class="btn" id="jumpSociety">Impact societal</button>
+            <button class="btn" id="toggleNotes">Afiseaza / ascunde comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Strategie AGI</div>
+            <div class="value">50% scalare + 50% inovatie</div>
+            <div class="note">Ambele sunt necesare pentru a ajunge la AGI.</div>
+          </div>
+          <div class="stat">
+            <div class="label">AlphaFold</div>
+            <div class="value">~5 ani de la lansare</div>
+            <div class="note">Dovada ca AI poate rezolva probleme stiintifice fundamentale.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Orizont AGI</div>
+            <div class="value">5 - 10 ani</div>
+            <div class="note">Estimare DeepMind pentru inteligenta artificiala generala.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Viziune</div>
+            <div class="value">Simulare &bull; Stiinta &bull; Societate</div>
+            <div class="note">Informatia ca unitate fundamentala a universului.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- ====== SECTION 1: Problema nod-radacina ====== -->
+      <section class="card" aria-label="Probleme nod-radacina">
+        <div class="cardHeader">
+          <h2>Problemele „nod-radacina": rezolvi una, deblochezi multe</h2>
+          <div class="chip"><b>Concept:</b> efect cascada</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Demis Hassabis foloseste termenul de <b>„probleme nod-radacina"</b> — probleme care, odata rezolvate, deblocheaza solutii pentru zeci de alte probleme din aval.
+            Ideea e simpla: in loc sa repari simptomele una cate una, gasesti radacina comuna si o rezolvi cu ajutorul AI.
+          </p>
+
+          <div class="viz" style="padding:14px" aria-label="Retea probleme nod-radacina">
+            <svg viewBox="0 0 980 340" role="img" aria-label="Diagrama probleme nod-radacina">
+              <defs>
+                <linearGradient id="rn1" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(122,215,255,.4)"/>
+                  <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#softGlow)">
+                <!-- Central node: AI -->
+                <rect x="380" y="20" width="220" height="60" rx="18" fill="rgba(122,215,255,.15)" stroke="rgba(122,215,255,.5)" stroke-width="2"/>
+                <text x="490" y="56" font-size="16" fill="var(--cyan)" font-weight="700" text-anchor="middle">AI (Inteligenta Artificiala)</text>
+
+                <!-- AlphaFold -->
+                <line x1="430" y1="80" x2="140" y2="130" stroke="url(#rn1)" stroke-width="2"/>
+                <rect x="30" y="115" width="220" height="55" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                <text x="140" y="140" font-size="13" fill="var(--good)" font-weight="700" text-anchor="middle">AlphaFold</text>
+                <text x="140" y="157" font-size="11" fill="var(--muted)" text-anchor="middle">structura proteinelor</text>
+
+                <!-- Fusion -->
+                <line x1="490" y1="80" x2="490" y2="130" stroke="url(#rn1)" stroke-width="2"/>
+                <rect x="380" y="125" width="220" height="55" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                <text x="490" y="150" font-size="13" fill="var(--warn)" font-weight="700" text-anchor="middle">Fuziune nucleara</text>
+                <text x="490" y="167" font-size="11" fill="var(--muted)" text-anchor="middle">energie nelimitata</text>
+
+                <!-- Materials -->
+                <line x1="550" y1="80" x2="810" y2="130" stroke="url(#rn1)" stroke-width="2"/>
+                <rect x="710" y="115" width="240" height="55" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                <text x="830" y="140" font-size="13" fill="var(--orange)" font-weight="700" text-anchor="middle">Materiale noi</text>
+                <text x="830" y="157" font-size="11" fill="var(--muted)" text-anchor="middle">supraconductori, baterii</text>
+
+                <!-- Downstream from Fusion -->
+                <line x1="430" y1="180" x2="180" y2="230" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+                <line x1="490" y1="180" x2="490" y2="230" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+                <line x1="550" y1="180" x2="800" y2="230" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+
+                <rect x="60" y="225" width="200" height="48" rx="12" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.08)"/>
+                <text x="160" y="254" font-size="12" fill="var(--muted)" text-anchor="middle">Desalinizare apa</text>
+
+                <rect x="390" y="225" width="200" height="48" rx="12" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.08)"/>
+                <text x="490" y="254" font-size="12" fill="var(--muted)" text-anchor="middle">Combustibil ieftin (H2+O2)</text>
+
+                <rect x="690" y="225" width="200" height="48" rx="12" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.08)"/>
+                <text x="790" y="254" font-size="12" fill="var(--muted)" text-anchor="middle">Criza climatica rezolvata</text>
+
+                <!-- Quantum -->
+                <line x1="430" y1="80" x2="140" y2="290" stroke="rgba(255,255,255,.06)" stroke-width="1.5"/>
+                <rect x="30" y="280" width="220" height="48" rx="12" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.08)"/>
+                <text x="140" y="309" font-size="12" fill="var(--violet)" text-anchor="middle">Calculul cuantic + AI</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="hallmarks" style="margin-top:12px">
+            <div class="pill"><span>AlphaFold — structura proteinelor</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+            <div class="pill"><span>Fuziune nucleara (Commonwealth Fusion)</span><span class="tag" style="color:var(--warn)">in lucru</span></div>
+            <div class="pill"><span>Supraconductori la temperatura camerei</span><span class="tag" style="color:var(--warn)">in lucru</span></div>
+            <div class="pill"><span>Baterii mai bune</span><span class="tag" style="color:var(--warn)">in lucru</span></div>
+            <div class="pill"><span>Calcul cuantic — coduri de corectie</span><span class="tag" style="color:var(--cyan)">colaborare</span></div>
+            <div class="pill"><span>Vindecarea bolilor (Isomorphic Labs)</span><span class="tag" style="color:var(--violet)">viziune</span></div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta abordare „nod-radacina" este un mod de gandire strategic: in loc sa incerci sa rezolvi fiecare problema separat, identifici un punct central (AI sau energie) care amplifica solutiile in cascada. AlphaFold a fost prima dovada ca functioneaza.
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 2: De la AlphaGo la AGI ====== -->
+      <section class="row" id="roadmapSection">
+        <div class="card" aria-label="Evolutia de la AlphaGo la AGI">
+          <div class="cardHeader">
+            <h2>De la AlphaGo la AGI: evolutia in pasi</h2>
+            <div class="chip"><b>Analogie:</b> AlphaGo → AlphaZero → AGI</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Demis face o analogie clara: <b>AlphaGo</b> a invatat din jocurile oamenilor, apoi <b>AlphaZero</b> a invatat de la zero, descoperind cunostinte noi singur. Modelele de limbaj de astazi sunt inca in faza „AlphaGo" — se bazeaza pe cunostintele umane. Pasul urmator e sa treaca la o faza „AlphaZero" unde descopera cunostinte noi pe cont propriu.
+            </p>
+
+            <div class="timeline">
+              <div class="tEntry">
+                <div class="tDot" style="background:var(--cyan)"></div>
+                <div>
+                  <strong style="font-size:14px">AlphaGo (2016)</strong>
+                  <p class="muted" style="margin:4px 0 0;font-size:13px">A invatat din milioane de jocuri de Go jucate de oameni, apoi s-a antrenat singur. A batut campionul mondial Lee Sedol.</p>
+                </div>
+              </div>
+              <div class="tEntry">
+                <div class="tDot" style="background:var(--violet)"></div>
+                <div>
+                  <strong style="font-size:14px">AlphaZero (2017)</strong>
+                  <p class="muted" style="margin:4px 0 0;font-size:13px">A pornit de la zero — fara cunostinte umane. A descoperit strategii noi, superioare, in Go, sah si shogi. A demonstrat ca AI poate descoperi cunostinte dincolo de limitele umane.</p>
+                </div>
+              </div>
+              <div class="tEntry">
+                <div class="tDot" style="background:var(--good)"></div>
+                <div>
+                  <strong style="font-size:14px">AlphaFold (2020-2024)</strong>
+                  <p class="muted" style="margin:4px 0 0;font-size:13px">A prezis structura a peste 200 de milioane de proteine — o problema pe care biologia nu o rezolvase de 50 de ani. Premiul Nobel 2024.</p>
+                </div>
+              </div>
+              <div class="tEntry">
+                <div class="tDot" style="background:var(--warn)"></div>
+                <div>
+                  <strong style="font-size:14px">Modelele de limbaj / Gemini (prezent)</strong>
+                  <p class="muted" style="margin:4px 0 0;font-size:13px">Ca „AlphaGo" — comprima si generalizeaza cunostintele umane de pe internet. Puternice, dar inca nu descopera cunostinte noi in mod fiabil.</p>
+                </div>
+              </div>
+              <div class="tEntry">
+                <div class="tDot" style="background:var(--bad)"></div>
+                <div>
+                  <strong style="font-size:14px">Viitor: „AlphaZero" pentru cunostinte generale</strong>
+                  <p class="muted" style="margin:4px 0 0;font-size:13px">Pasul urmator: un sistem care invata continuu, descopera cunostinte noi si nu e limitat doar la ce au scris oamenii. Acesta ar fi protoAGI.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Analogia AlphaGo / AlphaZero este nucleul filosofiei DeepMind. Ideea cheie: acum AI „citeste" cunostintele umane. Urmatorul pas este ca AI sa „descopere" cunostinte noi — exact cum AlphaZero a descoperit miscari in Go pe care niciun om nu le-a gandit vreodata.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce lipseste pentru AGI">
+          <div class="cardHeader">
+            <h2>Ce lipseste inca pentru AGI?</h2>
+            <div class="chip"><b>Lacune:</b> consistenta si invatare continua</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis identifica clar problemele pe care modelele actuale nu le-au rezolvat inca. Le numeste „inteligente zimtate" (jagged intelligences) — excelente in unele domenii, surprinzator de slabe in altele.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">1) Consistenta</h3>
+                <p>Aceleasi sisteme care rezolva probleme de nivel PhD pot gresi la matematica de liceu. Un sistem AGI trebuie sa fie <b>consistent</b> — bun la tot, nu doar la lucruri izolate.</p>
+                <div class="meta">
+                  <span class="badge">inteligenta „zimtata"</span><span class="badge">performanta inegala</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">2) Halucinatii si incredere calibrata</h3>
+                <p>Modelele „raspund cu incredere" chiar cand nu stiu. Hassabis vrea un <b>scor de incredere</b> (ca la AlphaFold) — sistemul sa spuna „nu sunt sigur" in loc sa inventeze.</p>
+                <div class="meta">
+                  <span class="badge">halucinatii</span><span class="badge">lipsa incertitudinii</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--orange)">3) Rationament si gandire profunda</h3>
+                <p>Sistemele de „gandire" (inference-time compute) sunt mai bune, dar nu folosesc inca timpul de gandire optim — nu verifica si nu isi corecteaza raspunsurile in mod fiabil.</p>
+                <div class="meta">
+                  <span class="badge">gandire la inferenta</span><span class="badge">~50% din drum</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">4) Invatare continua (online learning)</h3>
+                <p>Dupa antrenare, modelele nu mai invata din experienta. Oamenii invata continuu — aceasta capacitate lipseste si este <b>critica</b> pentru AGI.</p>
+                <div class="meta">
+                  <span class="badge">lipsa invatarii continue</span><span class="badge">piesa critica</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E important ca un lider de top in AI recunoaste explicit aceste lacune. Faptul ca un model ia medalie de aur la Olimpiada de Matematica dar greseste aritmetica simpla arata ca intelegerea lor este diferita fundamental de intelegerea umana — cel putin deocamdata.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 3: Scalare vs inovatie + „zidul" ====== -->
+      <section class="card" aria-label="Scalare versus inovatie">
+        <div class="cardHeader">
+          <h2>Scalare vs. inovatie: exista un „zid"?</h2>
+          <div class="chip"><b>Raspuns:</b> nu un zid, ci randamente descrescatoare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Multi au prezis ca AI a lovit un „zid" — ca scalarea nu mai produce progres. Hassabis nu e de acord: nu e exponentiala, dar nici zero.
+                Realitatea e <b>undeva la mijloc</b> — progresul continua, dar necesita mai multa inovatie, nu doar mai mult compute.
+              </p>
+              <div class="flowNode" style="margin-top:12px">
+                <h3>Strategia DeepMind: 50/50</h3>
+                <p><b>50% efort pe scalare</b> (mai multa putere de calcul, mai multe date) + <b>50% efort pe inovatie stiintifica</b> (idei noi, arhitecturi noi). Hassabis pariaza ca ambele sunt necesare.</p>
+                <div class="meta">
+                  <span class="badge">TPU-uri proprii</span><span class="badge">cercetare de varf</span><span class="badge">date sintetice</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Grafic scalare">
+                <svg viewBox="0 0 440 280" role="img">
+                  <defs>
+                    <linearGradient id="sc1" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(122,215,255,.5)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.5)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="280" fill="rgba(0,0,0,.05)"/>
+                  <!-- Axes -->
+                  <line x1="50" y1="30" x2="50" y2="240" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+                  <line x1="50" y1="240" x2="410" y2="240" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+                  <text x="230" y="268" font-size="11" fill="var(--faint)" text-anchor="middle">Compute / Date investite</text>
+                  <text x="16" y="140" font-size="11" fill="var(--faint)" transform="rotate(-90 16 140)">Performanta</text>
+
+                  <!-- Exponential myth -->
+                  <path d="M60,230 C120,220 180,190 240,130 C300,60 350,40 400,35" fill="none" stroke="rgba(255,122,153,.3)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="360" y="28" font-size="10" fill="var(--bad)" opacity=".7">exponentiala (mit)</text>
+
+                  <!-- Wall myth -->
+                  <path d="M60,230 C120,210 180,180 220,170 L400,168" fill="none" stroke="rgba(255,210,122,.3)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="340" y="162" font-size="10" fill="var(--warn)" opacity=".7">„zidul" (mit)</text>
+
+                  <!-- Reality -->
+                  <path d="M60,230 C120,215 200,170 280,120 C340,85 380,68 400,58" fill="none" stroke="url(#sc1)" stroke-width="3" stroke-linecap="round"/>
+                  <text x="360" y="50" font-size="11" fill="var(--cyan)" font-weight="700">realitate</text>
+
+                  <text x="230" y="212" font-size="10" fill="var(--muted)">randamente descrescatoare, dar progres real</text>
+                </svg>
+              </div>
+              <div class="small" style="margin-top:8px">Graficul este conceptual — ilustreaza ideea ca progresul continua, dar nu la ritmul exponential asteptat de unii.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> E o pozitie echilibrata si onesta. Multi din industrie au promovat naratiunea „doar adauga compute" sau au cazut in extrema opusa „totul e un platou". Hassabis recunoaste ca drumul spre AGI necesita <b>descoperiri stiintifice noi</b>, nu doar inginerie.
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 4: Modele ale lumii ====== -->
+      <section class="row" id="worldSection">
+        <div class="card" aria-label="Modele ale lumii">
+          <div class="cardHeader">
+            <h2>Modele ale lumii: dincolo de text</h2>
+            <div class="chip"><b>Proiecte:</b> Genie + VO + Simma</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis este profund pasionat de <b>modelele lumii</b> — sisteme AI care inteleg cum functioneaza lumea fizica, nu doar cum suna cuvintele. Ideea: daca un model poate <b>genera</b> o lume realista, atunci inseamna ca a inteles mecanicile din spatele ei.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Genie — generare de lumi interactive</h3>
+                <p>Un model AI care creeaza lumi virtuale interactive in timp real. Tu actionezi, lumea reactioneaza — fizica, obiecte, interactiuni.</p>
+                <div class="meta">
+                  <span class="badge">lumi procedurale</span><span class="badge">fizica intuitiva</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--violet)">VO — modele video</h3>
+                <p>Genereaza video care respecta reflexii, lichide, lumina. Deja „surprinzator de precise" pentru ochiul uman, dar nu inca la nivel de experiment fizic riguros.</p>
+                <div class="meta">
+                  <span class="badge">reflexii</span><span class="badge">lichide</span><span class="badge">aproape realist</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">Simma — agenti in lumi simulate</h3>
+                <p>Agenti AI plasati in lumi virtuale complexe (inclusiv jocuri open-world ca No Man's Sky). Instructati prin limba naturala cu Gemini sub capota.</p>
+                <div class="meta">
+                  <span class="badge">navigare</span><span class="badge">instructiuni vocale</span><span class="badge">explorare</span>
+                </div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(255,179,138,.3)">
+                <h3 style="color:var(--orange)">Genie + Simma = bucla de antrenament infinita</h3>
+                <p>Experimentul fascinant: un agent Simma exploreaza o lume generata de Genie. Genie nu stie ca „jucatorul" e tot un AI. Rezultat: sarcini din ce in ce mai complexe, generate automat. Antrenament potential <b>nelimitat</b>.</p>
+                <div class="meta">
+                  <span class="badge">AI + AI</span><span class="badge">bucla auto-generata</span><span class="badge">dificultate progresiva</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea ca doua sisteme AI interactioneaza — unul creeaza lumea, celalalt o exploreaza — este o directie de cercetare profund interesanta. E un pas catre ce unii numesc „curriculum auto-generat", unde AI isi creeaza propriile provocari pentru a invata.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Fizica in simulari">
+          <div class="cardHeader">
+            <h2>Provocarea fizicii corecte in simulari</h2>
+            <div class="chip"><b>Problema:</b> halucinatii fizice</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Lumile generate arata bine, dar sunt ele <b>fizic corecte</b>? Hassabis recunoaste ca nu — inca. Construiesc un „benchmark de fizica" folosind motoare de joc (care simuleaza fizica precis) pentru a testa modelele.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Benchmark fizica">
+              <svg viewBox="0 0 440 260" role="img">
+                <defs>
+                  <filter id="sf2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#sf2)">
+                  <!-- Pendulum illustration -->
+                  <line x1="110" y1="30" x2="80" y2="130" stroke="rgba(122,215,255,.6)" stroke-width="2"/>
+                  <circle cx="80" cy="130" r="14" fill="rgba(122,215,255,.2)" stroke="rgba(122,215,255,.5)" stroke-width="1.5"/>
+                  <circle cx="110" cy="30" r="4" fill="rgba(255,255,255,.4)"/>
+                  <text x="110" y="165" font-size="11" fill="var(--cyan)" text-anchor="middle">Pendul simplu</text>
+
+                  <!-- Ball on ramp -->
+                  <line x1="240" y1="140" x2="340" y2="60" stroke="rgba(187,167,255,.5)" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="265" cy="124" r="10" fill="rgba(187,167,255,.2)" stroke="rgba(187,167,255,.5)" stroke-width="1.5"/>
+                  <text x="290" y="165" font-size="11" fill="var(--violet)" text-anchor="middle">Bila pe rampa</text>
+
+                  <!-- Arrow -->
+                  <text x="220" y="210" font-size="13" fill="var(--muted)" text-anchor="middle">Legile lui Newton</text>
+                  <text x="220" y="230" font-size="11" fill="var(--faint)" text-anchor="middle">Testare: modelele encapsuleaza corect fizica?</text>
+
+                  <!-- Status -->
+                  <rect x="50" y="235" width="340" height="20" rx="10" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+                  <rect x="50" y="235" width="220" height="20" rx="10" fill="linear-gradient(90deg, rgba(122,215,255,.3), rgba(255,210,122,.3))"/>
+                  <text x="220" y="250" font-size="10" fill="var(--text)" text-anchor="middle">~65% — realist vizual, dar nu precis fizic</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <details>
+              <summary><strong>Exemplu: reflexii si lichide</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Modelele video (VO) trateaza deja reflexiile si lichidele „surprinzator de precis" pentru ochiul uman. Dar un fizician ar observa diferente. Urmatorul pas: sa treaca de la „pare corect" la „<b>este</b> corect" — la nivel de experiment fizic riguros.</p>
+              </div>
+            </details>
+            <details>
+              <summary><strong>Halucinatii bune vs. rele</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Hassabis face o distinctie interesanta: uneori halucinatiile sunt <b>utile</b> — cand creezi ceva artistic sau explorator. Dar pentru fizica sau robotica, trebuie sa fie exact. Ideea: sa poti „porni" si „opri" creativitatea intentionat.</p>
+              </div>
+            </details>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e una dintre cele mai oneste recunoasteri din interviu: modelele genereaza lumi care <b>par</b> reale, dar nu <b>sunt</b> inca reale din punct de vedere fizic. Diferenta e cruciala pentru aplicatii precum robotica sau simulari stiintifice.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 5: Gemini 3 si inteligenta „zimtata" ====== -->
+      <section class="card" aria-label="Gemini si inteligenta zimtata">
+        <div class="cardHeader">
+          <h2>Gemini 3 si problema inteligentei „zimtate"</h2>
+          <div class="chip"><b>Paradox:</b> PhD la unele, liceu la altele</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Gemini 3 este cel mai avansat model Google. Dar chiar si el prezinta o problema fascinanta: <b>inteligenta „zimtata"</b> — performanta variaza enorm de la un domeniu la altul.
+              </p>
+
+              <div class="riskGrid" style="margin-top:12px">
+                <div class="risk">
+                  <div class="rTop"><strong>Olimpiada de Matematica</strong><span class="badge" style="color:var(--good)">excelent</span></div>
+                  <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+                  <p>Rezolva probleme la care doar cei mai buni studenti din lume reusesc.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Sah decent</strong><span class="badge" style="color:var(--bad)">slab</span></div>
+                  <div class="meter"><i style="width:25%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                  <p>Surprinzator: nu poate juca sah la un nivel bun, desi AlphaZero e suprauman la sah.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Generare imagini (Imagen)</strong><span class="badge" style="color:var(--good)">avansat</span></div>
+                  <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--violet),var(--cyan))"></i></div>
+                  <p>Intelege semantic imaginile, poate eticheta diagrame complexe si reda text precis.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Numarare litere in cuvinte</strong><span class="badge" style="color:var(--bad)">greseste</span></div>
+                  <div class="meter"><i style="width:20%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                  <p>Nu „vede" fiecare litera din cauza modului in care textul e tokenizat.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">De ce se intampla asta?</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Tokenizare imperfecta</h3>
+                  <p>Modelele nu „citesc" litera cu litera — comprima textul in „tokeni". Uneori pierd detalii fine (numar litere, format precis).</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Gandire insuficient directionata</h3>
+                  <p>Au sisteme de „gandire" la inferenta, dar nu verifica sistematic raspunsurile. E ca si cum cineva vorbeste fara sa se opreasca sa reflecteze.</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Lipsa scorului de incredere</h3>
+                  <p>AlphaFold da un scor de incredere fiecarei predictii. Modelele de limbaj inca nu fac asta la nivel de afirmatie intreaga — de aceea „par sigure" chiar cand gresesc.</p>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Hassabis sugereaza solutia: modelele trebuie sa se opreasca, sa-si revizuiasca raspunsul si sa spuna „nu stiu" cand e cazul. E simplu de zis, dar extrem de greu de implementat — inseamna sa construiesti <b>metacognitie</b> intr-un sistem artificial.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 6: Simulari si constiinta ====== -->
+      <section class="row">
+        <div class="card" aria-label="Simulari si origini">
+          <div class="cardHeader">
+            <h2>Simulari: reinventarea evolutiei si a stiintei</h2>
+            <div class="chip"><b>Experiment:</b> re-ruleaza evolutia</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Una din cele mai indraznete idei ale lui Hassabis: foloseste <b>simulari</b> pentru a intelege originea vietii, a constiintei si a dinamicilor sociale. Ruleaza evolutia de milioane de ori cu conditii initiale diferite si analizeaza rezultatele statistic.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Societati artificiale</h3>
+                <p>Inspirat de experimentele Santa Fe Institute: agenti simpli cu stimulente, lasati sa interactioneze mult timp, „inventeaza" spontan piete, banci, structuri sociale.</p>
+                <div class="meta"><span class="badge">emergenta</span><span class="badge">piete</span><span class="badge">cooperare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--violet)">Originea constiintei</h3>
+                <p>Hassabis crede ca teoria conform careia constiinta a aparut ca avantaj evolutiv (intelegerea starii interne a altora, apoi aplicata la sine) ar putea fi testata in simulari.</p>
+                <div class="meta"><span class="badge">teorie evolutiva</span><span class="badge">sandbox sigur</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">Simulari stiintifice</h3>
+                <p>Modele ale lumii specializate pentru vreme, materiale la nivel atomic, biologie — invata dinamicile din date brute si le recreeaza mai eficient decat simularea „brute force".</p>
+                <div class="meta"><span class="badge">vreme</span><span class="badge">materiale</span><span class="badge">biologie</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea de a „re-rula evolutia in simulator" e profunda filosofic. Daca reusesti, ai un instrument stiintific fara precedent: poti studia ce e inevitabil si ce e contingent in aparitia inteligentei, vietii, cooperarii. Desigur, mai e drum lung pana acolo.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Masina Turing si limita computabilului">
+          <div class="cardHeader">
+            <h2>Masina Turing: exista limite ale calculului?</h2>
+            <div class="chip"><b>Intrebare:</b> ce poate fi simulat?</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis descrie aceasta intrebare ca <b>pasiunea centrala a vietii sale</b>: exista ceva in univers pe care o masina Turing (un calculator clasic) nu-l poate simula?
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Diagrama Turing">
+              <svg viewBox="0 0 440 220" role="img">
+                <defs>
+                  <filter id="sf3" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#sf3)">
+                  <!-- Big circle: computable -->
+                  <circle cx="220" cy="115" r="95" fill="rgba(122,215,255,.06)" stroke="rgba(122,215,255,.3)" stroke-width="2"/>
+                  <text x="220" y="60" font-size="13" fill="var(--cyan)" text-anchor="middle" font-weight="700">Calculabil clasic</text>
+                  <text x="220" y="78" font-size="10" fill="var(--muted)" text-anchor="middle">Go, proteine, limbaj, fizica(?)...</text>
+
+                  <!-- Smaller circle: quantum? -->
+                  <circle cx="370" cy="115" r="50" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.3)" stroke-width="2" stroke-dasharray="5 3"/>
+                  <text x="370" y="108" font-size="11" fill="var(--violet)" text-anchor="middle">Cuantic?</text>
+                  <text x="370" y="124" font-size="9" fill="var(--muted)" text-anchor="middle">Penrose: constiinta?</text>
+
+                  <!-- Question mark -->
+                  <text x="310" y="120" font-size="24" fill="rgba(255,255,255,.3)" text-anchor="middle">?</text>
+
+                  <!-- Bottom text -->
+                  <text x="220" y="200" font-size="11" fill="var(--faint)" text-anchor="middle">Nimeni nu a gasit inca ceva non-calculabil in univers</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flowNode">
+              <h3>Pozitia lui Hassabis</h3>
+              <p>
+                „Nimeni nu a gasit inca ceva non-calculabil in univers." Lucreaza pe baza ipotezei ca <b>totul e calculabil clasic</b> — pana cand fizica va demonstra contrariul.
+                Roger Penrose crede ca exista efecte cuantice in creier care ar genera constiinta. Daca asa e, masinile clasice nu ar putea fi cu adevarat constiente.
+                Dar Hassabis „nu e convins" — si crede ca datele din sistemele cuantice ar putea fi folosite pentru simulari clasice.
+              </p>
+              <div class="meta">
+                <span class="badge">informatia = unitate fundamentala</span><span class="badge">biologie = procesare informatie</span>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este poate cea mai profunda afirmatie din tot interviul. Daca informatia e cu adevarat fundamentul universului (nu energia, nu materia), atunci un calculator universal ar putea, in principiu, simula orice. E o pozitie filozofica puternica, nu un fapt demonstrat — dar e coerenta cu tot ce DeepMind a realizat pana acum.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 7: Impact societal ====== -->
+      <section class="card" id="societySection" aria-label="Impact societal">
+        <div class="cardHeader">
+          <h2>Impactul asupra societatii: o revolutie industriala de 10 ori mai mare</h2>
+          <div class="chip"><b>Scala:</b> 10x mai mare, 10x mai rapida</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Hassabis compara tranzitia AI cu Revolutia Industriala, dar cu o diferenta cruciala: va fi <b>de 10 ori mai mare ca impact si de 10 ori mai rapida</b> — un deceniu in loc de un secol. Asta inseamna ca societatea trebuie sa se adapteze mult mai repede decat a facut-o vreodata.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3 style="color:var(--warn)">Lectii din Revolutia Industriala</h3>
+                  <p>A adus medicina moderna, transport, abundenta — dar a durat ~100 de ani si a creat dislocari masive ale fortei de munca. Sindicatele, legislatia muncii, educatia publica — toate au fost inventate ca raspuns.</p>
+                  <div class="meta"><span class="badge">~100 ani adaptare</span><span class="badge">textile → computere</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--bad)">Provocarea: viteza</h3>
+                  <p>Daca aceleasi transformari se intampla in 10 ani, nu 100, institutiile nu au timp sa se adapteze organic. E nevoie de pregatire <b>proactiva</b>, nu reactiva.</p>
+                  <div class="meta"><span class="badge">urgenta</span><span class="badge">institutii noi necesare</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">Idei pentru lumea post-AGI</h3>
+              <div class="checklist" id="societyChecklist">
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Venit universal de baza (UBI)</strong><em>partial</em></div>
+                    <div class="d">Un prim pas — dar Hassabis crede ca nu e suficient singur. E un „add-on" la sistemul actual.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Democratie directa cu credite</strong><em>experimental</em></div>
+                    <div class="d">Fiecare cetatean aloca „credite" pentru ce vrea: loc de joaca, teren de tenis, sala de clasa. Se masoara rezultatele si se ajusteaza influenta.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Energie post-raritate</strong><em>viziune</em></div>
+                    <div class="d">Daca fuziunea functioneaza: energie aproape gratuita → banii isi pierd din relevanta → noi modele economice devin posibile.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Scopul uman redefinit</strong><em>filozofic</em></div>
+                    <div class="d">Daca munca nu mai e necesara pentru supravietuire, ce ofera sens? Hassabis recunoaste ca asta e o intrebare filozofica profunda, nu doar economica.</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <input type="checkbox" />
+                  <div>
+                    <div class="t"><strong>Cooperare internationala</strong><em>critic</em></div>
+                    <div class="d">Hassabis e ingrijorat: institutiile existente sunt fragmentate si fara influenta. Tensiunile geopolitice fac colaborarea si mai dificila.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Cele mai interesante idei nu sunt cele tehnice (UBI), ci cele structurale: democratie directa cu feedback si ajustare, economie post-raritate. Sunt idei inca vagi, dar faptul ca liderul DeepMind gandeste la ele e un semn bun. Problema: <b>nimeni nu se misca suficient de repede</b> pe aceste teme.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 8: Bula AI si competitia ====== -->
+      <section class="row">
+        <div class="card" aria-label="Bula AI">
+          <div class="cardHeader">
+            <h2>Exista o bula AI? Raspunsul nuantat</h2>
+            <div class="chip"><b>Pozitie:</b> partial da, partial nu</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis nu raspunde simplu „da" sau „nu". El face distinctii: unele zone ale ecosistemului AI sunt <b>clar in bula</b>, altele au <b>baza solida</b>.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Startup-uri supraeval­uate</strong><span class="badge" style="color:var(--bad)">bula</span></div>
+                <div class="meter"><i style="width:80%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                <p>Runde seed de zeci de miliarde $ pentru startup-uri care inca nu au produs. Probabil nesustenabil.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Big Tech cu AI real</strong><span class="badge" style="color:var(--good)">solid</span></div>
+                <div class="meter"><i style="width:35%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+                <p>Google are Search, YouTube, Workspace — produse reale unde AI adauga valoare deja.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Hype pe termen scurt</strong><span class="badge" style="color:var(--warn)">supraevaluat</span></div>
+                <div class="meter"><i style="width:65%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                <p>AI e supraapreciat pe termen scurt — lumea asteapta prea mult, prea repede.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Impact pe termen lung</strong><span class="badge" style="color:var(--good)">subapreciat</span></div>
+                <div class="meter"><i style="width:20%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+                <p>Paradoxal, impactul real pe 10+ ani e inca <b>subestimat</b> de majoritatea oamenilor.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Formula lui Hassabis: „supraapreciat pe termen scurt, subapreciat pe termen lung" — o replica pe care o repeta de ani. E o pozitie inteleapta: nu neaga hype-ul, dar reaminteste ca transformarea reala abia incepe.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Competitie si responsabilitate">
+          <div class="cardHeader">
+            <h2>Competitia si responsabilitatea</h2>
+            <div class="chip"><b>Tensiune:</b> inovatie vs. siguranta</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis recunoaste o tensiune reala: competitia feroce (10x mai intensa decat era dotcom) face <b>dificila</b> cercetarea riguroasa si siguranta.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">Cursa armelor AI</h3>
+                <p>Companii si state concureaza sa depaseasca fiecare pe celalalt. Prietenii investitori ai lui Hassabis spun ca e „de 10 ori mai intens decat era dotcom".</p>
+                <div class="meta"><span class="badge">competitie globala</span><span class="badge">presiune comerciala</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">Piata ca reglator</h3>
+                <p>Vestea buna: companiile care vand agenti AI intreprinderilor trebuie sa fie fiabile. Cele „nesabuite" nu vor primi contracte. Capitalismul ajuta, in acest caz, sa impuna responsabilitate.</p>
+                <div class="meta"><span class="badge">cerere de siguranta</span><span class="badge">presiune comerciala pozitiva</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Actori rau intentionati</h3>
+                <p>Dar vor exista state necinstite, organizatii rogue si oameni care construiesc pe modele open-source fara restrictii. Hassabis se teme de un „semnal de alarma" care sa trezeasca omenirea.</p>
+                <div class="meta"><span class="badge">risc open-source</span><span class="badge">necesita cooperare</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flowNode" style="border-color:rgba(122,215,255,.3)">
+              <h3 style="color:var(--cyan)">Urmatoarea faza de risc: agentii autonomi</h3>
+              <p>Hassabis e „destul de ingrijorat" de sistemele bazate pe agenti care vor aparea in 2-3 ani. Vor fi mult mai autonome decat chatbot-urile pasive de astazi. DeepMind lucreaza deja la <b>aparare cibernetica</b> pentru o lume cu milioane de agenti pe internet.</p>
+              <div class="meta"><span class="badge">agenti autonomi</span><span class="badge">aparare cibernetica</span><span class="badge">2-3 ani</span></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E remarcabil ca Hassabis numeste explicit agentii autonomi ca sursa principala de risc pe termen scurt. Nu e vorba de scenarii sci-fi, ci de milioane de programe autonome pe internet care pot actiona fara supraveghere umana directa.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 9: Personalitatea AI ====== -->
+      <section class="card" aria-label="Personalitatea AI">
+        <div class="cardHeader">
+          <h2>Personalitatea AI: intre sicopantie si adevar</h2>
+          <div class="chip"><b>Echilibru:</b> util dar onest</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Hassabis avertizeaza impotriva AI-ului care doar iti da dreptate — „camera de ecou pentru una singura persoana". A lucrat personal la <b>personalitatea Gemini 3</b>: calda, utila, succinta, dar pregatita sa contrazica politicos cand ceva nu are sens.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Personalitate de baza stiintifica</h3>
+                  <p>Toti utilizatorii primesc aceeasi baza: aderenta la metoda stiintifica, onestitate, dispozitie sa corecteze informatii gresite (ex: „Pamantul e plat" → respingere politicoasa).</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Personalizare pe deasupra</h3>
+                  <p>Peste baza stiintifica, utilizatorul poate alege: mai mult umor, mai putina verbozitate, ton diferit — dar nucleul ramane onest.</p>
+                  <div class="meta"><span class="badge">umor</span><span class="badge">concizie</span><span class="badge">stil</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">Simulatorul: cat de „stiintifica" e personalitatea?</h3>
+              <div class="control">
+                <label>
+                  <span>Sicopantie</span>
+                  <span class="readout" id="sycReadout">20%</span>
+                </label>
+                <input id="sycSlider" type="range" min="0" max="100" value="20" />
+                <div class="small" style="margin-top:8px">0% = contrazice mereu &bull; 100% = da dreptate mereu</div>
+              </div>
+              <div class="control" style="margin-top:10px">
+                <label>
+                  <span>Creativitate</span>
+                  <span class="readout" id="creatReadout">50%</span>
+                </label>
+                <input id="creatSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">0% = strict factual &bull; 100% = foarte creativ (risc halucinatii)</div>
+              </div>
+              <div id="personalityResult" style="margin-top:12px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(0,0,0,.18);font-size:13px;color:var(--muted);min-height:60px">
+                Mutati glisorele pentru a vedea cum se comporta un AI cu diferite setari de personalitate.
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Ideea unei „stiinte a personalitatii AI" e fascinanta si necesara. Daca miliarde de oameni vor interactiona zilnic cu AI, personalitatea implicita a acestuia devine o <b>infrastructura culturala</b> — nu doar o setare tehnica.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 10: Asistent universal + jocuri ====== -->
+      <section class="row">
+        <div class="card" aria-label="Asistentul universal">
+          <div class="cardHeader">
+            <h2>Visul asistentului universal</h2>
+            <div class="chip"><b>Viziune:</b> protejeaza atentia</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis viseaza la un asistent AI care nu doar raspunde la intrebari, ci <b>protejeaza spatiul mental</b> al utilizatorului: filtreaza zgomotul, te ajuta sa ramai in „flow", te protejeaza de supraincarcare informatica — exact opusul a ce face social media acum.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Asistent pe telefon / ochelari</strong><span class="badge">fizic</span></div>
+                <p>Te insoteste in viata reala, nu doar pe computer. Are nevoie de intelegere spatiala — de aceea modelele lumii sunt esentiale.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Filtru anti-zgomot</strong><span class="badge">atentie</span></div>
+                <p>In loc sa adauge notificari, AI-ul ideal le reduce. Protejeaza concentrarea si iti permite sa fii prezent.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E o viziune neobisnuit de umana pentru un lider tech: AI-ul ca <b>gardian al atentiei</b>, nu ca alt canal de distragere. Intrebarea e daca modelul de business (bazat pe engagement) permite cu adevarat acest lucru.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Jocuri si NPC-uri">
+          <div class="cardHeader">
+            <h2>Jocuri: sfarsitul NPC-urilor plictisitoare</h2>
+            <div class="chip"><b>Pasiune:</b> game design</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis a inceput cariera ca designer de jocuri (Theme Park, Black & White). Recunoaste ca <b>scopul subConstient</b> al intregii sale munci pe AI a fost mereu sa creeze jocuri ultime: lumi generate de AI cu personaje inteligente.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--orange)">NPC-uri cu Gemini</h3>
+                <p>Personajele din jocuri (NPCs) nu mai urmeaza scripturi fixe — pot conversa natural, reactiona la situatii noi si se adapta comportamentului jucatorului.</p>
+                <div class="meta"><span class="badge">dialog natural</span><span class="badge">adaptiv</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Lumi generate procedural de AI</h3>
+                <p>In loc de harti create manual, AI-ul genereaza lumi intregi cu fizica, ecologie si povesti — la infinit.</p>
+                <div class="meta"><span class="badge">Genie</span><span class="badge">lumi infinite</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E un detaliu personal revelator: toate acestea — DeepMind, AlphaGo, AGI — au inceput din pasiunea lui Hassabis pentru jocuri video. Si s-ar putea incheia tot acolo: jocuri cu inteligenta artificiala generala.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 11: Reflectii personale ====== -->
+      <section class="card" aria-label="Reflectii personale">
+        <div class="cardHeader">
+          <h2>Reflectii personale: greutatea emotionala a frontierei</h2>
+          <div class="chip"><b>Uman:</b> entuziasm si insomnie</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Hassabis vorbeste deschis despre <b>costul personal</b> al conducerii celei mai avansate cercetari AI din lume. Emotiile sunt complexe si contradictorii.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3 style="color:var(--good)">Entuziasmul descoperirii</h3>
+                  <p>„Fac tot ce am visat vreodata. Suntem la frontiera absoluta a stiintei, si descoperirile se intampla aproape lunar."</p>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--bad)">Povara responsabilitatii</h3>
+                  <p>„Nu dorm mult — partial din cauza volumului de munca, partial pentru ca am probleme cu somnul. Enormitatea a ceea ce vine e greu de procesat emotional."</p>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--warn)">Amestec dulce-amar</h3>
+                  <p>Chiar si AlphaGo a fost „bittersweet" — Go era un mister frumos, iar rezolvarea lui a schimbat acel mister. La fel cu creativitatea: instrumentele noi sunt uimitoare, dar inlocuiesc ele ceva uman?</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">Cum face fata?</h3>
+              <div class="flowNode">
+                <h3>Antrenament de o viata</h3>
+                <p>Hassabis spune ca s-a pregatit toata viata pentru acest moment: sah competitiv, jocuri, neurostiinta, AI. „E <b>aproximativ</b> ce mi-am imaginat."</p>
+                <div class="meta"><span class="badge">sah</span><span class="badge">neurostiinta</span><span class="badge">game design</span></div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="flowNode">
+                <h3>Misiunea</h3>
+                <p>„Sa ajut omenirea sa traverseze AGI in siguranta." Dupa care — un sabatical binemeritat. Poate.</p>
+                <div class="meta"><span class="badge">AGI in siguranta</span><span class="badge">colaborare</span><span class="badge">misiune de viata</span></div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Raritatea cu care liderii tech vorbesc deschis despre insomnie, emotii ambivalente si greutatea psihologica a muncii lor face aceasta portiune deosebit de valoroasa. Arata ca in spatele progresului exponential exista oameni cu limite umane.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION 12: Teza finala ====== -->
+      <section class="card" aria-label="Teza finala">
+        <div class="cardHeader">
+          <h2>Teza centrala: informatia ca fundament al universului</h2>
+          <div class="chip"><b>Filozofie:</b> totul e informatie</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Ce crede Hassabis</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Unitatea fundamentala a universului nu e energia, nu e materia — e <b>informatia</b>. Biologia e un sistem de procesare a informatiei (de aceea AlphaFold functioneaza). Fizica, constiinta, tot — ar putea fi, in final, informatie sub forme diferite.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Ce inseamna practic</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Daca totul e informatie, atunci totul poate fi simulat. Daca totul poate fi simulat, atunci AI-ul nu are limita teoretica. De aceea Hassabis construieste DeepMind: sa gaseasca (sau sa demonstreze ca nu exista) <b>limita masinii Turing</b>.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Calea de la AlphaFold la vindecarea bolilor</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Prin Isomorphic Labs, Hassabis aplica aceeasi logica: daca biologia e procesare de informatie, atunci poti modela <b>orice boala</b> ca problema de informatie si poti gasi solutii cu AI. E o viziune ambitioasa, dar AlphaFold a demonstrat deja ca functioneaza la scara.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Convergenta finala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Hassabis descrie un viitor in care Gemini, Genie, Simma, modelele de imagini si cele de video <b>converg intr-un singur model</b> — un candidat pentru proto-AGI. Nu mai sunt proiecte separate, ci piese ale aceluiasi puzzle.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala asupra intregului interviu</strong><span class="hint">apasa pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Ceea ce face acest interviu remarcabil nu sunt predictiile tehnice (multi lideri AI fac predictii similare), ci <b>coerenta filozofica</b>: de la pasiunea pentru masina Turing din tinerete, la AlphaGo, la AlphaFold, la modele ale lumii, la visul de a simula tot universul — totul e legat printr-o singura intrebare: „Ce poate fi calculat?"
+              </p>
+              <p style="margin-top:8px">
+                Daca Hassabis are dreptate — ca informatia e fundamentul a tot — atunci AGI nu e doar un produs tehnologic, ci un instrument pentru a intelege <b>natura realitatii insasi</b>. Si asta e, poate, cel mai ambitios proiect din istoria umana.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Afiseaza / ascunde comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata aceasta pagina, casetele albastre marcate cu <b>Comentariu</b> ofera <b>analiza critica</b>: cat de puternica e afirmatia? Ce alternative exista? Ce lipseste din argument?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa butonul „Afiseaza / ascunde comentariul" din antet pentru a le ascunde — vezi doar ce spune Hassabis, fara interpretare.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si responsabilitate:</b> Acest infografic interactiv a fost generat pentru a traduce vizual o conversatie intre Demis Hassabis si Prof. Hannah Fry (Google DeepMind Podcast, final de sezon 2025).
+        Nu constituie sfat profesional. Vizualizarile, simulatoarele si comentariile sunt instrumente conceptuale pentru a intelege ideile prezentate, nu inlocuitori pentru cercetare primara.
+      </p>
+      <p style="margin-top:10px">
+        Traducere si adaptare in limba romana cu explicatii simplificate. Sursa originala: Google DeepMind Podcast.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpRoadmap').addEventListener('click', () => {
+      document.getElementById('roadmapSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpWorld').addEventListener('click', () => {
+      document.getElementById('worldSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpSociety').addEventListener('click', () => {
+      document.getElementById('societySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Personality simulator
+    // ──────────────────────────────────────────────────────
+    const sycSlider = document.getElementById('sycSlider');
+    const creatSlider = document.getElementById('creatSlider');
+    const sycReadout = document.getElementById('sycReadout');
+    const creatReadout = document.getElementById('creatReadout');
+    const personalityResult = document.getElementById('personalityResult');
+
+    function updatePersonality() {
+      const syc = parseInt(sycSlider.value);
+      const creat = parseInt(creatSlider.value);
+      sycReadout.textContent = syc + '%';
+      creatReadout.textContent = creat + '%';
+
+      let msg = '';
+      if (syc < 30 && creat < 30) {
+        msg = '<b>Critic strict:</b> Contrazice frecvent, foarte factual. Util pentru verificarea stiintifica, dar poate fi perceput ca ostil de utilizatorii obisnuiti.';
+      } else if (syc < 30 && creat >= 60) {
+        msg = '<b>Provocator creativ:</b> Genereaza idei originale dar contrazice cand e cazul. Ideal pentru brainstorming cu feedback onest.';
+      } else if (syc >= 70 && creat < 30) {
+        msg = '<b>Validare seaca:</b> Da mereu dreptate, dar fara creativitate. Risc mare de „camera de ecou" — exact ce Hassabis avertizeaza sa evitam.';
+      } else if (syc >= 70 && creat >= 60) {
+        msg = '<b>Halucinatie placuta:</b> Inventeaza si confirma tot ce spui. Cel mai periculos mod — pare util, dar poate induce grav in eroare.';
+      } else if (syc >= 40 && syc <= 60 && creat >= 40 && creat <= 60) {
+        msg = '<b>Echilibru Gemini 3:</b> Zona tintita de Hassabis — cald, util, onest, creativ dar ancorat in realitate. Contrazice politicos cand e necesar.';
+      } else if (syc >= 40 && syc < 70) {
+        msg = '<b>Suportiv dar sincer:</b> Ajuta cu idei si e prietenos, dar corecteza informatiile gresite. Bun echilibru pentru utilizare zilnica.';
+      } else {
+        msg = '<b>Zona mixta:</b> Un echilibru intre conformism si factualitate. Calitatea depinde de contextul folosirii.';
+      }
+      personalityResult.innerHTML = msg;
+    }
+
+    sycSlider.addEventListener('input', updatePersonality);
+    creatSlider.addEventListener('input', updatePersonality);
+    updatePersonality();
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

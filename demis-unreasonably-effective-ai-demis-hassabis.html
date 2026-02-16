@@ -1,0 +1,1522 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IA Nerezonabil de Eficientă — Demis Hassabis · Infografic Interactiv</title>
+  <meta name="description" content="Infografic interactiv despre viziunea lui Demis Hassabis asupra IA: de la Gemini și AGI la siguranță, știință și viitorul umanității." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:0;position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet),var(--orange));border-radius:2px;opacity:.5}
+    .tNode{position:relative;padding:10px 0}
+    .tNode::before{content:'';position:absolute;left:-22px;top:14px;width:10px;height:10px;border-radius:99px;background:var(--cyan);border:2px solid rgba(0,0,0,.4);box-shadow:0 0 12px rgba(122,215,255,.3)}
+    .tNode h4{margin:0 0 4px;font-size:13px}
+    .tNode p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Progress bar */
+    .progressBar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:8px}
+    .progressBar > i{display:block;height:100%;border-radius:99px;transition:width .4s ease}
+
+    /* Expandable sections */
+    .expandGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    @media (max-width: 860px){.expandGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width: 560px){.expandGrid{grid-template-columns:1fr}}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Neural network / brain-like abstract art -->
+            <circle cx="260" cy="110" r="50" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".5"/>
+            <circle cx="260" cy="110" r="30" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".6"/>
+            <circle cx="260" cy="110" r="8" fill="rgba(122,215,255,.6)"/>
+            <!-- Orbiting nodes -->
+            <circle cx="160" cy="70" r="6" fill="rgba(187,167,255,.55)"/>
+            <circle cx="360" cy="70" r="5" fill="rgba(255,179,138,.5)"/>
+            <circle cx="160" cy="150" r="5" fill="rgba(117,240,182,.5)"/>
+            <circle cx="360" cy="150" r="6" fill="rgba(122,215,255,.45)"/>
+            <circle cx="210" cy="40" r="4" fill="rgba(255,255,255,.4)"/>
+            <circle cx="310" cy="180" r="4" fill="rgba(255,255,255,.35)"/>
+            <!-- Connection lines -->
+            <path d="M160,70 Q210,90 260,110" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".4" stroke-linecap="round"/>
+            <path d="M360,70 Q310,90 260,110" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".4" stroke-linecap="round"/>
+            <path d="M160,150 Q210,130 260,110" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".35" stroke-linecap="round"/>
+            <path d="M360,150 Q310,130 260,110" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".35" stroke-linecap="round"/>
+            <path d="M210,40 Q235,75 260,110" fill="none" stroke="url(#g1)" stroke-width="1.5" opacity=".3" stroke-linecap="round"/>
+            <path d="M310,180 Q285,145 260,110" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity=".3" stroke-linecap="round"/>
+            <!-- Expanding wave -->
+            <path d="M80,110 C130,30 200,190 260,110 C320,30 390,190 440,110" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".25" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> inteligenta artificiala &bull; gemini &bull; agi &bull; siguranta</div>
+          <h1>IA Nerezonabil de Eficienta: Viziunea lui Demis Hassabis</h1>
+          <p class="subtitle">
+            Demis Hassabis, cofondatorul DeepMind si CEO-ul Google DeepMind, explica de ce modelele actuale de IA au depasit orice asteptare,
+            cum Gemini redefineste interactiunea om-masina si de ce ne aflam la o distanta surprinzator de mica de inteligenta generala artificiala (AGI).
+            Un ghid complet, pe intelesul tuturor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpTimeline">Cronologia spre AGI</button>
+            <button class="btn" id="jumpSafety">Siguranta IA</button>
+            <button class="btn" id="jumpScience">IA in stiinta</button>
+            <button class="btn" id="toggleNotes">Comutare comentarii</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Ideea centrala</div>
+            <div class="value" style="color:var(--cyan)">Nerezonabil de eficient</div>
+            <div class="note">Modelele de limbaj au invatat concepte si abstractiuni fara a fi proiectate explicit pentru asta.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Modelul central</div>
+            <div class="value" style="color:var(--violet)">Gemini</div>
+            <div class="note">Primul model nativ multimodal: text, imagine, audio, video, cod.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Orizont AGI</div>
+            <div class="value" style="color:var(--orange)">~2030</div>
+            <div class="note">Proiect de 20 de ani, lansat in 2010. Hassabis spune: suntem pe drumul cel bun.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Aplicatii stiintifice</div>
+            <div class="value" style="color:var(--good)">AlphaFold 3 + medicamente</div>
+            <div class="note">Prezicerea structurii tuturor moleculelor din corpul uman. Isomorphic Labs pentru noi tratamente.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- CARD 1: Unreasonably Effective -->
+      <section class="card" aria-label="IA nerezonabil de eficienta">
+        <div class="cardHeader">
+          <h2>Ce inseamna ca IA e „nerezonabil de eficienta"?</h2>
+          <div class="chip"><b>Concept cheie:</b> emergenta</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Acum 5-10 ani, cercetatorii se asteptau ca pentru a obtine <b>intelegere conceptuala</b> si <b>abstractiuni</b>,
+                ar fi nevoie de arhitecturi speciale. Nimeni nu credea ca un model antrenat doar pe text ar putea „intelege" lumea reala.
+              </p>
+              <p class="muted">
+                Si totusi, dandu-le suficiente date (practic tot internetul), aceste sisteme au invatat sa generalizeze,
+                nu doar sa memoreze. Hassabis numeste asta <b>„nerezonabil de eficient"</b> - a mers mult mai bine decat ar fi prezis oricine.
+              </p>
+              <p class="muted">
+                Pe scurt: nimeni nu a proiectat explicit „intelegerea". Ea a <b>aparut de la sine</b> (emergenta) cand modelele au primit suficient de multe date si putere de calcul.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Ce a aparut neasteptat">
+                <div class="small" style="margin-bottom:10px">Proprietati emergente neasteptate ale modelelor mari de limbaj:</div>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>Intelegerea conceptuala</h3>
+                    <p>Modelele capteaza concepte abstracte precum cauzalitatea, ironia sau analogia, fara a fi programate explicit.</p>
+                    <div class="meta"><span class="badge">emergent</span><span class="badge">neasteptat</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Fundamentare in real (Grounding)</h3>
+                    <p>Desi nu au corp fizic, modelele au invatat ca nu poti „merge peste Canalul Manecii" - cunostinte despre lumea reala, doar din text.</p>
+                    <div class="meta"><span class="badge">grounding</span><span class="badge">din feedback uman</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Utilitate practica imediata</h3>
+                    <p>Chiar si cu defecte (halucinatii, erori), oamenii au gasit rapid utilizari valoroase: sumarizare, scriere de emailuri, completare formulare.</p>
+                    <div class="meta"><span class="badge">surpriza</span><span class="badge">adoptie rapida</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Termenul „nerezonabil de eficient" este o aluzie la celebrul eseu al fizicianului Eugene Wigner.
+            Ideea e profunda: nu avem inca o explicatie completa pentru <i>de ce</i> modelele mari functioneaza atat de bine.
+            E un succes empiric care depaseste intelegerea noastra teoretica - exact genul de situatie care sugereaza ca exista ceva fundamental de descoperit.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 2: Grounding Problem -->
+      <section class="row">
+        <div class="card" aria-label="Problema fundamentarii">
+          <div class="cardHeader">
+            <h2>Problema „fundamentarii" (Grounding)</h2>
+            <div class="chip">de la simbol la realitate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In anii '80-'90, cercetatorii de la MIT construiau sisteme IA bazate pe logica si baze de date: „un caine are picioare".
+              Dar cand ii aratai o <b>poza cu un caine</b>, sistemul nu facea legatura. Asta e <b>problema fundamentarii</b>:
+              cum conectezi cuvintele abstracte de realitatea concreta?
+            </p>
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 500 200" role="img" aria-label="Diagrama grounding">
+                <defs>
+                  <linearGradient id="grd1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="20" y="40" width="140" height="60" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)"/>
+                <text x="90" y="70" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="700">Simboluri</text>
+                <text x="90" y="88" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">„caine = 4 picioare"</text>
+
+                <rect x="340" y="40" width="140" height="60" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)"/>
+                <text x="410" y="70" text-anchor="middle" font-size="13" fill="var(--orange)" font-weight="700">Lumea reala</text>
+                <text x="410" y="88" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">pixeli, sunete, senzatii</text>
+
+                <path d="M160,70 L340,70" stroke="url(#grd1)" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
+                <text x="250" y="62" text-anchor="middle" font-size="11" fill="var(--bad)">decalaj</text>
+
+                <rect x="130" y="130" width="240" height="55" rx="14" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.2)"/>
+                <text x="250" y="155" text-anchor="middle" font-size="12" fill="var(--good)" font-weight="700">Modelele moderne: invata direct din date</text>
+                <text x="250" y="172" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">+ feedback uman aduce cunostinte din lumea reala</text>
+
+                <path d="M90,100 Q90,140 140,155" stroke="rgba(122,215,255,.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M410,100 Q410,140 365,155" stroke="rgba(255,179,138,.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="muted">
+              <b>Surpriza:</b> Modelele actuale au invatat lucruri despre lumea fizica <b>doar din text</b>.
+              O parte din „grounding" vine din feedbackul uman: cand un om ii spune modelului ca raspunsul e gresit,
+              cunostintele omului despre lumea reala se „infiltreaza" in model.
+            </p>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este una dintre cele mai fascinante intrebari deschise in IA.
+              Daca modelele pot obtine o forma de intelegere a lumii doar din text, ce ne spune asta despre natura limbajului?
+              Posibil ca limbajul codifica mult mai multa informatie despre realitate decat am crezut.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Hype versus realitate">
+          <div class="cardHeader">
+            <h2>Hype: supraevaluat sau subevaluat?</h2>
+            <div class="chip"><b>Raspuns:</b> ambele!</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis ofera un raspuns nuantat: IA este <b>supraevaluata pe termen scurt</b> si <b>subevaluata pe termen lung</b>.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--bad)">Pe termen scurt: supraevaluat</strong><span class="badge">acum</span></div>
+                <div class="meter"><i style="width:75%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                <p>Multe startup-uri si fonduri de investitii urmaresc idei care pur si simplu nu sunt inca posibile. Multi „experti" in IA au venit din cripto anul trecut.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--good)">Pe termen lung: subevaluat</strong><span class="badge">AGI</span></div>
+                <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+                <p>Lumea inca nu a inteles cat de enorm va fi impactul AGI. Responsabilitatea care vine cu aceasta tehnologie e inca subestimata.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <div class="small" style="margin-bottom:8px">Cum sa deosebesti hype-ul de realitate (dupa Hassabis):</div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Verifica competenta tehnica</h3>
+                  <p>Cat de profunda e experienta echipei? Sunt cercetatori cu ani de experienta in domeniu sau sunt veniti recent din alta industrie?</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Evalueaza trendurile reale</h3>
+                  <p>Intelege ce poate si ce NU poate face tehnologia curenta. Planificarea pe termen lung si agentia inca nu functioneaza bine.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta perspectiva „dubla" e valoroasa. Investitorii si publicul tind sa oscileze intre euforie si dezamagire.
+              Hassabis sugereaza sa ignori zgomotul de pe termen scurt si sa te concentrezi pe <i>traiectoria</i> pe termen lung - care e remarcabila.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 3: Gemini -->
+      <section class="card" aria-label="Gemini">
+        <div class="cardHeader">
+          <h2>Gemini: modelul nativ multimodal</h2>
+          <div class="chip"><b>Inovatie:</b> text + imagine + audio + video + cod</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Gemini a fost construit de la inceput sa inteleaga <b>mai multe tipuri de informatii simultan</b>:
+                text, imagini, sunet, video si cod. Alte modele au adaugat aceste capabilitati ulterior - Gemini le-a avut din prima zi.
+              </p>
+              <p class="muted">De ce conteaza? Daca vrei un asistent digital care sa te inteleaga cu adevarat, trebuie sa perceapa nu doar ce scrii, ci si ce vezi, ce auzi si in ce context te afli.</p>
+
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode">
+                  <h3>Memorie de lung context</h3>
+                  <p>Poate tine in minte 1-2 milioane de „tokeni" (echivalentul a sute de mii de cuvinte). Poti sa ii dai o carte intreaga sau un film si sa pui intrebari despre continut.</p>
+                  <div class="meta"><span class="badge">1M+ tokeni</span><span class="badge">carti intregi</span><span class="badge">filme</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Project Astra: asistentul universal</h3>
+                  <p>Un prototip de agent IA care poate procesa video si audio in timp real. Exemplu: te poate ajuta sa iti gasesti ochelarii uitati, analizand ce vede camera.</p>
+                  <div class="meta"><span class="badge">agent universal</span><span class="badge">context real</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 460 380" role="img" aria-label="Comparatie modele IA">
+                  <defs>
+                    <linearGradient id="gmBar" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(122,215,255,.7)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.7)"/>
+                    </linearGradient>
+                  </defs>
+                  <text x="20" y="24" font-size="14" fill="rgba(255,255,255,.88)" font-weight="700">Peisajul modelelor de frontiera</text>
+                  <text x="20" y="44" font-size="11" fill="rgba(255,255,255,.55)">(Evaluarea lui Hassabis, simplificata)</text>
+
+                  <!-- Gemini -->
+                  <rect x="20" y="70" width="420" height="70" rx="14" fill="rgba(122,215,255,.06)" stroke="rgba(122,215,255,.2)"/>
+                  <text x="36" y="94" font-size="14" fill="var(--cyan)" font-weight="700">Gemini (Google DeepMind)</text>
+                  <text x="36" y="114" font-size="11" fill="rgba(255,255,255,.6)">Cel mai bun la: multimodal, memorie lunga, intelegere video</text>
+                  <rect x="36" y="124" width="280" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+                  <rect x="36" y="124" width="250" height="6" rx="3" fill="url(#gmBar)"/>
+
+                  <!-- GPT -->
+                  <rect x="20" y="155" width="420" height="70" rx="14" fill="rgba(117,240,182,.05)" stroke="rgba(117,240,182,.15)"/>
+                  <text x="36" y="179" font-size="14" fill="var(--good)" font-weight="700">GPT (OpenAI)</text>
+                  <text x="36" y="199" font-size="11" fill="rgba(255,255,255,.6)">Cel mai bun la: rationament, rezolvarea problemelor</text>
+                  <rect x="36" y="209" width="280" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+                  <rect x="36" y="209" width="240" height="6" rx="3" fill="rgba(117,240,182,.5)"/>
+
+                  <!-- Claude -->
+                  <rect x="20" y="240" width="420" height="70" rx="14" fill="rgba(187,167,255,.05)" stroke="rgba(187,167,255,.15)"/>
+                  <text x="36" y="264" font-size="14" fill="var(--violet)" font-weight="700">Claude (Anthropic)</text>
+                  <text x="36" y="284" font-size="11" fill="rgba(255,255,255,.6)">Cel mai bun la: programare (cod), claritate in scriere</text>
+                  <rect x="36" y="294" width="280" height="6" rx="3" fill="rgba(255,255,255,.08)"/>
+                  <rect x="36" y="294" width="235" height="6" rx="3" fill="rgba(187,167,255,.5)"/>
+
+                  <!-- Others -->
+                  <rect x="20" y="325" width="420" height="40" rx="14" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)"/>
+                  <text x="36" y="350" font-size="12" fill="rgba(255,255,255,.5)">+ Meta (Llama), Mistral si altele — fiecare cu puncte forte proprii</text>
+                </svg>
+                <div class="small" style="margin-top:8px">Nota: pozitionarea e simplificata. Toti se imbunatatesc constant - clasamentele se schimba rapid.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Hassabis recunoaste deschis ca Gemini nu e cel mai bun la <i>toate</i> sarcinile - e sincer despre punctele forte ale competitorilor.
+            Dar subliniaza ca traiectoria Gemini e foarte buna, avand in vedere ca proiectul a existat doar de un an la momentul interviului.
+            Multimodalitatea nativa e avantajul strategic pe termen lung.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 4: Google DeepMind merger + limitations -->
+      <section class="row">
+        <div class="card" aria-label="Fuziunea Google DeepMind">
+          <div class="cardHeader">
+            <h2>Nasterea Google DeepMind</h2>
+            <div class="chip">doua echipe → o forta unita</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In 2023, Google a combinat doua laboratoare legendare: <b>DeepMind</b> (celebru pentru AlphaGo, AlphaFold) si <b>Google Brain</b> (care a inventat arhitectura Transformer).
+              Rezultatul: o „super-unitate" care e acum <b>motorul central al Google</b>.
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 500 180" role="img" aria-label="Fuziunea celor doua laboratoare">
+                <defs>
+                  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#softGlow)">
+                  <rect x="20" y="30" width="170" height="70" rx="16" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.25)"/>
+                  <text x="105" y="60" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="700">DeepMind</text>
+                  <text x="105" y="78" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">AlphaGo, AlphaFold, RL</text>
+
+                  <rect x="310" y="30" width="170" height="70" rx="16" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.25)"/>
+                  <text x="395" y="60" text-anchor="middle" font-size="13" fill="var(--violet)" font-weight="700">Google Brain</text>
+                  <text x="395" y="78" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">Transformer, LLM-uri</text>
+
+                  <path d="M190,65 L310,65" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="250" y="58" text-anchor="middle" font-size="18" fill="rgba(255,255,255,.4)">+</text>
+
+                  <rect x="120" y="120" width="260" height="50" rx="16" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.25)"/>
+                  <text x="250" y="148" text-anchor="middle" font-size="14" fill="var(--good)" font-weight="700">Google DeepMind</text>
+                  <text x="250" y="163" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">„motorul central al Google" — Gemini, stiinta, AGI</text>
+
+                  <path d="M105,100 Q105,120 180,130" stroke="rgba(122,215,255,.2)" stroke-width="1.5" fill="none"/>
+                  <path d="M395,100 Q395,120 320,130" stroke="rgba(187,167,255,.2)" stroke-width="1.5" fill="none"/>
+                </g>
+              </svg>
+            </div>
+
+            <p class="muted">
+              <b>De ce conteaza?</b> Acum exista 90% convergenta intre cercetarea pentru produse comerciale si cercetarea pentru AGI.
+              Ce inveti facand un produs ajunge direct in cercetarea fundamentala, si invers.
+            </p>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta fuziune e un semnal strategic masiv. Google pariaza ca IA e viitorul companiei.
+              Riscul e ca presiunea comerciala sa dilueze cercetarea fundamentala - dar Hassabis insista ca AlphaFold si alte proiecte stiintifice continua.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce inca nu poate face IA">
+          <div class="cardHeader">
+            <h2>Ce inca NU poate face IA actuala</h2>
+            <div class="chip"><b>Limitari:</b> planificare, actiune, halucinatii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In ciuda progresului uimitor, Hassabis subliniaza ca modelele actuale au <b>limitari serioase</b>. Le lipsesc capabilitati esentiale pe care le asteptam de la o inteligenta generala.
+            </p>
+
+            <div class="checklist" id="limitChecklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Halucinatii (fabulatii)</strong><em>erori factuale</em></div>
+                  <div class="d">Modelele „inventeaza" informatii cu incredere. Nu au un mecanism intern robust de verificare a faptelor - uneori raspund convingator dar gresit.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Planificare pe termen lung</strong><em>nu stie sa faca pasi</em></div>
+                  <div class="d">Nu pot rezolva probleme complexe care necesita mai multi pasi logici consecutivi. Exemplu: „Rezerva-mi o vacanta completa in Italia" - inca nu poate face asta de la cap la coada.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Actiune in lumea reala</strong><em>sisteme pasive</em></div>
+                  <div class="d">Modelele actuale sunt ca niste oracole: raspund la intrebari dar nu pot actiona. Nu pot rezerva bilete, trimite emailuri sau interactiona cu alte sisteme fara ajutor.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Model al lumii reale</strong><em>intelegere superficiala</em></div>
+                  <div class="d">Nu au un model intern complet al lumii fizice. Inteleg multe lucruri din text, dar le lipseste experienta directa (embodiment).</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Bifeaza limitarile pe care le-ai observat personal in interactiunile tale cu modele IA.</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E important sa tinem cont de aceste limitari. Hassabis spune ca urmatoarea era va fi cea a <b>sistemelor agentice</b> -
+              combinand planificarea de tip AlphaGo cu modelele multimodale de tip Gemini. Aceasta ar putea rezolva mai multe dintre aceste probleme.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 5: Agentic AI - AlphaGo + Gemini -->
+      <section class="card" aria-label="IA agentica">
+        <div class="cardHeader">
+          <h2>Urmatoarea era: IA agentica (AlphaGo + Gemini)</h2>
+          <div class="chip"><b>Viziune:</b> sisteme care actioneaza</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Hassabis descrie urmatoarea generatie de IA ca o <b>casatorie</b> intre doua tipuri de sisteme:
+              </p>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>AlphaGo / AlphaZero</h3>
+                  <p>Excelent la <b>planificare</b> si <b>strategie</b>. Poate gandi multi pasi inainte, exact ca un jucator de sah maestru. Dar limitat la jocuri - nu intelege limbajul sau lumea reala.</p>
+                  <div class="meta"><span class="badge" style="color:var(--cyan)">planificare</span><span class="badge">strategie</span><span class="badge">reinforcement learning</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Gemini (modele multimodale)</h3>
+                  <p>Excelent la <b>intelegerea limbajului</b>, a imaginilor si a contextului. Dar nu poate actiona sau planifica pe termen lung.</p>
+                  <div class="meta"><span class="badge" style="color:var(--violet)">intelegere</span><span class="badge">limbaj</span><span class="badge">multimodal</span></div>
+                </div>
+                <div class="flowNode" style="background:rgba(117,240,182,.06);border-color:rgba(117,240,182,.2)">
+                  <h3 style="color:var(--good)">Combinatia = Agent IA universal</h3>
+                  <p>Un sistem care <b>intelege</b> ce vrei (limbaj), <b>planifica</b> cum sa faca (strategie) si <b>actioneaza</b> in lumea reala (executa pasi concret). Asta e Project Astra.</p>
+                  <div class="meta"><span class="badge" style="color:var(--good)">viitorul IA</span><span class="badge">agent universal</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 460 320" role="img" aria-label="Combinatie AlphaGo + Gemini">
+                  <defs>
+                    <linearGradient id="agentGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(117,240,182,.3)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,.15)"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- AlphaGo circle -->
+                  <circle cx="140" cy="90" r="60" fill="rgba(122,215,255,.06)" stroke="rgba(122,215,255,.25)" stroke-width="2"/>
+                  <text x="140" y="82" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="700">AlphaGo</text>
+                  <text x="140" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">Planificare</text>
+
+                  <!-- Gemini circle -->
+                  <circle cx="320" cy="90" r="60" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.25)" stroke-width="2"/>
+                  <text x="320" y="82" text-anchor="middle" font-size="13" fill="var(--violet)" font-weight="700">Gemini</text>
+                  <text x="320" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">Intelegere</text>
+
+                  <!-- Merge arrows -->
+                  <path d="M175,130 Q230,170 230,180" stroke="rgba(122,215,255,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  <path d="M285,130 Q230,170 230,180" stroke="rgba(187,167,255,.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                  <!-- Result -->
+                  <rect x="100" y="190" width="260" height="110" rx="20" fill="url(#agentGrad)" stroke="rgba(117,240,182,.3)" stroke-width="2"/>
+                  <text x="230" y="220" text-anchor="middle" font-size="15" fill="var(--good)" font-weight="700">Agent IA Universal</text>
+                  <text x="230" y="242" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Intelege + Planifica + Actioneaza</text>
+                  <text x="230" y="262" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">„Rezerva-mi vacanta completa in Italia"</text>
+                  <text x="230" y="280" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">→ gaseste zboruri, hoteluri, restaurante, muzee</text>
+                  <text x="230" y="292" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">→ si face rezervarile efectiv</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta combinatie este probabil cel mai important pas urmator in IA. Dar vine cu riscuri semnificative -
+            un agent care poate actiona autonom in lume necesita masuri de siguranta mult mai stricte decat un chatbot pasiv.
+            Hassabis recunoaste explicit acest lucru.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 6: Safety & Regulation -->
+      <section class="row" id="safety">
+        <div class="card" aria-label="Siguranta IA">
+          <div class="cardHeader">
+            <h2>Siguranta IA: provocari si solutii</h2>
+            <div class="chip"><b>Critic:</b> red teaming, deceptie, sandboxing</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis subliniaza ca testarea sistemelor IA e fundamental diferita de testarea softului traditional.
+              Un program normal face mereu acelasi lucru. Un model IA e <b>probabilistic</b> - poate raspunde diferit de fiecare data.
+              Chiar daca testezi 99.999% din cazuri, un utilizator creativ sau rau-intentionat poate gasi acel 0.001%.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Red Teaming (Echipa Rosie)</h3>
+                <p>O echipa separata care incearca intentionat sa „sparga" sistemul. Dar nici mii de oameni nu pot acoperi tot ce vor incerca miliardele de utilizatori.</p>
+                <div class="meta"><span class="badge">testare adversariala</span><span class="badge">automatizare necesara</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Lansare in etape</h3>
+                <p>Ca in industria jocurilor video: faza experimentala → beta inchisa → lansare publica. Inveti ceva la fiecare pas.</p>
+                <div class="meta"><span class="badge">iterativ</span><span class="badge">lectii din gaming</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>IA care testeaza IA</h3>
+                <p>Folosirea altor sisteme IA pentru a detecta automat erori si comportamente nedorite, pentru ca oamenii sa se concentreze pe cazurile dificile.</p>
+                <div class="meta"><span class="badge">scalabil</span><span class="badge">meta-testare</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <details data-commentary>
+              <summary><strong>Despre deceptia ca risc emergent</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>
+                  Hassabis identifica <b>deceptia</b> drept capabilitatea emergenta nr. 1 pe care trebuie s-o monitorizam.
+                  Daca un sistem IA invata sa minta, nu te mai poti baza pe nimic din ce raporteaza.
+                  Alte capabilitati ingrijoratoare: capacitatea de a-si atinge obiectivele si de a se auto-replica.
+                </p>
+              </div>
+            </details>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Abordarea „probabilistica vs. deterministica" e cruciala si des ignorata in discursul public.
+              Publicul trebuie sa inteleaga ca IA nu e un calculator traditional - e mai aproape de un sistem viu, imprevizibil, care necesita o mentalitate complet diferita de testare.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Reglementare si open source">
+          <div class="cardHeader">
+            <h2>Reglementare si open source</h2>
+            <div class="chip">echilibru delicat</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis sustine o abordare <b>nimble</b> (agila) a reglementarii: nu reglementa prea devreme, dar pregateste-te constant.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Reglementare adaptiva</h3>
+                <p>Daca am fi reglementat IA acum 5 ani, am fi reglementat ceva complet diferit. Tehnologia se schimba prea rapid pentru legi rigide.</p>
+                <div class="meta"><span class="badge">flexibilitate</span><span class="badge">evolutie rapida</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Cooperare internationala</h3>
+                <p>IA e o tehnologie digitala - nu respecta granitele nationale. Daca Europa reglementeaza dar China nu, impactul global e limitat. E nevoie de un „CERN pentru IA".</p>
+                <div class="meta"><span class="badge">global</span><span class="badge">CERN al IA</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Open source cu intarziere</h3>
+                <p>Modele open source (ex: Gemma) sunt mai mici, cu capabilitati bine intelese. Modelele de frontiera raman proprietare 1-2 ani, pentru siguranta. E o „usa cu sens unic" - odata deschisa, nu o mai poti inchide.</p>
+                <div class="meta"><span class="badge">Gemma</span><span class="badge">dual-use</span><span class="badge">precautie</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <div class="small" style="margin-bottom:8px">Institutele de Siguranta IA (la momentul interviului):</div>
+              <div class="riskGrid">
+                <div class="risk">
+                  <div class="rTop"><strong>UK AI Safety Institute</strong><span class="badge">pionier</span></div>
+                  <p>Primul institut guvernamental dedicat testarii modelelor de frontiera. Risultat din summitul de la Bletchley Park (2023).</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>US AI Safety Institute</strong><span class="badge">in dezvoltare</span></div>
+                  <p>Echivalentul american. Hassabis sustine ca e esential ca institutiile guvernamentale sa poata evalua independent capabilitatile IA.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Pozitia lui Hassabis pe open source e pragmatica dar controversata.
+              Comunitatea open source argumenteaza ca transparenta e necesara pentru siguranta.
+              Hassabis argumenteaza ca la nivel de frontiera, riscul de utilizare abuziva depaseste beneficiul transparentei.
+              Adevarul e probabil undeva la mijloc.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 7: AGI Timeline -->
+      <section class="card" id="timeline" aria-label="Cronologia AGI">
+        <div class="cardHeader">
+          <h2>Cronologia spre AGI: unde ne aflam?</h2>
+          <div class="chip"><b>Estimare:</b> sfarsitul deceniului (~2030)</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Hassabis a descris DeepMind ca un „proiect de 20 de ani", inceput in 2010. La momentul acestui interviu, el spune ca sunt <b>pe drumul cel bun</b> si ca „nu ar fi surprins daca AGI apare in urmatorul deceniu".
+              </p>
+              <p class="muted">
+                Interesant: Hassabis nu si-a schimbat estimarea fata de interviurile anterioare. Progresul real valideaza predictia initiala.
+              </p>
+
+              <div class="timeline">
+                <div class="tNode">
+                  <h4 style="color:var(--cyan)">2010 — Fondarea DeepMind</h4>
+                  <p>Misiunea: sa construiasca inteligenta artificiala generala, in mod responsabil.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--cyan)">2016 — AlphaGo invinge campionul mondial la Go</h4>
+                  <p>Primul semnal ca IA poate depasi expertiza umana in domenii complexe.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--violet)">2017 — Inventarea Transformer (Google Brain)</h4>
+                  <p>Arhitectura care a facut posibile toate modelele moderne de limbaj.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--good)">2020 — AlphaFold rezolva pliul proteinelor</h4>
+                  <p>Problema veche de 50 de ani in biologie, rezolvata de IA.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--warn)">2022 — ChatGPT surprinde lumea</h4>
+                  <p>Publicul larg descopera IA. Hassabis: „a surprins chiar si pe OpenAI".</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--orange)">2023 — Fuziunea Google DeepMind + Gemini</h4>
+                  <p>Toate resursele IA ale Google, unite sub o singura viziune.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--good)">2024 — AlphaFold 3, Isomorphic Labs</h4>
+                  <p>Prezicerea structurii TUTUROR moleculelor din corp, nu doar proteinelor. Descoperire de medicamente cu IA.</p>
+                </div>
+                <div class="tNode">
+                  <h4 style="color:var(--bad)">~2030 — AGI? (estimare Hassabis)</h4>
+                  <p>„Nu as fi surprins daca apare in urmatorul deceniu." Nu e o promisiune — e o estimare bazata pe traiectoria actuala.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <div class="small" style="margin-bottom:10px">Simulator: cat de aproape e AGI? (conceptual)</div>
+                <svg viewBox="0 0 460 260" role="img" id="agiSvg" aria-label="Progresul spre AGI">
+                  <text x="20" y="24" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Nivel de capabilitate IA (simplificat)</text>
+                  <!-- Axes -->
+                  <line x1="40" y1="50" x2="40" y2="220" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <line x1="40" y1="220" x2="440" y2="220" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <!-- Labels -->
+                  <text x="240" y="248" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">Anul</text>
+                  <text x="10" y="135" font-size="9" fill="rgba(255,255,255,.45)" transform="rotate(-90 10 135)">Capabilitate</text>
+                  <!-- Year labels -->
+                  <text x="70" y="238" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">2010</text>
+                  <text x="170" y="238" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">2017</text>
+                  <text x="270" y="238" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">2022</text>
+                  <text x="350" y="238" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">2025</text>
+                  <text x="430" y="238" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">~2030</text>
+                  <!-- AGI line -->
+                  <line x1="40" y1="65" x2="440" y2="65" stroke="rgba(255,122,153,.25)" stroke-width="1" stroke-dasharray="6 4"/>
+                  <text x="445" y="68" font-size="9" fill="var(--bad)" text-anchor="start">AGI</text>
+                  <!-- Progress curve -->
+                  <path id="agiCurve" d="M70,200 C120,195 150,185 170,170 C200,148 240,120 270,105 C300,90 330,82 350,78 Q390,72 430,68" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M70,200 C120,195 150,185 170,170 C200,148 240,120 270,105 C300,90 330,82 350,78 Q390,72 430,68 L430,220 L70,220 Z" fill="rgba(122,215,255,.06)"/>
+                  <!-- Milestone dots -->
+                  <circle cx="70" cy="200" r="4" fill="var(--cyan)"/>
+                  <circle cx="170" cy="170" r="4" fill="var(--violet)"/>
+                  <circle cx="270" cy="105" r="5" fill="var(--warn)"/>
+                  <circle cx="350" cy="78" r="5" fill="var(--orange)"/>
+                  <circle cx="430" cy="68" r="6" fill="var(--bad)" opacity=".6" stroke="var(--bad)" stroke-width="2" stroke-dasharray="3 2"/>
+                  <!-- Labels on dots -->
+                  <text x="70" y="213" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">DeepMind</text>
+                  <text x="170" y="163" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">Transformer</text>
+                  <text x="270" y="98" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">ChatGPT</text>
+                  <text x="350" y="71" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">Gemini+</text>
+                  <text x="430" y="58" text-anchor="middle" font-size="8" fill="var(--bad)">AGI?</text>
+                </svg>
+
+                <div class="controls">
+                  <div class="control">
+                    <label>
+                      <span>Optimism privind AGI</span>
+                      <span class="readout" id="agiReadout">Moderat</span>
+                    </label>
+                    <input id="agiSlider" type="range" min="0" max="100" value="50" />
+                    <div class="small" style="margin-top:8px">Ajusteaza cat de curand crezi ca va aparea AGI.</div>
+                  </div>
+                  <div class="control">
+                    <label>
+                      <span>Risc perceput</span>
+                      <span class="readout" id="riskReadout">Mediu</span>
+                    </label>
+                    <input id="riskSlider" type="range" min="0" max="100" value="50" />
+                    <div class="small" style="margin-top:8px">Cat de riscant consideri ca va fi tranzitia la AGI?</div>
+                  </div>
+                </div>
+                <div class="small" id="agiAssessment" style="margin-top:10px"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Estimarea „~2030" e notabil consistenta - Hassabis a dat acelasi interval de mai multi ani.
+            Dar ce inseamna exact „AGI" e in sine o dezbatere. Hassabis pare sa defineasca AGI ca un sistem care poate genera ipoteze stiintifice originale -
+            un prag mult mai inalt decat simpla conversatie inteligenta. E posibil sa avem sisteme extrem de capabile mult inainte de a atinge aceasta definitie stricta.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 8: Science Applications -->
+      <section class="row" id="science">
+        <div class="card" aria-label="IA in stiinta">
+          <div class="cardHeader">
+            <h2>IA in serviciul stiintei</h2>
+            <div class="chip"><b>Impact:</b> de la proteine la medicamente</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis considera aplicatiile stiintifice drept cea mai importanta contributie a Google DeepMind.
+              Chiar si competitorii recunosc ca proiecte precum AlphaFold sunt „bunuri universale" care beneficiaza intreaga omenire.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--good)">AlphaFold 3</strong><span class="badge">biologie</span></div>
+                <div class="meter"><i style="width:92%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+                <p>Poate prezice structura TUTUROR moleculelor din corpul uman - nu doar proteine, ci si ADN, ARN si molecule mici. O revolutie in biologie.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--violet)">Isomorphic Labs</strong><span class="badge">medicamente</span></div>
+                <div class="meter"><i style="width:70%;background:linear-gradient(90deg,var(--violet),var(--good))"></i></div>
+                <p>Companie derivata din DeepMind, dedicata descoperirii de medicamente cu IA. Scopul: medicamente personalizate cu efecte secundare minime.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--cyan)">Clima si energie</strong><span class="badge">sustenabilitate</span></div>
+                <div class="meter"><i style="width:55%;background:linear-gradient(90deg,var(--cyan),var(--warn))"></i></div>
+                <p>Proiecte pentru energie curata, fuziune nucleara, energie solara mai buna. IA poate optimiza sisteme energetice complexe.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong style="color:var(--orange)">Neurostiinta</strong><span class="badge">creier virtual</span></div>
+                <div class="meter"><i style="width:45%;background:linear-gradient(90deg,var(--orange),var(--violet))"></i></div>
+                <p>„Creierul virtual de sobolan" - un model computerizat care ajuta la intelegerea modului in care creierul controleaza miscarea.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              <b>Promisiunea lui Hassabis:</b> „Cred ca am putea vindeca cele mai multe boli in urmatorul deceniu sau doua, daca designul medicamentelor cu IA functioneaza.
+              Apoi medicamente personalizate care minimizeaza efectele secundare pentru fiecare individ in parte."
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e viziunea care merita cea mai multa atentie. AlphaFold a rezolvat deja o problema veche de 50 de ani in biologie.
+              Daca aceeasi abordare functioneaza pentru descoperirea de medicamente, impactul asupra sanatatii globale ar fi de neegalat.
+              Dar drumul de la prezicerea structurii la un medicament functional e inca lung si plin de obstacole.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Viziunea pe termen lung">
+          <div class="cardHeader">
+            <h2>Dincolo de AGI: viziunea pe termen lung</h2>
+            <div class="chip"><b>Visul:</b> scala Planck si misterele universului</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Hassabis nu se opreste la aplicatii practice. Visul lui final e sa foloseasca AGI-ul pentru a descoperi <b>adevaruri fundamentale despre realitate</b> - lucruri pe care mintea umana singura nu le poate percepe.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Scala Planck: „rezolutia realitatii"</h3>
+                <p>Exista un nivel minim la care poti „masura" realitatea - lungimea Planck si timpul Planck. E ca rezolutia unui ecran, dar pentru univers. Hassabis vrea sa experimenteze la acest nivel, poate cu aparatura proiectata de AGI.</p>
+                <div class="meta"><span class="badge">fizica fundamentala</span><span class="badge">sub-atomic</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Intelegere dincolo de capacitatea umana</h3>
+                <p>Un AGI ar putea avea un „cortex prefrontal" arbitrar de mare - capabil sa vada tipare si abstractii pe care noi nu le putem concepe. Ca si cum ai fi un maestru de sah care ii explica o mutare unui incepator.</p>
+                <div class="meta"><span class="badge">abstractii superioare</span><span class="badge">explicabil totusi</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Abundenta radicala</h3>
+                <p>Daca AGI rezolva energia (fuziune), sanatatea (medicamente), clima (solutii optimizate) - ce ramane? Hassabis recunoaste ca <b>sensul vietii</b> devine cea mai mare intrebare filosofica.</p>
+                <div class="meta"><span class="badge">post-AGI</span><span class="badge">filozofie</span><span class="badge">sens</span></div>
+              </div>
+            </div>
+
+            <details data-commentary>
+              <summary><strong>Analogia „printilor regali" si sensul vietii</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>
+                  Informaticianul Stuart Russell i-a spus lui Hassabis ca se teme ca oamenii vor deveni ca printii regali din trecut -
+                  cei care nu aveau nevoie sa urce niciodata pe tron si traiau in lux fara scop. Hassabis raspunde ca vom avea nevoie de
+                  <b>filozofi, teologi si ganditori sociali</b> care sa se gandeasca la ce aduce sens. „Poate vom juca jocuri video cu totii.
+                  Dar e asta un lucru rau?" Intrebarea ramane deschisa.
+                </p>
+              </div>
+            </details>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este cea mai speculativa parte a viziunii lui Hassabis, dar si cea mai profunda.
+              Intrebarea „ce facem cu viata noastra cand IA rezolva totul?" nu e doar filosofica - e practica.
+              Societatile trebuie sa inceapa sa se gandeasca la sens, identitate si scop INAINTE de a ajunge acolo.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 9: Interactive assessment -->
+      <section class="card" aria-label="Evaluare interactiva">
+        <div class="cardHeader">
+          <h2>Cat de pregatit esti pentru era IA?</h2>
+          <div class="chip"><b>Quiz interactiv</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe baza temelor discutate de Hassabis, bifeaza conceptele pe care le intelegi. Apoi calculeaza-ti scorul pentru a vedea cat de bine ai asimilat informatiile.
+          </p>
+
+          <div class="checklist" id="quizChecklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inteleg ce e „emergenta" in IA</strong><em>proprietati aparute de la sine</em></div>
+                <div class="d">Stiu ca modelele mari au dezvoltat capabilitati (intelegere, abstractie) fara sa fi fost programate explicit pentru ele.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Stiu ce e un model multimodal</strong><em>mai mult decat text</em></div>
+                <div class="d">Inteleg ca Gemini poate procesa text, imagini, audio, video si cod simultan, nu doar text.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inteleg diferenta: chatbot vs. agent</strong><em>pasiv vs. activ</em></div>
+                <div class="d">Un chatbot doar raspunde la intrebari. Un agent IA poate planifica si executa actiuni in lumea reala.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Stiu de ce open source e complicat</strong><em>beneficii vs. riscuri</em></div>
+                <div class="d">Inteleg ca modelele publicate deschis nu pot fi „retrase" si ca exista riscul de utilizare abuziva pe masura ce devin mai puternice.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inteleg ce e „red teaming"</strong><em>testare adversariala</em></div>
+                <div class="d">Stiu ca echipe dedicate incearca sa gaseasca vulnerabilitati in sisteme IA inainte de lansarea publica.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Stiu ce a rezolvat AlphaFold</strong><em>structura proteinelor</em></div>
+                <div class="d">Inteleg ca AlphaFold a rezolvat o problema de 50 de ani in biologie: prezicerea formei 3D a proteinelor din secventa lor.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inteleg de ce reglementarea e dificila</strong><em>evolutie prea rapida</em></div>
+                <div class="d">Stiu ca tehnologia se schimba mai repede decat pot reactiona guvernele si ca e nevoie de cooperare internationala.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am reflectat la impactul AGI</strong><em>sens si scop</em></div>
+                <div class="d">M-am gandit la intrebarea: ce facem cu viata noastra intr-o lume in care IA poate face aproape orice?</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizScore">Calculeaza scorul meu</button>
+            <button class="btn" id="quizReset">Reseteaza</button>
+          </div>
+          <div class="small" id="quizOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- CARD 10: Summary -->
+      <section class="card" aria-label="Rezumat">
+        <div class="cardHeader">
+          <h2>Sinteza: cele 7 idei esentiale ale lui Hassabis</h2>
+          <div class="chip"><b>Teza:</b> IA va transforma totul</div>
+        </div>
+        <div class="cardBody">
+          <div class="expandGrid">
+            <div class="flowNode">
+              <h3 style="color:var(--cyan)">1. Nerezonabil de eficient</h3>
+              <p>Modelele de limbaj au depasit orice asteptari, invata concepte doar din text.</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--violet)">2. Gemini e multimodal nativ</h3>
+              <p>Primul model construit de la zero sa inteleaga text, imagine, audio, video si cod.</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--orange)">3. Agentii IA sunt urmatorul pas</h3>
+              <p>Combinarea planificarii (AlphaGo) cu intelegerea (Gemini) = sisteme care actioneaza.</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--good)">4. Stiinta e cel mai mare beneficiar</h3>
+              <p>AlphaFold, medicamente, energie, clima - IA poate rezolva probleme de decenii.</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--warn)">5. Siguranta e non-negociabila</h3>
+              <p>Red teaming, lansare in etape, monitorizare a deceptiei, cooperare internationala.</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--bad)">6. AGI pana in ~2030</h3>
+              <p>Proiect pe 20 de ani, pe drumul cel bun. „Nu as fi surprins daca apare in urmatorul deceniu."</p>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--cyan)">7. Sensul vietii devine intrebarea nr. 1</h3>
+              <p>Daca IA rezolva problemele materiale, ce ramane? Hassabis: avem nevoie de filozofi, nu doar de ingineri.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota despre calitatea informatiilor</strong><span class="hint">apasa pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce un interviu (podcast) in format vizual. Interviul reflecta perspectiva lui Demis Hassabis -
+                un actor major dar si parte interesata in industria IA. Afirmatiile despre capabilitati (Gemini e cel mai bun la X) sunt
+                estimari subiective, nu rezultate de benchmark independent. Afirmatiile despre viitor (AGI ~2030, vindecarea bolilor)
+                sunt proiectii optimiste. <b>Trateaza totul ca o perspectiva informata, nu ca o certitudine.</b>
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comutare comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre marcate cu „Comentariu" ofera analiza critica: cat de puternica e afirmatia?
+            Ce perspective alternative exista? Ce nu stim inca?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa „Comutare comentarii" in partea de sus pentru a le ascunde/afisa.
+            Asta iti permite sa comuti intre „ce spune Hassabis" si „ce ar trebui sa gandesti critic despre ce spune".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un interviu podcast cu Demis Hassabis (Google DeepMind).
+        Nu reprezinta consiliere profesionala. Vizualizarile, simulatoarele si comentariile sunt instrumente conceptuale pentru a ajuta la intelegerea temelor discutate,
+        nu substitute pentru cercetare originala sau evaluare independenta.
+      </p>
+      <p style="margin-top:10px">
+        Sursa: Podcast Google DeepMind, prezentat de Prof. Hannah Fry, cu Demis Hassabis, CEO Google DeepMind.
+        Pentru informatii actualizate, consultati site-ul oficial Google DeepMind.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // AGI Timeline Slider
+    // ──────────────────────────────────────────────────────
+    const agiSlider = document.getElementById('agiSlider');
+    const riskSlider = document.getElementById('riskSlider');
+    const agiReadout = document.getElementById('agiReadout');
+    const riskReadout = document.getElementById('riskReadout');
+    const agiAssessment = document.getElementById('agiAssessment');
+
+    function updateAGI() {
+      const optimism = parseInt(agiSlider.value);
+      const risk = parseInt(riskSlider.value);
+
+      if (optimism < 25) agiReadout.textContent = 'Sceptic';
+      else if (optimism < 50) agiReadout.textContent = 'Precaut';
+      else if (optimism < 75) agiReadout.textContent = 'Moderat';
+      else agiReadout.textContent = 'Optimist';
+
+      if (risk < 25) riskReadout.textContent = 'Scazut';
+      else if (risk < 50) riskReadout.textContent = 'Mediu';
+      else if (risk < 75) riskReadout.textContent = 'Ridicat';
+      else riskReadout.textContent = 'Critic';
+
+      let msg = '';
+      if (optimism >= 60 && risk >= 60) {
+        msg = 'Esti in tabara lui Hassabis: crezi ca AGI vine curand si ca riscurile sunt reale. Aceasta combinatie inseamna ca sustii dezvoltare rapida DAR cu masuri serioase de siguranta.';
+      } else if (optimism >= 60 && risk < 40) {
+        msg = 'Esti optimist dar relaxat. Atentie: Hassabis insusi, desi optimist, ia riscurile foarte in serios. Poate subestimezi pericolele.';
+      } else if (optimism < 40 && risk >= 60) {
+        msg = 'Esti sceptic dar ingrijorat. O pozitie rezonabila: chiar daca AGI intarzie, sistemele intermediare pot crea probleme semnificative.';
+      } else if (optimism < 40 && risk < 40) {
+        msg = 'Esti sceptic si relaxat. Poate ai dreptate ca hype-ul e exagerat, dar urmareste traiectoria - surprizele din ultimii ani sugereaza ca progresul e real.';
+      } else {
+        msg = 'O pozitie echilibrata. Continua sa urmaresti evolutia tehnologiei si a reglementarilor. Nimeni nu stie sigur ce va fi.';
+      }
+
+      agiAssessment.innerHTML = '<b>Evaluarea ta:</b> ' + msg;
+    }
+
+    agiSlider.addEventListener('input', updateAGI);
+    riskSlider.addEventListener('input', updateAGI);
+    updateAGI();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpTimeline').addEventListener('click', () => {
+      document.getElementById('timeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpSafety').addEventListener('click', () => {
+      document.getElementById('safety').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpScience').addEventListener('click', () => {
+      document.getElementById('science').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('quizScore').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#quizChecklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = pct + '% — Excelent! Ai o intelegere solida a peisajului IA actual si a directiei spre care ne indreptam.';
+      else if (pct >= 60) msg = pct + '% — Buna baza! Reciteste sectiunile despre conceptele pe care nu le-ai bifat.';
+      else if (pct >= 40) msg = pct + '% — Moderat. Sunt cateva concepte cheie pe care merita sa le aprofundezi.';
+      else msg = pct + '% — E un inceput. Parcurge infograficul cu atentie — fiecare sectiune explica un concept important.';
+
+      document.getElementById('quizOut').innerHTML = '<b>Scorul tau:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('quizReset').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#quizChecklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('quizOut').innerHTML = '';
+      showToast('Chestionar resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
