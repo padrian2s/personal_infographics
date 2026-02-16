@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat vs Agentic AI — Why Agents Deliver 10× Better Results</title>
+  <meta name="description" content="Interactive infographic comparing generative AI chatbots to agentic AI systems, showing where agents dramatically outperform single-turn chat." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Comparison pills */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .tag-good{border-color: rgba(117,240,182,.3);background:rgba(117,240,182,.1);color:var(--good)}
+    .tag-bad{border-color: rgba(255,122,153,.3);background:rgba(255,122,153,.1);color:var(--bad)}
+    .tag-warn{border-color: rgba(255,210,122,.3);background:rgba(255,210,122,.1);color:var(--warn)}
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;border-radius:99px}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Versus table */
+    .vsTable{width:100%;border-collapse:collapse;font-size:13px}
+    .vsTable th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .vsTable td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+    .vsTable tr:last-child td{border-bottom:none}
+    .vsTable .dim{color:var(--faint)}
+    .vsTable .hi{color:var(--good);font-weight:600}
+
+    /* Scenario cards */
+    .scenarioGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+    }
+    .scenario{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+    }
+    .scenario h3{margin:0 0 6px;font-size: 14px;display:flex;align-items:center;gap:8px}
+    .scenario .multiplier{
+      font-family:var(--mono);font-size:18px;font-weight:700;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .scenario p{margin:6px 0 0;color:var(--muted);font-size: 12px;line-height:1.5}
+    .scenario .vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .scenario .vsBox{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:8px 10px;
+      font-size:12px;
+    }
+    .vsBox.chat-side{background:rgba(255,122,153,.06);border-color:rgba(255,122,153,.15)}
+    .vsBox.agent-side{background:rgba(117,240,182,.06);border-color:rgba(117,240,182,.15)}
+    .vsBox .vsLabel{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:4px}
+
+    /* Animated bars */
+    .barChart{display:grid;gap:10px}
+    .barRow{display:grid;grid-template-columns:120px 1fr 50px;gap:10px;align-items:center;font-size:12px}
+    @media (max-width: 640px){.barRow{grid-template-columns:90px 1fr 40px}}
+    .barLabel{color:var(--muted);text-align:right}
+    .barTrack{height:24px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
+    .barFill{height:100%;border-radius:12px;transition:width 1.2s cubic-bezier(.23,1,.32,1)}
+    .barVal{font-family:var(--mono);font-weight:700;font-size:13px}
+
+    /* Loop diagram */
+    .loopWrap{display:flex;flex-direction:column;align-items:center;gap:0;padding:16px 0}
+    .loopStep{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 16px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      font-size:13px;
+      min-width:260px;
+      position:relative;
+    }
+    .loopStep .stepNum{
+      width:28px;height:28px;
+      border-radius:99px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:700;
+      flex-shrink:0;
+    }
+    .loopArrow{
+      width:2px;height:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.06));
+      position:relative;
+    }
+    .loopArrow::after{
+      content:'';position:absolute;bottom:-3px;left:-3px;
+      width:0;height:0;
+      border-left:4px solid transparent;border-right:4px solid transparent;
+      border-top:5px solid rgba(255,255,255,.2);
+    }
+    .loopBack{
+      display:flex;align-items:center;gap:8px;
+      font-size:11px;color:var(--cyan);
+      margin-top:4px;
+    }
+
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Chat: single flat line -->
+            <path d="M30,150 L200,150" fill="none" stroke="rgba(255,122,153,.5)" stroke-width="6" stroke-linecap="round" opacity=".7" />
+            <!-- Agent: branching network -->
+            <path d="M250,110 C300,60 340,160 380,80 C410,30 440,100 490,50" fill="none" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" opacity=".7" />
+            <path d="M280,140 C320,100 360,180 400,120 C430,80 460,140 500,100" fill="none" stroke="url(#g2)" stroke-width="4" stroke-linecap="round" opacity=".5" />
+            <path d="M300,170 C340,130 370,190 420,150 C450,120 475,160 510,130" fill="none" stroke="rgba(255,210,122,.4)" stroke-width="3" stroke-linecap="round" opacity=".5" />
+            <!-- Nodes -->
+            <circle cx="115" cy="150" r="8" fill="rgba(255,122,153,.5)" />
+            <circle cx="380" cy="80" r="9" fill="rgba(122,215,255,.6)" />
+            <circle cx="420" cy="150" r="7" fill="rgba(117,240,182,.5)" />
+            <circle cx="300" cy="170" r="6" fill="rgba(255,210,122,.4)" />
+            <circle cx="490" cy="50" r="10" fill="rgba(255,255,255,.6)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> AI architecture • paradigm shift • capability frontier</div>
+          <h1>Chat AI vs Agentic AI: Where Agents Deliver <span style="color:var(--good)">10&times;</span> Better Results</h1>
+          <p class="subtitle">
+            Chatbots give you <b>one answer</b>. Agents give you <b>a solution</b>.
+            The difference isn't just speed—it's a fundamentally different way AI interacts with the world: planning, executing, verifying, and iterating autonomously until the job is actually done.
+          </p>
+          <div class="btnRow">
+            <button class="btn" onclick="document.getElementById('scenarios').scrollIntoView({behavior:'smooth'})">Jump to real scenarios</button>
+            <button class="btn" onclick="document.getElementById('business').scrollIntoView({behavior:'smooth'})">IT business solutions</button>
+            <button class="btn" onclick="document.getElementById('viz').scrollIntoView({behavior:'smooth'})">See the capability gap</button>
+            <button class="btn" id="toggleNotes">Toggle commentary</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Key stats">
+          <div class="stat">
+            <div class="label">Chat paradigm</div>
+            <div class="value" style="color:var(--bad)">1 shot, 1 answer</div>
+            <div class="note">User asks, model responds. That's it. No verification, no tools, no iteration.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Agent paradigm</div>
+            <div class="value" style="color:var(--good)">Plan → Act → Verify → Loop</div>
+            <div class="note">The AI reasons, uses tools, checks its work, and iterates until done.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Quality multiplier</div>
+            <div class="value">3&times; – 50&times;</div>
+            <div class="note">Agents outperform chat on multi-step tasks by orders of magnitude.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Key difference</div>
+            <div class="value">Tools + Memory + Loops</div>
+            <div class="note">Agents can read files, run code, search the web, and correct mistakes.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- CARD 1: What is Chat AI? -->
+      <section class="row">
+        <div class="card">
+          <div class="cardHeader">
+            <h2>What is Chat AI?</h2>
+            <div class="chip"><b>Single-turn</b> text generation</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              A chat AI (like ChatGPT, Claude in chat mode, Gemini) takes your prompt and generates a single response.
+              It has <b>no ability to take action</b>—it can't run code, open files, search databases, or verify its own output.
+              Every answer is a "best guess" from training data, frozen in time.
+            </p>
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">The fundamental limit</h3>
+                <p>Chat AI is <b>stateless</b>—it doesn't remember what happened 5 messages ago (unless you repeat it). It can't look things up. It can't check if its code compiles. It can't verify if a fact is current. It generates text that <em>looks right</em> but may be entirely wrong.</p>
+                <div class="meta">
+                  <span class="badge">No tool access</span>
+                  <span class="badge">No self-correction</span>
+                  <span class="badge">No execution</span>
+                  <span class="badge">Context window limit</span>
+                </div>
+              </div>
+            </div>
+            <div class="callout" data-commentary>
+              <b>Key insight:</b> Chat AI is like asking a very smart person a question while they sit blindfolded in a room with no computer, no books, and no phone. They're brilliant—but they can't verify anything, look anything up, or try solutions before answering.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardHeader">
+            <h2>What is Agentic AI?</h2>
+            <div class="chip"><b>Multi-step</b> autonomous execution</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Agentic AI wraps the same language model in an <b>action loop</b>: it can plan, use tools, read results, reflect, adjust, and keep going
+              until the task is actually complete. Think of it as an AI that can <em>do things</em>, not just say things.
+            </p>
+
+            <div class="viz" style="padding:16px">
+              <div class="small" style="margin-bottom:8px">The Agent Loop — think, act, observe, repeat</div>
+              <div class="loopWrap">
+                <div class="loopStep"><div class="stepNum" style="background:rgba(122,215,255,.15);color:var(--cyan)">1</div><span><b>Think</b> — Break the task into steps, form a plan</span></div>
+                <div class="loopArrow"></div>
+                <div class="loopStep"><div class="stepNum" style="background:rgba(187,167,255,.15);color:var(--violet)">2</div><span><b>Act</b> — Use tools: run code, read files, search web, call APIs</span></div>
+                <div class="loopArrow"></div>
+                <div class="loopStep"><div class="stepNum" style="background:rgba(117,240,182,.15);color:var(--good)">3</div><span><b>Observe</b> — Read the result. Did it work? What happened?</span></div>
+                <div class="loopArrow"></div>
+                <div class="loopStep"><div class="stepNum" style="background:rgba(255,210,122,.15);color:var(--warn)">4</div><span><b>Reflect</b> — If wrong, adjust approach. If right, move to next step</span></div>
+                <div class="loopArrow"></div>
+                <div class="loopStep" style="border-color:rgba(117,240,182,.3)"><div class="stepNum" style="background:rgba(117,240,182,.2);color:var(--good)">5</div><span><b>Deliver</b> — Return verified, tested, working result</span></div>
+                <div class="loopBack">&#x21BA; Loop back to step 1 if more work is needed</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Key insight:</b> The agent is like a skilled contractor. You describe the outcome you want, and they figure out the tools needed, gather materials, build it, test it, fix problems, and hand you the finished product—not just a description of what it might look like.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 2: Side-by-side comparison -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Head-to-Head: Where the Gap Becomes a Chasm</h2>
+          <div class="chip"><b>Direct comparison</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" style="padding:14px">
+            <table class="vsTable">
+              <thead>
+                <tr>
+                  <th style="width:22%">Capability</th>
+                  <th style="width:36%">Chat AI</th>
+                  <th style="width:36%">Agentic AI</th>
+                  <th style="width:6%">Gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Multi-step tasks</td>
+                  <td class="dim">Gives instructions you must follow yourself</td>
+                  <td class="hi">Executes all steps autonomously</td>
+                  <td><span class="tag tag-good">10&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Code debugging</td>
+                  <td class="dim">Suggests fixes blindly without running code</td>
+                  <td class="hi">Reads code, runs it, sees errors, fixes them, verifies</td>
+                  <td><span class="tag tag-good">20&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Factual accuracy</td>
+                  <td class="dim">Hallucinates confidently from training data</td>
+                  <td class="hi">Searches live sources, cross-references, cites</td>
+                  <td><span class="tag tag-good">5&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Large codebases</td>
+                  <td class="dim">Can only see what fits in context window</td>
+                  <td class="hi">Navigates entire repos, reads files on demand</td>
+                  <td><span class="tag tag-good">50&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Data analysis</td>
+                  <td class="dim">Generates code you must run yourself</td>
+                  <td class="hi">Writes code, executes it, interprets results, iterates</td>
+                  <td><span class="tag tag-good">8&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Error recovery</td>
+                  <td class="dim">You must paste error back, re-prompt</td>
+                  <td class="hi">Sees the error, diagnoses, adjusts, retries</td>
+                  <td><span class="tag tag-good">15&times;</span></td>
+                </tr>
+                <tr>
+                  <td>Simple Q&A</td>
+                  <td>Fast, good enough for simple questions</td>
+                  <td>Same quality but with tool overhead</td>
+                  <td><span class="tag tag-warn">1&times;</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout" data-commentary>
+            <b>The pattern:</b> For simple, single-turn questions, chat is perfectly fine. The gap explodes when tasks require <em>multiple steps, real-world interaction, or self-correction</em>. The more complex the task, the wider the gap becomes—often exponentially.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 3: Capability bar chart -->
+      <section class="card" id="viz">
+        <div class="cardHeader">
+          <h2>The Capability Gap — Visualized</h2>
+          <div class="chip"><b>Task complexity</b> vs quality</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Quality of output by task type. Chat AI (red) vs Agentic AI (green). The bars represent relative solution quality on a 0–100 scale.
+          </p>
+          <div class="viz" style="padding:16px">
+            <div class="barChart" id="barChart">
+              <div class="barRow">
+                <div class="barLabel">Simple Q&A</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="85" data-agent="88" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Summarization</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="75" data-agent="90" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Code writing</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="55" data-agent="92" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Bug fixing</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="30" data-agent="88" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Research</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="40" data-agent="85" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Multi-file refactor</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="10" data-agent="82" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+              <div class="barRow">
+                <div class="barLabel">Full feature</div>
+                <div class="barTrack">
+                  <div class="barFill" data-chat="5" data-agent="78" style="width:0%"></div>
+                </div>
+                <div class="barVal"></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;margin-top:14px">
+              <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)">
+                <div style="width:12px;height:12px;border-radius:3px;background:var(--bad)"></div> Chat AI
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)">
+                <div style="width:12px;height:12px;border-radius:3px;background:var(--good)"></div> Agentic AI
+              </div>
+            </div>
+            <div class="btnRow" style="margin-top:12px">
+              <button class="btn" id="showChat" onclick="showBars('chat')">Show Chat AI</button>
+              <button class="btn" id="showAgent" onclick="showBars('agent')">Show Agentic AI</button>
+              <button class="btn" id="showBoth" onclick="showBars('both')">Compare Both</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 4: Real scenarios -->
+      <section class="card" id="scenarios">
+        <div class="cardHeader">
+          <h2>Real-World Scenarios: Same Task, Wildly Different Outcomes</h2>
+          <div class="chip"><b>Concrete examples</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="scenarioGrid">
+
+            <div class="scenario">
+              <h3>Fix a production bug <span class="multiplier">20&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  You paste the error. It guesses a fix. You try it. New error. You paste that. It guesses again. 6 rounds later you give up and read the docs yourself.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads the codebase, finds the bug, reads related files for context, writes the fix, runs the tests, sees one fails, adjusts, runs again. Done.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Build a feature from scratch <span class="multiplier">50&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Gives you a code snippet that looks right but doesn't fit your project structure, imports, or conventions. You spend hours adapting it.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads your project structure, understands patterns, writes code matching your style, creates tests, runs them, fixes issues, commits. Ships.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Research a technical topic <span class="multiplier">5&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Gives a fluent summary that might be 2 years out of date, mixes up version numbers, and confidently cites papers that don't exist.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Searches current sources, reads actual documentation pages, cross-references multiple sources, gives you a verified answer with real links.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Refactor across 40 files <span class="multiplier">∞</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Literally impossible. Context window fits maybe 3 files. You'd need to manually orchestrate 40+ separate conversations and stitch the results.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads all files, understands dependencies, plans the refactor, makes changes file by file, runs tests after each batch, resolves conflicts. Done in minutes.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Analyze a dataset <span class="multiplier">8&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Writes you Python code. You run it, get an error. Paste error. New code. Different error. Eventually you fix the code yourself anyway.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Loads the data, explores columns, handles missing values, runs analysis, generates charts, interprets results, suggests next steps.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Write deployment config <span class="multiplier">15&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Generates a Dockerfile that doesn't match your project dependencies. Wrong base image, wrong ports, missing env vars. Copy-paste debugging spiral.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads your project files, identifies dependencies, generates correct config, tests the build, validates env vars match your .env schema. Verified.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 4B: Business Solutions for IT — Deep Dive -->
+      <section class="card" id="business">
+        <div class="cardHeader">
+          <h2>Writing IT Business Solutions: Where Agents Are a Game-Changer</h2>
+          <div class="chip"><b>IT consulting</b> &amp; architecture</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Writing a business solution for IT—an RFP response, a technical architecture proposal, a migration plan, a cost-benefit analysis—is one of the <b>most complex knowledge tasks</b> that exists.
+            It requires research, technical depth, business context, structure, numbers, and coherent storytelling across 20–80 pages. This is where agents don't just outperform chat—they make previously impossible work possible.
+          </p>
+
+          <div class="split" style="margin-top:14px">
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3 style="color:var(--bad)">Chat AI writing a business solution</h3>
+                  <p>You get a <b>generic template</b> filled with buzzwords. "Leverage synergies to optimize cloud-native microservices." It sounds professional but says nothing specific to the client, the problem, or the constraints. You spend 3 days rewriting it from scratch.</p>
+                  <div class="meta">
+                    <span class="badge" style="border-color:rgba(255,122,153,.3)">Generic output</span>
+                    <span class="badge" style="border-color:rgba(255,122,153,.3)">No real data</span>
+                    <span class="badge" style="border-color:rgba(255,122,153,.3)">Wrong assumptions</span>
+                  </div>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--bad)">What goes wrong</h3>
+                  <p>Chat can't read the client's RFP. Can't look up their current tech stack. Can't research competitor pricing. Can't verify compliance requirements. Can't calculate ROI from real numbers. Every section requires you to manually inject context that the AI immediately forgets.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3 style="color:var(--good)">Agentic AI writing a business solution</h3>
+                  <p>The agent reads the RFP document, researches the client's industry, looks up current pricing for proposed technologies, builds a real cost model, structures the proposal following RFP requirements, cross-references compliance standards, and produces a <b>coherent, data-backed document</b>.</p>
+                  <div class="meta">
+                    <span class="badge" style="border-color:rgba(117,240,182,.3)">Reads source docs</span>
+                    <span class="badge" style="border-color:rgba(117,240,182,.3)">Live research</span>
+                    <span class="badge" style="border-color:rgba(117,240,182,.3)">Real numbers</span>
+                  </div>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--good)">What the agent does differently</h3>
+                  <p>Breaks the solution into sections, researches each one independently, validates technical claims against documentation, calculates costs from actual pricing pages, ensures every section connects logically, and iterates on weak sections until they're solid.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="small" style="margin-bottom:10px">Concrete IT business solution scenarios — Chat vs Agent</div>
+          <div class="scenarioGrid">
+
+            <div class="scenario">
+              <h3>Cloud Migration Proposal <span class="multiplier">25&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Gives you a generic "lift and shift" outline. Wrong cloud service tiers, made-up pricing, no awareness of the client's current infrastructure or compliance needs.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads the client's infrastructure docs, looks up current AWS/Azure/GCP pricing, models 3-year TCO, maps each workload to the right service tier, flags compliance gaps, produces a phased timeline.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>RFP / Tender Response <span class="multiplier">30&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Can't even read the RFP document. You paste sections one at a time, losing context between them. The response doesn't address mandatory requirements because the AI never saw them all at once.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Ingests the full RFP, extracts mandatory and scored requirements, maps your company's capabilities to each one, flags gaps, drafts responses section by section, cross-references for consistency.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Technical Architecture Document <span class="multiplier">20&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Produces a textbook-style architecture that ignores your existing systems, team size, budget, and timeline. Recommends Kubernetes for a 3-person team. Suggests technologies that don't integrate.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Reads your current codebase and infra config, researches integration points, right-sizes the architecture for your team, validates technology compatibility, generates realistic diagrams and ADRs.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Cost-Benefit Analysis <span class="multiplier">15&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Invents numbers. "This will save approximately 30% on infrastructure costs." Based on what? Training data averages from 2023. Your specific situation is invisible to it.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Pulls your current spend data, looks up real pricing for alternatives, builds a spreadsheet model with formulas, runs scenarios (best/worst/expected), calculates actual ROI with your numbers.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Security & Compliance Audit Report <span class="multiplier">20&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Lists generic OWASP top 10 and ISO 27001 controls. No connection to your actual systems, configurations, or gaps. You could have Googled this faster.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Scans your codebase for vulnerabilities, reads your infrastructure configs, maps controls to specific compliance frameworks, identifies actual gaps, prioritizes remediation by risk, generates evidence matrices.
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario">
+              <h3>Vendor Evaluation Matrix <span class="multiplier">10&times;</span></h3>
+              <div class="vs">
+                <div class="vsBox chat-side">
+                  <div class="vsLabel" style="color:var(--bad)">Chat</div>
+                  Lists 5 vendors with outdated feature comparisons from training data. Pricing is wrong, features have changed, new competitors are missing entirely.
+                </div>
+                <div class="vsBox agent-side">
+                  <div class="vsLabel" style="color:var(--good)">Agent</div>
+                  Searches current vendor websites, reads latest pricing pages, compares features in real-time, checks G2/Gartner reviews, builds a weighted scoring matrix aligned to your specific requirements.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="viz" style="padding:16px">
+            <div class="small" style="margin-bottom:12px">Agent workflow for a complete IT business solution</div>
+            <div class="loopWrap">
+              <div class="loopStep"><div class="stepNum" style="background:rgba(122,215,255,.15);color:var(--cyan)">1</div><span><b>Ingest</b> — Read RFP, client docs, current infra configs, constraints</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep"><div class="stepNum" style="background:rgba(187,167,255,.15);color:var(--violet)">2</div><span><b>Research</b> — Look up pricing, compliance standards, market data, competitors</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep"><div class="stepNum" style="background:rgba(255,179,138,.15);color:var(--orange)">3</div><span><b>Structure</b> — Create outline matching RFP requirements, assign sections</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep"><div class="stepNum" style="background:rgba(117,240,182,.15);color:var(--good)">4</div><span><b>Draft</b> — Write each section with real data, technical depth, specific recommendations</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep"><div class="stepNum" style="background:rgba(255,210,122,.15);color:var(--warn)">5</div><span><b>Validate</b> — Cross-check numbers, verify technical claims, ensure consistency</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep"><div class="stepNum" style="background:rgba(122,215,255,.15);color:var(--cyan)">6</div><span><b>Model</b> — Build cost models, ROI calculations, risk matrices with real figures</span></div>
+              <div class="loopArrow"></div>
+              <div class="loopStep" style="border-color:rgba(117,240,182,.3)"><div class="stepNum" style="background:rgba(117,240,182,.2);color:var(--good)">7</div><span><b>Deliver</b> — Polished, data-backed, internally consistent document ready for review</span></div>
+              <div class="loopBack">&#x21BA; Iterate on weak sections, update numbers as research refines</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>The bottom line:</b> A chat AI gives you a <em>starting template</em> you'll spend days rewriting. An agent gives you a <em>near-final draft</em> backed by real data that you spend hours polishing. The difference isn't incremental—it's the difference between doing the work yourself with AI "inspiration" versus having an AI do 80% of the substantive work while you focus on strategy and client relationships.
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 5: Why the architecture matters -->
+      <section class="row">
+        <div class="card">
+          <div class="cardHeader">
+            <h2>Why Chat AI Hits a Ceiling</h2>
+            <div class="chip" style="border-color:rgba(255,122,153,.3)"><b style="color:var(--bad)">Structural limits</b></div>
+          </div>
+          <div class="cardBody">
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">1. No Verification</h3>
+                <p>Chat AI <b>cannot check its own work</b>. It generates code it has never run, cites sources it has never read, and states facts it cannot verify. This is the root cause of hallucination—not a bug, but a feature of text prediction.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">2. No World Access</h3>
+                <p>Chat AI lives in a <b>text bubble</b>. It can't read your files, browse the internet, query a database, or run a command. Everything it knows is frozen from training time. Your specific codebase, project, data? Invisible.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">3. No Iteration</h3>
+                <p>If the first attempt is wrong, chat AI can't <b>try again differently</b>. It needs you to manually copy the error, paste it back, re-explain the context, and ask again. You become the agent loop.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">4. Context Amnesia</h3>
+                <p>Long conversations degrade. Earlier context gets <b>pushed out or compressed</b>. By message 20, the AI may have forgotten what you said in message 3. Multi-step projects suffer catastrophically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardHeader">
+            <h2>Why Agentic AI Breaks Through</h2>
+            <div class="chip" style="border-color:rgba(117,240,182,.3)"><b style="color:var(--good)">Architectural advantages</b></div>
+          </div>
+          <div class="cardBody">
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--good)">1. Tool Use</h3>
+                <p>Agents can <b>read files, run code, search the web, call APIs</b>. They interact with the real world. This turns "I think the answer might be..." into "I checked and the answer is..."</p>
+                <div class="meta"><span class="badge">File system</span><span class="badge">Shell</span><span class="badge">Web search</span><span class="badge">APIs</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">2. Self-Correction Loops</h3>
+                <p>When something fails, agents <b>see the error and adapt</b>. A test fails? Read the output, diagnose, fix, retry. This single capability is worth 10&times; because most first attempts in software aren't perfect.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">3. Planning & Decomposition</h3>
+                <p>Agents break complex tasks into <b>sub-tasks</b>, tackle them sequentially or in parallel, and track progress. A feature isn't one prompt—it's 15 coordinated steps.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--good)">4. Persistent Context</h3>
+                <p>Agents can <b>write notes, read files, maintain state</b> across their execution. They don't forget step 3 while doing step 12 because they can always go back and re-read what they did.</p>
+                <div class="meta"><span class="badge">Memory</span><span class="badge">Task tracking</span><span class="badge">State management</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 6: The "You Are the Agent" problem -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>The Dirty Secret of Chat AI: You Are the Agent</h2>
+          <div class="chip"><b>The hidden cost</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                When you use chat AI for complex tasks, <b>you</b> become the agent loop. You copy outputs, paste them into files,
+                run the code, read the errors, re-format the context, and feed it back. The AI does the easy part (generating text).
+                You do the hard part (everything else).
+              </p>
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode">
+                  <h3>Your hidden labor with chat AI</h3>
+                  <p>For every "simple" chat interaction on a real task, you typically:</p>
+                  <div class="meta" style="flex-direction:column;gap:4px;margin-top:8px">
+                    <span class="badge" style="text-align:left">1. Copy-paste code from chat to your editor</span>
+                    <span class="badge" style="text-align:left">2. Manually fix imports and paths</span>
+                    <span class="badge" style="text-align:left">3. Run the code, hit an error</span>
+                    <span class="badge" style="text-align:left">4. Copy the error back to chat</span>
+                    <span class="badge" style="text-align:left">5. Re-explain the context that was lost</span>
+                    <span class="badge" style="text-align:left">6. Get a new answer, repeat from step 1</span>
+                    <span class="badge" style="text-align:left">7. Eventually give up and fix it yourself</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:16px">
+                <div class="small" style="margin-bottom:12px">Time spent: Who does the actual work?</div>
+                <div style="margin-bottom:14px">
+                  <div style="font-size:12px;color:var(--faint);margin-bottom:6px">CHAT AI — "Helping" you build a feature</div>
+                  <div class="barTrack">
+                    <div style="display:flex;height:100%;width:100%">
+                      <div style="width:25%;height:100%;background:var(--bad);border-radius:12px 0 0 12px" title="AI generates text"></div>
+                      <div style="width:75%;height:100%;background:var(--warn);border-radius:0 12px 12px 0" title="You do everything else"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--faint);margin-top:4px">
+                    <span>AI: 25% (text generation)</span>
+                    <span>You: 75% (execution, debugging, context)</span>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:12px;color:var(--faint);margin-bottom:6px">AGENTIC AI — Building a feature for you</div>
+                  <div class="barTrack">
+                    <div style="display:flex;height:100%;width:100%">
+                      <div style="width:90%;height:100%;background:var(--good);border-radius:12px 0 0 12px" title="Agent handles everything"></div>
+                      <div style="width:10%;height:100%;background:var(--cyan);border-radius:0 12px 12px 0" title="You review and approve"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--faint);margin-top:4px">
+                    <span>Agent: 90% (plan, code, test, fix)</span>
+                    <span>You: 10% (review & approve)</span>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">The real productivity gain isn't that agents write better text. It's that they <b>eliminate the manual labor loop</b> that turns a 5-minute task into a 2-hour ordeal.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 7: When to use which -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Decision Framework: When to Use What</h2>
+          <div class="chip"><b>Practical guide</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong style="color:var(--bad)">Use Chat AI when...</strong><span class="badge">Simple tasks</span></div>
+              <div class="meter"><i style="width:25%;background:var(--bad)"></i></div>
+              <p>Quick factual questions, brainstorming ideas, drafting short emails, explaining a concept, simple translations. Single-turn tasks where "good enough" is fine.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong style="color:var(--good)">Use Agentic AI when...</strong><span class="badge">Complex tasks</span></div>
+              <div class="meter"><i style="width:92%;background:var(--good)"></i></div>
+              <p>Building features, debugging code, analyzing data, researching with verification, multi-file edits, anything that requires tools, iteration, or more than 3 steps.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong style="color:var(--warn)">The crossover point</strong><span class="badge">~3 steps</span></div>
+              <div class="meter"><i style="width:50%;background:var(--warn)"></i></div>
+              <p>If a task requires more than about 3 sequential steps, an agent will almost always outperform chat. The more steps, the wider the gap becomes.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong style="color:var(--cyan)">The future</strong><span class="badge">Agents everywhere</span></div>
+              <div class="meter"><i style="width:80%;background:var(--cyan)"></i></div>
+              <p>Every major AI company is racing to add agentic capabilities. Chat is the training-wheels version. Agents are where the real value lives.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 8: Deep dives -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Deep Dives</h2>
+          <div class="chip">click to expand</div>
+        </div>
+        <div class="cardBody">
+          <details>
+            <summary><strong>Why do agents produce better code?</strong><span class="hint">expand</span></summary>
+            <div class="detailBody">
+              It's not that agents use a smarter model—often it's the same model. The difference is the workflow:
+              <br><br>
+              <b>Chat:</b> Generate code → hope it works → user reports error → generate new code → repeat<br>
+              <b>Agent:</b> Read existing code → understand patterns → write new code → run it → see error → fix it → run again → pass tests → done
+              <br><br>
+              The agent's code is better because it was <b>tested against reality</b>. Chat AI's code is untested theory. In software, untested code is broken code—you just don't know how yet.
+            </div>
+          </details>
+
+          <details>
+            <summary><strong>What about hallucination?</strong><span class="hint">expand</span></summary>
+            <div class="detailBody">
+              Hallucination is the #1 criticism of generative AI. Chat models confidently state false information because they have no way to verify it—they're pattern-matching, not fact-checking.
+              <br><br>
+              Agents dramatically reduce hallucination through <b>grounding</b>: they can search for real information, read actual documentation, and cross-reference sources before answering. They can also say "I'm not sure, let me check" and then actually check.
+              <br><br>
+              This doesn't eliminate hallucination entirely, but it reduces the catastrophic cases where an AI confidently gives you wrong information that costs hours or days.
+            </div>
+          </details>
+
+          <details>
+            <summary><strong>Is agentic AI always better?</strong><span class="hint">expand</span></summary>
+            <div class="detailBody">
+              No. For simple, single-turn questions ("What's the capital of France?", "Explain quantum entanglement in one paragraph"), chat is faster and just as accurate.
+              <br><br>
+              Agents add overhead: they think about what tools to use, sometimes make unnecessary tool calls, and take longer to respond. For a quick question, this overhead is wasted.
+              <br><br>
+              The rule of thumb: <b>if you'd need to do more than copy-paste the answer, an agent would be better</b>. If the answer is complete as-is, chat is fine.
+            </div>
+          </details>
+
+          <details>
+            <summary><strong>What does the future look like?</strong><span class="hint">expand</span></summary>
+            <div class="detailBody">
+              The trend is clear: <b>chat is the 1.0, agents are the 2.0</b>. We're moving from "AI as a search engine that writes paragraphs" to "AI as a capable worker that gets things done."
+              <br><br>
+              Future agents will have persistent memory across sessions, collaborate with other agents, run for hours or days on complex projects, and proactively identify and fix issues before you even know about them.
+              <br><br>
+              The companies winning the AI race aren't the ones with the best chat—they're the ones building the best agent infrastructure: tool integration, planning frameworks, memory systems, and evaluation loops.
+            </div>
+          </details>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <b>Chat vs Agentic AI</b> — An interactive infographic.<br>
+      The core message: Chat AI generates text. Agentic AI solves problems. The gap between "saying" and "doing" is where all the value lives.<br>
+      When your task requires multiple steps, real-world tools, or self-correction, agents don't just perform a little better—they perform <b>orders of magnitude better</b>.
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* Commentary toggle */
+    const commentaryEls = document.querySelectorAll('[data-commentary]');
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      commentaryEls.forEach(el => el.style.display = commentaryVisible ? '' : 'none');
+      showToast(commentaryVisible ? 'Commentary visible' : 'Commentary hidden');
+    });
+
+    /* Toast */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      clearTimeout(t._t);
+      t._t = setTimeout(() => t.style.display = 'none', 2200);
+    }
+
+    /* Bar chart */
+    let currentMode = null;
+    function showBars(mode) {
+      currentMode = mode;
+      const rows = document.querySelectorAll('#barChart .barRow');
+      rows.forEach(row => {
+        const fill = row.querySelector('.barFill');
+        const val = row.querySelector('.barVal');
+        const chatVal = parseInt(fill.dataset.chat);
+        const agentVal = parseInt(fill.dataset.agent);
+
+        if (mode === 'chat') {
+          fill.style.width = chatVal + '%';
+          fill.style.background = 'var(--bad)';
+          val.textContent = chatVal;
+          val.style.color = 'var(--bad)';
+        } else if (mode === 'agent') {
+          fill.style.width = agentVal + '%';
+          fill.style.background = 'var(--good)';
+          val.textContent = agentVal;
+          val.style.color = 'var(--good)';
+        } else {
+          // show both using a split bar
+          const track = row.querySelector('.barTrack');
+          fill.style.width = agentVal + '%';
+          fill.style.background = `linear-gradient(90deg, var(--bad) 0%, var(--bad) ${(chatVal/agentVal*100).toFixed(0)}%, var(--good) ${(chatVal/agentVal*100).toFixed(0)}%, var(--good) 100%)`;
+          val.textContent = chatVal + ' / ' + agentVal;
+          val.style.color = 'var(--text)';
+        }
+      });
+    }
+
+    /* Animate bars on scroll */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !currentMode) {
+          showBars('both');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(document.getElementById('barChart'));
+  </script>
+</body>
+</html>

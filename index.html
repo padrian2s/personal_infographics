@@ -3,39 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Files Index</title>
+    <title>Infographics Index</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             display: flex;
             height: 100vh;
             overflow: hidden;
-            background: #f5f5f5;
+            background: #0b0f17;
+            color: #e0e0e0;
         }
 
+        /* Sidebar */
         .sidebar {
-            width: 300px;
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            overflow-y: auto;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .sidebar.hidden {
-            margin-left: -300px;
-            width: 0;
-            padding: 0;
+            width: 320px;
+            min-width: 320px;
+            background: linear-gradient(180deg, #101520, #0b0f17);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.3s ease, min-width 0.3s ease, width 0.3s ease;
             overflow: hidden;
         }
+        .sidebar.hidden {
+            margin-left: -320px;
+            min-width: 0;
+            width: 0;
+        }
 
+        .sidebar-header {
+            padding: 18px 16px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(0,0,0,0.2);
+        }
+        .sidebar-header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: rgba(255,255,255,0.92);
+        }
+        .sidebar-header .count {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            margin-top: 4px;
+        }
+
+        .search-box {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box input::placeholder { color: rgba(255,255,255,0.3); }
+        .search-box input:focus { border-color: rgba(122,215,255,0.5); }
+
+        .tree-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+        .tree-container::-webkit-scrollbar { width: 6px; }
+        .tree-container::-webkit-scrollbar-track { background: transparent; }
+        .tree-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+        /* Tree nodes */
+        .tree-branch {
+            margin: 2px 0;
+        }
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+            border-left: 3px solid transparent;
+        }
+        .branch-header:hover {
+            background: rgba(255,255,255,0.04);
+        }
+        .branch-header.open {
+            background: rgba(255,255,255,0.03);
+        }
+        .branch-icon {
+            font-size: 16px;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .branch-arrow {
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+            width: 14px;
+            text-align: center;
+        }
+        .branch-header.open .branch-arrow { transform: rotate(90deg); }
+        .branch-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            flex: 1;
+        }
+        .branch-count {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.06);
+            padding: 2px 7px;
+            border-radius: 99px;
+            flex-shrink: 0;
+        }
+
+        .branch-children {
+            display: none;
+            padding-left: 0;
+        }
+        .branch-header.open + .branch-children { display: block; }
+
+        .leaf-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 8px 16px 8px 45px;
+            cursor: pointer;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+            line-height: 1.35;
+        }
+        .leaf-item:hover {
+            background: rgba(122,215,255,0.06);
+            border-left-color: rgba(122,215,255,0.3);
+        }
+        .leaf-item.active {
+            background: rgba(122,215,255,0.1);
+            border-left-color: #7ad7ff;
+        }
+        .leaf-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+        .leaf-name {
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.7);
+            word-break: break-word;
+        }
+        .leaf-item.active .leaf-name { color: rgba(255,255,255,0.95); }
+        .leaf-item:hover .leaf-name { color: rgba(255,255,255,0.85); }
+
+        /* Category colors */
+        .cat-psi .branch-header { border-left-color: #bba7ff; }
+        .cat-psi .leaf-dot { background: #bba7ff; }
+        .cat-psi .branch-icon { color: #bba7ff; }
+
+        .cat-fiz .branch-header { border-left-color: #7ad7ff; }
+        .cat-fiz .leaf-dot { background: #7ad7ff; }
+        .cat-fiz .branch-icon { color: #7ad7ff; }
+
+        .cat-health .branch-header { border-left-color: #75f0b6; }
+        .cat-health .leaf-dot { background: #75f0b6; }
+        .cat-health .branch-icon { color: #75f0b6; }
+
+        .cat-tech .branch-header { border-left-color: #ffd27a; }
+        .cat-tech .leaf-dot { background: #ffd27a; }
+        .cat-tech .branch-icon { color: #ffd27a; }
+
+        .cat-society .branch-header { border-left-color: #ff7a99; }
+        .cat-society .leaf-dot { background: #ff7a99; }
+        .cat-society .branch-icon { color: #ff7a99; }
+
+        .cat-science .branch-header { border-left-color: #ffb38a; }
+        .cat-science .leaf-dot { background: #ffb38a; }
+        .cat-science .branch-icon { color: #ffb38a; }
+
+        .cat-other .branch-header { border-left-color: rgba(255,255,255,0.3); }
+        .cat-other .leaf-dot { background: rgba(255,255,255,0.4); }
+        .cat-other .branch-icon { color: rgba(255,255,255,0.5); }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0d1118;
+            min-width: 0;
+        }
+
+        .header {
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
         .header.hidden {
             transform: translateY(-100%);
             opacity: 0;
@@ -44,281 +222,372 @@
             overflow: hidden;
         }
 
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #34495e;
-        }
-
-        .file-list {
-            list-style: none;
-        }
-
-        .file-item {
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            background: #34495e;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            word-wrap: break-word;
-        }
-
-        .file-item:hover {
-            background: #3d566e;
-            transform: translateX(5px);
-        }
-
-        .file-item.active {
-            background: #3498db;
-        }
-
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: white;
-        }
-
-        .header {
-            padding: 20px;
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-
         .header h2 {
-            color: #2c3e50;
-            font-size: 20px;
+            color: rgba(255,255,255,0.75);
+            font-size: 14px;
+            font-weight: 500;
             flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .toggle-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 10px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            flex-shrink: 0;
         }
-
         .toggle-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .toggle-btn:active {
-            transform: translateY(0);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.18);
         }
 
         .shortcut-hint {
-            font-size: 11px;
-            opacity: 0.8;
-            background: rgba(0,0,0,0.2);
-            padding: 2px 6px;
+            font-size: 10px;
+            opacity: 0.5;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 5px;
             border-radius: 3px;
         }
 
         .floating-toggle {
             position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(52, 152, 219, 0.9);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+            background: rgba(122,215,255,0.15);
+            backdrop-filter: blur(8px);
+            color: #7ad7ff;
+            border: 1px solid rgba(122,215,255,0.25);
+            padding: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 20px;
-            width: 45px;
-            height: 45px;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: all 0.2s;
             z-index: 9999;
         }
+        .floating-toggle:hover { background: rgba(122,215,255,0.25); transform: scale(1.05); }
+        .floating-toggle.visible { display: flex; }
 
-        .floating-toggle:hover {
-            background: rgba(41, 128, 185, 0.95);
-            transform: scale(1.1);
-        }
-
-        .floating-toggle.visible {
-            display: flex;
-        }
-
-        .iframe-container {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .iframe-container { flex: 1; position: relative; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
 
         .empty-state {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100%;
-            color: #7f8c8d;
-            font-size: 18px;
+            color: rgba(255,255,255,0.3);
+            font-size: 16px;
+            gap: 12px;
+        }
+        .empty-state .arrow { font-size: 32px; opacity: 0.4; }
+
+        /* No results */
+        .no-results {
+            padding: 20px 16px;
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+            display: none;
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
             .sidebar {
                 position: absolute;
-                width: 80%;
+                width: 85%;
+                min-width: 85%;
                 height: 100%;
                 z-index: 1000;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.5);
             }
+            .sidebar.hidden { margin-left: -85%; min-width: 0; }
+            .shortcut-hint { display: none; }
+        }
 
-            .sidebar.hidden {
-                margin-left: -80%;
-            }
-
-            body {
-                flex-direction: column;
-            }
-
-            .shortcut-hint {
-                display: none;
-            }
+        @media print {
+            .sidebar, .header, .floating-toggle { display: none !important; }
+            .content { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <button class="floating-toggle" id="floatingToggle" title="Show controls (⌘B)">☰</button>
+    <button class="floating-toggle" id="floatingToggle" title="Show sidebar">&#9776;</button>
 
-    <div class="sidebar">
-        <h1>HTML Files</h1>
-        <ul class="file-list" id="fileList"></ul>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>Infographics</h1>
+            <div class="count" id="totalCount"></div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search..." />
+        </div>
+        <div class="tree-container" id="treeContainer"></div>
+        <div class="no-results" id="noResults">No results found</div>
     </div>
 
     <div class="content">
-        <div class="header">
-            <button class="toggle-btn" id="toggleBtn" title="Toggle sidebar (Ctrl+B)">
-                <span id="toggleIcon">✕</span>
-                <span class="shortcut-hint">Ctrl+B</span>
+        <div class="header" id="topHeader">
+            <button class="toggle-btn" id="toggleBtn">
+                <span id="toggleIcon">&#10005;</span>
+                <span class="shortcut-hint" id="shortcutHint">Ctrl+B</span>
             </button>
-            <h2 id="currentFile">Select a file to view</h2>
+            <h2 id="currentFile">Select an infographic to view</h2>
         </div>
         <div class="iframe-container" id="iframeContainer">
             <div class="empty-state">
-                👈 Select an HTML file from the sidebar
+                <span class="arrow">&#8592;</span>
+                <span>Select an infographic from the sidebar</span>
             </div>
         </div>
     </div>
 
     <script>
-        // ========================================
-        // Application Logic
-        // Automatically loads HTML files from files.json
-        // Run ./update-files.sh to refresh the file list
-        // ========================================
-        const fileList = document.getElementById('fileList');
-        const currentFileTitle = document.getElementById('currentFile');
-        const iframeContainer = document.getElementById('iframeContainer');
-        const sidebar = document.querySelector('.sidebar');
-        const header = document.querySelector('.header');
-        const toggleBtn = document.getElementById('toggleBtn');
-        const toggleIcon = document.getElementById('toggleIcon');
-        const floatingToggle = document.getElementById('floatingToggle');
-
-        // Detect OS and update shortcut hint
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const shortcutHint = document.querySelector('.shortcut-hint');
-        if (shortcutHint) {
-            shortcutHint.textContent = isMac ? '⌘B' : 'Ctrl+B';
+    // ── Topic tree definition ──
+    const TREE = [
+        {
+            id: 'psi',
+            label: 'Psihologie / Carl Jung',
+            icon: '\u{1F9E0}',
+            cat: 'cat-psi',
+            match: f => f.startsWith('psi-')
+        },
+        {
+            id: 'fiz',
+            label: 'Fizic\u0103 / Leonard Susskind',
+            icon: '\u{1F30C}',
+            cat: 'cat-fiz',
+            match: f => f.startsWith('fiz-')
+        },
+        {
+            id: 'health',
+            label: 'S\u0103n\u0103tate & Biologie',
+            icon: '\u{1F33F}',
+            cat: 'cat-health',
+            match: f => ['circadian-dysfunction.html','health-needle.html','suplements.html'].includes(f)
+        },
+        {
+            id: 'science',
+            label: '\u0218tiin\u021B\u0103 / Feynman & AI',
+            icon: '\u{1F52C}',
+            cat: 'cat-science',
+            match: f => f.startsWith('feynman-') || ['sair.html','html-ai-presentation.html','prime-numbers.html'].includes(f)
+        },
+        {
+            id: 'tech',
+            label: 'Tehnologie & MLOps',
+            icon: '\u{2699}\uFE0F',
+            cat: 'cat-tech',
+            match: f => ['claude-context.html','claude-context-claude.html','mlops-solution.html'].includes(f)
+        },
+        {
+            id: 'society',
+            label: 'Societate & Geopolitic\u0103',
+            icon: '\u{1F310}',
+            cat: 'cat-society',
+            match: f => ['prostitution-paradox.html','paradox-business.html','geopolitica-euronews-analiza.html','retele-sociale.html'].includes(f)
+        },
+        {
+            id: 'other',
+            label: 'Altele',
+            icon: '\u{1F4C1}',
+            cat: 'cat-other',
+            match: () => false // catch-all
         }
-        toggleBtn.title = `Toggle sidebar (${isMac ? 'Cmd+B' : 'Ctrl+B'})`;
+    ];
 
-        // Toggle sidebar and header function
-        function toggleSidebar() {
-            sidebar.classList.toggle('hidden');
-            header.classList.toggle('hidden');
-            const isHidden = sidebar.classList.contains('hidden');
-            toggleIcon.textContent = isHidden ? '☰' : '✕';
+    function prettifyName(filename) {
+        return filename
+            .replace(/\.html$/, '')
+            .replace(/^(psi|fiz)-/, '')
+            .replace(/---/g, ' \u2014 ')
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase());
+    }
 
-            // Show/hide floating toggle button
-            if (isHidden) {
-                floatingToggle.classList.add('visible');
-            } else {
-                floatingToggle.classList.remove('visible');
-            }
+    // ── DOM refs ──
+    const treeContainer = document.getElementById('treeContainer');
+    const currentFileTitle = document.getElementById('currentFile');
+    const iframeContainer = document.getElementById('iframeContainer');
+    const sidebar = document.getElementById('sidebar');
+    const topHeader = document.getElementById('topHeader');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const floatingToggle = document.getElementById('floatingToggle');
+    const searchInput = document.getElementById('searchInput');
+    const noResults = document.getElementById('noResults');
+    const totalCount = document.getElementById('totalCount');
+
+    // ── OS detection ──
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    document.getElementById('shortcutHint').textContent = isMac ? '\u2318B' : 'Ctrl+B';
+    toggleBtn.title = `Toggle sidebar (${isMac ? 'Cmd+B' : 'Ctrl+B'})`;
+
+    // ── Sidebar toggle ──
+    function toggleSidebar() {
+        sidebar.classList.toggle('hidden');
+        topHeader.classList.toggle('hidden');
+        const isHidden = sidebar.classList.contains('hidden');
+        toggleIcon.innerHTML = isHidden ? '&#9776;' : '&#10005;';
+        floatingToggle.classList.toggle('visible', isHidden);
+    }
+    toggleBtn.addEventListener('click', toggleSidebar);
+    floatingToggle.addEventListener('click', toggleSidebar);
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'b') { e.preventDefault(); toggleSidebar(); }
+    });
+
+    // ── Build tree ──
+    let allLeaves = [];
+
+    fetch('files.json')
+        .then(r => r.json())
+        .then(files => {
+            totalCount.textContent = `${files.length} infographics`;
+
+            // Classify files into branches
+            const branches = TREE.map(b => ({ ...b, files: [] }));
+            const classified = new Set();
+
+            files.forEach(f => {
+                for (const branch of branches) {
+                    if (branch.id !== 'other' && branch.match(f)) {
+                        branch.files.push(f);
+                        classified.add(f);
+                        break;
+                    }
+                }
+            });
+
+            // Remaining go to 'other'
+            files.forEach(f => {
+                if (!classified.has(f)) {
+                    branches.find(b => b.id === 'other').files.push(f);
+                }
+            });
+
+            // Render tree
+            branches.forEach(branch => {
+                if (branch.files.length === 0) return;
+
+                const div = document.createElement('div');
+                div.className = `tree-branch ${branch.cat}`;
+                div.dataset.branchId = branch.id;
+
+                const header = document.createElement('div');
+                header.className = 'branch-header';
+                header.innerHTML = `
+                    <span class="branch-arrow">&#9654;</span>
+                    <span class="branch-icon">${branch.icon}</span>
+                    <span class="branch-label">${branch.label}</span>
+                    <span class="branch-count">${branch.files.length}</span>
+                `;
+                header.addEventListener('click', () => {
+                    header.classList.toggle('open');
+                });
+
+                const children = document.createElement('div');
+                children.className = 'branch-children';
+
+                branch.files.forEach(file => {
+                    const leaf = document.createElement('div');
+                    leaf.className = 'leaf-item';
+                    leaf.dataset.file = file;
+                    leaf.dataset.search = (file + ' ' + prettifyName(file)).toLowerCase();
+                    leaf.innerHTML = `
+                        <span class="leaf-dot"></span>
+                        <span class="leaf-name">${prettifyName(file)}</span>
+                    `;
+                    leaf.addEventListener('click', () => loadFile(file, leaf));
+                    children.appendChild(leaf);
+                    allLeaves.push({ el: leaf, branch: div, header: header, file: file });
+                });
+
+                div.appendChild(header);
+                div.appendChild(children);
+                treeContainer.appendChild(div);
+            });
+
+            // Auto-open the first two branches
+            const headers = treeContainer.querySelectorAll('.branch-header');
+            if (headers.length > 0) headers[0].classList.add('open');
+            if (headers.length > 1) headers[1].classList.add('open');
+        })
+        .catch(err => {
+            console.error('Error loading files:', err);
+            treeContainer.innerHTML = '<div style="padding:20px;color:#e74c3c;">Error loading files.json</div>';
+        });
+
+    // ── Search ──
+    searchInput.addEventListener('input', () => {
+        const q = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        if (!q) {
+            // Show all
+            allLeaves.forEach(({ el, branch }) => {
+                el.style.display = '';
+                branch.style.display = '';
+            });
+            noResults.style.display = 'none';
+            // Reset branch counts
+            treeContainer.querySelectorAll('.branch-count').forEach(c => {
+                const branch = c.closest('.tree-branch');
+                const total = branch.querySelectorAll('.leaf-item').length;
+                c.textContent = total;
+            });
+            return;
         }
 
-        // Toggle button click handler
-        toggleBtn.addEventListener('click', toggleSidebar);
-        floatingToggle.addEventListener('click', toggleSidebar);
-
-        // Keyboard shortcut: Ctrl+B (Cmd+B on Mac)
-        document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
-                e.preventDefault();
-                toggleSidebar();
+        const branchVisible = {};
+        allLeaves.forEach(({ el, branch }) => {
+            const match = el.dataset.search.includes(q);
+            el.style.display = match ? '' : 'none';
+            if (match) {
+                visibleCount++;
+                branchVisible[branch.dataset.branchId] = (branchVisible[branch.dataset.branchId] || 0) + 1;
+                // auto-open matching branches
+                branch.querySelector('.branch-header').classList.add('open');
             }
         });
 
-        // Fetch and load HTML files from files.json
-        fetch('files.json')
-            .then(response => response.json())
-            .then(htmlFiles => {
-                if (htmlFiles.length === 0) {
-                    fileList.innerHTML = '<li style="color: #95a5a6; padding: 10px;">No HTML files found</li>';
-                    return;
-                }
+        // Hide empty branches, update counts
+        treeContainer.querySelectorAll('.tree-branch').forEach(branch => {
+            const id = branch.dataset.branchId;
+            const count = branchVisible[id] || 0;
+            branch.style.display = count > 0 ? '' : 'none';
+            branch.querySelector('.branch-count').textContent = count;
+        });
 
-                // Generate file list
-                htmlFiles.forEach((file, index) => {
-                    const li = document.createElement('li');
-                    li.className = 'file-item';
-                    li.textContent = file;
-                    li.onclick = () => loadFile(file, li);
-                    fileList.appendChild(li);
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
 
-                    // Auto-load first file
-                    if (index === 0) {
-                        loadFile(file, li);
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Error loading files:', error);
-                fileList.innerHTML = '<li style="color: #e74c3c; padding: 10px;">Error loading files.json<br>Run ./update-files.sh</li>';
-            });
+    // ── Load file ──
+    function loadFile(filename, element) {
+        document.querySelectorAll('.leaf-item').forEach(i => i.classList.remove('active'));
+        element.classList.add('active');
+        currentFileTitle.textContent = prettifyName(filename);
+        iframeContainer.innerHTML = `<iframe src="${filename}" title="${filename}"></iframe>`;
 
-        function loadFile(filename, element) {
-            // Remove active class from all items
-            document.querySelectorAll('.file-item').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Add active class to clicked item
-            element.classList.add('active');
-
-            // Update header
-            currentFileTitle.textContent = filename;
-
-            // Create and load iframe
-            iframeContainer.innerHTML = `<iframe src="${filename}" title="${filename}"></iframe>`;
-        }
+        // On mobile, auto-close sidebar
+        if (window.innerWidth <= 768) toggleSidebar();
+    }
     </script>
 </body>
 </html>
