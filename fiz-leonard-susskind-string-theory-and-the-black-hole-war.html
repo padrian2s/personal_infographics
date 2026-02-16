@@ -1,0 +1,1753 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leonard Susskind: Teoria Corzilor, Gaurile Negre si Razboiul Informatiei — Infografic Interactiv</title>
+  <meta name="description" content="Infografic interactiv despre contributiile lui Leonard Susskind la fizica teoretica: razboiul informatiei gaurilor negre, principiul holografic, teoria corzilor si viitorul cosmologiei." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Timeline */
+    .timeline{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:8px;
+      top:10px;
+      bottom:10px;
+      width:2px;
+      background: linear-gradient(180deg, var(--cyan), var(--violet), var(--orange));
+      border-radius: 2px;
+    }
+    .tlItem{
+      position:relative;
+      padding: 10px 0 10px 16px;
+    }
+    .tlItem::before{
+      content:'';
+      position:absolute;
+      left:-20px;
+      top:16px;
+      width:10px;
+      height:10px;
+      border-radius:99px;
+      background: var(--cyan);
+      border: 2px solid rgba(0,0,0,.4);
+      box-shadow: 0 0 12px rgba(122,215,255,.3);
+    }
+    .tlItem:nth-child(even)::before{background: var(--violet)}
+    .tlItem:nth-child(3n)::before{background: var(--orange)}
+    .tlItem .tlYear{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.08em}
+    .tlItem .tlTitle{font-weight:700;font-size:14px;margin-top:4px}
+    .tlItem .tlDesc{color:var(--muted);font-size:13px;line-height:1.5;margin-top:4px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--violet));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Persona cards */
+    .personas{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 780px){
+      .personas{grid-template-columns:1fr}
+    }
+    .persona{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background: rgba(0,0,0,.18);
+      padding:14px;
+      text-align:center;
+    }
+    .persona .pIcon{
+      width:52px;height:52px;border-radius:99px;
+      margin:0 auto 10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:24px;
+      border:2px solid rgba(255,255,255,.14);
+    }
+    .persona h3{margin:0 0 6px;font-size:14px}
+    .persona p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+    .persona .pRole{
+      margin-top:8px;
+      display:inline-block;
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+    }
+
+    /* Quiz */
+    .quiz{display:grid;gap:10px}
+    .qItem{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px 14px;
+      cursor:pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .qItem:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+    .qItem.correct{border-color:var(--good);background:rgba(117,240,182,.08)}
+    .qItem.wrong{border-color:var(--bad);background:rgba(255,122,153,.08)}
+    .qItem .qText{font-size:13px}
+    .qItem .qFeedback{display:none;margin-top:8px;font-size:12px;color:var(--muted);line-height:1.5}
+    .qItem.correct .qFeedback,
+    .qItem.wrong .qFeedback{display:block}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Black hole with accretion disk -->
+            <ellipse cx="320" cy="110" rx="80" ry="26" fill="none" stroke="url(#g1)" stroke-width="6" opacity=".5"/>
+            <ellipse cx="320" cy="110" rx="110" ry="38" fill="none" stroke="url(#g2)" stroke-width="4" opacity=".35"/>
+            <circle cx="320" cy="110" r="30" fill="rgba(0,0,0,.8)" stroke="rgba(187,167,255,.4)" stroke-width="2"/>
+            <!-- String vibrations -->
+            <path d="M60,160 C80,130 100,190 120,140 C140,90 160,180 180,150" fill="none" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+            <path d="M400,50 C420,80 440,30 460,70 C475,95 490,55 500,80" fill="none" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+            <!-- Glow dots -->
+            <circle cx="320" cy="110" r="6" fill="rgba(255,255,255,.7)" />
+            <circle cx="130" cy="145" r="5" fill="rgba(255,255,255,.45)" />
+            <circle cx="470" cy="65" r="4" fill="rgba(255,255,255,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica teoretica &bull; gauri negre &bull; holografie &bull; teoria corzilor</div>
+          <h1>Leonard Susskind: Razboiul Informatiei, Gaurile Negre si Teoria Corzilor</h1>
+          <p class="subtitle">
+            Unul dintre cei mai importanti fizicieni ai secolului XX-XXI povesteste cum o intrebare simpla &mdash;
+            <b>se pierde informatia intr-o gaura neagra?</b> &mdash; a declansat decenii de descoperiri revolutionare,
+            de la principiul holografic la dualitatea AdS/CFT. Totul explicat pe intelesul tuturor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpBH">Mergi la gauri negre</button>
+            <button class="btn" id="jumpHolo">Mergi la holografie</button>
+            <button class="btn" id="jumpQuiz">Testeaza-ti cunostintele</button>
+            <button class="btn" id="toggleNotes">Comentarii pornit/oprit</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Conflictul central</div>
+            <div class="value">Informatia: pierduta sau nu?</div>
+            <div class="note">Mecanica cuantica spune: niciodata pierduta. Hawking spune: pierduta in gaura neagra.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Arma decisiva</div>
+            <div class="value" style="color:var(--cyan)">Principiul Holografic</div>
+            <div class="note">Toata informatia dintr-un volum 3D poate fi codificata pe suprafata 2D.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Protagonistul</div>
+            <div class="value">Leonard Susskind</div>
+            <div class="note">84 ani, Stanford. Unul din parintii teoriei corzilor. A castigat "razboiul".</div>
+          </div>
+          <div class="stat">
+            <div class="label">Durata razboiului</div>
+            <div class="value">~1981 &rarr; ~2004</div>
+            <div class="note">Peste 20 de ani de dezbateri, pana cand Hawking a recunoscut ca a gresit.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Cast of Characters -->
+      <section class="card" aria-label="Personajele povestii">
+        <div class="cardHeader">
+          <h2>Personajele Razboiului Gaurilor Negre</h2>
+          <div class="chip"><b>3 giganti</b> ai fizicii</div>
+        </div>
+        <div class="cardBody">
+          <div class="personas">
+            <div class="persona">
+              <div class="pIcon" style="background:rgba(122,215,255,.12);border-color:rgba(122,215,255,.3)">LS</div>
+              <h3>Leonard Susskind</h3>
+              <p>Stanford. Parinte al teoriei corzilor. Convins de la inceput ca Hawking gresea &mdash; informatia nu se pierde niciodata.</p>
+              <span class="pRole" style="color:var(--cyan)">Protagonist</span>
+            </div>
+            <div class="persona">
+              <div class="pIcon" style="background:rgba(255,122,153,.12);border-color:rgba(255,122,153,.3)">SH</div>
+              <h3>Stephen Hawking</h3>
+              <p>"Informatia care intra intr-o gaura neagra se pierde pentru totdeauna." Un fizician genial, dar pe acest punct &mdash; gresea.</p>
+              <span class="pRole" style="color:var(--bad)">Adversar</span>
+            </div>
+            <div class="persona">
+              <div class="pIcon" style="background:rgba(187,167,255,.12);border-color:rgba(187,167,255,.3)">GH</div>
+              <h3>Gerard 't Hooft</h3>
+              <p>Laureat Nobel. Curios, contradictoriu, pianist. A co-inventat principiul holografic independent de Susskind.</p>
+              <span class="pRole" style="color:var(--violet)">Aliat-cheie</span>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="small">Alti contribuitori importanti: Jacob Bekenstein (entropia gaurilor negre), Juan Maldacena (AdS/CFT), Ed Witten (sustinator timpuriu).</div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind il descrie pe Hawking ca "genial" si "prieten" &mdash; nu dusman personal. Razboiul era unul de <i>idei</i>, nu de ego-uri. Cand Hawking a recunoscut ca a gresit, era "incantat" de rezultat, nu suparat.
+          </div>
+        </div>
+      </section>
+
+      <!-- What is a Black Hole + Waterfall Analogy -->
+      <section class="row" id="bhSection">
+        <div class="card" aria-label="Ce este o gaura neagra">
+          <div class="cardHeader">
+            <h2>Ce este o gaura neagra?</h2>
+            <div class="chip">analogia cascadei</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Imaginati-va un rau care curge spre o cascada. Pe masura ce se apropie de marginea cascadei,
+              apa curge din ce in ce mai repede. La un moment dat, apa curge <b>atat de repede</b> incat nici
+              macar sunetul nu mai poate scapa inapoi. Daca esti intr-o barca, odata ce treci de acel punct
+              &mdash; esti sortit sa cazi. Nu poti vasli mai repede decat curentul.
+            </p>
+            <div class="viz" id="waterfallViz" aria-label="Vizualizare cascada - gaura neagra">
+              <svg viewBox="0 0 980 360" id="bhSvg" role="img">
+                <defs>
+                  <linearGradient id="waterGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.3)"/>
+                    <stop offset=".5" stop-color="rgba(122,215,255,.6)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.8)"/>
+                  </linearGradient>
+                  <radialGradient id="bhGrad" cx=".5" cy=".5" r=".5">
+                    <stop offset="0" stop-color="rgba(0,0,0,1)"/>
+                    <stop offset=".7" stop-color="rgba(0,0,0,.9)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.3)"/>
+                  </radialGradient>
+                  <filter id="glow2" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="8" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect width="980" height="360" fill="rgba(0,0,0,.05)"/>
+
+                <!-- Grid -->
+                <g opacity=".3">
+                  <line x1="490" y1="0" x2="490" y2="360" stroke="rgba(255,255,255,.15)" stroke-dasharray="4 4"/>
+                  <text x="490" y="352" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">ORIZONT (punct fara intoarcere)</text>
+                </g>
+
+                <!-- Left side: outside -->
+                <g filter="url(#glow2)">
+                  <!-- Flow arrows -->
+                  <g id="flowArrows"></g>
+
+                  <!-- Horizon ring -->
+                  <ellipse cx="490" cy="180" rx="6" ry="140" fill="none" stroke="rgba(255,210,122,.5)" stroke-width="2" stroke-dasharray="6 4"/>
+
+                  <!-- Black hole center -->
+                  <circle cx="700" cy="180" r="70" fill="url(#bhGrad)" stroke="rgba(187,167,255,.25)" stroke-width="2"/>
+                  <text x="700" y="184" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.7)" font-weight="700">Singularitate</text>
+
+                  <!-- Labels -->
+                  <text x="240" y="30" font-size="14" fill="rgba(122,215,255,.85)" font-weight="700">EXTERIOR (poti scapa)</text>
+                  <text x="600" y="30" font-size="14" fill="rgba(255,122,153,.85)" font-weight="700">INTERIOR (nu mai poti scapa)</text>
+
+                  <!-- Boat -->
+                  <g id="boat" transform="translate(200,170)">
+                    <path d="M-12,0 Q0,8 12,0 Q0,-4 -12,0Z" fill="rgba(255,210,122,.8)" stroke="rgba(255,255,255,.3)"/>
+                    <line x1="0" y1="-2" x2="0" y2="-14" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/>
+                    <path d="M0,-14 L8,-8 L0,-6Z" fill="rgba(255,179,138,.6)"/>
+                  </g>
+                </g>
+
+                <!-- Explanatory text -->
+                <text x="50" y="310" font-size="12" fill="rgba(255,255,255,.5)">Lumina (cel mai rapid lucru din univers) nu poate scapa din interior.</text>
+                <text x="50" y="328" font-size="12" fill="rgba(255,255,255,.5)">Daca lumina nu poate &mdash; nimic altceva nu poate.</text>
+              </svg>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Pozitia barcii</span>
+                  <span class="readout" id="boatReadout">In siguranta</span>
+                </label>
+                <input id="boatSlider" type="range" min="0" max="100" value="20"/>
+                <div class="small" style="margin-top:8px">Trage la dreapta pentru a te apropia de orizont si dincolo.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Masa gaurii negre</span>
+                  <span class="readout" id="massReadout">10 M&#9737;</span>
+                </label>
+                <input id="massSlider" type="range" min="1" max="100" value="10"/>
+                <div class="small" style="margin-top:8px">Cu cat masa e mai mare, cu atat orizontul e mai mare.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta analogie cu cascada e chiar a lui Susskind. Punctul crucial: <b>la orizont nu se intampla nimic spectaculos</b> daca cazi prin el &mdash; la fel cum barca nu simte nimic special la "punctul fara intoarcere". Lucrurile rele se intampla la singularitate (stancile de la baza cascadei).
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Paradoxul informatiei">
+          <div class="cardHeader">
+            <h2>Paradoxul Informatiei</h2>
+            <div class="chip"><b>Miezul</b> razboiului</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Acesta este conflictul care a alimentat "razboiul" timp de peste 20 de ani:
+            </p>
+
+            <div class="flow" aria-label="Lantul paradoxului">
+              <div class="flowNode">
+                <h3>1) O carte cade intr-o gaura neagra</h3>
+                <p>Cartea contine informatie &mdash; adica <b>distinctii</b> (e cartea lui Hawking sau a lui Susskind? Are 200 sau 300 de pagini? etc.).</p>
+                <div class="meta"><span class="badge">informatie = distinctii</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Trece de orizont &rarr; nu mai poate iesi</h3>
+                <p>Conform relativitatii generale clasice, odata trecuta de orizont, informatia e captiva &mdash; nu mai poate comunica cu exteriorul.</p>
+                <div class="meta"><span class="badge">punct fara intoarcere</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Dar gaura neagra se evapora!</h3>
+                <p>Hawking a demonstrat ca gaurile negre emit radiatii (radiatia Hawking) si, foarte lent, se evapora complet. Atunci: <b>unde e informatia?</b></p>
+                <div class="meta"><span class="badge" style="border-color:var(--bad);color:var(--bad)">informatie pierduta?</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Mecanica cuantica: NICIODATA pierduta!</h3>
+                <p>Una din regulile fundamentale ale mecanicii cuantice (<b>unitaritatea</b>) spune ca informatia se poate amesteca, dar nu poate fi distrusa. E ca si cum ai arde o carte: informatia e in fum, dar e acolo.</p>
+                <div class="meta"><span class="badge" style="border-color:var(--good);color:var(--good)">informatie conservata</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="split">
+              <div class="risk">
+                <div class="rTop"><strong>Pozitia lui Hawking</strong><span class="badge" style="border-color:var(--bad)">informatia se pierde</span></div>
+                <p>"Gaura neagra se evapora, informatia nu poate iesi, deci e distrusa pentru totdeauna."</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Pozitia lui Susskind</strong><span class="badge" style="border-color:var(--good)">informatia supravietuieste</span></div>
+                <p>"Radiatia Hawking care iese poarta cu ea informatia &mdash; extrem de amestecata, dar acolo."</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> De ce conteaza? Daca informatia se pierde cu adevarat, <b>mecanica cuantica se strica</b> &mdash; o catastrofa pentru toata fizica. Daca nu se pierde, trebuie sa gasim <b>cum</b> scapa din gaura neagra. Asta a fost miza.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bekenstein Entropy and Hawking Radiation -->
+      <section class="card" aria-label="Entropia Bekenstein si Radiatia Hawking">
+        <div class="cardHeader">
+          <h2>Doua descoperiri care au pornit totul</h2>
+          <div class="chip">Bekenstein + Hawking</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Jacob Bekenstein: gaurile negre au entropie</h3>
+                <p>Entropia = informatie ascunsa. Bekenstein a intuit ca informatia care cade in gaura neagra nu dispare &mdash; ci se stocheaza pe <b>suprafata orizontului</b>.</p>
+                <div class="hr"></div>
+                <p><b>Descoperirea cheie:</b> Entropia unei gauri negre este proportionala cu <b>aria orizontului</b>, masurata in unitati Planck (pixeli minusculi de ~10<sup>-66</sup> cm<sup>2</sup>).</p>
+                <div class="meta"><span class="badge">entropie ~ arie</span><span class="badge">pixeli Planck</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="flowNode">
+                <h3 style="color:var(--orange)">Stephen Hawking: gaurile negre radiaza</h3>
+                <p>Daca un obiect are entropie si energie, atunci are si <b>temperatura</b>. Daca are temperatura, trebuie sa <b>radieze</b>. Concluzia: gaurile negre nu sunt chiar "negre"!</p>
+                <div class="hr"></div>
+                <p><b>Consecinta:</b> Radiatia Hawking face ca gaura neagra sa piarda energie si sa se <b>micsoreze</b> incet, ca o balta care se evapora. Dar dureaza ~10<sup>70</sup> ani.</p>
+                <div class="meta"><span class="badge">radiatia Hawking</span><span class="badge">evaporare</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="viz" aria-label="Diagrama entropie-arie">
+            <svg viewBox="0 0 980 280" role="img">
+              <defs>
+                <linearGradient id="pixelGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(122,215,255,.4)"/>
+                  <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                </linearGradient>
+                <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect width="980" height="280" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#soft2)">
+                <!-- Big sphere outline -->
+                <circle cx="200" cy="140" r="100" fill="rgba(0,0,0,.3)" stroke="url(#pixelGrad)" stroke-width="3"/>
+                <!-- Pixel grid on surface -->
+                <g opacity=".6">
+                  <circle cx="148" cy="80" r="8" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+                  <circle cx="170" cy="60" r="8" fill="none" stroke="rgba(122,215,255,.5)" stroke-width="1"/>
+                  <circle cx="195" cy="48" r="8" fill="none" stroke="rgba(187,167,255,.5)" stroke-width="1"/>
+                  <circle cx="222" cy="52" r="8" fill="none" stroke="rgba(187,167,255,.4)" stroke-width="1"/>
+                  <circle cx="248" cy="70" r="8" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+                  <circle cx="264" cy="96" r="8" fill="none" stroke="rgba(122,215,255,.5)" stroke-width="1"/>
+                  <circle cx="270" cy="128" r="8" fill="none" stroke="rgba(187,167,255,.5)" stroke-width="1"/>
+                  <circle cx="266" cy="160" r="8" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="1"/>
+                  <circle cx="252" cy="190" r="8" fill="none" stroke="rgba(255,179,138,.5)" stroke-width="1"/>
+                  <circle cx="228" cy="212" r="8" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+                  <circle cx="200" cy="222" r="8" fill="none" stroke="rgba(122,215,255,.5)" stroke-width="1"/>
+                  <circle cx="168" cy="216" r="8" fill="none" stroke="rgba(187,167,255,.4)" stroke-width="1"/>
+                  <circle cx="144" cy="196" r="8" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="1"/>
+                  <circle cx="130" cy="168" r="8" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+                  <circle cx="126" cy="136" r="8" fill="none" stroke="rgba(187,167,255,.5)" stroke-width="1"/>
+                  <circle cx="132" cy="106" r="8" fill="none" stroke="rgba(255,179,138,.5)" stroke-width="1"/>
+                </g>
+
+                <text x="200" y="144" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.85)" font-weight="700">Gaura Neagra</text>
+
+                <!-- Arrow -->
+                <path d="M330 140 L420 140" stroke="rgba(255,255,255,.3)" stroke-width="2" marker-end="url(#arrowHead)"/>
+                <defs><marker id="arrowHead" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8Z" fill="rgba(255,255,255,.4)"/></marker></defs>
+
+                <!-- Formula box -->
+                <rect x="440" y="80" width="500" height="120" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.12)"/>
+                <text x="470" y="118" font-size="16" fill="rgba(255,255,255,.9)" font-weight="700">Formula lui Bekenstein-Hawking:</text>
+                <text x="470" y="150" font-size="20" fill="var(--cyan)" font-family="ui-monospace, monospace">S = A / (4 l<tspan font-size="14" dy="-6">2</tspan><tspan dy="6">)</tspan></text>
+                <text x="470" y="178" font-size="12" fill="rgba(255,255,255,.6)">S = entropie, A = aria orizontului, l = lungimea Planck (~10&#8315;&#179;&#8309; m)</text>
+              </g>
+            </svg>
+            <div class="small">Fiecare "pixel" Planck de pe suprafata orizontului stocheaza cam 1 bit de informatie. Orizontul e ca un ecran urias cu rezolutie incredibil de mica.</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta legatura intre <b>arie</b> si <b>informatie</b> a fost prima indicatie ca fizica 3D poate fi "codificata" pe o suprafata 2D &mdash; semnul care va conduce la principiul holografic.
+          </div>
+        </div>
+      </section>
+
+      <!-- The Holographic Principle -->
+      <section class="row" id="holoSection">
+        <div class="card" aria-label="Principiul Holografic">
+          <div class="cardHeader">
+            <h2>Principiul Holografic</h2>
+            <div class="chip"><b>Ideea</b> revolutionara</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind povesteste ca se plimba pe holul departamentului de fizica de la Stanford, cand a trecut pe langa un hologram expus &mdash;
+              imaginea 3D a unei tinere zambitoare, stocata pe o folie 2D.
+            </p>
+            <p class="muted">
+              Momentul "aha": <b>toata informatia despre un obiect 3D poate fi codificata pe o suprafata 2D</b> &mdash;
+              exact asa cum entropia gaurii negre e proportionala cu aria (2D), nu volumul (3D).
+            </p>
+
+            <div class="viz" aria-label="Vizualizare holografie">
+              <svg viewBox="0 0 980 340" id="holoSvg" role="img">
+                <defs>
+                  <linearGradient id="holoGrad1" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(122,215,255,.3)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.15)"/>
+                  </linearGradient>
+                  <filter id="holoGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect width="980" height="340" fill="rgba(0,0,0,.04)"/>
+
+                <g filter="url(#holoGlow)">
+                  <!-- 2D film / boundary -->
+                  <rect x="60" y="30" width="380" height="280" rx="12" fill="rgba(0,0,0,.15)" stroke="rgba(122,215,255,.35)" stroke-width="2"/>
+                  <!-- "Scratches" on film -->
+                  <g opacity=".4">
+                    <line x1="80" y1="60" x2="130" y2="68" stroke="var(--cyan)" stroke-width="1"/>
+                    <line x1="100" y1="90" x2="170" y2="85" stroke="var(--violet)" stroke-width="1"/>
+                    <line x1="90" y1="120" x2="150" y2="130" stroke="var(--cyan)" stroke-width="1"/>
+                    <line x1="120" y1="150" x2="200" y2="145" stroke="var(--orange)" stroke-width="1"/>
+                    <line x1="80" y1="180" x2="160" y2="190" stroke="var(--violet)" stroke-width="1"/>
+                    <line x1="110" y1="210" x2="190" y2="205" stroke="var(--cyan)" stroke-width="1"/>
+                    <line x1="90" y1="240" x2="180" y2="248" stroke="var(--orange)" stroke-width="1"/>
+                    <line x1="130" y1="265" x2="210" y2="260" stroke="var(--violet)" stroke-width="1"/>
+                    <line x1="220" y1="60" x2="300" y2="72" stroke="var(--cyan)" stroke-width="1"/>
+                    <line x1="240" y1="100" x2="340" y2="95" stroke="var(--violet)" stroke-width="1"/>
+                    <line x1="230" y1="140" x2="330" y2="150" stroke="var(--orange)" stroke-width="1"/>
+                    <line x1="250" y1="180" x2="360" y2="175" stroke="var(--cyan)" stroke-width="1"/>
+                    <line x1="220" y1="220" x2="340" y2="230" stroke="var(--violet)" stroke-width="1"/>
+                    <line x1="260" y1="260" x2="380" y2="255" stroke="var(--orange)" stroke-width="1"/>
+                  </g>
+                  <text x="250" y="24" text-anchor="middle" font-size="13" fill="rgba(122,215,255,.8)" font-weight="700">SUPRAFATA 2D (granita)</text>
+                  <text x="250" y="326" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">contine "zgrepturi" incomprehensibile...</text>
+
+                  <!-- Arrow equals -->
+                  <text x="480" y="170" font-size="36" fill="rgba(255,255,255,.5)" text-anchor="middle">=</text>
+                  <text x="480" y="200" font-size="12" fill="rgba(255,255,255,.4)" text-anchor="middle">codifica exact</text>
+
+                  <!-- 3D reality -->
+                  <g transform="translate(580, 30)">
+                    <rect width="340" height="280" rx="12" fill="rgba(0,0,0,.08)" stroke="rgba(187,167,255,.25)" stroke-width="2"/>
+                    <!-- 3D cube wireframe -->
+                    <g transform="translate(170, 140)" opacity=".7">
+                      <path d="M-60,-40 L60,-40 L60,40 L-60,40Z" fill="none" stroke="rgba(187,167,255,.5)" stroke-width="1.5"/>
+                      <path d="M-60,-40 L-30,-70 L90,-70 L60,-40" fill="none" stroke="rgba(187,167,255,.35)" stroke-width="1.5"/>
+                      <path d="M60,-40 L90,-70 L90,10 L60,40" fill="none" stroke="rgba(187,167,255,.35)" stroke-width="1.5"/>
+                      <!-- Star / object inside -->
+                      <circle cx="10" cy="-10" r="20" fill="rgba(255,210,122,.15)" stroke="rgba(255,210,122,.4)" stroke-width="1.5"/>
+                      <circle cx="10" cy="-10" r="5" fill="rgba(255,210,122,.6)"/>
+                      <!-- Planets -->
+                      <circle cx="-30" cy="15" r="6" fill="rgba(122,215,255,.3)" stroke="rgba(122,215,255,.5)" stroke-width="1"/>
+                      <circle cx="40" cy="-30" r="4" fill="rgba(255,179,138,.3)" stroke="rgba(255,179,138,.5)" stroke-width="1"/>
+                    </g>
+                    <text x="170" y="18" text-anchor="middle" font-size="13" fill="rgba(187,167,255,.8)" font-weight="700">REALITATE 3D (bulk)</text>
+                    <text x="170" y="296" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">...dar contine toata informatia despre interiorul 3D</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Initial, colegii au crezut ca Susskind si 't Hooft "si-au pierdut mintile." Unul din putinii care a crezut imediat a fost <b>Ed Witten</b> &mdash; considerat cel mai bun fizician matematic al generatiei.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Complementaritatea gaurii negre">
+          <div class="cardHeader">
+            <h2>Complementaritatea Gaurii Negre</h2>
+            <div class="chip">doua perspective, o realitate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Inca un concept nebunesc dar consistent: <b>doi observatori vad lucruri diferite</b>, si amandoi au dreptate.
+            </p>
+
+            <div class="split">
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Observatorul de afara</h3>
+                <p>Vede orizontul ca o <b>membrana fierbinte</b>. Informatia care cade se "freaca" pe suprafata si se amesteca in radiatia Hawking. Nu vede niciodata ceva trecand prin orizont.</p>
+                <div class="meta"><span class="badge">suprafata fierbinte</span><span class="badge">informatie conservata</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--orange)">Observatorul care cade</h3>
+                <p>Trece prin orizont <b>fara sa simta nimic</b> &mdash; ca barca la "punctul fara intoarcere." Vede un spatiu-timp perfect normal in interior (cel putin daca gaura neagra e mare).</p>
+                <div class="meta"><span class="badge">trece netulburat</span><span class="badge">spatiu-timp normal</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted" style="margin-bottom:0">
+              Contradictie? <b>Nu!</b> Cel care cade nu mai poate comunica inapoi (a trecut de punctul fara intoarcere).
+              Deci nimeni nu poate compara cele doua experienta simultan. Sunt ca doua descrieri matematice ale aceluiasi lucru &mdash;
+              la fel cum o holograma e si folie 2D si imagine 3D.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind o numeste o "tentativa disperata" de a reconcilia cele doua perspective &mdash; dar care s-a dovedit a fi <b>corecta</b>. Este acum acceptata pe larg de fizicienii tineri.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AdS/CFT - The Winning Blow -->
+      <section class="card" aria-label="AdS/CFT - Lovitura decisiva">
+        <div class="cardHeader">
+          <h2>AdS/CFT: Lovitura care a castigat razboiul</h2>
+          <div class="chip"><b>Maldacena</b> 1997</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                In 1997, fizicianul argentinian <b>Juan Maldacena</b> a demonstrat un exemplu concret si riguros al principiului holografic:
+              </p>
+
+              <div class="flowNode">
+                <h3>Dualitatea AdS/CFT</h3>
+                <p>Un univers cu gravitatie (spatiu Anti-de Sitter, "interiorul") este <b>matematic echivalent</b> cu o teorie cuantica fara gravitatie ("exteriorul", pe granita).</p>
+                <div class="hr"></div>
+                <p>E ca si cum ai avea un acvariu: pestii se misca in 3D inauntru, dar cineva de pe peretii de sticla (2D) poate calcula <i>tot</i> ce fac pestii.</p>
+                <div class="meta">
+                  <span class="badge">gravitatie in interior</span>
+                  <span class="badge">teorie cuantica pe granita</span>
+                  <span class="badge">echivalenta exacta</span>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+              <h3 style="margin:0 0 6px;font-size:14px;color:var(--good)">De ce a castigat razboiul?</h3>
+              <p class="muted" style="margin:0">
+                Poti avea gauri negre in interiorul spatiului AdS. Ele se formeaza, inghit lucruri, se evapora.
+                Dar descrierea de pe granita este <b>mecanica cuantica pura</b> &mdash; si in mecanica cuantica,
+                informatia nu se pierde niciodata. Demonstratie completa: informatia supravietuieste.
+              </p>
+            </div>
+            <div>
+              <div class="viz" aria-label="Dualitate AdS/CFT">
+                <svg viewBox="0 0 440 400" role="img">
+                  <defs>
+                    <linearGradient id="adsGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(122,215,255,.2)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.05)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="440" height="400" fill="rgba(0,0,0,.04)"/>
+
+                  <!-- AdS boundary circle -->
+                  <circle cx="220" cy="200" r="160" fill="url(#adsGrad)" stroke="rgba(122,215,255,.4)" stroke-width="2.5"/>
+                  <text x="220" y="44" text-anchor="middle" font-size="11" fill="rgba(122,215,255,.7)" font-weight="700">GRANITA (Teorie cuantica fara gravitatie)</text>
+
+                  <!-- Bulk label -->
+                  <text x="220" y="130" text-anchor="middle" font-size="12" fill="rgba(187,167,255,.6)">Interior (Spatiu AdS cu gravitatie)</text>
+
+                  <!-- Black hole in center -->
+                  <circle cx="220" cy="220" r="40" fill="rgba(0,0,0,.7)" stroke="rgba(255,122,153,.4)" stroke-width="2"/>
+                  <text x="220" y="224" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.7)">Gaura neagra</text>
+
+                  <!-- Hawking radiation arrows going out -->
+                  <g opacity=".5">
+                    <line x1="220" y1="178" x2="220" y2="100" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <line x1="256" y1="192" x2="330" y2="130" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <line x1="184" y1="192" x2="110" y2="130" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <line x1="256" y1="248" x2="340" y2="290" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <line x1="184" y1="248" x2="100" y2="290" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <line x1="220" y1="262" x2="220" y2="320" stroke="rgba(255,210,122,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  </g>
+                  <text x="320" y="116" font-size="10" fill="rgba(255,210,122,.6)">radiatia Hawking</text>
+
+                  <!-- Equals sign -->
+                  <text x="220" y="380" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)">Ambele descrieri = aceeasi fizica</text>
+
+                  <!-- Double arrow -->
+                  <path d="M140 365 L300 365" stroke="rgba(255,255,255,.2)" stroke-width="1.5" marker-start="url(#arrowHead)" marker-end="url(#arrowHead)"/>
+                </svg>
+              </div>
+              <div class="small" style="margin-top:6px">Cel mai citat articol din istoria fizicii particulelor elementare.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Hawking nu era un teoretician al corzilor, dar era suficient de inteligent sa recunoasca dovada. Susskind spune: "Stia ca a pierdut, si nu era nefericit din cauza asta." Un moment rar de eleganta in stiinta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline of the War -->
+      <section class="card" aria-label="Cronologie">
+        <div class="cardHeader">
+          <h2>Cronologia Razboiului</h2>
+          <div class="chip">50 de ani de descoperiri</div>
+        </div>
+        <div class="cardBody">
+          <div class="timeline">
+            <div class="tlItem">
+              <div class="tlYear">~1972</div>
+              <div class="tlTitle">Bekenstein propune: gaurile negre au entropie</div>
+              <div class="tlDesc">Entropia (informatie ascunsa) e proportionala cu aria orizontului. Hawking initial ridiculizeaza ideea.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">~1974</div>
+              <div class="tlTitle">Hawking demonstreaza radiatia gaurilor negre</div>
+              <div class="tlDesc">Ironie: propriul calcul confirma ca Bekenstein avea dreptate despre entropie. Dar Hawking conchide ca informatia se pierde.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">~1981</div>
+              <div class="tlTitle">Confruntarea din San Francisco</div>
+              <div class="tlDesc">Hawking, Susskind si 't Hooft se intalnesc intr-un conac. Hawking isi prezinta argumentul. 't Hooft transpira de concentrare. Susskind e sigur ca Hawking greseste &mdash; dar nu poate demonstra de ce.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">~1993</div>
+              <div class="tlTitle">Complementaritatea gaurii negre</div>
+              <div class="tlDesc">Susskind propune: observatorul din afara si cel care cade vad lucruri diferite, dar nu exista contradictie reala.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">~1994</div>
+              <div class="tlTitle">Principiul Holografic</div>
+              <div class="tlDesc">Susskind si 't Hooft propun independent ca toata informatia dintr-un volum 3D poate fi codificata pe suprafata 2D.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">1996</div>
+              <div class="tlTitle">Strominger & Vafa confirma entropia</div>
+              <div class="tlDesc">Folosind teoria corzilor, demonstreaza cu precizie ca formula Bekenstein-Hawking e corecta.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">1997</div>
+              <div class="tlTitle">Maldacena: AdS/CFT</div>
+              <div class="tlDesc">Un exemplu concret de holografie: gravitatia in interior = teorie cuantica pe granita. Informatia nu se pierde. Razboiul e practic castigat.</div>
+            </div>
+            <div class="tlItem">
+              <div class="tlYear">~2004</div>
+              <div class="tlTitle">Hawking recunoaste</div>
+              <div class="tlDesc">Stephen Hawking accepta public ca informatia nu se pierde in gaurile negre. "Era incantat de rezultat," spune Susskind.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observati cat de lung a fost procesul: peste 20 de ani de la prima intalnire pana la rezolvare. In fizica de frontiera, asa arata "progresul" &mdash; nu descoperiri rapide, ci decenii de confuzie productiva.
+          </div>
+        </div>
+      </section>
+
+      <!-- Information & Entropy Explained -->
+      <section class="row">
+        <div class="card" aria-label="Ce este informatia">
+          <div class="cardHeader">
+            <h2>Ce inseamna "informatie" in fizica?</h2>
+            <div class="chip">distinctii intre lucruri</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bunicul unui intervievator l-a intrebat pe Susskind: "Informatie? Asta nu e informatica, nu fizica?"
+              Susskind explica simplu:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Informatia = distinctii</h3>
+                <p>Daca am doua carti &mdash; una a mea, una a lui Hawking &mdash; informatia este tot ceea ce le face <b>diferite</b>:
+                fiecare cuvant, fiecare litera, fiecare pixel de cerneala, fiecare atom.</p>
+                <div class="meta"><span class="badge">litera</span><span class="badge">pixel</span><span class="badge">atom</span><span class="badge">bit</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Exemplul cartii arse</h3>
+                <p>Daca arzi o carte, informatia "se pierde"? <b>Nu!</b> Conform fizicii cuantice, daca ai putea masura
+                pozitia si viteza <i>fiecarui</i> atom de fum (poate 10<sup>30</sup> atomi), ai putea reconstitui cartea originala.
+                E imposibil in practica, dar posibil in principiu.</p>
+                <div class="meta"><span class="badge">fum = informatie amestecata</span><span class="badge" style="border-color:var(--good);color:var(--good)">nu pierduta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Biti si cubiti</h3>
+                <p>Un <b>bit</b> e cea mai mica unitate de informatie: da sau nu, 0 sau 1.
+                Un <b>cubit</b> (bit cuantic) e versiunea cuantica &mdash; poate fi si 0 si 1 in acelasi timp (superpozitie).
+                John Wheeler a spus celebru: <b>"It from bit"</b> &mdash; totul in univers se reduce la informatie.</p>
+                <div class="meta"><span class="badge">bit = 0 sau 1</span><span class="badge">cubit = 0 + 1</span><span class="badge">"It from bit"</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta idee &mdash; ca fizica se reduce la informatica cuantica &mdash; a fost odata o viziune a lui John Wheeler. Astazi e credinta aproape unanima a fizicienilor care lucreaza in acest domeniu.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Marii fizicieni">
+          <div class="cardHeader">
+            <h2>Cine au fost cei mai mari fizicieni din istorie?</h2>
+            <div class="chip">opinia lui Susskind</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind ofera un clasament surprinzator &mdash; cu un personaj pe care multi nu l-au auzit:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>1. Aristarh din Samos (~310-230 i.Hr.)</h3>
+                <p>Astronom antic grec. A descoperit ca <b>Pamantul se invarte in jurul Soarelui</b> (nu invers!) cu 1800 de ani inainte de Copernic.
+                A masurat ca Soarele e de cel putin 60x mai departe decat Luna. A inteles ca stelele sunt <b>extrem de departe</b>
+                (prin lipsa paralaxei). Scrierile sale au fost pierdute, dar Arhimede le mentioneaza.</p>
+                <div class="meta"><span class="badge">heliocentric</span><span class="badge">2000 ani inainte</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2. Isaac Newton (1643-1727)</h3>
+                <p>Gravitatea, mecanica clasica, calculul diferential. A unificat miscarea pe Pamant cu miscarea in cer.</p>
+              </div>
+              <div class="flowNode">
+                <h3>3. Albert Einstein (1879-1955)</h3>
+                <p>Relativitatea, E=mc<sup>2</sup>, efectul fotoelectric. "Nu exista alt Einstein in secolul XX," spune Susskind.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Despre Hawking: "Un fizician mare, in clasa cu Feynman. Dar daca nu ar fi fost Hawking-cel-din-scaunul-cu-rotile, ar fi fost un fizician mare <i>obisnuit</i> &mdash; nu un Einstein."</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Interesant ca Susskind il pune pe Aristarh peste Einstein &mdash; un personaj aproape uitat. Arata cat de mult valoreaza <b>viziunea</b> (nu doar tehnica) in stiinta.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- String Theory -->
+      <section class="card" aria-label="Teoria corzilor">
+        <div class="cardHeader">
+          <h2>Teoria Corzilor: ce spune Susskind azi?</h2>
+          <div class="chip"><b>Teoria S</b> vs <b>teoria s</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Susskind, unul din "parintii" teoriei corzilor (contact de la 1969), are o viziune surprinzator de nuantata:
+              </p>
+
+              <div class="flowNode">
+                <h3>Teoria Corzilor cu "S" mare</h3>
+                <p>Structura matematica precisa, <b>supersimetrica</b>, in 10-11 dimensiuni. Include M-theory, tipul IIA, IIB, etc.</p>
+                <div class="hr"></div>
+                <p style="color:var(--bad)"><b>Verdictul lui Susskind: NU este teoria lumii reale.</b></p>
+                <p>De ce? Lumea reala <b>nu este supersimetrica</b>. Supersimetria e esentiala pentru stabilitatea matematica a teoriei, dar particulele "suprapartenere" nu au fost gasite la LHC. Nimeni nu a reusit sa "rupa" supersimetria in mod satisfacator.</p>
+                <div class="meta">
+                  <span class="badge" style="border-color:var(--bad)">nu e lumea reala</span>
+                  <span class="badge">supersimetrie necesara</span>
+                  <span class="badge">10-11 dimensiuni</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="flowNode">
+                <h3>Teoria corzilor cu "s" mic</h3>
+                <p>Ceva <b>inspirat</b> de teoria precisa, dar care depaseste limitele ei. Nimeni nu stie exact ce este. Susskind crede ca:</p>
+                <ul style="color:var(--muted);font-size:13px;line-height:1.6;padding-left:18px">
+                  <li>Probabil are corzi (dar nu e definita de asta)</li>
+                  <li>Probabil are dimensiuni extra "compactificate"</li>
+                  <li>Nu necesita supersimetrie perfecta</li>
+                  <li>Nimeni nu a definit-o inca</li>
+                </ul>
+                <div class="meta">
+                  <span class="badge" style="border-color:var(--good)">posibil teoria lumii reale</span>
+                  <span class="badge">nedefinita inca</span>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Ce ne-a invatat teoria corzilor?</h3>
+                <p>Chiar daca nu descrie lumea reala direct, a demonstrat cu certitudine ca <b>mecanica cuantica si gravitatia pot coexista</b>.
+                Toate paradoxurile (inclusiv cel al lui Hawking) erau false alarme.</p>
+                <div class="meta"><span class="badge" style="border-color:var(--good);color:var(--good)">cuantica + gravitatie = compatibile</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> E remarcabil ca un "parinte" al teoriei corzilor recunoaste atat de direct ca forma precisa a teoriei nu descrie lumea reala. Dar argumenteaza ca valoarea ei sta in <b>lectiile</b> invatate, nu in potrivirea exacta cu experimentele.
+          </div>
+        </div>
+      </section>
+
+      <!-- The Future: de Sitter Space -->
+      <section class="row">
+        <div class="card" aria-label="Viitorul universului">
+          <div class="cardHeader">
+            <h2>Viitorul universului: singuri in gol</h2>
+            <div class="chip">cosmologie de Sitter</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind descrie un viitor cosmic sumbru dar fascinant:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Universul se expanda accelerat</h3>
+                <p>Din cauza energiei intunecate, spatiul se intinde din ce in ce mai repede. In jurul nostru exista un <b>orizont cosmologic</b> &mdash; ca un orizont al marii, dar in toate directiile.</p>
+              </div>
+              <div class="flowNode">
+                <h3>Totul dispare peste orizont</h3>
+                <p>In trilioane de ani, toate galaxiile (in afara de a noastra si poate Andromeda) vor trece de orizontul nostru.
+                Ca doua vapoare pe mare: fiecare vede cealalta "cazand" peste orizont &mdash; dar nici una nu simte nimic special.</p>
+              </div>
+              <div class="flowNode">
+                <h3>Vom fi complet singuri</h3>
+                <p>Galaxia noastra va fi singura in tot universul observabil. Nici macar gaurile negre nu vor fi eterne &mdash;
+                se evapora in ~10<sup>70</sup> ani. In final: gol si intuneric.</p>
+                <div class="meta"><span class="badge">vidul cosmic</span><span class="badge">10<sup>70</sup> ani</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind admite ca e "inspaimantator." Dar remarca ca exista o <b>tensiune Hubble</b> (numere care nu se potrivesc perfect) pe care o considera probabil temporara &mdash; "intotdeauna pariez ca criza se va rezolva, si aproape intotdeauna am dreptate."
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Frontiera actuala">
+          <div class="cardHeader">
+            <h2>Frontiera actuala: spatiul de Sitter</h2>
+            <div class="chip"><b>focusul</b> lui Susskind azi</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Problema urgenta: AdS/CFT functioneaza in spatiul Anti-de Sitter, dar universul nostru este mai aproape de <b>spatiul de Sitter</b>
+              (cu expansiune accelerata). Diferente critice:
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Anti-de Sitter (AdS)</strong><span class="badge" style="border-color:var(--good)">rezolvat</span></div>
+                <p>Are o granita spatiala. Holografia functioneaza perfect. Nu e universul nostru.</p>
+                <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>De Sitter (dS)</strong><span class="badge" style="border-color:var(--warn)">in lucru</span></div>
+                <p>Granita e tip-timp (nu spatiala). Holografia nu se aplica direct. Necesita idei noi. Focusul lui Susskind de 5 ani.</p>
+                <div class="meter"><i style="width:30%;background:linear-gradient(90deg,var(--warn),var(--orange))"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted" style="margin-bottom:0">
+              Susskind e frustrat: "Intreb tineri de ce nu lucreaza la de Sitter. Raspunsul: <b>'Nu voi gasi un job.'</b>
+              Nu e un motiv bun." El prezice o "explozie de activitate" in acest domeniu.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e o tema recurenta in stiinta: oamenii lucreaza la probleme "sigure" unde pot publica, nu la probleme fundamentale dar riscante. Susskind, la 84 de ani, nu mai are acest frica &mdash; si incearca sa inspire pe tineri.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 't Hooft and Determinism -->
+      <section class="card" aria-label="Determinismul lui 't Hooft">
+        <div class="cardHeader">
+          <h2>Bonus: 't Hooft si superdeterminismul</h2>
+          <div class="chip">o idee nebuneasca?</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Gerard 't Hooft crede ceva pe care putini fizicieni il accepta: ca mecanica cuantica este, in profunzime,
+                <b>complet determinista</b> &mdash; fara niciun element de hazard.
+              </p>
+              <p class="muted">
+                Ideea lui: chiar si <b>alegerea</b> pe care o faci (masori pozitia sau viteza unei particule?)
+                nu e cu adevarat "libera" &mdash; a fost determinata de la inceputul universului, acum 13.8 miliarde de ani.
+              </p>
+              <p class="muted">
+                Daca aceasta alegere e predeterminata, atunci rezultatele "aleatoare" ale mecanicii cuantice ar putea fi de fapt <b>iluzia</b>
+                lipsei noastre de cunostinte despre mecanismul deterministic de dedesubt.
+              </p>
+            </div>
+            <div>
+              <div class="flowNode">
+                <h3>Reactia lui Susskind</h3>
+                <p>"E al naibii de inteligent. S-a dovedit a avea dreptate de multe ori. Cred ca probabil greseste... dar nu l-as respinge."</p>
+                <div class="meta">
+                  <span class="badge">superdeterminism</span>
+                  <span class="badge">fara liber arbitru</span>
+                  <span class="badge">opinie minoritara</span>
+                </div>
+              </div>
+              <div class="hr"></div>
+              <div class="small">
+                Susskind il descrie pe 't Hooft ca pe un om de o "curiozitate enorma" &mdash; discuta despre cochilii de mare,
+                cantat la pian, si conditia umana cu aceeasi pasiune ca despre fizica.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Superdeterminismul e una din cele mai controversate idei din fizica moderna. Majoritatea fizicienilor o resping. Dar 't Hooft e laureat Nobel si un ganditor profund &mdash; aratand ca "nebunie" si "geniu" nu se exclud reciproc.
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Quiz -->
+      <section class="card" id="quizSection" aria-label="Quiz interactiv">
+        <div class="cardHeader">
+          <h2>Testeaza-ti cunostintele</h2>
+          <div class="chip"><b>Quiz</b> interactiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">Apasa pe raspunsul pe care il consideri corect. Ai un singur raspuns pe intrebare.</p>
+
+          <div style="margin-bottom:14px">
+            <strong style="font-size:14px">1. Ce spune paradoxul informatiei gaurilor negre?</strong>
+          </div>
+          <div class="quiz" id="q1">
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">A) Gaurile negre creeaza informatie noua din nimic</div>
+              <div class="qFeedback">Nu. Gaurile negre nu creeaza informatie &mdash; paradoxul e despre daca informatia care intra se pierde sau nu.</div>
+            </div>
+            <div class="qItem" data-correct="true" onclick="checkAnswer(this)">
+              <div class="qText">B) Mecanica cuantica spune ca informatia nu se pierde niciodata, dar gaurile negre par sa o distruga</div>
+              <div class="qFeedback">Corect! Acesta e miezul conflictului: doua principii fundamentale care par sa se contrazica.</div>
+            </div>
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">C) Gaurile negre transmit mesaje codificate catre alte galaxii</div>
+              <div class="qFeedback">Nu. Gaurile negre nu "transmit" nimic intentionat &mdash; ele emit radiatia Hawking, dar informatia din ea e extrem de amestecata.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="margin-bottom:14px">
+            <strong style="font-size:14px">2. Ce inseamna principiul holografic?</strong>
+          </div>
+          <div class="quiz" id="q2">
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">A) Universul e o iluzie optica proiectata de extraterestri</div>
+              <div class="qFeedback">Nu. Principiul holografic nu e despre iluzii, ci despre faptul ca informatia dintr-un volum poate fi codificata pe suprafata sa.</div>
+            </div>
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">B) Toate gaurile negre sunt de fapt holograme</div>
+              <div class="qFeedback">Nu exact. E vorba de o echivalenta matematica intre descrierea interioara 3D si descrierea pe suprafata 2D.</div>
+            </div>
+            <div class="qItem" data-correct="true" onclick="checkAnswer(this)">
+              <div class="qText">C) Toata informatia dintr-un volum 3D poate fi codificata pe suprafata 2D care il inconjoara</div>
+              <div class="qFeedback">Corect! Exact ca o holograma: suprafata 2D contine toata informatia despre interiorul 3D.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="margin-bottom:14px">
+            <strong style="font-size:14px">3. Ce simte un astronaut care trece prin orizontul unei gauri negre foarte mari?</strong>
+          </div>
+          <div class="quiz" id="q3">
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">A) E sfasiat instant de forte de maree gigantice</div>
+              <div class="qFeedback">Nu &mdash; asta se intampla doar la gauri negre mici sau la singularitate. La o gaura neagra mare, orizontul e bland.</div>
+            </div>
+            <div class="qItem" data-correct="true" onclick="checkAnswer(this)">
+              <div class="qText">B) Nimic special &mdash; trece netulburat, ca o barca trecand "punctul fara intoarcere"</div>
+              <div class="qFeedback">Corect! Susskind subliniaza: la orizont nu se intampla nimic dramatic. E ca si cum treci de un prag invizibil.</div>
+            </div>
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">C) Timpul si spatiul se inverseaza si vede totul in oglinda</div>
+              <div class="qFeedback">Nu. Susskind spune explicit: "spatiul nu se transforma in timp" la orizont &mdash; asta e doar un artefact al unor coordonate matematice, nu realitate fizica.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="margin-bottom:14px">
+            <strong style="font-size:14px">4. Ce crede Susskind despre teoria corzilor si lumea reala?</strong>
+          </div>
+          <div class="quiz" id="q4">
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">A) Teoria corzilor precisa (supersimetrica) descrie perfect lumea reala</div>
+              <div class="qFeedback">Nu. Susskind spune explicit ca lumea reala "NU este supersimetrica" si ca versiunea precisa nu e teoria lumii noastre.</div>
+            </div>
+            <div class="qItem" data-correct="false" onclick="checkAnswer(this)">
+              <div class="qText">B) Teoria corzilor e complet gresita si trebuie abandonata</div>
+              <div class="qFeedback">Nu. Susskind crede ca scepticii exagereaza. Teoria a demonstrat ca cuantica + gravitatia coexista si a generat instrumente esentiale.</div>
+            </div>
+            <div class="qItem" data-correct="true" onclick="checkAnswer(this)">
+              <div class="qText">C) Versiunea precisa nu descrie lumea reala, dar o versiune extinsa (nedefinita inca) ar putea</div>
+              <div class="qFeedback">Corect! "Teoria s cu litera mica" &mdash; ceva inspirat de teoria precisa, dar care depaseste limitele supersimetriei &mdash; e speranta lui Susskind.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizScoreBtn">Calculeaza scorul</button>
+            <button class="btn" id="quizResetBtn">Reseteaza quiz-ul</button>
+          </div>
+          <div class="small" id="quizScoreOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- Takeaways -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Ce am invatat? Ideile fundamentale</h2>
+          <div class="chip"><b>Sinteza</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">1) Informatia e fundamentala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu e doar "date pe calculator." In fizica, informatia = distinctiile care fac universul sa fie asa cum e.
+                Distrugerea informatiei ar strica mecanica cuantica &mdash; si deci toata fizica.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">2) Holografia schimba totul</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Ideea ca realitatea 3D e codificata pe suprafete 2D a rezolvat paradoxul informatiei,
+                a creat cele mai puternice instrumente din gravitatea cuantica, si a castigat "razboiul."
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--orange)">3) Teoria corzilor: lectii, nu raspunsuri finale</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu descrie lumea reala in forma ei precisa. Dar a demonstrat ca gravitatia si cuantica <b>pot coexista</b>
+                &mdash; probabil cea mai importanta lectie din ultimii 50 de ani de fizica.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">4) Curiozitatea > joburi "sigure"</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Susskind si 't Hooft au lucrat la probleme "nebunesti" pe care nimeni nu le credea.
+                Azi acele probleme sunt in centrul fizicii. Lectia: urmeaza curiozitatea, nu moda.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota despre statutul acestor idei</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Razboiul informatiei e considerat <b>castigat</b> de majoritatea fizicienilor tineri. Unii relativisti mai in varsta
+                (Bill Unruh, Bob Wald) au ramas sceptici, dar Susskind crede ca e "complet rezolvat."
+                Holografia si AdS/CFT sunt instrumente standard. Teoria corzilor ca "teorie a tot" ramane nedemonstrata.
+                Spatiul de Sitter e frontiera actuala &mdash; cu putini lucratori si multe intrebari deschise.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre comentariile din acest infografic</h2>
+          <div class="chip">analiza vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Casetele albastre marcate cu <b>"Comentariu"</b> ofera context suplimentar: cat de solida e o afirmatie,
+            ce alternative exista, ce nuante merita atentie.
+          </p>
+          <p class="muted">
+            Implicit sunt <b>vizibile</b>. Apasa butonul "Comentarii pornit/oprit" din header pentru a le ascunde/arata.
+            Asta iti permite sa navighezi intre "ce spune Susskind" si "ce inseamna mai pe larg."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si credite:</b> Acest infografic interactiv traduce si vizualizeaza un interviu cu Leonard Susskind despre
+        razboiul informatiei gaurilor negre, principiul holografic, teoria corzilor si viitorul fizicii teoretice.
+        Nu este un document academic &mdash; e un instrument de vizualizare pentru a intelege ideile cheie.
+      </p>
+      <p style="margin-top:10px">
+        Toate vizualizarile sunt conceptuale, nu simulari exacte. Pentru aprofundare, consultati:
+        "The Black Hole War" (Leonard Susskind), si literatura academica despre AdS/CFT, holografie si gravitatie cuantica.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Black Hole Waterfall Visualization
+    // ──────────────────────────────────────────────────────
+    const boatSlider = document.getElementById('boatSlider');
+    const massSlider = document.getElementById('massSlider');
+    const boatReadout = document.getElementById('boatReadout');
+    const massReadout = document.getElementById('massReadout');
+
+    function renderBlackHole() {
+      const pos = parseInt(boatSlider.value) / 100; // 0 to 1
+      const mass = parseInt(massSlider.value);
+
+      massReadout.textContent = mass + ' M\u2609';
+
+      const horizonX = 490;
+      const boatX = 100 + pos * 700;
+      const boat = document.getElementById('boat');
+      boat.setAttribute('transform', `translate(${boatX},170)`);
+
+      if (boatX < horizonX - 40) {
+        boatReadout.textContent = 'In siguranta';
+        boatReadout.style.color = 'var(--good)';
+      } else if (boatX < horizonX + 10) {
+        boatReadout.textContent = 'Aproape de orizont!';
+        boatReadout.style.color = 'var(--warn)';
+      } else {
+        boatReadout.textContent = 'Dincolo de orizont!';
+        boatReadout.style.color = 'var(--bad)';
+      }
+
+      // Scale BH size with mass
+      const bhRadius = 40 + mass * 0.6;
+      const bhCircle = document.querySelector('#bhSvg circle[cx="700"]');
+      if (bhCircle) {
+        bhCircle.setAttribute('r', bhRadius);
+      }
+
+      // Render flow arrows
+      const flowArrows = document.getElementById('flowArrows');
+      flowArrows.innerHTML = '';
+      const arrowCount = 12;
+      for (let i = 0; i < arrowCount; i++) {
+        const y = 50 + (i / arrowCount) * 260;
+        const startX = 60;
+        const endX = 460;
+        const speed = 0.3 + (i % 3) * 0.15;
+
+        const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const ax = startX + ((Date.now() * speed * 0.02 + i * 80) % (endX - startX));
+        arrow.setAttribute('x1', ax);
+        arrow.setAttribute('y1', y);
+        arrow.setAttribute('x2', ax + 20);
+        arrow.setAttribute('y2', y);
+        arrow.setAttribute('stroke', 'rgba(122,215,255,.2)');
+        arrow.setAttribute('stroke-width', '1.5');
+        arrow.setAttribute('marker-end', 'url(#arrowHead)');
+        flowArrows.appendChild(arrow);
+      }
+    }
+
+    boatSlider.addEventListener('input', renderBlackHole);
+    massSlider.addEventListener('input', renderBlackHole);
+    renderBlackHole();
+
+    // Animate flow arrows
+    let bhAnimFrame;
+    function animateBH() {
+      renderBlackHole();
+      bhAnimFrame = requestAnimationFrame(animateBH);
+    }
+    animateBH();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpBH').addEventListener('click', () => {
+      document.getElementById('bhSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpHolo').addEventListener('click', () => {
+      document.getElementById('holoSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpQuiz').addEventListener('click', () => {
+      document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz logic
+    // ──────────────────────────────────────────────────────
+    function checkAnswer(el) {
+      const quiz = el.parentElement;
+      if (quiz.dataset.answered) return;
+      quiz.dataset.answered = 'true';
+
+      const isCorrect = el.dataset.correct === 'true';
+      el.classList.add(isCorrect ? 'correct' : 'wrong');
+
+      if (!isCorrect) {
+        const correct = quiz.querySelector('[data-correct="true"]');
+        if (correct) correct.classList.add('correct');
+      }
+
+      // Disable other items
+      quiz.querySelectorAll('.qItem').forEach(item => {
+        item.style.pointerEvents = 'none';
+        if (item !== el && !item.classList.contains('correct')) {
+          item.style.opacity = '0.4';
+        }
+      });
+
+      showToast(isCorrect ? 'Corect!' : 'Raspuns gresit. Vezi explicatia.');
+    }
+
+    document.getElementById('quizScoreBtn').addEventListener('click', () => {
+      const quizzes = ['q1', 'q2', 'q3', 'q4'];
+      let correct = 0;
+      let answered = 0;
+      quizzes.forEach(id => {
+        const q = document.getElementById(id);
+        if (q.dataset.answered) {
+          answered++;
+          const selected = q.querySelector('.qItem.correct[data-correct="true"]');
+          const wrong = q.querySelector('.qItem.wrong');
+          if (selected && !wrong) correct++;
+          else if (selected && wrong) { /* wrong answer was selected, correct was revealed */ }
+          else if (!wrong) correct++; // no wrong means the correct one was clicked
+        }
+      });
+
+      // Recount: check if user clicked the correct one (it has both .correct class and was the first clicked)
+      correct = 0;
+      quizzes.forEach(id => {
+        const q = document.getElementById(id);
+        if (q.dataset.answered) {
+          answered++;
+          // The user's click gets 'correct' or 'wrong' class. If 'correct', they got it right.
+          const userChoice = q.querySelector('.qItem.correct:not(.wrong), .qItem.wrong');
+          if (userChoice && userChoice.classList.contains('correct') && !userChoice.classList.contains('wrong')) {
+            correct++;
+          }
+        }
+      });
+
+      let msg = '';
+      if (answered === 0) {
+        msg = 'Raspunde la cel putin o intrebare inainte de a calcula scorul!';
+      } else {
+        const pct = Math.round((correct / quizzes.length) * 100);
+        if (pct === 100) msg = `${correct}/${quizzes.length} (${pct}%) - Excelent! Intelegi fizica gaurilor negre!`;
+        else if (pct >= 75) msg = `${correct}/${quizzes.length} (${pct}%) - Foarte bine! Cateva nuante de revazut.`;
+        else if (pct >= 50) msg = `${correct}/${quizzes.length} (${pct}%) - Bun, dar reciteste sectiunile unde ai gresit.`;
+        else msg = `${correct}/${quizzes.length} (${pct}%) - Reciteste infograficul - conceptele sunt fascinante!`;
+      }
+
+      document.getElementById('quizScoreOut').innerHTML = `<b>Scorul tau:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('quizResetBtn').addEventListener('click', () => {
+      ['q1', 'q2', 'q3', 'q4'].forEach(id => {
+        const q = document.getElementById(id);
+        delete q.dataset.answered;
+        q.querySelectorAll('.qItem').forEach(item => {
+          item.classList.remove('correct', 'wrong');
+          item.style.pointerEvents = '';
+          item.style.opacity = '';
+        });
+      });
+      document.getElementById('quizScoreOut').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

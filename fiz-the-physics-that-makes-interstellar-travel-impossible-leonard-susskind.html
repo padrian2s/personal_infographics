@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fizica care face imposibila calatoria interstellara — Leonard Susskind — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre fizica calatoriei interstelare: de ce legile fizicii fac deplasarea catre alte stele practic imposibila. Bazat pe argumentele lui Leonard Susskind." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--bad), var(--orange)); box-shadow: 0 0 22px rgba(255,122,153,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .barriers{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 560px){
+      .barriers{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+    .callout.warn-callout{
+      border-left-color: rgba(255,210,122,.7);
+      background: rgba(255,210,122,.08);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    /* Comparison table */
+    .compTable{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+      margin-top:8px;
+    }
+    .compTable th,.compTable td{
+      padding:8px 10px;
+      text-align:left;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .compTable th{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--faint);
+      font-weight:600;
+    }
+    .compTable td{color:var(--muted)}
+    .compTable tr:hover td{background:rgba(255,255,255,.03)}
+    .compTable .num{font-family:var(--mono);color:var(--text);font-weight:600}
+
+    /* Scale bar */
+    .scaleBar{
+      display:flex;align-items:stretch;
+      border-radius:12px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      height:38px;
+      margin-top:10px;
+    }
+    .scaleBar .seg{
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.8);
+      padding:0 6px;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Animated star field */
+    .starfield{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+    .starfield i{
+      position:absolute;
+      width:2px;height:2px;
+      background:rgba(255,255,255,.5);
+      border-radius:50%;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle{0%{opacity:.2}100%{opacity:.8}}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,122,153,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Stylized orbits and star -->
+            <circle cx="260" cy="110" r="60" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".4"/>
+            <circle cx="260" cy="110" r="110" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <circle cx="260" cy="110" r="170" fill="none" stroke="url(#g1)" stroke-width="1" opacity=".2"/>
+            <circle cx="260" cy="110" r="14" fill="rgba(255,210,122,.7)"/>
+            <circle cx="260" cy="110" r="6" fill="rgba(255,255,255,.9)"/>
+            <!-- Distant star -->
+            <circle cx="460" cy="40" r="4" fill="rgba(122,215,255,.7)"/>
+            <circle cx="460" cy="40" r="12" fill="none" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+            <!-- Path between -->
+            <path d="M280,108 Q370,75 450,42" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="4 6"/>
+            <!-- Small planets -->
+            <circle cx="320" cy="110" r="4" fill="rgba(117,240,182,.6)"/>
+            <circle cx="200" cy="80" r="3" fill="rgba(255,179,138,.5)"/>
+            <circle cx="240" cy="170" r="2.5" fill="rgba(187,167,255,.5)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica fundamentala &bull; distante cosmice &bull; limitari absolute</div>
+          <h1>Fizica care face calatoria interstellara imposibila</h1>
+          <p class="subtitle">
+            Leonard Susskind, dupa 50 de ani in fizica, afirma raspicat: calatoria catre alte stele nu e doar dificila — e <b>imposibila din punct de vedere fizic</b>.
+            Nu vorbim de limitari tehnologice care se pot depasi, ci de legi fundamentale ale naturii: viteza luminii, conservarea energiei, distantele geometrice ale universului.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpSim">Simulatorul de energie</button>
+            <button class="btn" id="jumpBariere">Cele 4 bariere</button>
+            <button class="btn" id="toggleNotes">Afiseaza/ascunde comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Cea mai apropiata stea</div>
+            <div class="value" style="color:var(--cyan)">4,37 ani-lumina</div>
+            <div class="note">Alpha Centauri — ~41 trilioane km distanta</div>
+          </div>
+          <div class="stat">
+            <div class="label">Voyager 1 la Alpha Centauri</div>
+            <div class="value" style="color:var(--bad)">75.000 de ani</div>
+            <div class="note">Mai mult decat intreaga istorie consemnata a umanitatii</div>
+          </div>
+          <div class="stat">
+            <div class="label">Energie pt. 1 tona la 10% c</div>
+            <div class="value" style="color:var(--warn)">4,5 &times; 10<sup>17</sup> J</div>
+            <div class="note">~50 min din TOATA productia energetica mondiala</div>
+          </div>
+          <div class="stat">
+            <div class="label">Teza lui Susskind</div>
+            <div class="value" style="color:var(--orange)">Suntem blocati aici</div>
+            <div class="note">Legile fizicii interzic calatoria interstellara cu echipaj uman</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION 1: The 4 Barriers overview -->
+      <section class="card" id="bariere" aria-label="Cele 4 bariere">
+        <div class="cardHeader">
+          <h2>Cele 4 bariere fundamentale</h2>
+          <div class="chip"><b>Concluzie:</b> fiecare e aproape insurmontabila</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Susskind identifica patru probleme care, <b>fiecare in parte</b>, fac calatoria interstellara extrem de dificila.
+            Combinate, ele formeaza o bariera absoluta. Nu sunt provocari de inginerie — sunt limite ale fizicii.
+          </p>
+          <div class="barriers">
+            <div class="pill"><span><b style="color:var(--cyan)">1.</b> Distanta</span><span class="tag">geometric</span></div>
+            <div class="pill"><span><b style="color:var(--warn)">2.</b> Energia</span><span class="tag">termodinamic</span></div>
+            <div class="pill"><span><b style="color:var(--bad)">3.</b> Timpul</span><span class="tag">relativist</span></div>
+            <div class="pill"><span><b style="color:var(--orange)">4.</b> Biologia</span><span class="tag">fiziologic</span></div>
+          </div>
+          <div class="hr"></div>
+          <div class="small">Fiecare bariera se agraveaza reciproc: masa suplimentara necesita mai multa energie, care necesita mai mult combustibil, care adauga masa...</div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ceea ce face argumentul lui Susskind puternic este ca nu se bazeaza pe o singura problema. Chiar daca am rezolva miraculos una dintre bariere (de ex. energia), celelalte trei raman. E ca un sistem de securitate cu patru lacate — trebuie deschise TOATE.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Distance + scale -->
+      <section class="row">
+        <div class="card" aria-label="Problema distantei">
+          <div class="cardHeader">
+            <h2>Bariera 1: Distanta</h2>
+            <div class="chip">41 trilioane km</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Daca Pamantul ar fi un <b>bob de nisip</b>, Alpha Centauri ar fi la <b>40 km distanta</b>.
+              Si asta e cea mai apropiata stea! Cele mai interesante exoplanete sunt la sute sau mii de ani-lumina.
+            </p>
+
+            <div class="viz" aria-label="Scala distantei">
+              <svg viewBox="0 0 980 240" id="distSvg" role="img" aria-label="Vizualizare comparativa a distantelor">
+                <defs>
+                  <linearGradient id="dg1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.6)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.1)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Earth -->
+                <circle cx="60" cy="120" r="16" fill="rgba(117,240,182,.5)" stroke="rgba(117,240,182,.7)" stroke-width="1.5"/>
+                <text x="60" y="160" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.7)">Pamant</text>
+                <!-- Moon -->
+                <circle cx="110" cy="120" r="5" fill="rgba(255,255,255,.4)"/>
+                <text x="110" y="160" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">Luna</text>
+                <text x="110" y="172" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.35)">1,3 s-lum</text>
+                <!-- Mars -->
+                <circle cx="175" cy="120" r="8" fill="rgba(255,179,138,.5)"/>
+                <text x="175" y="160" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">Marte</text>
+                <text x="175" y="172" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.35)">~3 min-lum</text>
+                <!-- Jupiter region -->
+                <circle cx="280" cy="120" r="12" fill="rgba(255,210,122,.3)" stroke="rgba(255,210,122,.4)" stroke-width="1"/>
+                <text x="280" y="160" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">Jupiter</text>
+                <text x="280" y="172" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.35)">~43 min-lum</text>
+                <!-- Break line to show scale -->
+                <line x1="360" y1="120" x2="480" y2="120" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="3 5"/>
+                <text x="420" y="112" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)" font-style="italic">...golul enorm...</text>
+                <!-- Alpha Centauri -->
+                <circle cx="700" cy="120" r="10" fill="rgba(122,215,255,.5)" stroke="rgba(122,215,255,.7)" stroke-width="1.5"/>
+                <text x="700" y="160" text-anchor="middle" font-size="11" fill="rgba(122,215,255,.7)" font-weight="600">Alpha Centauri</text>
+                <text x="700" y="175" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">4,37 ani-lumina</text>
+                <!-- Kepler 186f -->
+                <circle cx="920" cy="120" r="8" fill="rgba(255,122,153,.4)" stroke="rgba(255,122,153,.5)" stroke-width="1"/>
+                <text x="920" y="160" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.6)">Kepler-186f</text>
+                <text x="920" y="175" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">500 ani-lum</text>
+                <!-- Arrow -->
+                <line x1="76" y1="200" x2="700" y2="200" stroke="url(#dg1)" stroke-width="2"/>
+                <polygon points="700,196 710,200 700,204" fill="rgba(122,215,255,.6)"/>
+                <text x="390" y="218" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">75.000 ani cu Voyager 1 (17 km/s)</text>
+              </svg>
+            </div>
+
+            <table class="compTable">
+              <tr><th>Destinatie</th><th>Distanta</th><th>Timp (Voyager)</th><th>Timp (10% c)</th></tr>
+              <tr><td>Luna</td><td class="num">384.400 km</td><td class="num">6,3 ore</td><td class="num">1,3 secunde</td></tr>
+              <tr><td>Marte</td><td class="num">~225 mil. km</td><td class="num">~5 luni</td><td class="num">~12 minute</td></tr>
+              <tr><td>Alpha Centauri</td><td class="num">4,37 a.l.</td><td class="num">75.000 ani</td><td class="num">~44 ani</td></tr>
+              <tr><td>Kepler-186f</td><td class="num">500 a.l.</td><td class="num">~8 mil. ani</td><td class="num">~5.000 ani</td></tr>
+            </table>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Distantele din Sistemul Solar sunt mari, dar totusi fezabile — luni sau ani de calatorie. Saltul la distante interstelare este insa <b>de milioane de ori</b> mai mare. Nu e o diferenta cantitativa, e o diferenta calitativa.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Problema energiei">
+          <div class="cardHeader">
+            <h2>Bariera 2: Energia</h2>
+            <div class="chip"><b>E = mc<sup>2</sup></b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Pentru a accelera chiar si o nava minuscula (1 tona) la 10% din viteza luminii, ai nevoie de o cantitate de energie <b>absurda</b>.
+              Iar racheta conventionala are o problema fatala: ecuatia lui Ciolkovski.
+            </p>
+
+            <div class="viz" id="energyViz" aria-label="Comparatie energetica">
+              <svg viewBox="0 0 980 320" id="energySvg" role="img">
+                <text x="40" y="28" font-size="14" fill="rgba(255,255,255,.88)" font-weight="700">Cat combustibil e necesar? (pe tona de incarcatura)</text>
+                <!-- Chemical -->
+                <rect x="40" y="50" width="900" height="50" rx="8" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.08)"/>
+                <rect x="40" y="50" id="barChem" width="900" height="50" rx="8" fill="rgba(255,122,153,.35)" stroke="rgba(255,122,153,.4)"/>
+                <text x="52" y="80" font-size="13" fill="rgba(255,255,255,.9)" font-weight="600">Rachete chimice</text>
+                <text x="850" y="80" font-size="11" fill="rgba(255,255,255,.7)" text-anchor="end">35 miliarde kg (imposibil)</text>
+                <text x="52" y="96" font-size="10" fill="rgba(255,255,255,.5)">Mai mult decat masa universului observabil in raport combustibil/incarcatura</text>
+                <!-- Nuclear fission -->
+                <rect x="40" y="115" width="900" height="50" rx="8" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.08)"/>
+                <rect x="40" y="115" id="barFission" width="180" height="50" rx="8" fill="rgba(255,210,122,.3)" stroke="rgba(255,210,122,.35)"/>
+                <text x="52" y="145" font-size="13" fill="rgba(255,255,255,.9)" font-weight="600">Fisiune nucleara</text>
+                <text x="230" y="145" font-size="11" fill="rgba(255,255,255,.7)">~5.600 kg (dar reactorul cantareste mult)</text>
+                <!-- Nuclear fusion -->
+                <rect x="40" y="180" width="900" height="50" rx="8" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.08)"/>
+                <rect x="40" y="180" id="barFusion" width="80" height="50" rx="8" fill="rgba(117,240,182,.3)" stroke="rgba(117,240,182,.35)"/>
+                <text x="52" y="210" font-size="13" fill="rgba(255,255,255,.9)" font-weight="600">Fuziune nucleara</text>
+                <text x="130" y="210" font-size="11" fill="rgba(255,255,255,.7)">~750 kg (ideal, dar reactorul e enorm)</text>
+                <!-- Antimatter -->
+                <rect x="40" y="245" width="900" height="50" rx="8" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.08)"/>
+                <rect x="40" y="245" id="barAnti" width="30" height="50" rx="8" fill="rgba(187,167,255,.3)" stroke="rgba(187,167,255,.35)"/>
+                <text x="52" y="275" font-size="13" fill="rgba(255,255,255,.9)" font-weight="600">Antimaterie (teoretic)</text>
+                <text x="80" y="275" font-size="11" fill="rgba(255,255,255,.7)">~5 kg (dar nu avem cum o produce)</text>
+                <text x="52" y="291" font-size="10" fill="rgba(255,255,255,.5)">Tot CERN-ul produce ~1 nanogram pe an</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observa paradoxul: singurele surse de energie suficient de dense (fuziunea, antimateria) necesita tehnologie pe care nu o avem si poate nu o vom avea niciodata. Rachetele chimice — singura tehnologie pe care o stapanim — sunt complet inadecvate pentru distante interstelare.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Interactive Energy Calculator -->
+      <section class="card" id="simCard" aria-label="Simulatorul de energie">
+        <div class="cardHeader">
+          <h2>Simulatorul de energie interstellara</h2>
+          <div class="chip">joaca-te cu cifrele</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Ajusteaza viteza si masa navei si observa cum cresc cerintele energetice. La viteze relativiste, energia necesara explodeaza.
+            Numarul aratat include doar acceleratia — pentru franare, dubleaza totul.
+          </p>
+
+          <div class="viz" id="simViz" aria-label="Simulator interactiv">
+            <svg viewBox="0 0 980 360" id="simSvg" role="img">
+              <defs>
+                <linearGradient id="eg1" x1="0" x2="0" y1="1" y2="0">
+                  <stop offset="0" stop-color="rgba(117,240,182,.4)"/>
+                  <stop offset="1" stop-color="rgba(255,122,153,.6)"/>
+                </linearGradient>
+              </defs>
+              <text x="50" y="24" font-size="13" fill="rgba(255,255,255,.88)" font-weight="700">Energie cinetica vs. viteza (scala logaritmica)</text>
+              <text x="50" y="42" font-size="11" fill="rgba(255,255,255,.5)">Linia punctata = productia energetica mondiala anuala (~600 EJ)</text>
+              <!-- Axes -->
+              <line x1="80" y1="60" x2="80" y2="310" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+              <line x1="80" y1="310" x2="940" y2="310" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+              <!-- Grid lines -->
+              <g id="simGrid"></g>
+              <!-- Energy curve -->
+              <path id="eCurve" fill="none" stroke="url(#eg1)" stroke-width="3" stroke-linecap="round"/>
+              <!-- World energy line -->
+              <line id="worldLine" x1="80" x2="940" stroke="rgba(255,210,122,.4)" stroke-width="1.5" stroke-dasharray="6 4"/>
+              <text id="worldLabel" font-size="10" fill="rgba(255,210,122,.7)">Productia energetica mondiala/an</text>
+              <!-- Marker -->
+              <circle id="simDot" r="7" fill="rgba(255,255,255,.8)" stroke="rgba(122,215,255,.8)" stroke-width="2"/>
+              <text id="simDotLabel" font-size="11" fill="rgba(255,255,255,.85)" font-weight="600"></text>
+              <!-- Labels -->
+              <text x="510" y="340" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Viteza (% din viteza luminii)</text>
+              <text x="22" y="190" font-size="11" fill="rgba(255,255,255,.5)" transform="rotate(-90 22 190)">Energie (jouli, log10)</text>
+            </svg>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Viteza navei (% din c)</span>
+                <span class="readout" id="speedReadout">10%</span>
+              </label>
+              <input id="speedSlider" type="range" min="1" max="99" value="10" />
+              <div class="small" style="margin-top:8px">1% = modest, 99% = aproape viteza luminii</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Masa navei (kg)</span>
+                <span class="readout" id="massReadout">1.000 kg</span>
+              </label>
+              <input id="massSlider" type="range" min="2" max="8" step="0.1" value="3" />
+              <div class="small" style="margin-top:8px">Scala log: 100 kg ... 100.000.000 kg</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="row2">
+              <div class="risk">
+                <div class="rTop"><strong>Energie necesara</strong><span class="badge" id="eBadge">acceleratie</span></div>
+                <div class="meter"><i id="eMeter" style="width:10%"></i></div>
+                <p id="eResult" style="font-family:var(--mono)">—</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Echivalent practic</strong><span class="badge">perspectiva</span></div>
+                <div class="meter"><i id="eMeter2" style="width:10%"></i></div>
+                <p id="eCompare">—</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observa tranzitia critica: pana la ~5% din c, energia e mare dar imaginabila. Dupa 50% din c, efectele relativiste fac ca energia sa creasca vertiginos. La 90% din c, e nevoie de ~10% din <b>toata</b> energia produsa de omenire intr-un an, doar pentru o tona de incarcatura.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Dust & Radiation + Time -->
+      <section class="row">
+        <div class="card" aria-label="Praful interstellar">
+          <div class="cardHeader">
+            <h2>Praful cosmic: gloantele invizibile</h2>
+            <div class="chip">praf + hidrogen la 10% c</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Spatiul cosmic <b>nu este gol</b>. Chiar si vidul interstelar contine ~1 atom de hidrogen per cm&sup3;.
+              La viteze mari, fiecare atom devine un proiectil, iar particulele de praf devin bombe.
+            </p>
+
+            <div class="viz" aria-label="Impactul prafului interstelar">
+              <svg viewBox="0 0 480 280" role="img">
+                <defs>
+                  <radialGradient id="shieldG" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0" stop-color="rgba(122,215,255,.15)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,0)"/>
+                  </radialGradient>
+                </defs>
+                <!-- Ship outline -->
+                <rect x="140" y="60" width="200" height="160" rx="20" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+                <text x="240" y="145" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.6)">Nava spatiala</text>
+                <text x="240" y="162" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">10 m&sup2; sectiune</text>
+                <!-- Shield area -->
+                <ellipse cx="140" cy="140" rx="30" ry="90" fill="url(#shieldG)"/>
+                <!-- Incoming particles -->
+                <line x1="20" y1="80" x2="110" y2="100" stroke="rgba(255,122,153,.6)" stroke-width="1.5"/>
+                <circle cx="20" cy="80" r="2" fill="rgba(255,122,153,.8)"/>
+                <line x1="30" y1="120" x2="110" y2="130" stroke="rgba(255,210,122,.5)" stroke-width="1"/>
+                <circle cx="30" cy="120" r="1.5" fill="rgba(255,210,122,.7)"/>
+                <line x1="15" y1="155" x2="110" y2="148" stroke="rgba(255,122,153,.4)" stroke-width="1"/>
+                <circle cx="15" cy="155" r="1.5" fill="rgba(255,122,153,.6)"/>
+                <line x1="35" y1="185" x2="110" y2="170" stroke="rgba(255,210,122,.4)" stroke-width="1"/>
+                <circle cx="35" cy="185" r="2" fill="rgba(255,210,122,.6)"/>
+                <!-- Impact burst -->
+                <circle cx="112" cy="110" r="8" fill="rgba(255,122,153,.3)"/>
+                <circle cx="113" cy="155" r="6" fill="rgba(255,210,122,.25)"/>
+                <!-- Direction arrow -->
+                <text x="240" y="48" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Directia de deplasare -----></text>
+                <!-- Stats box -->
+                <rect x="360" y="60" width="110" height="160" rx="12" fill="rgba(0,0,0,.3)" stroke="rgba(255,255,255,.1)"/>
+                <text x="415" y="85" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)" font-weight="600">LA 10% c:</text>
+                <text x="415" y="108" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.8)">2,4 MW</text>
+                <text x="415" y="122" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">putere absorbita</text>
+                <text x="415" y="148" text-anchor="middle" font-size="10" fill="rgba(255,210,122,.8)">1 bob de praf</text>
+                <text x="415" y="162" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">= 10 g TNT</text>
+                <text x="415" y="188" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.8)">~20 mld</text>
+                <text x="415" y="202" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">impacturi posibile</text>
+              </svg>
+            </div>
+
+            <div class="riskGrid" style="margin-top:10px">
+              <div class="risk">
+                <div class="rTop"><strong>La 10% din c</strong><span class="badge" style="color:var(--warn)">serios</span></div>
+                <div class="meter"><i style="width:40%"></i></div>
+                <p>1 gram de praf loveste cu energia a 10g de TNT. Absorbi 2,4 MW continuu — ca 2.400 de calorifere electrice pe fata navei.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>La 90% din c</strong><span class="badge" style="color:var(--bad)">catastrofal</span></div>
+                <div class="meter"><i style="width:90%"></i></div>
+                <p>Fiecare bob de praf loveste cu 5,8 mil. jouli — mai mult de 1 kg de TNT. Absorbi 200 MW — o centrala nucleara mica pe fata navei.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e una dintre problemele mai putin discutate: nu trebuie sa lovesti ceva mare. La viteze relativiste, chiar si atomii de hidrogen devin periculosi, iar granulele de praf devin explozii. Orice scut adauga masa, ceea ce agraveaza problema energiei.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Problema timpului">
+          <div class="cardHeader">
+            <h2>Bariera 3: Timpul si Relativitatea</h2>
+            <div class="chip">dilatarea timpului</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Chiar daca ai putea calatori la 90% din c, relativitatea lui Einstein inseamna ca <b>timpul trece diferit</b> pe nava fata de Pamant.
+              Si exista un paradox pervers: „calculul asteptarii".
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Dilatarea timpului</h3>
+                <p>La 90% din c, factorul gamma este ~2,3. Pentru fiecare an pe nava, pe Pamant trec 2,3 ani. O calatorie de 2,1 ani subiectivi = 4,9 ani pe Pamant.</p>
+                <div class="meta"><span class="badge">gamma = 2,3</span><span class="badge">la 90% c</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">Calculul asteptarii</h3>
+                <p>Daca lansezi o nava in 2100 la 10% c, ajunge in 2150. Dar o nava lansata in 2125 la 20% c ajunge in 2147. Echipajul tau a calatorit 50 de ani degeaba — altii au ajuns inaintea lor!</p>
+                <div class="meta"><span class="badge">paradox</span><span class="badge">mereu mai bine sa astepti</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Problema franarii</h3>
+                <p>Ai accelerat la 90% c — felicitari! Dar acum trebuie sa <b>incetinesti</b>, altfel zbori prin sistemul stelar in cateva ore fara sa te poti opri. Franarea cere aceeasi energie URIASA, si tot combustibilul de franare a trebuit accelerat la plecare.</p>
+                <div class="meta"><span class="badge">ecuatia rachetei</span><span class="badge">spirala exponentiala</span></div>
+              </div>
+            </div>
+
+            <!-- Time dilation interactive -->
+            <div class="viz" style="margin-top:12px">
+              <svg viewBox="0 0 480 160" role="img">
+                <text x="20" y="24" font-size="12" fill="rgba(255,255,255,.7)" font-weight="600">Dilatarea timpului: cati ani trec pe Pamant per 1 an pe nava</text>
+                <!-- Bars for different speeds -->
+                <rect x="20" y="42" width="80" height="20" rx="4" fill="rgba(117,240,182,.3)"/>
+                <text x="110" y="56" font-size="10" fill="rgba(255,255,255,.6)">50% c: 1,15 ani</text>
+                <rect x="20" y="68" width="150" height="20" rx="4" fill="rgba(122,215,255,.3)"/>
+                <text x="180" y="82" font-size="10" fill="rgba(255,255,255,.6)">86,6% c: 2 ani</text>
+                <rect x="20" y="94" width="200" height="20" rx="4" fill="rgba(255,210,122,.3)"/>
+                <text x="230" y="108" font-size="10" fill="rgba(255,255,255,.6)">90% c: 2,3 ani</text>
+                <rect x="20" y="120" width="400" height="20" rx="4" fill="rgba(255,122,153,.4)"/>
+                <text x="430" y="134" font-size="10" fill="rgba(255,255,255,.6)">99% c: 7,1 ani</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> „Calculul asteptarii" este un argument devastator: daca tehnologia avanseaza, NICIODATA nu e momentul optim sa lansezi o nava — mereu va fi depasita de una lansata mai tarziu cu tehnologie mai buna. Singura exceptie: daca esti deja la limita fizicii (viteza luminii).
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: Biology -->
+      <section class="card" aria-label="Problema biologiei">
+        <div class="cardHeader">
+          <h2>Bariera 4: Corpul uman in spatiu</h2>
+          <div class="chip"><b>Biologia:</b> cel mai slab element</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Chiar daca am rezolva toate problemele de fizica si inginerie, corpul uman nu e construit pentru calatorii interstelare.
+            Radiatia cosmica, lipsa gravitatiei si izolarea psihologica sunt obstacole biologice fundamentale.
+          </p>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Radiatia cosmica</strong><span class="badge" style="color:var(--bad)">letal</span></div>
+              <div class="meter"><i style="width:80%"></i></div>
+              <p>In afara magnetosferei Pamantului, razele cosmice galactice strapung peretii navei ca si cum nu ar exista. 5 ani = ~750 mSv minim. Risc major de cancer, cataracta, afectiuni neurologice.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Pierderea densitatii osoase</strong><span class="badge" style="color:var(--warn)">cronic</span></div>
+              <div class="meter"><i style="width:55%"></i></div>
+              <p>1-2% pierdere pe luna in microgravitatie. Dupa 1 an, astronautii au densitate osoasa de nivel osteoporoza. Exercitiul fizic ajuta dar nu elimina problema.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Atrofia musculara</strong><span class="badge" style="color:var(--warn)">cronic</span></div>
+              <div class="meter"><i style="width:50%"></i></div>
+              <p>20-30% pierdere de masa musculara pe misiunile lungi, chiar cu exercitii riguroase. Corpul uman are nevoie de gravitatie.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Izolarea psihologica</strong><span class="badge" style="color:var(--orange)">sever</span></div>
+              <div class="meter"><i style="width:65%"></i></div>
+              <p>Ani de izolare, fara posibilitate de salvare, la ani-lumina de casa. Pe ISS, astronautii sunt in contact permanent si pot reveni in ore. Intr-o calatorie interstellara — nu.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="split">
+            <div class="flowNode">
+              <h3>Hibernarea? Nu exista (inca)</h3>
+              <p>Hollywood arata oameni treziti din somn criogenic dupa secole. In realitate, apa din celule se dilata cand ingheata, rupand membranele celulare. Daunele sunt catastrofale si ireversibile. Poate vom putea incetini metabolismul de ~10x, dar asta doar transforma 50 de ani in 5.</p>
+              <div class="meta"><span class="badge">fictiune stiintifica</span><span class="badge">nu tehnologie</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>Gravitatie artificiala?</h3>
+              <p>O sectiune rotativa ar putea simula gravitatia, dar trebuie sa aiba minim 100m raza pentru a evita efectele Coriolis (ameteala). Asta inseamna o structura uriasa — masa enorma — mai mult combustibil — si revenim la problema energiei.</p>
+              <div class="meta"><span class="badge">r &ge; 100m</span><span class="badge">masa imensa</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Biologia e poate cea mai cruda bariera: poti imagina solutii pentru energie si distanta (chiar daca sunt fantastice), dar corpul uman are limitari fixe. Fiecare „solutie" (scut de radiatii, gravitatie artificiala) adauga masa, ceea ce agraveaza TOATE celelalte probleme.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Generation Ships & Probes -->
+      <section class="row">
+        <div class="card" aria-label="Nave generationale">
+          <div class="cardHeader">
+            <h2>Nave generationale: un vis frumos?</h2>
+            <div class="chip">sociologie, nu fizica</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              „Bine, trimitem oameni pe parcursul a mai multor generatii!" suna bine in SF. In practica, problemele se multiplica.
+            </p>
+
+            <div class="checklist">
+              <div class="item">
+                <input type="checkbox" disabled checked />
+                <div>
+                  <div class="t"><strong>Sistem suport-viata inchis, perfect</strong><em>secole</em></div>
+                  <div class="d">Reciclare perfecta a aerului, apei si nutrientilor — timp de secole. Experimentul Biosphere 2 a esuat in cativa ani.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" disabled checked />
+                <div>
+                  <div class="t"><strong>Diversitate genetica</strong><em>min. sute de oameni</em></div>
+                  <div class="d">O populatie fondatoare de cel putin cateva sute (probabil mii) de persoane, pentru a evita consangvinitatea.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" disabled checked />
+                <div>
+                  <div class="t"><strong>Stabilitate sociala</strong><em>secole de ordine</em></div>
+                  <div class="d">Cum mentii ordine, cultura si scop timp de generatii pe o nava din care nu poti fugi? Nicio societate umana nu a reusit asa ceva.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" disabled checked />
+                <div>
+                  <div class="t"><strong>Redundanta totala</strong><em>zero erori fatale</em></div>
+                  <div class="d">Daca esueaza reciclarea apei — toata lumea moare. Daca se strica reactorul — toata lumea moare. Niciun sistem backup nu tine secole.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Masa unei asemenea nave: milioane de tone. Energia de accelerare: o fractiune semnificativa din toata energia produsa vreodata de omenire.</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Navele generationale ies din domeniul fizicii si intra in cel al sociologiei, geneticii si ecologiei. Problemele nu sunt mai usor de rezolvat — sunt doar diferite. Si echipajul ar ajunge ca „primitivi tehnologici" comparativ cu ce a dezvoltat Pamantul intre timp.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Sonde robotice">
+          <div class="cardHeader">
+            <h2>Ce ESTE posibil: sondele robotice</h2>
+            <div class="chip" style="border-color:rgba(117,240,182,.3)"><b style="color:var(--good)">Fezabil</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind recunoaste o exceptie: <b>sonde mici, robotice</b>, fara echipaj uman. Proiectul Breakthrough Starshot propune exact asta.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
+                <h3 style="color:var(--good)">Breakthrough Starshot</h3>
+                <p>Nave de cativa centimetri cu vele de lumina, accelerate la 20% c de lasere terestre. Calatorie pana la Alpha Centauri: ~20 de ani. Fara franare — trec prin sistem in cateva zile, facand poze.</p>
+                <div class="meta">
+                  <span class="badge">sonde la scara cm</span>
+                  <span class="badge">vele solare</span>
+                  <span class="badge">lasere de pe Pamant</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>Limitarile</h3>
+                <p>Sondele <b>nu incetinesc</b> — zboara prin sistemul stelar in zile. Trimit poze si date, apoi dispar in gol. Minunat pentru stiinta, inutil pentru colonizare.</p>
+                <div class="meta"><span class="badge">sens unic</span><span class="badge">fara oprire</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flowNode">
+              <h3>Ce ramane fezabil: Sistemul Solar</h3>
+              <p>Marte (7 luni), satelitii lui Jupiter si Saturn (cativa ani), centura de asteroizi — toate sunt accesibile. Am putea construi o civilizatie bogata in Sistemul Solar, dar <b>stelele raman intangibile</b>.</p>
+              <div class="meta">
+                <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">Marte</span>
+                <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">Europa</span>
+                <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">Titan</span>
+                <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">asteroizi</span>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e nuanta importanta: Susskind nu spune ca explorarea spatiala e imposibila. Sistemul Solar e un spatiu imens, cu resurse pentru miliarde de ani. Dar stelele — chiar si cea mai apropiata — sunt intr-o cu totul alta liga de dificultate.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Fermi Paradox -->
+      <section class="card" aria-label="Paradoxul Fermi">
+        <div class="cardHeader">
+          <h2>Paradoxul Fermi: raspunsul pe care fizica il sugereaza</h2>
+          <div class="chip">„Unde sunt toti?"</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Enrico Fermi a intrebat celebru: daca viata inteligenta e comuna in galaxie, de ce nu vedem dovezi ale altor civilizatii? Exista multe raspunsuri propuse: viata e rara, civilizatiile se autodistrug, se ascund...
+              </p>
+              <p class="muted">
+                Susskind propune un raspuns mai simplu: <b>colonizarea interstellara e imposibila pentru TOTI</b>. Fizica e universala. Viteza luminii e aceeasi peste tot. Fiecare civilizatie care evolueaza se raspandeste in sistemul ei solar, apoi se opreste.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 260" role="img">
+                  <defs>
+                    <radialGradient id="sg1" cx="0.5" cy="0.5" r="0.45">
+                      <stop offset="0" stop-color="rgba(255,210,122,.2)"/>
+                      <stop offset="1" stop-color="transparent"/>
+                    </radialGradient>
+                  </defs>
+                  <!-- Galaxy dots -->
+                  <circle cx="220" cy="130" r="120" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <circle cx="220" cy="130" r="80" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+                  <!-- Stars = civilizations, each in a bubble -->
+                  <circle cx="120" cy="90" r="20" fill="url(#sg1)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+                  <circle cx="120" cy="90" r="3" fill="rgba(255,210,122,.7)"/>
+                  <circle cx="280" cy="80" r="20" fill="url(#sg1)" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+                  <circle cx="280" cy="80" r="3" fill="rgba(122,215,255,.7)"/>
+                  <circle cx="310" cy="170" r="20" fill="url(#sg1)" stroke="rgba(117,240,182,.2)" stroke-width="1"/>
+                  <circle cx="310" cy="170" r="3" fill="rgba(117,240,182,.7)"/>
+                  <circle cx="150" cy="180" r="20" fill="url(#sg1)" stroke="rgba(255,179,138,.2)" stroke-width="1"/>
+                  <circle cx="150" cy="180" r="3" fill="rgba(255,179,138,.7)"/>
+                  <circle cx="220" cy="130" r="20" fill="url(#sg1)" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                  <circle cx="220" cy="130" r="3" fill="rgba(187,167,255,.7)"/>
+                  <!-- Labels -->
+                  <text x="220" y="240" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Fiecare civilizatie: izolata in propriul sistem solar</text>
+                  <text x="220" y="256" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">Balonul = limita de expansiune (norul Oort)</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> E un raspuns elegant: nu trebuie sa invoci catastrofe, conspiratie sau raritate extrema a vietii. Pur si simplu, distantele interstelare sunt un zid universal. Fiecare civilizatie e o insula intr-un ocean prea vast pentru a fi traversat.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Could he be wrong? -->
+      <section class="card" aria-label="Ar putea gresi?">
+        <div class="cardHeader">
+          <h2>Ar putea Susskind sa greseasca?</h2>
+          <div class="chip">onestitate intelectuala</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">Precedente: savanti care au gresit</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <p><b>Lord Kelvin:</b> „Zborul cu aparate mai grele ca aerul e imposibil" — Fratii Wright au zburat in 1903.</p>
+                </div>
+                <div class="flowNode">
+                  <p><b>Ernest Rutherford:</b> „Extragerea energiei din atomi e o aiureala" — bomba atomica, 1945.</p>
+                </div>
+                <div class="flowNode">
+                  <p><b>Richard Woolley:</b> „Calatoria spatiala e o prostie absoluta" — Sputnik, 1957.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--bad)">Diferenta cruciala</h3>
+              <p class="muted" style="margin:0">
+                Acele predictii s-au bazat pe <b>intelegere limitata</b> sau lipsa de imaginatie. Argumentul lui Susskind se bazeaza pe <b>limite fundamentale</b>:
+              </p>
+              <div class="flow" style="margin-top:10px">
+                <div class="flowNode">
+                  <p>Viteza luminii nu e o limitare tehnologica — e o <b>proprietate a spatiu-timpului</b> insusi.</p>
+                  <div class="meta"><span class="badge">relativitate</span></div>
+                </div>
+                <div class="flowNode">
+                  <p>Conservarea energiei nu e o provocare de inginerie — e o <b>lege a naturii</b>.</p>
+                  <div class="meta"><span class="badge">termodinamica</span></div>
+                </div>
+                <div class="flowNode">
+                  <p>Distantele interstelare nu sunt un obstacol temporar — sunt un <b>fapt geometric</b> al universului.</p>
+                  <div class="meta"><span class="badge">cosmologie</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Portite teoretice?</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                <b>Gauri de vierme (wormholes):</b> Exista matematic in ecuatiile Relativitatii Generale, dar necesita „materie exotica" cu densitate negativa de energie — ceva ce nu am observat niciodata si avem motive teoretice bune sa credem ca nu exista in cantitatile necesare.
+              </p>
+              <p style="margin-top:8px">
+                <b>Motoare warp (Alcubierre):</b> Necesita aceeasi materie exotica, plus capacitatea de a manipula curbura spatiu-timpului la scara macroscopica, cu energii care depasesc masa-energia planetelor. Nu e inginerie — e fizica pe care nu o avem si probabil nu exista.
+              </p>
+              <p style="margin-top:8px">
+                <b>Dimensiuni suplimentare:</b> Poate gravitatia cuantica va dezvalui scurtaturi? Poate. Dar a paria pe fizica necunoscuta ca sa te salveze de fizica cunoscuta nu e rational — e gandire wishful.
+              </p>
+            </div>
+          </details>
+
+          <div class="callout warn-callout" data-commentary>
+            <b>Nota:</b> Susskind este intelectual onest. Recunoaste ca ar putea gresi. Dar subliniaza: diferenta dintre „imposibil datorita limitarilor de intelegere" si „imposibil datorita legilor fundamentale" este una cruciala.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Philosophical implications -->
+      <section class="card" aria-label="Implicatii filozofice">
+        <div class="cardHeader">
+          <h2>Ce inseamna daca suntem cu adevarat blocati?</h2>
+          <div class="chip"><b>Perspectiva:</b> o miliarda de ani, un sistem solar</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Domeniul nostru: Sistemul Solar</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                ~10<sup>13</sup> km<sup>3</sup> de spatiu utilizabil, de la Soare pana la centura Kuiper. Destul pentru o civilizatie prospera timp de miliarde de ani.
+                Energia Soarelui va fi disponibila inca ~5 miliarde de ani. Resursele sunt vaste.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Consecinta practica</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Daca nu exista „planeta de rezerva" spre care sa fugim, <b>conservarea Pamantului devine imperativa</b>.
+                Schimbarile climatice, razboiul nuclear, colapsul ecosistemelor — nu sunt amenintari doar la civilizatia actuala.
+                Sunt amenintari la <b>singura civilizatie posibila</b> din acest colt al galaxiei.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 220" role="img">
+                  <defs>
+                    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+                      <stop offset="0" stop-color="rgba(255,210,122,.4)"/>
+                      <stop offset="1" stop-color="rgba(255,210,122,0)"/>
+                    </radialGradient>
+                  </defs>
+                  <!-- Sun -->
+                  <circle cx="220" cy="110" r="70" fill="url(#sun)"/>
+                  <circle cx="220" cy="110" r="20" fill="rgba(255,210,122,.6)"/>
+                  <circle cx="220" cy="110" r="8" fill="rgba(255,255,255,.8)"/>
+                  <!-- Orbits -->
+                  <circle cx="220" cy="110" r="42" fill="none" stroke="rgba(117,240,182,.15)" stroke-width="1"/>
+                  <circle cx="262" cy="110" r="4" fill="rgba(117,240,182,.7)"/><!-- Earth -->
+                  <circle cx="220" cy="110" r="65" fill="none" stroke="rgba(255,179,138,.12)" stroke-width="1"/>
+                  <circle cx="155" cy="110" r="3" fill="rgba(255,179,138,.6)"/><!-- Mars -->
+                  <circle cx="220" cy="110" r="90" fill="none" stroke="rgba(255,210,122,.08)" stroke-width="1"/>
+                  <circle cx="220" cy="20" r="7" fill="rgba(255,210,122,.4)"/><!-- Jupiter -->
+                  <circle cx="220" cy="110" r="105" fill="none" stroke="rgba(187,167,255,.06)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <!-- Label -->
+                  <text x="220" y="205" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Domeniul nostru: vast, dar finit</text>
+                  <!-- Outer boundary -->
+                  <rect x="10" y="5" width="420" height="210" rx="16" fill="none" stroke="rgba(255,255,255,.06)" stroke-dasharray="4 4"/>
+                  <text x="380" y="20" text-anchor="end" font-size="9" fill="rgba(255,255,255,.35)">Centura Kuiper</text>
+                </svg>
+              </div>
+
+              <div style="margin-top:10px" class="row2">
+                <div class="risk">
+                  <div class="rTop"><strong>Timp disponibil</strong><span class="badge" style="color:var(--good)">~1 mld ani</span></div>
+                  <div class="meter"><i style="width:30%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+                  <p>Pana cand luminozitatea Soarelui face Pamantul nelocuibil. Dupa: habitate spatiale.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Stelele: intangibile</strong><span class="badge" style="color:var(--bad)">permanent</span></div>
+                  <div class="meter"><i style="width:95%"></i></div>
+                  <p>Putem privi, masura, visa — dar niciodata vizita. Exoplanetele sunt ca insule dincolo de un ocean infinit.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind gaseste aceasta perspectiva „clarificatoare, nu deprimanta". Daca Pamantul e tot ce avem, motivatia de a-l proteja devine absoluta. Nu mai e un luxor — e singura optiune. Si Sistemul Solar este inca imens: destul spatiu pentru o civilizatie care sa dureze miliarde de ani.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: Summary -->
+      <section class="card" aria-label="Sinteza">
+        <div class="cardHeader">
+          <h2>Teza completa, pe scurt</h2>
+          <div class="chip"><b>Leonard Susskind:</b> 50 ani de fizica</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce spune fizica</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Calatoria interstellara cu echipaj uman e imposibila — nu in sensul „inca nu putem", ci in sensul in care <b>perpetuum mobile</b> e imposibil.
+                Distantele sunt prea mari, energia necesara prea uriasa, pericolele prea severe, iar corpul uman prea fragil.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce NU e imposibil</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Sonde robotice minuscule (Breakthrough Starshot), colonizarea Sistemului Solar (Marte, Europa, Titan, centura de asteroizi),
+                si construirea unei civilizatii prospere cu energia Soarelui pentru miliarde de ani.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Analogia finala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                „Suntem insulari intr-un ocean vast. Putem vedea alte insule la orizont — acele exoplanete care orbiteaza stele indepartate.
+                Le putem studia cu telescoape. Ne putem intreba ce e acolo.
+                Dar nu putem ajunge niciodata la ele. Insula noastra — Sistemul Solar — e suficient de mare pentru un viitor foarte lung.
+                Dar il vom trai <b>aici, singuri</b>, fara sa atingem vreodata o alta lume care orbiteaza o alta stea."
+              </p>
+              <div style="margin-top:12px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(0,0,0,.15);font-size:13px;color:var(--faint);font-style:italic">
+                „Universul e frumos, vast si plin de minunii. Dar cele mai multe dintre acele minunii sunt dincolo de raza noastra. Si trebuie sa acceptam asta. Suntem acasa. Am fost mereu acasa. Si vom fi mereu."
+                <span style="display:block;margin-top:6px;font-style:normal;color:var(--muted)">— Leonard Susskind</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre calitatea evidentelor</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Argumentele lui Susskind se bazeaza pe <b>fizica bine stabilita</b>: relativitatea speciala si generala (confirmate experimental de peste 100 de ani),
+                termodinamica (nicio exceptie observata vreodata), si biologia spatiala (date reale de la ISS si misiuni lungi).
+                Spre deosebire de multe argumente din stiinta populara, acestea nu sunt speculative — sunt consecinte directe ale legilor pe care le cunoastem cel mai bine.
+              </p>
+              <p style="margin-top:8px">
+                Singura cale de a le depasi ar fi descoperirea unei fizici complet noi — lucru posibil dar pe care nu il putem prezice sau planifica.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comentariu"</h2>
+          <div class="chip">analiza vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre cu chenar (marcate cu <code>data-commentary</code>) ofera comentarii de meta-nivel:
+            cat de puternic e argumentul? Ce nuante exista? Ce alternative?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa „Afiseaza/ascunde comentariul" in antet pentru a comuta intre „ce spune Susskind" si „ce analiza critica adaugam noi".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si avertismente:</b> Acest infografic interactiv traduce si vizualizeaza argumentele din prelegerea lui Leonard Susskind despre imposibilitatea calatoriei interstelare.
+        Toate cifrele sunt aproximative si au scop educativ. Vizualizarile si simulatorul sunt instrumente conceptuale, nu substitute pentru calculele fizice riguroase.
+      </p>
+      <p style="margin-top:10px">
+        Textul sursa: „The Physics That Makes Interstellar Travel Impossible" — Leonard Susskind.
+        Tot continutul este in limba romana, cu explicatii simplificate. Pentru aprofundare: consultati lucrarile despre relativitate speciala, mecanica orbitala si astrofizica.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Energy Simulator (Interactive SVG)
+    // ──────────────────────────────────────────────────────
+    const speedSlider = document.getElementById('speedSlider');
+    const massSlider = document.getElementById('massSlider');
+    const speedReadout = document.getElementById('speedReadout');
+    const massReadout = document.getElementById('massReadout');
+
+    const c = 3e8; // speed of light m/s
+    const worldEnergy = 6e20; // ~600 EJ per year
+
+    function relativisticKE(mass, beta) {
+      // KE = (gamma - 1) * m * c^2
+      const gamma = 1 / Math.sqrt(1 - beta * beta);
+      return (gamma - 1) * mass * c * c;
+    }
+
+    function formatEnergy(joules) {
+      if (joules < 1e6) return joules.toFixed(0) + ' J';
+      if (joules < 1e9) return (joules / 1e6).toFixed(1) + ' MJ';
+      if (joules < 1e12) return (joules / 1e9).toFixed(1) + ' GJ';
+      if (joules < 1e15) return (joules / 1e12).toFixed(1) + ' TJ';
+      if (joules < 1e18) return (joules / 1e15).toFixed(1) + ' PJ';
+      if (joules < 1e21) return (joules / 1e18).toFixed(1) + ' EJ';
+      return (joules / 1e21).toFixed(2) + ' ZJ';
+    }
+
+    function formatMass(kg) {
+      if (kg < 1000) return Math.round(kg) + ' kg';
+      if (kg < 1e6) return (kg / 1000).toFixed(1) + ' tone';
+      if (kg < 1e9) return (kg / 1e6).toFixed(1) + ' mii tone';
+      if (kg < 1e12) return (kg / 1e9).toFixed(1) + ' mld tone';
+      return (kg / 1e12).toFixed(1) + ' trl tone';
+    }
+
+    function renderSim() {
+      const beta = parseInt(speedSlider.value) / 100;
+      const mass = Math.pow(10, parseFloat(massSlider.value));
+
+      speedReadout.textContent = speedSlider.value + '%';
+      massReadout.textContent = formatMass(mass);
+
+      const ke = relativisticKE(mass, beta);
+
+      // Update result
+      document.getElementById('eResult').textContent = formatEnergy(ke);
+
+      // Comparison
+      const ratio = ke / worldEnergy;
+      let compare = '';
+      if (ratio < 0.001) {
+        compare = (ratio * 365.25 * 24 * 60).toFixed(1) + ' secunde din productia energetica mondiala';
+      } else if (ratio < 0.01) {
+        compare = (ratio * 365.25 * 24).toFixed(1) + ' ore din productia energetica mondiala';
+      } else if (ratio < 1) {
+        compare = (ratio * 100).toFixed(1) + '% din productia energetica mondiala anuala';
+      } else if (ratio < 100) {
+        compare = ratio.toFixed(1) + 'x productia energetica mondiala anuala';
+      } else {
+        compare = ratio.toFixed(0) + 'x productia energetica mondiala anuala (!) ';
+      }
+      document.getElementById('eCompare').textContent = compare;
+
+      // Meter
+      const pct = Math.min(100, Math.max(2, Math.log10(ke) / 25 * 100));
+      document.getElementById('eMeter').style.width = pct + '%';
+      const pct2 = Math.min(100, Math.max(2, ratio > 0 ? (Math.log10(ratio) + 5) / 8 * 100 : 2));
+      document.getElementById('eMeter2').style.width = pct2 + '%';
+
+      // Draw energy curve
+      const svg = document.getElementById('simSvg');
+      const W = 980, H = 360;
+      const padL = 80, padR = 40, padT = 60, padB = 50;
+      const gW = W - padL - padR;
+      const gH = H - padT - padB;
+
+      // Log scale: energy from beta=0.01 to beta=0.99
+      let curvePath = '';
+      const points = 100;
+      for (let i = 0; i <= points; i++) {
+        const b = 0.01 + (i / points) * 0.98;
+        const e = relativisticKE(mass, b);
+        const logE = Math.log10(e);
+        const x = padL + (i / points) * gW;
+        // Y scale: log10(energy) from ~10 to ~25
+        const minLog = 8;
+        const maxLog = 26;
+        const y = padT + gH - ((logE - minLog) / (maxLog - minLog)) * gH;
+        const clampedY = Math.max(padT, Math.min(padT + gH, y));
+        curvePath += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + clampedY.toFixed(1) + ' ';
+      }
+      document.getElementById('eCurve').setAttribute('d', curvePath);
+
+      // World energy reference line
+      const worldLogE = Math.log10(worldEnergy);
+      const minLog = 8, maxLog = 26;
+      const worldY = padT + gH - ((worldLogE - minLog) / (maxLog - minLog)) * gH;
+      document.getElementById('worldLine').setAttribute('y1', worldY);
+      document.getElementById('worldLine').setAttribute('y2', worldY);
+      document.getElementById('worldLabel').setAttribute('x', padL + 10);
+      document.getElementById('worldLabel').setAttribute('y', worldY - 6);
+
+      // Current position dot
+      const dotE = ke;
+      const dotLogE = Math.log10(dotE);
+      const dotX = padL + ((beta - 0.01) / 0.98) * gW;
+      const dotY = padT + gH - ((dotLogE - minLog) / (maxLog - minLog)) * gH;
+      const clampedDotY = Math.max(padT, Math.min(padT + gH, dotY));
+      document.getElementById('simDot').setAttribute('cx', dotX);
+      document.getElementById('simDot').setAttribute('cy', clampedDotY);
+      document.getElementById('simDotLabel').setAttribute('x', dotX);
+      document.getElementById('simDotLabel').setAttribute('y', clampedDotY - 14);
+      document.getElementById('simDotLabel').textContent = formatEnergy(ke);
+
+      // Grid
+      const grid = document.getElementById('simGrid');
+      grid.innerHTML = '';
+      // X labels
+      for (let pctV = 0; pctV <= 100; pctV += 10) {
+        const x = padL + (pctV / 100) * gW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x); line.setAttribute('y1', padT);
+        line.setAttribute('x2', x); line.setAttribute('y2', padT + gH);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)'); line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+        if (pctV > 0 && pctV < 100) {
+          const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          t.setAttribute('x', x); t.setAttribute('y', padT + gH + 16);
+          t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-size', '10');
+          t.setAttribute('fill', 'rgba(255,255,255,.45)');
+          t.textContent = pctV + '%';
+          grid.appendChild(t);
+        }
+      }
+      // Y labels (log scale)
+      for (let lg = 10; lg <= 24; lg += 2) {
+        const y = padT + gH - ((lg - minLog) / (maxLog - minLog)) * gH;
+        if (y < padT || y > padT + gH) continue;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', padL); line.setAttribute('y1', y);
+        line.setAttribute('x2', padL + gW); line.setAttribute('y2', y);
+        line.setAttribute('stroke', 'rgba(255,255,255,.04)'); line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+        const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('x', padL - 6); t.setAttribute('y', y + 4);
+        t.setAttribute('text-anchor', 'end'); t.setAttribute('font-size', '9');
+        t.setAttribute('fill', 'rgba(255,255,255,.4)');
+        t.textContent = '10^' + lg;
+        grid.appendChild(t);
+      }
+    }
+
+    speedSlider.addEventListener('input', renderSim);
+    massSlider.addEventListener('input', renderSim);
+    renderSim();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpSim').addEventListener('click', () => {
+      document.getElementById('simCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpBariere').addEventListener('click', () => {
+      document.getElementById('bariere').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

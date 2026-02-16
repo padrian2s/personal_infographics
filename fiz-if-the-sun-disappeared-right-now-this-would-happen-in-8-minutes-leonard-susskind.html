@@ -1,0 +1,1785 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daca Soarele ar disparea acum — Ce s-ar intampla in 8 minute | Leonard Susskind</title>
+  <meta name="description" content="Infografic interactiv: ce s-ar intampla daca Soarele ar disparea instantaneu. Viteza luminii, unde gravitationale, neutrini si cauzalitatea finita — explicat simplu, in romana." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --sun: #ffd27a;
+      --earth: #7ad7ff;
+      --grav: #bba7ff;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,210,122,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--sun), var(--bad)); box-shadow: 0 0 22px rgba(255,210,122,.35)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 260px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(280px 200px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap:wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills & tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--warn)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:0;position:relative}
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:18px;top:0;bottom:0;
+      width:2px;
+      background: linear-gradient(180deg, var(--warn), var(--bad), var(--violet));
+      border-radius:2px;
+      opacity:.4;
+    }
+    .tEvent{
+      display:grid;
+      grid-template-columns: 36px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:12px 0;
+      position:relative;
+    }
+    .tDot{
+      width:14px;height:14px;
+      border-radius:99px;
+      border:2px solid rgba(255,255,255,.3);
+      background:var(--bg);
+      margin-top:2px;
+      margin-left:12px;
+      position:relative;
+      z-index:1;
+      transition: background .3s, border-color .3s, box-shadow .3s;
+    }
+    .tEvent.active .tDot{
+      background:var(--warn);
+      border-color:var(--warn);
+      box-shadow:0 0 16px rgba(255,210,122,.5);
+    }
+    .tContent{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px;
+      transition: border-color .3s, background .3s;
+    }
+    .tEvent.active .tContent{
+      border-color:rgba(255,210,122,.3);
+      background:rgba(255,210,122,.06);
+    }
+    .tContent h3{margin:0 0 4px;font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .tContent p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    .tTime{
+      font-family:var(--mono);
+      font-size:11px;
+      padding:3px 7px;
+      border-radius:999px;
+      background:rgba(255,210,122,.12);
+      color:var(--warn);
+      border:1px solid rgba(255,210,122,.2);
+    }
+
+    /* Comparison table */
+    .compTable{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+    .compTable th{
+      text-align:left;
+      padding:10px 12px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--faint);
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .compTable td{
+      padding:10px 12px;
+      color:var(--muted);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .compTable tr:last-child td{border-bottom:none}
+    .compTable .highlight{color:var(--text);font-weight:600}
+
+    /* Animated sun */
+    @keyframes sunPulse{
+      0%,100%{opacity:.7;r:38}
+      50%{opacity:1;r:42}
+    }
+    @keyframes sunGlow{
+      0%,100%{stop-color:rgba(255,210,122,.5)}
+      50%{stop-color:rgba(255,210,122,.8)}
+    }
+    .sunPulse{animation: sunPulse 3s ease-in-out infinite}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--warn)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Hallmarks-style grid for planets */
+    .planetGrid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width:800px){.planetGrid{grid-template-columns: repeat(2,minmax(0,1fr))}}
+    @media (max-width:500px){.planetGrid{grid-template-columns:1fr}}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .timeline::before{background:#ccc}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 260" role="img">
+          <defs>
+            <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="rgba(255,255,255,.9)" />
+              <stop offset=".3" stop-color="rgba(255,210,122,.7)" />
+              <stop offset=".7" stop-color="rgba(255,160,60,.3)" />
+              <stop offset="1" stop-color="rgba(255,122,50,0)" />
+            </radialGradient>
+            <linearGradient id="hg1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,210,122,.45)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <circle cx="120" cy="130" r="40" fill="url(#sunG)" class="sunPulse"/>
+            <ellipse cx="120" cy="130" rx="90" ry="90" fill="none" stroke="rgba(255,210,122,.15)" stroke-width="1" stroke-dasharray="4 6"/>
+            <ellipse cx="120" cy="130" rx="150" ry="100" fill="none" stroke="rgba(122,215,255,.12)" stroke-width="1" stroke-dasharray="3 8"/>
+            <circle cx="210" cy="95" r="5" fill="rgba(122,215,255,.8)"/>
+            <circle cx="270" cy="145" r="3.5" fill="rgba(187,167,255,.7)"/>
+            <path d="M120,130 Q250,40 420,100 Q480,120 500,80" fill="none" stroke="url(#hg1)" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+            <circle cx="340" cy="70" r="6" fill="rgba(255,255,255,.45)"/>
+            <circle cx="440" cy="96" r="4" fill="rgba(255,255,255,.3)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica fundamentala &bull; relativitate generala &bull; cauzalitate</div>
+          <h1>Daca Soarele ar disparea chiar acum, ai afla abia dupa 8 minute</h1>
+          <p class="subtitle">
+            Un experiment mental celebru care dezvaluie structura profunda a fizicii: cum calatoreste informatia prin spatiu-timp,
+            de ce gravitatia nu este o forta ci o curbura, si de ce universul pe care il percepi este <b>intotdeauna trecut, niciodata prezent</b>.
+            Bazat pe explicatia lui Leonard Susskind.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpSim">Mergi la simulatorul de unde</button>
+            <button class="btn" id="jumpTimeline">Mergi la cronologie</button>
+            <button class="btn" id="toggleNotes">Afiseaza/ascunde comentariile</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Cifre cheie">
+          <div class="stat">
+            <div class="label">Viteza luminii</div>
+            <div class="value" style="color:var(--warn)">300.000 km/s</div>
+            <div class="note">Viteza maxima a cauzalitatii -- nimic nu poate merge mai repede.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Distanta Soare-Pamant</div>
+            <div class="value">150 mil. km</div>
+            <div class="note">1 Unitate Astronomica (UA). Lumina parcurge aceasta distanta in 8 min 20 s.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Intarziere cauzala</div>
+            <div class="value" style="color:var(--bad)">8 min 20 s</div>
+            <div class="note">Atat dureaza pana cand stirea "Soarele a disparut" ajunge la Pamant.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Masa Soarelui</div>
+            <div class="value">2 &times; 10<sup>30</sup> kg</div>
+            <div class="note">Nu poate disparea in realitate -- legile conservarii interzic asta.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: De ce acest experiment? -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>De ce acest experiment mental?</h2>
+          <div class="chip"><b>Nu e SF</b> -- e un test al fizicii</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                In realitate, Soarele <b>nu poate pur si simplu sa dispara</b>. Energia se conserva, masa se conserva, informatia se conserva.
+                Cele 2&times;10<sup>30</sup> kg de hidrogen si heliu nu pot inceta sa existe -- ar incalca toate legile pe care le stim.
+              </p>
+              <p class="muted">
+                Dar daca <em>presupunem</em> ca dispare, raspunsul ne spune cum se propaga influentele fizice prin spatiu-timp.
+                Este un test perfect pentru a intelege <b>diferenta dintre gravitatia lui Newton si cea a lui Einstein</b>.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Experimentele mentale (Gedankenexperiment) sunt un instrument clasic in fizica. Einstein le-a folosit extensiv.
+                Ideea nu e sa predici un eveniment real, ci sa testezi limitele unei teorii. Daca teoria da un raspuns absurd, teoria are o problema.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <div class="small" style="margin-bottom:10px">Newton vs. Einstein -- ce prezice fiecare:</div>
+                <table class="compTable">
+                  <tr>
+                    <th></th>
+                    <th>Newton</th>
+                    <th>Einstein</th>
+                  </tr>
+                  <tr>
+                    <td>Gravitatia este...</td>
+                    <td>O forta instantanee</td>
+                    <td class="highlight">Curbura spatiu-timpului</td>
+                  </tr>
+                  <tr>
+                    <td>Cand dispare Soarele...</td>
+                    <td>Orbita se rupe <b>instant</b></td>
+                    <td class="highlight">Orbita continua 8 min 20 s</td>
+                  </tr>
+                  <tr>
+                    <td>Viteza gravitatiei</td>
+                    <td>Infinita</td>
+                    <td class="highlight">= viteza luminii (c)</td>
+                  </tr>
+                  <tr>
+                    <td>Verdict</td>
+                    <td style="color:var(--bad)">Gresit</td>
+                    <td style="color:var(--good)">Corect</td>
+                  </tr>
+                </table>
+                <div class="hr"></div>
+                <div class="small">In teoria lui Newton, gravitatia "stie" instantaneu ca Soarele a disparut. In relativitatea generala, "stirea" calatoreste cu viteza luminii -- exact ca lumina insasi.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Simulatorul vizual - unda gravitationala -->
+      <section class="card" id="simCard">
+        <div class="cardHeader">
+          <h2>Simulare: unda gravitationala se propaga prin sistem solar</h2>
+          <div class="chip"><b>Interactiv</b> -- misca sliderul</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Cand Soarele dispare, curbura spatiu-timpului nu se sterge instantaneu. O <b>unda gravitationala</b> (un puls in geometria spatiu-timpului)
+            se propaga in exterior cu viteza luminii. Fiecare planeta "afla" vestea doar cand unda o atinge.
+          </p>
+
+          <div class="viz" id="simViz">
+            <svg viewBox="0 0 980 480" id="waveSvg" role="img" aria-label="Simulare unda gravitationala in sistemul solar">
+              <defs>
+                <radialGradient id="sunRG" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="rgba(255,255,255,.95)"/>
+                  <stop offset=".25" stop-color="rgba(255,210,122,.8)"/>
+                  <stop offset=".6" stop-color="rgba(255,160,60,.3)"/>
+                  <stop offset="1" stop-color="rgba(255,122,50,0)"/>
+                </radialGradient>
+                <radialGradient id="waveRG" cx="50%" cy="50%" r="50%">
+                  <stop offset=".85" stop-color="rgba(255,210,122,0)"/>
+                  <stop offset=".92" stop-color="rgba(255,210,122,.25)"/>
+                  <stop offset="1" stop-color="rgba(255,210,122,0)"/>
+                </radialGradient>
+                <filter id="planetGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3"/>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="480" fill="rgba(0,0,0,.05)"/>
+
+              <!-- Stars background -->
+              <g id="stars"></g>
+
+              <!-- Sun position -->
+              <g id="sunGroup">
+                <circle cx="490" cy="240" r="28" fill="url(#sunRG)" id="sunCircle"/>
+              </g>
+
+              <!-- Wave ring -->
+              <circle cx="490" cy="240" r="0" fill="none" stroke="rgba(255,210,122,.4)" stroke-width="3" id="waveRing" opacity="0"/>
+              <circle cx="490" cy="240" r="0" fill="none" stroke="rgba(255,210,122,.15)" stroke-width="8" id="waveRingGlow" opacity="0"/>
+
+              <!-- Orbit paths -->
+              <g id="orbits" opacity=".15"></g>
+
+              <!-- Planets -->
+              <g id="planets"></g>
+
+              <!-- Labels -->
+              <g id="planetLabels" font-family="var(--sans)" font-size="11" fill="rgba(255,255,255,.7)"></g>
+
+              <!-- Status text -->
+              <text x="490" y="30" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="rgba(255,255,255,.85)" font-weight="700" id="simStatus">Apasa "Start" pentru a incepe simularea</text>
+              <text x="490" y="465" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="rgba(255,255,255,.55)" id="simTime">T = 0 min 0 s</text>
+            </svg>
+
+            <div class="legend">
+              <div class="key"><span class="sw" style="background:var(--warn)"></span> Soarele (sau fantoma sa)</div>
+              <div class="key"><span class="sw" style="background:var(--cyan)"></span> Planeta in orbita normala</div>
+              <div class="key"><span class="sw" style="background:var(--bad)"></span> Planeta eliberata (zbor liniar)</div>
+              <div class="key"><span class="sw" style="background: linear-gradient(90deg, rgba(255,210,122,.4), rgba(255,210,122,0))"></span> Frontul undei gravitationale</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Viteza simulare</span>
+                <span class="readout" id="speedReadout">1x</span>
+              </label>
+              <input id="speedSlider" type="range" min="1" max="20" value="5" />
+              <div class="small" style="margin-top:8px">Controleaza cat de repede se desfasoara simularea.</div>
+            </div>
+            <div class="control" style="display:flex;flex-direction:column;justify-content:center;gap:10px">
+              <div class="btnRow">
+                <button class="btn" id="simStartBtn">Start simulare</button>
+                <button class="btn" id="simResetBtn">Reseteaza</button>
+              </div>
+              <div class="small" id="simInfo">Soarele dispare la T=0. Observa cum unda ajunge la fiecare planeta.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> In simulare, distantele sunt comprimate -- in realitate, spatiul dintre planete e enorm.
+            Dar relatia temporala e corecta: Mercur afla in ~3 min, Pamantul in ~8 min, Jupiter in ~42 min.
+            Conceptul cheie: <b>inainte de unda, orbita normala; dupa unda, zbor in linie dreapta</b>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Cronologia detaliata -->
+      <section class="row">
+        <div class="card" id="timelineCard">
+          <div class="cardHeader">
+            <h2>Cronologia evenimentelor</h2>
+            <div class="chip"><b>Secunda cu secunda</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Iata ce se intampla pas cu pas dupa disparitia Soarelui -- de la prima nanosecunda pana la un miliard de ani.
+            </p>
+
+            <div class="timeline" id="timeline">
+              <div class="tEvent active">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">T = 0</span> Soarele dispare</h3>
+                  <p>Masa de 2&times;10<sup>30</sup> kg inceteaza sa existe. Un puls de unda gravitationala incepe sa se propage in exterior cu viteza luminii. Pe Pamant: <b>absolut nimic nu se schimba</b>.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">0 -- 8 min</span> Ignoranta totala</h3>
+                  <p>Cerul e luminat. Pasarile canta. Traficul merge. Fotonii emisi de Soare sunt inca in drum spre noi -- sosesc normal, incalzesc solul, alimenteaza fotosinteza.
+                  Gravitatia e intacta: Pamantul orbiteaza <b>o fantoma</b>, o amintire in geometria spatiu-timpului.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">3 min 13 s</span> Mercur primeste vestea</h3>
+                  <p>Lumina si unda gravitationala ajung simultan la Mercur (ambele calatoresc cu <em>c</em>). Mercur devine <b>simultan intuneric si liber</b>.
+                  Se misca in linie dreapta cu ~47 km/s, tangent la fosta orbita. Paraseste sistemul solar.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">8 min 20 s</span> Totul se schimba pe Pamant</h3>
+                  <p>Doua lucruri se intampla simultan: (1) ultimii fotoni sosesc -- cerul devine <b>brusc intuneric</b>, de la 1360 W/m<sup>2</sup> la zero;
+                  (2) curbura spatiu-timpului se aplatizeaza -- Pamantul zboara in <b>linie dreapta</b> cu ~30 km/s. Orbita s-a terminat pentru totdeauna.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">~1 ora</span> Intuneric, dar supravietuibil</h3>
+                  <p>Temperatura scade cu 1-2 grade C. Atmosfera si oceanele au ineritate termica uriasa. Orasele au retele electrice. Centralele nucleare functioneaza.
+                  Fotosinteza s-a oprit, dar plantele au rezerve de energie. <b>Civilizatia e socata, dar nu distrusa -- inca.</b></p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">~42 min</span> Jupiter afla</h3>
+                  <p>La 5 UA de Soare, Jupiter primeste unda gravitationala si devine liber. In urmatoarele ore, Saturn (~83 min), Uranus si Neptun (2-4 ore) se elibereaza pe rand.
+                  <b>Sistemul solar se dizolva in ordine, de la interior spre exterior.</b></p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">~1 luna</span> Inghetul</h3>
+                  <p>Temperatura medie: ~-20 gradeC. Oceane inghetate, zapada acoperind totul. Dar <b>caldura geotermala</b> (din dezintegrarea uraniului si thoriului din miezul Pamantului)
+                  ofera ~90 mW/m<sup>2</sup>. In jurul surselor hidrotermale, viata poate supravietui.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">~1 an</span> Lumea inghetata</h3>
+                  <p>Temperatura medie: ~-60 gradeC. CO<sub>2</sub> incepe sa se depuna ca gheata uscata (-78 gradeC). Atmosfera devine mai subtire.
+                  Comunitati umane ar putea supravietui langa surse geotermale (Islanda, Yellowstone), cu energie nucleara si agricultura in lumina artificiala.</p>
+                </div>
+              </div>
+              <div class="tEvent">
+                <div class="tDot"></div>
+                <div class="tContent">
+                  <h3><span class="tTime">1000+ ani</span> Echilibru in intuneric</h3>
+                  <p>Temperatura la suprafata: ~-240 gradeC (aproape de zero absolut). Dar in oceanul profund, langa <b>izvoarele hidrotermale</b>,
+                  exista apa lichida (~10 gradeC) si ecosisteme bazate pe <b>chimiosinteza</b> (energie chimica, nu lumina).
+                  Viata persista -- asa cum o face astazi la fundul Pacificului, complet independenta de Soare.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observa "ordinea dezinformarii" -- fiecare planeta afla ca Soarele a disparut la un moment diferit,
+              strict proportional cu distanta. <b>Nu exista "acum" universal</b> -- relativitatea ne arata ca simultaneitatea e relativa.
+            </div>
+          </div>
+        </div>
+
+        <!-- Neutrini card -->
+        <div class="card">
+          <div class="cardHeader">
+            <h2>Neutrinii: mesageri ai miezului solar</h2>
+            <div class="chip">65 miliarde / cm<sup>2</sup> / s</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Soarele produce cantitati uriase de <b>neutrini</b> -- particule fantomatice care trec prin materie aproape fara sa interactioneze.
+              Chiar acum, 65 de miliarde de neutrini solari traverseaza fiecare centimetru patrat din corpul tau in fiecare secunda.
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 480 280" role="img" aria-label="Comparatie fotoni vs neutrini">
+                <defs>
+                  <linearGradient id="phG" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,210,122,.6)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.1)"/>
+                  </linearGradient>
+                  <linearGradient id="nuG" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.6)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.1)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Foton path -->
+                <text x="20" y="55" font-size="13" fill="rgba(255,210,122,.9)" font-weight="700" font-family="var(--sans)">Fotonul</text>
+                <rect x="20" y="65" width="440" height="60" rx="12" fill="rgba(255,210,122,.06)" stroke="rgba(255,210,122,.15)"/>
+                <text x="35" y="86" font-size="11" fill="rgba(255,255,255,.65)" font-family="var(--sans)">Generat in miezul Soarelui</text>
+                <path d="M35,100 Q60,95 80,100 Q100,105 120,100 Q140,95 160,100 Q180,105 200,100 Q220,95 240,100 Q260,105 280,100 Q300,95 320,100 Q340,105 360,100 Q380,95 400,100" fill="none" stroke="url(#phG)" stroke-width="2" stroke-dasharray="3 3"/>
+                <text x="260" y="118" font-size="10" fill="rgba(255,210,122,.6)" font-family="var(--mono)">~100.000 ani prin interior</text>
+                <text x="410" y="100" font-size="10" fill="rgba(255,210,122,.8)" font-family="var(--sans)">+8 min</text>
+                <text x="410" y="113" font-size="10" fill="rgba(255,210,122,.5)" font-family="var(--sans)">pana la noi</text>
+
+                <!-- Neutrino path -->
+                <text x="20" y="165" font-size="13" fill="rgba(187,167,255,.9)" font-weight="700" font-family="var(--sans)">Neutrinul</text>
+                <rect x="20" y="175" width="440" height="60" rx="12" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.15)"/>
+                <text x="35" y="196" font-size="11" fill="rgba(255,255,255,.65)" font-family="var(--sans)">Generat in miezul Soarelui</text>
+                <line x1="35" y1="210" x2="400" y2="210" stroke="url(#nuG)" stroke-width="2"/>
+                <text x="180" y="228" font-size="10" fill="rgba(187,167,255,.6)" font-family="var(--mono)">Trece direct prin Soare in ~2 secunde</text>
+                <text x="410" y="210" font-size="10" fill="rgba(187,167,255,.8)" font-family="var(--sans)">+8 min</text>
+                <text x="410" y="223" font-size="10" fill="rgba(187,167,255,.5)" font-family="var(--sans)">pana la noi</text>
+
+                <text x="20" y="265" font-size="11" fill="rgba(255,255,255,.55)" font-family="var(--sans)">Neutrinii ofera informatii in timp real despre miezul solar. Fotonii sunt "stiri vechi" de 100.000 ani.</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>De ce conteaza?</h3>
+                <p>Fotonii pe care ii vedem de la Soare au fost generati in miezul sau acum ~100.000 de ani -- au petrecut tot acel timp sarind prin interiorul dens al Soarelui (absorbitie si reemisie).
+                Neutrinii, in schimb, ies din miez in ~2 secunde si ajung la noi in 8 minute. Sunt ca un "telefon direct" catre inima Soarelui.</p>
+                <div class="meta">
+                  <span class="badge">Super-Kamiokande (Japonia)</span>
+                  <span class="badge">Raymond Davis, anii '60</span>
+                  <span class="badge">astronomia neutrinilor</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Cand Soarele ar disparea, si sursa de neutrini dispare. Dar, la fel ca fotonii, ultimii neutrini emisi sunt deja in tranzit.
+              Diferenta de sosire fata de fotoni? Cateva <b>microsecunde</b> -- neutrinii au o masa minuscula si calatoresc fractional mai incet decat lumina.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Gravitatia ca geometrie -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Gravitatia nu e o forta -- e geometria spatiu-timpului</h2>
+          <div class="chip"><b>Einstein vs Newton</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Acesta e conceptul cel mai profund din tot experimentul. In fizica lui Newton, gravitatia este o <b>forta</b> care actioneaza instantaneu la distanta.
+                Daca sursa (Soarele) dispare, forta dispare imediat.
+              </p>
+              <p class="muted">
+                In relativitatea generala a lui Einstein, gravitatia este <b>curbura spatiu-timpului</b>. Soarele curbeaza spatiul din jurul lui,
+                iar Pamantul urmeaza aceasta curbura (ca o bila pe o suprafata deformata). Cand Soarele dispare, curbura <b>nu se sterge instantaneu</b> --
+                se "relaxeaza" cu viteza luminii, ca un val pe suprafata unui lac.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Pamantul orbiteaza o fantoma</h3>
+                  <p>Timp de 8 minute si 20 de secunde dupa disparitia Soarelui, Pamantul continua sa orbiteze exact ca inainte.
+                  Curbura spatiu-timpului <b>inca exista</b> la locatia Pamantului. Sursa a disparut, dar efectul ei geometric persista --
+                  pana cand unda gravitationala ajunge si "sterge" curbura.</p>
+                  <div class="meta">
+                    <span class="badge">curbura reala</span>
+                    <span class="badge">sursa inexistenta</span>
+                    <span class="badge">memorie geometrica</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 360" role="img" aria-label="Curbura spatiu-timpului">
+                  <defs>
+                    <linearGradient id="meshG" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(255,210,122,.25)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.15)"/>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Flat spacetime grid - top -->
+                  <text x="20" y="25" font-size="12" fill="rgba(255,255,255,.7)" font-family="var(--sans)" font-weight="700">Spatiu-timp plat (fara masa)</text>
+                  <g stroke="rgba(255,255,255,.12)" stroke-width=".8" fill="none">
+                    <line x1="40" y1="45" x2="400" y2="45"/>
+                    <line x1="40" y1="65" x2="400" y2="65"/>
+                    <line x1="40" y1="85" x2="400" y2="85"/>
+                    <line x1="40" y1="105" x2="400" y2="105"/>
+                    <line x1="80" y1="35" x2="80" y2="115"/>
+                    <line x1="160" y1="35" x2="160" y2="115"/>
+                    <line x1="240" y1="35" x2="240" y2="115"/>
+                    <line x1="320" y1="35" x2="320" y2="115"/>
+                    <line x1="400" y1="35" x2="400" y2="115"/>
+                  </g>
+                  <circle cx="220" cy="75" r="4" fill="rgba(255,255,255,.3)" stroke="rgba(255,255,255,.2)"/>
+                  <text x="235" y="78" font-size="10" fill="rgba(255,255,255,.5)" font-family="var(--sans)">fara Soare</text>
+
+                  <!-- Curved spacetime - bottom -->
+                  <text x="20" y="165" font-size="12" fill="rgba(255,255,255,.7)" font-family="var(--sans)" font-weight="700">Spatiu-timp curbat (Soarele prezent)</text>
+                  <g stroke="url(#meshG)" stroke-width=".8" fill="none">
+                    <!-- Horizontal lines curving down -->
+                    <path d="M40,185 Q130,185 220,220 Q310,185 400,185"/>
+                    <path d="M40,205 Q130,208 220,245 Q310,208 400,205"/>
+                    <path d="M40,225 Q130,232 220,270 Q310,232 400,225"/>
+                    <path d="M40,245 Q130,255 220,290 Q310,255 400,245"/>
+                    <!-- Vertical lines curving -->
+                    <path d="M80,175 Q80,220 80,255"/>
+                    <path d="M140,175 Q145,225 150,255"/>
+                    <path d="M220,175 L220,290"/>
+                    <path d="M300,175 Q295,225 290,255"/>
+                    <path d="M360,175 Q360,220 360,255"/>
+                  </g>
+                  <circle cx="220" cy="240" r="12" fill="url(#sunRG)"/>
+                  <text x="240" y="238" font-size="10" fill="rgba(255,210,122,.8)" font-family="var(--sans)">Soarele</text>
+                  <circle cx="340" cy="212" r="4" fill="rgba(122,215,255,.8)"/>
+                  <text x="350" y="215" font-size="10" fill="rgba(122,215,255,.6)" font-family="var(--sans)">Pamantul</text>
+
+                  <!-- Arrow showing orbit -->
+                  <path d="M336,205 Q330,198 338,196" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+
+                  <text x="20" y="320" font-size="11" fill="rgba(255,255,255,.55)" font-family="var(--sans)">Masa Soarelui "indoaie" grila spatiu-timpului.</text>
+                  <text x="20" y="340" font-size="11" fill="rgba(255,255,255,.55)" font-family="var(--sans)">Pamantul nu e "atras" -- urmeaza calea naturala in spatiul curbat.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta distinctie (forta vs. geometrie) este poate cea mai importanta idee din fizica ultimilor 100 de ani.
+            Experimentul cu "Soarele disparut" o face viscerala: cum poate Pamantul orbita ceva ce nu mai exista? Doar daca gravitatia e o proprietate a <b>spatiului insusi</b>, nu a sursei.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Ce se intampla cu fiecare planeta -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Cand afla fiecare planeta?</h2>
+          <div class="chip"><b>Dizolvarea sistemului solar</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Unda gravitationala se deplaseaza in exterior cu viteza luminii. Fiecare planeta isi pierde orbita in momentul in care unda o atinge --
+            nu toate deodata, ci in ordine, de la cea mai apropiata la cea mai departata.
+          </p>
+
+          <div class="planetGrid" id="planetGrid">
+            <div class="risk" data-planet="mercury">
+              <div class="rTop"><strong>Mercur</strong><span class="badge" style="color:var(--warn)">3 min 13 s</span></div>
+              <div class="meter"><i style="width:7%;background:var(--warn)"></i></div>
+              <p>0,39 UA. Viteza orbitala: 47 km/s. Prima planeta care devine libera.</p>
+            </div>
+            <div class="risk" data-planet="venus">
+              <div class="rTop"><strong>Venus</strong><span class="badge" style="color:var(--warn)">6 min 0 s</span></div>
+              <div class="meter"><i style="width:14%;background:var(--warn)"></i></div>
+              <p>0,72 UA. Viteza orbitala: 35 km/s. A doua planeta eliberata.</p>
+            </div>
+            <div class="risk" data-planet="earth">
+              <div class="rTop"><strong>Pamantul</strong><span class="badge" style="color:var(--bad)">8 min 20 s</span></div>
+              <div class="meter"><i style="width:18%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+              <p>1,0 UA. Viteza orbitala: 30 km/s. Intuneric instant + orbita pierduta.</p>
+            </div>
+            <div class="risk" data-planet="mars">
+              <div class="rTop"><strong>Marte</strong><span class="badge" style="color:var(--orange)">12 min 40 s</span></div>
+              <div class="meter"><i style="width:28%;background:var(--orange)"></i></div>
+              <p>1,52 UA. Viteza orbitala: 24 km/s.</p>
+            </div>
+            <div class="risk" data-planet="jupiter">
+              <div class="rTop"><strong>Jupiter</strong><span class="badge" style="color:var(--cyan)">43 min</span></div>
+              <div class="meter"><i style="width:54%;background:var(--cyan)"></i></div>
+              <p>5,2 UA. Viteza orbitala: 13 km/s. Cea mai masiva planeta, dar tot neputincioasa.</p>
+            </div>
+            <div class="risk" data-planet="saturn">
+              <div class="rTop"><strong>Saturn</strong><span class="badge" style="color:var(--violet)">1 h 20 min</span></div>
+              <div class="meter"><i style="width:68%;background:var(--violet)"></i></div>
+              <p>9,5 UA. Viteza orbitala: 10 km/s.</p>
+            </div>
+            <div class="risk" data-planet="uranus">
+              <div class="rTop"><strong>Uranus</strong><span class="badge">2 h 40 min</span></div>
+              <div class="meter"><i style="width:82%;background:linear-gradient(90deg,var(--violet),var(--cyan))"></i></div>
+              <p>19,2 UA. Viteza orbitala: 7 km/s.</p>
+            </div>
+            <div class="risk" data-planet="neptune">
+              <div class="rTop"><strong>Neptun</strong><span class="badge">4 h 10 min</span></div>
+              <div class="meter"><i style="width:95%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+              <p>30,1 UA. Viteza orbitala: 5,4 km/s. Ultima planeta majora care afla.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="small">
+            Timpul de traversare a intregului sistem solar (pana la centura Kuiper): ~11 ore.
+            Sistemul solar care a durat 4,6 miliarde de ani sa se formeze se dizolva in cateva ore.
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Gandeste-te: timp de ~4 ore, diferite parti ale sistemului solar sunt simultan in stari diferite.
+            Planetele interioare zboara in linie dreapta prin intuneric, in timp ce cele exterioare orbiteaza linistite in "lumina" unui Soare care nu mai exista.
+            <b>Nu exista un "acum" universal</b> -- informatia are nevoie de timp sa calatoreasca.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Dimensiunea filosofica -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Dimensiunea filosofica: traiesti mereu in trecut</h2>
+          <div class="chip"><b>Cauzalitatea finita</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Acest experiment face vizibil un adevar profund: <b>nu esti niciodata in contact cu universul prezent</b>.
+                Tot ce percepi -- lumina, sunetul, gravitatia -- a calatorit o anumita durata pana la tine.
+                Traiesti inconjurat de trecut, intr-un "cocon" de informatii care au plecat din surse la momente diferite.
+              </p>
+              <p class="muted">
+                Stelele pe care le vezi noaptea nu sunt acolo unde sunt acum -- sunt acolo unde erau cand lumina a plecat catre tine.
+                Unele s-ar putea sa nu mai existe. Te uiti la fantome.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" id="ageCalcViz">
+                <div class="small" style="margin-bottom:10px">"Varsta" a ceea ce vezi -- cat de veche e informatia:</div>
+                <div class="flow" style="gap:8px">
+                  <div class="pill"><span>Luna</span><span class="tag" style="color:var(--good)">1,3 secunde</span></div>
+                  <div class="pill"><span>Soarele</span><span class="tag" style="color:var(--warn)">8 min 20 s</span></div>
+                  <div class="pill"><span>Jupiter</span><span class="tag" style="color:var(--cyan)">35-52 min</span></div>
+                  <div class="pill"><span>Proxima Centauri</span><span class="tag" style="color:var(--violet)">4 ani 3 luni</span></div>
+                  <div class="pill"><span>Galaxia Andromeda</span><span class="tag" style="color:var(--orange)">2,5 mil. ani</span></div>
+                  <div class="pill"><span>Radiatie cosmica de fond (CMB)</span><span class="tag" style="color:var(--bad)">13,8 miliarde ani</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Cand te uiti la marginea universului observabil, te uiti aproape la inceput -- la "ecoul" Big Bang-ului.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind subliniaza ca aceasta nu e o limitare a telescoapelor noastre -- e o <b>proprietate fundamentala a fizicii</b>.
+            Nu poti vedea universul "asa cum e acum" -- conceptul in sine nu are sens la scara cosmica.
+            Prezentul tau e local; tot restul e trecut, iar cat de trecut depinde de distanta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 7: LIGO si undele gravitationale -->
+      <section class="row">
+        <div class="card">
+          <div class="cardHeader">
+            <h2>Undele gravitationale si LIGO</h2>
+            <div class="chip"><b>Confirmare experimentala</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In 2015, detectorul <b>LIGO</b> a masurat pentru prima data unde gravitationale -- "cutremure" in spatiu-timp
+              cauzate de fuziunea a doua gauri negre la un miliard de ani-lumina distanta.
+              Aceasta a confirmat ca spatiu-timpul chiar se poate ondula si ca aceste valuri calatoresc cu viteza luminii.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>LIGO a detectat (2015)</strong><span class="badge">gauri negre</span></div>
+                <p>Unde gravitationale periodice (sinusoidale) de la sisteme binare care spiraleaza unul in celalalt. Oscilatii care dureaza secunde-minute.</p>
+                <div class="meter"><i style="width:40%;background:var(--violet)"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Soarele disparand (ipotetic)</strong><span class="badge">puls unic</span></div>
+                <p>Un singur puls -- o "treapta" in curbura spatiu-timpului. Tranzitia de la spatiu curbat la spatiu plat. Enorm de puternic la distanta Pamantului.</p>
+                <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Semnalul ar fi atat de puternic incat ar <b>satura</b> (supraincarca) detectoarele LIGO -- proiectate sa masoare
+              perturbatii subtile de la miliarde de ani-lumina distanta, nu catastrofe la 8 minute distanta.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind noteaza cu ironie ca ar fi o "confirmare experimentala perfecta" a relativitatii generale --
+              intai intunericul brusc, apoi, exact 8 minute si 20 secunde mai tarziu, pulsul gravitational masiv.
+              Ambele semnale la aceeasi viteza, asa cum prezice Einstein. Pacat ca nu ar mai fi fizicieni sa aprecieze rezultatul.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardHeader">
+            <h2>Ce supravietuieste? Viata in intuneric</h2>
+            <div class="chip"><b>Caldura geotermala</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Viata de la suprafata ar muri -- asta e aproape sigur. Dar viata din adancuri, in special in jurul <b>izvoarelor hidrotermale</b> submarine,
+              ar putea supravietui <b>miliarde de ani</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Ecosisteme fara Soare -- exista deja</h3>
+                <p>La fundul Pacificului, in jurul izvoarelor hidrotermale, traiesc viermi tubulari, crabi, creveti si microbi.
+                Toate sunt alimentate de <b>chimiosinteza</b> (energie din compusi chimici), nu de fotosinteza.
+                Nu au nevoie de lumina Soarelui -- si nu au avut niciodata.</p>
+                <div class="meta">
+                  <span class="badge">viermi tubulari</span>
+                  <span class="badge">bacterii cu sulf</span>
+                  <span class="badge">chimiosinteza</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>De ce continua caldura?</h3>
+                <p>Miezul Pamantului (~5000 gradeC) e incalzit de: (1) caldura reziduala din formarea planetei (acum 4,5 mld ani) si
+                (2) <b>dezintegrarea radioactiva</b> a uraniului-238, thoriului-232, potasiului-40. Uraniul-238 are un timp de injumatatire de 4,5 miliarde de ani --
+                deci caldura va continua miliarde de ani.</p>
+                <div class="meta">
+                  <span class="badge">U-238: 4,5 mld ani</span>
+                  <span class="badge">Th-232: 14 mld ani</span>
+                  <span class="badge">K-40: 1,25 mld ani</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>Luna ramane</h3>
+                <p>Sistemul Pamant-Luna e neafectat de disparitia Soarelui. Luna continua sa orbiteze Pamantul, oferind forte de maree care stabilizeaza inclinarea axiala.
+                Dar pe termen foarte lung (milioane de ani), fara influenta gravitationala a Soarelui, perturbatii ale altor corpuri ar putea destabiliza axa.</p>
+                <div class="meta">
+                  <span class="badge">maree lunare intacte</span>
+                  <span class="badge">stabilitate axiala</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind incheie pe o nota de optimism temperat: viata, odata pornita, este extraordinar de greu de oprit.
+              A supravietuit impactul Chicxulub, glaciatiunile "pamant-bulgare-de-zapada", extinctia permiana (96% din specii).
+              Intr-un miliard de ani, in oceanul profund sub kilometri de gheata, cine stie ce ar fi evoluat?
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 8: Rezumatul a 4 lectii de fizica -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Patru lectii fundamentale</h2>
+          <div class="chip"><b>Ce ne invata acest experiment</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="riskGrid">
+            <div class="flowNode" style="border-color:rgba(255,210,122,.2)">
+              <h3 style="color:var(--warn)">1. Viteza cauzalitatii</h3>
+              <p>Nicio informatie -- gravitationala, electromagnetica sau de orice alt tip -- nu poate calatori mai repede decat lumina.
+              Nu e o limitare tehnologica, ci <b>structura spatiu-timpului insusi</b>. Intarzierea de 8 minute nu e o inconvenienta -- e o lege fundamentala.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(122,215,255,.2)">
+              <h3 style="color:var(--cyan)">2. Gravitatia = geometrie</h3>
+              <p>Pamantul orbiteaza nu o "forta" de la Soare, ci o <b>curbura in spatiu-timp</b>.
+              Cand sursa dispare, curbura persista pana cand informatia ajunge. Aceasta diferentiaza teoria lui Einstein de cea a lui Newton.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(187,167,255,.2)">
+              <h3 style="color:var(--violet)">3. Legile conservarii sunt absolute</h3>
+              <p>Soarele nu poate disparea in realitate. Energia, masa si informatia se conserva -- intotdeauna.
+              Experimentul cere sa <b>incalcam</b> fizica pentru a pune intrebarea, dar raspunsul ne arata cum functioneaza fizica reala.</p>
+            </div>
+            <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
+              <h3 style="color:var(--good)">4. Interconectarea prin spatiu-timp</h3>
+              <p>Fiecare obiect din sistemul solar e conectat la toate celelalte prin geometria spatiu-timpului.
+              Disparitia Soarelui creeaza o unda care "dizolva" aceste conexiuni in ordine -- de la interior spre exterior --
+              in <b>secventa temporala precisa</b> dictata de distanta si viteza luminii.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala: 50 de ani de gandire</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Leonard Susskind, unul dintre parintii teoriei corzilor si contribuitor major la fizica gaurilor negre,
+                spune ca se gandeste la lumina, gravitatie si cauzalitate de 50 de ani si inca gaseste acest scenariu "cu adevarat extraordinar."
+              </p>
+              <p style="margin-top:8px">
+                De ce? Pentru ca fiecare secunda din acele 8 minute dezvaluie ceva fundamental despre univers.
+                Nu e doar un exercitiu in "turism de dezastre" -- e o <b>fereastra catre structura cea mai profunda a fizicii</b>.
+              </p>
+              <p style="margin-top:8px">
+                Si concluzia finala: <em>"Soarele ar fi disparut, dar lumina lui te-ar mai incalzi. Gravitatia lui te-ar mai tine.
+                Timp de 8 minute extraordinare, pline de fizica profunda. Si apoi stirea ar sosi, si totul s-ar schimba."</em>
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Card 9: Calculator interactiv -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Calculator: cat dureaza pana ajunge stirea?</h2>
+          <div class="chip"><b>Interactiv</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Alege o distanta si vezi cat timp ar dura pana cand lumina (sau gravitatia) ar parcurge-o.
+          </p>
+
+          <div class="controls" style="margin-top:0">
+            <div class="control">
+              <label>
+                <span>Distanta (UA)</span>
+                <span class="readout" id="distReadout">1.00 UA</span>
+              </label>
+              <input id="distSlider" type="range" min="0.1" max="100" value="1" step="0.1" />
+              <div class="small" style="margin-top:8px">1 UA = 150 mil. km (distanta Soare-Pamant)</div>
+            </div>
+            <div class="control">
+              <div style="display:grid;gap:8px">
+                <div>
+                  <div class="label" style="font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em">Distanta in km</div>
+                  <div style="font-weight:700;font-size:18px;margin-top:4px;font-family:var(--mono)" id="distKm">150,000,000 km</div>
+                </div>
+                <div>
+                  <div class="label" style="font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em">Timp de parcurgere (c)</div>
+                  <div style="font-weight:700;font-size:18px;margin-top:4px;color:var(--warn);font-family:var(--mono)" id="distTime">8 min 20 s</div>
+                </div>
+                <div>
+                  <div class="label" style="font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em">Echivalent</div>
+                  <div style="font-size:13px;margin-top:4px;color:var(--muted)" id="distEquiv">Distanta Pamant-Soare</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Formula e simpla: <code>timp = distanta / viteza_luminii</code>.
+            Dar implicatiile sunt profunde -- aceasta formula ne spune ca <b>intotdeauna</b> exista o intarziere intre un eveniment si momentul in care il percepem.
+            La distante cosmice, aceasta intarziere devine ani, secole, miliarde de ani.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 10: Intrebari rapide (quiz) -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Testeaza-ti intelegerea</h2>
+          <div class="chip"><b>Quiz rapid</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifeaza afirmatiile pe care le consideri <b>adevarate</b> conform fizicii lui Einstein, apoi apasa "Verifica".
+          </p>
+
+          <div class="checklist" id="quizChecklist">
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Pamantul ar simti imediat lipsa gravitatiei Soarelui</strong><em>Newton</em></div>
+                <div class="d">In teoria lui Newton, da. Dar in relativitatea generala, gravitatia calatoreste cu viteza luminii -- deci raspunsul corect e NU.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Lumina si gravitatia ajung simultan de la Soare la Pamant</strong><em>Einstein</em></div>
+                <div class="d">Da! Ambele calatoresc cu viteza luminii (c), deci ambele ajung la Pamant in exact 8 min 20 s.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Pamantul ar orbita o "fantoma" timp de 8 minute</strong><em>Geometrie</em></div>
+                <div class="d">Corect. Curbura spatiu-timpului persista la locatia Pamantului chiar daca sursa (Soarele) a disparut. Pamantul orbiteaza o memorie geometrica.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Neutrinii calatoresc mai repede decat lumina</strong><em>Masa non-zero</em></div>
+                <div class="d">Nu. Neutrinii au o masa minuscula, ceea ce inseamna ca merg fractional mai incet decat lumina. Diferenta e de microsecunde pe distanta Soare-Pamant.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Viata ar putea supravietui miliarde de ani fara Soare</strong><em>Geotermal</em></div>
+                <div class="d">Da. Ecosistemele de langa izvoarele hidrotermale sunt complet independente de Soare. Caldura geotermala va dura miliarde de ani.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Luna ar continua sa orbiteze Pamantul</strong><em>Sistem local</em></div>
+                <div class="d">Corect. Sistemul Pamant-Luna este gravitational independent de Soare. Luna ramane in orbita in jurul Pamantului.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizCheckBtn">Verifica raspunsurile</button>
+            <button class="btn" id="quizResetBtn">Reseteaza quiz-ul</button>
+          </div>
+          <div class="small" id="quizResult" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card">
+        <div class="cardHeader">
+          <h2>Despre modul "comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            cat de solida e afirmatia? Ce alternative exista? Ce merita explorat mai departe?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Afiseaza/ascunde comentariile" din antet pentru a le ascunde/arata pe toate simultan.
+            Asta iti permite sa comuzi intre "ce spune Susskind" si "ce inseamna asta de fapt."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si declinarea responsabilitatii:</b> Acest infografic interactiv traduce si vizualizeaza explicatia lui Leonard Susskind despre ce s-ar intampla daca Soarele ar disparea.
+        Experimentul mental este un instrument pedagogic -- Soarele nu poate disparea in realitate. Vizualizarile si simularea sunt conceptuale, nu la scara reala.
+      </p>
+      <p style="margin-top:10px">
+        Toate textele sunt in limba romana, explicate in termeni accesibili. Pentru aprofundare: studiati relativitatea generala, mecanica cuantica si cosmologie.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      clearTimeout(toast._tid);
+      toast._tid = setTimeout(() => { toast.style.display = 'none'; }, 2400);
+    }
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      document.querySelectorAll('[data-commentary]').forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpSim').addEventListener('click', () => {
+      document.getElementById('simCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpTimeline').addEventListener('click', () => {
+      document.getElementById('timelineCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Solar system wave simulation
+    // ──────────────────────────────────────────────────────
+    const planets = [
+      { name: 'Mercur',  au: 0.39, color: '#aaa',    r: 3.5, speed: 47, angle: Math.random()*Math.PI*2 },
+      { name: 'Venus',   au: 0.72, color: '#ffcc66', r: 4.5, speed: 35, angle: Math.random()*Math.PI*2 },
+      { name: 'Pamant',  au: 1.00, color: '#7ad7ff', r: 5,   speed: 30, angle: Math.random()*Math.PI*2 },
+      { name: 'Marte',   au: 1.52, color: '#ff7a55', r: 4,   speed: 24, angle: Math.random()*Math.PI*2 },
+      { name: 'Jupiter', au: 5.20, color: '#ffb38a', r: 9,   speed: 13, angle: Math.random()*Math.PI*2 },
+      { name: 'Saturn',  au: 9.54, color: '#ffd27a', r: 7.5, speed: 10, angle: Math.random()*Math.PI*2 },
+      { name: 'Uranus',  au: 19.2, color: '#7ad7ff', r: 6,   speed: 7,  angle: Math.random()*Math.PI*2 },
+      { name: 'Neptun',  au: 30.1, color: '#5566ff', r: 5.5, speed: 5.4,angle: Math.random()*Math.PI*2 },
+    ];
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const CX = 490, CY = 240;
+    const maxAU = 35;
+    const scale = 190 / maxAU; // pixels per AU
+
+    // Draw stars
+    const starsG = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElementNS(svgNS, 'circle');
+      star.setAttribute('cx', Math.random() * 980);
+      star.setAttribute('cy', Math.random() * 480);
+      star.setAttribute('r', Math.random() * 1.2 + 0.3);
+      star.setAttribute('fill', `rgba(255,255,255,${Math.random() * 0.4 + 0.1})`);
+      starsG.appendChild(star);
+    }
+
+    // Draw orbits
+    const orbitsG = document.getElementById('orbits');
+    planets.forEach(p => {
+      const orb = document.createElementNS(svgNS, 'circle');
+      orb.setAttribute('cx', CX);
+      orb.setAttribute('cy', CY);
+      orb.setAttribute('r', p.au * scale);
+      orb.setAttribute('fill', 'none');
+      orb.setAttribute('stroke', 'rgba(255,255,255,.12)');
+      orb.setAttribute('stroke-width', '0.6');
+      orb.setAttribute('stroke-dasharray', '2 4');
+      orbitsG.appendChild(orb);
+    });
+
+    // Draw planets
+    const planetsG = document.getElementById('planets');
+    const labelsG = document.getElementById('planetLabels');
+    planets.forEach(p => {
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('id', 'pg_' + p.name);
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('r', p.r);
+      c.setAttribute('fill', p.color);
+      c.setAttribute('id', 'pc_' + p.name);
+      g.appendChild(c);
+
+      // glow
+      const glow = document.createElementNS(svgNS, 'circle');
+      glow.setAttribute('r', p.r + 3);
+      glow.setAttribute('fill', p.color);
+      glow.setAttribute('opacity', '0.2');
+      glow.setAttribute('filter', 'url(#planetGlow)');
+      glow.setAttribute('id', 'pglow_' + p.name);
+      g.appendChild(glow);
+
+      planetsG.appendChild(g);
+
+      const label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('id', 'pl_' + p.name);
+      label.setAttribute('font-size', p.au < 2 ? '9' : '10');
+      label.setAttribute('fill', 'rgba(255,255,255,.6)');
+      label.textContent = p.name;
+      labelsG.appendChild(label);
+    });
+
+    // Simulation state
+    let simRunning = false;
+    let simTime = 0; // seconds of real time (scaled)
+    let simSunGone = false;
+    let simAnimId = null;
+    let simSpeed = 5;
+
+    const speedSlider = document.getElementById('speedSlider');
+    const speedReadout = document.getElementById('speedReadout');
+    speedSlider.addEventListener('input', () => {
+      simSpeed = parseInt(speedSlider.value);
+      speedReadout.textContent = simSpeed + 'x';
+    });
+
+    const sunCircle = document.getElementById('sunCircle');
+    const waveRing = document.getElementById('waveRing');
+    const waveRingGlow = document.getElementById('waveRingGlow');
+    const simStatus = document.getElementById('simStatus');
+    const simTimeEl = document.getElementById('simTime');
+
+    function auToLightSeconds(au) {
+      return au * 499.0; // 1 AU ≈ 499 light-seconds
+    }
+
+    function updatePlanetPositions() {
+      planets.forEach(p => {
+        const orbitR = p.au * scale;
+        let px, py;
+
+        const lightSec = auToLightSeconds(p.au);
+        const freed = simSunGone && simTime >= lightSec;
+
+        if (!freed) {
+          // Orbiting -- very slow angular motion for visual
+          const angSpeed = 0.0003 / Math.sqrt(p.au); // Kepler-ish
+          p.angle += angSpeed * simSpeed;
+          px = CX + Math.cos(p.angle) * orbitR;
+          py = CY + Math.sin(p.angle) * orbitR;
+        } else {
+          // Freed -- tangent direction at the moment of freedom
+          if (!p.freedAngle) {
+            p.freedAngle = p.angle;
+            p.freedPx = CX + Math.cos(p.angle) * orbitR;
+            p.freedPy = CY + Math.sin(p.angle) * orbitR;
+            p.freedTime = simTime;
+          }
+          // Move in straight line tangent to orbit (perpendicular to radius)
+          const tangentAngle = p.freedAngle + Math.PI / 2;
+          const dt = (simTime - p.freedTime) * 0.0004 * simSpeed;
+          px = p.freedPx + Math.cos(tangentAngle) * dt * 80;
+          py = p.freedPy + Math.sin(tangentAngle) * dt * 80;
+        }
+
+        // Update circle positions
+        const circle = document.getElementById('pc_' + p.name);
+        const glow = document.getElementById('pglow_' + p.name);
+        const label = document.getElementById('pl_' + p.name);
+
+        circle.setAttribute('cx', px);
+        circle.setAttribute('cy', py);
+        glow.setAttribute('cx', px);
+        glow.setAttribute('cy', py);
+        label.setAttribute('x', px + p.r + 4);
+        label.setAttribute('y', py + 3);
+
+        // Color change when freed
+        if (freed) {
+          circle.setAttribute('fill', '#ff7a99');
+          glow.setAttribute('fill', '#ff7a99');
+        } else {
+          circle.setAttribute('fill', p.color);
+          glow.setAttribute('fill', p.color);
+        }
+      });
+    }
+
+    function updateWave() {
+      if (!simSunGone) return;
+      const waveAU = simTime / 499.0; // Convert light-seconds to AU
+      const waveR = waveAU * scale;
+
+      waveRing.setAttribute('r', waveR);
+      waveRingGlow.setAttribute('r', waveR);
+      waveRing.setAttribute('opacity', waveR > 0 ? Math.max(0.1, 0.6 - waveR / 600) : 0);
+      waveRingGlow.setAttribute('opacity', waveR > 0 ? Math.max(0.05, 0.3 - waveR / 800) : 0);
+    }
+
+    function updateSun() {
+      if (simSunGone) {
+        // Fade out
+        const fadeT = Math.min(1, simTime / 30);
+        sunCircle.setAttribute('opacity', Math.max(0, 1 - fadeT));
+      } else {
+        sunCircle.setAttribute('opacity', 1);
+      }
+    }
+
+    function formatSimTime(sec) {
+      if (sec < 60) return `T = ${Math.floor(sec)} s`;
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      if (m < 60) return `T = ${m} min ${s} s`;
+      const h = Math.floor(m / 60);
+      const rm = m % 60;
+      return `T = ${h} h ${rm} min`;
+    }
+
+    function getSimStatusText() {
+      if (!simSunGone) return 'Soarele e inca prezent. Apasa Start.';
+      const earthLS = auToLightSeconds(1.0);
+      const jupiterLS = auToLightSeconds(5.2);
+      const neptuneLS = auToLightSeconds(30.1);
+
+      if (simTime < auToLightSeconds(0.39)) return 'Soarele a disparut! Unda gravitationala se propaga... Nicio planeta nu stie inca.';
+      if (simTime < earthLS) return 'Mercur a fost eliberat! Pamantul orbiteaza linistit, fara sa stie.';
+      if (simTime < auToLightSeconds(1.52)) return 'PAMANTUL A PRIMIT VESTEA! Intuneric si zbor liber.';
+      if (simTime < jupiterLS) return 'Planetele interioare sunt libere. Jupiter inca orbiteaza nestingherit.';
+      if (simTime < neptuneLS) return 'Jupiter e liber. Planetele exterioare inca orbiteaza linistite.';
+      return 'Toate planetele majore au fost eliberate. Sistemul solar s-a dizolvat.';
+    }
+
+    function simFrame() {
+      if (!simRunning) return;
+      simTime += simSpeed * 2; // Each frame advances N light-seconds
+
+      updatePlanetPositions();
+      updateWave();
+      updateSun();
+
+      simTimeEl.textContent = formatSimTime(simTime);
+      simStatus.textContent = getSimStatusText();
+
+      // Highlight active timeline events based on simTime
+      highlightTimelineForSim();
+
+      simAnimId = requestAnimationFrame(simFrame);
+    }
+
+    function highlightTimelineForSim() {
+      const events = document.querySelectorAll('#timeline .tEvent');
+      // Rough time thresholds in seconds for each event
+      const thresholds = [0, 1, 193, 500, 3600, 2580, 2592000, 31536000, 31536000000];
+      let activeIdx = 0;
+      for (let i = 0; i < thresholds.length; i++) {
+        if (simTime >= thresholds[i]) activeIdx = i;
+      }
+      events.forEach((ev, i) => {
+        ev.classList.toggle('active', i === activeIdx);
+      });
+    }
+
+    document.getElementById('simStartBtn').addEventListener('click', () => {
+      if (simRunning) {
+        simRunning = false;
+        cancelAnimationFrame(simAnimId);
+        document.getElementById('simStartBtn').textContent = 'Continua';
+        showToast('Simulare in pauza');
+        return;
+      }
+      simSunGone = true;
+      simRunning = true;
+      document.getElementById('simStartBtn').textContent = 'Pauza';
+      showToast('Soarele a disparut! Unda gravitationala se propaga...');
+      simFrame();
+    });
+
+    document.getElementById('simResetBtn').addEventListener('click', () => {
+      simRunning = false;
+      cancelAnimationFrame(simAnimId);
+      simTime = 0;
+      simSunGone = false;
+      planets.forEach(p => {
+        p.freedAngle = null;
+        p.freedPx = null;
+        p.freedPy = null;
+        p.freedTime = null;
+        p.angle = Math.random() * Math.PI * 2;
+      });
+      sunCircle.setAttribute('opacity', 1);
+      waveRing.setAttribute('r', 0);
+      waveRing.setAttribute('opacity', 0);
+      waveRingGlow.setAttribute('r', 0);
+      waveRingGlow.setAttribute('opacity', 0);
+      simTimeEl.textContent = 'T = 0 min 0 s';
+      simStatus.textContent = 'Apasa "Start" pentru a incepe simularea';
+      document.getElementById('simStartBtn').textContent = 'Start simulare';
+      updatePlanetPositions();
+      showToast('Simulare resetata');
+    });
+
+    // Initial planet positions
+    updatePlanetPositions();
+
+    // ──────────────────────────────────────────────────────
+    // Distance calculator
+    // ──────────────────────────────────────────────────────
+    const distSlider = document.getElementById('distSlider');
+    const distReadout = document.getElementById('distReadout');
+    const distKm = document.getElementById('distKm');
+    const distTime = document.getElementById('distTime');
+    const distEquiv = document.getElementById('distEquiv');
+
+    function updateDistCalc() {
+      const au = parseFloat(distSlider.value);
+      distReadout.textContent = au.toFixed(au < 10 ? 2 : 1) + ' UA';
+
+      const km = au * 149597870.7;
+      distKm.textContent = km.toLocaleString('ro-RO', { maximumFractionDigits: 0 }) + ' km';
+
+      const seconds = au * 499.0;
+      if (seconds < 60) {
+        distTime.textContent = seconds.toFixed(1) + ' s';
+      } else if (seconds < 3600) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        distTime.textContent = m + ' min ' + s + ' s';
+      } else {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        distTime.textContent = h + ' h ' + m + ' min';
+      }
+
+      // Equivalents
+      if (au < 0.3) distEquiv.textContent = 'Mai aproape decat Mercur de Soare';
+      else if (au < 0.5) distEquiv.textContent = 'Aproape de orbita lui Mercur';
+      else if (au < 0.85) distEquiv.textContent = 'Aproape de orbita lui Venus';
+      else if (au < 1.3) distEquiv.textContent = 'Distanta Pamant-Soare';
+      else if (au < 2) distEquiv.textContent = 'Intre Pamant si Marte';
+      else if (au < 4) distEquiv.textContent = 'Centura de asteroizi';
+      else if (au < 7) distEquiv.textContent = 'Aproape de orbita lui Jupiter';
+      else if (au < 12) distEquiv.textContent = 'Zona lui Saturn';
+      else if (au < 22) distEquiv.textContent = 'Zona lui Uranus';
+      else if (au < 35) distEquiv.textContent = 'Zona lui Neptun';
+      else distEquiv.textContent = 'Dincolo de Neptun -- centura Kuiper';
+    }
+
+    distSlider.addEventListener('input', updateDistCalc);
+    updateDistCalc();
+
+    // ──────────────────────────────────────────────────────
+    // Quiz
+    // ──────────────────────────────────────────────────────
+    document.getElementById('quizCheckBtn').addEventListener('click', () => {
+      const items = document.querySelectorAll('#quizChecklist .item');
+      let correct = 0;
+      let total = items.length;
+
+      items.forEach(item => {
+        const cb = item.querySelector('input[type="checkbox"]');
+        const isCorrect = item.dataset.correct === 'true';
+        const checked = cb.checked;
+
+        if ((isCorrect && checked) || (!isCorrect && !checked)) {
+          correct++;
+          item.style.borderColor = 'rgba(117,240,182,.4)';
+          item.style.background = 'rgba(117,240,182,.06)';
+        } else {
+          item.style.borderColor = 'rgba(255,122,153,.4)';
+          item.style.background = 'rgba(255,122,153,.06)';
+        }
+      });
+
+      const pct = Math.round((correct / total) * 100);
+      let msg = '';
+      if (pct === 100) msg = `${pct}% -- Perfect! Intelegi cauzalitatea si gravitatia relativista.`;
+      else if (pct >= 80) msg = `${pct}% -- Foarte bine! Revizuieste afirmatiile marcate cu rosu.`;
+      else if (pct >= 50) msg = `${pct}% -- Bun inceput. Reciteste sectiunile despre Newton vs Einstein.`;
+      else msg = `${pct}% -- Merita recitit infograficul. Conceptele sunt contra-intuitive, e normal!`;
+
+      document.getElementById('quizResult').innerHTML = `<b>Scor:</b> ${correct}/${total} -- ${msg}`;
+      showToast('Quiz verificat!');
+    });
+
+    document.getElementById('quizResetBtn').addEventListener('click', () => {
+      const items = document.querySelectorAll('#quizChecklist .item');
+      items.forEach(item => {
+        item.querySelector('input[type="checkbox"]').checked = false;
+        item.style.borderColor = '';
+        item.style.background = '';
+      });
+      document.getElementById('quizResult').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+  </script>
+</body>
+</html>

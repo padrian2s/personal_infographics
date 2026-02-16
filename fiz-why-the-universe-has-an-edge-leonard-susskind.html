@@ -1,0 +1,1713 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce universul are o margine — Leonard Susskind | Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv despre principiul holografic, orizontul cosmologic si emergenta spatiu-timpului, bazat pe ideile lui Leonard Susskind." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Concepts grid */
+    .concepts{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .concepts{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .concepts{grid-template-columns:1fr}
+    }
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--violet));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Interactive hologram canvas */
+    #holoCanvas{
+      display:block;
+      width:100%;
+      border-radius: var(--radius2);
+      cursor:crosshair;
+    }
+
+    /* Quiz styles */
+    .quizOption{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-size: 13px;
+      text-align:left;
+      width:100%;
+      transition: border-color .15s, background .15s;
+      margin-bottom:8px;
+      display:block;
+    }
+    .quizOption:hover{border-color:rgba(122,215,255,.4);background:rgba(122,215,255,.08)}
+    .quizOption.correct{border-color:var(--good);background:rgba(117,240,182,.12);color:var(--good)}
+    .quizOption.wrong{border-color:var(--bad);background:rgba(255,122,153,.10);color:var(--bad)}
+    .quizFeedback{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.55;min-height:20px}
+
+    /* Tabs */
+    .tabBar{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+    .tabBtn{
+      appearance:none;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+      padding:8px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      transition:all .15s;
+    }
+    .tabBtn:hover{border-color:rgba(255,255,255,.25)}
+    .tabBtn.active{border-color:var(--cyan);color:var(--text);background:rgba(122,215,255,.10)}
+    .tabContent{display:none}
+    .tabContent.active{display:block}
+
+    /* Entropy bar anim */
+    @keyframes fillBar{from{width:0}to{width:var(--target)}}
+    .entropyBar{
+      height:14px;
+      border-radius:99px;
+      background:linear-gradient(90deg, var(--cyan), var(--violet), var(--orange));
+      animation: fillBar 1.2s ease-out forwards;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .btn{border-color:#ccc}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Horizon circle -->
+            <ellipse cx="300" cy="110" rx="160" ry="80" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".5"/>
+            <ellipse cx="300" cy="110" rx="100" ry="50" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity=".4"/>
+            <!-- Radial lines suggesting projection -->
+            <line x1="300" y1="110" x2="140" y2="30" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+            <line x1="300" y1="110" x2="460" y2="30" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+            <line x1="300" y1="110" x2="140" y2="190" stroke="rgba(255,179,138,.2)" stroke-width="1"/>
+            <line x1="300" y1="110" x2="460" y2="190" stroke="rgba(117,240,182,.2)" stroke-width="1"/>
+            <!-- Dots -->
+            <circle cx="300" cy="110" r="6" fill="rgba(255,255,255,.7)" />
+            <circle cx="200" cy="80" r="3" fill="rgba(122,215,255,.6)" />
+            <circle cx="400" cy="80" r="3" fill="rgba(187,167,255,.6)" />
+            <circle cx="250" cy="140" r="2.5" fill="rgba(255,179,138,.5)" />
+            <circle cx="350" cy="140" r="2.5" fill="rgba(117,240,182,.5)" />
+            <!-- Glow center -->
+            <circle cx="300" cy="110" r="30" fill="rgba(122,215,255,.06)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> cosmologie · holografie · leonard susskind</div>
+          <h1>De ce universul are o margine</h1>
+          <p class="subtitle">
+            Nu vorbim despre un zid in spatiu. Leonard Susskind propune ceva mult mai profund:
+            universul nostru are o <b>granita fundamentala</b> — orizontul cosmologic — iar tot ce
+            experimentam in 3D ar fi o <b>proiectie holografica</b> de pe acea suprafata 2D.
+            Aceasta pagina explica ideea pe intelesul tuturor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Vizualizare holografica</button>
+            <button class="btn" id="jumpQuiz">Test de intelegere</button>
+            <button class="btn" id="toggleNotes">Comentarii pornit/oprit</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Ideea centrala</div>
+            <div class="value">Universul = hologramă</div>
+            <div class="note">3D-ul pe care il traim ar fi proiectat de pe o suprafata 2D.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Marginea</div>
+            <div class="value">Orizontul cosmologic</div>
+            <div class="note">O granita dincolo de care lumina nu ne va ajunge niciodata.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Principiu</div>
+            <div class="value" style="font-size:16px">Principiul holografic</div>
+            <div class="note">Toata informatia dintr-un volum 3D e stocata pe suprafata 2D.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Consecinta</div>
+            <div class="value">Spatiu-timp = emergent</div>
+            <div class="note">Spatiul si timpul nu sunt fundamentale — ele „apar" din ceva mai profund.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION 1: What is the edge? -->
+      <section class="card" aria-label="Ce este marginea?">
+        <div class="cardHeader">
+          <h2>Ce inseamna „universul are o margine"?</h2>
+          <div class="chip"><b>Nu un zid</b> — o granita fundamentala</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Susskind nu spune ca undeva departe exista un perete unde spatiul se opreste. El vorbeste
+                despre <b>orizontul cosmologic</b> — o granita dincolo de care nu putem vedea niciodata,
+                indiferent cat am astepta. De ce? Pentru ca spatiul intre noi si acel „punct" se
+                extinde mai repede decat poate calatori lumina.
+              </p>
+              <p class="muted">
+                Imaginati-va ca fugiti pe o banda de alergat care accelereaza mai tare decat voi.
+                Nu puteti ajunge la celalalt capat. Acel capat — orizontul — e <b>marginea universului observabil</b>.
+                Dar conform principiului holografic, aceasta margine e mai mult decat o limitare: e locul unde
+                fizica fundamentala „traieste" cu adevarat.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Analogie vizuala">
+                <svg viewBox="0 0 460 320" role="img">
+                  <defs>
+                    <radialGradient id="cosmoGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(122,215,255,.15)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                    </radialGradient>
+                    <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <rect width="460" height="320" fill="rgba(0,0,0,.05)"/>
+                  <!-- Cosmological horizon circle -->
+                  <circle cx="230" cy="160" r="140" fill="url(#cosmoGlow)" stroke="rgba(187,167,255,.35)" stroke-width="2" stroke-dasharray="8 4"/>
+                  <circle cx="230" cy="160" r="140" fill="none" stroke="rgba(122,215,255,.15)" stroke-width="12" filter="url(#glow1)"/>
+                  <!-- Label: horizon -->
+                  <text x="230" y="30" text-anchor="middle" font-size="11" fill="rgba(187,167,255,.8)" letter-spacing=".1em" text-transform="uppercase">ORIZONTUL COSMOLOGIC</text>
+                  <!-- Us at center -->
+                  <circle cx="230" cy="160" r="5" fill="var(--good)"/>
+                  <text x="230" y="180" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.7)">Noi aici</text>
+                  <!-- Galaxies scattered inside -->
+                  <circle cx="170" cy="110" r="2.5" fill="rgba(255,210,122,.5)"/>
+                  <circle cx="290" cy="100" r="2" fill="rgba(122,215,255,.5)"/>
+                  <circle cx="310" cy="200" r="3" fill="rgba(255,179,138,.4)"/>
+                  <circle cx="150" cy="200" r="2" fill="rgba(187,167,255,.4)"/>
+                  <circle cx="260" cy="130" r="1.5" fill="rgba(255,255,255,.3)"/>
+                  <circle cx="200" cy="220" r="2" fill="rgba(117,240,182,.4)"/>
+                  <!-- Arrows going outward, fading -->
+                  <line x1="230" y1="160" x2="100" y2="60" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                  <line x1="230" y1="160" x2="360" y2="60" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                  <line x1="230" y1="160" x2="100" y2="260" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                  <line x1="230" y1="160" x2="360" y2="260" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                  <!-- Beyond label -->
+                  <text x="230" y="312" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.6)">Dincolo = nedefinit (nu exista „afara")</text>
+                </svg>
+                <div class="small" style="margin-top:8px">Noi suntem in centru. Orizontul e pretutindeni in jurul nostru, la distanta maxima.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Intrebarea „ce-i dincolo de margine?" pare naturala, dar e ca si cum ai intreba „ce-i la nord de Polul Nord?". Notiunea de „dincolo" nu mai functioneaza acolo — marginea nu e <i>in</i> spatiu, ci e <i>marginea spatiului insusi</i>.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Holographic Principle -->
+      <section class="row">
+        <div class="card" aria-label="Principiul holografic">
+          <div class="cardHeader">
+            <h2>Principiul holografic — pe intelesul tuturor</h2>
+            <div class="chip">3D din 2D</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ganditi-va la o <b>hologramă</b> de pe un card bancar. Pe card e o imagine plata (2D),
+              dar cand o priviti sub un anumit unghi, vedeti o imagine cu profunzime (3D).
+              Principiul holografic spune ca <b>intregul univers functioneaza asa</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Pasul 1: Gaurea neagra</h3>
+                <p>Fizicienii au descoperit ca toata informatia din interiorul unei gauri negre este stocata pe <b>suprafata</b> ei (orizontul evenimentelor), nu in volumul interior. Interiorul 3D e „redundant" — e codificat pe marginea 2D.</p>
+                <div class="meta"><span class="badge">Bekenstein</span><span class="badge">Hawking</span><span class="badge" style="color:var(--cyan)">dovedit matematic</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Pasul 2: Generalizarea</h3>
+                <p>Daca functioneaza pentru gauri negre, de ce nu si pentru <b>intregul univers</b>? Susskind si 't Hooft au propus ca toata informatia din universul nostru 3D e codificata pe orizontul cosmologic — o suprafata 2D aflata la marginea universului.</p>
+                <div class="meta"><span class="badge">Susskind</span><span class="badge">'t Hooft</span><span class="badge" style="color:var(--warn)">ipoteza activa</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Pasul 3: Noi = proiectia</h3>
+                <p>Tot ce vedem, atingem, experimentam — inclusiv noi insine — ar fi o <b>proiectie</b> holografica a informatiei de pe acea suprafata indepartata. Spatiul 3D nu e „real" in sens fundamental — e o descriere emergenta.</p>
+                <div class="meta"><span class="badge" style="color:var(--violet)">emergenta</span><span class="badge">proiectie</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> „Emergent" inseamna ca ceva <i>apare</i> din componente mai fundamentale, ca si cum valurile apar din molecule de apa. Apa nu „contine" un val — valul e un pattern care apare la scara mare. La fel, spatiul 3D ar fi un pattern care apare din fizica 2D de pe granita.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Analogie">
+          <div class="cardHeader">
+            <h2>De ce e marginea mai importanta decat interiorul?</h2>
+            <div class="chip"><b>Inversare:</b> centrul vs. marginea</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Intuitia noastra ne spune: „Noi traim in interiorul universului, marginea e ceva
+              indepartat si neimportant." Susskind spune exact <b>opusul</b>: marginea e locul unde
+              „gradele de libertate reale" traiesc, iar interiorul (noi) suntem doar o proiectie.
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 440 260" role="img">
+                <defs>
+                  <linearGradient id="innerG" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(187,167,255,.2)"/>
+                    <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+                  </linearGradient>
+                </defs>
+                <rect width="440" height="260" fill="rgba(0,0,0,.04)"/>
+                <!-- Left: Intuitia normala -->
+                <rect x="10" y="40" width="200" height="180" rx="16" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.1)"/>
+                <text x="110" y="28" text-anchor="middle" font-size="12" fill="rgba(255,210,122,.8)" letter-spacing=".08em">INTUITIE NORMALA</text>
+                <circle cx="110" cy="130" r="50" fill="url(#innerG)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                <text x="110" y="134" text-anchor="middle" font-size="11" fill="var(--good)">NOI = real</text>
+                <circle cx="110" cy="130" r="75" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="3 3"/>
+                <text x="110" y="218" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">marginea = irelevanta</text>
+
+                <!-- Right: Principiul holografic -->
+                <rect x="230" y="40" width="200" height="180" rx="16" fill="rgba(0,0,0,.15)" stroke="rgba(122,215,255,.15)"/>
+                <text x="330" y="28" text-anchor="middle" font-size="12" fill="rgba(122,215,255,.8)" letter-spacing=".08em">PRINCIPIUL HOLOGRAFIC</text>
+                <circle cx="330" cy="130" r="75" fill="none" stroke="var(--cyan)" stroke-width="2.5" opacity=".5"/>
+                <text x="330" y="80" text-anchor="middle" font-size="10" fill="var(--cyan)">MARGINEA = fundamentala</text>
+                <circle cx="330" cy="130" r="30" fill="rgba(122,215,255,.06)" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="3 3"/>
+                <text x="330" y="134" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">noi = proiectie</text>
+                <!-- Arrows from boundary inward -->
+                <line x1="261" y1="100" x2="303" y2="120" stroke="rgba(122,215,255,.25)" stroke-width="1" marker-end="url(#arr)"/>
+                <line x1="399" y1="100" x2="357" y2="120" stroke="rgba(122,215,255,.25)" stroke-width="1"/>
+                <line x1="261" y1="160" x2="303" y2="140" stroke="rgba(122,215,255,.25)" stroke-width="1"/>
+                <line x1="399" y1="160" x2="357" y2="140" stroke="rgba(122,215,255,.25)" stroke-width="1"/>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+            <p class="small" style="margin-top:0">
+              E ca si cum ai juca un joc video. Tu crezi ca „traiesti" in lumea 3D a jocului. Dar totul e calculat
+              de codul care ruleaza pe un ecran plat. „Ecranul" (marginea 2D) e mai fundamental decat „lumea" 3D din joc.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta inversare de perspectiva e ceea ce face principiul holografic atat de contraintuitiv.
+              Nu e doar o curiozitate matematica — daca e corect, schimba fundamental ce intelegem prin „real".
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Interactive hologram visualization -->
+      <section class="card" id="vizSection" aria-label="Vizualizare interactiva">
+        <div class="cardHeader">
+          <h2>Simulator: proiectia holografica</h2>
+          <div class="chip"><b>Interactiv:</b> deplaseaza mouse-ul</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Aceasta vizualizare arata cum informatia de pe o suprafata 2D (cercul exterior — „orizontul")
+            genereaza o structura 3D in interior. Misca mouse-ul sau atinge ecranul pentru a vedea cum
+            „proiectia" se schimba.
+          </p>
+
+          <div class="viz">
+            <canvas id="holoCanvas" width="980" height="460"></canvas>
+            <div class="legend" style="margin-top:10px">
+              <div class="key"><span class="sw" style="background:var(--cyan)"></span> Orizontul (granita 2D)</div>
+              <div class="key"><span class="sw" style="background:var(--violet)"></span> Informatia de pe suprafata</div>
+              <div class="key"><span class="sw" style="background:var(--good)"></span> Proiectia emergenta (interiorul 3D)</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Densitate informatie</span>
+                <span class="readout" id="densityReadout">50</span>
+              </label>
+              <input id="densitySlider" type="range" min="10" max="120" value="50" />
+              <div class="small" style="margin-top:8px">Mai multa informatie pe granita = mai multa „structura" in interior.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Entanglement (corelatie)</span>
+                <span class="readout" id="entangleReadout">50%</span>
+              </label>
+              <input id="entangleSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">Cand corelatia e mare, apare dimensiunea a 3-a.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta vizualizare e o <i>metafora</i>, nu o simulare fizica reala. In realitate, „proiectia"
+            e un fenomen matematic extrem de complex. Dar ideea de baza e corecta: structura interioara
+            „apare" din informatia de pe granita, iar corelarea (entanglement-ul) e cheia.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Key concepts breakdown -->
+      <section class="card" aria-label="Concepte cheie">
+        <div class="cardHeader">
+          <h2>Conceptele cheie — explicate simplu</h2>
+          <div class="chip">Dictionar vizual</div>
+        </div>
+        <div class="cardBody">
+          <div class="tabBar">
+            <button class="tabBtn active" data-tab="tab1">Orizontul cosmologic</button>
+            <button class="tabBtn" data-tab="tab2">Limita Bekenstein</button>
+            <button class="tabBtn" data-tab="tab3">AdS/CFT</button>
+            <button class="tabBtn" data-tab="tab4">Emergenta</button>
+            <button class="tabBtn" data-tab="tab5">Energia intunecata</button>
+          </div>
+
+          <div class="tabContent active" id="tab1">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">Orizontul cosmologic</h3>
+                <p class="muted" style="margin:0;line-height:1.6">
+                  Universul se extinde din ce in ce mai repede (din cauza energiei intunecate). Asta inseamna ca exista
+                  o distanta dincolo de care spatiul se extinde mai repede decat viteza luminii. Lumina de acolo
+                  nu ne va ajunge <b>niciodata</b>.
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Aceasta „bariera invizibila" se numeste <b>orizontul cosmologic</b>. E cam la <b>46 de miliarde
+                  de ani-lumina</b> distanta in orice directie. Si conform holografiei, <b>toata informatia</b> din
+                  universul nostru e scrisa pe aceasta suprafata sferica.
+                </p>
+              </div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 400 240" role="img">
+                  <rect width="400" height="240" fill="rgba(0,0,0,.04)"/>
+                  <circle cx="200" cy="120" r="100" fill="none" stroke="var(--cyan)" stroke-width="2" opacity=".5"/>
+                  <circle cx="200" cy="120" r="100" fill="none" stroke="var(--cyan)" stroke-width="8" opacity=".08"/>
+                  <circle cx="200" cy="120" r="4" fill="var(--good)"/>
+                  <text x="200" y="140" text-anchor="middle" font-size="10" fill="var(--good)">Noi</text>
+                  <!-- Light rays that can't escape -->
+                  <line x1="200" y1="120" x2="280" y2="60" stroke="var(--warn)" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>
+                  <text x="285" y="58" font-size="9" fill="var(--warn)" opacity=".7">lumina</text>
+                  <!-- Arrow showing expansion -->
+                  <text x="200" y="22" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">se extinde mai repede decat lumina</text>
+                  <text x="200" y="232" text-anchor="middle" font-size="10" fill="var(--cyan)" opacity=".7">~46 miliarde ani-lumina</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab2">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--warn)">Limita Bekenstein</h3>
+                <p class="muted" style="margin:0;line-height:1.6">
+                  Jacob Bekenstein a demonstrat ceva uimitor: <b>cantitatea maxima de informatie</b> care poate exista
+                  intr-o regiune de spatiu depinde de <b>suprafata</b> granitei acelei regiuni, nu de volum.
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Ganditi-va asa: un cub mare de spatiu nu poate stoca mai multa informatie decat ce „incape"
+                  pe peretii cubului. Asta e profund contraintuitiv — ne-am astepta ca un volum mai mare
+                  sa contina mai multa informatie. Dar fizica spune: nu, cheia e suprafata.
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Consecinta: universul nostru are o <b>cantitate finita</b> de informatie, determinata de
+                  aria orizontului cosmologic.
+                </p>
+              </div>
+              <div>
+                <div class="flowNode" style="text-align:center">
+                  <h3 style="color:var(--warn)">Informatie maxima</h3>
+                  <p style="font-size:20px;margin:12px 0"><span style="color:var(--text);font-weight:700">S</span> <span style="color:var(--muted)">&le;</span> <span style="font-family:var(--mono);color:var(--warn)">A / (4 l<sub>p</sub><sup>2</sup>)</span></p>
+                  <p>Unde <b>A</b> = aria suprafetei, <b>l<sub>p</sub></b> = lungimea Planck</p>
+                  <div class="hr"></div>
+                  <p style="font-size:12px">Entropia (informatia) e proportionala cu <b>aria</b>, nu cu volumul. Asta valideaza ideea ca fizica „traieste" pe suprafata.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab3">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">Corespondenta AdS/CFT</h3>
+                <p class="muted" style="margin:0;line-height:1.6">
+                  In 1997, Juan Maldacena a demonstrat matematic ca o teorie a gravitatiei intr-un spatiu
+                  special (anti-de Sitter) este <b>echivalenta perfect</b> cu o teorie cuantica de campuri
+                  pe granita acelui spatiu. Fara gravitatie!
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Adica: poti descrie un univers cu gravitatie folosind o teorie <i>fara</i> gravitatie,
+                  care traieste pe o suprafata cu o dimensiune mai putin. E ca un <b>dictionar</b> intre
+                  doua limbi complet diferite — dar care spun acelasi lucru.
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  <b>Problema:</b> AdS/CFT functioneaza pentru spatii cu constanta cosmologica negativa.
+                  Universul nostru are constanta cosmologica <b>pozitiva</b> (spatiu de Sitter).
+                  Transpunerea holografiei la universul nostru e inca o cercetare activa.
+                </p>
+              </div>
+              <div class="flowNode">
+                <h3 style="text-align:center">Echivalenta</h3>
+                <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0">
+                  <div style="text-align:center">
+                    <div style="font-size:30px">🌌</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:4px">Interior cu gravitatie<br/>(d+1 dimensiuni)</div>
+                  </div>
+                  <div style="font-size:20px;color:var(--violet)">=</div>
+                  <div style="text-align:center">
+                    <div style="font-size:30px">📐</div>
+                    <div style="font-size:11px;color:var(--muted);margin-top:4px">Granita fara gravitatie<br/>(d dimensiuni)</div>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <p style="font-size:12px;text-align:center">Doua descrieri diferite ale <b>aceluiasi</b> sistem fizic.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab4">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">Emergenta spatiu-timpului</h3>
+                <p class="muted" style="margin:0;line-height:1.6">
+                  „Emergent" inseamna ca ceva complex apare din componente mai simple, fara sa fie programat explicit.
+                  Exemple: <b>temperatura</b> e emergenta (moleculele individuale nu au temperatura — doar colectia lor are);
+                  un <b>val</b> pe ocean e emergent (moleculele de apa nu „stiu" ca fac un val).
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Susskind propune ca <b>spatiul</b> (cele 3 dimensiuni pe care le experimentam) si <b>timpul</b>
+                  sunt ambele emergente. La nivel fundamental, exista doar o stare cuantica atemporala pe
+                  suprafata 2D. Din corelatiile (entanglement-ul) din aceasta stare, spatiul 3D si cursul
+                  timpului <i>apar</i> ca descrieri utile pentru observatori ca noi.
+                </p>
+              </div>
+              <div>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>Analogie: apa si valurile</h3>
+                    <p><b>Moleculele de apa</b> = informatia cuantica de pe granita 2D</p>
+                    <p style="margin-top:6px"><b>Valul pe ocean</b> = spatiul 3D pe care il experimentam</p>
+                    <p style="margin-top:6px">Valul e „real" (il simtim!), dar nu e fundamental — e un pattern emergent.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>De ce simtim 3D daca sunt doar 2D?</h3>
+                    <p>Pentru ca <b>entanglement-ul</b> (corelatia cuantica) dintre punctele de pe granita creeaza impresia de profunzime. Dimensiunea a 3-a e o <b>iluzie utila</b> care apare din organizarea informatiei.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab5">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--orange)">Energia intunecata</h3>
+                <p class="muted" style="margin:0;line-height:1.6">
+                  Energia intunecata e o forta misterioasa care face ca universul sa se extinda <b>accelerat</b>.
+                  Nimeni nu stie exact ce e, dar efectul ei e clar: galaxiile se departeaza una de alta
+                  din ce in ce mai repede.
+                </p>
+                <p class="muted" style="line-height:1.6">
+                  Fara energia intunecata, expansiunea universului ar <b>incetini</b> (din cauza gravitatiei).
+                  Cu ea, expansiunea <b>accelereaza</b>, ceea ce inseamna ca orizontul cosmologic exista si
+                  se comporta ca o granita permanenta. Acest lucru e esential pentru argumentul holografic
+                  al lui Susskind.
+                </p>
+              </div>
+              <div class="flowNode">
+                <h3 style="text-align:center">Compozitia universului</h3>
+                <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;justify-content:center">
+                  <div style="flex:1;min-width:80px;text-align:center;padding:10px;border:1px solid rgba(187,167,255,.2);border-radius:12px;background:rgba(187,167,255,.06)">
+                    <div style="font-size:22px;font-weight:700;color:var(--violet)">68%</div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px">Energie intunecata</div>
+                  </div>
+                  <div style="flex:1;min-width:80px;text-align:center;padding:10px;border:1px solid rgba(122,215,255,.2);border-radius:12px;background:rgba(122,215,255,.06)">
+                    <div style="font-size:22px;font-weight:700;color:var(--cyan)">27%</div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px">Materie intunecata</div>
+                  </div>
+                  <div style="flex:1;min-width:80px;text-align:center;padding:10px;border:1px solid rgba(117,240,182,.2);border-radius:12px;background:rgba(117,240,182,.06)">
+                    <div style="font-size:22px;font-weight:700;color:var(--good)">5%</div>
+                    <div style="font-size:10px;color:var(--muted);margin-top:4px">Materie vizibila</div>
+                  </div>
+                </div>
+                <p style="font-size:12px;text-align:center">Tot ce vedem (stele, planete, noi) e doar 5% din univers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: The argument chain -->
+      <section class="card" aria-label="Lantul argumentului">
+        <div class="cardHeader">
+          <h2>Lantul logic al lui Susskind</h2>
+          <div class="chip">de la observatie la concluzie</div>
+        </div>
+        <div class="cardBody">
+          <div class="flow">
+            <div class="flowNode">
+              <h3>1) Observatie: universul accelereaza</h3>
+              <p>Energia intunecata impinge totul din ce in ce mai repede. Asta creeaza un <b>orizont cosmologic</b> — o distanta dincolo de care nu putem vedea niciodata.</p>
+              <div class="meta"><span class="badge" style="color:var(--good)">confirmat observational</span><span class="badge">Premiul Nobel 2011</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>2) Fapt: gaurii negre sunt holografice</h3>
+              <p>Informatia din interiorul gaurilor negre e codificata pe suprafata lor. Limita Bekenstein arata ca informatia maxima depinde de <b>arie</b>, nu de volum.</p>
+              <div class="meta"><span class="badge" style="color:var(--good)">demonstrat matematic</span><span class="badge">Bekenstein-Hawking</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>3) Dovada: AdS/CFT functioneaza</h3>
+              <p>Maldacena a aratat ca un univers cu gravitatie e exact echivalent cu o teorie fara gravitatie pe granita lui. Holografia functioneaza cel putin in spatii anti-de Sitter.</p>
+              <div class="meta"><span class="badge" style="color:var(--good)">confirmat matematic</span><span class="badge">mii de lucrari</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>4) Extrapolare: universul nostru e holografic</h3>
+              <p>Daca holografia functioneaza pentru gauri negre si spatii AdS, probabil functioneaza si pentru universul nostru (de Sitter). Orizontul cosmologic ar fi „ecranul holografic".</p>
+              <div class="meta"><span class="badge" style="color:var(--warn)">ipoteza plauzibila</span><span class="badge">cercetare activa</span></div>
+            </div>
+            <div class="flowNode" style="border-color:rgba(122,215,255,.25)">
+              <h3 style="color:var(--cyan)">5) Concluzie: universul are o margine</h3>
+              <p>Orizontul cosmologic e o <b>granita fundamentala</b> unde traieste fizica reala. Spatiul 3D, timpul, noi — totul e emergent, o proiectie holografica de pe acea suprafata 2D.</p>
+              <div class="meta"><span class="badge" style="color:var(--cyan)">teza principala</span><span class="badge">schimbare de paradigma</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observati ca pasii 1-3 sunt bine fundamentati stiintific. Pasul 4 e o extrapolare (logica, dar nedemonstrata complet). Pasul 5 e concluzia filozofica care curge din extrapolare. Puterea argumentului sta in cat de mult incredere avem in pasul 4.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Paradoxes resolved -->
+      <section class="row">
+        <div class="card" aria-label="Paradoxuri rezolvate">
+          <div class="cardHeader">
+            <h2>Ce paradoxuri rezolva aceasta teorie?</h2>
+            <div class="chip"><b>Eleganta:</b> mai multe probleme, o solutie</div>
+          </div>
+          <div class="cardBody">
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Paradoxul informatiei din gauri negre</strong><span class="badge" style="color:var(--cyan)">rezolvat</span></div>
+                <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+                <p>Informatia nu e „pierduta" in gaura neagra — nu a fost niciodata cu adevarat inauntru. E mereu pe orizont. Problema dispare.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Singularitatea Big Bang-ului</strong><span class="badge" style="color:var(--warn)">posibil rezolvat</span></div>
+                <div class="meter"><i style="width:60%;background:linear-gradient(90deg,var(--cyan),var(--warn))"></i></div>
+                <p>Daca spatiu-timpul e emergent, „singularitatea" e doar locul unde descrierea emergenta se strica — nu o problema reala la nivel fundamental.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Problema masurarii cuantice</strong><span class="badge" style="color:var(--warn)">posibil rezolvat</span></div>
+                <div class="meter"><i style="width:50%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+                <p>Daca observatorii sunt structuri emergente, masurarea e doar procesul prin care informatia se organizeaza in tipare „clasice" in interior.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Informatia finita a universului</strong><span class="badge" style="color:var(--good)">explicat</span></div>
+                <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+                <p>Universul poate fi intr-un numar finit de stari cuantice, determinat de aria orizontului. Nu e infinit — e un sistem complet in sine.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Faptul ca o singura idee (holografia) rezolva mai multe probleme independente e ceea ce face fizicienii sa o ia in serios. In stiinta, cand o teorie rezolva probleme pe care nu a fost conceputa sa le rezolve, e de obicei un semn bun.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce nu stim">
+          <div class="cardHeader">
+            <h2>Ce nu stim inca (sincer)</h2>
+            <div class="chip">limitele teoriei</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind insusi recunoaste ca teoria nu e completa. Iata principalele lacune:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Holografia de Sitter</h3>
+                <p>AdS/CFT functioneaza pentru spatii cu constanta cosmologica <b>negativa</b>. Universul nostru are constanta cosmologica <b>pozitiva</b> (spatiu de Sitter). Cum se aplica holografia exact in cazul nostru e inca o problema deschisa.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">problema critica</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">Verificare experimentala</h3>
+                <p>Principiul holografic face foarte putine predictii testabile direct cu tehnologia actuala. E o teorie eleganta matematic, dar greu de verificat empiric.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">limitare practica</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">Nu toti sunt de acord</h3>
+                <p>Multi fizicieni cred ca universul e infinit, fara granita fundamentala, si ca holografia e o curiozitate matematica valabila doar in cazuri speciale.</p>
+                <div class="meta"><span class="badge">dezbatere activa</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E important sa nu confundam „elegant matematic" cu „demonstrat". Susskind argumenteaza pe baza <i>frumusetii</i> matematice si a <i>coherentei</i> ideilor — ceea ce e un ghid bun in fizica, dar nu o dovada. Stiinta reala cere verificare experimentala.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Interactive entropy calculator -->
+      <section class="card" aria-label="Calculator entropie">
+        <div class="cardHeader">
+          <h2>Calculator: cat informatie incape in univers?</h2>
+          <div class="chip"><b>Interactiv:</b> schimba parametrii</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Conform limitei Bekenstein, informatia maxima depinde de aria suprafetei, nu de volum.
+            Exploreaza cum aria orizontului determina cantitatea totala de informatie din universul observabil.
+          </p>
+
+          <div class="split">
+            <div>
+              <div class="control" style="margin-bottom:12px">
+                <label>
+                  <span>Raza orizontului</span>
+                  <span class="readout" id="radiusReadout">46 Gly</span>
+                </label>
+                <input id="radiusSlider" type="range" min="1" max="100" value="46" />
+                <div class="small" style="margin-top:8px">Raza orizontului cosmologic in miliarde de ani-lumina (Gly).</div>
+              </div>
+              <div class="flowNode" id="entropyResult">
+                <h3>Rezultat</h3>
+                <p>Aria orizontului: <b id="areaVal">—</b></p>
+                <p>Entropie maxima: <b id="entropyVal" style="color:var(--cyan)">—</b></p>
+                <p>Echivalent in biti: <b id="bitsVal" style="color:var(--violet)">—</b></p>
+                <div class="hr"></div>
+                <p class="small">Un hard disk de 1 TB stocheaza ~10<sup>13</sup> biti. Universul stocheaza ~10<sup>122</sup> biti — de <b id="comparisonVal">—</b> ori mai mult.</p>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <div style="margin-bottom:8px" class="small">Aria vs. Volum — de ce conteaza</div>
+                <svg viewBox="0 0 400 220" role="img" id="areaVsVol">
+                  <rect width="400" height="220" fill="rgba(0,0,0,.04)"/>
+                  <!-- Volume bar -->
+                  <text x="20" y="50" font-size="11" fill="rgba(255,255,255,.6)">Volum (R<tspan baseline-shift="super" font-size="8">3</tspan>)</text>
+                  <rect x="20" y="58" width="360" height="24" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+                  <rect id="volBar" x="20" y="58" width="180" height="24" rx="12" fill="rgba(255,179,138,.25)" stroke="rgba(255,179,138,.3)"/>
+                  <text id="volLabel" x="210" y="75" font-size="11" fill="var(--orange)">— Gly³</text>
+                  <!-- Area bar -->
+                  <text x="20" y="110" font-size="11" fill="rgba(255,255,255,.6)">Arie (R<tspan baseline-shift="super" font-size="8">2</tspan>) — determina informatia!</text>
+                  <rect x="20" y="118" width="360" height="24" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+                  <rect id="areaBar" x="20" y="118" width="120" height="24" rx="12" fill="rgba(122,215,255,.25)" stroke="rgba(122,215,255,.3)"/>
+                  <text id="areaLabel" x="150" y="135" font-size="11" fill="var(--cyan)">— Gly²</text>
+                  <!-- Explanation -->
+                  <text x="20" y="175" font-size="11" fill="rgba(255,255,255,.55)">Volumul creste mai repede, dar informatia</text>
+                  <text x="20" y="192" font-size="11" fill="rgba(255,255,255,.55)">depinde doar de arie — o implicatie profunda.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Faptul ca informatia depinde de <i>arie</i>, nu de <i>volum</i>, e una dintre cele mai surprinzatoare descoperiri din fizica teoretica. Daca informatia ar depinde de volum, nu ar exista niciun argument holografic. Acest fapt e solid demonstrat matematic si e baza intregii constructii.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Big Bang edge in time -->
+      <section class="card" aria-label="Marginea in timp">
+        <div class="cardHeader">
+          <h2>Marginea in timp: Big Bang-ul</h2>
+          <div class="chip">spatiu + timp = emergente</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Daca universul are o margine in <b>spatiu</b> (orizontul cosmologic), are una si in <b>timp</b>?
+                In imaginea clasica, timpul incepe la Big Bang — o singularitate cu densitate si curbura infinite.
+                Ecuatiile se strica acolo.
+              </p>
+              <p class="muted">
+                Dar daca spatiu-timpul e <b>emergent</b>, singularitatea Big Bang-ului nu mai e o problema reala.
+                E doar locul unde „descrierea emergenta" (spatiul si timpul asa cum le cunoastem) isi pierde
+                valabilitatea — ca un val pe ocean care ajunge la mal.
+              </p>
+              <p class="muted">
+                La nivel fundamental — pe granita holografica — nu exista singularitate.
+                Exista doar o <b>stare cuantica atemporala</b>. Din ea, Big Bang-ul si cursul timpului
+                <i>apar</i> ca descriptii utile, dar nu fundamentale.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 400 280" role="img">
+                  <defs>
+                    <linearGradient id="timeGrad" x1="0" x2="0" y1="1" y2="0">
+                      <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                      <stop offset="0.3" stop-color="rgba(255,210,122,.3)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,.2)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="280" fill="rgba(0,0,0,.04)"/>
+                  <!-- Time arrow -->
+                  <rect x="195" y="30" width="10" height="220" fill="url(#timeGrad)" rx="5" opacity=".5"/>
+                  <!-- Big Bang at bottom -->
+                  <circle cx="200" cy="250" r="12" fill="rgba(255,122,153,.3)" stroke="var(--bad)" stroke-width="1.5"/>
+                  <text x="200" y="254" text-anchor="middle" font-size="9" fill="var(--bad)">BB</text>
+                  <text x="280" y="254" font-size="10" fill="rgba(255,255,255,.5)">Big Bang</text>
+                  <text x="280" y="268" font-size="9" fill="rgba(255,255,255,.35)">(marginea in timp)</text>
+                  <!-- Now in middle -->
+                  <circle cx="200" cy="140" r="6" fill="var(--good)"/>
+                  <text x="260" y="144" font-size="10" fill="var(--good)">Acum (noi)</text>
+                  <!-- Future at top -->
+                  <text x="200" y="22" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.5)">Viitor → expansiune eterna</text>
+                  <!-- Cone shape -->
+                  <path d="M200,250 L120,30" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                  <path d="M200,250 L280,30" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                  <!-- Labels -->
+                  <text x="200" y="196" text-anchor="middle" font-size="9" fill="rgba(255,210,122,.6)">Timp ↑</text>
+                </svg>
+                <div class="small" style="margin-top:6px">Conul de lumina: universul se extinde in timp din Big Bang spre viitor.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea ca Big Bang-ul nu e un „eveniment real" ci doar o limita a descrierii emergente e extraordinar de radicala. Inseamna ca intrebarea „ce a fost inainte de Big Bang?" e la fel de invalida ca „ce-i dincolo de orizont?" — ambele presupun un cadru care nu mai functioneaza acolo.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Quiz -->
+      <section class="card" id="quizSection" aria-label="Test de intelegere">
+        <div class="cardHeader">
+          <h2>Test de intelegere</h2>
+          <div class="chip" id="quizScore"><b>Scor:</b> 0/5</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Verifica daca ai inteles conceptele principale. Alege raspunsul corect pentru fiecare intrebare.
+          </p>
+
+          <div id="quizContainer"></div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="resetQuiz">Reseteaza testul</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: Summary -->
+      <section class="card" aria-label="Rezumat">
+        <div class="cardHeader">
+          <h2>Rezumat: ce sustine Susskind?</h2>
+          <div class="chip"><b>Teza:</b> granita e mai reala decat interiorul</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Universul are o margine reala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu un zid fizic, ci orizontul cosmologic — o granita fundamentala creata de expansiunea accelerata a universului.
+                Dincolo de ea, conceptul de „dincolo" nu mai are sens.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Totul e o proiectie</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Spatiul 3D, timpul, noi — totul e o proiectie holografica a informatiei codificate pe orizontul 2D.
+                Marginea e fundamentala; interiorul e emergent.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Spatiu-timpul e emergent</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cele 3 dimensiuni spatiale si timpul nu sunt fundamentale. Ele apar din informatia cuantica si din
+                entanglement-ul de pe suprafata holografica, asa cum valurile apar din moleculele de apa.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Totul se leaga</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Principiul holografic, emergenta, informatia finita, rezolvarea paradoxurilor — toate se imbina
+                intr-o imagine coerenta. Daca e corecta, schimba fundamental ce intelegem prin „realitate".
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota despre calitatea dovezilor</strong><span class="hint">apasa pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce ideile lui Leonard Susskind dintr-o prezentare publica. Unele parti se bazeaza pe
+                rezultate matematice solide (limita Bekenstein, AdS/CFT). Altele sunt extrapolari plauzibile dar nedemonstrate
+                (holografia de Sitter, emergenta timpului). Susskind insusi recunoaste ca nu toata lumea e de acord si ca
+                teoria nu e completa.
+              </p>
+              <p style="margin-top:8px">
+                <b>Tratati totul ca pe o ipoteza fascinanta</b>, nu ca pe un fapt demonstrat. Daca va intereseaza,
+                cititi lucrarile originale si urmariti dezbaterile din fizica teoretica.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary mode section -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre casetele de comentariu</h2>
+          <div class="chip">interpretare vs. fapt</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre (marcate cu „Comentariu") ofera o perspectiva critica:
+            cat de puternic e argumentul? Ce alternative exista? Unde sunt limitele?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa „Comentarii pornit/oprit" din partea de sus
+            pentru a le ascunde/afisa pe toate deodata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si atribuire:</b> Acest infografic interactiv a fost creat pe baza unei prezentari a lui Leonard Susskind
+        despre principiul holografic si marginea universului. Nu constituie sfat academic sau stiintific — e un instrument
+        vizual menit sa ajute la intelegerea conceptelor, nu sa inlocuiasca studiul aprofundat al fizicii teoretice.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: cautati lucrarile lui Susskind, 't Hooft si Maldacena despre principiul holografic, AdS/CFT
+        si entropia Bekenstein-Hawking.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Holographic Canvas Visualization
+    // ──────────────────────────────────────────────────────
+    const canvas = document.getElementById('holoCanvas');
+    const ctx = canvas.getContext('2d');
+    const densitySlider = document.getElementById('densitySlider');
+    const entangleSlider = document.getElementById('entangleSlider');
+    const densityReadout = document.getElementById('densityReadout');
+    const entangleReadout = document.getElementById('entangleReadout');
+
+    let mouseX = 0.5, mouseY = 0.5;
+    let animFrame = 0;
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = Math.min(980, rect.width - 24);
+      canvas.height = 460;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) / rect.width;
+      mouseY = (e.clientY - rect.top) / rect.height;
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const t = e.touches[0];
+      mouseX = (t.clientX - rect.left) / rect.width;
+      mouseY = (t.clientY - rect.top) / rect.height;
+    }, { passive: false });
+
+    function drawHologram() {
+      const W = canvas.width;
+      const H = canvas.height;
+      const cx = W / 2;
+      const cy = H / 2;
+      const density = parseInt(densitySlider.value);
+      const entangle = parseInt(entangleSlider.value) / 100;
+
+      densityReadout.textContent = density;
+      entangleReadout.textContent = `${entangleSlider.value}%`;
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(W, H) * 0.5);
+      bgGrad.addColorStop(0, 'rgba(122,215,255,.04)');
+      bgGrad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Horizon circle (the boundary)
+      const horizonR = Math.min(W, H) * 0.42;
+      ctx.beginPath();
+      ctx.arc(cx, cy, horizonR, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(122,215,255,.3)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Glow on horizon
+      ctx.beginPath();
+      ctx.arc(cx, cy, horizonR, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(122,215,255,.06)';
+      ctx.lineWidth = 16;
+      ctx.stroke();
+
+      // Boundary info points (2D surface)
+      const boundaryPoints = [];
+      for (let i = 0; i < density; i++) {
+        const angle = (i / density) * Math.PI * 2 + animFrame * 0.002;
+        const bx = cx + Math.cos(angle) * horizonR;
+        const by = cy + Math.sin(angle) * horizonR;
+        boundaryPoints.push({ x: bx, y: by, angle: angle });
+
+        // Draw boundary point
+        const pulse = 0.5 + 0.5 * Math.sin(animFrame * 0.03 + i * 0.5);
+        ctx.beginPath();
+        ctx.arc(bx, by, 2 + pulse * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(187,167,255,${0.4 + pulse * 0.4})`;
+        ctx.fill();
+      }
+
+      // Interior projection (3D emergent structure)
+      const interiorPoints = [];
+      const projectionStrength = entangle;
+
+      for (let i = 0; i < density; i++) {
+        const bp = boundaryPoints[i];
+        const next = boundaryPoints[(i + 1) % density];
+
+        // Project inward based on entanglement
+        const projDist = horizonR * (0.1 + 0.7 * projectionStrength);
+        const wobble = Math.sin(animFrame * 0.015 + i * 0.8) * 20 * (1 - projectionStrength * 0.5);
+        const mxInfluence = (mouseX - 0.5) * 40;
+        const myInfluence = (mouseY - 0.5) * 40;
+
+        const ix = cx + Math.cos(bp.angle + Math.PI) * (horizonR - projDist) + wobble + mxInfluence;
+        const iy = cy + Math.sin(bp.angle + Math.PI) * (horizonR - projDist) + wobble * 0.7 + myInfluence;
+
+        interiorPoints.push({ x: ix, y: iy });
+
+        // Draw projection line (from boundary to interior)
+        if (projectionStrength > 0.1) {
+          ctx.beginPath();
+          ctx.moveTo(bp.x, bp.y);
+          ctx.lineTo(ix, iy);
+          ctx.strokeStyle = `rgba(117,240,182,${0.04 + projectionStrength * 0.08})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+
+      // Draw entanglement connections between boundary points
+      if (projectionStrength > 0.2) {
+        for (let i = 0; i < density; i++) {
+          const span = Math.floor(density * projectionStrength * 0.3) + 1;
+          for (let j = 1; j <= span; j++) {
+            const k = (i + j) % density;
+            const op = 0.015 * projectionStrength * (1 - j / span);
+            if (op > 0.005) {
+              ctx.beginPath();
+              ctx.moveTo(boundaryPoints[i].x, boundaryPoints[i].y);
+              ctx.lineTo(boundaryPoints[k].x, boundaryPoints[k].y);
+              ctx.strokeStyle = `rgba(187,167,255,${op})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Draw interior structure (emergent 3D)
+      if (interiorPoints.length > 2 && projectionStrength > 0.05) {
+        // Emergent mesh
+        for (let i = 0; i < interiorPoints.length; i++) {
+          const next = interiorPoints[(i + 1) % interiorPoints.length];
+          ctx.beginPath();
+          ctx.moveTo(interiorPoints[i].x, interiorPoints[i].y);
+          ctx.lineTo(next.x, next.y);
+          ctx.strokeStyle = `rgba(117,240,182,${0.1 + projectionStrength * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        // Interior glow points
+        for (let i = 0; i < interiorPoints.length; i++) {
+          const pulse = 0.5 + 0.5 * Math.sin(animFrame * 0.02 + i);
+          ctx.beginPath();
+          ctx.arc(interiorPoints[i].x, interiorPoints[i].y, 2 + pulse * 2 * projectionStrength, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(117,240,182,${0.3 + projectionStrength * 0.4})`;
+          ctx.fill();
+        }
+      }
+
+      // Center observer
+      const obsPulse = 0.8 + 0.2 * Math.sin(animFrame * 0.04);
+      ctx.beginPath();
+      ctx.arc(cx + (mouseX - 0.5) * 30, cy + (mouseY - 0.5) * 30, 5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(117,240,182,${obsPulse})`;
+      ctx.fill();
+
+      // Labels
+      ctx.font = '11px ui-sans-serif, system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(122,215,255,.6)';
+      ctx.fillText('ORIZONTUL COSMOLOGIC (granita 2D)', cx, cy - horizonR - 12);
+      ctx.fillStyle = 'rgba(117,240,182,.5)';
+      ctx.fillText('Spatiu emergent (proiectia 3D)', cx, cy + 20 + (mouseY - 0.5) * 30);
+
+      animFrame++;
+      requestAnimationFrame(drawHologram);
+    }
+
+    densitySlider.addEventListener('input', () => {});
+    entangleSlider.addEventListener('input', () => {});
+    drawHologram();
+
+    // ──────────────────────────────────────────────────────
+    // Entropy Calculator
+    // ──────────────────────────────────────────────────────
+    const radiusSlider = document.getElementById('radiusSlider');
+    const radiusReadout = document.getElementById('radiusReadout');
+
+    function updateEntropy() {
+      const R = parseInt(radiusSlider.value);
+      radiusReadout.textContent = `${R} Gly`;
+
+      // Area of sphere: 4 * pi * R^2
+      const area = 4 * Math.PI * R * R;
+      // Bekenstein entropy ~ A / (4 * l_p^2), expressed as order of magnitude
+      // For R = 46 Gly, entropy ~ 10^122
+      const baseEntropy = 122; // for R=46
+      const scaledEntropy = baseEntropy + 2 * Math.log10(R / 46);
+      const entropyOrder = Math.round(scaledEntropy * 10) / 10;
+      const bitsOrder = entropyOrder; // same order
+
+      document.getElementById('areaVal').textContent = `${area.toFixed(0)} Gly²`;
+      document.getElementById('entropyVal').textContent = `~10^${entropyOrder.toFixed(1)} (unitati Planck)`;
+      document.getElementById('bitsVal').textContent = `~10^${bitsOrder.toFixed(1)} biti`;
+
+      const comparison = Math.round(Math.pow(10, entropyOrder - 13));
+      let compStr = '';
+      if (comparison >= 1e100) compStr = `10^${Math.round(entropyOrder - 13)}`;
+      else compStr = comparison.toExponential(0);
+      document.getElementById('comparisonVal').textContent = compStr;
+
+      // Update SVG bars
+      const maxR = 100;
+      const vol = (4/3) * Math.PI * Math.pow(R, 3);
+      const maxVol = (4/3) * Math.PI * Math.pow(maxR, 3);
+      const maxArea = 4 * Math.PI * maxR * maxR;
+
+      const volPct = Math.min((vol / maxVol) * 360, 360);
+      const areaPct = Math.min((area / maxArea) * 360, 360);
+
+      document.getElementById('volBar').setAttribute('width', volPct);
+      document.getElementById('areaBar').setAttribute('width', areaPct);
+      document.getElementById('volLabel').textContent = `${(vol).toFixed(0)} Gly³`;
+      document.getElementById('volLabel').setAttribute('x', 30 + volPct);
+      document.getElementById('areaLabel').textContent = `${area.toFixed(0)} Gly²`;
+      document.getElementById('areaLabel').setAttribute('x', 30 + areaPct);
+    }
+
+    radiusSlider.addEventListener('input', updateEntropy);
+    updateEntropy();
+
+    // ──────────────────────────────────────────────────────
+    // Tabs
+    // ──────────────────────────────────────────────────────
+    document.querySelectorAll('.tabBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tabContent').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz
+    // ──────────────────────────────────────────────────────
+    const quizData = [
+      {
+        q: 'Ce inseamna „marginea universului" conform lui Susskind?',
+        options: [
+          'Un zid fizic unde spatiul se opreste brusc',
+          'Orizontul cosmologic — o granita fundamentala de informatie',
+          'Locul unde galaxiile se termina',
+          'O limita temporara pe care o vom depasi cu tehnologia viitoare'
+        ],
+        correct: 1,
+        explanation: 'Susskind nu vorbeste despre un zid fizic. „Marginea" e orizontul cosmologic — granita dincolo de care lumina nu ne va ajunge niciodata, unde e codificata toata informatia universului.'
+      },
+      {
+        q: 'Ce spune principiul holografic?',
+        options: [
+          'Universul e o iluzie optica',
+          'Spatiul 3D nu exista deloc',
+          'Toata informatia unui volum 3D e codificata pe suprafata 2D a granitei sale',
+          'Gaurile negre sunt holografii'
+        ],
+        correct: 2,
+        explanation: 'Principiul holografic spune ca informatia dintr-un volum 3D poate fi complet descrisa de informatia de pe suprafata 2D care il inconjoara — ca o hologramă unde o imagine plata contine informatia 3D.'
+      },
+      {
+        q: 'De ce nu putem vedea dincolo de orizontul cosmologic?',
+        options: [
+          'E prea intuneric acolo',
+          'Telescoapele noastre nu sunt destul de puternice',
+          'Spatiul se extinde mai repede decat poate calatori lumina',
+          'Exista o bariera fizica'
+        ],
+        correct: 2,
+        explanation: 'Din cauza energiei intunecate, spatiul se extinde accelerat. Dincolo de orizont, expansiunea e mai rapida decat viteza luminii, asa ca lumina de acolo nu ne va ajunge niciodata — nu e o problema de tehnologie, ci una fundamentala.'
+      },
+      {
+        q: 'Ce inseamna ca spatiu-timpul e „emergent"?',
+        options: [
+          'A fost creat la Big Bang dintr-o data',
+          'Apare din ceva mai fundamental, asa cum valurile apar din moleculele de apa',
+          'E in continua schimbare',
+          'E mai nou decat materia'
+        ],
+        correct: 1,
+        explanation: '„Emergent" inseamna ca spatiul 3D si timpul nu sunt fundamentale — ele apar ca pattern-uri din informatia cuantica de pe granita 2D, asa cum temperatura apare din miscarea moleculelor sau valurile apar din apa.'
+      },
+      {
+        q: 'Conform limitei Bekenstein, informatia maxima dintr-o regiune depinde de:',
+        options: [
+          'Volumul regiunii',
+          'Cantitatea de materie din regiune',
+          'Aria suprafetei care inconjoara regiunea',
+          'Temperatura regiunii'
+        ],
+        correct: 2,
+        explanation: 'Limita Bekenstein arata ca informatia maxima e proportionala cu aria suprafetei, nu cu volumul. Asta e cheia principiului holografic — suprafata (2D) contine toata informatia volumului (3D).'
+      }
+    ];
+
+    let quizAnswered = new Array(quizData.length).fill(false);
+    let quizCorrect = 0;
+
+    function renderQuiz() {
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = '';
+      quizCorrect = 0;
+      quizAnswered.fill(false);
+
+      quizData.forEach((item, qi) => {
+        const div = document.createElement('div');
+        div.style.cssText = 'border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(0,0,0,.12);padding:14px;margin-bottom:12px';
+        div.innerHTML = `
+          <div style="font-size:14px;font-weight:600;margin-bottom:10px">${qi + 1}. ${item.q}</div>
+          <div class="quiz-options" data-qi="${qi}">
+            ${item.options.map((opt, oi) => `<button class="quizOption" data-oi="${oi}">${opt}</button>`).join('')}
+          </div>
+          <div class="quizFeedback" id="feedback-${qi}"></div>
+        `;
+        container.appendChild(div);
+      });
+
+      document.querySelectorAll('.quiz-options').forEach(group => {
+        group.querySelectorAll('.quizOption').forEach(btn => {
+          btn.addEventListener('click', handleQuizAnswer);
+        });
+      });
+
+      updateQuizScore();
+    }
+
+    function handleQuizAnswer(e) {
+      const btn = e.currentTarget;
+      const group = btn.parentElement;
+      const qi = parseInt(group.dataset.qi);
+      const oi = parseInt(btn.dataset.oi);
+
+      if (quizAnswered[qi]) return;
+      quizAnswered[qi] = true;
+
+      const correct = quizData[qi].correct;
+      const allBtns = group.querySelectorAll('.quizOption');
+
+      allBtns.forEach((b, i) => {
+        b.style.pointerEvents = 'none';
+        if (i === correct) b.classList.add('correct');
+        if (i === oi && i !== correct) b.classList.add('wrong');
+      });
+
+      const feedback = document.getElementById(`feedback-${qi}`);
+      if (oi === correct) {
+        quizCorrect++;
+        feedback.innerHTML = `<span style="color:var(--good)">Corect!</span> ${quizData[qi].explanation}`;
+      } else {
+        feedback.innerHTML = `<span style="color:var(--bad)">Gresit.</span> ${quizData[qi].explanation}`;
+      }
+
+      updateQuizScore();
+    }
+
+    function updateQuizScore() {
+      document.getElementById('quizScore').innerHTML = `<b>Scor:</b> ${quizCorrect}/${quizData.length}`;
+    }
+
+    renderQuiz();
+
+    document.getElementById('resetQuiz').addEventListener('click', () => {
+      renderQuiz();
+      showToast('Test resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpQuiz').addEventListener('click', () => {
+      document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

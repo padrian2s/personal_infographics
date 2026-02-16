@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce viata inteligenta e improbabila — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv bazat pe argumentul lui Leonard Susskind: viata inteligenta este extraordinar de improbabila. Ecuatia Drake, paradoxul Fermi, Marele Filtru si responsabilitatea cosmica." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.06), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--warn), var(--bad)); box-shadow: 0 0 22px rgba(255,122,153,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.08;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap:wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill / tag */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .callout.warn{
+      border-left-color: rgba(255,210,122,.7);
+      background: rgba(255,210,122,.08);
+    }
+    .callout.bad{
+      border-left-color: rgba(255,122,153,.7);
+      background: rgba(255,122,153,.08);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 16px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    /* Timeline bar */
+    .timeline{position:relative;margin:14px 0 8px;padding:0}
+    .tlBar{height:28px;border-radius:14px;overflow:hidden;display:flex;border:1px solid rgba(255,255,255,.10)}
+    .tlSeg{height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,0,0,.7);font-weight:700;transition:flex .3s ease}
+    .tlLabels{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--faint)}
+
+    /* Drake controls */
+    .drakeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media (max-width:740px){.drakeGrid{grid-template-columns:1fr}}
+    .drakeResult{
+      margin-top:14px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      text-align:center;
+    }
+    .drakeResult .big{font-size:clamp(28px,4vw,48px);font-weight:800;font-family:var(--mono)}
+
+    /* Filter selector */
+    .filterBtns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .filterBtn{
+      appearance:none;border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);color:var(--muted);
+      padding:8px 14px;border-radius:999px;cursor:pointer;
+      font-size:12px;transition:all .15s ease;
+    }
+    .filterBtn:hover,.filterBtn.active{border-color:var(--cyan);color:var(--text);background:rgba(122,215,255,.10)}
+
+    /* Hallmarks grid */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Glow text */
+    .glow{text-shadow:0 0 30px rgba(255,210,122,.3)}
+
+    /* 3col */
+    .col3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:860px){.col3{grid-template-columns:1fr}}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,210,122,.45)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.30)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Scattered stars / dots -->
+            <circle cx="80" cy="40" r="2" fill="rgba(255,255,255,.6)"/>
+            <circle cx="150" cy="120" r="1.5" fill="rgba(255,255,255,.4)"/>
+            <circle cx="230" cy="30" r="2.5" fill="rgba(255,210,122,.7)"/>
+            <circle cx="310" cy="90" r="1.8" fill="rgba(255,255,255,.5)"/>
+            <circle cx="400" cy="50" r="2.2" fill="rgba(187,167,255,.6)"/>
+            <circle cx="460" cy="140" r="1.5" fill="rgba(255,255,255,.3)"/>
+            <circle cx="180" cy="180" r="2" fill="rgba(122,215,255,.5)"/>
+            <circle cx="350" cy="170" r="1.8" fill="rgba(255,255,255,.4)"/>
+            <!-- Spiral galaxy hint -->
+            <ellipse cx="290" cy="110" rx="90" ry="35" fill="none" stroke="url(#g1)" stroke-width="6" opacity=".4" transform="rotate(-15 290 110)"/>
+            <ellipse cx="290" cy="110" rx="55" ry="20" fill="none" stroke="url(#g2)" stroke-width="4" opacity=".35" transform="rotate(-15 290 110)"/>
+            <circle cx="290" cy="110" r="8" fill="rgba(255,210,122,.5)"/>
+            <!-- Small Earth dot -->
+            <circle cx="345" cy="100" r="3.5" fill="rgba(122,215,255,.7)" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+            <text x="345" y="88" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle" font-family="ui-sans-serif,system-ui">Noi</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica &bull; paradoxul fermi &bull; ecuatia drake &bull; cosmologie</div>
+          <h1>De ce viata inteligenta este extraordinar de improbabila</h1>
+          <p class="subtitle">
+            Leonard Susskind, unul dintre cei mai importanti fizicieni ai lumii, sustine ca tacerea cosmica nu este o coincidenta:
+            <b>s-ar putea sa fim singuri in univers</b>. Nu pentru ca nu am cautat destul, ci pentru ca barierele dintre chimia simpla
+            si o civilizatie tehnologica sunt aproape insurmontabile.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpDrake">Calculator ecuatia Drake</button>
+            <button class="btn" id="jumpTimeline">Cronologia vietii</button>
+            <button class="btn" id="jumpFilter">Marele Filtru</button>
+            <button class="btn" id="toggleNotes">Comentarii pornit/oprit</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Cifre cheie">
+          <div class="stat">
+            <div class="label">Stele in Calea Lactee</div>
+            <div class="value">100 - 400 miliarde</div>
+            <div class="note">Aproape fiecare stea are cel putin o planeta.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Viata pe Pamant</div>
+            <div class="value">3,8 miliarde ani</div>
+            <div class="note">Din care 3 miliarde doar bacterii unicelulare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Viata inteligenta</div>
+            <div class="value">~0,001% din istoria Pamantului</div>
+            <div class="note">Cateva zeci de mii de ani dintr-o istorie de 4,5 miliarde.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Semnale radio detectabile</div>
+            <div class="value">~100 ani (din 1920)</div>
+            <div class="note">Bula noastra radio acopera o milionime din galaxie.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION: Paradoxul Fermi -->
+      <section class="card" aria-label="Paradoxul Fermi">
+        <div class="cardHeader">
+          <h2>Paradoxul Fermi: "Unde sunt toti?"</h2>
+          <div class="chip"><b>1950</b> &mdash; Enrico Fermi</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                In 1950, fizicianul Enrico Fermi lua pranzul cu colegii la Los Alamos. Discutau despre extraterestri si farfurii zburatoare.
+                Fermi a pus o intrebare simpla dar devastatoare: <b>"Unde sunt toti?"</b>
+              </p>
+              <p class="muted">
+                Logica lui era directa: galaxia noastra are 13 miliarde de ani. Contine sute de miliarde de stele cu planete.
+                Daca si o mica fractiune a dezvoltat viata inteligenta, galaxia ar trebui sa fie plina de dovezi &mdash; semnale radio,
+                megastructuri, sonde, ceva. <b>Dar nu vedem nimic.</b> Cerul e complet tacut.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Paradoxul Fermi e puternic tocmai prin simplitatea lui. Nu cere tehnologie avansata ca sa-l formulezi &mdash;
+                doar numere mari si lipsa de dovezi. Tacerea devine ea insasi un indiciu: ori viata inteligenta e rara,
+                ori civilizatiile nu dureaza, ori fac ceva ce noi nu putem detecta.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:16px">
+                <svg viewBox="0 0 440 320" role="img" aria-label="Galaxie tacuta">
+                  <defs>
+                    <radialGradient id="gx1" cx="50%" cy="50%" r="50%">
+                      <stop offset="0" stop-color="rgba(255,210,122,.20)"/>
+                      <stop offset="1" stop-color="rgba(255,210,122,0)"/>
+                    </radialGradient>
+                    <filter id="starGlow">
+                      <feGaussianBlur stdDeviation="2"/>
+                    </filter>
+                  </defs>
+                  <!-- Galaxy center glow -->
+                  <ellipse cx="220" cy="160" rx="180" ry="70" fill="url(#gx1)"/>
+                  <ellipse cx="220" cy="160" rx="160" ry="55" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                  <ellipse cx="220" cy="160" rx="120" ry="40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <ellipse cx="220" cy="160" rx="80" ry="25" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                  <!-- Stars scattered -->
+                  <g filter="url(#starGlow)" opacity=".7">
+                    <circle cx="90" cy="140" r="1.5" fill="rgba(255,255,255,.6)"/>
+                    <circle cx="130" cy="180" r="1" fill="rgba(255,255,255,.4)"/>
+                    <circle cx="170" cy="130" r="1.8" fill="rgba(255,255,255,.5)"/>
+                    <circle cx="210" cy="175" r="1.2" fill="rgba(255,255,255,.4)"/>
+                    <circle cx="260" cy="140" r="1.5" fill="rgba(255,255,255,.5)"/>
+                    <circle cx="300" cy="170" r="1" fill="rgba(255,255,255,.4)"/>
+                    <circle cx="340" cy="150" r="1.8" fill="rgba(255,255,255,.5)"/>
+                    <circle cx="150" cy="155" r="1" fill="rgba(255,255,255,.3)"/>
+                    <circle cx="280" cy="155" r="1.3" fill="rgba(255,255,255,.4)"/>
+                    <circle cx="380" cy="160" r="1" fill="rgba(255,255,255,.3)"/>
+                  </g>
+                  <!-- Earth marker -->
+                  <circle cx="310" cy="145" r="5" fill="rgba(122,215,255,.6)" stroke="rgba(122,215,255,.4)" stroke-width="2"/>
+                  <text x="310" y="128" text-anchor="middle" font-size="10" fill="var(--cyan)" font-family="var(--sans)">Pamant</text>
+                  <!-- Radio bubble -->
+                  <circle cx="310" cy="145" r="12" fill="none" stroke="rgba(122,215,255,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <text x="310" y="170" text-anchor="middle" font-size="8" fill="var(--faint)" font-family="var(--sans)">bula radio ~100 a.l.</text>
+                  <!-- Galaxy label -->
+                  <text x="220" y="250" text-anchor="middle" font-size="12" fill="var(--faint)" font-family="var(--sans)">Calea Lactee: ~100.000 ani-lumina diametru</text>
+                  <!-- Question marks scattered -->
+                  <text x="100" cy="100" y="100" font-size="16" fill="rgba(255,122,153,.35)" font-family="var(--sans)">?</text>
+                  <text x="180" y="200" font-size="14" fill="rgba(255,122,153,.25)" font-family="var(--sans)">?</text>
+                  <text x="350" y="120" font-size="18" fill="rgba(255,122,153,.3)" font-family="var(--sans)">?</text>
+                  <text x="240" y="105" font-size="12" fill="rgba(255,122,153,.2)" font-family="var(--sans)">?</text>
+                  <!-- Silence label -->
+                  <text x="220" y="280" text-anchor="middle" font-size="13" fill="var(--bad)" font-weight="700" font-family="var(--sans)">Tacere. Nicaieri nimic.</text>
+                </svg>
+              </div>
+              <div class="small" style="margin-top:8px">Bula noastra radio (aprox. 100 ani-lumina) e minuscula comparativ cu galaxia (100.000 ani-lumina). Dar chiar si asa, ar fi trebuit sa detectam ceva de la altii.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Ecuatia Drake -->
+      <section class="card" id="drakeSection" aria-label="Ecuatia Drake">
+        <div class="cardHeader">
+          <h2>Ecuatia Drake: calculator interactiv</h2>
+          <div class="chip"><b>1961</b> &mdash; Frank Drake</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            In 1961, astronomul Frank Drake a propus o ecuatie pentru a estima numarul de civilizatii detectabile din galaxia noastra.
+            Fiecare termen inmulteste probabilitatea cu un alt "filtru". Misca slidere-le de mai jos pentru a vedea cum se schimba rezultatul.
+          </p>
+          <p class="muted" style="font-family:var(--mono);font-size:13px;background:rgba(0,0,0,.2);padding:10px 12px;border-radius:12px;border:1px solid var(--stroke)">
+            N = R<sub>*</sub> &times; f<sub>p</sub> &times; n<sub>e</sub> &times; f<sub>l</sub> &times; f<sub>i</sub> &times; f<sub>c</sub> &times; L
+          </p>
+
+          <div class="drakeGrid" id="drakeControls">
+            <div class="control">
+              <label><span>R* &mdash; stele/an</span><span class="readout" id="rR">2</span></label>
+              <input type="range" min="1" max="10" value="2" step="0.5" id="sR"/>
+              <div class="small" style="margin-top:6px">Rata formarii stelelor in galaxie. Cam 1-3 pe an.</div>
+            </div>
+            <div class="control">
+              <label><span>fp &mdash; stele cu planete</span><span class="readout" id="rFp">1.0</span></label>
+              <input type="range" min="0.1" max="1" value="1" step="0.05" id="sFp"/>
+              <div class="small" style="margin-top:6px">Aproape fiecare stea are planete (Kepler a confirmat).</div>
+            </div>
+            <div class="control">
+              <label><span>ne &mdash; planete locuibile</span><span class="readout" id="rNe">0.2</span></label>
+              <input type="range" min="0.01" max="1" value="0.2" step="0.01" id="sNe"/>
+              <div class="small" style="margin-top:6px">Cate planete din zona locuibila (apa lichida posibila).</div>
+            </div>
+            <div class="control">
+              <label><span>fl &mdash; viata apare</span><span class="readout" id="rFl">0.5</span></label>
+              <input type="range" min="0.000001" max="1" value="0.5" step="0.000001" id="sFl"/>
+              <div class="small" style="margin-top:6px">Pe cate planete locuibile apare viata? Incert: de la ~1 la 10<sup>-10</sup>.</div>
+            </div>
+            <div class="control">
+              <label><span>fi &mdash; inteligenta apare</span><span class="readout" id="rFi">0.001</span></label>
+              <input type="range" min="0.0000001" max="0.1" value="0.001" step="0.0000001" id="sFi"/>
+              <div class="small" style="margin-top:6px"><b>Termenul critic.</b> Susskind: probabil extrem de mic (~10<sup>-9</sup>).</div>
+            </div>
+            <div class="control">
+              <label><span>fc &mdash; emit semnale</span><span class="readout" id="rFc">0.1</span></label>
+              <input type="range" min="0.001" max="1" value="0.1" step="0.001" id="sFc"/>
+              <div class="small" style="margin-top:6px">Cate civilizatii emit semnale detectabile?</div>
+            </div>
+          </div>
+
+          <div class="control" style="margin-top:10px">
+            <label><span>L &mdash; durata (ani)</span><span class="readout" id="rL">1000</span></label>
+            <input type="range" min="100" max="1000000" value="1000" step="100" id="sL"/>
+            <div class="small" style="margin-top:6px">Cat dureaza o civilizatie care emite semnale? 100 de ani? 1 milion?</div>
+          </div>
+
+          <div class="drakeResult" id="drakeResult">
+            <div class="small" style="margin-bottom:6px">Numar estimat de civilizatii detectabile in galaxie (N)</div>
+            <div class="big" id="drakeN" style="color:var(--warn)">0.02</div>
+            <div class="small" id="drakeVerdict" style="margin-top:6px"></div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observa cat de sensibil e rezultatul la termenul <b>f<sub>i</sub></b> (probabilitatea ca inteligenta sa apara).
+            Susskind argumenteaza ca acesta ar putea fi 10<sup>-9</sup> sau chiar mai mic. La astfel de valori, chiar si cu miliarde de planete
+            locuibile, obtii N < 1 &mdash; adica probabil suntem singuri in galaxie.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Cronologia vietii pe Pamant -->
+      <section class="card" id="timelineSection" aria-label="Cronologia vietii pe Pamant">
+        <div class="cardHeader">
+          <h2>Cronologia vietii pe Pamant: 4,5 miliarde de ani intr-o privire</h2>
+          <div class="chip"><b>Mesaj:</b> inteligenta e un moment fugitiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Daca ai comprima istoria Pamantului intr-un an calendaristic, viata inteligenta ar aparea la 31 decembrie, in ultimele secunde inainte de miezul noptii.
+            Bara de mai jos arata proportiile reale.
+          </p>
+
+          <div class="timeline">
+            <div class="tlBar" id="tlBar">
+              <div class="tlSeg" style="flex:700;background:linear-gradient(90deg,rgba(100,100,120,.5),rgba(80,80,100,.4))" title="Fara viata: 0 - 0,7 mld ani">Fara viata</div>
+              <div class="tlSeg" style="flex:3000;background:linear-gradient(90deg,rgba(117,240,182,.25),rgba(117,240,182,.35))" title="Doar bacterii: 0,7 - 3,7 mld ani">Doar bacterii (~3 mld ani)</div>
+              <div class="tlSeg" style="flex:200;background:linear-gradient(90deg,rgba(255,210,122,.3),rgba(255,210,122,.4))" title="Miliard plictisitor + Pamant bulg. de zapada">Miliard plictisitor</div>
+              <div class="tlSeg" style="flex:540;background:linear-gradient(90deg,rgba(122,215,255,.3),rgba(187,167,255,.35))" title="Viata complexa: animale, plante">Viata complexa</div>
+              <div class="tlSeg" style="flex:60;background:linear-gradient(90deg,rgba(255,179,138,.5),rgba(255,122,153,.4))" title="Viata inteligenta">
+                <span style="font-size:8px">Noi</span>
+              </div>
+            </div>
+            <div class="tlLabels">
+              <span>4,5 mld ani</span>
+              <span>3,8 mld (viata apare)</span>
+              <span>2,4 mld (oxigen)</span>
+              <span>540 mil (Cambrian)</span>
+              <span>Azi</span>
+            </div>
+          </div>
+
+          <div class="col3" style="margin-top:14px">
+            <div class="flowNode">
+              <h3 style="color:var(--good)">3,8 mld ani in urma</h3>
+              <p>Viata apare (bacterii). Atmosfera fara oxigen &mdash; azot, CO<sub>2</sub>, metan. Metabolism anaerob.</p>
+              <div class="meta"><span class="badge">unicelulare</span><span class="badge">anaerob</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--warn)">2,4 mld ani &mdash; Marea Oxidare</h3>
+              <p>Cianobacteriile produc oxigen ca "deseu". La inceput, oxigenul e absorbit de fierul din oceane (depozite de rugina vizibile si azi). Apoi incepe sa se acumuleze in atmosfera. <b>Catastrofa</b> pentru organismele anaerobe.</p>
+              <div class="meta"><span class="badge">oxigen toxic</span><span class="badge">prima extinctie</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--cyan)">540 mil ani &mdash; Explozia Cambriana</h3>
+              <p>Dupa "miliardul plictisitor" (oxigen la nivele prea mici) si "Pamantul bulgarete de zapada" (inghetat complet!), in sfarsit apar animalele complexe: ochi, sisteme nervoase, pradatori.</p>
+              <div class="meta"><span class="badge">animale</span><span class="badge">complexitate</span></div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Miliardul plictisitor</strong><span class="badge" style="color:var(--warn)">1,8 - 0,8 mld ani</span></div>
+              <p>Un miliard de ani in care nimic interesant nu se intampla. Oxigenul ramane la 1-10% din nivelul actual. Prea putin pentru viata complexa. Imaginati-va: un miliard de ani de stagnare.</p>
+              <div class="meter"><i style="width:22%;background:var(--warn)"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Pamantul bulgarete de zapada</strong><span class="badge" style="color:var(--cyan)">720 - 635 mil ani</span></div>
+              <p>Planeta ingheata complet &mdash; gheata de la pol la ecuator. Posibil de mai multe ori. Viata abia supravietuieste.</p>
+              <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--cyan),var(--bad))"></i></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Punctul cheie al lui Susskind: <b>nimic din aceasta cronologie nu pare inevitabil</b>.
+            Oxigenul ar fi putut sa nu se acumuleze. Pamantul ar fi putut ramane inghetat.
+            Explozia Cambriana ar fi putut sa nu aiba loc. Fiecare pas a fost contingent &mdash; adica a depins de circumstante specifice care
+            puteau sa nu se produca. Pamantul ar fi putut ramane o planeta de bacterii pentru totdeauna.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: De ce inteligenta nu e inevitabila -->
+      <section class="row">
+        <div class="card" aria-label="Inteligenta nu e inevitabila">
+          <div class="cardHeader">
+            <h2>De ce inteligenta NU e un rezultat inevitabil al evolutiei</h2>
+            <div class="chip"><b>Bottleneck</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Multi oameni presupun ca, odata ce viata complexa apare, inteligenta va evolua mai devreme sau mai tarziu. Susskind argumenteaza ca <b>nu este asa</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Dinozaurii: 165 milioane de ani fara inteligenta</h3>
+                <p>Dinozaurii au dominat Pamantul timp de 165 milioane de ani &mdash; mult mai mult decat mamiferele. Unii aveau creiere mari relativ la corp. Unii erau sociali. Dar niciunul nu a dezvoltat limbaj, unelte complexe sau tehnologie. De ce? Pentru ca <b>inteligenta nu le era necesara</b>.</p>
+                <div class="meta"><span class="badge">165 mil ani</span><span class="badge">nicio civilizatie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Creierul e scump: 2% din masa, 20% din energie</h3>
+                <p>Creierul uman consuma ~20% din toata energia corpului, desi reprezinta doar ~2% din greutate. Este un organ extrem de "scump" metabolic. Pentru majoritatea speciilor, acest cost nu merita &mdash; rechinii au fost de succes 450 milioane de ani cu creiere mici.</p>
+                <div class="meta"><span class="badge">cost metabolic</span><span class="badge">20% energie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Din miliarde de specii, doar UNA a dezvoltat tehnologie</h3>
+                <p>Ciori, caracatite, delfini &mdash; toate sunt inteligente. Dar niciuna n-a construit orase sau nu a inventat scrierea. Dintr-un numar estimat de miliarde de specii care au existat pe Pamant, <b>o singura linie</b> &mdash; hominizii africani &mdash; a ajuns la civilizatie.</p>
+                <div class="meta"><span class="badge">o singura linie</span><span class="badge">contingenta</span></div>
+              </div>
+            </div>
+
+            <div class="callout warn" data-commentary>
+              <b>Comentariu:</b> Biologul Ernst Mayr a argumentat ca f<sub>i</sub> (probabilitatea ca inteligenta sa apara) ar putea fi ~10<sup>-9</sup> sau si mai mic.
+              Daca e asa, chiar daca fiecare planeta locuibila ar dezvolta viata, inteligenta ramane extrem de rara.
+              Inteligenta e un accident, nu o destinatie.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Tectonica placilor">
+          <div class="cardHeader">
+            <h2>Cerinte geologice ascunse: tectonica placilor</h2>
+            <div class="chip"><b>Stern & Geria 2024</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Un studiu din 2024 propune ca ecuatia Drake are nevoie de inca doi termeni: planeta trebuie sa aiba <b>tectonica placilor</b> si <b>continente + oceane</b>.
+            </p>
+
+            <div class="viz" style="padding:16px" aria-label="Diagrama cerinte planetare">
+              <svg viewBox="0 0 460 300" role="img">
+                <defs>
+                  <filter id="sf2"><feGaussianBlur stdDeviation="6"/></filter>
+                </defs>
+                <!-- Planet circle -->
+                <circle cx="230" cy="140" r="90" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.15)" stroke-width="1.5"/>
+                <!-- Tectonic lines -->
+                <path d="M170,100 Q200,130 190,170 Q185,200 210,220" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="2" stroke-dasharray="4 4"/>
+                <path d="M250,80 Q270,120 260,160 Q255,190 280,210" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="2" stroke-dasharray="4 4"/>
+                <path d="M190,110 Q230,100 270,110" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <!-- Continent patches -->
+                <ellipse cx="210" cy="125" rx="25" ry="18" fill="rgba(117,240,182,.15)" stroke="rgba(117,240,182,.25)" stroke-width="1"/>
+                <ellipse cx="255" cy="155" rx="20" ry="25" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.2)" stroke-width="1"/>
+                <!-- Ocean label -->
+                <text x="230" y="200" text-anchor="middle" font-size="10" fill="var(--cyan)" font-family="var(--sans)">Oceane</text>
+                <!-- Continent label -->
+                <text x="210" y="113" text-anchor="middle" font-size="9" fill="var(--good)" font-family="var(--sans)">Continent</text>
+                <!-- Moon -->
+                <circle cx="370" cy="70" r="18" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                <text x="370" y="100" text-anchor="middle" font-size="9" fill="var(--faint)" font-family="var(--sans)">Luna</text>
+                <line x1="320" y1="90" x2="355" y2="78" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="3 3"/>
+                <!-- Requirements -->
+                <text x="10" y="275" font-size="11" fill="var(--muted)" font-family="var(--sans)">Cerinte: marime corecta + apa lichida + luna mare + caldura interna</text>
+              </svg>
+            </div>
+
+            <div class="riskGrid" style="margin-top:10px">
+              <div class="risk">
+                <div class="rTop"><strong>Ce face tectonica</strong><span class="badge">esential</span></div>
+                <p>Recicleaza carbonul (regleaza clima). Creeaza medii diverse (munti, vai, coaste). Probabil a jucat rol in cresterea oxigenului.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Cat de rara e?</strong><span class="badge" style="color:var(--bad)">extrem</span></div>
+                <p>Stern & Geria estimeaza: doar <b>0,003% - 0,2%</b> din planetele locuibile au tectonica de lunga durata. La limita de jos, 3 din 100.000.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Daca adaugi acesti termeni suplimentari in ecuatia Drake, numarul de civilizatii scade dramatic &mdash;
+              de la mii/milioane la aproape zero. E ca si cum ai adauga inca un filtru peste un filtru care era deja foarte restrictiv.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Marele Filtru -->
+      <section class="card" id="filterSection" aria-label="Marele Filtru">
+        <div class="cardHeader">
+          <h2>Marele Filtru: unde e bariera?</h2>
+          <div class="chip"><b>Robin Hanson</b> &mdash; concept crucial</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            "Marele Filtru" e o bariera enorma undeva intre formarea unei planete si o civilizatie galacticaa.
+            Intrebarea cruciala: <b>l-am trecut deja, sau ne asteapta?</b>
+          </p>
+
+          <div class="viz" style="padding:16px" id="filterViz">
+            <svg viewBox="0 0 900 220" role="img" aria-label="Diagrama Marele Filtru" id="filterSvg">
+              <defs>
+                <linearGradient id="fgGood" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(117,240,182,.25)"/>
+                  <stop offset="1" stop-color="rgba(122,215,255,.25)"/>
+                </linearGradient>
+                <linearGradient id="fgBad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,210,122,.25)"/>
+                  <stop offset="1" stop-color="rgba(255,122,153,.25)"/>
+                </linearGradient>
+              </defs>
+              <!-- Steps -->
+              <g font-family="var(--sans)" font-size="11" fill="var(--muted)">
+                <!-- Step boxes -->
+                <rect x="20" y="40" width="105" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="72" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Planeta</text>
+                <text x="72" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">locuibila</text>
+
+                <rect x="145" y="40" width="105" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="197" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Viata</text>
+                <text x="197" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">simpla</text>
+
+                <rect x="270" y="40" width="105" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="322" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Viata</text>
+                <text x="322" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">complexa</text>
+
+                <rect x="395" y="40" width="105" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="447" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Inteligenta</text>
+                <text x="447" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">+ tehnologie</text>
+
+                <rect x="520" y="40" width="105" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="572" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Civilizatie</text>
+                <text x="572" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">durabila</text>
+
+                <rect x="645" y="40" width="120" height="50" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="705" y="60" text-anchor="middle" font-size="10" fill="var(--faint)">Colonizare</text>
+                <text x="705" y="75" text-anchor="middle" font-size="10" fill="var(--faint)">galacticaa</text>
+
+                <!-- Arrows -->
+                <path d="M125,65 L145,65" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none" marker-end="none"/>
+                <path d="M250,65 L270,65" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+                <path d="M375,65 L395,65" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+                <path d="M500,65 L520,65" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+                <path d="M625,65 L645,65" stroke="rgba(255,255,255,.2)" stroke-width="1.5" fill="none"/>
+              </g>
+
+              <!-- Filter marker (moveable) -->
+              <g id="filterMarker">
+                <rect id="filterRect" x="260" y="20" width="125" height="90" rx="14" fill="none" stroke="var(--bad)" stroke-width="2.5" stroke-dasharray="6 4" opacity=".8"/>
+                <text id="filterLabel" x="322" y="135" text-anchor="middle" font-size="12" fill="var(--bad)" font-weight="700" font-family="var(--sans)">MARELE FILTRU</text>
+              </g>
+
+              <!-- Scenario descriptions -->
+              <g id="filterDesc">
+                <rect x="20" y="155" width="420" height="50" rx="14" fill="url(#fgGood)" stroke="rgba(117,240,182,.2)"/>
+                <text x="40" y="177" font-size="12" fill="var(--good)" font-weight="700" font-family="var(--sans)" id="scenarioTitle">Scenariul optimist</text>
+                <text x="40" y="195" font-size="11" fill="var(--muted)" font-family="var(--sans)" id="scenarioDesc">Filtrul e in spatele nostru. L-am trecut deja. Suntem rari, dar in siguranta.</text>
+
+                <rect x="460" y="155" width="420" height="50" rx="14" fill="url(#fgBad)" stroke="rgba(255,122,153,.2)"/>
+                <text x="480" y="177" font-size="12" fill="var(--bad)" font-weight="700" font-family="var(--sans)">Scenariul pesimist</text>
+                <text x="480" y="195" font-size="11" fill="var(--muted)" font-family="var(--sans)">Filtrul e in fata noastra. Ceva ne va distruge inainte sa colonizam galaxia.</text>
+              </g>
+            </svg>
+          </div>
+
+          <p class="small" style="margin-bottom:8px">Alege unde crezi ca se afla Marele Filtru:</p>
+          <div class="filterBtns" id="filterBtns">
+            <button class="filterBtn" data-pos="0">Planeta locuibila</button>
+            <button class="filterBtn active" data-pos="1">Viata simpla</button>
+            <button class="filterBtn" data-pos="2">Viata complexa</button>
+            <button class="filterBtn" data-pos="3">Inteligenta</button>
+            <button class="filterBtn" data-pos="4">Civilizatie durabila</button>
+            <button class="filterBtn" data-pos="5">Colonizare</button>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind spera ca filtrul este <b>in spatele nostru</b> &mdash; adica faptul ca suntem rari e o veste buna.
+            Inseamna ca am trecut obstacolul cel mai greu. Alternativa, ca filtrul e in fata (razboi nuclear, climat, inteligenta artificiala scapata de sub control),
+            ar insemna ca majoritatea civilizatiilor se autodistrug inainte sa se raspandeasca.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Bula radio si detectie -->
+      <section class="row">
+        <div class="card" aria-label="Bula radio">
+          <div class="cardHeader">
+            <h2>Fereastra radio: de ce nu ne putem auzi</h2>
+            <div class="chip"><b>~100 ani</b> de semnale</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Omenirea emite semnale radio detectabile abia de ~100 de ani (din anii 1920). Asta inseamna ca "bula" noastra radio
+              are o raza de doar 100 de ani-lumina. Galaxia are 100.000 de ani-lumina diametru.
+            </p>
+
+            <div class="viz" style="padding:16px">
+              <svg viewBox="0 0 460 240" role="img" aria-label="Comparatie bula radio vs galaxie">
+                <!-- Galaxy bar -->
+                <rect x="20" y="30" width="420" height="40" rx="20" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.15)" stroke-width="1"/>
+                <text x="230" y="55" text-anchor="middle" font-size="12" fill="var(--violet)" font-family="var(--sans)">Calea Lactee: 100.000 ani-lumina</text>
+                <!-- Radio bubble (proportional: 100/100000 = 0.1%) -->
+                <rect x="280" y="35" width="1" height="30" rx="0.5" fill="var(--cyan)" opacity=".8"/>
+                <line x1="281" y1="50" x2="320" y2="85" stroke="rgba(122,215,255,.3)" stroke-width="1"/>
+                <text x="322" y="90" font-size="10" fill="var(--cyan)" font-family="var(--sans)">Bula noastra radio</text>
+                <text x="322" y="104" font-size="9" fill="var(--faint)" font-family="var(--sans)">100 a.l. (0,1% din galaxie)</text>
+
+                <!-- Volume comparison -->
+                <text x="20" y="140" font-size="12" fill="var(--muted)" font-family="var(--sans)" font-weight="700">Ca volum: ~1 milionime din galaxie</text>
+
+                <!-- Analogy -->
+                <rect x="20" y="160" width="420" height="60" rx="14" fill="rgba(0,0,0,.18)" stroke="rgba(255,255,255,.08)"/>
+                <text x="40" y="183" font-size="11" fill="var(--muted)" font-family="var(--sans)">Analogie: e ca si cum ai lua o ceasca de apa din ocean</text>
+                <text x="40" y="200" font-size="11" fill="var(--muted)" font-family="var(--sans)">si ai concluziona ca nu exista pesti pentru ca nu ai gasit niciunul.</text>
+              </svg>
+            </div>
+
+            <p class="muted">
+              Plus, omenirea deja trece de la radio broadcast la fibra optica si semnale directionate.
+              In 100 de ani, s-ar putea sa devenim practic <b>invizibili</b> din punct de vedere radio.
+              Daca alte civilizatii trec prin aceeasi tranzitie, fereastra de detectie e extrem de mica.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest argument tempereaza pesimismul: poate ca nu vedem pe nimeni nu pentru ca nu exista,
+              ci pentru ca fereastra in care ne putem detecta reciproc e minuscula. Dar Susskind raspunde:
+              daca civilizatiile ar fi comune, macar una ar fi trebuit sa lase urme vizibile (megastructuri, colonizare).
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Principiul antropic">
+          <div class="cardHeader">
+            <h2>Principiul antropic si loteria cosmica</h2>
+            <div class="chip"><b>Multivers</b> &bull; observatori</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind a contribuit la teoria "peisajului corzilor" (string landscape) &mdash; ideea ca pot exista un numar
+              imens de universuri (10<sup>500</sup> stari posibile). Majoritatea sunt sterile. Noi existam intr-unul care permite viata.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Principiul antropic slab</h3>
+                <p>Pur si simplu: existam intr-un univers compatibil cu existenta noastra. Nu e surprinzator &mdash; n-am fi putut exista altfel.
+                   Dar asta <b>nu inseamna</b> ca viata inteligenta e comuna chiar si in universul nostru.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">acceptat larg</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Analogia loteriei</h3>
+                <p>Daca castigi la loterie, asta nu inseamna ca multi altii au castigat. Inseamna doar ca <b>cineva</b> a castigat &mdash; tu.
+                   Am castigat loteria cosmica. Existam. Dar asta nu demonstreaza ca exista si alte civilizatii.</p>
+                <div class="meta"><span class="badge">un singur castigator?</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Efectul de selectie al observatorului</h3>
+                <p>Indiferent daca universul contine un milion de civilizatii sau una singura,
+                   noi am observa <b>exact acelasi lucru</b>: pe noi insine, aparent singuri, intrebandu-ne daca mai e cineva.
+                   Nu putem distinge intre cele doua ipoteze doar din observatia proprie.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">nedecidabil</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e profund: datele pe care le avem (propria existenta + tacerea cosmica) sunt compatibile
+              cu <i>ambele</i> ipoteze &mdash; "viata e comuna" si "suntem unici." Nu putem decide observational. Tot ce putem face
+              e sa estimam pe baza a ceea ce stim din biologie si geologie. Si acele estimari, argumenteaza Susskind, sugereaza raritate extrema.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Argumentul temporal -->
+      <section class="card" aria-label="Argumentul temporal">
+        <div class="cardHeader">
+          <h2>De ce nu vedem civilizatii antice? Argumentul temporal</h2>
+          <div class="chip"><b>Hart-Tipler</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Universul are 13,8 miliarde de ani. Sistemul nostru solar s-a format acum 4,6 miliarde de ani.
+                Exista stele care s-au format cu miliarde de ani inainte. Daca o civilizatie ar fi aparut acum 5 miliarde de ani,
+                ar fi avut suficient timp <b>sa colonizeze intreaga galaxie</b>. Dar nu vedem nicio urma.
+              </p>
+              <p class="muted">
+                Totusi, Susskind sugereaza o nuanta: primele stele erau doar din hidrogen si heliu &mdash;
+                fara carbon, oxigen, siliciu, fier. N-ai putea face planete rocioase, chimie, sau viata.
+                Elementele grele s-au format in stele si distribuit prin supernove, dar asta a durat miliarde de ani.
+                Primele planete rocioase n-au putut aparea decat dupa 6-7 miliarde de ani de la Big Bang.
+              </p>
+              <p class="muted">
+                Asta inseamna ca <b>s-ar putea sa fim printre primii</b>. Nu suntem intarziati &mdash; suntem pionieri.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:16px">
+                <svg viewBox="0 0 440 300" role="img" aria-label="Cronologie cosmica">
+                  <!-- Vertical timeline -->
+                  <line x1="60" y1="20" x2="60" y2="280" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+                  <!-- Events -->
+                  <circle cx="60" cy="30" r="5" fill="var(--warn)"/>
+                  <text x="80" y="34" font-size="11" fill="var(--warn)" font-weight="700" font-family="var(--sans)">Big Bang (13,8 mld ani)</text>
+
+                  <circle cx="60" cy="70" r="4" fill="var(--faint)"/>
+                  <text x="80" y="68" font-size="10" fill="var(--faint)" font-family="var(--sans)">Primele stele: doar H + He</text>
+                  <text x="80" y="82" font-size="9" fill="rgba(255,255,255,.4)" font-family="var(--sans)">Fara elemente grele = fara planete rocioase</text>
+
+                  <circle cx="60" cy="120" r="4" fill="var(--orange)"/>
+                  <text x="80" y="118" font-size="10" fill="var(--orange)" font-family="var(--sans)">Nucleosinteza stelara (~miliarde de ani)</text>
+                  <text x="80" y="132" font-size="9" fill="rgba(255,255,255,.4)" font-family="var(--sans)">Stele traiesc, explodeaza, imprastie C, O, Fe...</text>
+
+                  <circle cx="60" cy="170" r="4" fill="var(--violet)"/>
+                  <text x="80" y="168" font-size="10" fill="var(--violet)" font-family="var(--sans)">Primele planete rocioase (~7 mld ani)</text>
+                  <text x="80" y="182" font-size="9" fill="rgba(255,255,255,.4)" font-family="var(--sans)">Universul prea violent la inceput (supernove, GRB)</text>
+
+                  <circle cx="60" cy="220" r="5" fill="var(--cyan)"/>
+                  <text x="80" y="218" font-size="10" fill="var(--cyan)" font-weight="700" font-family="var(--sans)">Soarele + Pamant (4,6 mld ani)</text>
+                  <text x="80" y="232" font-size="9" fill="rgba(255,255,255,.4)" font-family="var(--sans)">Suntem la jumatatea vietii stelei noastre</text>
+
+                  <circle cx="60" cy="268" r="5" fill="var(--good)"/>
+                  <text x="80" y="266" font-size="10" fill="var(--good)" font-weight="700" font-family="var(--sans)">Noi, acum (~0 relativ)</text>
+                  <text x="80" y="280" font-size="9" fill="rgba(255,255,255,.4)" font-family="var(--sans)">Posibil printre primele civilizatii din galaxie</text>
+
+                  <!-- Window bracket -->
+                  <line x1="40" y1="170" x2="40" y2="268" stroke="rgba(117,240,182,.3)" stroke-width="2"/>
+                  <text x="10" y="220" font-size="9" fill="var(--good)" font-family="var(--sans)" transform="rotate(-90 10 220)">Fereastra</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea ca suntem "primii" e singura explicatie a tacerii care nu implica nici raritatea extrema, nici autodistrugerea.
+            Dar Susskind observa ca, si asa, ar trebui sa existe alte civilizatii aparute in acelasi timp cu noi. Unde sunt? Poate barierele
+            sunt intr-adevar asa de inalte.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Vizualizare interactiva: probabilitati -->
+      <section class="card" aria-label="Probabilitati vizualizate">
+        <div class="cardHeader">
+          <h2>Vizualizare: cat de mici pot fi probabilitatile</h2>
+          <div class="chip"><b>Numere mari vs. probabilitati mici</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Multi spun: "Universul e asa de mare incat TREBUIE sa mai fie cineva." Susskind raspunde: da, numerele sunt mari,
+            dar probabilitatile pot fi si mai "mari" (in directia mica). Foloseste sliderul pentru a vedea.
+          </p>
+
+          <div class="control">
+            <label>
+              <span>Probabilitatea inteligentei per planeta (exponent)</span>
+              <span class="readout" id="probReadout">10<sup>-10</sup></span>
+            </label>
+            <input type="range" min="-50" max="-1" value="-10" step="1" id="probSlider"/>
+          </div>
+
+          <div class="riskGrid" style="margin-top:12px">
+            <div class="risk">
+              <div class="rTop"><strong>Planete locuibile in galaxie</strong><span class="badge">estimat</span></div>
+              <p class="mono" id="planetsCount" style="font-size:18px;font-weight:700;margin-top:8px;color:var(--cyan)">~10 miliarde</p>
+              <p>Estimare: ~10<sup>10</sup> planete in zona locuibila a Caii Lactee.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Civilizatii asteptate (N)</strong><span class="badge" id="civBadge">rezultat</span></div>
+              <p class="mono" id="civCount" style="font-size:18px;font-weight:700;margin-top:8px;color:var(--warn)">1</p>
+              <p id="civExplain">La aceasta probabilitate, asteptarile sunt...</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Mizeaza pe acest slider la 10<sup>-20</sup> si observa ce se intampla.
+            Chiar si cu 10 miliarde de planete, daca sansa e de 10<sup>-20</sup> per planeta, N = 10<sup>-10</sup> &mdash;
+            ai nevoie de 10 miliarde de galaxii ca sa gasesti UNA. Si universul observabil are "doar" ~200 miliarde de galaxii.
+            Susskind: "Numerele mari nu ajuta daca probabilitatile sunt suficient de mici."
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Responsabilitatea cosmica -->
+      <section class="card" aria-label="Responsabilitatea cosmica">
+        <div class="cardHeader">
+          <h2>Daca suntem singuri: responsabilitatea cosmica</h2>
+          <div class="chip"><b>Teza finala</b> a lui Susskind</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Susskind incheie cu o reflectie surprinzator de emotionanta pentru un fizician. Daca suntem singuri,
+                daca nu exista nicio alta civilizatie in univers care sa puna intrebari, sa faca stiinta,
+                sa aprecieze frumusetea &mdash; atunci avem o <b>responsabilitate imensa</b>.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                  <h3 style="color:var(--good)">Suntem modul universului de a se intelege pe sine</h3>
+                  <p>Daca distrugem civilizatia (razboi, colaps ecologic, prostie), acea lumina se stinge &mdash;
+                     poate pentru miliarde de ani, poate pentru totdeauna.</p>
+                </div>
+                <div class="flowNode" style="border-color:rgba(255,210,122,.25)">
+                  <h3 style="color:var(--warn)">Supravietuirea devine imperativ cosmic</h3>
+                  <p>Nu doar un imperativ uman, ci un imperativ cosmic. Daca suntem singurii,
+                     raspandirea in spatiu si protejarea civilizatiei nu e optional &mdash; e datoria noastra fata de univers.</p>
+                </div>
+                <div class="flowNode" style="border-color:rgba(122,215,255,.25)">
+                  <h3 style="color:var(--cyan)">"Sper sa gresesc"</h3>
+                  <p>Susskind recunoaste ca ar vrea sa fie dovedit gresit de descoperirea unui semnal extraterestru.
+                     Dar pe baza a ceea ce stim din biologie, geologie si istoria vietii pe Pamant, concluzia lui e
+                     ca viata inteligenta e <b>extraordinar de improbabila</b>.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:20px;text-align:center">
+                <svg viewBox="0 0 300 300" role="img" aria-label="Universul si noi">
+                  <defs>
+                    <radialGradient id="cosGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0" stop-color="rgba(255,210,122,.15)"/>
+                      <stop offset=".6" stop-color="rgba(187,167,255,.06)"/>
+                      <stop offset="1" stop-color="transparent"/>
+                    </radialGradient>
+                    <filter id="glow3">
+                      <feGaussianBlur stdDeviation="8"/>
+                    </filter>
+                  </defs>
+                  <!-- Cosmic background -->
+                  <circle cx="150" cy="150" r="140" fill="url(#cosGlow)"/>
+                  <!-- Outer ring = universe -->
+                  <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                  <circle cx="150" cy="150" r="70" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+                  <!-- Scattered dots = silent galaxies -->
+                  <circle cx="70" cy="80" r="2" fill="rgba(255,255,255,.15)"/>
+                  <circle cx="200" cy="60" r="1.5" fill="rgba(255,255,255,.1)"/>
+                  <circle cx="240" cy="140" r="2" fill="rgba(255,255,255,.12)"/>
+                  <circle cx="60" cy="200" r="1.8" fill="rgba(255,255,255,.1)"/>
+                  <circle cx="210" cy="230" r="1.5" fill="rgba(255,255,255,.08)"/>
+                  <circle cx="100" cy="250" r="2" fill="rgba(255,255,255,.1)"/>
+                  <circle cx="180" cy="100" r="1.5" fill="rgba(255,255,255,.08)"/>
+                  <!-- Central bright point = us -->
+                  <circle cx="150" cy="150" r="6" fill="var(--warn)" filter="url(#glow3)" opacity=".6"/>
+                  <circle cx="150" cy="150" r="4" fill="var(--warn)"/>
+                  <text x="150" y="175" text-anchor="middle" font-size="12" fill="var(--warn)" font-weight="700" font-family="var(--sans)">Noi</text>
+                  <text x="150" y="192" text-anchor="middle" font-size="9" fill="var(--faint)" font-family="var(--sans)">singura lumina cunoscuta</text>
+                  <!-- Outer label -->
+                  <text x="150" y="290" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.35)" font-family="var(--sans)">Universul observabil: tacere</text>
+                </svg>
+              </div>
+
+              <div class="callout bad" data-commentary style="margin-top:10px">
+                <b>Citat Susskind:</b> "Priviti la stele in seara asta si amintiti-va: s-ar putea sa fim singurii care privesc."
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Rezumat si teze -->
+      <section class="card" aria-label="Rezumat">
+        <div class="cardHeader">
+          <h2>Rezumat: cele 7 argumente ale lui Susskind</h2>
+          <div class="chip"><b>Teza:</b> suntem probabil singuri</div>
+        </div>
+        <div class="cardBody">
+          <div class="hallmarks">
+            <div class="pill"><span>1. Tacerea cosmica e reala</span><span class="tag" style="color:var(--bad)">Fermi</span></div>
+            <div class="pill"><span>2. f<sub>i</sub> e probabil minuscul</span><span class="tag" style="color:var(--bad)">Drake</span></div>
+            <div class="pill"><span>3. Viata complexa a durat 3 mld ani</span><span class="tag" style="color:var(--warn)">biologie</span></div>
+            <div class="pill"><span>4. Inteligenta nu e inevitabila</span><span class="tag" style="color:var(--warn)">evolutie</span></div>
+            <div class="pill"><span>5. Geologia specifica e rara</span><span class="tag" style="color:var(--orange)">tectonica</span></div>
+            <div class="pill"><span>6. Fereastra radio e minuscula</span><span class="tag" style="color:var(--cyan)">detectie</span></div>
+            <div class="pill"><span>7. Numerele mari nu ajuta</span><span class="tag" style="color:var(--violet)">probabilitati</span></div>
+            <div class="pill"><span style="color:var(--warn)"><b>Concluzie:</b> suntem probabil singuri</span><span class="tag" style="color:var(--bad)">final</span></div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Contra-argumente si limitari</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                <b>1. Un singur punct de date:</b> Tot ce stim despre aparitia vietii si inteligentei vine de pe Pamant.
+                Extrapolarea de la un singur exemplu e periculoasa &mdash; am putea fi complet gresiti despre ce e necesar.
+              </p>
+              <p>
+                <b>2. Poate viata e diferita:</b> Viata bazata pe siliciu, in oceane de amoniac, pe planete tidally-locked &mdash;
+                nu putem exclude variante pe care nu le-am imaginat.
+              </p>
+              <p>
+                <b>3. Poate civilizatiile sunt ascunse:</b> "Zoo hypothesis", "Dark Forest" &mdash; poate ca ascunderea e rational
+                si tacerea e intentionata, nu absenta.
+              </p>
+              <p>
+                <b>4. Inca n-am cautat destul:</b> Am scanat o fractiune minuscula din spectrul electromagnetic, din cer, din timp.
+                Absenta dovezilor nu e neaparat dovada absentei &mdash; dar Susskind spune ca la un moment dat devine.
+              </p>
+            </div>
+          </details>
+
+          <details data-commentary>
+            <summary><strong>De ce conteaza aceasta discutie</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Indiferent daca Susskind are dreptate, argumentul lui schimba modul in care privim responsabilitatea umana.
+                Daca suntem rari &mdash; chiar daca nu unici &mdash; atunci civilizatia noastra are o valoare imensa.
+                Nu e doar "a noastra." E posibil unicul loc din univers unde cineva se intreaba "de ce?"
+              </p>
+              <p>
+                Asta nu e pesimism &mdash; e o chemare la actiune. Sa protejam planeta, sa ne extindem in spatiu,
+                sa asiguram ca lumina constiintei nu se stinge din cauza propriei noastre neglijente.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul "comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Casetele albastre (si galbene/rosii) marcate cu <code>data-commentary</code> ofera comentarii la nivel meta:
+            cat de puternic e argumentul? Ce alternative exista? Unde e speculatie vs. dovezi solide?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa butonul "Comentarii pornit/oprit" din header pentru a le ascunde/arata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si atribuire:</b> Acest infografic interactiv sintetizeaza argumentul prezentat de Leonard Susskind (fizician teoretic, Stanford)
+        privind improbabilitatea vietii inteligente. Bazat pe transcrierea prezentarii sale.
+        Nu e lucrare stiintifica &mdash; e un instrument de gandire vizuala.
+      </p>
+      <p style="margin-top:10px">
+        Toate vizualizarile, simulatoarele si comentariile sunt conceptuale, menite sa ajute la intelegerea argumentelor, nu sa inlocuiasca literatura de cercetare primara.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => { toast.style.display = 'none'; }, 2200);
+    }
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpDrake').addEventListener('click', () => {
+      document.getElementById('drakeSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpTimeline').addEventListener('click', () => {
+      document.getElementById('timelineSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpFilter').addEventListener('click', () => {
+      document.getElementById('filterSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      document.querySelectorAll('[data-commentary]').forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Drake Equation Calculator
+    // ──────────────────────────────────────────────────────
+    const drakeInputs = {
+      R: { el: document.getElementById('sR'), readout: document.getElementById('rR') },
+      Fp: { el: document.getElementById('sFp'), readout: document.getElementById('rFp') },
+      Ne: { el: document.getElementById('sNe'), readout: document.getElementById('rNe') },
+      Fl: { el: document.getElementById('sFl'), readout: document.getElementById('rFl') },
+      Fi: { el: document.getElementById('sFi'), readout: document.getElementById('rFi') },
+      Fc: { el: document.getElementById('sFc'), readout: document.getElementById('rFc') },
+      L: { el: document.getElementById('sL'), readout: document.getElementById('rL') }
+    };
+
+    function updateDrake() {
+      const R = parseFloat(drakeInputs.R.el.value);
+      const Fp = parseFloat(drakeInputs.Fp.el.value);
+      const Ne = parseFloat(drakeInputs.Ne.el.value);
+      const Fl = parseFloat(drakeInputs.Fl.el.value);
+      const Fi = parseFloat(drakeInputs.Fi.el.value);
+      const Fc = parseFloat(drakeInputs.Fc.el.value);
+      const L = parseFloat(drakeInputs.L.el.value);
+
+      drakeInputs.R.readout.textContent = R;
+      drakeInputs.Fp.readout.textContent = Fp.toFixed(2);
+      drakeInputs.Ne.readout.textContent = Ne.toFixed(2);
+      drakeInputs.Fl.readout.textContent = Fl < 0.001 ? Fl.toExponential(1) : Fl.toFixed(3);
+      drakeInputs.Fi.readout.textContent = Fi < 0.0001 ? Fi.toExponential(1) : Fi.toFixed(4);
+      drakeInputs.Fc.readout.textContent = Fc < 0.01 ? Fc.toExponential(1) : Fc.toFixed(3);
+      drakeInputs.L.readout.textContent = L >= 1000 ? (L/1000).toFixed(0) + 'k' : L;
+
+      const N = R * Fp * Ne * Fl * Fi * Fc * L;
+      const nEl = document.getElementById('drakeN');
+      const verdict = document.getElementById('drakeVerdict');
+
+      if (N < 0.001) {
+        nEl.textContent = N.toExponential(2);
+        nEl.style.color = 'var(--bad)';
+        verdict.innerHTML = 'Probabil <b>nimeni</b> in galaxie. Nici macar noi nu ar fi trebuit sa existam statistic.';
+      } else if (N < 1) {
+        nEl.textContent = N.toFixed(3);
+        nEl.style.color = 'var(--bad)';
+        verdict.innerHTML = 'Sub 1 civilizatie. <b>Suntem probabil singuri</b> in Calea Lactee.';
+      } else if (N < 10) {
+        nEl.textContent = N.toFixed(1);
+        nEl.style.color = 'var(--warn)';
+        verdict.innerHTML = 'Cateva civilizatii posibile, dar sansele de a ne detecta reciproc sunt minuscule.';
+      } else if (N < 1000) {
+        nEl.textContent = Math.round(N).toLocaleString();
+        nEl.style.color = 'var(--warn)';
+        verdict.innerHTML = 'Sute de civilizatii &mdash; dar galaxia e imensa. Distantele sunt uriase.';
+      } else {
+        nEl.textContent = Math.round(N).toLocaleString();
+        nEl.style.color = 'var(--good)';
+        verdict.innerHTML = 'Mii+ de civilizatii. Dar atunci de ce e tacere? (Paradoxul Fermi!)';
+      }
+    }
+
+    Object.values(drakeInputs).forEach(d => d.el.addEventListener('input', updateDrake));
+    updateDrake();
+
+    // ──────────────────────────────────────────────────────
+    // Probability Visualizer
+    // ──────────────────────────────────────────────────────
+    const probSlider = document.getElementById('probSlider');
+    const probReadout = document.getElementById('probReadout');
+    const civCount = document.getElementById('civCount');
+    const civExplain = document.getElementById('civExplain');
+    const civBadge = document.getElementById('civBadge');
+
+    function updateProb() {
+      const exp = parseInt(probSlider.value);
+      probReadout.innerHTML = '10<sup>' + exp + '</sup>';
+      const planets = 1e10; // 10 billion habitable planets
+      const prob = Math.pow(10, exp);
+      const N = planets * prob;
+
+      if (N >= 1e9) {
+        civCount.textContent = (N / 1e9).toFixed(0) + ' miliarde';
+        civCount.style.color = 'var(--good)';
+        civBadge.textContent = 'abundent';
+        civBadge.style.color = 'var(--good)';
+        civExplain.textContent = 'La aceasta probabilitate, galaxia ar fi plina de civilizatii.';
+      } else if (N >= 1e6) {
+        civCount.textContent = (N / 1e6).toFixed(0) + ' milioane';
+        civCount.style.color = 'var(--good)';
+        civBadge.textContent = 'comun';
+        civBadge.style.color = 'var(--good)';
+        civExplain.textContent = 'Milioane de civilizatii. Paradoxul Fermi devine foarte acut.';
+      } else if (N >= 1000) {
+        civCount.textContent = Math.round(N).toLocaleString();
+        civCount.style.color = 'var(--warn)';
+        civBadge.textContent = 'posibil';
+        civBadge.style.color = 'var(--warn)';
+        civExplain.textContent = 'Mii de civilizatii, dar distantele imense fac detectia dificila.';
+      } else if (N >= 1) {
+        civCount.textContent = N.toFixed(1);
+        civCount.style.color = 'var(--warn)';
+        civBadge.textContent = 'rar';
+        civBadge.style.color = 'var(--warn)';
+        civExplain.textContent = 'Cateva civilizatii in toata galaxia. S-ar putea sa nu ne gasim niciodata.';
+      } else if (N >= 0.01) {
+        civCount.textContent = N.toFixed(3);
+        civCount.style.color = 'var(--bad)';
+        civBadge.textContent = 'improbabil';
+        civBadge.style.color = 'var(--bad)';
+        civExplain.textContent = 'Sub 1 civilizatie per galaxie. Probabil suntem singuri in Calea Lactee.';
+      } else {
+        civCount.textContent = N.toExponential(1);
+        civCount.style.color = 'var(--bad)';
+        civBadge.textContent = 'singuri';
+        civBadge.style.color = 'var(--bad)';
+        if (N < 1e-10) {
+          const galaxiesNeeded = Math.round(1 / (N > 0 ? N : 1e-50));
+          civExplain.innerHTML = 'Ai nevoie de ~' + galaxiesNeeded.toExponential(1) + ' galaxii ca sa gasesti o civilizatie. Universul observabil are ~2&times;10<sup>11</sup> galaxii.';
+        } else {
+          civExplain.textContent = 'Extrem de improbabil. Singuri chiar si in universul observabil.';
+        }
+      }
+    }
+
+    probSlider.addEventListener('input', updateProb);
+    updateProb();
+
+    // ──────────────────────────────────────────────────────
+    // Great Filter Position Selector
+    // ──────────────────────────────────────────────────────
+    const filterPositions = [
+      { x: 10, w: 115, label: 'Planeta locuibila', desc: 'Filtrul: e greu sa formezi o planeta in zona locuibila cu conditii corecte.' },
+      { x: 135, w: 115, label: 'Viata simpla', desc: 'Filtrul: tranzitia de la chimie la biologie e extrem de improbabila.' },
+      { x: 260, w: 115, label: 'Viata complexa', desc: 'Filtrul: trecerea la viata multicelulara a durat 3 miliarde de ani pe Pamant.' },
+      { x: 385, w: 115, label: 'Inteligenta', desc: 'Filtrul: inteligenta tehnologica e un accident, nu o inevitabilitate.' },
+      { x: 510, w: 115, label: 'Civilizatie durabila', desc: 'Filtrul: civilizatiile se autodistrug inainte sa se raspandeasca.' },
+      { x: 635, w: 130, label: 'Colonizare', desc: 'Filtrul: colonizarea galacticaa e fizic imposibila sau nepractica.' }
+    ];
+
+    document.querySelectorAll('.filterBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filterBtn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const pos = parseInt(this.dataset.pos);
+        const fp = filterPositions[pos];
+        const marker = document.getElementById('filterRect');
+        const label = document.getElementById('filterLabel');
+        const scenTitle = document.getElementById('scenarioTitle');
+        const scenDesc = document.getElementById('scenarioDesc');
+
+        marker.setAttribute('x', fp.x);
+        marker.setAttribute('width', fp.w);
+        label.setAttribute('x', fp.x + fp.w / 2);
+        label.textContent = 'MARELE FILTRU';
+
+        if (pos <= 2) {
+          scenTitle.textContent = 'Scenariul optimist';
+          scenTitle.setAttribute('fill', 'var(--good)');
+          scenDesc.textContent = 'Filtrul e in spatele nostru: ' + fp.desc + ' Am trecut deja cel mai greu pas.';
+        } else {
+          scenTitle.textContent = 'Scenariul pesimist';
+          scenTitle.setAttribute('fill', 'var(--bad)');
+          scenDesc.textContent = 'Filtrul e in fata noastra: ' + fp.desc;
+        }
+
+        showToast('Filtru mutat: ' + fp.label);
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Animate timeline segments on hover
+    // ──────────────────────────────────────────────────────
+    document.querySelectorAll('.tlSeg').forEach(seg => {
+      seg.style.cursor = 'pointer';
+      seg.addEventListener('mouseenter', function() {
+        showToast(this.title);
+      });
+    });
+  </script>
+</body>
+</html>

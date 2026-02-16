@@ -1,0 +1,1558 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce Multiversul e Real — Leonard Susskind | Infografic Interactiv</title>
+  <meta name="description" content="Infografic interactiv care explica argumentul lui Leonard Susskind pentru realitatea multiversului: problema reglajului fin, peisajul teoriei corzilor, inflatia eterna si principiul antropic." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        radial-gradient(600px 400px at 40% 50%, rgba(117,240,182,.06), transparent 50%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill badges */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Constants grid */
+    .constGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .constGrid{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .constGrid{grid-template-columns:1fr}
+    }
+
+    /* Objection cards */
+    .objCard{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 14px;
+      transition: border-color .2s ease;
+    }
+    .objCard:hover{border-color: rgba(187,167,255,.3)}
+    .objCard .objQ{font-size:14px;font-weight:700;margin:0 0 8px;color:var(--bad)}
+    .objCard .objA{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
+
+    /* Universe result */
+    .uniResult{
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      padding: 16px;
+      text-align: center;
+      margin-top: 12px;
+      min-height: 80px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition: border-color .3s ease, background .3s ease;
+    }
+    .uniResult.alive{border-color: rgba(117,240,182,.4);background: rgba(117,240,182,.06)}
+    .uniResult.dead{border-color: rgba(255,122,153,.4);background: rgba(255,122,153,.06)}
+    .uniResult .verdict{font-size:18px;font-weight:700}
+    .uniResult .detail{font-size:12px;color:var(--muted)}
+
+    /* Landscape canvas */
+    #landscapeCanvas{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.3);
+      width:100%;
+      cursor:pointer;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Number animation */
+    .bigNum{
+      font-family:var(--mono);
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight:700;
+      background: linear-gradient(90deg, var(--violet), var(--cyan));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .highlight-violet{color: var(--violet)}
+    .highlight-cyan{color: var(--cyan)}
+    .highlight-good{color: var(--good)}
+    .highlight-warn{color: var(--warn)}
+    .highlight-bad{color: var(--bad)}
+
+    /* Bubble animation for landscape */
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .heroArt{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(117,240,182,.35)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Multiple bubble universes -->
+            <circle cx="120" cy="90" r="45" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".5"/>
+            <circle cx="260" cy="130" r="60" fill="none" stroke="url(#g2)" stroke-width="2.5" opacity=".5"/>
+            <circle cx="380" cy="75" r="35" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".4"/>
+            <circle cx="440" cy="150" r="28" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity=".4"/>
+            <circle cx="180" cy="170" r="22" fill="none" stroke="url(#g1)" stroke-width="1.5" opacity=".35"/>
+            <circle cx="320" cy="50" r="18" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity=".35"/>
+            <!-- Connecting filaments -->
+            <path d="M165,90 C200,60 220,100 260,130" fill="none" stroke="rgba(187,167,255,.25)" stroke-width="1.5"/>
+            <path d="M320,130 C340,100 360,85 380,75" fill="none" stroke="rgba(122,215,255,.2)" stroke-width="1.5"/>
+            <path d="M415,75 C425,100 430,130 440,150" fill="none" stroke="rgba(255,179,138,.2)" stroke-width="1"/>
+            <!-- Glow dots -->
+            <circle cx="260" cy="130" r="6" fill="rgba(117,240,182,.6)" />
+            <circle cx="120" cy="90" r="4" fill="rgba(255,255,255,.45)" />
+            <circle cx="380" cy="75" r="3.5" fill="rgba(255,255,255,.4)" />
+            <circle cx="440" cy="150" r="3" fill="rgba(187,167,255,.45)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica fundamentala &bull; cosmologie &bull; teoria corzilor</div>
+          <h1>De ce Multiversul este Real</h1>
+          <p class="subtitle">
+            Leonard Susskind, unul dintre parintii teoriei corzilor, sustine ca universul nostru nu e unic &mdash; ci unul dintr-un numar ametitor de universuri posibile, fiecare cu legi fizice diferite.
+            Aceasta pagina transforma argumentul sau intr-un infografic interactiv, explicat pe intelesul tuturor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpSim">Simulatorul de Univers</button>
+            <button class="btn" id="jumpLandscape">Peisajul Corzilor</button>
+            <button class="btn" id="toggleNotes">Comentarii pornit/oprit</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Cifre-cheie">
+          <div class="stat">
+            <div class="label">Constanta cosmologica</div>
+            <div class="value" style="color:var(--cyan)">10<sup>-120</sup></div>
+            <div class="note">Reglata cu o precizie de 1 la 10<sup>120</sup>. Cea mai fina calibrare din fizica.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Stari de vid (landscape)</div>
+            <div class="value" style="color:var(--violet)">10<sup>500</sup></div>
+            <div class="note">Numarul estimat de universuri posibile in teoria corzilor.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Raportul proton/electron</div>
+            <div class="value" style="color:var(--warn)">1.836</div>
+            <div class="note">Daca ar fi chiar putin diferit, atomii nu ar functiona.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Principiul central</div>
+            <div class="value" style="color:var(--good)">Antropic</div>
+            <div class="note">Observam acest univers pentru ca doar aici putem exista.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- ==================== FINE TUNING ==================== -->
+      <section class="card" aria-label="Problema reglajului fin">
+        <div class="cardHeader">
+          <h2>Problema Reglajului Fin: de ce universul pare &laquo;calibrat&raquo;</h2>
+          <div class="chip"><b>Misterul central</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Constantele naturii &mdash; masa electronului, puterea fortelor, energia vidului &mdash; par <b>calibrate cu o precizie uluitoare</b> pentru a permite existenta stelelor, planetelor si a vietii. Daca oricare dintre ele ar fi fost putin diferita, universul ar fi fost gol si mort.
+          </p>
+
+          <div class="constGrid" style="margin-top:12px">
+            <div class="pill">
+              <span>Constanta cosmologica</span>
+              <span class="tag" style="color:var(--bad)">10<sup>-120</sup></span>
+            </div>
+            <div class="pill">
+              <span>Masa electronului</span>
+              <span class="tag" style="color:var(--warn)">critic</span>
+            </div>
+            <div class="pill">
+              <span>Forta nucleara tare</span>
+              <span class="tag" style="color:var(--cyan)">reglata</span>
+            </div>
+            <div class="pill">
+              <span>Forta nucleara slaba</span>
+              <span class="tag" style="color:var(--cyan)">reglata</span>
+            </div>
+            <div class="pill">
+              <span>Masa bosonului Higgs</span>
+              <span class="tag" style="color:var(--warn)">critic</span>
+            </div>
+            <div class="pill">
+              <span>Numarul dimensiunilor</span>
+              <span class="tag" style="color:var(--violet)">exact 3+1</span>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="split">
+            <div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Cea mai proasta predictie din fizica</h3>
+                <p>Teoria cuantica a campurilor prezice ca energia vidului (constanta cosmologica) ar trebui sa fie de <b>10<sup>120</sup> ori</b> mai mare decat valoarea observata. E ca si cum ai calcula pretul unui covrig si ai obtine un numar mai mare decat PIB-ul tuturor civilizatiilor posibile.</p>
+                <div class="meta">
+                  <span class="badge">eroare: 120 ordine de marime</span>
+                  <span class="badge">catastrofal gresit</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">Electronul si protonul: un echilibru fragil</h3>
+                <p>Protonul e de 1.836 ori mai greu ca electronul. Daca electronul ar fi cu cativa procente mai greu, s-ar combina cu protonii si nu ar mai exista hidrogen &mdash; deci nici apa, nici chimie, nici viata. Daca protonul ar fi mai usor, s-ar dezintegra in neutroni.</p>
+                <div class="meta">
+                  <span class="badge">raport: 1.836</span>
+                  <span class="badge">nicio explicatie fundamentala</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Reglajul fin nu e doar o curiozitate numerologica. E un <b>fapt experimental</b>: modificam putin orice constanta si obtinem un univers steril. Intrebarea e: de ce aceste valori? E design? E noroc? Sau e ceva mai profund? Susskind sustine ca raspunsul e <b>probabilitatea pura</b> + numarul imens de universuri.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== UNIVERSE SIMULATOR ==================== -->
+      <section class="card" id="simCard" aria-label="Simulator de univers">
+        <div class="cardHeader">
+          <h2>Simulatorul de Univers: modifica constantele si vezi ce se intampla</h2>
+          <div class="chip"><b>Interactiv</b></div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Imagineaza-ti ca esti un &laquo;creator de universuri&raquo;. Misca cursoarele pentru a schimba constantele fundamentale si vezi daca universul tau permite viata. Vei descoperi cat de ingust e &laquo;culoarul&raquo; vietii.
+          </p>
+
+          <div class="viz" id="simViz">
+            <svg viewBox="0 0 980 320" id="simSvg" role="img" aria-label="Diagrama simulator univers">
+              <defs>
+                <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,210,122,.8)"/>
+                  <stop offset="100%" stop-color="rgba(255,210,122,0)"/>
+                </radialGradient>
+                <radialGradient id="deadGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,122,153,.5)"/>
+                  <stop offset="100%" stop-color="rgba(255,122,153,0)"/>
+                </radialGradient>
+              </defs>
+              <rect width="980" height="320" fill="rgba(0,0,0,.05)"/>
+              <!-- Background stars -->
+              <g id="bgStars"></g>
+              <!-- Central visualization -->
+              <g id="simScene" transform="translate(490,160)"></g>
+              <!-- Labels -->
+              <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.6)">
+                <text x="20" y="24">Universul tau:</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="uniResult" id="uniResult">
+            <div class="verdict" id="uniVerdict">Modifica constantele de mai jos</div>
+            <div class="detail" id="uniDetail">Foloseste cursoarele pentru a explora spatiul parametrilor</div>
+          </div>
+
+          <div class="controls" style="grid-template-columns: repeat(3, 1fr)">
+            <div class="control">
+              <label>
+                <span>Constanta Cosmologica</span>
+                <span class="readout" id="ccReadout">1.0x</span>
+              </label>
+              <input id="ccSlider" type="range" min="-200" max="200" value="0" />
+              <div class="small" style="margin-top:8px">Energia spatiului gol. Prea mare = universul se rupe.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Masa Electronului</span>
+                <span class="readout" id="meReadout">1.0x</span>
+              </label>
+              <input id="meSlider" type="range" min="10" max="500" value="100" />
+              <div class="small" style="margin-top:8px">Cat de greu e electronul. Prea greu = nu exista hidrogen.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Forta Nucleara Tare</span>
+                <span class="readout" id="sfReadout">1.0x</span>
+              </label>
+              <input id="sfSlider" type="range" min="10" max="300" value="100" />
+              <div class="small" style="margin-top:8px">Leaga cuarcii in protoni. Prea slaba = nu exista nuclee.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="randomUni">Univers aleator</button>
+            <button class="btn" id="resetUni">Resetare la universul nostru</button>
+            <button class="btn" id="sweepUni">Scanare automata (100 universuri)</button>
+          </div>
+          <div class="small" id="sweepResult" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest simulator e <b>simplificat conceptual</b> &mdash; in realitate, interactiunile dintre constante sunt mult mai complexe. Dar principiul ramane: <b>spatiul parametrilor e vast</b>, iar zona care permite viata e minuscula. Asta e esenta argumentului reglajului fin.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== STRING LANDSCAPE + ETERNAL INFLATION ==================== -->
+      <section class="row">
+        <div class="card" aria-label="Peisajul teoriei corzilor">
+          <div class="cardHeader">
+            <h2>Peisajul Teoriei Corzilor</h2>
+            <div class="chip">10<sup>500</sup> universuri posibile</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Teoria corzilor &mdash; candidata pentru &laquo;teoria tuturor&raquo; &mdash; spune ca particulele fundamentale sunt de fapt <b>corzi minuscule care vibreaza</b>. Diferite moduri de vibratie = diferite particule. Dar teoria nu da un singur univers, ci un <b>peisaj imens</b> de universuri posibile.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Ce sunt &laquo;starile de vid&raquo;?</h3>
+                <p>O stare de vid e o solutie stabila a ecuatiilor teoriei corzilor. Fiecare stare corespunde unui set diferit de legi ale fizicii: alte mase de particule, alte forte, alta constanta cosmologica. Sunt ca &laquo;canalele&raquo; unui televizor cosmic &mdash; fiecare arata alt &laquo;program&raquo;.</p>
+                <div class="meta">
+                  <span class="badge">~10<sup>500</sup> stari</span>
+                  <span class="badge">fiecare = alt univers posibil</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>Cat de mare e 10<sup>500</sup>?</h3>
+                <p>Numarul atomilor din universul observabil: ~10<sup>80</sup>. Numarul de volume Planck din univers: ~10<sup>185</sup>. Peisajul corzilor dwarfuieste ambele numere. E un numar atat de vast incat &laquo;incomprehensibil&raquo; e un eufemism.</p>
+                <div class="meta">
+                  <span class="badge">10<sup>500</sup> &gt;&gt; 10<sup>80</sup> atomi</span>
+                  <span class="badge">diversitate totala</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Apasa pe vizualizarea de mai jos pentru a genera un nou &laquo;peisaj&raquo; aleator.</div>
+            <div style="margin-top:10px">
+              <canvas id="landscapeCanvas" height="220" aria-label="Vizualizare peisajul corzilor"></canvas>
+            </div>
+            <div class="legend">
+              <div class="key"><span class="sw" style="background:var(--good)"></span> Permite viata</div>
+              <div class="key"><span class="sw" style="background:var(--violet)"></span> Vid stabil (steril)</div>
+              <div class="key"><span class="sw" style="background:var(--bad)"></span> Instabil / se destrama</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea-cheie: teoria corzilor nu a esuat pentru ca nu prezice un univers unic. A <b>reusit</b> sa arate ca exista un numar enorm de universuri posibile. Lipsa unicitatii nu e o problema &mdash; e un raspuns.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="inflationCard" aria-label="Inflatia eterna">
+          <div class="cardHeader">
+            <h2>Inflatia Eterna: mecanismul de &laquo;populare&raquo;</h2>
+            <div class="chip">cum se nasc universuri</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Peisajul singur nu e suficient &mdash; ai nevoie de un mecanism care sa <b>creeze efectiv</b> aceste universuri. Inflatia eterna face exact asta: genereaza necontenit noi &laquo;bule&raquo; de univers, fiecare cu alte legi fizice.
+            </p>
+
+            <div class="viz" aria-label="Diagrama inflatiei eterne">
+              <svg viewBox="0 0 460 380" role="img">
+                <defs>
+                  <linearGradient id="infG1" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(187,167,255,.3)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.1)"/>
+                  </linearGradient>
+                  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect width="460" height="380" fill="rgba(0,0,0,.05)"/>
+
+                <!-- Inflation tree -->
+                <g filter="url(#softGlow)">
+                  <!-- Main trunk -->
+                  <path d="M230,30 L230,100" stroke="rgba(187,167,255,.5)" stroke-width="8" stroke-linecap="round"/>
+                  <!-- Branch left -->
+                  <path d="M230,100 C180,130 140,140 120,170" stroke="rgba(187,167,255,.4)" stroke-width="6" stroke-linecap="round" fill="none"/>
+                  <!-- Branch right -->
+                  <path d="M230,100 C280,130 320,140 340,170" stroke="rgba(122,215,255,.4)" stroke-width="6" stroke-linecap="round" fill="none"/>
+                  <!-- Sub-branches -->
+                  <path d="M120,170 C100,190 80,200 70,230" stroke="rgba(187,167,255,.3)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <path d="M120,170 C140,200 160,210 170,240" stroke="rgba(255,179,138,.3)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <path d="M340,170 C320,200 300,210 290,240" stroke="rgba(117,240,182,.3)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <path d="M340,170 C360,190 380,200 390,230" stroke="rgba(255,122,153,.3)" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+                  <!-- Pocket universes (bubbles) -->
+                  <circle cx="70" cy="250" r="28" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                  <circle cx="170" cy="260" r="32" fill="rgba(255,179,138,.08)" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                  <circle cx="290" cy="260" r="36" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                  <circle cx="390" cy="250" r="25" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.3)" stroke-width="1.5"/>
+
+                  <!-- Highlight "our" universe -->
+                  <circle cx="290" cy="260" r="36" fill="none" stroke="rgba(117,240,182,.6)" stroke-width="2" stroke-dasharray="4 3"/>
+                  <circle cx="290" cy="260" r="4" fill="rgba(117,240,182,.8)"/>
+
+                  <!-- More sub-branches from bubbles -->
+                  <path d="M70,278 C60,300 50,310 40,330" stroke="rgba(187,167,255,.2)" stroke-width="2" fill="none"/>
+                  <path d="M70,278 C80,300 90,310 100,330" stroke="rgba(187,167,255,.2)" stroke-width="2" fill="none"/>
+                  <circle cx="40" cy="340" r="14" fill="rgba(187,167,255,.05)" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                  <circle cx="100" cy="340" r="12" fill="rgba(187,167,255,.05)" stroke="rgba(187,167,255,.2)" stroke-width="1"/>
+                </g>
+
+                <!-- Labels -->
+                <g font-family="ui-sans-serif, system-ui" font-size="11" fill="rgba(255,255,255,.7)">
+                  <text x="230" y="20" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Inflatia Eterna</text>
+                  <text x="230" y="92" text-anchor="middle" fill="rgba(255,255,255,.5)">ramificare cuantica</text>
+                  <text x="70" y="292" text-anchor="middle">univers steril</text>
+                  <text x="170" y="305" text-anchor="middle">alt univers</text>
+                  <text x="290" y="310" text-anchor="middle" fill="var(--good)" font-weight="700">Universul nostru</text>
+                  <text x="390" y="288" text-anchor="middle" fill="var(--bad)">instabil</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="flow" style="margin-top:12px">
+              <div class="flowNode">
+                <h3>Cum functioneaza</h3>
+                <p><b>1)</b> Un camp (inflatonul) conduce o expansiune exponentiala a spatiului. <b>2)</b> Fluctuatiile cuantice creaza regiuni noi care se umfla si ele. <b>3)</b> Unele regiuni se &laquo;stabilizeaza&raquo; si devin universuri-bula (ca al nostru). <b>4)</b> Procesul nu se opreste niciodata &mdash; noi bule apar la infinit.</p>
+                <div class="meta">
+                  <span class="badge">etern</span>
+                  <span class="badge">fractal</span>
+                  <span class="badge">generic (nu trebuie reglat)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Punctul-cheie: inflatia eterna nu e o optiune exotica &mdash; e consecinta <b>generica</b> a aproape oricarui model de inflatie. Ca sa o <b>eviti</b>, trebuie sa reglezi fin modelul. In fizica, cand trebuie sa reglezi ceva special ca sa eviti un fenomen, de obicei natura alege varianta generica.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== ANTHROPIC PRINCIPLE ==================== -->
+      <section class="card" aria-label="Principiul antropic">
+        <div class="cardHeader">
+          <h2>Principiul Antropic: de ce observam tocmai acest univers</h2>
+          <div class="chip"><b>Argument central</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Daca exista un numar infinit de universuri cu legi fizice diferite, atunci noi &mdash; observatori constienti &mdash; ne vom gasi <b>intotdeauna</b> intr-unul care permite viata. Nu pentru ca universul a fost &laquo;creat pentru noi&raquo;, ci pentru ca <b>nu am putea exista in altul</b>.
+              </p>
+              <p class="muted">
+                E ca si cum te-ai intreba: &laquo;De ce m-am nascut pe Pamant si nu pe Jupiter?&raquo; Raspunsul e simplu: pe Jupiter nu poti trai. Nu e miracol, e <b>selectie prin existenta</b>.
+              </p>
+
+              <div class="viz" style="padding:16px; text-align:center">
+                <div class="bigNum" style="margin-bottom:8px">1 din ~10<sup>120</sup></div>
+                <div class="small">Sansa ca un univers ales la intamplare sa aiba constanta cosmologica potrivita pentru viata</div>
+              </div>
+            </div>
+            <div>
+              <div class="flowNode" style="border-color: rgba(117,240,182,.25)">
+                <h3 style="color:var(--good)">Predictia lui Weinberg (1987)</h3>
+                <p>Fizicianul Steven Weinberg a folosit rationamentul antropic pentru a <b>prezice</b> valoarea constantei cosmologice &mdash; inainte ca aceasta sa fie masurata! A argumentat ca trebuie sa fie suficient de mica pentru a permite formarea galaxiilor, dar nu mult mai mica (nu ar exista motiv antropic).</p>
+                <div class="meta">
+                  <span class="badge" style="color:var(--good)">predictie confirmata in 1998</span>
+                  <span class="badge">eroare de doar cativa factori</span>
+                </div>
+              </div>
+              <div style="height:10px"></div>
+              <div class="flowNode" style="border-color: rgba(122,215,255,.25)">
+                <h3 style="color:var(--cyan)">Nu e renuntare la stiinta</h3>
+                <p>Susskind subliniaza: principiul antropic nu inseamna &laquo;renuntam sa cautam&raquo;. Inseamna ca unele constante au o <b>explicatie statistica</b> (bazata pe probabilitate) in loc de una dinamica (bazata pe o lege unica). La fel cum nu poti &laquo;calcula&raquo; de ce ploua marti &mdash; dar poti explica statistic de ce ploua in unele zile.</p>
+                <div class="meta">
+                  <span class="badge">explicatie statistica</span>
+                  <span class="badge">nu design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Predictia lui Weinberg e cel mai puternic argument in favoarea principiului antropic. A facut o <b>predictie testabila</b> bazata pe rationament antropic, si a fost confirmata experimental. Asta arata ca principiul nu e doar filosofie &mdash; produce rezultate stiintifice.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== THE BIG PICTURE (SVG) ==================== -->
+      <section class="card" aria-label="Schema argumentului">
+        <div class="cardHeader">
+          <h2>Schema Argumentului: de la corzi la noi</h2>
+          <div class="chip">lantul logic complet</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" aria-label="Diagrama argumentului">
+            <svg viewBox="0 0 980 200" role="img">
+              <defs>
+                <linearGradient id="chainG" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="rgba(187,167,255,.4)"/>
+                  <stop offset="25%" stop-color="rgba(122,215,255,.4)"/>
+                  <stop offset="50%" stop-color="rgba(255,210,122,.4)"/>
+                  <stop offset="75%" stop-color="rgba(117,240,182,.4)"/>
+                  <stop offset="100%" stop-color="rgba(255,179,138,.4)"/>
+                </linearGradient>
+                <filter id="chainGlow" x="-10%" y="-30%" width="120%" height="160%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect width="980" height="200" fill="rgba(0,0,0,.04)"/>
+
+              <!-- Connection line -->
+              <g filter="url(#chainGlow)">
+                <line x1="120" y1="90" x2="860" y2="90" stroke="url(#chainG)" stroke-width="3" stroke-linecap="round"/>
+              </g>
+
+              <!-- Step boxes -->
+              <g font-family="ui-sans-serif, system-ui">
+                <!-- 1 -->
+                <rect x="40" y="55" width="160" height="70" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                <text x="120" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="rgba(187,167,255,.9)">Teoria Corzilor</text>
+                <text x="120" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">corzi vibrante = particule</text>
+
+                <!-- Arrow -->
+                <text x="215" y="95" font-size="18" fill="rgba(255,255,255,.3)">&#8594;</text>
+
+                <!-- 2 -->
+                <rect x="235" y="55" width="160" height="70" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(122,215,255,.3)" stroke-width="1.5"/>
+                <text x="315" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="rgba(122,215,255,.9)">Peisajul (10&#x2075;&#x2070;&#x2070;)</text>
+                <text x="315" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">universuri posibile</text>
+
+                <text x="410" y="95" font-size="18" fill="rgba(255,255,255,.3)">&#8594;</text>
+
+                <!-- 3 -->
+                <rect x="430" y="55" width="160" height="70" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                <text x="510" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="rgba(255,210,122,.9)">Inflatia Eterna</text>
+                <text x="510" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">le creeaza pe toate</text>
+
+                <text x="605" y="95" font-size="18" fill="rgba(255,255,255,.3)">&#8594;</text>
+
+                <!-- 4 -->
+                <rect x="625" y="55" width="160" height="70" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                <text x="705" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="rgba(117,240,182,.9)">Multiversul</text>
+                <text x="705" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">infinit, cu legi diferite</text>
+
+                <text x="800" y="95" font-size="18" fill="rgba(255,255,255,.3)">&#8594;</text>
+
+                <!-- 5 -->
+                <rect x="820" y="55" width="140" height="70" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+                <text x="890" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="rgba(255,179,138,.9)">Principiul Antropic</text>
+                <text x="890" y="102" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">noi = intr-unul &laquo;bun&raquo;</text>
+              </g>
+
+              <!-- Bottom explanation -->
+              <g font-family="ui-sans-serif, system-ui" font-size="11" fill="rgba(255,255,255,.55)">
+                <text x="490" y="165" text-anchor="middle">Fiecare pas e o consecinta matematica a celui anterior. Susskind sustine ca <tspan font-weight="700" fill="rgba(255,255,255,.8)">nu putem evita concluzia</tspan>.</text>
+                <text x="490" y="185" text-anchor="middle">Daca accepti teoria corzilor + inflatia, multiversul vine &laquo;la pachet&raquo;.</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== OBJECTIONS ==================== -->
+      <section class="card" aria-label="Obiectii si raspunsuri">
+        <div class="cardHeader">
+          <h2>Cele 3 mari obiectii (si raspunsurile lui Susskind)</h2>
+          <div class="chip"><b>Dezbatere activa</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="constGrid">
+            <div class="objCard">
+              <div class="objQ">&laquo;Multiversul e nefalsificabil!&raquo;</div>
+              <div class="objA">
+                <b>Raspuns:</b> Nici electronii, nici cuarcii, nici interiorul Soarelui nu pot fi observati direct. Ii deducem din teoria + dovezi indirecte. Multiversul face predictii testabile &mdash; Weinberg a prezis constanta cosmologica inainte sa fie masurata. Stiinta nu inseamna doar &laquo;vezi cu ochii&raquo; &mdash; inseamna <b>cele mai bune explicatii pentru ceea ce observi</b>.
+              </div>
+            </div>
+            <div class="objCard">
+              <div class="objQ">&laquo;Principiul antropic inseamna sa renunti!&raquo;</div>
+              <div class="objA">
+                <b>Raspuns:</b> Nu e renuntare, e acceptarea a ceea ce <b>matematica ne spune</b>. Dupa decenii de cautari, teoria corzilor nu da un univers unic &mdash; da o multiplicitate. A ignora asta ar fi nestiintific. Unele constante au explicatii statistice (ca vremea), nu deterministice (ca o ecuatie).
+              </div>
+            </div>
+            <div class="objCard">
+              <div class="objQ">&laquo;E urat! Stiinta trebuie sa fie eleganta!&raquo;</div>
+              <div class="objA">
+                <b>Raspuns:</b> Natura nu ne e datoare sa fie frumoasa dupa gustul nostru. De fapt, multiversul <b>e elegant</b> in felul sau: elimina nevoia de reglaj fin miracular. Transforma un mister profund intr-o <b>consecinta simpla a numerelor mari</b>. Daca ai suficient de multe universuri, unele vor fi potrivite &mdash; asta e tot.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceste obiectii sunt <b>legitime</b> si dezbaterea e departe de a fi inchisa. Multi fizicieni de top (inclusiv premii Nobel) resping multiversul. Susskind nu pretinde ca a &laquo;demonstrat&raquo; multiversul &mdash; sustine ca e <b>cea mai buna explicatie disponibila</b> pentru reglajul fin, data fiind matematica pe care o avem.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== NOT PARALLEL EARTHS ==================== -->
+      <section class="row">
+        <div class="card" aria-label="Ce NU e multiversul">
+          <div class="cardHeader">
+            <h2>Ce NU e multiversul lui Susskind</h2>
+            <div class="chip">nu e science fiction</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cand auzi &laquo;multivers&raquo;, probabil te gandesti la filme: versiuni alternative ale tale, unde ai luat alte decizii, unde istoria a mers altfel. <b>Nu despre asta vorbim aici.</b>
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk" style="border-color: rgba(255,122,153,.2)">
+                <div class="rTop"><strong style="color:var(--bad)">NU: &laquo;Pamanturi paralele&raquo;</strong><span class="badge">fictiune</span></div>
+                <p>Nu sunt versiuni ale Pamantului cu mici diferente. Nu exista un &laquo;tu alternativ&raquo; care a ales alt drum in viata.</p>
+              </div>
+              <div class="risk" style="border-color: rgba(117,240,182,.2)">
+                <div class="rTop"><strong style="color:var(--good)">DA: Universuri radical diferite</strong><span class="badge">real</span></div>
+                <p>Universuri unde electronii sunt mai grei ca protonii, unde spatiul are 4 dimensiuni, unde forta nucleara e mai slaba sau mai tare. Majoritatea sunt sterile &mdash; fara stele, fara chimie, fara viata.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Distinctia e cruciala. Multiversul lui Susskind e <b>mult mai straniu</b> decat ce vedem in filme. Nu e vorba de variante ale istoriei noastre, ci de universuri cu <b>legi ale fizicii complet diferite</b>. Majoritatea sunt goale si moarte. Noi suntem o exceptie statistica rara.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Viitorul fizicii">
+          <div class="cardHeader">
+            <h2>Ce inseamna multiversul pentru viitorul fizicii</h2>
+            <div class="chip">nu e sfarsitul, ci inceputul</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Unii spun ca multiversul e &laquo;sfarsitul fizicii&raquo; &mdash; ca daca invoci principiul antropic, nu mai ai ce prezice. Susskind sustine exact opusul: <b>multiversul deschide intrebari noi</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Intrebari deschise</h3>
+                <p>Cum functioneaza inflatia eterna in detaliu? Ce stari de vid sunt mai probabile? Putem calcula distributia constantelor in peisaj? Exista constante care NU pot fi explicate antropic (deci au explicatii mai profunde)?</p>
+                <div class="meta">
+                  <span class="badge">statistica peisajului</span>
+                  <span class="badge">dinamica inflatiei</span>
+                  <span class="badge">mecanica cuantica a multiversului</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--violet)">Cercetare activa</h3>
+                <p>Oameni de stiinta lucreaza acum pe statisticile peisajului, pe dinamica inflatiei eterne, pe cum se aplica mecanica cuantica intregului multivers. Sunt intrebari <b>stiintifice reale</b>, concrete, cu potential de raspuns.</p>
+                <div class="meta">
+                  <span class="badge">matematica noua</span>
+                  <span class="badge">teste indirecte</span>
+                  <span class="badge">progres constant</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e poate cel mai important punct: multiversul nu inchide usa fizicii. O <b>deschide</b> intr-o directie neasteptata. Intrebarea nu mai e &laquo;de ce aceste constante?&raquo; ci &laquo;care e statistica universurilor posibile?&raquo; E o schimbare de paradigma, nu o capitulare.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SUMMARY THESIS ==================== -->
+      <section class="card" aria-label="Teza finala">
+        <div class="cardHeader">
+          <h2>Teza lui Susskind, rezumata</h2>
+          <div class="chip"><b>Concluzie:</b> matematica ne forteaza</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">1) De ce crede ca e real</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu pentru ca <b>vrea</b> sa fie adevarat, ci pentru ca <b>matematica il forteaza</b>. Teoria corzilor da peisajul. Inflatia il populeaza. Noi existam intr-unul dintre putinele universuri viabile. Toate piesele se potrivesc.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">2) Ce nu e</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu e renuntare la stiinta, nu e o scuza pentru esecul teoriei corzilor, nu e filosofie speculativa. E o <b>consecinta directa</b> a celei mai bune matematici pe care o avem despre structura fundamentala a realitatii.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">3) Ce inseamna</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Universul nostru nu e special &mdash; e <b>unul dintre cele posibile</b>. Existenta noastra nu e un miracol, ci o <b>consecinta statistica</b>. Reglajul fin dispare ca mister cand intelegi ca exista suficient de multe universuri incat unele vor fi &laquo;potrivite&raquo;.
+              </p>
+              <div class="hr"></div>
+
+              <div class="viz" style="text-align:center;padding:20px">
+                <div style="font-size:15px;color:var(--text);font-weight:700;margin-bottom:8px">&laquo;Multiversul e real.&raquo;</div>
+                <div class="small">&laquo;Nu pentru ca vreau sa fie adevarat, ci pentru ca matematica ne forteaza sa acceptam asta. Teoria corzilor ne da peisajul. Inflatia il populeaza. Si noi observam exact genul de univers in care ne-am astepta sa ne gasim &mdash; unul dintre cele rare care poate sustine viata.&raquo;</div>
+                <div class="small" style="margin-top:8px;color:var(--faint)">&mdash; Leonard Susskind</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre calitatea argumentului</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Argumentul lui Susskind e coerent si bine construit, dar se bazeaza pe doua premise mari: (1) teoria corzilor e corecta si (2) inflatia eterna e generica. Ambele sunt sustinute de matematica serioasa, dar niciunul nu e confirmat experimental in mod definitiv. Multi fizicieni de top (Lee Smolin, Peter Woit, Sabine Hossenfelder) contesta aceste premise. Dezbaterea e <b>vie si legitima</b> &mdash; ceea ce inseamna ca stiinta functioneaza.
+              </p>
+              <p style="margin-top:8px">
+                Trateaza totul de pe aceasta pagina ca <b>un argument intelectual fascinant</b>, nu ca o certitudine dovedita. Cea mai onesta pozitie e: &laquo;nu stim inca, dar merita investigat&raquo;.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ==================== COMMENTARY TOGGLE INFO ==================== -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul &laquo;comentarii&raquo;</h2>
+          <div class="chip">interpretare vs. prezentare</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele violet (marcate &laquo;Comentariu&raquo;) ofera <b>meta-analiza</b>: cat de puternic e argumentul? Ce alternative exista? Ce nu spune Susskind?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa &laquo;Comentarii pornit/oprit&raquo; in antetul paginii pentru a comuta intre modul de prezentare pura si cel critic.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si atentionari:</b> Acest infografic interactiv a fost creat pe baza unei prezentari sustinute de Leonard Susskind despre multiversul si principiul antropic.
+        Nu este un text stiintific peer-reviewed &mdash; este un instrument de vizualizare menit sa faca accesibile concepte complexe de fizica. Toate vizualizarile si simulatoarele sunt conceptuale.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: &laquo;The Cosmic Landscape&raquo; (Leonard Susskind, 2005) | Cercetari in teoria corzilor, inflatia cosmica si cosmologia observationala.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Universe Simulator
+    // ──────────────────────────────────────────────────────
+    const ccSlider = document.getElementById('ccSlider');
+    const meSlider = document.getElementById('meSlider');
+    const sfSlider = document.getElementById('sfSlider');
+    const ccReadout = document.getElementById('ccReadout');
+    const meReadout = document.getElementById('meReadout');
+    const sfReadout = document.getElementById('sfReadout');
+    const uniVerdict = document.getElementById('uniVerdict');
+    const uniDetail = document.getElementById('uniDetail');
+    const uniResult = document.getElementById('uniResult');
+
+    function evalUniverse(cc, me, sf) {
+      // cc: cosmological constant multiplier (log scale, 0 = our universe)
+      // me: electron mass multiplier (100 = our universe)
+      // sf: strong force multiplier (100 = our universe)
+      const ccVal = cc / 100; // -2 to 2
+      const meVal = me / 100; // 0.1 to 5
+      const sfVal = sf / 100; // 0.1 to 3
+
+      let alive = true;
+      let reasons = [];
+
+      // Cosmological constant check
+      if (Math.abs(ccVal) > 0.3) {
+        alive = false;
+        if (ccVal > 0) reasons.push('Constanta cosmologica prea mare: spatiul se expanda prea repede, nu se formeaza galaxii');
+        else reasons.push('Constanta cosmologica prea negativa: universul se colapseaza inainte ca stelele sa apara');
+      }
+
+      // Electron mass check
+      if (meVal > 1.5) {
+        alive = false;
+        reasons.push('Electronul e prea greu: se combina cu protonii si nu mai exista hidrogen');
+      }
+      if (meVal < 0.3) {
+        alive = false;
+        reasons.push('Electronul e prea usor: legaturile chimice sunt prea slabe pentru molecule complexe');
+      }
+
+      // Strong force check
+      if (sfVal > 2.0) {
+        alive = false;
+        reasons.push('Forta nucleara tare e prea puternica: protonii se lipesc prea usor, nu exista chimie stabila');
+      }
+      if (sfVal < 0.5) {
+        alive = false;
+        reasons.push('Forta nucleara tare e prea slaba: nucleele atomice se dezintegreaza, nu exista elemente grele');
+      }
+
+      // Edge cases
+      if (alive && meVal > 1.3 && sfVal < 0.7) {
+        alive = false;
+        reasons.push('Combinatia electron greu + forta slaba: nu se pot forma molecule stabile');
+      }
+
+      if (alive && Math.abs(ccVal) > 0.15 && sfVal < 0.8) {
+        alive = false;
+        reasons.push('Expansiunea rapida + forta slaba: structurile se destrama inainte sa se formeze');
+      }
+
+      return { alive, reasons };
+    }
+
+    function renderSimulator() {
+      const cc = parseInt(ccSlider.value);
+      const me = parseInt(meSlider.value);
+      const sf = parseInt(sfSlider.value);
+
+      const ccDisp = cc === 0 ? '1.0x' : cc > 0 ? `10^${(cc/10).toFixed(0)}x` : `-10^${(Math.abs(cc)/10).toFixed(0)}x`;
+      const meDisp = (me / 100).toFixed(1) + 'x';
+      const sfDisp = (sf / 100).toFixed(1) + 'x';
+
+      ccReadout.textContent = cc === 0 ? '1.0x (noi)' : ccDisp;
+      meReadout.textContent = me === 100 ? '1.0x (noi)' : meDisp;
+      sfReadout.textContent = sf === 100 ? '1.0x (noi)' : sfDisp;
+
+      const result = evalUniverse(cc, me, sf);
+
+      uniResult.className = 'uniResult ' + (result.alive ? 'alive' : 'dead');
+
+      if (result.alive) {
+        uniVerdict.textContent = 'Universul tau permite viata!';
+        uniVerdict.style.color = 'var(--good)';
+        uniDetail.textContent = 'Constantele sunt in zona ingusta care permite formarea stelelor, planetelor si a chimiei complexe.';
+      } else {
+        uniVerdict.textContent = 'Univers steril — fara viata posibila';
+        uniVerdict.style.color = 'var(--bad)';
+        uniDetail.textContent = result.reasons.join('. ') + '.';
+      }
+
+      renderSimScene(cc, me, sf, result.alive);
+    }
+
+    function renderSimScene(cc, me, sf, alive) {
+      const scene = document.getElementById('simScene');
+      const bgStars = document.getElementById('bgStars');
+      scene.innerHTML = '';
+      bgStars.innerHTML = '';
+
+      // Background stars
+      const rng = mulberry32(42);
+      for (let i = 0; i < 60; i++) {
+        const star = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        star.setAttribute('cx', rng() * 980);
+        star.setAttribute('cy', rng() * 320);
+        star.setAttribute('r', rng() * 1.5 + 0.3);
+        star.setAttribute('fill', `rgba(255,255,255,${rng() * 0.3 + 0.1})`);
+        bgStars.appendChild(star);
+      }
+
+      if (alive) {
+        // Galaxy/star formation
+        const meVal = me / 100;
+        const sfVal = sf / 100;
+        const numStars = Math.floor(8 + sfVal * 12);
+
+        // Central galaxy glow
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', 0);
+        glow.setAttribute('cy', 0);
+        glow.setAttribute('r', 60);
+        glow.setAttribute('fill', 'url(#starGlow)');
+        glow.setAttribute('opacity', '0.5');
+        scene.appendChild(glow);
+
+        // Stars
+        for (let i = 0; i < numStars; i++) {
+          const angle = (i / numStars) * Math.PI * 2 + rng() * 0.5;
+          const dist = 30 + rng() * 120;
+          const spiral = angle + dist * 0.02;
+          const sx = Math.cos(spiral) * dist;
+          const sy = Math.sin(spiral) * dist * 0.5;
+          const size = 1.5 + rng() * 3;
+
+          const star = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          star.setAttribute('cx', sx);
+          star.setAttribute('cy', sy);
+          star.setAttribute('r', size);
+          const colors = ['rgba(255,210,122,.8)', 'rgba(122,215,255,.7)', 'rgba(255,255,255,.6)', 'rgba(255,179,138,.6)'];
+          star.setAttribute('fill', colors[Math.floor(rng() * colors.length)]);
+          scene.appendChild(star);
+        }
+
+        // Planet indicator
+        const planet = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        planet.setAttribute('cx', 45);
+        planet.setAttribute('cy', -20);
+        planet.setAttribute('r', 5);
+        planet.setAttribute('fill', 'rgba(117,240,182,.7)');
+        planet.setAttribute('stroke', 'rgba(117,240,182,.4)');
+        planet.setAttribute('stroke-width', '2');
+        scene.appendChild(planet);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', 0);
+        label.setAttribute('y', 135);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '12');
+        label.setAttribute('fill', 'rgba(117,240,182,.8)');
+        label.setAttribute('font-family', 'ui-sans-serif, system-ui');
+        label.textContent = 'Galaxii, stele, planete, viata';
+        scene.appendChild(label);
+      } else {
+        // Dead universe
+        const absCC = Math.abs(cc);
+        if (absCC > 80) {
+          // Rapid expansion - scattered particles
+          for (let i = 0; i < 20; i++) {
+            const angle = rng() * Math.PI * 2;
+            const dist = 40 + rng() * 160;
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', Math.cos(angle) * dist);
+            dot.setAttribute('cy', Math.sin(angle) * dist * 0.6);
+            dot.setAttribute('r', 1 + rng());
+            dot.setAttribute('fill', `rgba(255,122,153,${0.2 + rng() * 0.3})`);
+            scene.appendChild(dot);
+          }
+        } else {
+          // Collapsed or sterile - dim blob
+          const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          glow.setAttribute('cx', 0);
+          glow.setAttribute('cy', 0);
+          glow.setAttribute('r', 40);
+          glow.setAttribute('fill', 'url(#deadGlow)');
+          glow.setAttribute('opacity', '0.6');
+          scene.appendChild(glow);
+        }
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', 0);
+        label.setAttribute('y', 135);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '12');
+        label.setAttribute('fill', 'rgba(255,122,153,.7)');
+        label.setAttribute('font-family', 'ui-sans-serif, system-ui');
+        label.textContent = 'Gol. Steril. Mort.';
+        scene.appendChild(label);
+      }
+    }
+
+    // Seeded random for consistent star placement
+    function mulberry32(a) {
+      return function() {
+        let t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      }
+    }
+
+    ccSlider.addEventListener('input', renderSimulator);
+    meSlider.addEventListener('input', renderSimulator);
+    sfSlider.addEventListener('input', renderSimulator);
+
+    // Random universe button
+    document.getElementById('randomUni').addEventListener('click', () => {
+      ccSlider.value = Math.floor(Math.random() * 400) - 200;
+      meSlider.value = Math.floor(Math.random() * 490) + 10;
+      sfSlider.value = Math.floor(Math.random() * 290) + 10;
+      renderSimulator();
+      showToast('Univers aleator generat!');
+    });
+
+    // Reset button
+    document.getElementById('resetUni').addEventListener('click', () => {
+      ccSlider.value = 0;
+      meSlider.value = 100;
+      sfSlider.value = 100;
+      renderSimulator();
+      showToast('Resetat la universul nostru');
+    });
+
+    // Sweep button
+    document.getElementById('sweepUni').addEventListener('click', () => {
+      let alive = 0;
+      const total = 100;
+      for (let i = 0; i < total; i++) {
+        const cc = Math.floor(Math.random() * 400) - 200;
+        const me = Math.floor(Math.random() * 490) + 10;
+        const sf = Math.floor(Math.random() * 290) + 10;
+        const result = evalUniverse(cc, me, sf);
+        if (result.alive) alive++;
+      }
+      const pct = ((alive / total) * 100).toFixed(0);
+      document.getElementById('sweepResult').innerHTML =
+        `<b>Rezultat scanare:</b> Din ${total} universuri alese la intamplare, <b style="color:var(--good)">${alive}</b> permit viata (${pct}%). ` +
+        `<span style="color:var(--bad)">${total - alive}</span> sunt sterile. ` +
+        (alive < 15 ? 'Zona vietii e <b>extrem de ingusta</b> — asta e reglajul fin in actiune!' :
+         alive < 30 ? 'Relativ putine universuri sunt viabile — constrangeri reale!' :
+         'Model simplificat — in realitate, proportia e MULT mai mica.');
+      showToast(`Scanare: ${alive}/${total} universuri viabile`);
+    });
+
+    renderSimulator();
+
+    // ──────────────────────────────────────────────────────
+    // String Landscape Canvas
+    // ──────────────────────────────────────────────────────
+    const landscapeCanvas = document.getElementById('landscapeCanvas');
+    const ctx = landscapeCanvas.getContext('2d');
+
+    function drawLandscape() {
+      const W = landscapeCanvas.width = landscapeCanvas.offsetWidth * (window.devicePixelRatio || 1);
+      const H = landscapeCanvas.height = 220 * (window.devicePixelRatio || 1);
+      const dpr = window.devicePixelRatio || 1;
+      ctx.scale(dpr, dpr);
+      const w = landscapeCanvas.offsetWidth;
+      const h = 220;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw a "potential energy landscape" with valleys
+      const points = 200;
+      const valleys = 5 + Math.floor(Math.random() * 8);
+      const valleyPositions = [];
+      for (let i = 0; i < valleys; i++) {
+        valleyPositions.push({
+          x: Math.random() * w,
+          depth: Math.random() * 80 + 20,
+          width: Math.random() * 60 + 30,
+          type: Math.random() // determines color
+        });
+      }
+
+      // Generate landscape curve
+      const landscape = [];
+      for (let i = 0; i <= points; i++) {
+        const x = (i / points) * w;
+        let y = h * 0.4; // base height
+
+        // Add valleys
+        for (const v of valleyPositions) {
+          const dist = Math.abs(x - v.x);
+          if (dist < v.width * 2) {
+            y += v.depth * Math.exp(-(dist * dist) / (2 * v.width * v.width / 4));
+          }
+        }
+
+        // Add some noise
+        y += Math.sin(x * 0.1) * 8 + Math.sin(x * 0.03) * 15;
+
+        landscape.push({ x, y: Math.min(y, h - 10) });
+      }
+
+      // Fill background gradient
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(187,167,255,0.05)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.3)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw filled area under curve
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      for (const p of landscape) {
+        ctx.lineTo(p.x, h - p.y);
+      }
+      ctx.lineTo(w, 0);
+      ctx.closePath();
+      const areaGrad = ctx.createLinearGradient(0, 0, 0, h);
+      areaGrad.addColorStop(0, 'rgba(187,167,255,0.02)');
+      areaGrad.addColorStop(1, 'rgba(187,167,255,0.12)');
+      ctx.fillStyle = areaGrad;
+      ctx.fill();
+
+      // Draw curve
+      ctx.beginPath();
+      for (let i = 0; i < landscape.length; i++) {
+        const p = landscape[i];
+        if (i === 0) ctx.moveTo(p.x, h - p.y);
+        else ctx.lineTo(p.x, h - p.y);
+      }
+      ctx.strokeStyle = 'rgba(187,167,255,0.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Mark valleys with dots
+      let lifeValleyIndex = Math.floor(Math.random() * valleyPositions.length);
+      valleyPositions.forEach((v, i) => {
+        // Find the actual valley y at this x
+        const idx = Math.round((v.x / w) * points);
+        const valY = idx >= 0 && idx < landscape.length ? h - landscape[Math.min(idx, landscape.length-1)].y : h * 0.5;
+
+        ctx.beginPath();
+        ctx.arc(v.x, valY, 5, 0, Math.PI * 2);
+
+        if (i === lifeValleyIndex) {
+          ctx.fillStyle = 'rgba(117,240,182,0.8)';
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(117,240,182,0.4)';
+          ctx.lineWidth = 6;
+          ctx.stroke();
+          // Label
+          ctx.font = '10px ui-sans-serif, system-ui';
+          ctx.fillStyle = 'rgba(117,240,182,0.9)';
+          ctx.textAlign = 'center';
+          ctx.fillText('Noi', v.x, valY - 12);
+        } else if (v.type > 0.7) {
+          ctx.fillStyle = 'rgba(255,122,153,0.6)';
+          ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(187,167,255,0.5)';
+          ctx.fill();
+        }
+      });
+
+      // Title
+      ctx.font = 'bold 12px ui-sans-serif, system-ui';
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.textAlign = 'left';
+      ctx.fillText('Peisajul energetic al teoriei corzilor (conceptual)', 12, 18);
+
+      ctx.font = '10px ui-sans-serif, system-ui';
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.fillText('Fiecare vale = o stare de vid = un univers posibil cu alte legi fizice', 12, 34);
+
+      // Axes labels
+      ctx.fillStyle = 'rgba(255,255,255,0.35)';
+      ctx.textAlign = 'left';
+      ctx.fillText('Energie potentiala', 12, h - 8);
+      ctx.textAlign = 'right';
+      ctx.fillText('Spatiul configuratiilor', w - 12, h - 8);
+    }
+
+    landscapeCanvas.addEventListener('click', () => {
+      drawLandscape();
+      showToast('Peisaj nou generat!');
+    });
+
+    // Initial draw after layout
+    setTimeout(drawLandscape, 100);
+    window.addEventListener('resize', drawLandscape);
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpSim').addEventListener('click', () => {
+      document.getElementById('simCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpLandscape').addEventListener('click', () => {
+      document.getElementById('landscapeCanvas').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

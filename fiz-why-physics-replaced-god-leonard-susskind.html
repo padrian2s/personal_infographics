@@ -1,0 +1,1622 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce fizica a inlocuit pe Dumnezeu — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv despre cum fizica a preluat treptat rolul explicativ al lui Dumnezeu, de la Newton la mecanica cuantica. Bazat pe prezentarea lui Leonard Susskind." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--warn)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap: wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Pills & tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Flow nodes */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--cyan));filter:saturate(1.1);border-radius:99px}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+      cursor:pointer;
+      transition: border-color .2s;
+    }
+    .item:hover{border-color: rgba(255,255,255,.22)}
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Timeline */
+    .timeline{position:relative;padding:20px 0 10px}
+    .timeline-track{
+      position:relative;
+      height:4px;
+      background: rgba(255,255,255,.1);
+      border-radius:99px;
+      margin:0 30px;
+    }
+    .timeline-fill{
+      position:absolute;left:0;top:0;height:100%;
+      background: linear-gradient(90deg, var(--violet), var(--cyan), var(--warn));
+      border-radius:99px;
+      transition: width .3s;
+    }
+    .timeline-nodes{
+      display:flex;
+      justify-content:space-between;
+      margin:0 16px;
+      position:relative;
+      top:-12px;
+    }
+    .tnode{
+      display:flex;flex-direction:column;align-items:center;gap:6px;
+      cursor:pointer;
+      transition: transform .15s;
+    }
+    .tnode:hover{transform:scale(1.1)}
+    .tnode .tdot{
+      width:20px;height:20px;border-radius:99px;
+      border:2px solid var(--stroke);
+      background: rgba(0,0,0,.4);
+      transition: background .2s, border-color .2s, box-shadow .2s;
+    }
+    .tnode.active .tdot{
+      background: var(--violet);
+      border-color: var(--violet);
+      box-shadow: 0 0 16px rgba(187,167,255,.4);
+    }
+    .tnode .tyear{font-size:11px;color:var(--faint);font-family:var(--mono)}
+    .tnode .tname{font-size:10px;color:var(--muted);text-align:center;max-width:80px}
+    .timeline-detail{
+      margin-top:10px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      min-height:80px;
+      transition: opacity .2s;
+    }
+    .timeline-detail h3{margin:0 0 6px;font-size:15px}
+    .timeline-detail p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+
+    /* Dice */
+    .dice-area{
+      display:flex;align-items:center;justify-content:center;gap:20px;
+      padding:20px;
+      flex-wrap:wrap;
+    }
+    .die{
+      width:70px;height:70px;
+      border:2px solid var(--stroke);
+      border-radius:14px;
+      background: rgba(0,0,0,.3);
+      display:flex;align-items:center;justify-content:center;
+      font-size:28px;font-weight:700;
+      font-family:var(--mono);
+      color:var(--text);
+      transition: transform .3s, border-color .3s;
+    }
+    .die.rolling{
+      animation: diceRoll .4s ease;
+      border-color: var(--violet);
+    }
+    @keyframes diceRoll{
+      0%{transform:rotate(0deg) scale(1)}
+      25%{transform:rotate(90deg) scale(1.1)}
+      50%{transform:rotate(180deg) scale(1)}
+      75%{transform:rotate(270deg) scale(1.1)}
+      100%{transform:rotate(360deg) scale(1)}
+    }
+    .dice-stats{
+      font-size:12px;color:var(--muted);
+      display:grid;gap:4px;
+    }
+
+    /* Gaps viz */
+    .gaps-bar{
+      display:flex;
+      height:40px;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      margin:10px 0;
+    }
+    .gaps-physics{
+      background: linear-gradient(90deg, var(--violet), var(--cyan));
+      transition: width .5s ease;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:700;color:rgba(0,0,0,.8);
+      min-width:0;
+      overflow:hidden;
+      white-space:nowrap;
+    }
+    .gaps-unknown{
+      background: rgba(255,255,255,.06);
+      flex:1;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--faint);
+      overflow:hidden;
+      white-space:nowrap;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    .quote{
+      border-left:3px solid var(--warn);
+      padding:10px 14px;
+      background: rgba(255,210,122,.06);
+      border-radius:0 14px 14px 0;
+      margin:10px 0;
+      font-style:italic;
+      color: rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .quote .author{font-style:normal;font-size:12px;color:var(--faint);margin-top:6px;display:block}
+
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Multiverse bubbles */
+    .bubble-field{position:relative;width:100%;height:200px;overflow:hidden;border-radius:var(--radius2)}
+    .bubble{
+      position:absolute;border-radius:50%;
+      border:1px solid rgba(255,255,255,.15);
+      display:flex;align-items:center;justify-content:center;
+      font-size:9px;color:var(--faint);text-align:center;
+      transition: transform .3s, opacity .3s;
+      cursor:default;
+    }
+    .bubble.ours{
+      border-color: var(--good);
+      box-shadow: 0 0 20px rgba(117,240,182,.2);
+    }
+    .bubble.ours span{color:var(--good);font-weight:700;font-size:11px}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .btn{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,210,122,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Orbits suggesting planets/atoms -->
+            <ellipse cx="300" cy="110" rx="180" ry="60" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".4" transform="rotate(-15 300 110)"/>
+            <ellipse cx="300" cy="110" rx="140" ry="80" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".35" transform="rotate(25 300 110)"/>
+            <ellipse cx="300" cy="110" rx="100" ry="50" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".3" transform="rotate(-40 300 110)"/>
+            <!-- Stars/particles -->
+            <circle cx="300" cy="110" r="14" fill="rgba(255,210,122,.7)" />
+            <circle cx="420" cy="75" r="5" fill="rgba(187,167,255,.6)" />
+            <circle cx="180" cy="145" r="4" fill="rgba(122,215,255,.6)" />
+            <circle cx="370" cy="160" r="3" fill="rgba(117,240,182,.5)" />
+            <circle cx="230" cy="70" r="3.5" fill="rgba(255,179,138,.5)" />
+            <circle cx="450" cy="130" r="2.5" fill="rgba(255,255,255,.4)" />
+            <circle cx="150" cy="90" r="2" fill="rgba(255,255,255,.35)" />
+            <!-- Expanding wavefronts -->
+            <circle cx="300" cy="110" r="60" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <circle cx="300" cy="110" r="90" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> istoria fizicii &bull; cosmologie &bull; filosofia stiintei</div>
+          <h1>De ce fizica a inlocuit pe Dumnezeu</h1>
+          <p class="subtitle">
+            Pe parcursul a 300 de ani, fizica a preluat treptat rolul explicativ al lui Dumnezeu. Nu a demonstrat ca Dumnezeu nu exista, ci a aratat ca <b>nu mai este necesar pentru a explica fenomenele naturale</b>.
+            Aceasta este povestea unei revolutii intelectuale, spusa de Leonard Susskind, fizician teoretician cu peste 50 de ani de experienta.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpTimeline">Cronologia descoperirii</button>
+            <button class="btn" id="jumpDice">Simulatorul cuantic</button>
+            <button class="btn" id="toggleNotes">Comentarii on/off</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Durata transformarii</div>
+            <div class="value" style="color:var(--violet)">~300 de ani</div>
+            <div class="note">De la Newton (1687) pana in prezent</div>
+          </div>
+          <div class="stat">
+            <div class="label">Teza centrala</div>
+            <div class="value">Fizica inlocuieste explicatia</div>
+            <div class="note">Supranaturalul cedeaza locul naturalului, pas cu pas</div>
+          </div>
+          <div class="stat">
+            <div class="label">Revolutii cheie</div>
+            <div class="value" style="color:var(--cyan)">6 momente decisive</div>
+            <div class="note">Newton, Laplace, termodinamica, Big Bang, cuantica, multivers</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ce ramane neatins</div>
+            <div class="value" style="color:var(--warn)">De ce exista ceva?</div>
+            <div class="note">Fizica explica CUM, nu DE CE exista universul</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION 1: Big picture -->
+      <section class="card" aria-label="Ideea centrala">
+        <div class="cardHeader">
+          <h2>Ideea centrala: "Dumnezeul lacunelor" si cum fizica le-a umplut</h2>
+          <div class="chip"><b>Principiu:</b> God of the Gaps</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                De-a lungul istoriei, oamenii au folosit ideea de Dumnezeu pentru a explica tot ce nu intelegeau: fulgerele, bolile, miscarile planetelor, originea vietii.
+                Pe masura ce stiinta a avansat, aceste "goluri" au fost umplute cu explicatii naturale. Aceasta se numeste problema <b>"Dumnezeului lacunelor"</b>
+                (God of the Gaps): daca il folosesti pe Dumnezeu doar ca sa explici ce nu intelegi inca, rolul lui se micsoreaza cu fiecare descoperire.
+              </p>
+              <div class="quote">
+                "Universul este comprehensibil si asta e miraculos."
+                <span class="author">-- Leonard Susskind</span>
+              </div>
+            </div>
+            <div>
+              <p class="small" style="margin-bottom:8px">Bifati descoperirir stiintifice ca sa vedeti cum se micsoreaza "golul":</p>
+              <div id="gapsChecklist" class="checklist" style="gap:6px">
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="12" />
+                  <div>
+                    <div class="t"><strong>Miscarile planetelor</strong><em>Newton, 1687</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="12" />
+                  <div>
+                    <div class="t"><strong>Stabilitatea sistemului solar</strong><em>Laplace, ~1800</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="10" />
+                  <div>
+                    <div class="t"><strong>Originea speciilor</strong><em>Darwin, 1859</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="12" />
+                  <div>
+                    <div class="t"><strong>Natura luminii si a atomilor</strong><em>sec. XIX-XX</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="14" />
+                  <div>
+                    <div class="t"><strong>Originea universului</strong><em>Big Bang, 1965</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="14" />
+                  <div>
+                    <div class="t"><strong>Reglajul fin al universului</strong><em>Multiversul, ~2003</em></div>
+                  </div>
+                </label>
+                <label class="item" style="cursor:pointer">
+                  <input type="checkbox" data-gap="10" />
+                  <div>
+                    <div class="t"><strong>Determinism vs. hazard</strong><em>Mecanica cuantica</em></div>
+                  </div>
+                </label>
+              </div>
+              <div class="gaps-bar">
+                <div class="gaps-physics" id="gapsPhysics" style="width:16%">Fizica</div>
+                <div class="gaps-unknown">Necunoscut</div>
+              </div>
+              <div class="small" id="gapsLabel">Bifati descoperirile de mai sus ca sa vedeti cum creste teritoriul fizicii.</div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind subliniaza ca fizica nu demonstreaza inexistenta lui Dumnezeu. Ea doar arata ca Dumnezeu nu mai este <i>necesar</i> pentru a explica cum functioneaza lumea fizica. Intrebarile despre sens, moralitate si existenta in sine raman deschise.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Timeline -->
+      <section class="card" id="timelineCard" aria-label="Cronologie">
+        <div class="cardHeader">
+          <h2>Cronologia: 300 de ani de revolutie intelectuala</h2>
+          <div class="chip">de la Newton la multivers</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz">
+            <div class="timeline">
+              <div class="timeline-track">
+                <div class="timeline-fill" id="tlFill" style="width:0%"></div>
+              </div>
+              <div class="timeline-nodes" id="tlNodes"></div>
+            </div>
+            <div class="timeline-detail" id="tlDetail">
+              <h3>Selectati un moment din cronologie</h3>
+              <p>Apasati pe oricare punct de pe linia timpului pentru a vedea detalii despre acea revolutie stiintifica.</p>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observati un tipar repetat: in fiecare era, fizicienii gasesc explicatii naturale pentru fenomene care pareau sa necesite interventie divina. Fiecare pas micsoreaza "golul" unde Dumnezeu era invocat.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Newton & Laplace -->
+      <section class="row">
+        <div class="card" aria-label="Newton">
+          <div class="cardHeader">
+            <h2>Newton: Universul are nevoie de Dumnezeu</h2>
+            <div class="chip">1687</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Isaac Newton a unificat fizica cereasca si pamanteasca: <b>aceeasi lege a gravitatiei</b> guverneaza si caderea unui mar, si orbita Lunii.
+              Formula sa celebra: <span class="mono" style="color:var(--cyan)">F = G * m1 * m2 / r<sup>2</sup></span>
+            </p>
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 460 200" role="img" aria-label="Gravitatia lui Newton">
+                <defs>
+                  <radialGradient id="sun" cx="50%" cy="50%">
+                    <stop offset="0%" stop-color="rgba(255,210,122,.6)"/>
+                    <stop offset="100%" stop-color="rgba(255,210,122,0)"/>
+                  </radialGradient>
+                </defs>
+                <!-- Sun -->
+                <circle cx="230" cy="100" r="40" fill="url(#sun)"/>
+                <circle cx="230" cy="100" r="18" fill="rgba(255,210,122,.8)" stroke="rgba(255,210,122,.4)" stroke-width="1"/>
+                <text x="230" y="104" text-anchor="middle" font-size="10" fill="rgba(0,0,0,.7)" font-weight="700">Soare</text>
+                <!-- Orbits -->
+                <ellipse cx="230" cy="100" rx="70" ry="35" fill="none" stroke="rgba(122,215,255,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+                <ellipse cx="230" cy="100" rx="120" ry="55" fill="none" stroke="rgba(187,167,255,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+                <ellipse cx="230" cy="100" rx="170" ry="75" fill="none" stroke="rgba(255,179,138,.15)" stroke-width="1" stroke-dasharray="4 4"/>
+                <!-- Planets -->
+                <circle cx="300" cy="88" r="5" fill="var(--cyan)">
+                  <animateTransform attributeName="transform" type="rotate" from="0 230 100" to="360 230 100" dur="6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="350" cy="70" r="7" fill="var(--violet)">
+                  <animateTransform attributeName="transform" type="rotate" from="0 230 100" to="360 230 100" dur="10s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="400" cy="55" r="4" fill="var(--orange)">
+                  <animateTransform attributeName="transform" type="rotate" from="0 230 100" to="360 230 100" dur="15s" repeatCount="indefinite"/>
+                </circle>
+                <!-- Arrow + label -->
+                <text x="20" y="190" font-size="11" fill="rgba(255,255,255,.6)">Aceeasi forta: gravitatia</text>
+                <!-- Apple -->
+                <line x1="50" y1="30" x2="50" y2="70" stroke="rgba(117,240,182,.3)" stroke-width="1"/>
+                <circle cx="50" cy="28" r="6" fill="var(--good)" opacity=".7"/>
+                <text x="50" y="32" text-anchor="middle" font-size="7" fill="rgba(0,0,0,.7)">mar</text>
+                <line x1="50" y1="72" x2="50" y2="100" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".5"/>
+                <polygon points="46,100 54,100 50,108" fill="var(--good)" opacity=".5"/>
+                <text x="65" y="90" font-size="9" fill="rgba(255,255,255,.5)">cade!</text>
+              </svg>
+            </div>
+            <p class="muted">
+              Dar Newton a descoperit o problema: stelele se atrag reciproc si ar trebui sa se prabuseasca unele in altele.
+              Nu a putut rezolva aceasta <b>instabilitate gravitationala</b> cu fizica sa, asa ca a invocat pe Dumnezeu: cineva trebuie sa intervina periodic
+              pentru a mentine ordinea.
+            </p>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Leibniz l-a criticat pe Newton: daca Dumnezeu trebuie sa tot repare universul, inseamna ca e un "ceasornicar prost" care a facut un mecanism defectuos. Aceasta critica a fost profetic: o teorie fizica incompleta nu ar trebui completata cu supranaturalul.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Laplace">
+          <div class="cardHeader">
+            <h2>Laplace: "Nu am nevoie de aceasta ipoteza"</h2>
+            <div class="chip">~1800</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Pierre-Simon Laplace a demonstrat ca sistemul solar este stabil fara interventie divina. Fizica este suficienta.
+              Legenda spune ca Napoleon l-a intrebat unde este Dumnezeu in sistemul sau, iar Laplace a raspuns celebru:
+            </p>
+            <div class="quote">
+              "Sire, je n'ai pas eu besoin de cette hypothese."
+              <span class="author">-- Pierre-Simon Laplace (catre Napoleon, ~1802)</span>
+            </div>
+            <p class="muted">
+              In 1814, Laplace a mers si mai departe, formuland <b>determinismul stiintific</b>: daca ai cunoaste pozitia si viteza fiecarei particule
+              din univers, ai putea prezice tot -- trecutul, prezentul si viitorul. Universul e un <b>mecanism de ceasornic gigantic</b>, guvernat
+              complet de legi fizice.
+            </p>
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 460 160" role="img" aria-label="Determinismul lui Laplace">
+                <defs>
+                  <linearGradient id="detGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.4)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Gear shapes representing clockwork universe -->
+                <circle cx="130" cy="80" r="45" fill="none" stroke="url(#detGrad)" stroke-width="2" stroke-dasharray="8 4" opacity=".6">
+                  <animateTransform attributeName="transform" type="rotate" from="0 130 80" to="360 130 80" dur="12s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="130" cy="80" r="25" fill="none" stroke="rgba(187,167,255,.3)" stroke-width="1.5">
+                  <animateTransform attributeName="transform" type="rotate" from="360 130 80" to="0 130 80" dur="8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="130" cy="80" r="4" fill="var(--violet)" opacity=".6"/>
+
+                <circle cx="230" cy="80" r="35" fill="none" stroke="url(#detGrad)" stroke-width="2" stroke-dasharray="6 3" opacity=".5">
+                  <animateTransform attributeName="transform" type="rotate" from="0 230 80" to="-360 230 80" dur="10s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="230" cy="80" r="15" fill="none" stroke="rgba(122,215,255,.3)" stroke-width="1.5">
+                  <animateTransform attributeName="transform" type="rotate" from="360 230 80" to="0 230 80" dur="6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="230" cy="80" r="3" fill="var(--cyan)" opacity=".6"/>
+
+                <!-- Arrow: past -> future -->
+                <line x1="290" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+                <polygon points="420,76 430,80 420,84" fill="rgba(255,255,255,.3)"/>
+                <text x="340" y="70" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Trecut</text>
+                <text x="340" y="96" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.35)">cauza</text>
+                <text x="430" y="96" font-size="11" fill="rgba(255,255,255,.5)">Viitor</text>
+                <text x="430" y="110" font-size="9" fill="rgba(255,255,255,.35)">efect</text>
+
+                <text x="20" y="150" font-size="10" fill="rgba(255,255,255,.45)">Universul-ceasornic: totul e predeterminat de legi fizice</text>
+              </svg>
+            </div>
+            <p class="muted">
+              Dumnezeu a fost retrogradat la rolul de "cauza prima" -- cel care a pus lucrurile in miscare si a stabilit legile, dar apoi s-a retras.
+              Nici macar acest rol nu va rezista mult.
+            </p>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Determinismul lui Laplace a fost distrus in secolul XX de mecanica cuantica. Dar ideea sa fundamentala -- ca fizica poate explica totul fara interventie supranaturala -- a ramas puternica.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Thermodynamics & Big Bang -->
+      <section class="row">
+        <div class="card" aria-label="Termodinamica">
+          <div class="cardHeader">
+            <h2>Termodinamica: universul are un inceput?</h2>
+            <div class="chip">sec. XIX</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              <b>Legea a doua a termodinamicii:</b> entropia (dezordinea) dintr-un sistem inchis creste mereu.
+              Gandit simplu: energia se imprastie, lucrurile se degradeaza, tot tinde spre uniformitate.
+            </p>
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Ce inseamna asta pentru univers?</h3>
+                <p>Daca dezordinea creste mereu, universul va ajunge intr-o stare de "moarte termica" -- totul la aceeasi temperatura, fara energie disponibila, fara viata.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">moartea termica</span><span class="badge">uniformitate totala</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Implicatia surprinzatoare</h3>
+                <p>Daca entropia creste mereu si nu suntem inca "morti termic", atunci universul <b>nu poate fi etern</b>. A avut un inceput -- un moment cand entropia era foarte mica si totul era foarte ordonat.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">univers finit</span><span class="badge">inceput necesar</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Dilema filozofica</h3>
+                <p>Un univers cu inceput parea sa sustina religia ("La inceput, Dumnezeu a creat cerul si pamantul"). Multi oameni de stiinta preferau un univers etern, fara nevoie de creator. S-au cautat alternative, dar niciuna nu a fost satisfacatoare.</p>
+                <div class="meta"><span class="badge">tensiune stiinta-religie</span></div>
+              </div>
+            </div>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ironia este ca termodinamica -- stiinta pura -- a sugerat ceva ce parea sa sustina teologia. Dar in secolul XX, fizica va oferi propriile sale raspunsuri la intrebarea "ce a cautat inceputul?"
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Big Bang">
+          <div class="cardHeader">
+            <h2>Big Bang-ul: universul s-a nascut acum 13,8 miliarde de ani</h2>
+            <div class="chip">sec. XX</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Einstein a descoperit ca ecuatiile lui prezic un univers in <b>expansiune sau contractie</b> -- nu static.
+              Edwin Hubble a confirmat: galaxiile se departeaza de noi, si cu cat sunt mai departe, cu atat se departeaza mai repede.
+            </p>
+            <div class="viz" id="expandViz" style="padding:14px">
+              <svg viewBox="0 0 460 220" id="expandSvg" role="img" aria-label="Expansiunea universului">
+                <defs>
+                  <radialGradient id="bbGlow" cx="50%" cy="50%">
+                    <stop offset="0%" stop-color="rgba(255,210,122,.5)"/>
+                    <stop offset="50%" stop-color="rgba(255,122,153,.2)"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="230" cy="110" r="8" fill="url(#bbGlow)" id="bbCore"/>
+                <!-- Galaxies that expand -->
+                <g id="galaxies"></g>
+                <text x="230" y="210" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)" id="expandLabel">Folositi sliderul pentru a derula timpul</text>
+              </svg>
+            </div>
+            <div class="controls" style="grid-template-columns:1fr">
+              <div class="control">
+                <label>
+                  <span>Timp scurs de la Big Bang</span>
+                  <span class="readout" id="expandReadout">0 mld. ani</span>
+                </label>
+                <input id="expandSlider" type="range" min="0" max="138" value="0" />
+                <div class="small" style="margin-top:8px">0 = Big Bang. 138 = prezent (~13,8 miliarde de ani).</div>
+              </div>
+            </div>
+            <div class="hr"></div>
+            <p class="muted">
+              Confirmarea a venit in 1965: Penzias si Wilson au descoperit <b>radiatia cosmica de fond</b> -- "ecoul" Big Bang-ului, exact asa cum teoria prezisese.
+              Dar fizica nu s-a oprit aici. A mai ramas o intrebare: <b>ce a cauzat Big Bang-ul?</b>
+            </p>
+            <div class="flowNode" style="margin-top:10px">
+              <h3>Raspunsul fizicii: poate nimic, si asta e in regula</h3>
+              <p>In relativitatea generala, <b>timpul insusi a inceput la Big Bang</b>. A intreba "ce a fost inainte?" e ca si cum ai intreba "ce e la nord de Polul Nord?" -- intrebarea nu are sens.
+              Stephen Hawking a propus un model fara margini: universul pur si simplu <b>exista</b>, fara un eveniment de creare.</p>
+              <div class="meta">
+                <span class="badge" style="color:var(--cyan)">Hawking</span>
+                <span class="badge">propunerea fara margini</span>
+                <span class="badge">fluctuatii cuantice</span>
+              </div>
+            </div>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Preotul si fizicianul belgian Georges Lemaitre, unul din parintii teoriei Big Bang, a avertizat el insusi: Big Bang-ul e o teorie stiintifica, nu o dovada a creatiei divine. Stiinta si teologia raspund la intrebari diferite.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: Quantum Mechanics -->
+      <section class="card" id="diceCard" aria-label="Mecanica cuantica">
+        <div class="cardHeader">
+          <h2>Mecanica cuantica: "Dumnezeu nu joaca zaruri" -- dar universul da</h2>
+          <div class="chip"><b>Einstein vs. realitate</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                In anii 1920, Werner Heisenberg a descoperit <b>principiul incertitudinii</b>: nu poti cunoaste simultan si pozitia exacta,
+                si viteza exacta a unei particule. Nu e o limitare a instrumentelor -- e o proprietate fundamentala a realitatii.
+              </p>
+              <p class="muted">
+                Inainte de a fi masurata, o particula nu "este" intr-un loc anume. E intr-o <b>superpozitie</b> -- o combinatie de toate
+                starile posibile, in acelasi timp. Doar masurarea o "forteaza" intr-o stare definita. Si care stare obtii?
+                E <b>fundamental aleatoriu</b>.
+              </p>
+              <div class="quote">
+                "Dumnezeu nu joaca zaruri."
+                <span class="author">-- Albert Einstein (exprimand dezacordul sau)</span>
+              </div>
+              <p class="muted">
+                Einstein a sperat ca exista "variabile ascunse" care fac totul deterministic. Dar experimentele au confirmat:
+                <b>Einstein a gresit</b>. Mecanica cuantica este intr-adevar probabilista. Universul chiar "joaca zaruri."
+              </p>
+            </div>
+            <div>
+              <p class="small" style="margin-bottom:8px">Simulati "zarurile cuantice" -- rezultate pur aleatorii:</p>
+              <div class="viz">
+                <div class="dice-area">
+                  <div class="die" id="die1">?</div>
+                  <div class="die" id="die2">?</div>
+                  <div class="die" id="die3">?</div>
+                </div>
+                <div style="text-align:center">
+                  <button class="btn" id="rollDice">Arunca zarurile cuantice</button>
+                </div>
+                <div class="hr"></div>
+                <div class="dice-stats" id="diceStats">
+                  <div>Aruncari totale: <b id="diceTotal">0</b></div>
+                  <div>Media: <b id="diceAvg">--</b> <span style="color:var(--faint)">(teoretic: 3.5)</span></div>
+                  <div>Distributia se stabilizeaza dupa multe aruncari, dar <b>fiecare rezultat individual e imprevizibil</b>.</div>
+                </div>
+              </div>
+              <div class="flowNode" style="margin-top:10px">
+                <h3>Ce inseamna asta?</h3>
+                <p>Determinismul lui Laplace e imposibil. Viitorul nu e fixat. Dar nici nu e "liber" in sensul uman -- e pur si simplu aleatoriu. Fizica a inlocuit ceasornicul cu zarurile.</p>
+                <div class="meta">
+                  <span class="badge" style="color:var(--violet)">Heisenberg</span>
+                  <span class="badge">superpozitie</span>
+                  <span class="badge" style="color:var(--bad)">indeterminism</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Unii au incercat sa vada indeterminismul cuantic ca "spatiu pentru Dumnezeu sau liber arbitru." Dar aleatoriul cuantic nu e acela -- urmeaza reguli statistice precise (ecuatia lui Schrodinger). E fizica, nu teologie, care face explicatia.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Multiverse & Fine-tuning -->
+      <section class="row">
+        <div class="card" aria-label="Reglaj fin">
+          <div class="cardHeader">
+            <h2>Argumentul "reglajului fin": universul pare proiectat</h2>
+            <div class="chip">provocarea teologica</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Constantele fizice ale universului nostru par <b>calibrate incredibil de precis</b> pentru a permite existenta stelelor, planetelor, chimiei si vietii.
+              Schimba oricare constanta chiar si putin, si viata devine imposibila.
+            </p>
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Constanta gravitationala</strong><span class="badge">G</span></div>
+                <div class="meter"><i style="width:92%"></i></div>
+                <p>Prea mare: stelele ard prea repede. Prea mica: nu se formeaza galaxii.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Forta nucleara tare</strong><span class="badge">forte</span></div>
+                <div class="meter"><i style="width:88%"></i></div>
+                <p>Prea mare: doar hidrogen greu. Prea mica: nu exista atomi stabili.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Masa electronului</strong><span class="badge">m_e</span></div>
+                <div class="meter"><i style="width:85%"></i></div>
+                <p>Valoare diferita: chimia nu functioneaza, moleculele nu se formeaza.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Constanta cosmologica</strong><span class="badge">&Lambda;</span></div>
+                <div class="meter"><i style="width:96%"></i></div>
+                <p>Cel mai "reglat fin" parametru: o diferenta de 10<sup>-120</sup> ar distruge universul.</p>
+              </div>
+            </div>
+            <div class="hr"></div>
+            <p class="muted">
+              Teologii au argumentat: aceasta calibrare perfecta <b>cere un calibrator</b> -- un proiectant inteligent.
+              Dar fizica a oferit o alternativa.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Multivers">
+          <div class="cardHeader">
+            <h2>Multiversul: design sau probabilitate?</h2>
+            <div class="chip"><b>~10<sup>500</sup> universuri</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Teoria corzilor prezice aproximativ <b>10<sup>500</sup></b> stari posibile ale vidului -- adica 10<sup>500</sup> universuri posibile,
+              fiecare cu legi fizice diferite. Inflatia eterna sugereaza ca <b>toate se realizeaza</b> intr-un vast multivers.
+            </p>
+            <div class="viz">
+              <div class="bubble-field" id="bubbleField"></div>
+            </div>
+            <div style="text-align:center;margin-top:10px">
+              <button class="btn" id="regenBubbles">Regenerati multiversul</button>
+            </div>
+            <div class="hr"></div>
+            <div class="flowNode">
+              <h3>Principiul antropic</h3>
+              <p>
+                Nu traim intr-un univers "proiectat" -- traim in <b>unul din rarele universuri</b> unde conditiile permit viata.
+                In celelalte 10<sup>500</sup>, nu e nimeni care sa se intrebe de ce.
+                E ca si cum ai fi surprins ca te-ai nascut pe o planeta cu aer: evident, nu te puteai naste pe una fara.
+              </p>
+              <div class="meta">
+                <span class="badge" style="color:var(--good)">selectie, nu design</span>
+                <span class="badge">probabilitate</span>
+                <span class="badge" style="color:var(--warn)">controversat</span>
+              </div>
+            </div>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Multiversul e controversat. Multi fizicieni obiecteza ca celelalte universuri sunt neobservabile, deci nestiintifice.
+              Susskind recunoaste asta, dar sustine ca fizica ofera <i>alternative naturaliste</i> la explicatia teista, chiar daca nu sunt (inca) dovedite.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Darwin parallel -->
+      <section class="card" aria-label="Darwin">
+        <div class="cardHeader">
+          <h2>Paralela din biologie: Darwin si selectia naturala</h2>
+          <div class="chip">1859 &bull; acelasi tipar</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Inainte de Darwin, complexitatea vietii parea sa ceara un <b>proiectant inteligent</b>.
+                William Paley (1802) a formulat celebra analogie a <b>ceasornicarului</b>:
+              </p>
+              <div class="quote">
+                "Daca gasesti un ceas pe jos, deduci ca a existat un ceasornicar. La fel, cand vezi complexitatea unui ochi uman, trebuie sa deduci un Creator."
+                <span class="author">-- William Paley, "Natural Theology", 1802</span>
+              </div>
+              <p class="muted">
+                Darwin a aratat ca aceasta deductie e <b>gresita</b>. Selectia naturala -- un proces complet natural -- poate produce
+                toata complexitatea vietii, fara niciun proiectant:
+              </p>
+              <div class="flow" style="gap:8px">
+                <div class="flowNode">
+                  <h3>1. Variatie aleatoare</h3>
+                  <p>Mutatiile genetice produc diferente mici intre indivizi.</p>
+                </div>
+                <div class="flowNode">
+                  <h3>2. Selectie naturala</h3>
+                  <p>Cei mai bine adaptati supravietuiesc si se reproduc mai mult.</p>
+                </div>
+                <div class="flowNode">
+                  <h3>3. Acumulare in timp</h3>
+                  <p>De-a lungul milioanelor de ani, schimbarile mici se aduna si produc ochi, aripi, creiere.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 420 300" role="img" aria-label="Arbore evolutiv simplificat">
+                  <defs>
+                    <linearGradient id="treeGrad" x1="0" x2="0" y1="1" y2="0">
+                      <stop offset="0%" stop-color="rgba(117,240,182,.5)"/>
+                      <stop offset="100%" stop-color="rgba(122,215,255,.5)"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Tree trunk -->
+                  <line x1="210" y1="280" x2="210" y2="200" stroke="url(#treeGrad)" stroke-width="4" stroke-linecap="round"/>
+                  <!-- Branches -->
+                  <line x1="210" y1="200" x2="130" y2="140" stroke="rgba(117,240,182,.35)" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="210" y1="200" x2="290" y2="140" stroke="rgba(122,215,255,.35)" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="130" y1="140" x2="80" y2="80" stroke="rgba(117,240,182,.25)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="130" y1="140" x2="160" y2="80" stroke="rgba(187,167,255,.25)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="290" y1="140" x2="260" y2="80" stroke="rgba(255,210,122,.25)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="290" y1="140" x2="340" y2="80" stroke="rgba(255,179,138,.25)" stroke-width="2" stroke-linecap="round"/>
+                  <!-- More branches -->
+                  <line x1="80" y1="80" x2="50" y2="35" stroke="rgba(117,240,182,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="80" y1="80" x2="100" y2="35" stroke="rgba(117,240,182,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="160" y1="80" x2="145" y2="35" stroke="rgba(187,167,255,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="160" y1="80" x2="180" y2="35" stroke="rgba(187,167,255,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="260" y1="80" x2="240" y2="35" stroke="rgba(255,210,122,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="260" y1="80" x2="275" y2="35" stroke="rgba(255,210,122,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="340" y1="80" x2="320" y2="35" stroke="rgba(255,179,138,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="340" y1="80" x2="370" y2="35" stroke="rgba(255,179,138,.2)" stroke-width="1.5" stroke-linecap="round"/>
+                  <!-- Leaf dots -->
+                  <circle cx="50" cy="30" r="5" fill="var(--good)" opacity=".6"/>
+                  <circle cx="100" cy="30" r="5" fill="var(--good)" opacity=".5"/>
+                  <circle cx="145" cy="30" r="5" fill="var(--violet)" opacity=".5"/>
+                  <circle cx="180" cy="30" r="5" fill="var(--violet)" opacity=".6"/>
+                  <circle cx="240" cy="30" r="5" fill="var(--warn)" opacity=".5"/>
+                  <circle cx="275" cy="30" r="5" fill="var(--warn)" opacity=".6"/>
+                  <circle cx="320" cy="30" r="5" fill="var(--orange)" opacity=".5"/>
+                  <circle cx="370" cy="30" r="5" fill="var(--orange)" opacity=".6"/>
+                  <!-- Root -->
+                  <circle cx="210" cy="284" r="6" fill="rgba(255,255,255,.3)"/>
+                  <!-- Labels -->
+                  <text x="210" y="298" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">Stramos comun</text>
+                  <text x="75" y="18" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">Specii</text>
+                  <text x="160" y="18" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">diverse</text>
+                  <text x="258" y="18" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">generate</text>
+                  <text x="345" y="18" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">natural</text>
+                </svg>
+              </div>
+              <p class="muted">
+                Tiparul e identic cu cel din fizica: o explicatie supranaturala (proiectantul inteligent) e inlocuita de un proces natural (selectia naturala).
+                Darwin nu a demonstrat ca Dumnezeu nu exista -- a aratat ca <b>nu e necesar</b> pentru a explica complexitatea vietii.
+              </p>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind subliniaza ca tiparul se repeta in fiecare domeniu: Newton-Laplace pentru mecanica cereasca, Darwin pentru biologie, Big Bang + cuantica pentru cosmologie, multiversul pentru reglajul fin. De fiecare data, "Dumnezeu-explicatie" se retrage.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: What remains -->
+      <section class="card" aria-label="Ce ramane">
+        <div class="cardHeader">
+          <h2>Ce ramane: intrebarile la care fizica nu raspunde (inca?)</h2>
+          <div class="chip"><b>CUM vs. DE CE</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px;color:var(--cyan)">Fizica explica CUM</h3>
+              <div class="flow" style="gap:8px">
+                <div class="pill"><span>Cum se misca planetele</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+                <div class="pill"><span>Cum a aparut universul</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+                <div class="pill"><span>Cum au aparut speciile</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+                <div class="pill"><span>Cum functioneaza atomii</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+                <div class="pill"><span>Cum se comporta lumina</span><span class="tag" style="color:var(--good)">rezolvat</span></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px;color:var(--warn)">Intrebari deschise</h3>
+              <div class="flow" style="gap:8px">
+                <div class="pill"><span>De ce exista ceva, nu nimic?</span><span class="tag" style="color:var(--warn)">deschis</span></div>
+                <div class="pill"><span>De ce exista legile fizicii?</span><span class="tag" style="color:var(--warn)">deschis</span></div>
+                <div class="pill"><span>Ce este constiinta?</span><span class="tag" style="color:var(--warn)">deschis</span></div>
+                <div class="pill"><span>De ce e matematica atat de eficienta?</span><span class="tag" style="color:var(--warn)">deschis</span></div>
+                <div class="pill"><span>Sens, moralitate, scop</span><span class="tag" style="color:var(--warn)">deschis</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <details data-commentary>
+            <summary><strong>Concluzia lui Susskind</strong><span class="hint">apasati pentru a deschide</span></summary>
+            <div class="detailBody">
+              <p>
+                Fizica nu a demonstrat ca Dumnezeu nu exista. A aratat ca universul este <b>autosuficient</b> in ceea ce priveste functionarea sa.
+                Legile fizicii sunt suficiente pentru a explica totul, de la fluctuatiile cuantice la structurile cosmice.
+                Daca acele legi necesita un "legiuitor divin" -- asta e metafizica, nu fizica.
+              </p>
+              <p style="margin-top:8px">
+                Susskind vede aceasta ca una din marile realizari intelectuale ale ultimelor trei secole: am invatat ca universul e <b>comprehensibil</b>,
+                ca poate fi inteles prin observatie, experiment si rationament matematic, <b>fara a invoca supranaturalul</b>.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Summary -->
+      <section class="card" aria-label="Rezumat">
+        <div class="cardHeader">
+          <h2>Rezumat: tiparul celor 300 de ani</h2>
+          <div class="chip"><b>Teza:</b> supranaturalul cedeaza naturalului</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" style="padding:14px">
+            <svg viewBox="0 0 960 280" role="img" aria-label="Rezumat vizual al tranzitiei">
+              <defs>
+                <linearGradient id="sumGrad" x1="0" x2="1">
+                  <stop offset="0%" stop-color="rgba(255,210,122,.4)"/>
+                  <stop offset="50%" stop-color="rgba(187,167,255,.4)"/>
+                  <stop offset="100%" stop-color="rgba(122,215,255,.4)"/>
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6"/>
+                </filter>
+              </defs>
+              <!-- Big arrow -->
+              <path d="M60,140 L860,140" stroke="url(#sumGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <polygon points="860,130 890,140 860,150" fill="rgba(122,215,255,.5)"/>
+
+              <!-- Stages -->
+              <g>
+                <rect x="40" y="60" width="130" height="60" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,210,122,.25)" stroke-width="1"/>
+                <text x="105" y="84" text-anchor="middle" font-size="11" fill="var(--warn)" font-weight="700">Newton</text>
+                <text x="105" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">Dumnezeu repara</text>
+                <text x="105" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">universul</text>
+              </g>
+              <g>
+                <rect x="200" y="60" width="130" height="60" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(187,167,255,.25)" stroke-width="1"/>
+                <text x="265" y="84" text-anchor="middle" font-size="11" fill="var(--violet)" font-weight="700">Laplace</text>
+                <text x="265" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">Nu am nevoie</text>
+                <text x="265" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">de acea ipoteza</text>
+              </g>
+              <g>
+                <rect x="360" y="60" width="130" height="60" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(255,122,153,.25)" stroke-width="1"/>
+                <text x="425" y="84" text-anchor="middle" font-size="11" fill="var(--bad)" font-weight="700">Termodinamica</text>
+                <text x="425" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">Universul are</text>
+                <text x="425" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">un inceput</text>
+              </g>
+              <g>
+                <rect x="520" y="60" width="130" height="60" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(122,215,255,.25)" stroke-width="1"/>
+                <text x="585" y="84" text-anchor="middle" font-size="11" fill="var(--cyan)" font-weight="700">Big Bang</text>
+                <text x="585" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">Fara creator</text>
+                <text x="585" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">necesar</text>
+              </g>
+              <g>
+                <rect x="680" y="60" width="130" height="60" rx="12" fill="rgba(0,0,0,.2)" stroke="rgba(117,240,182,.25)" stroke-width="1"/>
+                <text x="745" y="84" text-anchor="middle" font-size="11" fill="var(--good)" font-weight="700">Cuantica</text>
+                <text x="745" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">Universul joaca</text>
+                <text x="745" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.55)">zaruri</text>
+              </g>
+
+              <!-- Bottom: what remains -->
+              <rect x="200" y="175" width="560" height="75" rx="16" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <text x="480" y="200" text-anchor="middle" font-size="13" fill="var(--text)" font-weight="700">Ce ramane?</text>
+              <text x="480" y="220" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Fizica explica CUM functioneaza universul.</text>
+              <text x="480" y="238" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Intrebarile despre DE CE exista -- raman deschise.</text>
+            </svg>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu final:</b> Susskind nu e un militant ateist. E un fizician care povesteste o transformare intelectuala reala. Mesajul sau principal nu e "Dumnezeu nu exista," ci <b>"universul e comprehensibil prin fizica."</b> Aceasta distinctie e importanta: absenta necesitatii nu e dovada a inexistentei.
+          </div>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul "comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe tot parcursul paginii, casetele violet marcate cu <code>data-commentary</code> ofera <b>comentarii de nivel meta</b>:
+            cat de puternica e o afirmatie? Ce alternative exista? Ce e speculativ si ce e confirmat?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasati butonul "Comentarii on/off" din antet pentru a le ascunde/arata.
+            Astfel puteti alterna intre "ce spune Susskind" si "ce ar trebui sa gandim critic despre asta."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si avertismente:</b> Acest infografic interactiv traduce si vizualizeaza o prezentare a lui Leonard Susskind despre cum fizica a preluat rolul explicativ al lui Dumnezeu.
+        Nu este un text teologic sau anti-teologic -- ci o poveste a istoriei intelectuale. Vizualizarile sunt conceptuale, menite sa clarifice ideile, nu sa inlocuiasca studiul aprofundat.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: cartile lui Susskind ("The Cosmic Landscape"), istoria fizicii, filozofia stiintei, cosmologie moderna.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Timeline data and rendering
+    // ──────────────────────────────────────────────────────
+    const timelineData = [
+      {
+        year: '1687',
+        name: 'Newton',
+        title: 'Newton: gravitatia universala',
+        desc: 'Newton unifica fizica cereasca si pamanteasca cu o singura ecuatie. Dar considera ca Dumnezeu trebuie sa intervina periodic pentru a mentine stabilitatea universului. Leibniz il critica: un Dumnezeu care trebuie sa repare mereu universul e un "ceasornicar prost."'
+      },
+      {
+        year: '~1800',
+        name: 'Laplace',
+        title: 'Laplace: determinismul complet',
+        desc: 'Laplace demonstreaza ca sistemul solar e stabil fara interventie divina. Formuleaza determinismul: daca ai cunoaste totul despre prezent, ai putea prezice tot viitorul. "Nu am nevoie de aceasta ipoteza" (despre Dumnezeu).'
+      },
+      {
+        year: '~1850',
+        name: 'Termodinamica',
+        title: 'Termodinamica: entropia si inceputul',
+        desc: 'Legea a doua a termodinamicii sugereaza ca universul are un inceput (altfel ar fi deja in stare de "moarte termica"). Paradoxal, aceasta pare sa sustina creatia divina, dar fizicienii cauta alternative naturaliste.'
+      },
+      {
+        year: '1859',
+        name: 'Darwin',
+        title: 'Darwin: selectia naturala',
+        desc: 'Darwin arata ca complexitatea vietii poate aparea prin procese naturale, fara un proiectant inteligent. Selectia naturala inlocuieste argumentul ceasornicarului lui Paley. Acelasi tipar ca in fizica: naturalul inlocuieste supranaturalul.'
+      },
+      {
+        year: '1915',
+        name: 'Einstein',
+        title: 'Einstein: relativitatea generala',
+        desc: 'Einstein arata ca spatiul si timpul sunt intresurlubite in spatiu-timp, iar gravitatia e curbura spatiu-timpului. Ecuatiile sale prezic un univers in expansiune, nu static. Initial adauga "constanta cosmologica" pentru a forta un univers static -- mai tarziu numeste asta "cea mai mare greseala."'
+      },
+      {
+        year: '1927',
+        name: 'Cuantica',
+        title: 'Mecanica cuantica: incertitudinea',
+        desc: 'Heisenberg descopera principiul incertitudinii. Universul nu e deterministic: la nivel fundamental, rezultatele sunt aleatorii. "Dumnezeu nu joaca zaruri," spune Einstein. Dar experimentele confirma: universul chiar joaca zaruri.'
+      },
+      {
+        year: '1965',
+        name: 'Big Bang',
+        title: 'Confirmarea Big Bang-ului',
+        desc: 'Penzias si Wilson descopera radiatia cosmica de fond -- ecoul Big Bang-ului. Universul a inceput acum 13,8 miliarde de ani. Hawking propune modelul "fara margini": universul exista pur si simplu, fara un eveniment de creare.'
+      },
+      {
+        year: '~2003',
+        name: 'Multivers',
+        title: 'Multiversul si principiul antropic',
+        desc: 'Susskind argumenteaza ca teoria corzilor prezice ~10^500 universuri posibile. Reglajul fin nu cere un proiectant: traim in unul din rarele universuri compatibile cu viata. E selectie, nu design.'
+      }
+    ];
+
+    function renderTimeline() {
+      const container = document.getElementById('tlNodes');
+      container.innerHTML = '';
+      timelineData.forEach((item, i) => {
+        const node = document.createElement('div');
+        node.className = 'tnode';
+        node.innerHTML = `<div class="tdot"></div><div class="tyear">${item.year}</div><div class="tname">${item.name}</div>`;
+        node.addEventListener('click', () => selectTimelineNode(i));
+        container.appendChild(node);
+      });
+    }
+
+    function selectTimelineNode(idx) {
+      const nodes = document.querySelectorAll('.tnode');
+      nodes.forEach((n, i) => n.classList.toggle('active', i <= idx));
+      const fill = document.getElementById('tlFill');
+      fill.style.width = `${(idx / (timelineData.length - 1)) * 100}%`;
+      const detail = document.getElementById('tlDetail');
+      const d = timelineData[idx];
+      detail.innerHTML = `<h3>${d.title}</h3><p>${d.desc}</p>`;
+    }
+
+    renderTimeline();
+
+    // ──────────────────────────────────────────────────────
+    // Expanding universe visualization
+    // ──────────────────────────────────────────────────────
+    const expandSlider = document.getElementById('expandSlider');
+    const expandReadout = document.getElementById('expandReadout');
+    const galaxiesGroup = document.getElementById('galaxies');
+    const expandLabel = document.getElementById('expandLabel');
+    const bbCore = document.getElementById('bbCore');
+
+    const galaxySeeds = [];
+    for (let i = 0; i < 24; i++) {
+      const angle = (i / 24) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+      const baseDist = 15 + Math.random() * 10;
+      const size = 2 + Math.random() * 3;
+      const hue = Math.random();
+      let color;
+      if (hue < 0.25) color = 'rgba(122,215,255,.7)';
+      else if (hue < 0.5) color = 'rgba(187,167,255,.6)';
+      else if (hue < 0.75) color = 'rgba(255,210,122,.6)';
+      else color = 'rgba(117,240,182,.5)';
+      galaxySeeds.push({ angle, baseDist, size, color });
+    }
+
+    function renderExpansion() {
+      const t = parseInt(expandSlider.value);
+      const tBillion = (t / 10).toFixed(1);
+      expandReadout.textContent = `${tBillion} mld. ani`;
+
+      const scale = 0.3 + (t / 138) * 6;
+      const coreR = Math.max(2, 12 - t * 0.06);
+      bbCore.setAttribute('r', coreR);
+
+      galaxiesGroup.innerHTML = '';
+      galaxySeeds.forEach(g => {
+        const dist = g.baseDist * scale;
+        const x = 230 + Math.cos(g.angle) * dist;
+        const y = 110 + Math.sin(g.angle) * dist * 0.5;
+        if (x < 5 || x > 455 || y < 5 || y > 215) return;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', g.size * Math.min(1, scale * 0.3));
+        circle.setAttribute('fill', g.color);
+        galaxiesGroup.appendChild(circle);
+      });
+
+      if (t === 0) {
+        expandLabel.textContent = 'Big Bang: totul intr-un singur punct de densitate infinita';
+      } else if (t < 40) {
+        expandLabel.textContent = 'Universul tanar: galaxiile se formeaza si se departeaza';
+      } else if (t < 100) {
+        expandLabel.textContent = 'Expansiunea continua: spatiul insusi se intinde';
+      } else {
+        expandLabel.textContent = 'Prezent: 13,8 miliarde de ani de expansiune';
+      }
+    }
+
+    expandSlider.addEventListener('input', renderExpansion);
+    renderExpansion();
+
+    // ──────────────────────────────────────────────────────
+    // Quantum dice simulator
+    // ──────────────────────────────────────────────────────
+    let diceRolls = [];
+    const die1 = document.getElementById('die1');
+    const die2 = document.getElementById('die2');
+    const die3 = document.getElementById('die3');
+    const diceTotalEl = document.getElementById('diceTotal');
+    const diceAvgEl = document.getElementById('diceAvg');
+
+    document.getElementById('rollDice').addEventListener('click', () => {
+      const dice = [die1, die2, die3];
+      dice.forEach(d => {
+        d.classList.add('rolling');
+        setTimeout(() => d.classList.remove('rolling'), 400);
+      });
+
+      setTimeout(() => {
+        const results = [
+          Math.floor(Math.random() * 6) + 1,
+          Math.floor(Math.random() * 6) + 1,
+          Math.floor(Math.random() * 6) + 1
+        ];
+        die1.textContent = results[0];
+        die2.textContent = results[1];
+        die3.textContent = results[2];
+
+        diceRolls.push(...results);
+        diceTotalEl.textContent = Math.floor(diceRolls.length / 3);
+        const avg = (diceRolls.reduce((a, b) => a + b, 0) / diceRolls.length).toFixed(2);
+        diceAvgEl.textContent = avg;
+      }, 350);
+    });
+
+    // ──────────────────────────────────────────────────────
+    // God of the Gaps interactive
+    // ──────────────────────────────────────────────────────
+    function updateGaps() {
+      const checks = document.querySelectorAll('#gapsChecklist input[type="checkbox"]');
+      let totalGap = 0;
+      let physicsGap = 16; // Base physics knowledge
+      checks.forEach(cb => {
+        const val = parseInt(cb.dataset.gap) || 10;
+        totalGap += val;
+        if (cb.checked) physicsGap += val;
+      });
+      const maxPhysics = 16 + totalGap;
+      const pct = Math.min(95, Math.round((physicsGap / maxPhysics) * 100));
+      document.getElementById('gapsPhysics').style.width = pct + '%';
+      document.getElementById('gapsPhysics').textContent = `Fizica: ${pct}%`;
+
+      const label = document.getElementById('gapsLabel');
+      if (pct >= 90) {
+        label.textContent = 'Aproape tot ce era "teritoriul lui Dumnezeu" a fost explicat de fizica. Raman doar intrebarile ultime.';
+      } else if (pct >= 60) {
+        label.textContent = 'Fizica acopera cea mai mare parte din explicatii. "Golurile" s-au micsorat dramatic.';
+      } else {
+        label.textContent = 'Bifati descoperirile de mai sus ca sa vedeti cum creste teritoriul fizicii.';
+      }
+    }
+
+    document.querySelectorAll('#gapsChecklist input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', updateGaps);
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Multiverse bubbles
+    // ──────────────────────────────────────────────────────
+    function generateBubbles() {
+      const field = document.getElementById('bubbleField');
+      field.innerHTML = '';
+      const count = 30 + Math.floor(Math.random() * 20);
+      const labels = [
+        'g=0', 'fara stele', 'fara atomi', 'supragreutate',
+        'vid instabil', 'no-life', 'colaps rapid', 'fara chimie',
+        'e=0', 'intuneric', 'doar radiatii', 'fara timp',
+        'g>>1', 'fara electromagnetism', '2D', '11D',
+        'entropie max', 'doar fotoni', 'fara protoni', 'neutrini doar'
+      ];
+
+      for (let i = 0; i < count; i++) {
+        const bubble = document.createElement('div');
+        const size = 20 + Math.random() * 50;
+        const isOurs = i === Math.floor(count * 0.6);
+        bubble.className = 'bubble' + (isOurs ? ' ours' : '');
+        bubble.style.width = (isOurs ? 55 : size) + 'px';
+        bubble.style.height = (isOurs ? 55 : size) + 'px';
+        bubble.style.left = (5 + Math.random() * 85) + '%';
+        bubble.style.top = (5 + Math.random() * 70) + '%';
+        const hue = Math.random();
+        if (isOurs) {
+          bubble.innerHTML = '<span>Noi!</span>';
+        } else {
+          bubble.style.background = `rgba(${Math.floor(100 + hue * 155)}, ${Math.floor(100 + (1 - hue) * 155)}, 255, .06)`;
+          if (size > 35) {
+            bubble.innerHTML = `<span>${labels[i % labels.length]}</span>`;
+          }
+        }
+        field.appendChild(bubble);
+      }
+    }
+
+    generateBubbles();
+    document.getElementById('regenBubbles').addEventListener('click', () => {
+      generateBubbles();
+      showToast('Multivers regenerat -- alte configuratii posibile');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpTimeline').addEventListener('click', () => {
+      document.getElementById('timelineCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpDice').addEventListener('click', () => {
+      document.getElementById('diceCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2200);
+    }
+  </script>
+</body>
+</html>

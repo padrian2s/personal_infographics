@@ -1,0 +1,1461 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce stelele sunt o iluzie optica — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv: de ce stelele pe care le vezi pe cer nu mai exista asa cum le vezi. Bazat pe explicatiile lui Leonard Susskind despre viteza luminii, conul de lumina si natura timpului." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.06), transparent 60%),
+        linear-gradient(180deg, #050810, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--warn), var(--orange)); box-shadow: 0 0 22px rgba(255,210,122,.3)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 240px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(260px 200px at 60% 45%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--warn)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Pill / tag / badge */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Flow nodes */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--violet));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Timeline cards */
+    .timeline{display:grid;gap:10px}
+    .tItem{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px 14px;
+      display:grid;
+      grid-template-columns: 80px 1fr;
+      gap:14px;
+      align-items:center;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .tItem:hover{border-color: rgba(255,210,122,.3); background: rgba(255,210,122,.04)}
+    .tItem .dist{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--warn);text-align:center}
+    .tItem .distSub{font-size:11px;color:var(--faint);text-align:center;margin-top:2px}
+    .tItem .info strong{font-size:13px;display:block;margin-bottom:4px}
+    .tItem .info p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Star distance interactive */
+    .starResult{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.22);
+      padding:16px;
+      margin-top:12px;
+      text-align:center;
+      min-height:120px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .starResult .bigNum{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1}
+    .starResult .epoch{font-size:14px;color:var(--warn);margin-top:8px;font-weight:600}
+    .starResult .desc{font-size:13px;color:var(--muted);margin-top:6px;max-width:50ch;line-height:1.5}
+
+    /* Quiz */
+    .quizOption{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:10px 14px;
+      cursor:pointer;
+      transition: border-color .15s, background .15s, transform .12s;
+      font-size:13px;
+      color:var(--muted);
+      display:block;
+      width:100%;
+      text-align:left;
+      margin-top:8px;
+    }
+    .quizOption:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.06);transform:translateY(-1px)}
+    .quizOption.correct{border-color:var(--good);background:rgba(117,240,182,.1);color:var(--good)}
+    .quizOption.wrong{border-color:var(--bad);background:rgba(255,122,153,.08);color:var(--bad)}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,210,122,.7);
+      padding: 10px 12px;
+      background: rgba(255,210,122,.06);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Hallmarks-style grid for stars */
+    .starGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){.starGrid{grid-template-columns: repeat(2, minmax(0,1fr))}}
+    @media (max-width: 560px){.starGrid{grid-template-columns:1fr}}
+
+    /* Animated star twinkle */
+    @keyframes twinkle{
+      0%,100%{opacity:.3}
+      50%{opacity:1}
+    }
+    .twinkle{animation: twinkle 3s ease-in-out infinite}
+    .twinkle2{animation: twinkle 4.2s ease-in-out infinite; animation-delay: 1s}
+    .twinkle3{animation: twinkle 2.7s ease-in-out infinite; animation-delay: 0.5s}
+
+    /* Light cone diagram interactive */
+    .lcHighlight{
+      transition: opacity .3s ease;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 240" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,210,122,.5)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.4)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.4)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="12" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Light rays emanating from distant stars -->
+            <line x1="50" y1="30" x2="400" y2="200" stroke="url(#g1)" stroke-width="2" opacity=".4"/>
+            <line x1="150" y1="20" x2="380" y2="190" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <line x1="280" y1="15" x2="350" y2="180" stroke="url(#g1)" stroke-width="2" opacity=".35"/>
+            <line x1="420" y1="40" x2="330" y2="170" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <!-- Stars (ghosts) -->
+            <circle cx="50" cy="30" r="6" fill="rgba(255,210,122,.7)" class="twinkle"/>
+            <circle cx="150" cy="20" r="4" fill="rgba(187,167,255,.6)" class="twinkle2"/>
+            <circle cx="280" cy="15" r="8" fill="rgba(255,122,153,.5)" class="twinkle3"/>
+            <circle cx="420" cy="40" r="5" fill="rgba(122,215,255,.6)" class="twinkle"/>
+            <circle cx="340" cy="60" r="3" fill="rgba(255,255,255,.5)" class="twinkle2"/>
+            <circle cx="100" cy="70" r="3.5" fill="rgba(255,179,138,.5)" class="twinkle3"/>
+            <circle cx="460" cy="80" r="4" fill="rgba(117,240,182,.4)" class="twinkle"/>
+            <!-- Observer eye -->
+            <ellipse cx="360" cy="190" rx="18" ry="12" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+            <circle cx="360" cy="190" r="6" fill="rgba(255,255,255,.6)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica &bull; cosmologie &bull; natura timpului</div>
+          <h1>Stelele sunt o iluzie optica: fantomele cerului de noapte</h1>
+          <p class="subtitle">
+            Cerul de noapte nu iti arata universul asa cum e <b>acum</b>. Iti arata cum a fost cu ani, secole sau miliarde de ani in urma.
+            Stelele pe care le vezi sunt fantome — imagini ale trecutului, inghietate in fotoni care au calatorit prin spatiu timp indelungat pana au ajuns la ochii tai.
+            Bazat pe explicatiile fizicianului <b>Leonard Susskind</b>.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la masina timpului</button>
+            <button class="btn" id="jumpLC">Mergi la conul de lumina</button>
+            <button class="btn" id="toggleNotes">Afiseaza/ascunde comentarii</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici-cheie">
+          <div class="stat">
+            <div class="label">Viteza luminii</div>
+            <div class="value" style="color:var(--warn)">300.000 km/s</div>
+            <div class="note">Inconjoara Pamantul de 7,5 ori intr-o secunda.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Soarele</div>
+            <div class="value">8 min 20 sec</div>
+            <div class="note">Atat ii ia luminii sa ajunga de la Soare la noi.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Betelgeuse</div>
+            <div class="value" style="color:var(--bad)">640 ani-lumina</div>
+            <div class="note">O vezi cum era in Evul Mediu. Ar fi putut exploda deja.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Galaxia Andromeda</div>
+            <div class="value" style="color:var(--violet)">2,5 mil. ani-lumina</div>
+            <div class="note">Lumina ei a plecat cand stramosii nostri erau maimute.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- ===== SECTION 1: Speed of Light basics ===== -->
+      <section class="card" aria-label="Viteza luminii">
+        <div class="cardHeader">
+          <h2>Viteza luminii: rapida, dar nu instantanee</h2>
+          <div class="chip"><b>300.000 km/s</b> &mdash; o limita universala</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Lumina calatoreste cu aproximativ <b>300.000 de kilometri pe secunda</b>. E cea mai mare viteza posibila in univers &mdash;
+                nimic, absolut nimic, nu poate merge mai repede. La aceasta viteza ai putea face turul Pamantului de 7,5 ori intr-o singura secunda,
+                sau ai ajunge din Bucuresti in New York in mai putin de o sutime de secunda.
+              </p>
+              <p class="muted">
+                Suna incredibil de rapid, si chiar e. Dar spatiul cosmic este <b>atat de imens</b> incat chiar si la viteza asta,
+                lumina are nevoie de timp real &mdash; minute, ani, milioane de ani &mdash; ca sa strabata distantele dintre stele si galaxii.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Comparatii distanta-timp">
+                <div class="small" style="margin-bottom:10px">Cat dureaza lumina sa ajunga la noi:</div>
+                <div class="timeline">
+                  <div class="tItem">
+                    <div><div class="dist">1,3 s</div><div class="distSub">secunde</div></div>
+                    <div class="info"><strong>Luna</strong><p>Cel mai apropiat obiect ceresc. Lumina face drumul intr-o clipita.</p></div>
+                  </div>
+                  <div class="tItem">
+                    <div><div class="dist">8m 20s</div><div class="distSub">minute</div></div>
+                    <div class="info"><strong>Soarele</strong><p>Daca ar exploda acum, ai afla abia peste 8 minute.</p></div>
+                  </div>
+                  <div class="tItem">
+                    <div><div class="dist">4,2 ani</div><div class="distSub">ani-lumina</div></div>
+                    <div class="info"><strong>Proxima Centauri</strong><p>Cea mai apropiata stea. Ar fi putut disparea acum 3 ani si n-am sti.</p></div>
+                  </div>
+                  <div class="tItem">
+                    <div><div class="dist" style="color:var(--bad)">640 ani</div><div class="distSub">ani-lumina</div></div>
+                    <div class="info"><strong>Betelgeuse</strong><p>O vezi cum era in Evul Mediu. Lumina a plecat inainte de Columb.</p></div>
+                  </div>
+                  <div class="tItem">
+                    <div><div class="dist" style="color:var(--violet)">2,5 mil</div><div class="distSub">ani-lumina</div></div>
+                    <div class="info"><strong>Galaxia Andromeda</strong><p>Lumina a plecat cand pe Pamant traiau australopitecii.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea fundamentala e simpla: <b>a vedea = a primi lumina</b>. Iar lumina calatoreste cu o viteza finita. Deci tot ce vezi este, inevitabil, trecut.
+            Cu cat obiectul e mai departe, cu atat e mai vechi „pozei" pe care o primesti. Nu e o limitare a ochilor tai — e o proprietate a universului insusi.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 2: Time Machine interactive + Ghost Stars ===== -->
+      <section class="row">
+        <div class="card" id="timeMachineCard" aria-label="Masina timpului">
+          <div class="cardHeader">
+            <h2>Masina timpului: alege o distanta</h2>
+            <div class="chip">simulator interactiv</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Misca sliderul pentru a explora ce vezi la diferite distante cosmice.
+              Cu cat privesti mai departe in spatiu, cu atat privesti mai adanc in timp.
+            </p>
+
+            <div class="control" style="margin-bottom:6px">
+              <label>
+                <span>Distanta</span>
+                <span class="readout" id="distReadout">640 ani-lumina</span>
+              </label>
+              <input id="distSlider" type="range" min="0" max="100" value="45" />
+            </div>
+
+            <div class="starResult" id="starResult">
+              <div class="bigNum" id="srDelay">640 ani in urma</div>
+              <div class="epoch" id="srEpoch">Evul Mediu tarziu (~1386)</div>
+              <div class="desc" id="srDesc">Lumina a plecat cand Europa era in epoca cavalerilor. Betelgeuse ar putea fi deja explodata.</div>
+            </div>
+
+            <div class="viz" style="margin-top:12px;padding:10px 14px" id="vizTimeMachine">
+              <svg viewBox="0 0 900 180" id="tmSvg" role="img" aria-label="Diagrama distanta-timp">
+                <!-- Drawn by JS -->
+              </svg>
+              <div class="legend">
+                <div class="key"><span class="sw" style="background:var(--warn)"></span> Fotonul (lumina)</div>
+                <div class="key"><span class="sw" style="background:var(--violet)"></span> Steaua (sursa)</div>
+                <div class="key"><span class="sw" style="background:var(--cyan)"></span> Pamantul (observator)</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Gandeste-te la cer ca la o harta a trecutului. Fiecare stea e un „deschideti scrisoarea" trimisa cu multi ani in urma.
+              Tu nu vezi stele — tu citesti mesaje antice scrise in lumina.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stele-fantoma">
+          <div class="cardHeader">
+            <h2>Stelele-fantoma: nu sunt unde le vezi</h2>
+            <div class="chip"><b>Pozitii false</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Nu doar ca vezi stelele cum erau in trecut — le vezi si in <b>locuri gresite</b>! Toate stelele se misca.
+              In timp ce lumina a calatorit catre noi, steaua s-a deplasat. Deci directia in care o arati cu degetul
+              e locul unde <i>era</i>, nu locul unde <i>este acum</i>.
+            </p>
+
+            <div class="viz" style="padding:12px" aria-label="Diagrama pozitii fantoma">
+              <svg viewBox="0 0 500 280" id="ghostSvg" role="img">
+                <defs>
+                  <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <!-- Background -->
+                <rect x="0" y="0" width="500" height="280" fill="rgba(0,0,0,.05)" rx="8"/>
+
+                <!-- Old position (ghost) -->
+                <circle cx="140" cy="80" r="14" fill="rgba(255,210,122,.15)" stroke="rgba(255,210,122,.4)" stroke-width="1.5" stroke-dasharray="4 3" filter="url(#starGlow)"/>
+                <circle cx="140" cy="80" r="5" fill="rgba(255,210,122,.5)"/>
+                <text x="140" y="115" text-anchor="middle" font-size="11" fill="rgba(255,210,122,.8)">Pozitia veche</text>
+                <text x="140" y="128" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">(ce vezi tu)</text>
+
+                <!-- Arrow showing movement -->
+                <line x1="162" y1="78" x2="258" y2="68" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <polygon points="258,64 268,68 258,72" fill="rgba(255,255,255,.3)"/>
+                <text x="210" y="60" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">miscarea stelei</text>
+
+                <!-- Current position (real, unknown) -->
+                <circle cx="280" cy="65" r="14" fill="rgba(122,215,255,.2)" stroke="rgba(122,215,255,.5)" stroke-width="1.5" filter="url(#starGlow)"/>
+                <circle cx="280" cy="65" r="5" fill="rgba(122,215,255,.7)"/>
+                <text x="280" y="100" text-anchor="middle" font-size="11" fill="rgba(122,215,255,.8)">Pozitia reala (acum)</text>
+                <text x="280" y="113" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">(invizibila pentru tine)</text>
+
+                <!-- Light ray to Earth -->
+                <line x1="140" y1="90" x2="380" y2="220" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                <text x="270" y="170" font-size="10" fill="rgba(255,210,122,.5)" transform="rotate(32 270 170)">fotonul calatoreste</text>
+
+                <!-- Earth -->
+                <circle cx="380" cy="225" r="16" fill="rgba(117,240,182,.15)" stroke="rgba(117,240,182,.4)" stroke-width="1.5"/>
+                <circle cx="380" cy="225" r="6" fill="rgba(117,240,182,.5)"/>
+                <text x="380" y="258" text-anchor="middle" font-size="11" fill="rgba(117,240,182,.7)">Pamantul (tu)</text>
+
+                <!-- Andromeda example -->
+                <text x="25" y="175" font-size="11" fill="rgba(255,255,255,.6)" font-weight="600">Exemplu: Andromeda</text>
+                <text x="25" y="192" font-size="10" fill="rgba(255,255,255,.45)">Se misca spre noi cu 110 km/s.</text>
+                <text x="25" y="206" font-size="10" fill="rgba(255,255,255,.45)">In 2,5 mil. ani s-a apropiat</text>
+                <text x="25" y="220" font-size="10" fill="rgba(255,255,255,.45)">cu ~8.000 ani-lumina.</text>
+                <text x="25" y="240" font-size="10" fill="rgba(255,179,138,.55)">Unde o vezi NU e unde e acum.</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Betelgeuse: ~30 km/s</h3>
+                <p>In 640 de ani s-a deplasat ~600 miliarde km (0,03 ani-lumina). Deplasare mica pe cer, dar reala.</p>
+                <div class="meta"><span class="badge">miscare lenta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Galaxii indepartate: mii de km/s</h3>
+                <p>Galaxiile se departeaza de noi din cauza expansiunii universului. Cele foarte indepartate se departeaza mai repede decat lumina — nu prin spatiu, ci pentru ca spatiul insusi se dilata.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">mai repede ca lumina!</span><span class="badge">expansiune cosmica</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Cerul de noapte e o <b>harta a locurilor unde erau lucrurile</b>, nu unde sunt acum. Iluzia e completa:
+              vezi fantome, la pozitii-fantoma, din timpuri antice.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 3: Light Cone & Relativity ===== -->
+      <section class="card" id="lightConeCard" aria-label="Conul de lumina trecut">
+        <div class="cardHeader">
+          <h2>Conul de lumina trecut: singura ta realitate</h2>
+          <div class="chip"><b>Einstein</b> &mdash; relativitate</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Imagineaza-ti o diagrama cu <b>timpul pe verticala</b> si <b>spatiul pe orizontala</b>. Tu esti un punct in centru.
+                Doua linii diagonale formeaza un „con" (in forma de V rasturnat) — acesta e <b>conul tau de lumina trecut</b>.
+              </p>
+              <p class="muted">
+                Tot ce e <b>in interiorul conului</b> e lumina care a avut timp sa ajunga la tine — universul tau observabil.
+                Tot ce e <b>in afara conului</b> e inaccesibil: „altundeva" (elsewhere). Nu e in trecutul tau, nu e in viitorul tau —
+                e pur si simplu deconectat cauzal de tine in acest moment.
+              </p>
+              <p class="muted">
+                <b>Betelgeuse „acum"</b> (orice ar insemna asta) e in afara conului tau. Nu o poti vedea, nu poti interactiona cu ea.
+                Singura Betelgeuse pe care o cunosti e imaginea de acum 640 de ani, din interiorul conului.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:12px" aria-label="Diagrama conul de lumina">
+                <svg viewBox="0 0 500 400" id="lcSvg" role="img">
+                  <defs>
+                    <linearGradient id="lcGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(255,210,122,.15)"/>
+                      <stop offset="1" stop-color="rgba(255,210,122,0)"/>
+                    </linearGradient>
+                    <linearGradient id="lcFuture" x1="0" x2="0" y1="1" y2="0">
+                      <stop offset="0" stop-color="rgba(122,215,255,.12)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,0)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="500" height="400" fill="rgba(0,0,0,.04)" rx="8"/>
+
+                  <!-- Grid -->
+                  <line x1="250" y1="20" x2="250" y2="380" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                  <line x1="30" y1="200" x2="470" y2="200" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+
+                  <!-- Axis labels -->
+                  <text x="255" y="16" font-size="11" fill="rgba(255,255,255,.5)">Viitor</text>
+                  <text x="255" y="395" font-size="11" fill="rgba(255,255,255,.5)">Trecut</text>
+                  <text x="470" y="195" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="end">Spatiu</text>
+
+                  <!-- Past light cone (filled) -->
+                  <polygon points="250,200 80,380 420,380" fill="url(#lcGrad)" opacity=".8"/>
+                  <line x1="250" y1="200" x2="80" y2="380" stroke="rgba(255,210,122,.6)" stroke-width="2"/>
+                  <line x1="250" y1="200" x2="420" y2="380" stroke="rgba(255,210,122,.6)" stroke-width="2"/>
+
+                  <!-- Future light cone -->
+                  <polygon points="250,200 80,20 420,20" fill="url(#lcFuture)" opacity=".5"/>
+                  <line x1="250" y1="200" x2="80" y2="20" stroke="rgba(122,215,255,.4)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                  <line x1="250" y1="200" x2="420" y2="20" stroke="rgba(122,215,255,.4)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                  <!-- Observer -->
+                  <circle cx="250" cy="200" r="8" fill="rgba(117,240,182,.6)" stroke="rgba(117,240,182,.9)" stroke-width="2"/>
+                  <text x="268" y="195" font-size="11" fill="rgba(117,240,182,.9)" font-weight="700">TU (acum)</text>
+
+                  <!-- Labels -->
+                  <text x="250" y="320" text-anchor="middle" font-size="12" fill="rgba(255,210,122,.75)" font-weight="600">Conul de lumina trecut</text>
+                  <text x="250" y="336" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">Tot ce poti observa</text>
+
+                  <text x="250" y="90" text-anchor="middle" font-size="12" fill="rgba(122,215,255,.6)" font-weight="600">Conul de lumina viitor</text>
+                  <text x="250" y="106" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">Ce va putea influenta pozitia ta</text>
+
+                  <!-- Elsewhere regions -->
+                  <text x="60" y="200" text-anchor="middle" font-size="11" fill="rgba(255,122,153,.6)" font-weight="600">Altundeva</text>
+                  <text x="60" y="214" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">inaccesibil</text>
+                  <text x="440" y="200" text-anchor="middle" font-size="11" fill="rgba(255,122,153,.6)" font-weight="600">Altundeva</text>
+                  <text x="440" y="214" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">inaccesibil</text>
+
+                  <!-- Example events -->
+                  <circle cx="200" cy="300" r="5" fill="rgba(255,210,122,.7)"/>
+                  <text x="200" y="295" text-anchor="middle" font-size="9" fill="rgba(255,210,122,.6)">Supernova 1987A</text>
+
+                  <circle cx="350" cy="250" r="4" fill="rgba(255,210,122,.5)"/>
+                  <text x="370" y="248" font-size="9" fill="rgba(255,210,122,.5)">Sirius</text>
+
+                  <!-- Event outside cone -->
+                  <circle cx="100" cy="230" r="5" fill="rgba(255,122,153,.5)" stroke="rgba(255,122,153,.3)" stroke-dasharray="3 2"/>
+                  <text x="72" y="250" font-size="9" fill="rgba(255,122,153,.5)">Betelgeuse</text>
+                  <text x="72" y="262" font-size="8" fill="rgba(255,255,255,.35)">„acum"</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Conul de lumina e probabil cel mai important concept din toata fizica relativista.
+            Nu e o metafora — e o descriere matematica exacta a limitelor cunoasterii tale. Nu poti sti nimic despre ce se intampla
+            in afara conului tau de lumina, si acest lucru e <b>fundamental</b>, nu tehnologic. Niciun telescop mai bun nu va schimba asta.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 4: No Universal Now ===== -->
+      <section class="row">
+        <div class="card" aria-label="Fara acum universal">
+          <div class="cardHeader">
+            <h2>Nu exista un „acum" universal</h2>
+            <div class="chip"><b>Einstein:</b> simultaneitatea e relativa</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In viata de zi cu zi, simtim ca exista un „acum" — un moment prezent identic peste tot. Cineva ia micul dejun in Tokyo,
+              soarele apune in Londra, valurile se sparg in Australia — totul „acum", simultan. Dar <b>Einstein a demonstrat ca nu e asa</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Simultaneitatea e relativa</h3>
+                <p>Doi observatori care se misca cu viteze diferite vor fi in dezacord despre care evenimente sunt simultane.
+                  Daca tu stai pe loc si eu trec pe langa tine cu viteza mare, „acum"-ul meu e diferit de „acum"-ul tau.
+                  Nu e o iluzie perceptuala — e o proprietate fundamentala a spatiu-timpului.</p>
+                <div class="meta"><span class="badge">confirmat experimental</span><span class="badge">100+ ani de teste</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Consecinta: „ce face Betelgeuse acum?" nu are raspuns</h3>
+                <p>Intrebarea „ce se intampla pe Betelgeuse chiar in acest moment?" nu are un raspuns unic.
+                  Diferiti observatori, miscandu-se cu viteze diferite, vor avea „momente prezente" diferite pentru Betelgeuse.
+                  Nu exista un „acum" sincronizat intre Pamant si Betelgeuse.</p>
+                <div class="meta"><span class="badge">spatiu-timp</span><span class="badge">cauzalitate</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e poate cea mai contra-intuitiva idee din fizica. Suntem obisnuiti sa credem ca exista un singur „prezent" pentru intregul univers.
+              Dar realitatea e mai stranie: <b>timpul curge diferit pentru observatori diferiti</b>. „Acum" e personal, nu universal.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Gauri negre si realitate">
+          <div class="cardHeader">
+            <h2>Gauri negre: realitate dependenta de observator</h2>
+            <div class="chip">perspective ireconciliabile</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Langa o gaura neagra, <b>dilatarea timpului</b> devine extrema. Daca urmaresti pe cineva cazand intr-o gaura neagra,
+              il vezi incetinind din ce in ce mai mult, apropiindu-se de orizontul evenimentelor dar fara sa-l treaca niciodata (din perspectiva ta).
+              Imaginea lui devine tot mai rosie si mai intunecata pana dispare.
+            </p>
+            <p class="muted">
+              Dar <b>din perspectiva lui</b>, traverseaza orizontul fara probleme. Nimic special nu se intampla la trecere, din punctul lui de vedere.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Doua perspective">
+              <svg viewBox="0 0 500 200" role="img">
+                <defs>
+                  <radialGradient id="bhGrad" cx="50%" cy="50%">
+                    <stop offset="0%" stop-color="rgba(0,0,0,.95)"/>
+                    <stop offset="40%" stop-color="rgba(0,0,0,.8)"/>
+                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+                <rect x="0" y="0" width="500" height="200" fill="rgba(0,0,0,.05)" rx="8"/>
+
+                <!-- Black hole -->
+                <circle cx="250" cy="100" r="40" fill="url(#bhGrad)"/>
+                <circle cx="250" cy="100" r="40" fill="none" stroke="rgba(255,122,153,.4)" stroke-width="2"/>
+                <text x="250" y="155" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.6)">Orizontul evenimentelor</text>
+
+                <!-- Observer far away -->
+                <circle cx="60" cy="100" r="8" fill="rgba(122,215,255,.5)" stroke="rgba(122,215,255,.8)" stroke-width="1.5"/>
+                <text x="60" y="80" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.7)">Observator departe</text>
+                <text x="60" y="130" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">Vede incetinire</text>
+                <text x="60" y="142" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">la infinit, nu vede</text>
+                <text x="60" y="154" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.45)">niciodata trecerea</text>
+
+                <!-- Falling person -->
+                <circle cx="220" cy="90" r="6" fill="rgba(255,210,122,.7)"/>
+                <line x1="190" y1="95" x2="218" y2="91" stroke="rgba(255,210,122,.3)" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="185" y="80" text-anchor="end" font-size="10" fill="rgba(255,210,122,.7)">Cel care cade</text>
+
+                <!-- Person's perspective -->
+                <text x="400" y="70" text-anchor="middle" font-size="10" fill="rgba(255,210,122,.7)">Perspectiva lui:</text>
+                <text x="400" y="88" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">Traverseaza orizontul</text>
+                <text x="400" y="102" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">fara sa simta nimic</text>
+                <text x="400" y="116" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">special. Cade inauntru</text>
+                <text x="400" y="130" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">in mod normal.</text>
+
+                <!-- Both correct -->
+                <text x="250" y="190" text-anchor="middle" font-size="11" fill="rgba(187,167,255,.7)" font-weight="600">Ambele perspective sunt corecte simultan</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              Doi observatori vad <b>doua realitati complet diferite</b> — si ambele sunt corecte.
+              Exact acelasi principiu se aplica si cerului de noapte: ce vezi tu nu e „realitatea obiectiva" — e <b>conul tau de lumina</b>,
+              felia ta personala din spatiu-timp. Alt observator, miscandu-se cu alta viteza, va vedea un cer diferit.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind subliniaza ca realitatea nu e obiectul 3D pe care il percepem. Realitatea e <b>intreaga structura 4D a spatiu-timpului</b> —
+              o „constructie bloc" care contine tot trecutul, prezentul si viitorul. Noi vedem doar o felie. Felia e reala, dar nu e totul.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 5: Observable Universe + Expansion ===== -->
+      <section class="card" aria-label="Universul observabil">
+        <div class="cardHeader">
+          <h2>Universul observabil: bariere cosmice</h2>
+          <div class="chip"><b>93 mld ani-lumina</b> diametru</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Nu putem vedea intregul univers. Putem vedea doar <b>universul observabil</b> — o sfera cu diametrul de ~93 miliarde de ani-lumina,
+                centrata pe noi. Dincolo de aceasta sfera e orizontul cosmic — o bariera definitiva, nu una tehnologica.
+              </p>
+
+              <div class="riskGrid" style="margin-top:12px">
+                <div class="risk">
+                  <div class="rTop"><strong>Varsta universului</strong><span class="badge">13,8 mld ani</span></div>
+                  <div class="meter"><i style="width:100%;background:linear-gradient(90deg, var(--warn), var(--orange))"></i></div>
+                  <p>Universul s-a nascut acum 13,8 miliarde de ani in Big Bang. Lumina a avut doar atat timp sa calatoreasca.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Expansiunea accelerata</strong><span class="badge">energie intunecata</span></div>
+                  <div class="meter"><i style="width:78%;background:linear-gradient(90deg, var(--violet), var(--bad))"></i></div>
+                  <p>Spatiul se dilata din ce in ce mai repede. Galaxiile se departeaza — unele mai repede decat lumina.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Orizontul cosmic</strong><span class="badge">limita absoluta</span></div>
+                  <div class="meter"><i style="width:100%;background:linear-gradient(90deg, var(--bad), rgba(255,122,153,.5))"></i></div>
+                  <p>Evenimentele de dincolo de orizont nu ne vor ajunge niciodata. Lumina lor nu poate invinge expansiunea.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Viitorul: cer gol</strong><span class="badge">trilioane de ani</span></div>
+                  <div class="meter"><i style="width:55%;background:linear-gradient(90deg, var(--cyan), rgba(122,215,255,.3))"></i></div>
+                  <p>In viitorul indepartat, majoritatea galaxiilor vor disparea dincolo de orizont. Cerul va fi aproape gol.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:12px" aria-label="Universul observabil">
+                <svg viewBox="0 0 440 400" role="img">
+                  <defs>
+                    <radialGradient id="obsGrad" cx="50%" cy="50%">
+                      <stop offset="0%" stop-color="rgba(255,210,122,.12)"/>
+                      <stop offset="60%" stop-color="rgba(187,167,255,.06)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                    </radialGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="400" fill="rgba(0,0,0,.04)" rx="8"/>
+
+                  <!-- Outer universe (unknown, infinite?) -->
+                  <circle cx="220" cy="200" r="185" fill="none" stroke="rgba(255,122,153,.2)" stroke-width="1.5" stroke-dasharray="6 4"/>
+                  <text x="220" y="30" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.5)">Orizontul cosmic (bariera)</text>
+
+                  <!-- Observable universe -->
+                  <circle cx="220" cy="200" r="150" fill="url(#obsGrad)" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                  <text x="220" y="75" text-anchor="middle" font-size="11" fill="rgba(255,210,122,.6)">Universul observabil</text>
+                  <text x="220" y="90" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">~93 mld ani-lumina diametru</text>
+
+                  <!-- CMB ring -->
+                  <circle cx="220" cy="200" r="140" fill="none" stroke="rgba(255,179,138,.2)" stroke-width="8" opacity=".4"/>
+                  <text x="355" y="130" font-size="9" fill="rgba(255,179,138,.5)">Radiatie cosmica</text>
+                  <text x="355" y="142" font-size="9" fill="rgba(255,179,138,.5)">de fond (CMB)</text>
+                  <text x="355" y="154" font-size="8" fill="rgba(255,255,255,.35)">13,8 mld ani in urma</text>
+
+                  <!-- Galaxies at different distances -->
+                  <circle cx="220" cy="200" r="4" fill="rgba(117,240,182,.7)"/>
+                  <text x="220" y="216" text-anchor="middle" font-size="9" fill="rgba(117,240,182,.6)">Pamantul</text>
+
+                  <circle cx="250" cy="180" r="3" fill="rgba(255,210,122,.5)" class="twinkle"/>
+                  <circle cx="190" cy="170" r="2.5" fill="rgba(187,167,255,.5)" class="twinkle2"/>
+                  <circle cx="260" cy="220" r="2" fill="rgba(122,215,255,.5)" class="twinkle3"/>
+                  <circle cx="175" cy="230" r="3" fill="rgba(255,179,138,.4)" class="twinkle"/>
+                  <circle cx="300" cy="190" r="2.5" fill="rgba(255,210,122,.4)" class="twinkle2"/>
+                  <circle cx="155" cy="185" r="2" fill="rgba(187,167,255,.3)" class="twinkle3"/>
+
+                  <!-- Distant galaxies near edge -->
+                  <circle cx="120" cy="120" r="3" fill="rgba(255,122,153,.3)" class="twinkle"/>
+                  <circle cx="330" cy="290" r="2.5" fill="rgba(255,122,153,.3)" class="twinkle2"/>
+                  <circle cx="100" cy="250" r="2" fill="rgba(255,122,153,.25)" class="twinkle3"/>
+
+                  <!-- Arrow: expansion -->
+                  <line x1="340" y1="200" x2="370" y2="200" stroke="rgba(255,122,153,.4)" stroke-width="1.5"/>
+                  <polygon points="370,196 378,200 370,204" fill="rgba(255,122,153,.4)"/>
+                  <text x="395" y="200" font-size="9" fill="rgba(255,122,153,.5)">Expansiune</text>
+
+                  <!-- Outside: unknown -->
+                  <text x="50" y="365" font-size="10" fill="rgba(255,255,255,.35)">In afara: universul real,</text>
+                  <text x="50" y="378" font-size="10" fill="rgba(255,255,255,.35)">probabil infinit, dar invizibil.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind subliniaza ca aceasta limita e <b>fundamentala, nu tehnologica</b>. Nu conteaza cat de bun iti e telescopul —
+            nu vei vedea niciodata dincolo de orizontul cosmic. E impusa de structura spatiu-timpului insusi.
+            Si ce e si mai tulburator: din cauza expansiunii accelerate, orizontul se <b>micsoreaza</b>, nu se mareste. Vedem din ce in ce mai putin.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 6: Supernova example ===== -->
+      <section class="card" aria-label="Exemplul supernovei">
+        <div class="cardHeader">
+          <h2>Supernova 1987A: un exemplu concret</h2>
+          <div class="chip"><b>168.000 ani</b> intarziere</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                O <b>supernova</b> e moartea exploziva a unei stele — unul dintre cele mai violente evenimente din univers.
+                Timp de cateva saptamani, o singura stea muribunda poate straluci mai tare decat o galaxie intreaga.
+              </p>
+              <p class="muted">
+                <b>Supernova 1987A</b> a fost observata in 1987, in Norul Mare al lui Magellan (o galaxie mica, la ~168.000 ani-lumina).
+                Cand astronomii au vazut-o, vedeau un eveniment care se intamplase <b>acum 168.000 de ani</b> — pe vremea glaciatiunilor,
+                cand neandertalienii traiau inca in Europa.
+              </p>
+              <p class="muted">
+                Steaua era deja moarta de 168.000 de ani. Unda de soc se raspandea deja. Resturile se raceau deja.
+                Dar noi n-am stiut nimic pana in 1987, cand fotoni au ajuns in sfarsit pe Pamant. Inainte de asta,
+                <b>supernova nu exista in conul nostru de lumina</b>. Era in „altundeva".
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Cronologia supernovei">
+                <svg viewBox="0 0 440 300" role="img">
+                  <rect x="0" y="0" width="440" height="300" fill="rgba(0,0,0,.04)" rx="8"/>
+
+                  <!-- Timeline -->
+                  <line x1="60" y1="40" x2="60" y2="270" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+
+                  <!-- Event: explosion -->
+                  <circle cx="60" cy="60" r="12" fill="rgba(255,122,153,.2)" stroke="rgba(255,122,153,.5)" stroke-width="1.5"/>
+                  <circle cx="60" cy="60" r="4" fill="rgba(255,122,153,.8)"/>
+                  <text x="82" y="55" font-size="11" fill="rgba(255,122,153,.8)" font-weight="700">~167.000 i.Hr.</text>
+                  <text x="82" y="70" font-size="10" fill="rgba(255,255,255,.5)">Steaua explodeaza. Nimeni de pe</text>
+                  <text x="82" y="83" font-size="10" fill="rgba(255,255,255,.5)">Pamant nu stie (inca nu exista oameni).</text>
+
+                  <!-- Photons traveling -->
+                  <line x1="60" y1="80" x2="60" y2="200" stroke="rgba(255,210,122,.25)" stroke-width="6" stroke-dasharray="2 6"/>
+                  <text x="82" y="145" font-size="10" fill="rgba(255,210,122,.5)">168.000 de ani: fotonii calatoresc</text>
+                  <text x="82" y="160" font-size="10" fill="rgba(255,210,122,.5)">prin spatiul interstelar...</text>
+
+                  <!-- Event: observation -->
+                  <circle cx="60" cy="220" r="12" fill="rgba(117,240,182,.2)" stroke="rgba(117,240,182,.5)" stroke-width="1.5"/>
+                  <circle cx="60" cy="220" r="4" fill="rgba(117,240,182,.8)"/>
+                  <text x="82" y="215" font-size="11" fill="rgba(117,240,182,.8)" font-weight="700">1987 d.Hr.</text>
+                  <text x="82" y="230" font-size="10" fill="rgba(255,255,255,.5)">Astronomii observa explozia.</text>
+                  <text x="82" y="243" font-size="10" fill="rgba(255,255,255,.5)">Abia acum intra in conul nostru</text>
+                  <text x="82" y="256" font-size="10" fill="rgba(255,255,255,.5)">de lumina. Abia acum „exista" pentru noi.</text>
+
+                  <!-- Brace -->
+                  <text x="25" y="145" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.35)" transform="rotate(-90 25 145)">168.000 ani</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest exemplu face abstractul concret. Evenimentul a fost <b>real</b> — coordonatele lui in spatiu-timp sunt fixe.
+            Dar a intrat in „realitatea noastra observabila" abia cand lumina a ajuns. Inainte de 1987, supernova era in „altundeva" — la fel de invizibila ca viitorul.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 7: Quiz ===== -->
+      <section class="card" aria-label="Quiz interactiv">
+        <div class="cardHeader">
+          <h2>Testeaza-ti intelegerea</h2>
+          <div class="chip">quiz interactiv</div>
+        </div>
+        <div class="cardBody">
+          <div class="flow" id="quizContainer">
+            <!-- Q1 -->
+            <div class="flowNode" data-quiz="q1">
+              <h3>1. Daca Soarele ar exploda acum, cand am afla?</h3>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Instantaneu — explozia e enorma</button>
+              <button class="quizOption" data-answer="correct" onclick="handleQuiz(this)">Dupa ~8 minute si 20 secunde</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Dupa cateva ore</button>
+              <p class="small quizExpl" style="display:none;margin-top:8px;color:var(--warn)"></p>
+            </div>
+
+            <!-- Q2 -->
+            <div class="flowNode" data-quiz="q2">
+              <h3>2. De ce nu exista un „acum" universal?</h3>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Pentru ca ceasurile noastre nu sunt sincronizate</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Pentru ca informatia se misca lent</button>
+              <button class="quizOption" data-answer="correct" onclick="handleQuiz(this)">Pentru ca simultaneitatea depinde de viteza observatorului (relativitate)</button>
+              <p class="small quizExpl" style="display:none;margin-top:8px;color:var(--warn)"></p>
+            </div>
+
+            <!-- Q3 -->
+            <div class="flowNode" data-quiz="q3">
+              <h3>3. Betelgeuse ar putea fi deja explodata. De ce nu stim?</h3>
+              <button class="quizOption" data-answer="correct" onclick="handleQuiz(this)">Lumina de la explozie nu a avut inca timp sa ajunga la noi</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Nu avem telescoape suficient de bune</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Explozia e prea mica sa o detectam</button>
+              <p class="small quizExpl" style="display:none;margin-top:8px;color:var(--warn)"></p>
+            </div>
+
+            <!-- Q4 -->
+            <div class="flowNode" data-quiz="q4">
+              <h3>4. Ce e „altundeva" (elsewhere) in fizica?</h3>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Lucruri foarte departe de noi</button>
+              <button class="quizOption" data-answer="correct" onclick="handleQuiz(this)">Regiunea spatiu-timpului din afara conului de lumina — deconectata cauzal de tine</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Universul paralel</button>
+              <p class="small quizExpl" style="display:none;margin-top:8px;color:var(--warn)"></p>
+            </div>
+
+            <!-- Q5 -->
+            <div class="flowNode" data-quiz="q5">
+              <h3>5. De ce in viitorul indepartat cerul va fi aproape gol?</h3>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Stelele se vor stinge toate</button>
+              <button class="quizOption" data-answer="correct" onclick="handleQuiz(this)">Expansiunea accelerata va impinge galaxiile dincolo de orizontul cosmic</button>
+              <button class="quizOption" data-answer="wrong" onclick="handleQuiz(this)">Poluarea luminoasa va creste</button>
+              <p class="small quizExpl" style="display:none;margin-top:8px;color:var(--warn)"></p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizScoreBtn">Calculeaza scorul</button>
+            <button class="btn" id="quizResetBtn">Reseteaza quiz-ul</button>
+          </div>
+          <div class="small" id="quizScore" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 8: The Gift — cosmic archive ===== -->
+      <section class="card" aria-label="Cadoul cosmic">
+        <div class="cardHeader">
+          <h2>Cadoul: cerul ca arhiva cosmica</h2>
+          <div class="chip"><b>Teza:</b> iluzia cea mai adevarata</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Nu e o limitare — e un dar</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Susskind marturiseste ca la inceput a gasit asta tulburator — faptul ca nu putem sti ce se intampla „acum" la distanta.
+                Dar a ajuns sa vada altfel: pentru ca universul are o varsta finita (13,8 miliarde de ani) si lumina are o viteza finita,
+                putem <b>vedea istoria universului</b> in mod direct. Privind la distante diferite = privind la momente diferite din trecut.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Daca lumina ar fi instantanee</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Daca lumina ar calatori cu viteza infinita, am vedea doar prezentul. N-am avea acces direct la istoria cosmica.
+                Ar trebui sa deducem totul din starea actuala. Dar <b>tocmai pentru ca lumina e finita</b>,
+                universul e o <b>arhiva cosmica</b> — dovezile trecutului stralucesc literal catre noi din toate directiile.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Cerul — o carte de istorie scrisa in lumina</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fiecare foton care iti intra in ochi e un <b>mesager din trecut</b> — un pachet minuscul de informatie
+                care aduce stiri despre evenimente de demult si de departe. Cand te uiti la stele, primesti aceste mesaje.
+                Citesti istoria.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Concluzia lui Susskind</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                „Stelele sunt iluzii optice. Nu sunt reale in sensul ca iti arata starea prezenta a universului.
+                Dar sunt reale intr-un sens mai profund: sunt <b>evenimente reale in spatiu-timp</b>, puncte de date reale
+                in istoria cosmica, ferestre reale catre structura si evolutia universului."
+              </p>
+              <p class="muted" style="margin-top:10px">
+                <b>Stelele pe care le vezi nu sunt stelele care exista. Dar stelele pe care le vezi sunt singurele stele pe care le vei cunoaste vreodata.</b>
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala: de ce conteaza?</strong><span class="hint">click pentru a deschide</span></summary>
+            <div class="detailBody">
+              <p>
+                Aceasta perspectiva schimba modul in care ne raportam la noi insine in univers. Nu suntem observatori privilegiati
+                ai unui „prezent universal". Suntem prizonieri (si beneficiari) ai conului nostru de lumina — o felie personala dintr-o
+                constructie 4D imensa. Dar acea felie contine informatii extraordinare: istoria intregului univers, de la Big Bang pana acum,
+                stralucind catre noi din toate directiile.
+              </p>
+              <p style="margin-top:8px">
+                Data viitoare cand te uiti la stele, aminteste-ti: vezi fantome. Dar sunt cele mai oneste fantome din natura —
+                inregistrari adevarate ale unor evenimente reale, carora le-a luat secole sau milioane de ani sa-ti aduca vestea.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 9: Key Concepts Summary ===== -->
+      <section class="card" aria-label="Rezumat concepte">
+        <div class="cardHeader">
+          <h2>Glosar vizual: conceptele-cheie</h2>
+          <div class="chip">referinta rapida</div>
+        </div>
+        <div class="cardBody">
+          <div class="starGrid">
+            <div class="pill"><span>An-lumina</span><span class="tag">~9,5 tril. km</span></div>
+            <div class="pill"><span>Con de lumina</span><span class="tag">limita cauzala</span></div>
+            <div class="pill"><span>Simultaneitate relativa</span><span class="tag">Einstein</span></div>
+            <div class="pill"><span>Altundeva (elsewhere)</span><span class="tag">inaccesibil</span></div>
+            <div class="pill"><span>Orizontul cosmic</span><span class="tag">bariera finala</span></div>
+            <div class="pill"><span>Expansiunea spatiului</span><span class="tag">energie intunecata</span></div>
+            <div class="pill"><span>Dilatarea timpului</span><span class="tag">gauri negre</span></div>
+            <div class="pill"><span>Supernova</span><span class="tag">moartea unei stele</span></div>
+            <div class="pill"><span>Spatiu-timp 4D</span><span class="tag">bloc neschimbat</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== About commentary ===== -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul „comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele colorate cu marginea galbena (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            de ce conteaza un concept, ce nuante exista, cum sa gandesti critic despre informatii.
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa „Afiseaza/ascunde comentarii" din header pentru a le ascunde/arata pe toate.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si precizari:</b> Acest infografic interactiv traduce si vizualizeaza o prezentare a fizicianului Leonard Susskind
+        despre natura luminii, a timpului si a cerului de noapte. Toate explicatiile sunt in romana, simplificate pentru a fi accesibile.
+        Vizualizarile si comentariile sunt instrumente conceptuale — pentru rigoare, consultati sursele primare din fizica relativista si cosmologie.
+      </p>
+      <p style="margin-top:10px">
+        Leonard Susskind e profesor de fizica teoretica la Universitatea Stanford, co-inventator al teoriei corzilor si pionier
+        in intelegerea gaurilor negre si a paradoxului informatiei.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================================
+    // Time Machine Slider
+    // ============================================================
+    const distSlider = document.getElementById('distSlider');
+    const distReadout = document.getElementById('distReadout');
+    const srDelay = document.getElementById('srDelay');
+    const srEpoch = document.getElementById('srEpoch');
+    const srDesc = document.getElementById('srDesc');
+
+    const cosmicData = [
+      { val: 0,  dist: '1,3 secunde-lumina', delay: '1,3 secunde in urma', epoch: 'Acum, practic prezentul', desc: 'Luna. Singura intarziere atat de mica incat nici n-o simti. Aproape „timp real".' },
+      { val: 5,  dist: '8 min 20 sec lumina', delay: '8 minute in urma', epoch: 'Acum ~8 minute', desc: 'Soarele. Daca ar exploda, ai avea 8 minute de ignoranta fericita.' },
+      { val: 10, dist: '4,2 ani-lumina', delay: '4,2 ani in urma', epoch: 'Anul ~2022', desc: 'Proxima Centauri, cea mai apropiata stea. Ar fi putut disparea si n-am sti inca.' },
+      { val: 18, dist: '8,6 ani-lumina', delay: '8,6 ani in urma', epoch: 'Anul ~2017', desc: 'Sirius, cea mai stralucitoare stea de pe cer. O vezi cum era cand Trump era la putere prima data.' },
+      { val: 25, dist: '25 ani-lumina', delay: '25 ani in urma', epoch: 'Anul ~2001', desc: 'Vega. Lumina ei a plecat pe la inceputul mileniului, cand aveam telefoane cu clapeta.' },
+      { val: 35, dist: '100 ani-lumina', delay: '100 ani in urma', epoch: 'Anii ~1926', desc: 'Vedeta de film mut! Lumina a plecat in epoca jazz-ului si a Prohibitiei.' },
+      { val: 45, dist: '640 ani-lumina', delay: '640 ani in urma', epoch: 'Evul Mediu tarziu (~1386)', desc: 'Betelgeuse. O vezi cum era inainte de Columb. Ar fi putut exploda deja ca supernova.' },
+      { val: 55, dist: '2.000 ani-lumina', delay: '2.000 ani in urma', epoch: 'Imperiul Roman (~26 d.Hr.)', desc: 'Stele din galaxia noastra. Lumina a plecat pe vremea lui Iisus din Nazaret.' },
+      { val: 65, dist: '25.000 ani-lumina', delay: '25.000 ani in urma', epoch: 'Paleolitic superior', desc: 'Centrul galaxiei noastre. Lumina a plecat cand oamenii pictau in pesteri.' },
+      { val: 75, dist: '168.000 ani-lumina', delay: '168.000 ani in urma', epoch: 'Epoca glaciara', desc: 'Supernova 1987A. Steaua a explodat cand neandertalienii inca traiau.' },
+      { val: 85, dist: '2,5 milioane ani-lumina', delay: '2,5 milioane ani in urma', epoch: 'Pliocen — australopiteci', desc: 'Galaxia Andromeda. Lumina a plecat cand stramosii nostri inca erau primate.' },
+      { val: 95, dist: '13 miliarde ani-lumina', delay: '13 miliarde ani in urma', epoch: 'Universul tanar', desc: 'Galaxii primordiale. Inainte de Soare, inainte de Pamant, aproape de Big Bang.' },
+      { val: 100, dist: '13,8 mld a.l. (CMB)', delay: '13,8 miliarde ani in urma', epoch: 'Big Bang + 380.000 ani', desc: 'Radiatia cosmica de fond. Cea mai veche lumina din univers. Universul era incandescent.' },
+    ];
+
+    function updateTimeMachine() {
+      const val = parseInt(distSlider.value);
+      let best = cosmicData[0];
+      for (let i = cosmicData.length - 1; i >= 0; i--) {
+        if (val >= cosmicData[i].val) { best = cosmicData[i]; break; }
+      }
+      distReadout.textContent = best.dist;
+      srDelay.textContent = best.delay;
+      srEpoch.textContent = best.epoch;
+      srDesc.textContent = best.desc;
+
+      // Update color based on distance
+      const pct = val / 100;
+      if (pct < 0.3) srDelay.style.color = 'var(--good)';
+      else if (pct < 0.6) srDelay.style.color = 'var(--warn)';
+      else if (pct < 0.85) srDelay.style.color = 'var(--orange)';
+      else srDelay.style.color = 'var(--bad)';
+
+      renderTimeMachineSvg(pct);
+    }
+
+    function renderTimeMachineSvg(pct) {
+      const svg = document.getElementById('tmSvg');
+      const W = 900, H = 180;
+      const earthX = W - 60;
+      const starX = 60;
+      const photonX = starX + (earthX - starX) * pct;
+
+      svg.innerHTML = `
+        <rect x="0" y="0" width="${W}" height="${H}" fill="rgba(0,0,0,.04)" rx="6"/>
+        <!-- Distance line -->
+        <line x1="${starX}" y1="90" x2="${earthX}" y2="90" stroke="rgba(255,255,255,.1)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <!-- Star -->
+        <circle cx="${starX}" cy="90" r="16" fill="rgba(187,167,255,.2)" stroke="rgba(187,167,255,.5)" stroke-width="1.5"/>
+        <circle cx="${starX}" cy="90" r="6" fill="rgba(187,167,255,.7)"/>
+        <text x="${starX}" y="125" text-anchor="middle" font-size="10" fill="rgba(187,167,255,.7)">Steaua</text>
+        <text x="${starX}" y="138" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">(sursa luminii)</text>
+        <!-- Photon trail -->
+        <line x1="${starX + 20}" y1="90" x2="${photonX}" y2="90" stroke="rgba(255,210,122,.25)" stroke-width="4"/>
+        <!-- Photon -->
+        <circle cx="${photonX}" cy="90" r="8" fill="rgba(255,210,122,.8)">
+          <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values=".6;1;.6" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="${photonX}" y="70" text-anchor="middle" font-size="10" fill="rgba(255,210,122,.8)">Foton</text>
+        <!-- Earth -->
+        <circle cx="${earthX}" cy="90" r="16" fill="rgba(122,215,255,.15)" stroke="rgba(122,215,255,.5)" stroke-width="1.5"/>
+        <circle cx="${earthX}" cy="90" r="6" fill="rgba(122,215,255,.6)"/>
+        <text x="${earthX}" y="125" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.7)">Pamantul</text>
+        <text x="${earthX}" y="138" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">(tu, observatorul)</text>
+        <!-- Percentage label -->
+        <text x="${(starX + earthX) / 2}" y="30" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Distanta strabatuta de lumina: ${Math.round(pct * 100)}%</text>
+        <!-- Arrival indicator -->
+        ${pct >= 0.98 ? `<text x="${earthX}" y="155" text-anchor="middle" font-size="10" fill="var(--good)" font-weight="700">Lumina a ajuns!</text>` : ''}
+      `;
+    }
+
+    distSlider.addEventListener('input', updateTimeMachine);
+    updateTimeMachine();
+
+    // ============================================================
+    // Navigation
+    // ============================================================
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('timeMachineCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpLC').addEventListener('click', () => {
+      document.getElementById('lightConeCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ============================================================
+    // Commentary toggle
+    // ============================================================
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      document.querySelectorAll('[data-commentary]').forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ============================================================
+    // Quiz
+    // ============================================================
+    const quizExplanations = {
+      q1: 'Corect! Lumina (si informatia despre explozie) calatoreste cu ~300.000 km/s. Soarele e la ~8 minute-lumina distanta.',
+      q2: 'Corect! Conform relativitatii lui Einstein, observatori care se misca cu viteze diferite percep momente diferite ca fiind „simultane". Nu e o eroare de masurare — e structura spatiu-timpului.',
+      q3: 'Corect! Betelgeuse e la 640 ani-lumina. Chiar daca ar fi explodat acum 500 de ani, lumina exploziei inca calatoreste spre noi.',
+      q4: 'Corect! „Altundeva" (elsewhere) e regiunea spatiu-timpului din afara conului tau de lumina — nu e in trecutul tau, nu e in viitorul tau. E cauzal deconectata de tine in acel moment.',
+      q5: 'Corect! Din cauza energiei intunecate, spatiul se dilata accelerat. Galaxiile se departeaza din ce in ce mai repede — multe vor depasi orizontul cosmic si vor deveni invizibile permanent.',
+    };
+
+    function handleQuiz(btn) {
+      const node = btn.closest('.flowNode');
+      const qId = node.dataset.quiz;
+      const allBtns = node.querySelectorAll('.quizOption');
+      const expl = node.querySelector('.quizExpl');
+
+      // Prevent re-answering
+      if (node.dataset.answered) return;
+      node.dataset.answered = 'true';
+      node.dataset.correct = (btn.dataset.answer === 'correct') ? 'true' : 'false';
+
+      allBtns.forEach(b => {
+        if (b.dataset.answer === 'correct') b.classList.add('correct');
+        else b.classList.add('wrong');
+        b.style.cursor = 'default';
+      });
+
+      if (btn.dataset.answer === 'correct') {
+        expl.textContent = quizExplanations[qId];
+        expl.style.color = 'var(--good)';
+      } else {
+        expl.textContent = 'Gresit. ' + quizExplanations[qId];
+        expl.style.color = 'var(--bad)';
+      }
+      expl.style.display = 'block';
+    }
+
+    document.getElementById('quizScoreBtn').addEventListener('click', () => {
+      const nodes = document.querySelectorAll('#quizContainer .flowNode[data-quiz]');
+      let correct = 0, answered = 0;
+      nodes.forEach(n => {
+        if (n.dataset.answered) {
+          answered++;
+          if (n.dataset.correct === 'true') correct++;
+        }
+      });
+
+      const total = nodes.length;
+      if (answered === 0) {
+        document.getElementById('quizScore').innerHTML = '<b>Raspunde la cel putin o intrebare mai intai!</b>';
+      } else {
+        const pct = Math.round((correct / total) * 100);
+        let msg = '';
+        if (pct >= 80) msg = 'Excelent! Intelegi bine fizica conurilor de lumina.';
+        else if (pct >= 60) msg = 'Bine! Mai reciteste sectiunile unde ai gresit.';
+        else if (pct >= 40) msg = 'Nu e rau, dar merita sa revizuiesti conceptele.';
+        else msg = 'Reciteste infograficul si incearca din nou!';
+        document.getElementById('quizScore').innerHTML = `<b>Scor: ${correct}/${total} (${pct}%)</b> — ${msg}`;
+      }
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('quizResetBtn').addEventListener('click', () => {
+      document.querySelectorAll('#quizContainer .flowNode[data-quiz]').forEach(n => {
+        delete n.dataset.answered;
+        delete n.dataset.correct;
+        n.querySelectorAll('.quizOption').forEach(b => {
+          b.classList.remove('correct', 'wrong');
+          b.style.cursor = 'pointer';
+        });
+        n.querySelector('.quizExpl').style.display = 'none';
+      });
+      document.getElementById('quizScore').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+    // ============================================================
+    // Toast
+    // ============================================================
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2200);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1609 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De Ce Big Bang-ul Nu S-a Intamplat Niciodata — Leonard Susskind — Infografic</title>
+  <meta name="description" content="Infografic interactiv: Leonard Susskind explica de ce singularitatea Big Bang-ului nu a existat cu adevarat, ce o inlocuieste si cum arata universul etern." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.08;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 240px;
+      pointer-events:none;
+      opacity:.85;
+      mask-image: radial-gradient(260px 200px at 60% 45%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap: wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill / Tag */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow nodes */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Risk grid / meters */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--violet));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Three-col grid */
+    .threeCol{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 860px){
+      .threeCol{grid-template-columns: 1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Commentary / details */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btn.active{border-color: var(--violet);background: rgba(187,167,255,.12)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Tabs */
+    .tabBar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .tabBtn{
+      appearance:none;border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);color: var(--muted);
+      padding:8px 14px;border-radius:999px;cursor:pointer;font-size:12px;
+      transition: all .15s ease;
+    }
+    .tabBtn:hover{border-color: rgba(255,255,255,.26);color:var(--text)}
+    .tabBtn.active{border-color: var(--violet);background: rgba(187,167,255,.12);color:var(--text)}
+    .tabContent{display:none}
+    .tabContent.active{display:block}
+
+    /* Comparison toggle */
+    .compareToggle{
+      display:flex;gap:0;border:1px solid var(--stroke);border-radius:999px;overflow:hidden;
+    }
+    .compareToggle button{
+      appearance:none;border:none;
+      background: rgba(0,0,0,.18);color: var(--muted);
+      padding:10px 18px;cursor:pointer;font-size:13px;
+      transition: all .15s ease;
+    }
+    .compareToggle button:first-child{border-right:1px solid var(--stroke)}
+    .compareToggle button.active{background: rgba(187,167,255,.15);color:var(--text)}
+
+    /* Analogy box */
+    .analogyBox{
+      border:2px dashed rgba(255,210,122,.3);
+      border-radius:16px;
+      background: rgba(255,210,122,.05);
+      padding:14px;
+      margin-top:10px;
+    }
+    .analogyBox .aTitle{font-size:13px;color:var(--warn);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}
+    .analogyBox p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background: linear-gradient(180deg, var(--violet), var(--cyan), var(--good))}
+    .tEntry{position:relative;margin-bottom:14px}
+    .tEntry::before{content:'';position:absolute;left:-22px;top:6px;width:10px;height:10px;border-radius:99px;border:2px solid var(--violet);background:var(--bg)}
+    .tEntry .tTime{font-size:11px;color:var(--violet);font-family:var(--mono);letter-spacing:.05em}
+    .tEntry .tLabel{font-size:14px;font-weight:700;margin:2px 0 4px}
+    .tEntry .tDesc{font-size:13px;color:var(--muted);line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 240" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,210,122,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Abstract expanding universe curves -->
+            <path d="M260,200 Q200,120 120,140 Q60,155 20,100" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <path d="M260,200 Q320,120 400,140 Q460,155 500,100" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <path d="M260,200 Q230,80 160,50 Q120,35 40,60" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <path d="M260,200 Q290,80 360,50 Q400,35 480,60" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <!-- Central "bounce" point -->
+            <circle cx="260" cy="200" r="12" fill="rgba(255,255,255,.7)" />
+            <circle cx="260" cy="200" r="22" fill="none" stroke="rgba(187,167,255,.3)" stroke-width="2" />
+            <circle cx="260" cy="200" r="36" fill="none" stroke="rgba(122,215,255,.15)" stroke-width="1.5" />
+            <!-- Scatter dots representing pocket universes -->
+            <circle cx="120" cy="140" r="5" fill="rgba(255,210,122,.6)" />
+            <circle cx="400" cy="140" r="5" fill="rgba(122,215,255,.6)" />
+            <circle cx="160" cy="50" r="4" fill="rgba(117,240,182,.5)" />
+            <circle cx="360" cy="50" r="4" fill="rgba(187,167,255,.5)" />
+            <circle cx="80" cy="80" r="3" fill="rgba(255,179,138,.4)" />
+            <circle cx="440" cy="80" r="3" fill="rgba(255,179,138,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> cosmologie &bull; gravitatie cuantica &bull; leonard susskind</div>
+          <h1>De Ce Big Bang-ul Nu S-a Intamplat Niciodata</h1>
+          <p class="subtitle">
+            Nu, universul nu a aparut dintr-o explozie acum 13,8 miliarde de ani. Singularitatea nu e un lucru real &mdash; e un semn ca teoria noastra se strica.
+            Cand aplici fizica corecta (mecanica cuantica), &bdquo;inceputul&rdquo; dispare. Aceasta pagina iti explica de ce, pe intelesul tuturor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Simulatorul universului</button>
+            <button class="btn" id="jumpTimeline">Cronologia cosmica</button>
+            <button class="btn" id="toggleNotes">Comentarii pornite/oprite</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Cifre cheie">
+          <div class="stat">
+            <div class="label">Varsta universului nostru</div>
+            <div class="value">13,8 miliarde ani</div>
+            <div class="note">Bine masurat. Real. Dar nu e &bdquo;varsta totala&rdquo;.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Lungimea Planck</div>
+            <div class="value" style="color:var(--violet)">10<sup>&minus;35</sup> m</div>
+            <div class="note">Sub aceasta distanta, spatiul si timpul nu mai functioneaza normal.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Stari de vid (peisaj)</div>
+            <div class="value" style="color:var(--warn)">10<sup>500</sup></div>
+            <div class="note">In teoria corzilor, atatea tipuri posibile de &bdquo;univers&rdquo;.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Teza principala</div>
+            <div class="value" style="font-size:15px">Big Bang = tranzitie, nu creatie</div>
+            <div class="note">Universul nostru e un &bdquo;buzunar&rdquo; intr-o structura eterna.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION 1: Ce spune de fapt teoria Big Bang -->
+      <section class="card" aria-label="Ce spune teoria">
+        <div class="cardHeader">
+          <h2>Ce spune de fapt teoria Big Bang-ului?</h2>
+          <div class="chip"><b>Dovezi:</b> extrem de solide</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Teoria Big Bang-ului spune ceva simplu: <b>universul se extinde</b>. Galaxiile se departeaza unele de altele. Spatiul in sine devine mai mare.
+                Daca derulezi filmul inapoi, universul era mai mic, mai dens, mai fierbinte.
+              </p>
+              <p class="muted">
+                Acum 13,8 miliarde de ani, totul era comprimat intr-o regiune mai mica decat un atom, la trilioane de grade. Avem <b>dovezi extraordinare</b> pentru aceasta stare &mdash;
+                in special &bdquo;Radiatie Cosmica de Fond&rdquo; (CMB), o stralucire slaba care umple tot spatiul, ca o fotografie a universului cand avea doar 380.000 de ani.
+              </p>
+              <div class="analogyBox">
+                <div class="aTitle">Analogie</div>
+                <p>Imagineaza-ti ca ai un balon pe care ai desenat puncte cu markerul. Cand umfli balonul, punctele se departeaza unele de altele &mdash; nu pentru ca se misca PE suprafata, ci pentru ca suprafata insasi creste. Asa se extinde spatiul.</p>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Dovezi Big Bang">
+                <div class="small" style="margin-bottom:10px">Dovezile principale care sustin modelul Big Bang:</div>
+                <div class="flow">
+                  <div class="pill"><span>Galaxiile se departeaza (legea Hubble)</span><span class="tag">1929</span></div>
+                  <div class="pill"><span>Radiatia cosmica de fond (CMB)</span><span class="tag">1965</span></div>
+                  <div class="pill"><span>Abundenta elementelor usoare (H, He, Li)</span><span class="tag">anii '60</span></div>
+                  <div class="pill"><span>Fluctuatiile din CMB corespund predictiilor</span><span class="tag">2003+</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Susskind nu contesta nimic din toate acestea. Ceea ce contesta este <b>interpretarea</b>: ideea ca a existat un &bdquo;moment zero&rdquo;, o singularitate.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acesta e un punct esential. Susskind nu e un sceptic al Big Bang-ului. El accepta toate dovezile. Ceea ce respinge este doar &bdquo;inceputul&rdquo; &mdash; ideea ca a existat un t = 0 in care totul s-a nascut din nimic. Aceasta e o distinctie subtila dar enorma.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Problema singularitatii -->
+      <section class="row">
+        <div class="card" aria-label="Problema singularitatii">
+          <div class="cardHeader">
+            <h2>Problema singularitatii: de ce &bdquo;inceputul&rdquo; e o iluzie</h2>
+            <div class="chip">ecuatiile &bdquo;explodeaza&rdquo;</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Daca derulezi expansiunea inapoi pana la capat, relativitatea generala prezice ca densitatea devine <b>infinita</b>, temperatura devine <b>infinita</b>,
+              curbura spatiu-timpului devine <b>infinita</b>. Aceasta &bdquo;singularitate&rdquo; e momentul t = 0.
+            </p>
+            <p class="muted">
+              Dar o singularitate <b>nu e un lucru fizic</b>. E un semnal matematic care spune: &bdquo;teoria mea nu mai merge aici, ai nevoie de fizica mai buna.&rdquo;
+            </p>
+
+            <div class="analogyBox">
+              <div class="aTitle">Analogia mingii de baseball a lui Susskind</div>
+              <p>
+                Daca folosesti fizica lui Newton sa calculezi ce se intampla cand o minge de baseball accelereaza pana la viteza luminii, ecuatiile iti dau masa infinita si energie infinita.
+                Asta inseamna ca exista o &bdquo;singularitate&rdquo; la viteza luminii? <b>Nu.</b> Inseamna ca fizica lui Newton nu functioneaza la acele viteze &mdash; ai nevoie de relativitatea speciala.
+              </p>
+              <p style="margin-top:8px">
+                <b>Exact la fel:</b> singularitatea Big Bang-ului inseamna ca relativitatea generala nu functioneaza la acele densitati extreme. Ai nevoie de mecanica cuantica.
+              </p>
+            </div>
+
+            <div class="viz" style="margin-top:12px" aria-label="Comparatie teorii">
+              <svg viewBox="0 0 480 200" role="img">
+                <defs>
+                  <linearGradient id="badGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(255,122,153,.3)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.05)"/>
+                  </linearGradient>
+                  <linearGradient id="goodGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(117,240,182,.3)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.05)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="10" y="10" width="220" height="180" rx="14" fill="url(#badGrad)" stroke="rgba(255,122,153,.3)" stroke-width="1"/>
+                <text x="30" y="40" font-size="13" fill="var(--bad)" font-weight="700">Relativitate generala</text>
+                <text x="30" y="62" font-size="11" fill="var(--muted)">La densitate extrema:</text>
+                <text x="30" y="82" font-size="12" fill="var(--text)">Densitate = INFINIT</text>
+                <text x="30" y="100" font-size="12" fill="var(--text)">Temperatura = INFINIT</text>
+                <text x="30" y="118" font-size="12" fill="var(--text)">Curbura = INFINIT</text>
+                <text x="30" y="150" font-size="11" fill="var(--bad)">Teoria se strica.</text>
+                <text x="30" y="170" font-size="11" fill="var(--bad)">Ecuatiile &bdquo;explodeaza&rdquo;.</text>
+
+                <rect x="250" y="10" width="220" height="180" rx="14" fill="url(#goodGrad)" stroke="rgba(117,240,182,.3)" stroke-width="1"/>
+                <text x="270" y="40" font-size="13" fill="var(--good)" font-weight="700">+ Mecanica cuantica</text>
+                <text x="270" y="62" font-size="11" fill="var(--muted)">La densitate extrema:</text>
+                <text x="270" y="82" font-size="12" fill="var(--text)">Limita minima de comprimare</text>
+                <text x="270" y="100" font-size="12" fill="var(--text)">Fluctuatii cuantice domina</text>
+                <text x="270" y="118" font-size="12" fill="var(--text)">Spatiu-timpul e cuantic</text>
+                <text x="270" y="150" font-size="11" fill="var(--good)">Singularitatea dispare.</text>
+                <text x="270" y="170" font-size="11" fill="var(--good)">Ceva neted o inlocuieste.</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Penrose si Hawking au demonstrat in anii '60 ca relativitatea generala <i>inevitabil</i> prezice singularitati. Dar Hawking insusi a spus repetat: singularitatea nu e reala. E un semn ca descrierea clasica e incompleta. Efectele cuantice o elimina.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce inlocuieste singularitatea">
+          <div class="cardHeader">
+            <h2>Ce inlocuieste singularitatea?</h2>
+            <div class="chip"><b>3 propuneri</b> diferite</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Nu avem inca o teorie completa a gravitatiei cuantice, dar avem candidati seriosi. Fiecare elimina singularitatea intr-un mod diferit.
+            </p>
+
+            <div class="tabBar" id="proposalTabs">
+              <button class="tabBtn active" data-tab="bounce">Marea Ricosare</button>
+              <button class="tabBtn" data-tab="noboundary">Fara Frontiera</button>
+              <button class="tabBtn" data-tab="eternal">Inflatia Eterna</button>
+            </div>
+
+            <div class="tabContent active" id="tab-bounce">
+              <div class="flowNode" style="border-color: rgba(122,215,255,.25)">
+                <h3 style="color:var(--cyan)">1. Marea Ricosare (Big Bounce)</h3>
+                <p>
+                  Bazata pe gravitatia cuantica in bucle (loop quantum gravity). Ideea: inainte de universul nostru in expansiune, a existat un univers care se <b>contracta</b>.
+                  S-a comprimat pana la o dimensiune incredibil de mica, dar <b>nu zero</b>.
+                </p>
+                <p style="margin-top:8px">
+                  La cea mai mica scara, efectele cuantice au creat o <b>forta de respingere</b> &mdash; gravitatea a devenit repulsiva.
+                  Universul a &bdquo;ricosat&rdquo;: din contracrie a trecut in expansiune. Asta e &bdquo;Big Bang-ul&rdquo; nostru, dar nu e un inceput &mdash; e o <b>tranzitie</b>.
+                </p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(122,215,255,.3);color:var(--cyan)">contracrie &rarr; ricosare &rarr; expansiune</span>
+                  <span class="badge">gravitatie cuantica in bucle</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tabContent" id="tab-noboundary">
+              <div class="flowNode" style="border-color: rgba(187,167,255,.25)">
+                <h3 style="color:var(--violet)">2. Propunerea &bdquo;Fara Frontiera&rdquo; (Hartle-Hawking)</h3>
+                <p>
+                  Ideea lui Hawking si Hartle din anii '80: in universul foarte timpuriu, <b>timpul insusi</b> se comporta diferit.
+                  La scala Planck, timpul devine &bdquo;imaginar&rdquo; (in sens matematic) si se comporta ca o dimensiune spatiala.
+                </p>
+                <p style="margin-top:8px">
+                  In aceasta situatie, intrebarea &bdquo;ce a fost inainte de Big Bang?&rdquo; devine fara sens &mdash; exact ca &bdquo;ce e la nord de Polul Nord?&rdquo;
+                  Nu exista un &bdquo;inainte&rdquo;. Timpul pur si simplu se curbeza si se inchide neted. Fara frontiera, fara inceput, fara singularitate.
+                </p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">timpul = dimensiune spatiala</span>
+                  <span class="badge">Hawking &amp; Hartle, 1983</span>
+                </div>
+              </div>
+              <div class="analogyBox">
+                <div class="aTitle">Analogia Polului Nord</div>
+                <p>&bdquo;Ce e la nord de Polul Nord?&rdquo; &mdash; intrebarea pare sa aiba sens, dar nu are. La Polul Nord, &bdquo;nordul&rdquo; nu mai e definit. In orice directie mergi, mergi spre sud. La fel, &bdquo;inainte de Big Bang&rdquo; ar putea fi o intrebare la care nu exista raspuns, nu pentru ca e un mister, ci pentru ca <b>conceptul de timp</b> se termina acolo.</p>
+              </div>
+            </div>
+
+            <div class="tabContent" id="tab-eternal">
+              <div class="flowNode" style="border-color: rgba(255,210,122,.25)">
+                <h3 style="color:var(--warn)">3. Inflatia Eterna</h3>
+                <p>
+                  In modelele de inflatie (expansiune rapida in universul timpuriu), procesul nu se opreste niciodata complet.
+                  Unele regiuni opresc inflatia si devin &bdquo;universuri de buzunar&rdquo; (ca al nostru), dar alte regiuni continua sa se umfle la nesfarsit, producand noi si noi buzunare.
+                </p>
+                <p style="margin-top:8px">
+                  Rezultatul: o structura fractala infinita, un <b>multivers</b> in care Big Bang-ul nostru e doar un eveniment local. Structura mare nu are un inceput global.
+                </p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">multivers etern</span>
+                  <span class="badge">Alan Guth, 1980</span>
+                  <span class="badge">structura fractala</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Niciuna din aceste propuneri nu e inca demonstrata definitiv. Dar toate au un lucru in comun: singularitatea dispare. Susskind argumenteaza ca e aproape sigur ca singularitatea nu e reala &mdash; dezbaterea e doar despre <i>ce anume</i> o inlocuieste.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Big Bounce interactive visualization -->
+      <section class="card" id="vizSection" aria-label="Simulator univers">
+        <div class="cardHeader">
+          <h2>Simulatorul universului: de la contractie la expansiune</h2>
+          <div class="chip">vizualizare interactiva</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Acest simulator conceptual arata cum arata modelul &bdquo;Marii Ricosari&rdquo;: universul se contracta, ajunge la un minim (dar <b>nu zero</b>), apoi se extinde.
+            Compara cu modelul clasic (singularitate) unde totul ar cobori la zero &mdash; ceea ce e fizic imposibil.
+          </p>
+
+          <div class="viz" id="viz">
+            <svg viewBox="0 0 980 420" id="bounceSvg" role="img" aria-label="Big Bounce vs singularitate">
+              <defs>
+                <linearGradient id="fadeV" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(255,255,255,.08)"/>
+                  <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="980" height="420" fill="rgba(0,0,0,.05)"/>
+
+              <!-- Axes -->
+              <g opacity=".9">
+                <path d="M80 44 L80 360 L940 360" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+              </g>
+
+              <!-- Grid -->
+              <g id="bounceGrid"></g>
+
+              <!-- Areas -->
+              <path id="bounceArea" fill="rgba(187,167,255,.08)" stroke="none"></path>
+              <path id="classicArea" fill="rgba(255,122,153,.06)" stroke="none"></path>
+
+              <!-- Curves -->
+              <path id="bounceCurve" stroke="rgba(187,167,255,.95)" stroke-width="3" fill="none" stroke-linecap="round"></path>
+              <path id="classicCurve" stroke="rgba(255,122,153,.5)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="8 6"></path>
+
+              <!-- Annotations -->
+              <g id="bounceAnnotations"></g>
+
+              <!-- Labels -->
+              <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                <text x="80" y="26" fill="rgba(255,255,255,.88)" font-weight="700">Marimea universului in timp</text>
+                <text x="80" y="400" font-size="12" fill="rgba(255,255,255,.62)">Timp &rarr;</text>
+                <text x="16" y="220" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 16 220)">Marimea universului</text>
+              </g>
+            </svg>
+
+            <div class="legend">
+              <div class="key"><span class="sw" style="background: rgba(187,167,255,.95)"></span> Marea Ricosare (cuantic)</div>
+              <div class="key"><span class="sw" style="background: rgba(255,122,153,.5)"></span> Singularitate clasica (relativitate)</div>
+              <div class="key"><span class="sw" style="background: rgba(255,210,122,.6)"></span> Punctul de ricosare</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Marimea minima (efect cuantic)</span>
+                <span class="readout" id="minReadout">30%</span>
+              </label>
+              <input id="minSlider" type="range" min="5" max="60" value="30" />
+              <div class="small" style="margin-top:8px">Cat de mic poate deveni universul inainte de ricosare. 0% = singularitate (imposibil cuantic).</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Simetria ricosarii</span>
+                <span class="readout" id="symReadout">50%</span>
+              </label>
+              <input id="symSlider" type="range" min="10" max="90" value="50" />
+              <div class="small" style="margin-top:8px">Cat de simetrica e tranzitia: universul dinainte era similar sau diferit?</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Simulatorul e <i>conceptual</i> &mdash; nu reproduce calcule reale din gravitatia cuantica in bucle. Scopul e sa vezi diferenta vizuala: singularitatea (linia punctata) coboara la zero, ceea ce e fizic imposibil. Ricosarea (linia continua) are un minim finit, controlat de efecte cuantice.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Eternal Inflation & Multiverse -->
+      <section class="row">
+        <div class="card" aria-label="Inflatia eterna">
+          <div class="cardHeader">
+            <h2>Inflatia eterna si multiversul</h2>
+            <div class="chip">structura mare a realitatii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Inflatia e o expansiune incredibil de rapida in universul timpuriu &mdash; in o fractiune de secunda, universul a crescut de <b>10<sup>60</sup> ori</b> sau mai mult.
+              Aceasta a rezolvat multe probleme: de ce universul e asa de plat, asa de uniform, asa de omogen pe scari mari.
+            </p>
+            <p class="muted">
+              Dar o descoperire surprinzatoare: aproape toate modelele de inflatie <b>nu se opresc niciodata complet</b>. Inflatia devine <b>eterna</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Cum functioneaza inflatia eterna</h3>
+                <p>
+                  Un camp ipotetic (inflaton) conduce expansiunea. Cand decade, inflatie se opreste in acea regiune &rarr; apare un &bdquo;univers de buzunar&rdquo;,
+                  plin de materie si radiatie (un &bdquo;Big Bang&rdquo; local). Dar fluctuatiile cuantice pot relansa inflatia in alte regiuni.
+                </p>
+                <div class="meta">
+                  <span class="badge">camp inflaton</span>
+                  <span class="badge">vid fals &rarr; vid adevarat</span>
+                  <span class="badge">fluctuatii cuantice</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>Rezultatul: un arbore fractal infinit</h3>
+                <p>
+                  Regiunile care se umfla produc noi regiuni, care produc noi regiuni, la nesfarsit. Unele se opresc si devin universuri.
+                  Universul nostru observabil e doar <b>un buzunar</b> in aceasta structura imensa.
+                </p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">fara inceput global</span>
+                  <span class="badge">infinit de buzunare</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="viz" style="margin-top:12px" id="multiverseViz">
+              <svg viewBox="0 0 480 320" id="multiSvg" role="img" aria-label="Multiversul">
+                <defs>
+                  <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <radialGradient id="bubbleG1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0" stop-color="rgba(122,215,255,.25)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.02)"/>
+                  </radialGradient>
+                  <radialGradient id="bubbleG2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0" stop-color="rgba(187,167,255,.25)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.02)"/>
+                  </radialGradient>
+                  <radialGradient id="bubbleG3" cx="50%" cy="50%" r="50%">
+                    <stop offset="0" stop-color="rgba(117,240,182,.25)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.02)"/>
+                  </radialGradient>
+                  <radialGradient id="bubbleG4" cx="50%" cy="50%" r="50%">
+                    <stop offset="0" stop-color="rgba(255,210,122,.25)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.02)"/>
+                  </radialGradient>
+                </defs>
+                <!-- Background inflating space -->
+                <rect x="0" y="0" width="480" height="320" fill="rgba(0,0,0,.05)" rx="10"/>
+
+                <!-- Inflating foam texture -->
+                <g filter="url(#softGlow)" opacity=".7">
+                  <!-- Large pocket universes -->
+                  <circle cx="180" cy="150" r="65" fill="url(#bubbleG1)" stroke="rgba(122,215,255,.25)" stroke-width="1.5"/>
+                  <circle cx="340" cy="120" r="50" fill="url(#bubbleG2)" stroke="rgba(187,167,255,.25)" stroke-width="1.5"/>
+                  <circle cx="120" cy="260" r="42" fill="url(#bubbleG3)" stroke="rgba(117,240,182,.25)" stroke-width="1.5"/>
+                  <circle cx="380" cy="250" r="55" fill="url(#bubbleG4)" stroke="rgba(255,210,122,.25)" stroke-width="1.5"/>
+                  <circle cx="260" cy="60" r="35" fill="url(#bubbleG1)" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+                  <!-- Smaller bubbles -->
+                  <circle cx="70" cy="100" r="22" fill="url(#bubbleG2)" stroke="rgba(187,167,255,.15)" stroke-width="1"/>
+                  <circle cx="430" cy="60" r="18" fill="url(#bubbleG3)" stroke="rgba(117,240,182,.15)" stroke-width="1"/>
+                  <circle cx="300" cy="280" r="20" fill="url(#bubbleG1)" stroke="rgba(122,215,255,.15)" stroke-width="1"/>
+                  <circle cx="210" cy="280" r="15" fill="url(#bubbleG4)" stroke="rgba(255,210,122,.15)" stroke-width="1"/>
+                  <circle cx="50" cy="200" r="14" fill="url(#bubbleG2)" stroke="rgba(187,167,255,.12)" stroke-width="1"/>
+                  <circle cx="450" cy="170" r="16" fill="url(#bubbleG3)" stroke="rgba(117,240,182,.12)" stroke-width="1"/>
+                  <!-- Tiny dots -->
+                  <circle cx="150" cy="50" r="6" fill="rgba(255,255,255,.15)"/>
+                  <circle cx="400" cy="300" r="5" fill="rgba(255,255,255,.12)"/>
+                  <circle cx="30" cy="280" r="4" fill="rgba(255,255,255,.10)"/>
+                  <circle cx="470" cy="100" r="5" fill="rgba(255,255,255,.10)"/>
+                </g>
+
+                <!-- "Our universe" label -->
+                <circle cx="180" cy="150" r="65" fill="none" stroke="rgba(122,215,255,.6)" stroke-width="2" stroke-dasharray="4 3"/>
+                <text x="180" y="145" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.9)" font-weight="700">Universul</text>
+                <text x="180" y="162" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.7)">nostru</text>
+
+                <!-- Other universe labels -->
+                <text x="340" y="118" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">alt univers</text>
+                <text x="380" y="248" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">alt univers</text>
+                <text x="120" y="258" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">alt univers</text>
+
+                <!-- Label -->
+                <text x="240" y="315" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Fiecare &bdquo;balon&rdquo; = un univers de buzunar cu propriile legi fizice</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind subliniaza ca inflatia eterna e &bdquo;generica&rdquo; &mdash; aproape toate modelele de inflatie duc inevitabil la ea. In fizica, cand trebuie sa ajustezi precis parametrii ca sa <i>eviti</i> ceva, inseamna de obicei ca natura nu face acea ajustare &mdash; merge cu cazul general.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Peisajul corzilor">
+          <div class="cardHeader">
+            <h2>Peisajul corzilor si principiul antropic</h2>
+            <div class="chip">10<sup>500</sup> posibilitati</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In teoria corzilor, exista un numar imens de stari de vid posibile &mdash; poate <b>10<sup>500</sup></b> sau mai mult.
+              Fiecare stare corespunde unui set diferit de legi fizice, particule diferite, constante diferite ale naturii.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Ce e &bdquo;peisajul corzilor&rdquo;?</strong><span class="badge">concept</span></div>
+                <p>Imagineaza-ti un teren muntos cu trilioane de vai. Fiecare vale = un posibil univers cu propriile legi fizice. In inflatia eterna, fluctuatiile cuantice exploreaza tot peisajul.</p>
+                <div class="meter"><i style="width:85%;background: linear-gradient(90deg, var(--violet), var(--cyan))"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Principiul antropic</strong><span class="badge">filosofie</span></div>
+                <p>De ce universul nostru are exact legile potrivite pentru viata? Nu e un mister: in multiversul infinit, toate legile posibile exista undeva. Noi existam unde putem exista.</p>
+                <div class="meter"><i style="width:70%;background: linear-gradient(90deg, var(--warn), var(--orange))"></i></div>
+              </div>
+            </div>
+
+            <div class="analogyBox">
+              <div class="aTitle">Analogie: balta de apa</div>
+              <p>Un pestisor intr-o balta ar putea fi uluit ca balta are exact forma potrivita pentru el. &bdquo;Ce coincidenta incredibila!&rdquo; Dar de fapt, pestisorul s-a format in balta &mdash; se potriveste formei pentru ca a crescut acolo. La fel, noi ne-am format in universul asta si de aceea el pare &bdquo;reglat fin&rdquo; pentru noi.</p>
+            </div>
+
+            <div class="hr"></div>
+
+            <h3 style="font-size:14px;margin:0 0 8px">De ce Susskind crede ca aceasta imagine e corecta:</h3>
+            <div class="flow">
+              <div class="pill"><span><b>1)</b> E generica &mdash; inflatia eterna apare natural</span><span class="tag">argument</span></div>
+              <div class="pill"><span><b>2)</b> Se potriveste cu teoria corzilor</span><span class="tag">argument</span></div>
+              <div class="pill"><span><b>3)</b> Elimina problema conditiilor initiale</span><span class="tag">argument</span></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Principiul antropic e controversat printre fizicieni. Unii il gasesc nesatisfacator (&bdquo;nu explica nimic, doar constata&rdquo;), altii (ca Susskind) il vad ca singura explicatie logica. In multiversul etern, conditiile initiale nu mai conteaza &mdash; tot ce e posibil se intampla undeva, iar noi existam intr-un &bdquo;buzunar&rdquo; compatibil cu viata.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: Timpul ca fenomen emergent -->
+      <section class="card" aria-label="Timpul emergent">
+        <div class="cardHeader">
+          <h2>Timpul nu e fundamental &mdash; e &bdquo;emergent&rdquo;</h2>
+          <div class="chip"><b>Implicatie:</b> &bdquo;inainte&rdquo; nu exista</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Poate cea mai profunda idee din prezentarea lui Susskind: <b>timpul insusi nu e fundamental</b>. In fizica normala, timpul curge lin din trecut in viitor.
+                Dar la scala Planck, in regimul gravitatiei cuantice, conceptul de timp s-ar putea sa nu mai aiba sens.
+              </p>
+              <p class="muted">
+                Timpul e un fenomen &bdquo;emergent&rdquo; &mdash; apare doar la scari mari, in descrierea clasica. E ca temperatura: un gaz are temperatura, dar o molecula singura nu are.
+                La fel, universul macro are &bdquo;timp&rdquo;, dar la nivel fundamental, timpul s-ar putea sa nu existe.
+              </p>
+              <p class="muted">
+                Asta inseamna ca intrebarea &bdquo;cat de vechi e multiversul?&rdquo; e ca intrebarea &bdquo;ce ora e la Polul Nord?&rdquo; &mdash; presupune un concept care nu se aplica acolo.
+              </p>
+
+              <div class="analogyBox">
+                <div class="aTitle">Ce putem spune totusi</div>
+                <p><b>Universul nostru observabil</b> are o varsta bine definita: 13,8 miliarde de ani. Aceasta e masurabil si real. Dar structura mai mare &mdash; multiversul, vacuumul care a produs &bdquo;buzunarul&rdquo; nostru &mdash; nu are varsta in acelasi sens. E &bdquo;in afara timpului&rdquo;, etern, sau pur si simplu dincolo de conceptul de timp.</p>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Nivele de realitate">
+                <svg viewBox="0 0 440 380" role="img">
+                  <defs>
+                    <linearGradient id="lvl1" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(117,240,182,.2)"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.05)"/>
+                    </linearGradient>
+                    <linearGradient id="lvl2" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(187,167,255,.2)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.05)"/>
+                    </linearGradient>
+                    <linearGradient id="lvl3" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(255,210,122,.2)"/>
+                      <stop offset="1" stop-color="rgba(255,210,122,.05)"/>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Level 3: Quantum gravity -->
+                  <rect x="20" y="20" width="400" height="100" rx="16" fill="url(#lvl3)" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                  <text x="40" y="48" font-size="14" fill="var(--warn)" font-weight="700">Gravitatie cuantica</text>
+                  <text x="40" y="68" font-size="12" fill="var(--muted)">Timpul nu exista ca concept.</text>
+                  <text x="40" y="86" font-size="12" fill="var(--muted)">Spatiu-timpul e cuantic, fluctuant.</text>
+                  <text x="40" y="104" font-size="11" fill="var(--faint)">Functia de unda a universului.</text>
+
+                  <!-- Arrow -->
+                  <path d="M220 120 L220 140" stroke="rgba(255,255,255,.25)" stroke-width="1.5" marker-end="url(#arrowW)"/>
+                  <text x="230" y="135" font-size="10" fill="var(--faint)">emerge</text>
+
+                  <!-- Level 2: Eternal inflation -->
+                  <rect x="20" y="145" width="400" height="100" rx="16" fill="url(#lvl2)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                  <text x="40" y="173" font-size="14" fill="var(--violet)" font-weight="700">Inflatie eterna / Multivers</text>
+                  <text x="40" y="193" font-size="12" fill="var(--muted)">Timpul exista partial, dar e relativ</text>
+                  <text x="40" y="211" font-size="12" fill="var(--muted)">la fiecare &bdquo;buzunar&rdquo;.</text>
+                  <text x="40" y="229" font-size="11" fill="var(--faint)">Fara inceput global.</text>
+
+                  <!-- Arrow -->
+                  <path d="M220 245 L220 265" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+                  <text x="230" y="260" font-size="10" fill="var(--faint)">produce</text>
+
+                  <!-- Level 1: Our universe -->
+                  <rect x="20" y="270" width="400" height="90" rx="16" fill="url(#lvl1)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                  <text x="40" y="298" font-size="14" fill="var(--good)" font-weight="700">Universul nostru observabil</text>
+                  <text x="40" y="318" font-size="12" fill="var(--muted)">Timpul curge normal. Varsta: 13,8 mld ani.</text>
+                  <text x="40" y="336" font-size="12" fill="var(--muted)">Big Bang-ul = tranzitia de la inflatie la expansiune calda.</text>
+                  <text x="40" y="352" font-size="11" fill="var(--faint)">Dovezi solide: CMB, galaxii, elemente.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea ca timpul e emergent e profund contraintuitiva. Noi traim in timp, gandim in timp, ne e imposibil sa concepem altceva. Dar Susskind spune ca in 50 de ani de fizica a invatat un lucru: &bdquo;cand matematica iti spune ceva ciudat, ar trebui sa asculti. Natura nu e obligata sa se conformeze intuitiilor noastre.&rdquo;
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Timeline -->
+      <section class="card" id="timelineSection" aria-label="Cronologie">
+        <div class="cardHeader">
+          <h2>Cronologia cosmica: de la &bdquo;nimic&rdquo; la galaxii</h2>
+          <div class="chip">istoria universului nostru</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Cum arata istoria &bdquo;buzunarului&rdquo; nostru cosmic, de la tranzitia Big Bang pana azi. Observa: nu scriem &bdquo;momentul creatiei&rdquo; &mdash; scriem &bdquo;tranzitia din inflatie&rdquo;.
+          </p>
+
+          <div class="timeline">
+            <div class="tEntry">
+              <div class="tTime">??? (inainte de t ~ 0)</div>
+              <div class="tLabel">Regimul cuantic / inflatie eterna</div>
+              <div class="tDesc">Spatiu-timpul e cuantic. Conceptul de &bdquo;inainte&rdquo; poate fi fara sens. Undeva in aceasta structura, inflatia eterna produce buzunarul nostru.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 10<sup>&minus;36</sup> secunde</div>
+              <div class="tLabel">Sfarsitul inflatiei locale (Big Bang-ul nostru)</div>
+              <div class="tDesc">Campul inflaton decade in materie si radiatie. Universul nostru incepe sa se extinda si sa se raceasca. Aceasta e &bdquo;tranzitia Big Bang&rdquo; &mdash; nu o creatie din nimic.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 10<sup>&minus;6</sup> secunde</div>
+              <div class="tLabel">Se formeaza protonii si neutronii</div>
+              <div class="tDesc">Quark-urile se combina in protoni si neutroni. Universul e inca incredibil de fierbinte, un &bdquo;sup&rdquo; de particule.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 3 minute</div>
+              <div class="tLabel">Nucleosinteza primordiala</div>
+              <div class="tDesc">Se formeaza nucleele de hidrogen, heliu si litiu. Proportiile observate azi se potrivesc perfect cu predictiile &mdash; una din cele mai puternice dovezi.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 380.000 ani</div>
+              <div class="tLabel">Radiatia cosmica de fond (CMB)</div>
+              <div class="tDesc">Universul se raceste destul ca electronii sa se combine cu nucleele. Lumina scapa liber. Aceasta &bdquo;fotografie&rdquo; a universului tanar o vedem azi in CMB.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 200 milioane ani</div>
+              <div class="tLabel">Primele stele</div>
+              <div class="tDesc">Gravitatia aduna gazul in primele stele. Incep sa &bdquo;aprinda&rdquo; fuziunea nucleara, luminand universul pentru prima oara.</div>
+            </div>
+            <div class="tEntry">
+              <div class="tTime">t ~ 13,8 miliarde ani</div>
+              <div class="tLabel">Azi</div>
+              <div class="tDesc">Universul continua sa se extinda, accelerand din cauza energiei intunecate. Miliarde de galaxii, fiecare cu miliarde de stele. Iar undeva, pe o planeta mica, noi ne intrebam cum a inceput totul.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observa cum primele doua intrari au semne de intrebare si formulari precaute. Asta e onest stiintific: stim foarte bine ce s-a intamplat dupa primele fractiuni de secunda, dar cu cat mergem mai in urma, cu atat stim mai putin. Singura certitudine e ca singularitatea (t = 0 exact) <b>nu</b> e raspunsul corect.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Testabilitate -->
+      <section class="row">
+        <div class="card" aria-label="Testabilitate">
+          <div class="cardHeader">
+            <h2>Dar se poate testa? Nu e doar speculatie?</h2>
+            <div class="chip"><b>Intrebare:</b> legitima</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind recunoaste ca intrebarea e corecta. Nu putem observa direct alte universuri de buzunar, nu putem &bdquo;vedea&rdquo; scala Planck, nu putem masura &bdquo;timpul imaginar&rdquo;.
+              Dar argumentul lui e subtil:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Teste indirecte care functioneaza</h3>
+                <p>Inflatia face predictii despre CMB, spectrul fluctuatiilor, undele gravitationale, geometria spatiului. <b>Pana acum, predictiile se potrivesc remarcabil cu observatiile.</b></p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">confirmat</span><span class="badge">CMB, WMAP, Planck</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Teste viitoare posibile</h3>
+                <p>Gravitatia cuantica in bucle prezice cum ricosarea afecteaza structura universului timpuriu. Undele gravitationale primordiale ar putea fi detectabile cu instrumente viitoare.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">in asteptare</span><span class="badge">unde gravitationale</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Argumentul decisiv al lui Susskind</h3>
+                <p>&bdquo;Nu alegem intre o teorie testabila si una netestabila. Alegem intre o teorie care <b>sigur se strica</b> (singularitatea) si un cadru care <b>ar putea fi corect</b> dar e mai greu de testat complet.&rdquo;</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">logica</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acesta e un punct filosofic important. In stiinta, uneori trebuie sa alegi intre certitudinea ca ceva e gresit si incertitudinea ca altceva ar putea fi corect. Susskind alege incertitudinea &mdash; si argumenteaza ca asta e atitudinea corecta in fizica.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Informatia si gaurile negre">
+          <div class="cardHeader">
+            <h2>Lectia din gaurile negre</h2>
+            <div class="chip">poveste personala</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind povesteste o experienta personala relevanta. Cand lucra la paradoxul informatiei in gaurile negre, multi fizicieni credeau ca isi pierde timpul &mdash; &bdquo;probleme abstracte, nu fizica reala.&rdquo;
+            </p>
+
+            <div class="flowNode">
+              <h3>Paradoxul informatiei</h3>
+              <p>
+                Mecanica cuantica spune: informatia nu poate fi distrusa. Relativitatea generala spune: gaurile negre o distrug.
+                Ceva trebuia sa cedeze. Dupa decenii de munca (Susskind, Hawking, 't Hooft, Maldacena si altii), <b>relativitatea generala a cedat</b>.
+                Gaurile negre nu sunt ce prezice relativitatea generala &mdash; sunt mai subtile, mai cuantice, mai &bdquo;informationale&rdquo;.
+              </p>
+              <div class="meta">
+                <span class="badge">informatia supravietuieste</span>
+                <span class="badge">relativitatea se strica</span>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              <b>Morala:</b> Big Bang-ul e aceeasi situatie. Relativitatea generala spune ca exista o singularitate. Mecanica cuantica spune ca nu.
+              Ceva trebuie sa cedeze &mdash; si Susskind pariaza, cu incredere, ca relativitatea generala cedeaza din nou. Singularitatea e o iluzie.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Analogia cu gaurile negre e puternica pentru ca acolo povestea e deja (in mare parte) rezolvata. A durat decenii, dar relativitatea generala a cedat in fata mecanicii cuantice. Daca s-a intamplat cu gaurile negre, e foarte probabil sa se intample si cu Big Bang-ul.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Quiz interactiv -->
+      <section class="card" aria-label="Quiz">
+        <div class="cardHeader">
+          <h2>Testeaza-ti intelegerea</h2>
+          <div class="chip">quiz interactiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifeaza afirmatiile pe care le consideri corecte conform prezentarii lui Susskind. Apoi apasa &bdquo;Verifica&rdquo; pentru a vedea cat de bine ai inteles.
+          </p>
+
+          <div class="checklist" id="quiz">
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Susskind neaga ca universul se extinde</strong></div>
+                <div class="d">Raspuns: aceasta afirmatie e legata de o confuzie frecventa.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Singularitatea e un semnal ca teoria se strica, nu un lucru real</strong></div>
+                <div class="d">Raspuns: exact asta e argumentul central.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Efectele cuantice elimina singularitatea</strong></div>
+                <div class="d">Raspuns: toate cele trei propuneri (ricosare, fara frontiera, inflatie eterna) fac asta.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Stim cu certitudine ce a fost &bdquo;inainte&rdquo; de Big Bang</strong></div>
+                <div class="d">Raspuns: Susskind e onest &mdash; avem propuneri educate, nu certitudini.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inflatia eterna produce un multivers cu infinit de &bdquo;universuri de buzunar&rdquo;</strong></div>
+                <div class="d">Raspuns: aceasta e una din implicatiile cele mai profunde.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Timpul insusi ar putea fi un fenomen emergent, nu fundamental</strong></div>
+                <div class="d">Raspuns: la scala Planck, conceptul de timp s-ar putea sa nu mai functioneze.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Big Bang-ul, ca stare calda si densa, nu a existat deloc</strong></div>
+                <div class="d">Raspuns: starea calda si densa a existat &mdash; ce nu a existat e &bdquo;singularitatea&rdquo; / momentul creatiei.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizBtn">Verifica raspunsurile</button>
+            <button class="btn" id="quizReset">Reseteaza</button>
+          </div>
+          <div class="small" id="quizOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Concluzie / teza finala -->
+      <section class="card" aria-label="Concluzie">
+        <div class="cardHeader">
+          <h2>Deci care e teza finala?</h2>
+          <div class="chip"><b>Susskind:</b> universul e mai ciudat decat iti imaginezi</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--bad)">Ce NU s-a intamplat</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu a existat un &bdquo;moment zero&rdquo; in care totul a aparut din nimic. Nu a existat o singularitate cu densitate infinita.
+                Nu a existat un &bdquo;inceput al timpului&rdquo; in sensul absolut. Imaginea Big Bang-ului ca &bdquo;explozie din nimic&rdquo; e gresita.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">Ce S-A intamplat</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Universul nostru observabil a trecut printr-o <b>tranzitie</b> acum 13,8 miliarde de ani &mdash; din faza inflationara intr-o faza calda, densa, in expansiune.
+                Aceasta tranzitie e Big Bang-ul. E reala, masurabila, cu dovezi extraordinare. Dar <b>nu e un inceput</b> &mdash; e un eveniment intr-o poveste mult mai mare.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">Imaginea de ansamblu</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Un multivers etern cu inflatie eterna produce infinit de universuri de buzunar. Fiecare are propriul &bdquo;Big Bang&rdquo;, dar structura mare nu are inceput.
+                La nivelul cel mai profund, gravitatia cuantica descrie o stare in care timpul insusi e emergent.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--warn)">De ce conteaza</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Susskind: &bdquo;Am invatat in 50 de ani de fizica ca atunci cand matematica iti spune ceva ciudat, ar trebui sa fii atent.
+                Natura nu e obligata sa se conformeze intuitiilor noastre.&rdquo; Intelegerea de ce Big Bang-ul nu s-a intamplat asa cum credeam
+                e &bdquo;una din marile realizari intelectuale ale fizicii moderne.&rdquo;
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre calitatea dovezilor</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Aceasta prezentare reflecta pozitia lui Leonard Susskind &mdash; un fizician de top, co-inventator al teoriei corzilor, contributor esential la fizica gaurilor negre.
+                Opiniile lui sunt respectate, dar nu unanim acceptate. Unele propuneri (inflatia eterna, multiversul, peisajul corzilor) sunt inca dezbatute intens in comunitatea stiintifica.
+              </p>
+              <p style="margin-top:8px">
+                Ce e <b>larg acceptat</b>: singularitatea Big Bang-ului e un artefact al relativitatii generale si va fi inlocuita de o descriere cuantica mai corecta.
+                Ce e <b>dezbatut</b>: care e acea descriere (ricosare? fara frontiera? inflatie eterna? altceva?) si ce inseamna ea pentru structura fundamentala a realitatii.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary mode -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul &bdquo;comentarii&rdquo;</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Casutele violet de pe tot parcursul paginii (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            cat de puternica e afirmatia? Ce interpretari alternative exista? Ce e larg acceptat vs. controversat?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa &bdquo;Comentarii pornite/oprite&rdquo; din antet pentru a le ascunde sau arata pe toate simultan.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa &amp; precautii:</b> Acest infografic interactiv a fost creat pe baza unei prezentari a lui Leonard Susskind (&bdquo;Why the Big Bang Never Happened&rdquo;).
+        Informatiile sunt simplificate pentru accesibilitate. Nu e un text stiintific formal &mdash; e un instrument vizual care te ajuta sa gandesti despre aceste idei.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: cauta lucrarile lui Susskind, Hawking, Guth, Linde si Penrose despre cosmologie cuantica, inflatie eterna si gravitatie cuantica.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Tab system (proposals)
+    // ──────────────────────────────────────────────────────
+    document.querySelectorAll('.tabBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.cardBody');
+        parent.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+        parent.querySelectorAll('.tabContent').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = 'tab-' + btn.dataset.tab;
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Big Bounce Simulator
+    // ──────────────────────────────────────────────────────
+    const minSlider = document.getElementById('minSlider');
+    const symSlider = document.getElementById('symSlider');
+    const minReadout = document.getElementById('minReadout');
+    const symReadout = document.getElementById('symReadout');
+
+    function renderBounce() {
+      const minSize = parseInt(minSlider.value) / 100; // 0.05 to 0.6
+      const symmetry = parseInt(symSlider.value) / 100; // 0.1 to 0.9
+
+      minReadout.textContent = minSlider.value + '%';
+      symReadout.textContent = symSlider.value + '%';
+
+      const W = 980, H = 420;
+      const padL = 80, padR = 40, padT = 44, padB = 60;
+      const graphW = W - padL - padR;
+      const graphH = H - padT - padB;
+
+      const points = 200;
+      const centerX = padL + graphW * 0.5;
+      const baselineY = padT + graphH;
+
+      // Bounce curve: parabola-like, but asymmetric
+      let bouncePath = '';
+      let classicPath = '';
+      let bounceAreaPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = i / points; // 0 to 1
+        const x = padL + t * graphW;
+
+        // Normalized distance from center (0 at center, 1 at edges)
+        const distFromCenter = (t - 0.5) * 2; // -1 to 1
+
+        // Asymmetric shape via symmetry parameter
+        let leftScale = symmetry;
+        let rightScale = 1.0;
+        let scale = distFromCenter < 0 ? leftScale : rightScale;
+
+        // Bounce: smooth curve with minimum
+        const bounceVal = minSize + (1 - minSize) * Math.pow(Math.abs(distFromCenter), 1.5 + scale * 0.5);
+        const bounceY = baselineY - bounceVal * graphH;
+
+        // Classic: V shape going to zero
+        const classicVal = Math.abs(distFromCenter);
+        const classicY = baselineY - classicVal * graphH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        bouncePath += `${cmd}${x},${bounceY} `;
+        classicPath += `${cmd}${x},${classicY} `;
+      }
+
+      // Area under bounce curve
+      bounceAreaPath = `M${padL},${baselineY} ${bouncePath} L${padL + graphW},${baselineY} Z`;
+
+      document.getElementById('bounceCurve').setAttribute('d', bouncePath);
+      document.getElementById('classicCurve').setAttribute('d', classicPath);
+      document.getElementById('bounceArea').setAttribute('d', bounceAreaPath);
+
+      // Grid lines
+      const grid = document.getElementById('bounceGrid');
+      grid.innerHTML = '';
+
+      // Vertical grid + time labels
+      const timeLabels = [
+        { pos: 0, label: 'Contractie' },
+        { pos: 0.25, label: '' },
+        { pos: 0.5, label: 'Ricosare!' },
+        { pos: 0.75, label: '' },
+        { pos: 1, label: 'Expansiune' }
+      ];
+
+      timeLabels.forEach(({ pos, label }) => {
+        const x = padL + pos * graphW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', padT);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', baselineY);
+        line.setAttribute('stroke', pos === 0.5 ? 'rgba(255,210,122,.2)' : 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', pos === 0.5 ? '2' : '1');
+        if (pos === 0.5) line.setAttribute('stroke-dasharray', '6 4');
+        grid.appendChild(line);
+
+        if (label) {
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', x);
+          text.setAttribute('y', baselineY + 20);
+          text.setAttribute('font-size', pos === 0.5 ? '13' : '11');
+          text.setAttribute('fill', pos === 0.5 ? 'rgba(255,210,122,.8)' : 'rgba(255,255,255,.55)');
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('font-weight', pos === 0.5 ? '700' : '400');
+          text.textContent = label;
+          grid.appendChild(text);
+        }
+      });
+
+      // Horizontal grid
+      for (let i = 0; i <= 4; i++) {
+        const y = padT + (i / 4) * graphH;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', padL);
+        line.setAttribute('y1', y);
+        line.setAttribute('x2', padL + graphW);
+        line.setAttribute('y2', y);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+      }
+
+      // Annotations
+      const annotations = document.getElementById('bounceAnnotations');
+      annotations.innerHTML = '';
+
+      // Bounce point marker
+      const bounceMinY = baselineY - minSize * graphH;
+      const bounceCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      bounceCircle.setAttribute('cx', centerX);
+      bounceCircle.setAttribute('cy', bounceMinY);
+      bounceCircle.setAttribute('r', '8');
+      bounceCircle.setAttribute('fill', 'rgba(255,210,122,.7)');
+      bounceCircle.setAttribute('stroke', 'rgba(255,210,122,.3)');
+      bounceCircle.setAttribute('stroke-width', '3');
+      annotations.appendChild(bounceCircle);
+
+      // Outer glow
+      const bounceGlow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      bounceGlow.setAttribute('cx', centerX);
+      bounceGlow.setAttribute('cy', bounceMinY);
+      bounceGlow.setAttribute('r', '18');
+      bounceGlow.setAttribute('fill', 'none');
+      bounceGlow.setAttribute('stroke', 'rgba(255,210,122,.2)');
+      bounceGlow.setAttribute('stroke-width', '1.5');
+      annotations.appendChild(bounceGlow);
+
+      // Label for bounce point
+      const bounceLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      bounceLabel.setAttribute('x', centerX + 24);
+      bounceLabel.setAttribute('y', bounceMinY - 8);
+      bounceLabel.setAttribute('font-size', '11');
+      bounceLabel.setAttribute('fill', 'rgba(255,210,122,.9)');
+      bounceLabel.setAttribute('font-weight', '700');
+      bounceLabel.textContent = 'Minim cuantic (nu zero!)';
+      annotations.appendChild(bounceLabel);
+
+      // Singularity point (where classic curve hits baseline)
+      const singCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      singCircle.setAttribute('cx', centerX);
+      singCircle.setAttribute('cy', baselineY);
+      singCircle.setAttribute('r', '6');
+      singCircle.setAttribute('fill', 'rgba(255,122,153,.6)');
+      annotations.appendChild(singCircle);
+
+      const singLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      singLabel.setAttribute('x', centerX + 20);
+      singLabel.setAttribute('y', baselineY - 8);
+      singLabel.setAttribute('font-size', '11');
+      singLabel.setAttribute('fill', 'rgba(255,122,153,.7)');
+      singLabel.textContent = 'Singularitate (imposibil!)';
+      annotations.appendChild(singLabel);
+    }
+
+    minSlider.addEventListener('input', renderBounce);
+    symSlider.addEventListener('input', renderBounce);
+    renderBounce();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpTimeline').addEventListener('click', () => {
+      document.getElementById('timelineSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('quizBtn').addEventListener('click', () => {
+      const items = document.querySelectorAll('#quiz .item');
+      let correct = 0;
+      let total = items.length;
+
+      items.forEach(item => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const isCorrect = item.dataset.correct === 'true';
+        const isChecked = checkbox.checked;
+        const desc = item.querySelector('.d');
+
+        if ((isCorrect && isChecked) || (!isCorrect && !isChecked)) {
+          correct++;
+          item.style.borderColor = 'rgba(117,240,182,.4)';
+          desc.style.color = 'var(--good)';
+        } else {
+          item.style.borderColor = 'rgba(255,122,153,.4)';
+          desc.style.color = 'var(--bad)';
+        }
+        desc.style.display = 'block';
+      });
+
+      const pct = Math.round((correct / total) * 100);
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% corect! Ai inteles foarte bine argumentul lui Susskind.`;
+      else if (pct >= 60) msg = `${pct}% corect. Buna intelegere, dar reciteste sectiunile unde ai gresit.`;
+      else msg = `${pct}% corect. Merita sa recitesti infograficul mai atent.`;
+
+      document.getElementById('quizOut').innerHTML = `<b>Scorul tau:</b> ${msg}`;
+      showToast('Raspunsuri verificate');
+    });
+
+    document.getElementById('quizReset').addEventListener('click', () => {
+      const items = document.querySelectorAll('#quiz .item');
+      items.forEach(item => {
+        item.querySelector('input[type="checkbox"]').checked = false;
+        item.style.borderColor = 'rgba(255,255,255,.12)';
+        const desc = item.querySelector('.d');
+        desc.style.color = 'var(--muted)';
+      });
+      document.getElementById('quizOut').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

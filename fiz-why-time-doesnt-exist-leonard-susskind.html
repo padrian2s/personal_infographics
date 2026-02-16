@@ -1,0 +1,1754 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De Ce Timpul Nu Exista — Leonard Susskind — Infografic Interactiv</title>
+  <meta name="description" content="Infografic interactiv care explica de ce timpul nu este o trasatura fundamentala a universului, bazat pe ideile lui Leonard Susskind, Wheeler-DeWitt, Barbour si Rovelli." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.06), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.35)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap: wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .concepts{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .concepts{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .concepts{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--cyan));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Equation highlight */
+    .eq{
+      font-family: var(--mono);
+      font-size: 15px;
+      color: var(--warn);
+      background: rgba(255,210,122,.08);
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,210,122,.15);
+      display: inline-block;
+      margin: 2px 0;
+    }
+    .eq-big{
+      font-family: var(--mono);
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--warn);
+      text-align: center;
+      padding: 18px;
+      background: rgba(255,210,122,.06);
+      border: 1px solid rgba(255,210,122,.12);
+      border-radius: 16px;
+      margin: 12px 0;
+      letter-spacing: .04em;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:0;position:relative;padding-left:28px}
+    .timeline::before{
+      content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;
+      background: linear-gradient(180deg, var(--violet), var(--cyan), var(--good));
+      border-radius:2px;
+    }
+    .tEntry{position:relative;padding:10px 0}
+    .tEntry::before{
+      content:'';position:absolute;left:-22px;top:14px;width:10px;height:10px;border-radius:50%;
+      background: var(--violet);border:2px solid rgba(255,255,255,.2);
+      box-shadow: 0 0 12px rgba(187,167,255,.3);
+    }
+    .tEntry .tYear{font-family:var(--mono);font-size:12px;color:var(--cyan);margin-bottom:4px}
+    .tEntry .tTitle{font-weight:700;font-size:14px;margin-bottom:4px}
+    .tEntry .tDesc{color:var(--muted);font-size:13px;line-height:1.5}
+
+    /* Tabs */
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .tab{
+      padding:8px 14px;border-radius:999px;border:1px solid var(--stroke);
+      background:rgba(0,0,0,.18);color:var(--muted);font-size:12px;cursor:pointer;
+      transition: all .15s ease;user-select:none;
+    }
+    .tab:hover{border-color:rgba(255,255,255,.25);color:var(--text)}
+    .tab.active{background:rgba(187,167,255,.15);border-color:rgba(187,167,255,.4);color:var(--text)}
+    .tabContent{display:none}
+    .tabContent.active{display:block}
+
+    /* Spin foam canvas */
+    #spinFoamCanvas{
+      border-radius: var(--radius2);
+      display:block;
+      width:100%;
+      cursor:pointer;
+    }
+
+    /* Block universe */
+    .blockSlice{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:8px 12px;
+      background:rgba(0,0,0,.18);
+      margin-bottom:6px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      transition: all .2s ease;
+    }
+    .blockSlice.highlight{
+      border-color:rgba(187,167,255,.5);
+      background:rgba(187,167,255,.1);
+      box-shadow: 0 0 20px rgba(187,167,255,.15);
+    }
+    .blockSlice .sliceLabel{font-size:13px;font-weight:600}
+    .blockSlice .sliceDesc{font-size:12px;color:var(--muted)}
+    .blockSlice .sliceTag{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--faint)}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,210,122,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Spacetime grid warping -->
+            <path d="M30,180 Q130,60 260,110 T500,50" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <path d="M30,140 Q150,200 280,80 T500,120" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <!-- Clock circles dissolving -->
+            <circle cx="380" cy="90" r="30" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-dasharray="6 4"/>
+            <circle cx="380" cy="90" r="20" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5" stroke-dasharray="4 6"/>
+            <line x1="380" y1="90" x2="380" y2="72" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="380" y1="90" x2="394" y2="84" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Scattered dots = configurations -->
+            <circle cx="120" cy="80" r="5" fill="rgba(187,167,255,.6)" />
+            <circle cx="210" cy="160" r="7" fill="rgba(122,215,255,.5)" />
+            <circle cx="440" cy="150" r="4" fill="rgba(255,210,122,.5)" />
+            <circle cx="90" cy="170" r="3" fill="rgba(255,255,255,.4)" />
+            <circle cx="470" cy="70" r="6" fill="rgba(117,240,182,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica fundamentala &bull; gravitatie cuantica &bull; natura timpului</div>
+          <h1>De Ce Timpul Nu Exista: Lectii din 50 de Ani de Gravitatie Cuantica</h1>
+          <p class="subtitle">
+            Timpul pare cel mai evident lucru din univers. Il simti in fiecare secunda. Dar cele mai profunde ecuatii ale fizicii spun altceva:
+            <b>la nivelul fundamental, timpul dispare din ecuatii</b>. Aceasta pagina explica de ce, in termeni simpli.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la simulatorul de entropie</button>
+            <button class="btn" id="jumpBlock">Mergi la universul-bloc</button>
+            <button class="btn" id="toggleNotes">Afiseaza/ascunde comentariile</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Informatii-cheie">
+          <div class="stat">
+            <div class="label">Afirmatia centrala</div>
+            <div class="value" style="color:var(--violet)">Timpul nu exista</div>
+            <div class="note">Nu e o trasatura fundamentala a realitatii. E o iluzie emergenta.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ecuatia-cheie</div>
+            <div class="value" style="color:var(--warn)">H|&psi;&rang; = 0</div>
+            <div class="note">Ecuatia Wheeler-DeWitt: fara derivata in timp. Universul e static.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ce creeaza iluzia</div>
+            <div class="value" style="color:var(--cyan)">Entropia + Corelatii</div>
+            <div class="note">Gradientul de entropie creeaza memoria, cauzalitatea, "fluxul" timpului.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cadrul teoretic</div>
+            <div class="value" style="color:var(--good)">RG + MC = fara timp</div>
+            <div class="note">Relativitatea Generala + Mecanica Cuantica combinate elimina timpul.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- ===== SECTION: The Conflict ===== -->
+      <section class="card" aria-label="Conflictul celor doua teorii">
+        <div class="cardHeader">
+          <h2>Doua teorii, o problema catastrofala</h2>
+          <div class="chip"><b>Ideea mare:</b> timpul intre doua lumi</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Fizica are doua teorii extraordinare, fiecare testata cu precizie incredibila. Problema? Ele trateaza timpul <b>complet diferit</b>.
+                Cand incerci sa le combini, timpul... dispare.
+              </p>
+              <div class="riskGrid" style="margin-top:12px">
+                <div class="risk">
+                  <div class="rTop"><strong>Relativitatea Generala</strong><span class="badge">Einstein, 1915</span></div>
+                  <p>Timpul e <b>flexibil</b>. Face parte din spatiu-timp (4 dimensiuni). Se dilata langa mase mari sau la viteze mari. Nu exista un "acum" universal. Fiecare observator are propriul timp.</p>
+                  <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--violet),var(--cyan))"></i></div>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Mecanica Cuantica</strong><span class="badge">anii 1920</span></div>
+                  <p>Timpul e <b>rigid</b>. E un parametru extern, un ceas pe peretele laboratorului. Ecuatia lui Schrodinger spune cum se schimba starea cuantica <em>in timp</em>. Timpul e fundalul fix.</p>
+                  <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Comparatie timp">
+                <svg viewBox="0 0 440 300" role="img">
+                  <defs>
+                    <linearGradient id="gv" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,.4)"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Left: curved spacetime grid (GR) -->
+                  <text x="30" y="24" font-size="13" fill="rgba(255,255,255,.8)" font-weight="700">Relativitate Generala</text>
+                  <text x="30" y="42" font-size="11" fill="rgba(255,255,255,.5)">Timp flexibil, curbat</text>
+                  <g opacity=".6">
+                    <path d="M30,70 Q110,60 190,80" fill="none" stroke="rgba(187,167,255,.5)" stroke-width="1.5"/>
+                    <path d="M30,100 Q110,85 190,110" fill="none" stroke="rgba(187,167,255,.4)" stroke-width="1.5"/>
+                    <path d="M30,130 Q110,120 190,140" fill="none" stroke="rgba(187,167,255,.35)" stroke-width="1.5"/>
+                    <path d="M30,160 Q110,155 190,170" fill="none" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <path d="M60,55 Q70,115 60,175" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="1.5"/>
+                    <path d="M110,50 Q115,110 110,175" fill="none" stroke="rgba(122,215,255,.35)" stroke-width="1.5"/>
+                    <path d="M160,55 Q155,115 160,175" fill="none" stroke="rgba(122,215,255,.3)" stroke-width="1.5"/>
+                  </g>
+                  <circle cx="110" cy="115" r="16" fill="rgba(255,210,122,.15)" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                  <text x="110" y="119" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.7)">masa</text>
+
+                  <!-- Right: rigid grid (QM) -->
+                  <text x="250" y="24" font-size="13" fill="rgba(255,255,255,.8)" font-weight="700">Mecanica Cuantica</text>
+                  <text x="250" y="42" font-size="11" fill="rgba(255,255,255,.5)">Timp rigid, extern</text>
+                  <g opacity=".5">
+                    <line x1="250" y1="70" x2="410" y2="70" stroke="rgba(187,167,255,.5)" stroke-width="1.5"/>
+                    <line x1="250" y1="100" x2="410" y2="100" stroke="rgba(187,167,255,.4)" stroke-width="1.5"/>
+                    <line x1="250" y1="130" x2="410" y2="130" stroke="rgba(187,167,255,.35)" stroke-width="1.5"/>
+                    <line x1="250" y1="160" x2="410" y2="160" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+                    <line x1="280" y1="55" x2="280" y2="175" stroke="rgba(122,215,255,.4)" stroke-width="1.5"/>
+                    <line x1="330" y1="55" x2="330" y2="175" stroke="rgba(122,215,255,.35)" stroke-width="1.5"/>
+                    <line x1="380" y1="55" x2="380" y2="175" stroke="rgba(122,215,255,.3)" stroke-width="1.5"/>
+                  </g>
+                  <text x="420" y="70" font-size="10" fill="rgba(255,255,255,.5)">t</text>
+                  <path d="M415,55 L415,175" stroke="rgba(255,210,122,.4)" stroke-width="2" stroke-dasharray="4 3"/>
+                  <text x="420" y="120" font-size="9" fill="rgba(255,210,122,.6)">ceas</text>
+
+                  <!-- Bottom: merge = problem -->
+                  <rect x="60" y="210" width="320" height="70" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.25)" stroke-width="1.5"/>
+                  <text x="220" y="238" text-anchor="middle" font-size="14" fill="rgba(255,122,153,.9)" font-weight="700">Combinare = PROBLEMA</text>
+                  <text x="220" y="260" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Daca spatiu-timpul e sistemul cuantic, cine furnizeaza ceasul extern?</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta nu e o problema filosofica, ci una matematica concreta. In Relativitatea Generala, nu exista un timp preferat. In Mecanica Cuantica, ai nevoie de un timp extern ca sa scrii ecuatia de evolutie. Cand spatiu-timpul insusi devine obiectul cuantic, nu mai ai de unde lua "ceasul de perete". Rezultatul? Ecuatia fundamentala nu contine timpul deloc.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Wheeler-DeWitt ===== -->
+      <section class="row">
+        <div class="card" aria-label="Ecuatia Wheeler-DeWitt">
+          <div class="cardHeader">
+            <h2>Ecuatia Wheeler-DeWitt</h2>
+            <div class="chip"><b>1967:</b> timpul dispare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In anii 1960, fizicienii John Wheeler si Bryce DeWitt au incercat sa scrie ecuatia fundamentala a gravitatiei cuantice. Ce au obtinut a fost extraordinar si tulburator.
+            </p>
+
+            <div class="eq-big">H |&psi;&rang; = 0</div>
+
+            <div class="split" style="margin-top:12px">
+              <div class="flowNode">
+                <h3>Ce spune ecuatia normala (Schrodinger)</h3>
+                <p><span class="eq">i&hbar; d|&psi;&rang;/dt = H|&psi;&rang;</span></p>
+                <p style="margin-top:8px">Hamiltonianul (H) genereaza <b>evolutia in timp</b>. Starea cuantica se schimba. Exista un <b>dt</b> (derivata in timp).</p>
+                <div class="meta"><span class="badge">evolutie temporala</span><span class="badge">schimbare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Ce spune ecuatia Wheeler-DeWitt</h3>
+                <p><span class="eq">H |&psi;&rang; = 0</span></p>
+                <p style="margin-top:8px"><b>Lipseste dt.</b> Fara derivata in timp. Fara variabila de timp. Starea universului nu se schimba. E statica. Fara "inainte", fara "dupa".</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">fara timp</span><span class="badge">stare statica</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="small">
+              Wheeler, cand a vazut pentru prima data acest rezultat, a umblat murmurind: <em>"Timpul nu are nicio semnificatie la scala Planck."</em> DeWitt a fost profund tulburat. Amandoi au inteles ce spune ecuatia: <b>la nivelul fundamental al gravitatiei cuantice, nu exista timp.</b>
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Nu e o speculatie marginala. Ecuatia rezulta direct din combinarea serioasa a Relativitatii Generale cu Mecanica Cuantica. Functia de unda a universului e statica: nu evolueaza, nu se schimba. Alocarea amplitudinilor la diferite geometrii tridimensionale pur si simplu <em>exista</em> in superpozitie cuantica, fara a evolua.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Timpul relational">
+          <div class="cardHeader">
+            <h2>Timpul relational: masuram schimbarea, nu timpul</h2>
+            <div class="chip">DeWitt, Rovelli, Barbour</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Daca ecuatia fundamentala nu are timp, de unde apare el? Raspunsul cel mai dezvoltat: <b>timpul relational</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Observatia-cheie</h3>
+                <p>Nu masuram niciodata timpul direct. Masuram <b>schimbarea</b>. Masuram <b>corelatii</b> intre sisteme fizice.</p>
+                <div class="meta"><span class="badge">corelatie</span><span class="badge">relational</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Ce face de fapt un ceas?</h3>
+                <p>Un ceas e un sistem fizic (pendul, cristal, atom de cesiu) care trece printr-un ciclu periodic. "Cat e ceasul?" inseamna de fapt: <b>cate oscilatii a completat atomul de cesiu de la ultima sincronizare?</b></p>
+                <div class="meta"><span class="badge">oscilatii</span><span class="badge">comparatie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Timpul ca relatie</h3>
+                <p>Cand spunem "evenimentul X s-a intamplat la 1 miliard de ani dupa Big Bang", vrem sa zicem ca universul avea o anumita <b>marime</b>, o anumita <b>densitate</b>. Marimea tine loc de timp. Timpul e o relatie intre sisteme fizice, nu un fundal extern.</p>
+                <div class="meta"><span class="badge">emergent</span><span class="badge">intern</span><span class="badge">relativ</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Gandeste-te asa: din "perspectiva lui Dumnezeu" (ecuatia Wheeler-DeWitt), nu exista timp. Dar din interiorul universului, un observator care e el insusi parte din univers <em>experimenteaza</em> timpul ca pe corelatia intre starea lui interna (memorie, ceasuri, procese biologice) si alte grade de libertate din jurul sau. Timpul e intern, relativ, emergent -- nu fundamental.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Barbour's Platonia ===== -->
+      <section class="card" aria-label="Platonia lui Barbour">
+        <div class="cardHeader">
+          <h2>Julian Barbour si Platonia: universul fara secventa</h2>
+          <div class="chip"><b>Radical:</b> nu exista trecut</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Julian Barbour, fizician britanic, a muncit decenii la ceea ce el considera cea mai profunda problema din fizica: <b>natura timpului</b>. Concluzia lui: timpul este <b>complet si absolut absent</b> din descrierea fundamentala a realitatii.
+              </p>
+
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode">
+                  <h3>Ce e o "configuratie"?</h3>
+                  <p>Universul la un "moment" dat e o <b>configuratie</b>: o specificatie a unde se afla totul relativ la tot restul. Gandeste-te la o fotografie instantanee completa a universului.</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Ce e Platonia?</h3>
+                  <p>Spatiul tuturor configuratiilor posibile. Nu un loc in spatiu sau timp, ci un <b>spatiu matematic</b>. Fiecare punct e un posibil "acum" -- o fotografie completa a universului.</p>
+                </div>
+                <div class="flowNode">
+                  <h3>Ce sunt "capsulele de timp"?</h3>
+                  <p>Configuratiile cu probabilitate mare contin <b>inregistrari</b> ale altor configuratii. Memoria ta exista pentru ca configuratia ta actuala contine informatii codate care <em>arata ca</em> o istorie. Dar asta nu inseamna ca acea istorie s-a intamplat secvential.</p>
+                  <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">radical</span><span class="badge">fara trecut real</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Diagrama Platonia">
+                <svg viewBox="0 0 420 380" role="img" id="platoniaSvg">
+                  <defs>
+                    <radialGradient id="platGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(187,167,255,.15)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                    </radialGradient>
+                  </defs>
+                  <rect x="0" y="0" width="420" height="380" fill="rgba(0,0,0,.05)"/>
+                  <circle cx="210" cy="190" r="160" fill="url(#platGlow)"/>
+
+                  <text x="210" y="24" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.8)" font-weight="700">PLATONIA</text>
+                  <text x="210" y="42" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.5)">Spatiul tuturor configuratiilor posibile</text>
+
+                  <!-- Configuration dots -->
+                  <circle cx="120" cy="100" r="8" fill="rgba(187,167,255,.25)" stroke="rgba(187,167,255,.4)" stroke-width="1.5"/>
+                  <circle cx="280" cy="90" r="6" fill="rgba(122,215,255,.2)" stroke="rgba(122,215,255,.35)" stroke-width="1.5"/>
+                  <circle cx="170" cy="170" r="10" fill="rgba(117,240,182,.2)" stroke="rgba(117,240,182,.4)" stroke-width="1.5"/>
+                  <circle cx="310" cy="200" r="7" fill="rgba(255,210,122,.2)" stroke="rgba(255,210,122,.35)" stroke-width="1.5"/>
+                  <circle cx="130" cy="260" r="9" fill="rgba(255,179,138,.2)" stroke="rgba(255,179,138,.35)" stroke-width="1.5"/>
+                  <circle cx="250" cy="280" r="11" fill="rgba(187,167,255,.3)" stroke="rgba(187,167,255,.5)" stroke-width="2"/>
+                  <circle cx="200" cy="220" r="14" fill="rgba(122,215,255,.25)" stroke="rgba(122,215,255,.5)" stroke-width="2"/>
+                  <circle cx="340" cy="150" r="5" fill="rgba(255,122,153,.2)" stroke="rgba(255,122,153,.35)" stroke-width="1.5"/>
+                  <circle cx="90" cy="180" r="4" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+
+                  <!-- "High amplitude chain" -->
+                  <path d="M120,100 Q145,135 170,170 Q185,195 200,220 Q225,250 250,280" fill="none" stroke="rgba(255,210,122,.35)" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+                  <text x="90" y="310" font-size="10" fill="rgba(255,210,122,.7)">Lant de amplitudine mare</text>
+                  <text x="90" y="324" font-size="10" fill="rgba(255,210,122,.5)">(ceea ce noi numim "istorie")</text>
+
+                  <!-- Labels -->
+                  <text x="200" y="235" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.8)">TU</text>
+                  <text x="200" y="245" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">acum</text>
+
+                  <text x="170" y="185" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">amintire</text>
+                  <text x="120" y="115" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.5)">amintire</text>
+
+                  <!-- Outer boundary -->
+                  <circle cx="210" cy="190" r="155" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4 8"/>
+                </svg>
+                <div class="small" style="margin-top:8px">Fiecare punct = o configuratie posibila a universului. Lantul galben = configuratii cu probabilitate mare care contin "inregistrari" unele despre altele. Noi numim asta "istorie" -- dar toate exista simultan.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea lui Barbour e radicala: <b>nu exista trecut</b>. Nu a existat o secventa. Exista doar configuratii, unele continand inregistrari aparente ale altora. Trecutul e o iluzie codificata in configuratia prezenta. Disconfortul pe care il simti citind asta nu inseamna ca e gresit -- fizica e plina de adevaruri inconfortabile.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Entropy & Arrow of Time ===== -->
+      <section class="row">
+        <div class="card" id="vizSection" aria-label="Sageata termodinamica">
+          <div class="cardHeader">
+            <h2>Sageata termodinamica: entropie, nu timp</h2>
+            <div class="chip"><b>Distinctia cruciala</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cea mai puternica obiectie: "Dar ouale se sparg si nu se recompun! Cauzele preced efectele! Trecutul e diferit de viitor!" Da, <b>sageata termodinamica e reala</b>. Dar sageata termodinamica <b>nu e acelasi lucru cu timpul</b>.
+            </p>
+
+            <div class="viz" aria-label="Simulator de entropie">
+              <svg viewBox="0 0 980 340" id="entropySvg" role="img">
+                <defs>
+                  <linearGradient id="entGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.6)"/>
+                    <stop offset="0.5" stop-color="rgba(122,215,255,.6)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.6)"/>
+                  </linearGradient>
+                  <linearGradient id="entFill" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.12)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.12)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="980" height="340" fill="rgba(0,0,0,.05)"/>
+
+                <!-- Axes -->
+                <path d="M80 30 L80 280 L920 280" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none"/>
+
+                <!-- Grid -->
+                <g id="entropyGrid"></g>
+
+                <!-- Entropy curve -->
+                <path id="entropyCurve" fill="none" stroke="url(#entGrad)" stroke-width="3" stroke-linecap="round"/>
+                <path id="entropyArea" fill="url(#entFill)" stroke="none"/>
+
+                <!-- Markers -->
+                <g id="entropyMarkers"></g>
+
+                <!-- Labels -->
+                <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.7)">
+                  <text x="80" y="22" fill="rgba(255,255,255,.85)" font-weight="700" font-size="13">Gradientul de entropie: de ce experimentam "timp"</text>
+                  <text x="80" y="310" font-size="11" fill="rgba(255,255,255,.55)">Configuratie (nu "timp") &rarr;</text>
+                  <text x="16" y="170" font-size="11" fill="rgba(255,255,255,.55)" transform="rotate(-90 16 170)">Entropie &uarr;</text>
+                </g>
+              </svg>
+
+              <div class="legend">
+                <div class="key"><span class="sw" style="background:rgba(187,167,255,.8)"></span> Entropie scazuta (Big Bang)</div>
+                <div class="key"><span class="sw" style="background:rgba(122,215,255,.8)"></span> Zona noastra (acum)</div>
+                <div class="key"><span class="sw" style="background:rgba(255,210,122,.8)"></span> Entropie maxima (moartea termica)</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Pozitia observatorului</span>
+                  <span class="readout" id="posReadout">40%</span>
+                </label>
+                <input id="posSlider" type="range" min="5" max="95" value="40" />
+                <div class="small" style="margin-top:8px">Muta-te de-a lungul gradientului. Memoria ta include doar ce e in stanga.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Entropie initiala</span>
+                  <span class="readout" id="initReadout">Foarte scazuta</span>
+                </label>
+                <input id="initSlider" type="range" min="0" max="80" value="5" />
+                <div class="small" style="margin-top:8px">Ce s-ar intampla daca Big Bang-ul ar fi inceput cu entropie mare? Fara gradient = fara "timp".</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acesta e punctul-cheie: <b>sageata timpului e reala, dar timpul nu e</b>. Gradientul de entropie exista in structura atemporala. Configuratiile cu probabilitate mare formeaza lanturi unde entropia creste. Un observator in interiorul unui astfel de lant <em>experimenteaza</em> entropia crescand -- si numeste aceasta directie "viitor". Dar lantul in sine nu evolueaza. Toate configuratiile din el exista simultan.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="De ce experimentam timpul">
+          <div class="cardHeader">
+            <h2>De ce experimentam timpul atat de viu?</h2>
+            <div class="chip">cea mai grea intrebare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Daca timpul nu exista fundamental, de ce il simtim atat de intens? Momentul prezent pare real intr-un mod in care nimic altceva nu pare.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Esti un sistem de procesare a informatiei</h3>
+                <p>Creierul tau proceseaza date senzoriale, isi actualizeaza modelul lumii, formeaza amintiri, genereaza predictii. Toata procesarea are o <b>directie</b> (de la entropie scazuta la entropie mare).</p>
+                <div class="meta"><span class="badge">procesare</span><span class="badge">directie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Memoria: entropie codificata</h3>
+                <p>Amintirile tale exista pentru ca entropia a crescut. Creierul tau (entropie mare) contine informatii codate despre stari de entropie mai scazuta din "trecut". <b>Asta e memoria.</b></p>
+                <div class="meta"><span class="badge">memorie = gradient</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Viitorul e necunoscut: nu avem amintiri ale viitorului</h3>
+                <p>Configuratiile de entropie mare nu contin inregistrari ale configuratiilor de entropie si mai mare. Viitorul e deschis pentru ca "inregistrarile nu curg inapoi" de-a lungul gradientului.</p>
+                <div class="meta"><span class="badge">anticipare</span><span class="badge">incertitudine</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>"Acum" = starea curenta de procesare</h3>
+                <p>Vivacitatea momentului prezent e o caracteristica a procesarii informatiei din creier. E momentul de relevanta maxima pentru procesele tale computationale. <b>Bineinteles ca pare viu</b> -- e locul unde se intampla "actiunea" din punct de vedere computational.</p>
+                <div class="meta"><span class="badge">prezent</span><span class="badge">informatie</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Nimic din asta nu necesita timp fundamental. Totul se explica prin gradiente de entropie si procesare a informatiei intr-o stare cuantica atemporala. Experienta de a te "misca" din moment in moment e creata de corelatia secventiala dintre starile de procesare. <b>Nu esti o fiinta care se misca prin timp. Esti o fiinta care contine experienta timpului.</b>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Approaches to Quantum Gravity ===== -->
+      <section class="card" aria-label="Abordari ale gravitatiei cuantice">
+        <div class="cardHeader">
+          <h2>Cum arata universul fara timp? Trei abordari</h2>
+          <div class="chip">gravitatie cuantica</div>
+        </div>
+        <div class="cardBody">
+          <div class="tabs" id="approachTabs">
+            <div class="tab active" data-tab="spinfoam">Spuma de spin (LQG)</div>
+            <div class="tab" data-tab="thermal">Timpul termic (Rovelli)</div>
+            <div class="tab" data-tab="holographic">Holografie (String Theory)</div>
+          </div>
+
+          <div class="tabContent active" id="tab-spinfoam">
+            <div class="split">
+              <div>
+                <p class="muted" style="margin-top:0">
+                  In gravitatia cuantica cu bucle (Loop Quantum Gravity), universul e descris de o <b>spuma de spin</b>: o retea 4-dimensionala de noduri conectate prin legaturi, cu numere cuantice atribuite fiecarei legaturi.
+                </p>
+                <div class="flowNode" style="margin-top:10px">
+                  <h3>Fara timp in structura</h3>
+                  <p>Spuma de spin e un obiect matematic <b>static</b>. Nu se "desfasoara" in timp. E o specificatie completa a geometriei cuantice a spatiu-timpului. Ce experimentam ca evolutie temporala e <b>citirea spumei de spin din interior</b>.</p>
+                </div>
+                <p class="small" style="margin-top:10px">Carlo Rovelli, unul din fondatorii LQG, a scris frumos despre asta in cartea "Ordinea Timpului": legile fundamentale nu disting trecutul de viitor si nu necesita o variabila de timp.</p>
+              </div>
+              <div>
+                <div class="viz" style="padding:8px">
+                  <canvas id="spinFoamCanvas" width="420" height="300"></canvas>
+                  <div class="small" style="margin-top:6px">Apasa pe diagrama pentru a regenera reteaua. Fiecare nod e o "cuanta de spatiu". Legaturile poarta informatii cuantice. Nu exista "directie a timpului" in structura.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab-thermal">
+            <div class="split">
+              <div>
+                <p class="muted" style="margin-top:0">
+                  <b>Ipoteza timpului termic</b> (Alain Connes si Carlo Rovelli): timpul nu e o trasatura a ecuatiilor, ci o trasatura <b>statistica</b> a starii cuantice.
+                </p>
+                <div class="flowNode" style="margin-top:10px">
+                  <h3>Cum functioneaza</h3>
+                  <p>In mecanica statistica, exista un parametru special asociat cu echilibrul termic (starea KMS). Acest flux e generat de hamiltonianul modular. Connes si Rovelli propun: <b>asta e timpul</b>. Timpul = parametrul termic al starii cuantice a universului.</p>
+                </div>
+                <div class="flowNode" style="margin-top:10px">
+                  <h3>Implicatia profunda</h3>
+                  <p>Timpul e ceea ce masori cu un ceas. Iar un ceas e un sistem fizic care <b>exploateaza gradientele termice</b> pentru a-si urmari propria evolutie. Ia-i gradientele termice si ii iei timpul.</p>
+                  <div class="meta"><span class="badge">elegant</span><span class="badge">termodinamica + gravitatie cuantica</span></div>
+                </div>
+              </div>
+              <div>
+                <div class="viz" style="padding:14px">
+                  <svg viewBox="0 0 400 260" role="img">
+                    <rect x="0" y="0" width="400" height="260" fill="rgba(0,0,0,.04)"/>
+                    <!-- Thermal gradient visualization -->
+                    <defs>
+                      <linearGradient id="thermal" x1="0" x2="1" y1="0" y2="0">
+                        <stop offset="0" stop-color="rgba(255,122,153,.6)"/>
+                        <stop offset="1" stop-color="rgba(122,215,255,.6)"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="40" y="40" width="320" height="60" rx="12" fill="url(#thermal)" opacity=".3"/>
+                    <text x="200" y="75" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.85)" font-weight="700">Gradient termic = TIMP</text>
+                    <text x="55" y="58" font-size="10" fill="rgba(255,255,255,.6)">Cald</text>
+                    <text x="338" y="58" font-size="10" fill="rgba(255,255,255,.6)">Rece</text>
+
+                    <rect x="40" y="130" width="320" height="60" rx="12" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)"/>
+                    <text x="200" y="165" text-anchor="middle" font-size="14" fill="rgba(255,255,255,.6)">Fara gradient = FARA TIMP</text>
+                    <text x="200" y="182" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">echilibru termic (moartea termica a universului)</text>
+
+                    <text x="200" y="240" text-anchor="middle" font-size="11" fill="rgba(255,210,122,.7)">Timpul e "imprumutat" de la entropie</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabContent" id="tab-holographic">
+            <div class="split">
+              <div>
+                <p class="muted" style="margin-top:0">
+                  In teoria corzilor, <b>principiul holografic</b> (si dualitatea AdS/CFT) sugereaza ca spatiu-timpul in interior ("bulk") e <b>emergent</b> dintr-o teorie de camp conformala pe frontiera, care nu are gravitatie si in care timpul are un statut diferit.
+                </p>
+                <div class="flowNode" style="margin-top:10px">
+                  <h3>Ideea centrala</h3>
+                  <p>Toata fizica dintr-un volum 3D de spatiu-timp poate fi descrisa complet de informatia de pe suprafata 2D care il inconjoara. Dimensiunea "extra" (adancimea spatiului) <b>emerge</b> din structura informatiei pe frontiera.</p>
+                  <div class="meta"><span class="badge">holografic</span><span class="badge">emergent</span></div>
+                </div>
+                <p class="small" style="margin-top:10px">Fiecare abordare are succese si esecuri. Niciuna nu e completa. Problema timpului ramane una din cele mai profunde probleme nerezolvate din fizica.</p>
+              </div>
+              <div>
+                <div class="viz" style="padding:14px">
+                  <svg viewBox="0 0 400 260" role="img">
+                    <rect x="0" y="0" width="400" height="260" fill="rgba(0,0,0,.04)"/>
+                    <!-- Holographic boundary -->
+                    <ellipse cx="200" cy="140" rx="150" ry="100" fill="none" stroke="rgba(122,215,255,.35)" stroke-width="2"/>
+                    <ellipse cx="200" cy="140" rx="100" ry="65" fill="none" stroke="rgba(187,167,255,.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <ellipse cx="200" cy="140" rx="50" ry="30" fill="none" stroke="rgba(255,210,122,.2)" stroke-width="1" stroke-dasharray="3 5"/>
+                    <text x="200" y="145" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="600">Bulk</text>
+                    <text x="200" y="160" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)">(spatiu-timp emergent)</text>
+                    <text x="355" y="140" font-size="10" fill="rgba(122,215,255,.7)">Frontiera</text>
+                    <text x="355" y="155" font-size="9" fill="rgba(122,215,255,.5)">(teorie cuantica</text>
+                    <text x="355" y="167" font-size="9" fill="rgba(122,215,255,.5)">fara gravitatie)</text>
+                    <text x="200" y="30" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.8)" font-weight="700">Principiul Holografic</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Toate cele trei abordari mari ale gravitatiei cuantice (bucle/spuma de spin, timpul termic, holografie) ajung la aceeasi concluzie: <b>timpul nu e fundamental</b>. Structura de baza e atemporala. Ceea ce numim "timp" e o proprietate emergenta care apare din corelatii, termodinamica, sau structura informatiei.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Block Universe + Beyond ===== -->
+      <section class="row">
+        <div class="card" id="blockSection" aria-label="Universul-bloc">
+          <div class="cardHeader">
+            <h2>Universul-bloc... si dincolo de el</h2>
+            <div class="chip"><b>Mai radical</b> decat block universe</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Poate ai auzit de "universul-bloc" din relativitate: toate evenimentele (trecut, prezent, viitor) exista in mod egal in structura 4D a spatiu-timpului. Argumentul atemporalitatii merge <b>mai departe</b>.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Universul-bloc (clasic)</strong><span class="badge">relativitate</span></div>
+                <p>Toate momentele sunt la fel de reale. "Acum" nu e special. Trecutul si viitorul sunt la fel de reale ca prezentul. Dar inca exista o <b>dimensiune temporala</b> in structura 4D.</p>
+                <div class="meter"><i style="width:60%;background:linear-gradient(90deg,var(--violet),var(--cyan))"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Atemporalitatea gravitatiei cuantice</strong><span class="badge">mai profund</span></div>
+                <p>Nici macar structura 4D nu e fundamentala. E <b>emergenta</b>. Exista stari cuantice ale geometriei. Corelatiile din acele stari <em>arata ca</em> secvente temporale. Dar substanta de baza nu are nicio dimensiune temporala.</p>
+                <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--violet),var(--bad))"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted" style="font-size:13px">
+              <b>Explorator interactiv:</b> Apasa pe "feliile" de mai jos pentru a vedea cum un observator intern "citeste" configuratiile ca pe o secventa temporala, desi toate exista simultan.
+            </p>
+            <div id="blockSlices" style="margin-top:10px"></div>
+            <div class="btnRow" style="margin-top:10px">
+              <button class="btn" id="animateBlock">Animeaza secventa</button>
+              <button class="btn" id="showAllBlock">Arata toate simultan</button>
+            </div>
+            <div class="small" id="blockInfo" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce nu exista si ce exista">
+          <div class="cardHeader">
+            <h2>Ce NU exista si ce EXISTA</h2>
+            <div class="chip">clarificari esentiale</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind e foarte precis: a spune ca "timpul nu exista" <b>nu</b> inseamna ca nimic nu se intampla. Iata ce inseamna si ce nu inseamna.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color:rgba(255,122,153,.25)">
+                <h3 style="color:var(--bad)">NU exista</h3>
+                <p>Un timp extern care curge. Un ceas universal care ticaie. Un fundal impotriva caruia evenimentele se desfasoara secvential. Un "acum" universal independent de corelatii fizice. Raul pe care ti-l imaginezi ca plutesti in el.</p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">fara ceas universal</span>
+                  <span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">fara flux</span>
+                  <span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">fara fundal temporal</span>
+                </div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                <h3 style="color:var(--good)">EXISTA</h3>
+                <p><b>Configuratii</b> -- aranjamente ale materiei. <b>Corelatii</b> intre configuratii. <b>Gradiente de entropie</b> care creeaza directionalitate. <b>Structura cauzala</b> incorporata in geometria spatiu-timpului. <b>Memoria</b> ca fenomen fizic real. <b>Experienta</b> observatorilor din interiorul starii cuantice.</p>
+                <div class="meta">
+                  <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">configuratii</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">corelatii</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">entropie</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">cauzalitate</span>
+                  <span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">memorie</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e o distinctie esentiala. "Timpul nu exista" nu inseamna nihilism cosmic. Inseamna ca lucrurile pe care le consideram reale (schimbarea, amintirile, cauza si efectul) sunt <b>relationale, interne, emergente</b> -- nu trasaturi ale unui fundal extern. Universul nu e un loc unde nimic nu se intampla; e un loc unde tot ce se intampla e <b>relatie intre lucruri</b>, nu miscare prin timp.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Historical Timeline ===== -->
+      <section class="card" aria-label="Cronologia ideii">
+        <div class="cardHeader">
+          <h2>Cronologia ideii: cum am ajuns aici</h2>
+          <div class="chip">istoria fizicii</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div class="timeline">
+              <div class="tEntry">
+                <div class="tYear">1687</div>
+                <div class="tTitle">Newton: timpul absolut</div>
+                <div class="tDesc">Timpul curge uniform, independent de orice, ca un rau invizibil. Toata lumea e de acord ce ora este.</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">1905</div>
+                <div class="tTitle">Einstein: timpul relativ</div>
+                <div class="tDesc">Relativitatea speciala: timpul depinde de viteza. Doi observatori in miscare pot sa nu fie de acord care eveniment s-a intamplat "primul".</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">1915</div>
+                <div class="tTitle">Einstein: timpul curbat</div>
+                <div class="tDesc">Relativitatea generala: masa si energia curbeaza spatiu-timpul. Timpul trece mai incet langa obiecte masive.</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">1962</div>
+                <div class="tTitle">ADM: Hamiltonianul zero</div>
+                <div class="tDesc">Arnowitt, Deser si Misner rescriu relativitatea generala ca sistem hamiltonian. Hamiltonianul e o constrangere egala cu zero: fara evolutie temporala.</div>
+              </div>
+            </div>
+            <div class="timeline">
+              <div class="tEntry">
+                <div class="tYear">1967</div>
+                <div class="tTitle">Wheeler-DeWitt: timpul dispare</div>
+                <div class="tDesc">Ecuatia cuantica a universului nu contine variabila de timp. Functia de unda a universului e statica.</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">1994</div>
+                <div class="tTitle">Connes & Rovelli: timpul termic</div>
+                <div class="tDesc">Timpul e parametrul termic al starii cuantice. Fara gradient termic, fara experienta de timp.</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">1999</div>
+                <div class="tTitle">Barbour: "Sfarsitul Timpului"</div>
+                <div class="tDesc">Platonia: universul ca distributie de probabilitate peste configuratii. Fara secventa, fara trecut. Doar configuratii cu "capsule de timp".</div>
+              </div>
+              <div class="tEntry">
+                <div class="tYear">2024+</div>
+                <div class="tTitle">Susskind: 50 de ani de reflectie</div>
+                <div class="tDesc">"Timpul nu exista. Dupa 50 de ani in care am ascultat ce spune fizica, am invatat sa am incredere. Chiar si cand -- mai ales cand -- mi se pare profund inconfortabil."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Consciousness & Time ===== -->
+      <section class="card" aria-label="Constiinta si timpul">
+        <div class="cardHeader">
+          <h2>Intrebarea cea mai profunda: constiinta fara timp</h2>
+          <div class="chip"><b>Filozofie:</b> fortata de fizica</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Daca timpul nu exista fundamental, ce e <b>experienta</b>? Constiinta pare sa fie "lucrul care exista in momentul prezent, miscandu-se prin timp, acumuland amintiri." Ia-i timpul -- si ii iei scena pe care experienta se desfasoara.
+              </p>
+              <div class="flowNode" style="margin-top:10px">
+                <h3>Raspunsul lui Susskind</h3>
+                <p>Experienta exista. Dar trebuie sa o plasam <b>nu intr-un timp extern</b>, ci in <b>corelatiile insele</b>. Tu experimentezi cum e sa fii <em>aceasta configuratie</em>, cu <em>aceste amintiri</em>, cu <em>aceste perceptii senzoriale</em>, cu <em>aceasta anticipare a viitorului</em>.</p>
+              </div>
+              <div class="flowNode" style="margin-top:10px">
+                <h3>Concluzia stranie</h3>
+                <p><b>Nu esti o fiinta care se misca prin timp.</b> Esti o fiinta a carei structura interna <em>codifica experienta timpului</em>. Un lucru atemporal care contine experienta de a fi temporal.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">poate cea mai stranie concluzie din fizica</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 400 300" role="img">
+                  <defs>
+                    <radialGradient id="consciousnessGlow" cx="50%" cy="45%" r="40%">
+                      <stop offset="0%" stop-color="rgba(187,167,255,.2)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                    </radialGradient>
+                  </defs>
+                  <rect x="0" y="0" width="400" height="300" fill="rgba(0,0,0,.04)"/>
+                  <circle cx="200" cy="130" r="120" fill="url(#consciousnessGlow)"/>
+
+                  <!-- Brain/observer symbol -->
+                  <circle cx="200" cy="130" r="40" fill="rgba(187,167,255,.1)" stroke="rgba(187,167,255,.4)" stroke-width="2"/>
+                  <text x="200" y="126" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.8)" font-weight="600">Observator</text>
+                  <text x="200" y="142" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)">(configuratie)</text>
+
+                  <!-- Memories (left) -->
+                  <circle cx="100" cy="80" r="20" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.25)" stroke-width="1.5"/>
+                  <text x="100" y="84" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.6)">Amintiri</text>
+                  <line x1="118" y1="88" x2="162" y2="118" stroke="rgba(122,215,255,.25)" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+                  <!-- Sensory data (right) -->
+                  <circle cx="300" cy="80" r="20" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.25)" stroke-width="1.5"/>
+                  <text x="300" y="84" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.6)">Perceptii</text>
+                  <line x1="282" y1="88" x2="238" y2="118" stroke="rgba(255,210,122,.25)" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+                  <!-- Anticipation (bottom) -->
+                  <circle cx="200" cy="220" r="20" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.25)" stroke-width="1.5"/>
+                  <text x="200" y="218" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.6)">Anticipare</text>
+                  <text x="200" y="230" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.4)">(incert)</text>
+                  <line x1="200" y1="170" x2="200" y2="200" stroke="rgba(117,240,182,.25)" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+                  <!-- Correlations arrows around -->
+                  <path d="M120,92 Q160,50 195,90" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                  <path d="M280,92 Q240,50 205,90" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+
+                  <text x="200" y="280" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.6)">Totul = corelatii intr-o configuratie atemporala</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind recunoaste ca asta e "poate cea mai stranie concluzie din toata fizica". Dar subliniaza: disconfortul nu face o idee gresita. Pamantul se misca desi pare nemiscat. Soarele nu rasare desi pare ca da. Timpul e relativ desi pare absolut. Si acum: timpul nu exista fundamental, desi pare mai real decat orice.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Interactive understanding test ===== -->
+      <section class="card" aria-label="Test de intelegere">
+        <div class="cardHeader">
+          <h2>Verifica-ti intelegerea</h2>
+          <div class="chip"><b>Interactiv:</b> raspunde la intrebari</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifeaza raspunsurile pe care le consideri corecte conform argumentelor prezentate pe aceasta pagina. Apoi apasa "Verifica" pentru a vedea scorul.
+          </p>
+          <div class="checklist" id="quiz">
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"Timpul nu exista" inseamna ca nu exista un ceas universal extern care ticaie</strong><em>afirmatie</em></div>
+                <div class="d">Adica nu exista un fundal temporal independent de sistemele fizice.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>"Timpul nu exista" inseamna ca schimbarea nu e reala</strong><em>afirmatie</em></div>
+                <div class="d">Configuratiile difera unele de altele. Schimbarea e reala -- dar e relationala, nu temporala.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ecuatia Wheeler-DeWitt nu contine variabila de timp</strong><em>afirmatie</em></div>
+                <div class="d">H|psi> = 0 nu are derivata in timp -- functia de unda a universului e statica.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Memoria exista datorita gradientului de entropie</strong><em>afirmatie</em></div>
+                <div class="d">Configuratii de entropie mare contin inregistrari ale configuratiilor de entropie mai scazuta.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="false">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sageata termodinamica dovedeste ca timpul e fundamental</strong><em>afirmatie</em></div>
+                <div class="d">Sageata e reala, dar e un gradient de entropie in structura atemporala -- nu e timp fundamental.</div>
+              </div>
+            </div>
+            <div class="item" data-correct="true">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>In Platonia lui Barbour, "trecutul" e codat in configuratia prezenta</strong><em>afirmatie</em></div>
+                <div class="d">Nu exista trecut real -- doar configuratii care contin aparente inregistrari ale altora.</div>
+              </div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizBtn">Verifica raspunsurile</button>
+            <button class="btn" id="quizResetBtn">Reseteaza</button>
+          </div>
+          <div class="small" id="quizOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Summary ===== -->
+      <section class="card" aria-label="Concluzie">
+        <div class="cardHeader">
+          <h2>Ce ne-au invatat 50 de ani de gravitatie cuantica</h2>
+          <div class="chip"><b>Concluzia:</b> universul atemporal</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Teza centrala a lui Susskind</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Timpul nu e fundamental. Cele mai profunde ecuatii (Wheeler-DeWitt, formalismul spumei de spin, principiul holografic) nu contin variabila de timp. Ceea ce numim "timp" e experienta <b>gradientelor de entropie</b>, a <b>corelatiilor relationale</b>, si a <b>procesarii informatiei</b> intr-un univers care a inceput intr-o stare de entropie extraordinar de scazuta.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce inseamna asta concret</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Universul nu e un loc unde nimic nu se intampla. E un loc unde tot ce se intampla e <b>relational, intern, emergent</b>. Configuratii exista. Corelatii intre configuratii exista. Unele configuratii contin inregistrari ale altora. Cauzalitatea e incorporata in geometrie. Tot ce e real e <b>relatie intre lucruri</b>, nu miscare intr-un timp extern.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Lectia mai larga</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fizica e plina de adevaruri care contrazic intuitia. Pamantul se misca desi pare nemiscat. Timpul e relativ desi pare absolut. Si acum: timpul nu exista fundamental, desi e cea mai imediata experienta pe care o avem.
+              </p>
+              <div class="hr"></div>
+
+              <details data-commentary>
+                <summary><strong>Citat final al lui Susskind</strong><span class="hint">apasa pentru a deschide</span></summary>
+                <div class="detailBody">
+                  <p>
+                    <em>"Nu suntem fiinte care se misca prin timp. Suntem fiinte care contin experienta timpului. Si exista o diferenta profunda. Asta spune fizica. Iar dupa 50 de ani in care am ascultat foarte atent ce spune fizica, am invatat sa am incredere. Chiar si cand -- mai ales cand -- imi spune ceva ce consider profund inconfortabil."</em>
+                  </p>
+                </div>
+              </details>
+
+              <details data-commentary style="margin-top:10px">
+                <summary><strong>Nota privind calitatea dovezilor</strong><span class="hint">apasa pentru a deschide</span></summary>
+                <div class="detailBody">
+                  <p>
+                    Aceasta pagina traduce argumentele prezentate de Leonard Susskind. Unele parti se bazeaza pe fizica matematica riguroasa (ecuatia Wheeler-DeWitt, formalismul ADM). Altele sunt cadre conceptuale inca in dezbatere (Platonia, timpul termic, rolul constiintei). <b>Trateaza totul ca fiind generator de ipoteze</b>, nu ca adevar final. Problema timpului in gravitatia cuantica ramane nerezolvata.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre modul "comentariu"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul paginii, casetele mov (marcate <code>data-commentary</code>) ofera comentarii meta-nivel:
+            cat de puternica e afirmatia? Ce cadre alternative exista? Care e calitatea dovezilor?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Afiseaza/ascunde comentariile" din antetul paginii pentru a le ascunde/arata pe toate odata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si note:</b> Acest infografic interactiv a fost generat pentru a traduce vizual argumentele lui Leonard Susskind despre inexistenta fundamentala a timpului.
+        Nu este un articol stiintific peer-reviewed. Vizualizarile, simulatoarele si comentariile sunt instrumente conceptuale menite sa te ajute sa gandesti despre afirmatii, nu substituti pentru cercetarea primara.
+      </p>
+      <p style="margin-top:10px">
+        Surse recomandate: "The End of Time" (Julian Barbour), "The Order of Time" (Carlo Rovelli), cursuri de gravitatie cuantica (Leonard Susskind, Stanford).
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================================
+    // ENTROPY GRADIENT SIMULATOR
+    // ============================================================
+    const posSlider = document.getElementById('posSlider');
+    const initSlider = document.getElementById('initSlider');
+    const posReadout = document.getElementById('posReadout');
+    const initReadout = document.getElementById('initReadout');
+
+    function renderEntropy() {
+      const pos = parseInt(posSlider.value) / 100;
+      const initEnt = parseInt(initSlider.value) / 100;
+
+      posReadout.textContent = `${posSlider.value}%`;
+      const labels = ['Foarte scazuta', 'Scazuta', 'Moderata', 'Ridicata', 'Foarte ridicata'];
+      initReadout.textContent = labels[Math.min(4, Math.floor(initEnt * 5))];
+
+      const W = 980, H = 340;
+      const pad = 80;
+      const gW = W - pad - 60;
+      const gH = H - 100;
+      const pts = 60;
+
+      // Entropy curve: starts at initEnt, rises to ~1.0
+      // With high init, the curve is flatter (less gradient = less "time")
+      let curvePath = '';
+      let areaPath = '';
+      const baseline = H - 60;
+
+      for (let i = 0; i <= pts; i++) {
+        const t = i / pts;
+        const x = pad + t * gW;
+        // Logistic-like growth from initEnt to 1.0
+        const maxEnt = 1.0;
+        const range = maxEnt - initEnt;
+        const steepness = 4;
+        const entropy = initEnt + range * (1 / (1 + Math.exp(-steepness * (t - 0.3))));
+        const y = baseline - entropy * gH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        curvePath += `${cmd}${x},${y} `;
+      }
+
+      areaPath = `M${pad},${baseline} ${curvePath} L${pad + gW},${baseline} Z`;
+
+      document.getElementById('entropyCurve').setAttribute('d', curvePath);
+      document.getElementById('entropyArea').setAttribute('d', areaPath);
+
+      // Grid
+      const grid = document.getElementById('entropyGrid');
+      grid.innerHTML = '';
+      for (let i = 0; i <= 10; i++) {
+        const x = pad + (i / 10) * gW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x); line.setAttribute('y1', 30);
+        line.setAttribute('x2', x); line.setAttribute('y2', 280);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)'); line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+      }
+
+      // Observer marker
+      const markers = document.getElementById('entropyMarkers');
+      markers.innerHTML = '';
+      const obsX = pad + pos * gW;
+
+      // "Past" region (known)
+      const pastRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      pastRect.setAttribute('x', pad); pastRect.setAttribute('y', 30);
+      pastRect.setAttribute('width', Math.max(0, obsX - pad)); pastRect.setAttribute('height', 250);
+      pastRect.setAttribute('fill', 'rgba(122,215,255,.04)');
+      markers.appendChild(pastRect);
+
+      // "Future" region (unknown)
+      const futRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      futRect.setAttribute('x', obsX); futRect.setAttribute('y', 30);
+      futRect.setAttribute('width', Math.max(0, pad + gW - obsX)); futRect.setAttribute('height', 250);
+      futRect.setAttribute('fill', 'rgba(255,210,122,.03)');
+      markers.appendChild(futRect);
+
+      // Observer line
+      const obsLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      obsLine.setAttribute('x1', obsX); obsLine.setAttribute('y1', 30);
+      obsLine.setAttribute('x2', obsX); obsLine.setAttribute('y2', 280);
+      obsLine.setAttribute('stroke', 'rgba(255,255,255,.5)'); obsLine.setAttribute('stroke-width', '2');
+      obsLine.setAttribute('stroke-dasharray', '5 3');
+      markers.appendChild(obsLine);
+
+      // Observer label
+      const obsLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      obsLabel.setAttribute('x', obsX); obsLabel.setAttribute('y', 300);
+      obsLabel.setAttribute('text-anchor', 'middle'); obsLabel.setAttribute('font-size', '12');
+      obsLabel.setAttribute('fill', 'rgba(255,255,255,.8)'); obsLabel.setAttribute('font-weight', '600');
+      obsLabel.textContent = 'TU ESTI AICI';
+      markers.appendChild(obsLabel);
+
+      // Past/future labels
+      if (obsX - pad > 60) {
+        const pastL = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        pastL.setAttribute('x', pad + (obsX - pad) / 2); pastL.setAttribute('y', 50);
+        pastL.setAttribute('text-anchor', 'middle'); pastL.setAttribute('font-size', '11');
+        pastL.setAttribute('fill', 'rgba(122,215,255,.6)');
+        pastL.textContent = 'MEMORIE (cunoscut)';
+        markers.appendChild(pastL);
+      }
+      if (pad + gW - obsX > 60) {
+        const futL = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        futL.setAttribute('x', obsX + (pad + gW - obsX) / 2); futL.setAttribute('y', 50);
+        futL.setAttribute('text-anchor', 'middle'); futL.setAttribute('font-size', '11');
+        futL.setAttribute('fill', 'rgba(255,210,122,.6)');
+        futL.textContent = 'VIITOR (necunoscut)';
+        markers.appendChild(futL);
+      }
+
+      // Big Bang / Heat Death labels
+      const bbLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      bbLabel.setAttribute('x', pad); bbLabel.setAttribute('y', 328);
+      bbLabel.setAttribute('font-size', '10'); bbLabel.setAttribute('fill', 'rgba(187,167,255,.6)');
+      bbLabel.textContent = 'Big Bang';
+      markers.appendChild(bbLabel);
+
+      const hdLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      hdLabel.setAttribute('x', pad + gW); hdLabel.setAttribute('y', 328);
+      hdLabel.setAttribute('text-anchor', 'end'); hdLabel.setAttribute('font-size', '10');
+      hdLabel.setAttribute('fill', 'rgba(255,210,122,.6)');
+      hdLabel.textContent = 'Moartea termica';
+      markers.appendChild(hdLabel);
+    }
+
+    posSlider.addEventListener('input', renderEntropy);
+    initSlider.addEventListener('input', renderEntropy);
+    renderEntropy();
+
+    // ============================================================
+    // SPIN FOAM CANVAS
+    // ============================================================
+    const sfCanvas = document.getElementById('spinFoamCanvas');
+    const sfCtx = sfCanvas.getContext('2d');
+
+    function drawSpinFoam() {
+      const w = sfCanvas.width, h = sfCanvas.height;
+      sfCtx.clearRect(0, 0, w, h);
+
+      // Generate random nodes
+      const nodes = [];
+      const count = 30 + Math.floor(Math.random() * 20);
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: 30 + Math.random() * (w - 60),
+          y: 30 + Math.random() * (h - 60),
+          r: 3 + Math.random() * 4,
+          hue: Math.random()
+        });
+      }
+
+      // Draw links between nearby nodes
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            const alpha = (1 - dist / 100) * 0.3;
+            const hue = (nodes[i].hue + nodes[j].hue) / 2;
+            if (hue < 0.33) {
+              sfCtx.strokeStyle = `rgba(187,167,255,${alpha})`;
+            } else if (hue < 0.66) {
+              sfCtx.strokeStyle = `rgba(122,215,255,${alpha})`;
+            } else {
+              sfCtx.strokeStyle = `rgba(255,210,122,${alpha})`;
+            }
+            sfCtx.lineWidth = 1 + (1 - dist / 100) * 2;
+            sfCtx.beginPath();
+            sfCtx.moveTo(nodes[i].x, nodes[i].y);
+            sfCtx.lineTo(nodes[j].x, nodes[j].y);
+            sfCtx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (const n of nodes) {
+        let color;
+        if (n.hue < 0.33) color = 'rgba(187,167,255,.7)';
+        else if (n.hue < 0.66) color = 'rgba(122,215,255,.6)';
+        else color = 'rgba(255,210,122,.6)';
+
+        sfCtx.beginPath();
+        sfCtx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        sfCtx.fillStyle = color;
+        sfCtx.fill();
+
+        // Glow
+        sfCtx.beginPath();
+        sfCtx.arc(n.x, n.y, n.r * 2.5, 0, Math.PI * 2);
+        const g = sfCtx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 2.5);
+        g.addColorStop(0, color.replace(/[\d.]+\)$/, '0.15)'));
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        sfCtx.fillStyle = g;
+        sfCtx.fill();
+      }
+
+      // Label
+      sfCtx.font = '12px ui-sans-serif, system-ui';
+      sfCtx.fillStyle = 'rgba(255,255,255,.5)';
+      sfCtx.fillText('Spuma de spin (reprezentare schematica)', 12, h - 12);
+      sfCtx.fillText('Fara directie temporala in structura', 12, h - 28);
+    }
+
+    drawSpinFoam();
+    sfCanvas.addEventListener('click', drawSpinFoam);
+
+    // ============================================================
+    // TABS
+    // ============================================================
+    document.querySelectorAll('#approachTabs .tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('#approachTabs .tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tabContent').forEach(tc => tc.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ============================================================
+    // BLOCK UNIVERSE EXPLORER
+    // ============================================================
+    const slicesContainer = document.getElementById('blockSlices');
+    const blockInfo = document.getElementById('blockInfo');
+    const sliceData = [
+      { label: 'Configuratia A', desc: 'Entropie foarte scazuta. Particulele intr-un aranjament foarte ordonat.', tag: '"trecut indepartat"', entropy: 5 },
+      { label: 'Configuratia B', desc: 'Entropie scazuta. Structuri simple incep sa apara.', tag: '"trecut"', entropy: 15 },
+      { label: 'Configuratia C', desc: 'Entropie moderata. Galaxii, stele, planete formate.', tag: '"trecut recent"', entropy: 30 },
+      { label: 'Configuratia D', desc: 'Entropie in crestere. Viata, constiinta, memorie.', tag: '"prezent"', entropy: 45 },
+      { label: 'Configuratia E', desc: 'Entropie mai mare. Stele care se sting. Dezordine crescanda.', tag: '"viitor"', entropy: 65 },
+      { label: 'Configuratia F', desc: 'Entropie maxima. Uniformitate totala. Fara structura.', tag: '"moarte termica"', entropy: 95 },
+    ];
+
+    function renderSlices(highlight) {
+      slicesContainer.innerHTML = '';
+      sliceData.forEach((s, i) => {
+        const div = document.createElement('div');
+        div.className = 'blockSlice' + (highlight === i ? ' highlight' : '');
+        div.innerHTML = `
+          <div>
+            <div class="sliceLabel">${s.label}</div>
+            <div class="sliceDesc">${s.desc}</div>
+          </div>
+          <div class="sliceTag">${s.tag}</div>
+        `;
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', () => {
+          renderSlices(i);
+          blockInfo.innerHTML = `<b>Din perspectiva din interior:</b> Daca esti in Configuratia ${String.fromCharCode(65 + i)}, "treci" configuratii de entropie ${s.entropy}%. Amintirile tale contin inregistrari ale configuratiilor cu entropie mai scazuta (${i > 0 ? 'A' + (i > 1 ? '-' + String.fromCharCode(64 + i) : '') : 'niciuna'}). Viitorul pare deschis. Dar din exterior: <b>toate cele 6 configuratii exista simultan</b>.`;
+        });
+        slicesContainer.appendChild(div);
+      });
+    }
+    renderSlices(-1);
+
+    let blockAnimTimer = null;
+    document.getElementById('animateBlock').addEventListener('click', () => {
+      if (blockAnimTimer) { clearInterval(blockAnimTimer); blockAnimTimer = null; }
+      let idx = 0;
+      renderSlices(0);
+      blockInfo.innerHTML = '<b>Animatie:</b> Un observator intern "citeste" configuratiile secvential...';
+      blockAnimTimer = setInterval(() => {
+        idx++;
+        if (idx >= sliceData.length) {
+          clearInterval(blockAnimTimer);
+          blockAnimTimer = null;
+          blockInfo.innerHTML = '<b>Gata.</b> Din interior parea o secventa temporala. Dar toate configuratiile existau deja simultan. "Fluxul" era o iluzie creata de corelatii.';
+          renderSlices(-1);
+          return;
+        }
+        renderSlices(idx);
+      }, 1200);
+    });
+
+    document.getElementById('showAllBlock').addEventListener('click', () => {
+      if (blockAnimTimer) { clearInterval(blockAnimTimer); blockAnimTimer = null; }
+      // Highlight all
+      slicesContainer.querySelectorAll('.blockSlice').forEach(s => s.classList.add('highlight'));
+      blockInfo.innerHTML = '<b>Perspectiva "din exterior" (God\'s eye view):</b> Toate configuratiile exista simultan. Nu exista "acum" privilegiat. Nu exista secventa. Doar o superpozitie cuantica de geometrii. Functia de unda e statica.';
+    });
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    document.getElementById('jumpBlock').addEventListener('click', () => {
+      document.getElementById('blockSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ============================================================
+    // COMMENTARY TOGGLE
+    // ============================================================
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      document.querySelectorAll('[data-commentary]').forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ============================================================
+    // QUIZ
+    // ============================================================
+    document.getElementById('quizBtn').addEventListener('click', () => {
+      const items = document.querySelectorAll('#quiz .item');
+      let correct = 0;
+      let total = items.length;
+      items.forEach(item => {
+        const isCorrect = item.dataset.correct === 'true';
+        const isChecked = item.querySelector('input').checked;
+        if (isCorrect === isChecked) correct++;
+
+        // Visual feedback
+        if (isCorrect && isChecked) {
+          item.style.borderColor = 'rgba(117,240,182,.5)';
+          item.style.background = 'rgba(117,240,182,.08)';
+        } else if (!isCorrect && isChecked) {
+          item.style.borderColor = 'rgba(255,122,153,.5)';
+          item.style.background = 'rgba(255,122,153,.08)';
+        } else if (isCorrect && !isChecked) {
+          item.style.borderColor = 'rgba(255,210,122,.4)';
+          item.style.background = 'rgba(255,210,122,.06)';
+        } else {
+          item.style.borderColor = 'rgba(255,255,255,.12)';
+          item.style.background = 'rgba(0,0,0,.18)';
+        }
+      });
+
+      const pct = Math.round((correct / total) * 100);
+      let msg = '';
+      if (pct === 100) msg = `${pct}% -- Perfect! Ai inteles argumentele despre atemporalitate.`;
+      else if (pct >= 80) msg = `${pct}% -- Foarte bine! Reciteste sectiunile despre ce exista si ce nu.`;
+      else if (pct >= 60) msg = `${pct}% -- Bun inceput. Atentie la distinctia intre sageata entropiei si timpul fundamental.`;
+      else msg = `${pct}% -- Revino la sectiunile principale. Cheia: timpul e emergent, nu fundamental.`;
+
+      document.getElementById('quizOut').innerHTML = `<b>Scor:</b> ${correct}/${total} (${pct}%). ${msg}`;
+      showToast('Verificare completa');
+    });
+
+    document.getElementById('quizResetBtn').addEventListener('click', () => {
+      document.querySelectorAll('#quiz .item').forEach(item => {
+        item.querySelector('input').checked = false;
+        item.style.borderColor = 'rgba(255,255,255,.12)';
+        item.style.background = 'rgba(0,0,0,.18)';
+      });
+      document.getElementById('quizOut').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+    // ============================================================
+    // TOAST
+    // ============================================================
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2000);
+    }
+  </script>
+</body>
+</html>

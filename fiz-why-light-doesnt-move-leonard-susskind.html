@@ -1,0 +1,1664 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce lumina nu se misca — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv despre natura luminii: de ce fotonii nu experimenteaza timpul, dualitatea unda-particula, entanglementul cuantic si spectrul electromagnetic. Bazat pe o prelegere a lui Leonard Susskind." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,210,122,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--warn), var(--orange)); box-shadow: 0 0 22px rgba(255,210,122,.35)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.08;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 240px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(260px 200px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap:wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Viz area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--warn)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Pills & tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Flow nodes */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Spectrum bar */
+    .spectrumBar{
+      height:40px;
+      border-radius:12px;
+      background: linear-gradient(90deg,
+        #ff000022 0%, #ff0000 2%,
+        #ff4400 8%, #ff8800 14%,
+        #ffcc00 20%, #ffff00 26%,
+        #88ff00 32%, #00ff44 38%,
+        #00ffcc 44%, #00ccff 50%,
+        #0088ff 56%, #0044ff 62%,
+        #4400ff 68%, #8800ff 74%,
+        #cc00ff 80%, #ff00ff44 88%,
+        transparent 100%
+      );
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+      margin:12px 0;
+    }
+    .spectrumLabel{
+      position:absolute;top:100%;font-size:10px;color:var(--faint);
+      transform:translateX(-50%);margin-top:4px;white-space:nowrap;
+    }
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;border-radius:99px}
+
+    /* Hallmarks grid */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Commentary / details */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,210,122,.7);
+      padding: 10px 12px;
+      background: rgba(255,210,122,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 14px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:0;position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--warn),var(--violet),var(--cyan))}
+    .tlItem{position:relative;padding:10px 0 10px 16px}
+    .tlItem::before{content:'';position:absolute;left:-22px;top:14px;width:10px;height:10px;border-radius:99px;border:2px solid var(--warn);background:var(--bg)}
+    .tlItem .tlYear{font-family:var(--mono);font-size:12px;color:var(--warn)}
+    .tlItem .tlText{color:var(--muted);font-size:13px;line-height:1.5;margin-top:2px}
+
+    /* Photon animation */
+    @keyframes photonPulse{
+      0%,100%{opacity:.6;transform:scale(1)}
+      50%{opacity:1;transform:scale(1.3)}
+    }
+    .photonDot{animation:photonPulse 1.5s ease-in-out infinite}
+
+    /* Entanglement vis */
+    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+    /* Quiz styles */
+    .quizOpt{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:10px 12px;
+      cursor:pointer;
+      transition:all .15s ease;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .quizOpt:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22)}
+    .quizOpt.correct{border-color:var(--good);background:rgba(117,240,182,.1);color:var(--good)}
+    .quizOpt.wrong{border-color:var(--bad);background:rgba(255,122,153,.1);color:var(--bad)}
+    .quizFeedback{margin-top:8px;font-size:13px;line-height:1.5;display:none}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 240" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,210,122,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.45)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Wavy light paths -->
+            <path d="M10,180 Q80,40 180,120 T340,60 T500,100" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".7" />
+            <path d="M10,140 Q120,20 200,160 T380,80 T510,140" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".6" />
+            <!-- Photon dots -->
+            <circle cx="180" cy="120" r="8" fill="rgba(255,210,122,.8)" class="photonDot"/>
+            <circle cx="340" cy="60" r="6" fill="rgba(187,167,255,.7)" class="photonDot" style="animation-delay:.4s"/>
+            <circle cx="420" cy="90" r="5" fill="rgba(122,215,255,.6)" class="photonDot" style="animation-delay:.8s"/>
+            <circle cx="100" cy="80" r="7" fill="rgba(255,255,255,.5)" class="photonDot" style="animation-delay:1.2s"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica luminii &bull; relativitate &bull; mecanica cuantica</div>
+          <h1>De ce lumina nu se misca <span style="color:var(--warn)">&mdash;</span> Leonard Susskind</h1>
+          <p class="subtitle">
+            Crezi ca lumina calatoreste de la un punct la altul, ca ia timp sa parcurga distanta.
+            Din perspectiva noastra, da. Dar din perspectiva fotonului, <b>nu exista calatorie</b> &mdash;
+            emisiunea si absorbtia sunt acelasi eveniment. Aceasta pagina desface, bucata cu bucata, tot ceea ce stiai despre lumina.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpDilat">Simulatorul dilatarii timpului</button>
+            <button class="btn" id="jumpSpectru">Spectrul electromagnetic</button>
+            <button class="btn" id="jumpQuiz">Testeaza-ti cunostintele</button>
+            <button class="btn" id="toggleNotes">Ascunde/Arata comentariile</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Date-cheie">
+          <div class="stat">
+            <div class="label">Viteza luminii in vid</div>
+            <div class="value" style="color:var(--warn)">299.792.458 m/s</div>
+            <div class="note">Exact. Metrul e definit pe baza acestei valori.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Timpul propriu al fotonului</div>
+            <div class="value" style="color:var(--cyan)">Zero</div>
+            <div class="note">Fotonul nu experimenteaza timp. Niciodata.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Constanta de structura fina</div>
+            <div class="value" style="color:var(--violet)">&alpha; &asymp; 1/137</div>
+            <div class="note">Determina cat de puternic interactioneaza lumina cu materia.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Lumina oprita complet</div>
+            <div class="value" style="color:var(--orange)">2013</div>
+            <div class="note">Inghetata intr-un cristal timp de 1 minut, apoi eliberata.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION 1: The paradox -->
+      <section class="card" aria-label="Paradoxul central">
+        <div class="cardHeader">
+          <h2>Paradoxul: lumina &laquo;calatoreste&raquo; dar nu experimenteaza calatoria</h2>
+          <div class="chip"><b>Ideea centrala</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Lumina Soarelui ajunge la Pamant in ~8 minute dupa ceasul nostru. Lumina din galaxia Andromeda calatoreste 2,5 milioane de ani.
+                Dar pentru fotonul insusi, <b>nu a trecut nicio clipa</b>. Soarele si ochiul tau sunt, din perspectiva fotonului,
+                in acelasi loc si in acelasi moment.
+              </p>
+              <p class="muted">
+                De ce? In relativitatea speciala a lui Einstein exista conceptul de <b>timp propriu</b> &mdash; timpul experimentat de un obiect
+                care se misca prin spatiu-timp. Cu cat te misti mai repede, cu atat ceasul tau merge mai incet. La viteza luminii,
+                ceasul se opreste complet. Timpul propriu al fotonului este <b>exact zero</b>.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Asta nu inseamna ca lumina &laquo;nu exista&raquo; intre puncte. Inseamna ca notiunea de &laquo;calatorie&raquo;
+                e o iluzie a perspectivei noastre. Fotonul nu experimenteaza nici distanta, nici trecerea timpului. E mai degraba un <b>pod</b>
+                intre doua evenimente decat un vehicul care merge dintr-un loc in altul.
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Diagrama foton fara timp">
+                <svg viewBox="0 0 460 340" role="img">
+                  <defs>
+                    <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+                      <stop offset="0" stop-color="rgba(255,210,122,.9)"/>
+                      <stop offset="1" stop-color="rgba(255,160,60,.0)"/>
+                    </radialGradient>
+                    <radialGradient id="earthG" cx="50%" cy="50%" r="50%">
+                      <stop offset="0" stop-color="rgba(122,215,255,.8)"/>
+                      <stop offset="1" stop-color="rgba(60,120,200,.0)"/>
+                    </radialGradient>
+                    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="6"/>
+                    </filter>
+                  </defs>
+                  <!-- Sun -->
+                  <circle cx="60" cy="170" r="45" fill="url(#sunG)" filter="url(#glow2)"/>
+                  <circle cx="60" cy="170" r="28" fill="rgba(255,210,122,.85)"/>
+                  <text x="60" y="175" text-anchor="middle" font-size="12" fill="#0b0f17" font-weight="700">Soare</text>
+
+                  <!-- Earth -->
+                  <circle cx="400" cy="170" r="35" fill="url(#earthG)" filter="url(#glow2)"/>
+                  <circle cx="400" cy="170" r="20" fill="rgba(80,160,255,.8)"/>
+                  <text x="400" y="175" text-anchor="middle" font-size="11" fill="#0b0f17" font-weight="700">Pamant</text>
+
+                  <!-- Photon path -->
+                  <line x1="105" y1="170" x2="365" y2="170" stroke="rgba(255,210,122,.3)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <circle id="photonTravel" cx="105" cy="170" r="6" fill="var(--warn)">
+                    <animate attributeName="cx" from="105" to="365" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+
+                  <!-- Our perspective -->
+                  <text x="230" y="130" text-anchor="middle" font-size="12" fill="var(--muted)">Perspectiva noastra: 8 min 20 s</text>
+                  <line x1="120" y1="140" x2="350" y2="140" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <path d="M120,137 L120,143" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+                  <path d="M350,137 L350,143" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+
+                  <!-- Photon perspective -->
+                  <text x="230" y="220" text-anchor="middle" font-size="12" fill="var(--warn)">Perspectiva fotonului: 0 secunde</text>
+                  <text x="230" y="240" text-anchor="middle" font-size="11" fill="var(--faint)">(aceeasi locatie, acelasi moment)</text>
+
+                  <!-- Andromeda note -->
+                  <rect x="80" y="275" width="310" height="48" rx="12" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.2)"/>
+                  <text x="235" y="296" text-anchor="middle" font-size="11" fill="var(--violet)">Andromeda: 2,5 milioane ani-lumina distanta</text>
+                  <text x="235" y="312" text-anchor="middle" font-size="11" fill="var(--faint)">Timpul fotonului pe drum: tot zero.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Time dilation simulator -->
+      <section class="row">
+        <div class="card" id="dilat" aria-label="Simulatorul dilatarii timpului">
+          <div class="cardHeader">
+            <h2>Simulatorul dilatarii timpului</h2>
+            <div class="chip">relativitate speciala</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cu cat un obiect se misca mai repede, cu atat timpul sau trece mai incet fata de un observator stationat.
+              La viteza luminii (c), timpul se opreste complet. Asta e <b>dilatarea timpului</b> &mdash; confirmata de mii de ori
+              in acceleratoare de particule, cu sateliti GPS si cu raze cosmice.
+            </p>
+
+            <div class="viz" id="vizDilat" aria-label="Grafic dilatare timp">
+              <svg viewBox="0 0 980 380" id="dilatSvg" role="img">
+                <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.05)"/>
+                <g opacity=".9">
+                  <path d="M70 34 L70 320 L940 320" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none"/>
+                </g>
+                <g id="dilatGrid"></g>
+                <path id="dilatCurve" fill="none" stroke="var(--warn)" stroke-width="3" stroke-linecap="round"/>
+                <path id="dilatArea" fill="rgba(255,210,122,.08)" stroke="none"/>
+                <circle id="dilatDot" r="7" fill="var(--warn)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                <g font-family="var(--sans)" font-size="13" fill="rgba(255,255,255,.75)">
+                  <text x="70" y="22" fill="rgba(255,255,255,.88)" font-weight="700">Dilatarea timpului: factorul gamma (γ)</text>
+                  <text x="70" y="358" font-size="12" fill="rgba(255,255,255,.55)">Viteza (% din c) &rarr;</text>
+                  <text x="14" y="190" font-size="12" fill="rgba(255,255,255,.55)" transform="rotate(-90 14 190)">&gamma; = cat de mult incetineste timpul</text>
+                </g>
+                <line id="dilatVLine" y1="34" y2="320" stroke="rgba(255,210,122,.25)" stroke-width="1" stroke-dasharray="4 3"/>
+                <text id="dilatLabel" font-size="12" fill="var(--warn)" font-family="var(--mono)"></text>
+              </svg>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Viteza obiectului</span>
+                  <span class="readout" id="speedReadout">50% c</span>
+                </label>
+                <input id="speedSlider" type="range" min="0" max="999" value="500" />
+                <div class="small" style="margin-top:8px">0% = stationat. 99.9% = aproape de viteza luminii.</div>
+              </div>
+              <div class="control" style="display:flex;flex-direction:column;justify-content:center">
+                <div style="text-align:center">
+                  <div class="small" style="margin-bottom:4px">FACTORUL GAMMA</div>
+                  <div id="gammaValue" style="font-size:28px;font-weight:700;color:var(--warn);font-family:var(--mono)">1.15</div>
+                  <div class="small" style="margin-top:6px">
+                    <span id="gammaExplain">Ceasul se misca de 1.15x mai incet</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observa cum graficul explodeaza cand te apropii de c. La 99% din viteza luminii, &gamma; &asymp; 7 (1 an pentru tine = 7 ani pe Pamant).
+              La 99.99%, &gamma; &asymp; 70. La exact c, &gamma; = infinit, deci timpul se opreste complet.
+              De aceea fotonii nu experimenteaza timp &mdash; se misca la exact c.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Viteza luminii in medii">
+          <div class="cardHeader">
+            <h2>Viteza luminii: nu e mereu aceeasi</h2>
+            <div class="chip">vid vs. materie</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In vid, lumina merge la exact <span class="mono">299.792.458 m/s</span>. Dar in materie (apa, sticla, etc.)
+              pare ca &laquo;incetineste&raquo;. Adevar: fiecare foton individual merge tot la c intre atomi. Dar se
+              absoarbe si se re-emite la fiecare atom, iar acele mici pauze se acumuleaza, facand viteza medie mai mica.
+            </p>
+            <p class="muted">
+              E ca si cum ai conduce la 100 km/h pe autostrada, dar cu un semafor la fiecare 50 de metri.
+              Viteza ta &laquo;reala&raquo; intre semafoare e aceeasi, dar media pe tot drumul e mult mai mica.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">In vid: 300.000 km/s</h3>
+                <p>Limita cosmica absoluta. Nimic nu poate depasi aceasta viteza. Metrul insusi e definit prin ea.</p>
+                <div class="meta"><span class="badge">c exact</span><span class="badge">limita universala</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">In apa: ~225.000 km/s (75% din c)</h3>
+                <p>Fotonii interactioneaza cu moleculele de apa. Fiecare interactiune creeaza o mica intarziere.</p>
+                <div class="meta"><span class="badge">75% c</span><span class="badge">absorbtie + re-emisie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--violet)">In sticla: ~200.000 km/s (~66% din c)</h3>
+                <p>Material mai dens = mai multe interactiuni = viteza medie si mai mica.</p>
+                <div class="meta"><span class="badge">66% c</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Harvard, 1999: 17 m/s</h3>
+                <p>O echipa a incetinit lumina la viteza de mers pe bicicleta, intr-un nor de atomi ultrareciti. In 2013, lumina a fost oprita complet timp de 1 minut intr-un cristal.</p>
+                <div class="meta"><span class="badge">17 m/s</span><span class="badge">oprita complet</span><span class="badge">cristal</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Chiar si cand lumina e &laquo;incetinita&raquo; sau &laquo;oprita&raquo;, nicio lege fundamentala nu e incalcata.
+              Fotonii individuali merg mereu la c intre interactiuni. Limita cosmica nu e niciodata depasita.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Cherenkov radiation + tachyons -->
+      <section class="card" aria-label="Radiatia Cherenkov si tahioni">
+        <div class="cardHeader">
+          <h2>Mai repede ca lumina? Radiatia Cherenkov si tahionii ipotetici</h2>
+          <div class="chip"><b>Da, dar...</b> nu incalca limita</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">Radiatia Cherenkov &mdash; un boom sonic din lumina</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cand un avion depaseste viteza sunetului in aer, creeaza un boom sonic. Similar, cand un electron
+                se misca prin apa mai repede decat lumina in apa, creeaza un &laquo;boom optic&raquo;: un con de lumina albastra.
+              </p>
+              <p class="muted" style="line-height:1.6">
+                Poti vedea asta in reactoarele nucleare &mdash; acea stralucire albastra din apa de racire.
+                Dar atentie: electronul merge mai repede ca lumina <b>in apa</b>, dar tot mai incet decat lumina <b>in vid</b>.
+                Limita cosmica (c) ramane intacta.
+              </p>
+              <div class="viz" style="padding:12px">
+                <svg viewBox="0 0 440 200" role="img">
+                  <defs>
+                    <radialGradient id="cherenG" cx="30%" cy="50%" r="70%">
+                      <stop offset="0" stop-color="rgba(80,140,255,.0)"/>
+                      <stop offset="0.3" stop-color="rgba(80,140,255,.15)"/>
+                      <stop offset="1" stop-color="rgba(80,140,255,.0)"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="440" height="200" fill="rgba(0,0,40,.15)" rx="8"/>
+                  <!-- Water -->
+                  <text x="220" y="22" text-anchor="middle" font-size="11" fill="var(--faint)">APA (reactor nuclear)</text>
+                  <!-- Cone -->
+                  <polygon points="80,100 380,30 380,170" fill="url(#cherenG)" opacity=".8"/>
+                  <polygon points="80,100 380,30 380,170" fill="none" stroke="rgba(80,160,255,.3)" stroke-width="1"/>
+                  <!-- Electron -->
+                  <circle cx="80" cy="100" r="8" fill="var(--cyan)"/>
+                  <text x="80" y="104" text-anchor="middle" font-size="9" fill="#0b0f17" font-weight="700">e-</text>
+                  <line x1="88" y1="100" x2="380" y2="100" stroke="rgba(122,215,255,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <!-- Labels -->
+                  <text x="230" y="100" text-anchor="middle" font-size="11" fill="var(--cyan)">directia electronului</text>
+                  <text x="360" y="58" text-anchor="end" font-size="10" fill="rgba(80,160,255,.7)">con de lumina</text>
+                  <text x="360" y="72" text-anchor="end" font-size="10" fill="rgba(80,160,255,.7)">Cherenkov</text>
+                  <text x="220" y="190" text-anchor="middle" font-size="11" fill="var(--faint)">stralucirea albastra din piscina reactorului</text>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">Tahionii &mdash; particule care ar merge mereu mai repede ca c?</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Matematic, ecuatiile permit existenta unor particule ipotetice numite <b>tahioni</b> care ar calatori
+                mereu mai repede decat lumina. Pentru ele, c ar fi o limita <b>inferioara</b>, nu superioara.
+              </p>
+              <p class="muted" style="line-height:1.6">Probleme:</p>
+              <div class="flow" style="gap:8px">
+                <div class="flowNode" style="padding:8px 10px">
+                  <p><b style="color:var(--bad)">Masa imaginara</b> &mdash; tahionii ar avea o masa care e radical dintr-un numar negativ (in sens matematic, nu figurativ)</p>
+                </div>
+                <div class="flowNode" style="padding:8px 10px">
+                  <p><b style="color:var(--bad)">Cauzalitate inversata</b> &mdash; ar putea trimite informatie inapoi in timp, ceea ce ar incalca logica cauza-efect</p>
+                </div>
+                <div class="flowNode" style="padding:8px 10px">
+                  <p><b style="color:var(--good)">Concluzie:</b> Majoritatea fizicienilor considera tahionii o curiozitate matematica, nu o realitate fizica. N-am observat niciodata vreunul.</p>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Faptul ca ecuatiile permit tahionii ne spune ceva interesant despre structura matematica a spatiu-timpului.
+                Dar matematica &laquo;permite&raquo; multe lucruri care nu exista in natura. Diferenta o face experimentul.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Wave-particle duality -->
+      <section class="row">
+        <div class="card" aria-label="Dualitatea unda-particula">
+          <div class="cardHeader">
+            <h2>Lumina: nici unda, nici particula &mdash; altceva</h2>
+            <div class="chip">dualitate unda-particula</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Timp de secole, oamenii de stiinta s-au certat: lumina e o unda sau e formata din particule?
+              Raspunsul fizicii cuantice: <b>nu e nici una, nici alta</b>. E un &laquo;obiect cuantic&raquo; &mdash;
+              un lucru pentru care nu avem un cuvant bun in limbajul de zi cu zi.
+            </p>
+
+            <div class="timeline">
+              <div class="tlItem">
+                <div class="tlYear">~1670 &mdash; Newton</div>
+                <div class="tlText">Lumina = particule mici (&laquo;corpusculi&raquo;). Aceasta viziune a dominat 200 de ani.</div>
+              </div>
+              <div class="tlItem">
+                <div class="tlYear">1801 &mdash; Young</div>
+                <div class="tlText">Experimentul cu dubla fanta: lumina face interferenta = se comporta ca o unda. Consensul se schimba.</div>
+              </div>
+              <div class="tlItem">
+                <div class="tlYear">1905 &mdash; Einstein</div>
+                <div class="tlText">Efectul fotoelectric: lumina vine in pachete discrete de energie (cuante = fotoni). Doar frecventa conteaza, nu intensitatea.</div>
+              </div>
+              <div class="tlItem">
+                <div class="tlYear">~1920-1930 &mdash; Mecanica cuantica</div>
+                <div class="tlText">Lumina nu e unda, nu e particula. E un obiect cuantic care arata proprietati diferite in functie de cum il masori.</div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="viz" aria-label="Dubla fanta">
+              <svg viewBox="0 0 460 220" role="img" id="slitSvg">
+                <defs>
+                  <linearGradient id="interferG" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,210,122,.6)"/>
+                    <stop offset="0.25" stop-color="rgba(255,210,122,.0)"/>
+                    <stop offset="0.35" stop-color="rgba(255,210,122,.45)"/>
+                    <stop offset="0.5" stop-color="rgba(255,210,122,.0)"/>
+                    <stop offset="0.6" stop-color="rgba(255,210,122,.35)"/>
+                    <stop offset="0.75" stop-color="rgba(255,210,122,.0)"/>
+                    <stop offset="0.85" stop-color="rgba(255,210,122,.25)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.0)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Source -->
+                <circle cx="40" cy="110" r="14" fill="rgba(255,210,122,.3)"/>
+                <circle cx="40" cy="110" r="6" fill="var(--warn)"/>
+                <text x="40" y="140" text-anchor="middle" font-size="10" fill="var(--faint)">sursa</text>
+
+                <!-- Barrier -->
+                <rect x="160" y="10" width="8" height="80" fill="rgba(255,255,255,.25)" rx="2"/>
+                <rect x="160" y="100" width="8" height="20" fill="rgba(255,255,255,.25)" rx="2"/>
+                <rect x="160" y="130" width="8" height="80" fill="rgba(255,255,255,.25)" rx="2"/>
+                <!-- Slits -->
+                <rect x="158" y="90" width="12" height="10" fill="rgba(255,210,122,.15)" rx="1"/>
+                <rect x="158" y="120" width="12" height="10" fill="rgba(255,210,122,.15)" rx="1"/>
+                <text x="164" y="228" text-anchor="middle" font-size="10" fill="var(--faint)">bariera cu 2 fante</text>
+
+                <!-- Waves from slits -->
+                <circle cx="164" cy="95" r="30" fill="none" stroke="rgba(255,210,122,.12)" stroke-width="1.5"/>
+                <circle cx="164" cy="95" r="60" fill="none" stroke="rgba(255,210,122,.08)" stroke-width="1"/>
+                <circle cx="164" cy="95" r="90" fill="none" stroke="rgba(255,210,122,.05)" stroke-width="1"/>
+                <circle cx="164" cy="125" r="30" fill="none" stroke="rgba(255,210,122,.12)" stroke-width="1.5"/>
+                <circle cx="164" cy="125" r="60" fill="none" stroke="rgba(255,210,122,.08)" stroke-width="1"/>
+                <circle cx="164" cy="125" r="90" fill="none" stroke="rgba(255,210,122,.05)" stroke-width="1"/>
+
+                <!-- Screen -->
+                <rect x="380" y="10" width="16" height="200" fill="url(#interferG)" rx="4"/>
+                <rect x="380" y="10" width="16" height="200" fill="none" stroke="rgba(255,255,255,.15)" rx="4"/>
+                <text x="388" y="228" text-anchor="middle" font-size="10" fill="var(--faint)">ecran</text>
+
+                <!-- Interference label -->
+                <text x="420" y="60" font-size="10" fill="var(--warn)">benzi</text>
+                <text x="420" y="74" font-size="10" fill="var(--warn)">de interf.</text>
+
+                <!-- Arrow from source to slits -->
+                <line x1="54" y1="110" x2="155" y2="95" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+                <line x1="54" y1="110" x2="155" y2="125" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+              </svg>
+              <div class="small" style="margin-top:6px">
+                Experimentul cu dubla fanta: un singur foton trece prin <b>ambele</b> fante simultan si interfereaza cu sine insusi. Cand il detectezi pe ecran, &laquo;alege&raquo; o pozitie.
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Dualitatea nu inseamna ca lumina &laquo;se hotaraste&raquo; sa fie unda sau particula. Experimentul determina
+              ce aspect al naturii sale se manifesta. Dupa 100 de ani de mecanica cuantica, inca nu intelegem pe deplin ce inseamna asta.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Entanglement cuantic">
+          <div class="cardHeader">
+            <h2>Entanglement: &laquo;actiune fantomatica la distanta&raquo;</h2>
+            <div class="chip">Einstein vs. Bell</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Doi fotoni pot fi &laquo;intretesuti&raquo; (entangled) astfel incat sa fie legati cuantic. Masori polarizarea
+              unuia &mdash; si <b>instant</b>, celalalt capata o polarizare corelata, chiar daca e la celalalt capat al universului.
+            </p>
+
+            <div class="viz" aria-label="Diagrama entanglement">
+              <svg viewBox="0 0 460 260" role="img">
+                <defs>
+                  <linearGradient id="entG" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,210,122,.4)"/>
+                    <stop offset="0.5" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.4)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Connection line -->
+                <line x1="80" y1="100" x2="380" y2="100" stroke="url(#entG)" stroke-width="3" stroke-dasharray="8 5">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="2s" repeatCount="indefinite"/>
+                </line>
+                <text x="230" y="88" text-anchor="middle" font-size="11" fill="var(--violet)">legatura cuantica instantanee</text>
+
+                <!-- Photon A -->
+                <circle cx="80" cy="100" r="24" fill="rgba(255,210,122,.15)" stroke="rgba(255,210,122,.4)" stroke-width="1.5"/>
+                <circle cx="80" cy="100" r="8" fill="var(--warn)"/>
+                <text x="80" y="140" text-anchor="middle" font-size="12" fill="var(--warn)">Foton A</text>
+                <text x="80" y="156" text-anchor="middle" font-size="10" fill="var(--faint)">masuratoare: &uarr;</text>
+
+                <!-- Photon B -->
+                <circle cx="380" cy="100" r="24" fill="rgba(122,215,255,.15)" stroke="rgba(122,215,255,.4)" stroke-width="1.5"/>
+                <circle cx="380" cy="100" r="8" fill="var(--cyan)"/>
+                <text x="380" y="140" text-anchor="middle" font-size="12" fill="var(--cyan)">Foton B</text>
+                <text x="380" y="156" text-anchor="middle" font-size="10" fill="var(--faint)">instant: &darr;</text>
+
+                <!-- Question -->
+                <rect x="60" y="180" width="340" height="65" rx="14" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.10)"/>
+                <text x="230" y="202" text-anchor="middle" font-size="12" fill="var(--text)">Putem trimite mesaje mai repede ca lumina?</text>
+                <text x="230" y="220" text-anchor="middle" font-size="13" fill="var(--bad)" font-weight="700">NU.</text>
+                <text x="230" y="236" text-anchor="middle" font-size="10" fill="var(--faint)">Rezultatul e aleator. Nu poti controla ce obtii, deci nu poti codifica un mesaj.</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+            <h3 style="font-size:14px;margin:0 0 8px">Experimentele Bell (din 1980)</h3>
+            <p class="muted" style="margin:0;line-height:1.6">
+              Einstein credea ca trebuie sa existe &laquo;variabile ascunse locale&raquo; care predetermina rezultatul.
+              In 1964, John Bell a creat un test matematic. Experimentele (incepand cu Alain Aspect, anii '80) au aratat:
+              <b>inegalitatile Bell sunt incalcate</b>. Mecanica cuantica avea dreptate. Corelatiile sunt reale si instantanee.
+            </p>
+            <p class="muted" style="line-height:1.6">
+              Dar universul e &laquo;destept&raquo;: chiar daca corelatiile sunt instantanee, <b>nu pot fi folosite
+              pentru a transmite informatie</b>. Viteza luminii ramane protejata ca limita a cauzalitatii.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e una din cele mai frumoase proprietati ale fizicii: diferitele piese ale puzzle-ului
+              (relativitate, mecanica cuantica, teoria informatiei) se imbina perfect. Nu poti &laquo;pacali&raquo; universul sa
+              transmita informatie mai repede ca lumina, oricat de destept ai fi.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: Electromagnetic spectrum -->
+      <section class="card" id="spectru" aria-label="Spectrul electromagnetic">
+        <div class="cardHeader">
+          <h2>Totul e lumina: spectrul electromagnetic</h2>
+          <div class="chip">de la unde radio la raze gamma</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Ceea ce ochii nostri vad &mdash; rosul, verdele, albastrul &mdash; e o felie <b>minuscul de mica</b>
+            din spectrul electromagnetic. Undele radio, microundele, infrarosul, ultravioletul, razele X, razele gamma:
+            <b>toate sunt lumina</b>. Toate sunt fotoni, doar la frecvente diferite.
+          </p>
+
+          <div class="viz" aria-label="Spectrul electromagnetic interactiv">
+            <svg viewBox="0 0 980 200" role="img" id="spectrumSvg">
+              <defs>
+                <linearGradient id="specG" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,100,100,.15)"/>
+                  <stop offset="0.15" stop-color="rgba(255,100,100,.6)"/>
+                  <stop offset="0.25" stop-color="rgba(255,200,0,.6)"/>
+                  <stop offset="0.35" stop-color="rgba(100,255,100,.6)"/>
+                  <stop offset="0.45" stop-color="rgba(0,200,255,.6)"/>
+                  <stop offset="0.55" stop-color="rgba(80,80,255,.6)"/>
+                  <stop offset="0.65" stop-color="rgba(140,0,255,.6)"/>
+                  <stop offset="0.85" stop-color="rgba(140,0,255,.15)"/>
+                  <stop offset="1" stop-color="rgba(140,0,255,.05)"/>
+                </linearGradient>
+              </defs>
+              <!-- Spectrum bar -->
+              <rect x="50" y="50" width="880" height="36" rx="8" fill="url(#specG)"/>
+              <rect x="50" y="50" width="880" height="36" rx="8" fill="none" stroke="rgba(255,255,255,.12)"/>
+
+              <!-- Visible light bracket -->
+              <rect x="310" y="44" width="180" height="48" rx="4" fill="none" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="4 2"/>
+              <text x="400" y="38" text-anchor="middle" font-size="10" fill="var(--warn)">lumina vizibila (mica felie!)</text>
+
+              <!-- Labels -->
+              <g font-size="10" fill="var(--muted)" text-anchor="middle">
+                <text x="80" y="114">Unde radio</text>
+                <text x="80" y="128" font-size="9" fill="var(--faint)">~km - m</text>
+
+                <text x="175" y="114">Microunde</text>
+                <text x="175" y="128" font-size="9" fill="var(--faint)">~cm</text>
+
+                <text x="265" y="114">Infrarosu</text>
+                <text x="265" y="128" font-size="9" fill="var(--faint)">~&mu;m</text>
+
+                <text x="400" y="114" fill="var(--warn)">Vizibil</text>
+                <text x="400" y="128" font-size="9" fill="var(--faint)">380-700 nm</text>
+
+                <text x="535" y="114">Ultraviolet</text>
+                <text x="535" y="128" font-size="9" fill="var(--faint)">~nm</text>
+
+                <text x="660" y="114">Raze X</text>
+                <text x="660" y="128" font-size="9" fill="var(--faint)">~pm</text>
+
+                <text x="830" y="114">Raze gamma</text>
+                <text x="830" y="128" font-size="9" fill="var(--faint)">&lt; pm</text>
+              </g>
+
+              <!-- Energy arrow -->
+              <line x1="50" y1="155" x2="930" y2="155" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+              <polygon points="926,152 935,155 926,158" fill="rgba(255,255,255,.3)"/>
+              <text x="490" y="175" text-anchor="middle" font-size="11" fill="var(--faint)">Energie &amp; frecventa cresc &rarr;</text>
+              <text x="490" y="192" text-anchor="middle" font-size="11" fill="var(--faint)">&larr; Lungimea de unda creste</text>
+            </svg>
+          </div>
+
+          <div class="riskGrid" style="margin-top:12px">
+            <div class="risk">
+              <div class="rTop"><strong>Cuptorul cu microunde</strong><span class="badge">microunde</span></div>
+              <div class="meter"><i style="width:20%;background:var(--bad)"></i></div>
+              <p>Cand incalzesti mancarea, o bombardezi cu lumina. Literalmente fotoni, la o frecventa pe care nu o vezi.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Radioul</strong><span class="badge">unde radio</span></div>
+              <div class="meter"><i style="width:8%;background:var(--orange)"></i></div>
+              <p>Semnalul de radio e tot lumina &mdash; fotoni cu energie foarte mica si lungime de unda mare.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Radiografia la dentist</strong><span class="badge">raze X</span></div>
+              <div class="meter"><i style="width:75%;background:var(--violet)"></i></div>
+              <p>Dentistul straluceste lumina prin dintii tai. Doar ca e lumina cu energie mult mai mare decat cea vizibila.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Razele gamma</strong><span class="badge">cele mai energetice</span></div>
+              <div class="meter"><i style="width:95%;background:var(--cyan)"></i></div>
+              <p>Provin din explozii nucleare sau stele care se prabusesc. Acelasi lucru &mdash; fotoni &mdash; dar cu o energie colosala.</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> James Clerk Maxwell a unificat electricitatea si magnetismul in anii 1860. Cand a calculat viteza undei
+            electromagnetice, a obtinut exact viteza luminii &mdash; fara sa se astepte. A fost momentul in care fizicienii au realizat
+            ca lumina <b>este</b> radiatie electromagnetica. Einstein a mers mai departe: viteza luminii nu e doar o proprietate a luminii,
+            ci viteza <b>cauzalitatii insasi</b>, incorporata in structura spatiu-timpului.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Fine structure constant -->
+      <section class="row">
+        <div class="card" aria-label="Constanta de structura fina">
+          <div class="cardHeader">
+            <h2>Misterul lui 1/137: constanta de structura fina</h2>
+            <div class="chip"><b>&alpha;</b> &mdash; de ce acest numar?</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Valoarea numerica a lui c (300.000 km/s) depinde de unitatile de masura &mdash; e conventionala.
+              Dar exista numere <b>adimensionale</b> (fara unitati) care sunt fundamental. Cel mai important e
+              <b>constanta de structura fina</b>, notata &alpha;.
+            </p>
+
+            <div class="viz" style="text-align:center;padding:20px">
+              <div style="font-size:14px;color:var(--faint);margin-bottom:8px">CONSTANTA DE STRUCTURA FINA</div>
+              <div style="font-size:42px;font-weight:700;color:var(--violet);font-family:var(--mono)">
+                &alpha; &asymp; 1/137.036
+              </div>
+              <div style="margin-top:12px;font-size:13px;color:var(--muted);max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6">
+                Combina viteza luminii (c), constanta lui Planck (h) si sarcina electronului (e)
+                in asa fel incat toate unitatile se simplifica. Rezultatul: un numar pur.
+              </div>
+              <div class="hr"></div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.6">
+                &alpha; determina: cat de puternic interactioneaza lumina cu materia, structura atomilor,
+                culorile stelelor, chimia intregului univers.
+              </div>
+            </div>
+
+            <div class="split" style="margin-top:12px">
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Daca &alpha; ar fi ~1/100</h3>
+                <p>Atomii ar putea fi instabili. Chimia ar fi fundamental diferita. Viata ca a noastra: probabil imposibila.</p>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--bad)">Daca &alpha; ar fi ~1/200</h3>
+                <p>Stelele ar arde diferit. Fuziunea nucleara s-ar schimba. Universul ar arata total diferit.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> De ce e 1/137 si nu altceva? Nimeni nu stie. E unul din cele mai mari mistere ale fizicii.
+              Unii fizicieni cred ca exista o teorie mai profunda care explica aceasta valoare. Altii (inclusiv Susskind)
+              au propus ideea &laquo;peisajului&raquo; din teoria corzilor: exista un numar astronomic de universuri posibile,
+              fiecare cu constante diferite, iar noi traim in unul unde &alpha; permite complexitate si viata.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce e de fapt c?">
+          <div class="cardHeader">
+            <h2>c nu e &laquo;viteza luminii&raquo; &mdash; e viteza cauzalitatii</h2>
+            <div class="chip">spatiu-timp</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Susskind argumenteaza ca ar trebui sa nu mai numim c &laquo;viteza luminii&raquo;, pentru ca sugereaza
+              ca e o proprietate specifica a luminii. Nu e. E o proprietate a <b>spatiu-timpului insusi</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3 style="color:var(--warn)">c = factorul de conversie intre spatiu si timp</h3>
+                <p>E ceea ce leaga cele doua dimensiuni intr-un singur spatiu-timp unificat. Fara c, spatiul si timpul ar fi complet separate.</p>
+                <div class="meta"><span class="badge">E = mc&sup2;</span><span class="badge">relativitate</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--cyan)">Lumina merge la c doar pentru ca fotonii nu au masa</h3>
+                <p>Daca fotonii ar avea masa (chiar si minuscul), ar merge mai incet decat c. Dar c tot ar exista ca limita cosmica.</p>
+                <div class="meta"><span class="badge">masa = 0</span><span class="badge">viteza maxima</span></div>
+              </div>
+              <div class="flowNode">
+                <h3 style="color:var(--violet)">c = limita vitezei informatiei</h3>
+                <p>Nicio informatie, niciun semnal, nicio influenta cauzala nu poate depasi c. Universul nu permite.</p>
+                <div class="meta"><span class="badge">cauzalitate</span><span class="badge">protejata mereu</span></div>
+              </div>
+            </div>
+
+            <div class="viz" style="padding:14px;margin-top:10px">
+              <svg viewBox="0 0 460 170" role="img">
+                <text x="230" y="30" text-anchor="middle" font-size="14" fill="var(--text)" font-weight="700">Conul de lumina: ce poti influenta</text>
+                <!-- Light cone -->
+                <polygon points="230,70 80,160 380,160" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.3)" stroke-width="1.5"/>
+                <polygon points="230,70 140,10 320,10" fill="rgba(122,215,255,.06)" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+                <circle cx="230" cy="70" r="5" fill="var(--warn)"/>
+                <text x="230" y="63" text-anchor="middle" font-size="10" fill="var(--warn)">ACUM</text>
+                <!-- Labels -->
+                <text x="230" y="145" text-anchor="middle" font-size="10" fill="rgba(255,210,122,.7)">viitorul tav cauzal</text>
+                <text x="230" y="22" text-anchor="middle" font-size="10" fill="rgba(122,215,255,.6)">trecutul tau cauzal</text>
+                <text x="410" y="110" font-size="10" fill="var(--faint)">in afara</text>
+                <text x="410" y="124" font-size="10" fill="var(--faint)">conului:</text>
+                <text x="410" y="138" font-size="10" fill="var(--bad)">inaccesibil</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Conul de lumina e un concept central in relativitate. Tot ce e in afara conului tau de lumina
+              e cauzal deconectat de tine &mdash; nu il poti influenta si nu te poate influenta.
+              Asta nu e o limitare tehnologica, e o proprietate fundamentala a structurii universului.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Quiz -->
+      <section class="card" id="quiz" aria-label="Test cunostinte">
+        <div class="cardHeader">
+          <h2>Testeaza-ti cunostintele</h2>
+          <div class="chip"><b>6 intrebari</b> din infografic</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">Apasa pe raspunsul corect. Feedback-ul apare instant.</p>
+
+          <div id="quizContainer" style="display:grid;gap:16px">
+            <!-- Q1 -->
+            <div class="quizQ" data-correct="2">
+              <p style="margin:0 0 8px;font-size:14px"><b>1.</b> Cat timp experimenteaza un foton cand calatoreste de la Soare la Pamant?</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) 8 minute si 20 de secunde</div>
+                <div class="quizOpt" data-idx="1">B) O fractiune de secunda</div>
+                <div class="quizOpt" data-idx="2">C) Zero secunde &mdash; nu experimenteaza timp deloc</div>
+                <div class="quizOpt" data-idx="3">D) Depinde de lungimea de unda</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Corect! Fotonii au timp propriu zero. Din perspectiva lor, emisiunea si absorbtia sunt acelasi eveniment.</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Gresit. 8 minute e timpul masurat de ceasul NOSTRU. Fotonul nu experimenteaza timp deloc &mdash; raspunsul corect e C.</div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quizQ" data-correct="1">
+              <p style="margin:0 0 8px;font-size:14px"><b>2.</b> Cand lumina &laquo;incetineste&raquo; in sticla, ce se intampla de fapt?</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) Fotonii individuali merg mai incet</div>
+                <div class="quizOpt" data-idx="1">B) Fotonii se absorb si se re-emit de catre atomi, iar micile pauze se acumuleaza</div>
+                <div class="quizOpt" data-idx="2">C) Sticla exercita o forta de franare asupra fotonilor</div>
+                <div class="quizOpt" data-idx="3">D) Fotonii se divid in particule mai mici</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Exact! Fiecare foton merge la c intre atomi, dar absorbtia si re-emisiunea creeaza intarzieri care reduc viteza medie.</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Nu chiar. Fotonii individuali merg mereu la c intre interactiuni. Raspunsul corect e B.</div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quizQ" data-correct="0">
+              <p style="margin:0 0 8px;font-size:14px"><b>3.</b> Radiatia Cherenkov se produce cand:</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) O particula incarcata se misca mai repede decat lumina intr-un mediu (dar mai incet decat c in vid)</div>
+                <div class="quizOpt" data-idx="1">B) O particula depaseste viteza luminii in vid</div>
+                <div class="quizOpt" data-idx="2">C) Doi fotoni se ciocnesc</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Corect! E echivalentul optic al boom-ului sonic. Limita cosmica (c in vid) nu e niciodata depasita.</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Nu. Nimic nu depaseste c in vid. Radiatia Cherenkov apare cand o particula depaseste viteza luminii intr-un mediu. Raspunsul e A.</div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quizQ" data-correct="2">
+              <p style="margin:0 0 8px;font-size:14px"><b>4.</b> Care e diferenta dintre undele radio si razele gamma?</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) Sunt particule fundamental diferite</div>
+                <div class="quizOpt" data-idx="1">B) Razele gamma sunt materie, undele radio sunt energie</div>
+                <div class="quizOpt" data-idx="2">C) Ambele sunt fotoni, dar la frecvente (si energii) diferite</div>
+                <div class="quizOpt" data-idx="3">D) Undele radio nu au proprietati de particula</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Exact! Toate sunt lumina &mdash; fotoni. Singura diferenta e energia / frecventa / lungimea de unda.</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Gresit. Ambele sunt fotoni (lumina), doar la frecvente diferite. Raspunsul e C.</div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quizQ" data-correct="1">
+              <p style="margin:0 0 8px;font-size:14px"><b>5.</b> Putem folosi entanglement-ul cuantic sa trimitem mesaje instantanee?</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) Da, e cea mai rapida metoda de comunicare</div>
+                <div class="quizOpt" data-idx="1">B) Nu, rezultatele sunt aleatorii si nu pot codifica informatie</div>
+                <div class="quizOpt" data-idx="2">C) Da, dar doar pe distante mici</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Corect! Corelatiile sunt instantanee, dar rezultatele sunt aleatorii. Ca sa verifici corelatia, trebuie sa compari datele prin comunicare normala (sub c).</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Nu. Rezultatele masurarilor sunt aleatorii, deci nu poti codifica un mesaj. Raspunsul corect e B.</div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quizQ" data-correct="0">
+              <p style="margin:0 0 8px;font-size:14px"><b>6.</b> De ce spune Susskind ca c nu e &laquo;viteza luminii&raquo;?</p>
+              <div style="display:grid;gap:6px">
+                <div class="quizOpt" data-idx="0">A) E o proprietate a spatiu-timpului, nu a luminii. Lumina merge la c doar fiindca fotonii n-au masa.</div>
+                <div class="quizOpt" data-idx="1">B) Fiindca lumina poate fi incetinita</div>
+                <div class="quizOpt" data-idx="2">C) Fiindca alte particule pot merge mai repede</div>
+              </div>
+              <div class="quizFeedback" style="color:var(--good)">Exact! c e viteza cauzalitatii, incorporata in structura spatiu-timpului. Lumina atinge aceasta viteza fiindca fotonii nu au masa.</div>
+              <div class="quizFeedback wrong" style="color:var(--bad)">Nu chiar. Motivul central e ca c e o proprietate a spatiu-timpului, nu a luminii. Raspunsul e A.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizScoreBtn">Calculeaza scorul</button>
+            <button class="btn" id="quizResetBtn">Reseteaza testul</button>
+          </div>
+          <div class="small" id="quizScoreOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Susskind's poetic conclusion -->
+      <section class="card" aria-label="Concluzia lui Susskind">
+        <div class="cardHeader">
+          <h2>Ce e de fapt lumina? &mdash; concluzia lui Susskind</h2>
+          <div class="chip"><b>Teza:</b> lumina e o conexiune, nu un vehicul</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--warn)">Lumina nu &laquo;calatoreste&raquo;</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Lumina conecteaza puncte in spatiu-timp, dar nu experimenteaza drumul dintre ele.
+                E mai degraba un <b>pod</b> decat un vehicul &mdash; un pod intre trecut si prezent,
+                intre stele indepartate si ochii tai, intre inceputul universului si clipa de acum.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">Lumina leaga totul</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Lumina conecteaza electromagnetismul de spatiu-timp. Lumea cuantica de cea clasica.
+                Trecutul de prezent. E, intr-un sens foarte real, &laquo;lipiciul&raquo; care tine la un loc intelegerea noastra a universului.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--violet)">Priveste cerul</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cand te uiti la Betelgeuse (steaua rosiatica din Orion), vezi lumina emisa acum 700 de ani.
+                Steaua ar fi putut deja sa explodeze intr-o supernova &mdash; dar nu stim inca, pentru ca lumina
+                acelei explozii nu a ajuns la noi.
+              </p>
+              <p class="muted" style="line-height:1.6">
+                Fiecare foton care iti loveste fata a calatorit ani, secole, milenii &mdash;
+                fara sa experimenteze o singura secunda din acea calatorie.
+              </p>
+              <div class="hr"></div>
+              <div class="viz" style="padding:14px;text-align:center">
+                <svg viewBox="0 0 400 160" role="img">
+                  <defs>
+                    <radialGradient id="starG" cx="50%" cy="50%" r="50%">
+                      <stop offset="0" stop-color="rgba(255,150,100,1)"/>
+                      <stop offset="0.3" stop-color="rgba(255,100,60,.6)"/>
+                      <stop offset="1" stop-color="rgba(255,100,60,0)"/>
+                    </radialGradient>
+                    <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="4"/>
+                    </filter>
+                  </defs>
+                  <!-- Stars background -->
+                  <circle cx="40" cy="30" r="1.5" fill="rgba(255,255,255,.5)"/>
+                  <circle cx="120" cy="15" r="1" fill="rgba(255,255,255,.3)"/>
+                  <circle cx="200" cy="45" r="1" fill="rgba(255,255,255,.4)"/>
+                  <circle cx="280" cy="20" r="1.5" fill="rgba(255,255,255,.35)"/>
+                  <circle cx="350" cy="35" r="1" fill="rgba(255,255,255,.3)"/>
+                  <circle cx="80" cy="50" r="1" fill="rgba(255,255,255,.25)"/>
+                  <circle cx="320" cy="55" r="1.2" fill="rgba(255,255,255,.35)"/>
+
+                  <!-- Betelgeuse -->
+                  <circle cx="200" cy="40" r="18" fill="url(#starG)" filter="url(#starGlow)"/>
+                  <circle cx="200" cy="40" r="8" fill="rgba(255,130,80,.9)"/>
+                  <text x="200" y="75" text-anchor="middle" font-size="11" fill="rgba(255,150,100,.8)">Betelgeuse</text>
+                  <text x="200" y="90" text-anchor="middle" font-size="9" fill="var(--faint)">~700 ani-lumina distanta</text>
+
+                  <!-- Photon path to eye -->
+                  <line x1="200" y1="50" x2="200" y2="120" stroke="rgba(255,150,100,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <circle cx="200" cy="50" r="3" fill="rgba(255,150,100,.5)">
+                    <animate attributeName="cy" from="50" to="120" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="1" to=".2" dur="2.5s" repeatCount="indefinite"/>
+                  </circle>
+
+                  <!-- Eye -->
+                  <ellipse cx="200" cy="130" rx="14" ry="8" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+                  <circle cx="200" cy="130" r="4" fill="rgba(122,215,255,.5)"/>
+                  <text x="200" y="152" text-anchor="middle" font-size="9" fill="var(--faint)">ochiul tau</text>
+                </svg>
+                <div class="small" style="margin-top:4px">700 de ani pentru noi. Zero secunde pentru foton.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala: ce inseamna toate astea?</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Susskind subliniaza ca, dupa 50 de ani de studiu, lumina ramane unul dintre cele mai ciudate lucruri
+                din univers &mdash; mai ciudata decat gaurile negre, decat Big Bang-ul, intr-un anumit sens chiar decat
+                mecanica cuantica, pentru ca lumina e &laquo;firul&raquo; care conecteaza toate aceste mistere.
+              </p>
+              <p>
+                Ideea centrala: lumina nu e ceea ce crezi. Nu e o unda simpla, nu e o particula simpla, nu e un
+                vehicul care merge din A in B. E o conexiune &mdash; un fir tesut in tesatura spatiu-timpului insusi,
+                care leaga evenimente ce pot fi separate de milioane de ani-lumina, dar care, din perspectiva fotonului,
+                sunt unul si acelasi lucru.
+              </p>
+              <p>
+                <b>Si asta e un fapt magnific.</b>
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre casetele de comentariu</h2>
+          <div class="chip">analiza vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul paginii, casetele galbene (marcate <code>data-commentary</code>) ofera comentarii de meta-nivel:
+            context suplimentar, nuante, sau perspective critice asupra afirmatiilor.
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa &laquo;Ascunde/Arata comentariile&raquo; din antet
+            pentru a comuta intre modul &laquo;doar continut&raquo; si &laquo;continut + analiza&raquo;.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si declinarea responsabilitatii:</b> Acest infografic interactiv traduce si vizualizeaza o prelegere a fizicianului Leonard Susskind
+        despre natura luminii. Toate vizualizarile si simulatoarele sunt conceptuale &mdash; nu sunt substitut pentru manuale de fizica sau cercetare primara.
+        Continutul a fost simplificat deliberat pentru accesibilitate.
+      </p>
+      <p style="margin-top:10px">
+        Leonard Susskind: profesor de fizica teoretica la Universitatea Stanford, co-inventator al teoriei corzilor si al holografiei.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Time Dilation Simulator
+    // ──────────────────────────────────────────────────────
+    const speedSlider = document.getElementById('speedSlider');
+    const speedReadout = document.getElementById('speedReadout');
+    const gammaValue = document.getElementById('gammaValue');
+    const gammaExplain = document.getElementById('gammaExplain');
+
+    function lorentzGamma(v) {
+      // v is fraction of c (0 to <1)
+      if (v >= 1) return Infinity;
+      return 1 / Math.sqrt(1 - v * v);
+    }
+
+    function renderDilation() {
+      const raw = parseInt(speedSlider.value);
+      const vFrac = raw / 1000; // 0 to 0.999
+      const vPct = (vFrac * 100).toFixed(1);
+      speedReadout.textContent = `${vPct}% c`;
+
+      const gamma = lorentzGamma(vFrac);
+      const gammaDisplay = gamma === Infinity ? '\u221E' : gamma.toFixed(2);
+      gammaValue.textContent = `\u03B3 = ${gammaDisplay}`;
+
+      if (gamma === Infinity) {
+        gammaExplain.textContent = 'Timpul se opreste complet. Asa experimenteaza fotonii.';
+      } else if (gamma > 50) {
+        gammaExplain.textContent = `1 an pentru tine = ${Math.round(gamma)} ani pe Pamant`;
+      } else if (gamma > 2) {
+        gammaExplain.textContent = `Ceasul tau merge de ${gamma.toFixed(1)}x mai incet`;
+      } else {
+        gammaExplain.textContent = `Efect mic: ceasul merge de ${gamma.toFixed(3)}x mai incet`;
+      }
+
+      // Draw curve
+      const W = 980, H = 380;
+      const pad = 70, padR = 40, padTop = 34, padBot = 60;
+      const gW = W - pad - padR;
+      const gH = H - padTop - padBot;
+
+      const maxGammaPlot = 20;
+      const points = 200;
+
+      let pathD = '';
+      let areaD = `M${pad},${padTop + gH}`;
+
+      for (let i = 0; i <= points; i++) {
+        const frac = i / points; // 0 to 1
+        const v = frac * 0.999;
+        const g = lorentzGamma(v);
+        const gClamped = Math.min(g, maxGammaPlot);
+
+        const x = pad + frac * gW;
+        const y = padTop + gH - (gClamped / maxGammaPlot) * gH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        pathD += `${cmd}${x},${y} `;
+        areaD += `L${x},${y} `;
+      }
+      areaD += `L${pad + gW},${padTop + gH} Z`;
+
+      document.getElementById('dilatCurve').setAttribute('d', pathD);
+      document.getElementById('dilatArea').setAttribute('d', areaD);
+
+      // Dot position
+      const dotFrac = vFrac / 0.999;
+      const dotG = Math.min(gamma, maxGammaPlot);
+      const dotX = pad + dotFrac * gW;
+      const dotY = padTop + gH - (dotG / maxGammaPlot) * gH;
+      document.getElementById('dilatDot').setAttribute('cx', dotX);
+      document.getElementById('dilatDot').setAttribute('cy', dotY);
+
+      // Vertical line
+      document.getElementById('dilatVLine').setAttribute('x1', dotX);
+      document.getElementById('dilatVLine').setAttribute('x2', dotX);
+
+      // Label
+      const labelEl = document.getElementById('dilatLabel');
+      labelEl.setAttribute('x', dotX);
+      labelEl.setAttribute('y', dotY - 14);
+      labelEl.setAttribute('text-anchor', 'middle');
+      labelEl.textContent = `${vPct}% c → \u03B3=${gammaDisplay}`;
+
+      // Grid
+      const grid = document.getElementById('dilatGrid');
+      grid.innerHTML = '';
+      // x-axis labels (speed %)
+      for (let p = 0; p <= 100; p += 10) {
+        const x = pad + (p / 100) * gW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', padTop);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', padTop + gH);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', padTop + gH + 18);
+        label.setAttribute('font-size', '10');
+        label.setAttribute('fill', 'rgba(255,255,255,.45)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = `${p}%`;
+        grid.appendChild(label);
+      }
+      // y-axis labels (gamma)
+      for (let g = 0; g <= maxGammaPlot; g += 5) {
+        const y = padTop + gH - (g / maxGammaPlot) * gH;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', pad);
+        line.setAttribute('y1', y);
+        line.setAttribute('x2', pad + gW);
+        line.setAttribute('y2', y);
+        line.setAttribute('stroke', 'rgba(255,255,255,.05)');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', pad - 8);
+        label.setAttribute('y', y + 4);
+        label.setAttribute('font-size', '10');
+        label.setAttribute('fill', 'rgba(255,255,255,.45)');
+        label.setAttribute('text-anchor', 'end');
+        label.textContent = `${g}`;
+        grid.appendChild(label);
+      }
+    }
+
+    speedSlider.addEventListener('input', renderDilation);
+    renderDilation();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpDilat').addEventListener('click', () => {
+      document.getElementById('dilat').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpSpectru').addEventListener('click', () => {
+      document.getElementById('spectru').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('jumpQuiz').addEventListener('click', () => {
+      document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz logic
+    // ──────────────────────────────────────────────────────
+    document.querySelectorAll('.quizQ').forEach(q => {
+      const correct = parseInt(q.dataset.correct);
+      const opts = q.querySelectorAll('.quizOpt');
+      const feedbacks = q.querySelectorAll('.quizFeedback');
+      let answered = false;
+
+      opts.forEach(opt => {
+        opt.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          const idx = parseInt(opt.dataset.idx);
+
+          opts.forEach(o => {
+            const oi = parseInt(o.dataset.idx);
+            if (oi === correct) {
+              o.classList.add('correct');
+            } else if (oi === idx && idx !== correct) {
+              o.classList.add('wrong');
+            }
+            o.style.pointerEvents = 'none';
+          });
+
+          if (idx === correct) {
+            feedbacks[0].style.display = 'block';
+          } else {
+            feedbacks[1].style.display = 'block';
+          }
+        });
+      });
+    });
+
+    document.getElementById('quizScoreBtn').addEventListener('click', () => {
+      const qs = document.querySelectorAll('.quizQ');
+      let total = qs.length;
+      let correct = 0;
+      let answered = 0;
+
+      qs.forEach(q => {
+        const opts = q.querySelectorAll('.quizOpt');
+        const hasAnswer = Array.from(opts).some(o => o.classList.contains('correct') || o.classList.contains('wrong'));
+        if (hasAnswer) {
+          answered++;
+          const userCorrect = Array.from(opts).some(o => {
+            return o.classList.contains('correct') && !Array.from(opts).some(x => x.classList.contains('wrong'));
+          });
+          // Check: if any .wrong exists, user got it wrong
+          const hasWrong = Array.from(opts).some(o => o.classList.contains('wrong'));
+          if (!hasWrong) correct++;
+        }
+      });
+
+      if (answered === 0) {
+        document.getElementById('quizScoreOut').innerHTML = '<b>Raspunde mai intai la cel putin o intrebare!</b>';
+        return;
+      }
+
+      const pct = Math.round((correct / total) * 100);
+      let msg = '';
+      if (pct === 100) msg = `${correct}/${total} (${pct}%) — Perfect! Ai inteles excelent natura luminii.`;
+      else if (pct >= 66) msg = `${correct}/${total} (${pct}%) — Foarte bine! Cateva nuante de revizuit.`;
+      else if (pct >= 33) msg = `${correct}/${total} (${pct}%) — Start bun. Reciteste sectiunile unde ai gresit.`;
+      else msg = `${correct}/${total} (${pct}%) — Lumina e complicata! Revizuieste infograficul si incearca din nou.`;
+
+      document.getElementById('quizScoreOut').innerHTML = `<b>Scorul tau:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('quizResetBtn').addEventListener('click', () => {
+      document.querySelectorAll('.quizQ').forEach(q => {
+        const opts = q.querySelectorAll('.quizOpt');
+        opts.forEach(o => {
+          o.classList.remove('correct', 'wrong');
+          o.style.pointerEvents = '';
+        });
+        q.querySelectorAll('.quizFeedback').forEach(f => f.style.display = 'none');
+        // Re-enable click by resetting answered state
+      });
+      // Re-bind click handlers
+      document.querySelectorAll('.quizQ').forEach(q => {
+        const correct = parseInt(q.dataset.correct);
+        const opts = q.querySelectorAll('.quizOpt');
+        const feedbacks = q.querySelectorAll('.quizFeedback');
+        let answered = false;
+
+        // Remove old listeners by cloning
+        opts.forEach(opt => {
+          const clone = opt.cloneNode(true);
+          opt.parentNode.replaceChild(clone, opt);
+        });
+
+        // Re-attach
+        const newOpts = q.querySelectorAll('.quizOpt');
+        newOpts.forEach(opt => {
+          opt.addEventListener('click', () => {
+            if (q._answered) return;
+            q._answered = true;
+            const idx = parseInt(opt.dataset.idx);
+            newOpts.forEach(o => {
+              const oi = parseInt(o.dataset.idx);
+              if (oi === correct) o.classList.add('correct');
+              else if (oi === idx && idx !== correct) o.classList.add('wrong');
+              o.style.pointerEvents = 'none';
+            });
+            if (idx === correct) feedbacks[0].style.display = 'block';
+            else feedbacks[1].style.display = 'block';
+          });
+        });
+        q._answered = false;
+      });
+      document.getElementById('quizScoreOut').innerHTML = '';
+      showToast('Test resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

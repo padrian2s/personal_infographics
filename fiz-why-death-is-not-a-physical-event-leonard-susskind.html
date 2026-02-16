@@ -1,0 +1,1641 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce moartea nu este un eveniment fizic — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv: argumentul lui Leonard Susskind ca moartea nu este un eveniment fizic discret, ci un concept emergent — termodinamica, teoria informatiei, mecanica cuantica." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,122,153,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+      flex-wrap:wrap;
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Comparison panels */
+    .compGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 640px){
+      .compGrid{grid-template-columns:1fr}
+    }
+    .compPanel{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:14px;
+    }
+    .compPanel h3{margin:0 0 8px;font-size:14px}
+    .compPanel p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .compPanel .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;border-radius:99px}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    /* Timeline */
+    .timeline{display:grid;gap:10px}
+    .timelineItem{
+      display:grid;grid-template-columns:50px 1fr;gap:12px;align-items:start;
+      border:1px solid rgba(255,255,255,.10);border-radius:14px;
+      background:rgba(0,0,0,.15);padding:12px;
+    }
+    .timelineYear{
+      font-family:var(--mono);font-size:13px;font-weight:700;
+      color:var(--violet);text-align:center;padding-top:2px;
+    }
+    .timelineItem h4{margin:0 0 4px;font-size:13px}
+    .timelineItem p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Thought experiment interactive */
+    .teGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    @media(max-width:740px){.teGrid{grid-template-columns:1fr}}
+    .teStep{
+      border:1px solid rgba(255,255,255,.12);border-radius:16px;
+      background:rgba(0,0,0,.18);padding:14px;text-align:center;
+      transition:border-color .3s,background .3s;
+    }
+    .teStep.active{border-color:rgba(187,167,255,.5);background:rgba(187,167,255,.08)}
+    .teStep .icon{font-size:32px;margin-bottom:8px;display:block}
+    .teStep h4{margin:0 0 6px;font-size:14px}
+    .teStep p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Vote buttons */
+    .voteRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center}
+    .voteBtn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.22);color:var(--text);
+      padding:12px 18px;border-radius:14px;cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      transition:transform .12s ease,border-color .12s ease,background .12s ease;
+      font-size:13px;font-weight:600;
+    }
+    .voteBtn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.26);background:rgba(255,255,255,.07)}
+    .voteBtn.selected{border-color:var(--violet);background:rgba(187,167,255,.15)}
+    .voteResult{text-align:center;margin-top:12px;font-size:13px;color:var(--muted);min-height:20px}
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:100;
+    }
+
+    /* Entropy bar animation */
+    .entropyBar{
+      height:28px;border-radius:14px;overflow:hidden;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);
+      position:relative;margin-top:8px;
+    }
+    .entropyBar .fill{
+      height:100%;border-radius:14px;
+      transition:width .5s ease,background .5s ease;
+    }
+    .entropyBar .label{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:600;color:var(--text);pointer-events:none;
+    }
+
+    /* Particle container */
+    .particleBox{
+      position:relative;width:100%;height:200px;
+      border:1px solid rgba(255,255,255,.10);border-radius:14px;
+      background:rgba(0,0,0,.15);overflow:hidden;
+    }
+    .particleBox canvas{width:100%;height:100%;display:block}
+
+    /* Hallmarks grid */
+    .conceptGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .conceptGrid{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .conceptGrid{grid-template-columns:1fr}
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+      .particleBox{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Abstract entropy/dissolution paths -->
+            <path d="M30,180 C100,160 150,40 250,100 C350,160 400,20 490,60" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M20,100 C80,180 180,30 280,130 C380,230 430,70 500,120" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <!-- Scattered "particles" representing information -->
+            <circle cx="120" cy="70" r="5" fill="rgba(255,255,255,.6)" />
+            <circle cx="250" cy="150" r="7" fill="rgba(255,255,255,.5)" />
+            <circle cx="380" cy="45" r="6" fill="rgba(255,255,255,.4)" />
+            <circle cx="440" cy="160" r="4" fill="rgba(255,255,255,.35)" />
+            <circle cx="80" cy="170" r="3" fill="rgba(255,255,255,.3)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica fundamentala &bull; termodinamica &bull; informatia &bull; emergenta</div>
+          <h1>De ce moartea nu este un eveniment fizic</h1>
+          <p class="subtitle">
+            Leonard Susskind, unul dintre cei mai importanti fizicieni teoreticieni, sustine ca <b>moartea nu este un moment precis</b> in care ceva fundamental se schimba in univers.
+            Este un concept emergent — o eticheta pe care noi o aplicam unui proces continuu si gradual, nu o trasatura fundamentala a realitatii fizice.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpEntropy">Simulatorul de entropie</button>
+            <button class="btn" id="jumpTE">Experimentul mental</button>
+            <button class="btn" id="toggleNotes">Comentarii on/off</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Afirmatii-cheie rezumate">
+          <div class="stat">
+            <div class="label">Teza centrala</div>
+            <div class="value" style="color:var(--violet)">Moartea =/= eveniment</div>
+            <div class="note">Moartea e un proces continuu, nu un moment discret</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cadru fizic</div>
+            <div class="value">Entropie & informatie</div>
+            <div class="note">A doua lege a termodinamicii + unitaritatea cuantica</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ce este viata?</div>
+            <div class="value" style="color:var(--good)">Departe de echilibru</div>
+            <div class="note">Organismele vii rezista dezordinii prin fluxuri de energie</div>
+          </div>
+          <div class="stat">
+            <div class="label">Informatia</div>
+            <div class="value" style="color:var(--cyan)">Nu se pierde niciodata</div>
+            <div class="note">In mecanica cuantica, informatia se amesteca dar nu dispare</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Section 1: Main thesis -->
+      <section class="card" aria-label="Teza principala">
+        <div class="cardHeader">
+          <h2>Argumentul central: moartea nu este scrisa in legile fizicii</h2>
+          <div class="chip"><b>Leonard Susskind</b> &mdash; fizician teoretician</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Susskind a lucrat toata viata la cele mai profunde niveluri ale realitatii fizice: mecanica cuantica, gauri negre, teoria informatiei.
+                Si cu cat a invatat mai mult despre fizica, cu atat a inteles mai bine ca <b>"viata" si "moartea" nu sunt concepte fundamentale</b>.
+              </p>
+              <p class="muted">
+                Ele sunt <b>proprietati emergente</b> ale sistemelor complexe — la fel cum "temperatura" nu exista la nivelul unui singur atom,
+                ci apare doar cand ai miliarde de atomi impreuna. "Viata" si "moartea" sunt etichete pe care noi le punem pe procese continue.
+              </p>
+              <p class="muted">
+                Din perspectiva fizicii fundamentale, cand un organism moare, tot ce se intampla este ca <b>moleculele se rearanjeaza</b>,
+                legaturile chimice se rup si se formeaza altele noi, energia se redistribuie, entropia creste. Atomii, electronii, fotonii —
+                sunt toti acolo, respectand aceleasi legi ale fizicii ca intotdeauna.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Concepte-cheie">
+                <div class="small" style="margin-bottom:10px">Cele 5 piloni ai argumentului:</div>
+                <div class="conceptGrid" style="grid-template-columns:1fr">
+                  <div class="pill"><span>Termodinamica — viata = departe de echilibru</span><span class="tag">fizica</span></div>
+                  <div class="pill"><span>Moartea celulara — proces gradual, fara frontiera</span><span class="tag">biologie</span></div>
+                  <div class="pill"><span>Teoria informatiei — informatia nu se distruge</span><span class="tag">cuantica</span></div>
+                  <div class="pill"><span>Emergenta — viata/moartea nu-s fundamentale</span><span class="tag">filosofie</span></div>
+                  <div class="pill"><span>Identitatea — cand esti tu "tu"?</span><span class="tag">minte</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Susskind nu spune ca moartea "nu conteaza" — evident ca are importanta pentru noi.
+            El spune ca, <b>la nivel fundamental</b>, universul nu face distinctie intre "viu" si "mort".
+            Aceste categorii sunt inventii ale mintii noastre, utile dar nu absolute.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Thermodynamics -->
+      <section class="row">
+        <div class="card" aria-label="Termodinamica vietii">
+          <div class="cardHeader">
+            <h2>Termodinamica vietii: Schrodinger si "Ce este viata?"</h2>
+            <div class="chip">Erwin Schrodinger, 1944</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In 1944, fizicianul Erwin Schrodinger (laureat Nobel) a publicat o carte mica dar profunda: <b>"Ce este viata?"</b>.
+              El a pus intrebarea: cum pot organismele vii sa-si mentina structura ordonata, cand a doua lege a termodinamicii spune ca
+              <b>dezordinea (entropia) creste mereu</b>?
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>A doua lege a termodinamicii</h3>
+                <p>Intr-un sistem inchis, entropia (dezordinea) creste mereu. Toate lucrurile tind spre echilibru — temperaturi egale, concentratii egale, uniformitate totala. Asta se numeste <b>echilibru termodinamic</b>.</p>
+                <div class="meta"><span class="badge">entropie</span><span class="badge">dezordine creste</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Raspunsul lui Schrodinger: "se hranesc cu entropie negativa"</h3>
+                <p>Organismele vii <b>nu sunt sisteme inchise</b>. Ele absorb energie cu entropie mica (mancare, lumina solara) si elimina deseuri cu entropie mare (caldura, CO2). Astfel, isi mentin ordinea interna exportand dezordine in mediu.</p>
+                <div class="meta"><span class="badge">sistem deschis</span><span class="badge">flux de energie</span></div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(255,122,153,.3)">
+                <h3>Concluzia-cheie: echilibrul termodinamic = moartea</h3>
+                <p>Daca un organism <b>ajunge la echilibru cu mediul</b> — nu mai schimba energie, nu mai face treaba — asta inseamna ca e mort. Viata, prin definitie, este o stare <b>departe de echilibru</b>.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">echilibru = moarte</span><span class="badge" style="color:var(--good)">departe de echilibru = viata</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Imaginati-va un frigider. Frigiderul mentine o temperatura scazuta in interior (ordine) dar elimina caldura in exterior (dezordine). Daca-l deconectezi, temperatura interioara creste pana ajunge egala cu a camerei. Asta e "moartea" frigiderului — a ajuns la echilibru.
+              Organismele vii functioneaza la fel, doar ca sunt mult mai complexe.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="entropyViz" aria-label="Simulatorul de entropie">
+          <div class="cardHeader">
+            <h2>Simulator: de la ordine la dezordine</h2>
+            <div class="chip">entropie interactiva</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Imaginati-va o celula. Cand primeste energie (glucoza, oxigen), isi mentine structura ordonata.
+              Cand se opreste fluxul de energie, ordinea se degradeaza — treptat, nu instantaneu.
+              <b>Cand exact "moare" celula?</b> Nu exista un moment precis.
+            </p>
+
+            <div class="particleBox">
+              <canvas id="particleCanvas"></canvas>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Flux de energie</span>
+                  <span class="readout" id="energyReadout">100%</span>
+                </label>
+                <input id="energySlider" type="range" min="0" max="100" value="100" />
+                <div class="small" style="margin-top:8px">Misca spre stanga pentru a "opri" energia. Observa cum particulele isi pierd structura treptat.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Entropie actuala</span>
+                  <span class="readout" id="entropyReadout">scazuta</span>
+                </label>
+                <div class="entropyBar">
+                  <div class="fill" id="entropyFill" style="width:15%;background:linear-gradient(90deg,var(--good),var(--warn))"></div>
+                  <div class="label" id="entropyLabel">15% — sistem ordonat</div>
+                </div>
+                <div class="small" style="margin-top:8px">Entropia creste pe masura ce energia scade — nu exista un punct magic de "moarte".</div>
+              </div>
+            </div>
+
+            <div class="legend">
+              <div class="key"><span class="sw" style="background:var(--good)"></span> Molecula ordonata</div>
+              <div class="key"><span class="sw" style="background:var(--warn)"></span> In degradare</div>
+              <div class="key"><span class="sw" style="background:var(--bad)"></span> Dezorganizata</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observati cum <b>nu exista un "click" clar</b> intre "viu" si "mort". Procesul e continuu.
+              La ce procent de entropie spunem ca celula e moarta? 50%? 80%? 99%? Alegerea e <b>a noastra</b>, nu a fizicii.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Cell death types -->
+      <section class="card" aria-label="Moartea celulara">
+        <div class="cardHeader">
+          <h2>Doua tipuri de moarte celulara — si niciuna nu e instantanee</h2>
+          <div class="chip">apoptoza vs. necroza</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            La nivel celular, exista doua tipuri principale de moarte. Si amandoua arata ca <b>moartea este un proces, nu un eveniment</b>.
+          </p>
+
+          <div class="compGrid">
+            <div class="compPanel" style="border-color:rgba(117,240,182,.25)">
+              <h3 style="color:var(--good)">Apoptoza — moartea "programata"</h3>
+              <p>
+                Celula se <b>dezasambla singura</b>, sistematic si ordonat. Se micsoreaza, ADN-ul se fragmenteaza in tipare specifice,
+                iar resturile sunt curatate de celulele vecine. <b>Necesita energie (ATP)</b> — e un proces activ, nu o prabusire.
+              </p>
+              <p style="margin-top:8px">
+                Se intampla <b>miliarde de ori pe zi</b> in corpul tau. Cand erai embrion, apoptoza a "sculptat" spatiile dintre degete ucigand celulele din membrana.
+              </p>
+              <div class="meta">
+                <span class="badge" style="color:var(--good)">ordonata</span>
+                <span class="badge">necesita ATP</span>
+                <span class="badge">controlata</span>
+              </div>
+            </div>
+            <div class="compPanel" style="border-color:rgba(255,122,153,.25)">
+              <h3 style="color:var(--bad)">Necroza — moartea "necontrolata"</h3>
+              <p>
+                Celula este ranita grav: lipsita de oxigen, expusa la toxine, distrusa fizic.
+                Se umfla, membranele se rup, continutul se varsa afara, provocand inflamatie.
+              </p>
+              <p style="margin-top:8px">
+                <b>Nici necroza nu e instantanee</b> — dureaza minute pana la ore. Si aceeasi celula poate fi la limita intre apoptoza si necroza:
+                daca are ATP, merge spre apoptoza; daca nu, spre necroza.
+              </p>
+              <div class="meta">
+                <span class="badge" style="color:var(--bad)">haos</span>
+                <span class="badge">fara control</span>
+                <span class="badge">inflamatie</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="viz" style="padding:14px">
+            <svg viewBox="0 0 980 180" role="img" aria-label="Spectrul continuu viata-moarte">
+              <defs>
+                <linearGradient id="specGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="var(--good)" />
+                  <stop offset="0.4" stop-color="var(--warn)" />
+                  <stop offset="0.7" stop-color="var(--orange)" />
+                  <stop offset="1" stop-color="var(--bad)" />
+                </linearGradient>
+              </defs>
+              <rect x="40" y="50" width="900" height="40" rx="20" fill="url(#specGrad)" opacity=".35" />
+              <rect x="40" y="50" width="900" height="40" rx="20" fill="none" stroke="rgba(255,255,255,.15)" />
+
+              <text x="60" y="42" font-size="12" fill="var(--good)" font-weight="700">Celula sanatoasa</text>
+              <text x="340" y="42" font-size="12" fill="var(--warn)" font-weight="700">Degradare graduala</text>
+              <text x="620" y="42" font-size="12" fill="var(--orange)" font-weight="700">Senescenta</text>
+              <text x="840" y="42" font-size="12" fill="var(--bad)" font-weight="700">Necroza</text>
+
+              <!-- Question marks along the spectrum -->
+              <text x="250" y="77" font-size="16" fill="rgba(255,255,255,.7)" text-anchor="middle">?</text>
+              <text x="490" y="77" font-size="18" fill="rgba(255,255,255,.8)" text-anchor="middle" font-weight="700">Unde e "moartea"?</text>
+              <text x="730" y="77" font-size="16" fill="rgba(255,255,255,.7)" text-anchor="middle">?</text>
+
+              <text x="490" y="120" font-size="13" fill="rgba(255,255,255,.55)" text-anchor="middle">Nu exista un prag natural — e un continuum</text>
+
+              <!-- Tick marks -->
+              <line x1="200" y1="92" x2="200" y2="110" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="200" y="128" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">ATP scade</text>
+
+              <line x1="400" y1="92" x2="400" y2="110" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="400" y="128" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Reparatii esueaza</text>
+
+              <line x1="600" y1="92" x2="600" y2="110" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="600" y="128" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Membrana se rupe</text>
+
+              <line x1="800" y1="92" x2="800" y2="110" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="800" y="128" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">Echilibru termic</text>
+
+              <text x="490" y="168" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">Fiecare "definitie" a mortii e o conventie — nu o lege fizica</text>
+            </svg>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observati paradoxul: apoptoza (moartea celulara programata) necesita <b>energie</b> — celula "moare" activ, nu pasiv.
+            E ca o fabrica care se dezasambla sistematic vs. una care ia foc. Amandoua ajung in acelasi loc, dar prin procese total diferite.
+            Niciuna nu are un "moment zero" clar.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Aging mechanisms -->
+      <section class="row">
+        <div class="card" aria-label="Imbatranirea">
+          <div class="cardHeader">
+            <h2>Imbatranirea: o moarte in miscare lenta</h2>
+            <div class="chip">telomere & mitocondrii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Imbatranirea este, intr-un sens, <b>o forma lenta de moarte</b> — o acumulare graduala de daune,
+              o pierdere progresiva a functiilor, o alunecare spre entropie mai mare. Doua mecanisme principale:
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Telomerele — ceasul celular</strong><span class="badge">cromozomi</span></div>
+                <p>
+                  Telomerele sunt "capace" protectoare la capetele cromozomilor. La fiecare diviziune celulara, ele <b>se scurteaza putin</b>.
+                  Dupa ~50-70 de diviziuni, devin prea scurte si celula nu se mai poate divide — asta se numeste <b>limita Hayflick</b>.
+                </p>
+                <div class="meter"><i style="width:65%;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad))"></i></div>
+                <p style="margin-top:6px">
+                  Celula intra in <b>senescenta</b>: e inca vie, consuma energie, dar nu se mai divide.
+                  E intr-o zona crepusculara intre viata si moarte. <b>Enzima telomeraza</b> poate reconstrui telomerele —
+                  celulele stem si celulele canceroase o folosesc.
+                </p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Mitocondriile — uzina de energie</strong><span class="badge">ATP</span></div>
+                <p>
+                  Mitocondriile produc ATP (moneda energetica a celulei). Au propriul ADN, care e <b>vulnerabil la daune</b>
+                  de la radicalii liberi generati chiar de procesul de productie a energiei.
+                </p>
+                <div class="meter"><i style="width:70%;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad))"></i></div>
+                <p style="margin-top:6px">
+                  Cu varsta, ADN-ul mitocondrial acumuleaza mutatii. Mitocondriile devin mai putin eficiente.
+                  E un <b>cerc vicios</b>: mitocondrii deteriorate → mai multi radicali liberi → mai multe daune → mai multa deteriorare.
+                  <b>Din nou: proces continuu, fara un moment zero.</b>
+                </p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Intrebarea lui Susskind: "Cand exact a murit celula? Cand functia mitocondriilor a scazut sub 50%? Sub 25%? Sub 10%?"
+              Nu exista un <b>prag natural</b>. E un continuum. Orice "definitie" a mortii e o <b>conventie</b> pe care noi o alegem.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Definitia arbitrara a mortii">
+          <div class="cardHeader">
+            <h2>Definitiile mortii sunt arbitrare</h2>
+            <div class="chip"><b>Problema:</b> limita in miscare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              "Putem defini moartea precis?" — Da, operational. Medicina face asta mereu.
+              Dar <b>definitiile sunt conventii</b>, nu legi fizice. Si ele se schimba cu tehnologia.
+            </p>
+
+            <div class="timeline">
+              <div class="timelineItem">
+                <div class="timelineYear">~1900</div>
+                <div>
+                  <h4>Inima se opreste = mort</h4>
+                  <p>Oprirea cardio-respiratorie era considerate ireversibila si definitiva.</p>
+                </div>
+              </div>
+              <div class="timelineItem">
+                <div class="timelineYear">1960+</div>
+                <div>
+                  <h4>Defibrilatorul schimba limita</h4>
+                  <p>Odinioara, stopul cardiac era ireversibil. Acum, cu defibrilatoare si CPR, multi "morti" sunt readusi la viata. Limita s-a mutat.</p>
+                </div>
+              </div>
+              <div class="timelineItem">
+                <div class="timelineYear">1968</div>
+                <div>
+                  <h4>"Moartea cerebrala" devine criteriu</h4>
+                  <p>Comitetul Harvard propune moartea cerebrala ca definitie legala. Dar "ireversibil" inseamna cu tehnologia de <b>acum</b> sau in <b>principiu</b>?</p>
+                </div>
+              </div>
+              <div class="timelineItem">
+                <div class="timelineYear">Azi</div>
+                <div>
+                  <h4>Crionica: inghetarea imediat dupa moartea clinica</h4>
+                  <p>Daca ingheti pe cineva si structura creierului se pastreaza, persoana e "moarta" sau "in suspensie"? Fizica nu da un raspuns clar.</p>
+                </div>
+              </div>
+              <div class="timelineItem">
+                <div class="timelineYear" style="color:var(--cyan)">Viitor?</div>
+                <div>
+                  <h4>Ce conditii de azi vor fi reversibile maine?</h4>
+                  <p>Limita mortii se misca cu fiecare descoperire tehnologica. Asta inseamna ca moartea nu e o proprietate fizica fixa.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Punctul-cheie: daca definitia mortii <b>se schimba cu tehnologia</b>, inseamna ca nu e fundamentata in fizica.
+              E ca si cum ai intreba "cand incepe seara?" — depinde de cine intrebi si ce criterii folosesti.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Information theory -->
+      <section class="card" aria-label="Teoria informatiei">
+        <div class="cardHeader">
+          <h2>Informatia nu se pierde niciodata — nici dupa moarte</h2>
+          <div class="chip"><b>unitaritate cuantica</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                O alta perspectiva: viata este un <b>sistem care mentine si proceseaza informatia</b>.
+                ADN-ul tau contine informatia genetica. Creierul tau contine amintiri, personalitate, cunostinte.
+                Celulele contin informatia concentratiilor moleculare.
+              </p>
+              <p class="muted">
+                Din aceasta perspectiva, moartea este <b>pierderea sau degradarea informatiei</b>.
+                Dar — si asta e subtilitatea — pierderea informatiei e <b>tot un proces continuu</b>:
+              </p>
+              <ul class="muted" style="padding-left:18px;line-height:1.7;font-size:13px">
+                <li>ADN-ul e <b>constant avariat</b> de radiatii si reactii chimice, dar e si constant reparat</li>
+                <li>Neuronii mor pe parcursul vietii — pierzi informatia amintirilor uitate</li>
+                <li>Celulele se inlocuiesc — majoritatea celulelor tale au fost inlocuite in ultimii 10 ani</li>
+                <li>La ce procent de pierdere spunem ca "ai murit"? 50% din neuroni? 90%? 99%?</li>
+              </ul>
+
+              <div class="flowNode" style="margin-top:12px;border-color:rgba(122,215,255,.3)">
+                <h3 style="color:var(--cyan)">Principiul unitaritatii cuantice</h3>
+                <p>
+                  In mecanica cuantica, <b>informatia nu se distruge niciodata</b>.
+                  Evolutia cuantica e reversibila. Chiar si cand informatia se amesteca, se raspandeste,
+                  se impleteste cu mediul — ea nu dispare. E doar <b>inaccesibila</b>.
+                </p>
+                <div class="meta"><span class="badge" style="color:var(--cyan)">in principiu, reversibil</span><span class="badge">in practica, imposibil</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Diagrama informatia la moarte">
+                <svg viewBox="0 0 460 400" role="img">
+                  <defs>
+                    <linearGradient id="infoG1" x1="0" x2="1" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(122,215,255,.4)" />
+                      <stop offset="1" stop-color="rgba(187,167,255,.4)" />
+                    </linearGradient>
+                    <filter id="softGlow2" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- Organized state -->
+                  <text x="230" y="28" font-size="13" fill="rgba(255,255,255,.7)" text-anchor="middle" font-weight="700">Informatia in organism</text>
+
+                  <g filter="url(#softGlow2)">
+                    <!-- Living: organized info -->
+                    <rect x="30" y="45" width="180" height="140" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(117,240,182,.4)"/>
+                    <text x="120" y="72" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">VIU — ordonat</text>
+                    <!-- Structured grid of dots -->
+                    <circle cx="60" cy="100" r="4" fill="var(--cyan)" opacity=".8"/><circle cx="80" cy="100" r="4" fill="var(--cyan)" opacity=".8"/>
+                    <circle cx="100" cy="100" r="4" fill="var(--violet)" opacity=".8"/><circle cx="120" cy="100" r="4" fill="var(--violet)" opacity=".8"/>
+                    <circle cx="140" cy="100" r="4" fill="var(--cyan)" opacity=".8"/><circle cx="160" cy="100" r="4" fill="var(--cyan)" opacity=".8"/>
+                    <circle cx="60" cy="120" r="4" fill="var(--violet)" opacity=".8"/><circle cx="80" cy="120" r="4" fill="var(--cyan)" opacity=".8"/>
+                    <circle cx="100" cy="120" r="4" fill="var(--cyan)" opacity=".8"/><circle cx="120" cy="120" r="4" fill="var(--violet)" opacity=".8"/>
+                    <circle cx="140" cy="120" r="4" fill="var(--violet)" opacity=".8"/><circle cx="160" cy="120" r="4" fill="var(--cyan)" opacity=".8"/>
+                    <circle cx="60" cy="140" r="4" fill="var(--cyan)" opacity=".8"/><circle cx="80" cy="140" r="4" fill="var(--violet)" opacity=".8"/>
+                    <circle cx="100" cy="140" r="4" fill="var(--violet)" opacity=".8"/><circle cx="120" cy="140" r="4" fill="var(--cyan)" opacity=".8"/>
+                    <circle cx="140" cy="140" r="4" fill="var(--cyan)" opacity=".8"/><circle cx="160" cy="140" r="4" fill="var(--violet)" opacity=".8"/>
+                    <text x="120" y="172" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Informatia e organizata</text>
+                  </g>
+
+                  <g filter="url(#softGlow2)">
+                    <!-- Dead: scattered info -->
+                    <rect x="250" y="45" width="180" height="140" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(255,122,153,.4)"/>
+                    <text x="340" y="72" font-size="12" fill="var(--bad)" text-anchor="middle" font-weight="700">MORT — dispersat</text>
+                    <!-- Scattered dots -->
+                    <circle cx="275" cy="97" r="4" fill="var(--cyan)" opacity=".4"/><circle cx="310" cy="112" r="4" fill="var(--violet)" opacity=".3"/>
+                    <circle cx="345" cy="88" r="4" fill="var(--cyan)" opacity=".35"/><circle cx="380" cy="130" r="4" fill="var(--violet)" opacity=".25"/>
+                    <circle cx="290" cy="145" r="4" fill="var(--violet)" opacity=".3"/><circle cx="360" cy="155" r="4" fill="var(--cyan)" opacity=".2"/>
+                    <circle cx="270" cy="125" r="4" fill="var(--cyan)" opacity=".25"/><circle cx="400" cy="100" r="4" fill="var(--violet)" opacity=".3"/>
+                    <circle cx="330" cy="140" r="4" fill="var(--cyan)" opacity=".2"/><circle cx="295" cy="85" r="4" fill="var(--violet)" opacity=".35"/>
+                    <circle cx="370" cy="105" r="4" fill="var(--cyan)" opacity=".3"/><circle cx="320" cy="160" r="4" fill="var(--violet)" opacity=".2"/>
+                    <circle cx="260" cy="160" r="4" fill="var(--cyan)" opacity=".15"/><circle cx="385" cy="150" r="4" fill="var(--violet)" opacity=".15"/>
+                    <circle cx="415" cy="85" r="4" fill="var(--cyan)" opacity=".2"/><circle cx="355" cy="170" r="4" fill="var(--violet)" opacity=".15"/>
+                    <text x="340" y="172" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Aceeasi informatie, raspandita</text>
+                  </g>
+
+                  <!-- Arrow -->
+                  <path d="M215 115 L245 115" stroke="rgba(255,255,255,.4)" stroke-width="2" marker-end="url(#arrowHead)"/>
+                  <defs><marker id="arrowHead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(255,255,255,.4)"/></marker></defs>
+
+                  <!-- Key insight box -->
+                  <rect x="30" y="210" width="400" height="80" rx="16" fill="rgba(122,215,255,.06)" stroke="rgba(122,215,255,.2)"/>
+                  <text x="230" y="240" font-size="13" fill="var(--cyan)" text-anchor="middle" font-weight="700">Concluzia fizicii cuantice:</text>
+                  <text x="230" y="260" font-size="12" fill="rgba(255,255,255,.7)" text-anchor="middle">Informatia care te constituie NU dispare cand mori.</text>
+                  <text x="230" y="278" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">Se amesteca si se disperseaza — dar exista inca, in principiu.</text>
+
+                  <!-- Black hole connection -->
+                  <rect x="30" y="310" width="400" height="75" rx="16" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.2)"/>
+                  <text x="230" y="336" font-size="13" fill="var(--violet)" text-anchor="middle" font-weight="700">Conexiunea cu gaurile negre:</text>
+                  <text x="230" y="356" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Susskind a demonstrat ca nici gaurile negre nu distrug informatia.</text>
+                  <text x="230" y="374" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">Radiatia Hawking pastreaza informatia in corelatii subtile.</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Asta nu inseamna ca "poti fi readus la viata" — cantitatea de informatie pe care ar trebui s-o urmaresti este astronomica,
+            iar precizia necesara e imposibila in practica. Dar <b>legile fizicii nu interzic asta in principiu</b>.
+            E un punct filozofic profund: universul nu "uita" niciodata.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Quantum mechanics & Emergence -->
+      <section class="row">
+        <div class="card" aria-label="Mecanica cuantica">
+          <div class="cardHeader">
+            <h2>Mecanica cuantica si pisica lui Schrodinger</h2>
+            <div class="chip">observer-dependent</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In mecanica cuantica, <b>observarea joaca un rol crucial</b>. Inainte de a masura un sistem cuantic,
+              acesta nu are proprietati definite — e intr-o superpozitie, o combinatie de stari diferite.
+            </p>
+
+            <div class="viz" aria-label="Pisica lui Schrodinger">
+              <svg viewBox="0 0 980 220" role="img">
+                <defs>
+                  <filter id="boxGlow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#boxGlow)">
+                  <!-- The sealed box -->
+                  <rect x="60" y="30" width="280" height="150" rx="18" fill="rgba(0,0,0,.25)" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="200" y="60" font-size="13" fill="rgba(255,255,255,.7)" text-anchor="middle" font-weight="700">Cutia inchisa</text>
+                  <text x="200" y="82" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">atom radioactiv + otrava + pisica</text>
+
+                  <!-- Superposition symbol -->
+                  <text x="200" y="125" font-size="20" fill="var(--violet)" text-anchor="middle" font-weight="700">|vie> + |moarta></text>
+                  <text x="200" y="148" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">superpozitie cuantica</text>
+                  <text x="200" y="168" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="middle">(conceptual, nu literal)</text>
+
+                  <!-- Arrow to observation -->
+                  <path d="M345 105 L420 105" stroke="rgba(255,255,255,.3)" stroke-width="2" marker-end="url(#arrowHead)"/>
+                  <text x="383" y="95" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">observare</text>
+
+                  <!-- After observation -->
+                  <rect x="425" y="30" width="240" height="65" rx="14" fill="rgba(117,240,182,.06)" stroke="rgba(117,240,182,.3)"/>
+                  <text x="545" y="55" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">Rezultat A: vie</text>
+                  <text x="545" y="75" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">atomul nu s-a dezintegrat</text>
+
+                  <text x="545" y="105" font-size="14" fill="rgba(255,255,255,.4)" text-anchor="middle">sau</text>
+
+                  <rect x="425" y="115" width="240" height="65" rx="14" fill="rgba(255,122,153,.06)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="545" y="140" font-size="12" fill="var(--bad)" text-anchor="middle" font-weight="700">Rezultat B: moarta</text>
+                  <text x="545" y="160" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">atomul s-a dezintegrat</text>
+
+                  <!-- Key point -->
+                  <rect x="700" y="40" width="250" height="130" rx="16" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.2)"/>
+                  <text x="825" y="68" font-size="12" fill="var(--violet)" text-anchor="middle" font-weight="700">Ideea lui Susskind:</text>
+                  <text x="825" y="90" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">"Vie" sau "moarta" depind</text>
+                  <text x="825" y="108" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">de cine masoara si ce</text>
+                  <text x="825" y="126" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">criterii alege.</text>
+                  <text x="825" y="150" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">Ca "acum" in relativitate:</text>
+                  <text x="825" y="164" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">depinde de cadrul de referinta.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind face o analogie puternica: "viu" si "mort" sunt ca <b>"acum" in teoria relativitatii</b>.
+              "Acum" depinde de cadrul de referinta al observatorului — nu e un concept absolut.
+              La fel, "mort" depinde de criteriile pe care le alege observatorul — nu e o categorie fundamentala in natura.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Proprietati emergente">
+          <div class="cardHeader">
+            <h2>Emergenta: viata si moartea nu-s in ecuatii</h2>
+            <div class="chip">fundamental vs. emergent</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In fizica, exista o distinctie fundamentala intre <b>proprietati fundamentale</b> (care apar in legile de baza)
+              si <b>proprietati emergente</b> (care apar din comportamentul colectiv al multor particule).
+            </p>
+
+            <div class="compGrid">
+              <div class="compPanel" style="border-color:rgba(122,215,255,.25)">
+                <h3 style="color:var(--cyan)">Proprietati fundamentale</h3>
+                <p>Apar in ecuatiile de baza ale fizicii. Exista la nivelul particulelor individuale.</p>
+                <div class="meta">
+                  <span class="badge" style="color:var(--cyan)">masa</span>
+                  <span class="badge" style="color:var(--cyan)">sarcina electrica</span>
+                  <span class="badge" style="color:var(--cyan)">spin</span>
+                </div>
+              </div>
+              <div class="compPanel" style="border-color:rgba(255,179,138,.25)">
+                <h3 style="color:var(--orange)">Proprietati emergente</h3>
+                <p>Apar din comportamentul colectiv. Nu exista la nivelul unei singure particule.</p>
+                <div class="meta">
+                  <span class="badge" style="color:var(--orange)">temperatura</span>
+                  <span class="badge" style="color:var(--orange)">presiune</span>
+                  <span class="badge" style="color:var(--orange)">viata</span>
+                  <span class="badge" style="color:var(--bad)">moartea</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Temperatura = emergenta</h3>
+                <p>O singura molecula nu are "temperatura". Temperatura este o proprietate statistica a <b>miliardelor</b> de molecule impreuna.
+                E reala? Da, e utila. E fundamentala? Nu — e o descriere de nivel inalt.</p>
+              </div>
+              <div class="flowNode">
+                <h3>Viata = emergenta</h3>
+                <p>Un singur atom nu e "viu". Viata apare din organizarea complexa si interactiunile a <b>miliardelor</b> de molecule in configuratii specifice.
+                Nu apare nicaieri in ecuatia lui Schrodinger.</p>
+              </div>
+              <div class="flowNode" style="border-color:rgba(255,122,153,.25)">
+                <h3>Moartea = emergenta</h3>
+                <p>Fiind absenta vietii, moartea e si ea emergenta. <b>Nu corespunde niciunui termen specific</b> in legile termodinamicii sau mecanicii cuantice.
+                E o descriere a ceea ce se intampla cand un anumit tip de organizare complexa se destrama.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Asta e nucleul argumentului: <b>moleculele care te compun nu stiu ca sunt vii</b>.
+              Nu stiu nici cand sunt "moarte". Ele doar respecta legile fizicii — mecanica cuantica, termodinamica, chimie.
+              "Viata" si "moartea" sunt povestile pe care noi le spunem despre aceste molecule.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Thought experiment -->
+      <section class="card" id="thoughtExp" aria-label="Experimentul mental">
+        <div class="cardHeader">
+          <h2>Experimentul mental: scanarea si reconstructia creierului</h2>
+          <div class="chip"><b>identitate</b> &mdash; cand esti tu "tu"?</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Susskind propune un experiment mental care ilustreaza ambiguitatea conceptului de moarte:
+          </p>
+
+          <div class="teGrid" id="teSteps">
+            <div class="teStep active" data-step="1">
+              <span class="icon" aria-hidden="true">1</span>
+              <h4>Scanare completa</h4>
+              <p>Tehnologia scaneaza creierul tau la nivel molecular — fiecare neuron, fiecare sinapsa, fiecare molecula e inregistrata.</p>
+            </div>
+            <div class="teStep" data-step="2">
+              <span class="icon" aria-hidden="true">2</span>
+              <h4>Distrugere</h4>
+              <p>Creierul original e distrus. Esti "mort" dupa orice definitie rezonabila. Dar scanarea — informatia completa — e pastrata.</p>
+            </div>
+            <div class="teStep" data-step="3">
+              <span class="icon" aria-hidden="true">3</span>
+              <h4>Reconstructie (10 ani mai tarziu)</h4>
+              <p>Folosind nanotehnologie, creierul e reconstruit atom cu atom din scanare, intr-un corp clonat. Persoana se trezeste cu toate amintirile tale.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="text-align:center">
+            <p class="muted" style="margin:0 0 8px"><b>Intrebarea lui Susskind:</b></p>
+            <p style="font-size:16px;font-weight:700;color:var(--violet);margin:0 0 4px">Persoana reconstruita esti TU?</p>
+            <p class="muted" style="font-size:13px;margin:0">Ai murit si asta e o copie? Sau ai supravietuit cu o pauza de 10 ani?</p>
+          </div>
+
+          <div class="voteRow">
+            <button class="voteBtn" id="voteDA" onclick="handleVote('da')">Da, sunt eu — informatia a fost pastrata</button>
+            <button class="voteBtn" id="voteNU" onclick="handleVote('nu')">Nu, e o copie — eu am murit</button>
+            <button class="voteBtn" id="voteAMB" onclick="handleVote('ambiguu')">E ambiguu — depinde de definitie</button>
+          </div>
+          <div class="voteResult" id="voteResult"></div>
+
+          <div class="hr"></div>
+
+          <div class="split">
+            <div class="flowNode">
+              <h3>Raspunsul lui Susskind:</h3>
+              <p>
+                <b>Fizica nu raspunde la aceasta intrebare.</b> Fizica este identica indiferent daca numesti persoana reconstruita "tu" sau "o copie a ta".
+                Intrebarea e despre <b>identitate personala</b>, nu despre fizica. Si asta demonstreaza ca moartea este ambigua.
+              </p>
+            </div>
+            <div class="flowNode">
+              <h3>Nu e atat de ireal pe cat pare:</h3>
+              <p>
+                Deja putem <b>conserva tesuturi biologice prin vitrificare</b>, putem stoca organe pentru transplant,
+                putem <b>ingheta embrioni si ii aducem la viata dupa decenii</b>.
+                Limita dintre viu si mort e mai neclara decat sugereaza conceptul nostru cotidian.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Experimentul mental nu e menit sa rezolve problema — ci sa o expuna.
+            Daca nu exista un raspuns obiectiv la "esti acelasi?" (si nu exista), atunci moartea nu poate fi un eveniment fizic precis.
+            Este <b>un concept dependent de definitii, perspective si filosofie</b> — nu de ecuatii.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Identity and daily change -->
+      <section class="card" aria-label="Identitate si schimbare">
+        <div class="cardHeader">
+          <h2>Esti aceeasi persoana ca acum 10 ani?</h2>
+          <div class="chip">identitate & persistenta</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Daca moartea e un proces gradual, atunci intrebarile despre <b>identitatea personala</b> devin si mai complexe.
+            Gandeste-te:
+          </p>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Celulele se inlocuiesc</strong><span class="badge">biologie</span></div>
+              <p>Majoritatea celulelor tale au fost inlocuite in ultimii 7-10 ani. Material, esti alt organism decat cel de acum un deceniu.</p>
+              <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Neuronii mor mereu</strong><span class="badge">creier</span></div>
+              <p>Pierzi neuroni constant de-a lungul vietii. Amintiri se sterg, abilitati se degradeaza — dar esti inca "tu".</p>
+              <div class="meter"><i style="width:60%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Amintirile se modifica</strong><span class="badge">memorie</span></div>
+              <p>Amintirile nu sunt inregistrari fixe — se reconstruiesc de fiecare data cand le accesezi, cu mici modificari.</p>
+              <div class="meter"><i style="width:70%;background:linear-gradient(90deg,var(--orange),var(--bad))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Personalitatea se schimba</strong><span class="badge">psihologie</span></div>
+              <p>Valorile, preferintele, reactiile tale se schimba gradual. "Tu" de la 20 de ani e foarte diferit de "tu" de la 50.</p>
+              <div class="meter"><i style="width:55%;background:linear-gradient(90deg,var(--violet),var(--cyan))"></i></div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="flowNode" style="border-color:rgba(187,167,255,.3)">
+            <h3 style="color:var(--violet)">Intrebarea lui Susskind:</h3>
+            <p>
+              "La ce moment a murit 'vechiul tu' si a inceput 'noul tu'? Nu exista raspuns — pentru ca intrebarea presupune o <b>dihotomie falsa</b>.
+              Schimbarea e continua. Identitatea e un spectru, nu un comutator binar."
+            </p>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta perspectiva nu diminueaza importanta mortii sau a vietii.
+            Ci sugereaza ca <b>granita dintre ele e mai mult un gradient decat o linie</b>.
+            La fel cum "dimineata" se transforma insesizabil in "amiaza" — nu exista un moment precis de tranzitie.
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Conclusions -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Ce inseamna toate astea? Concluzii si implicatii</h2>
+          <div class="chip"><b>sinteza</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce spune Susskind:</h3>
+              <p class="muted" style="margin:0;line-height:1.7">
+                <b>1)</b> Moartea nu e un moment discret — e un proces continuu de crestere a entropiei.<br>
+                <b>2)</b> Informatia care te constituie nu se distruge — se amesteca si se disperseaza.<br>
+                <b>3)</b> "Viu" si "mort" sunt proprietati emergente — etichete utile, nu legi ale naturii.<br>
+                <b>4)</b> Definirea mortii depinde de observator si de criterii alese — nu de fizica.<br>
+                <b>5)</b> Legile fizicii nu interzic, in principiu, reversibilitatea — doar practica o face imposibila.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce NU spune:</h3>
+              <p class="muted" style="margin:0;line-height:1.7">
+                <b>Nu spune</b> ca moartea nu conteaza. Evident ca are importanta profunda — emotional, social, existential.<br><br>
+                <b>Nu spune</b> ca putem invinge moartea. Obstocolele practice sunt enorme, probabil insurmontabile.<br><br>
+                <b>Nu spune</b> ca definitiile medicale sunt inutile. Sunt esentiale pentru practica clinica.<br><br>
+                <b>Spune</b> ca, din perspectiva fizicii fundamentale, moartea e o <b>descriere de nivel inalt</b>, nu o trasatura a realitatii.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala: de ce conteaza aceasta perspectiva?</strong><span class="hint">click pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Aceasta perspectiva conteaza din trei motive:
+              </p>
+              <p>
+                <b>1) Extensia vietii:</b> Daca moartea nu e ireversibila in principiu, ci doar in practica, atunci progresul tehnologic ar putea, teoretic, sa mute limita.
+                Nu "vindeca" moartea — dar sugereaza ca nu exista o bariera fizica absoluta.
+              </p>
+              <p>
+                <b>2) Identitate:</b> Ne forteaza sa gandim mai nuantat despre ce inseamna sa fii "tu". Daca te schimbi gradual pe parcursul vietii,
+                "moartea" e poate doar o schimbare mai radicala — nu un eveniment complet diferit.
+              </p>
+              <p>
+                <b>3) Relatia noastra cu realitatea:</b> Ne aminteste ca multe dintre conceptele pe care le consideram "reale" (viata, moarte, identitate)
+                sunt de fapt <b>modele mentale</b> — utile, dar nu absolute. Universul nu opereaza cu aceste categorii. Noi le inventam.
+              </p>
+            </div>
+          </details>
+
+          <details data-commentary>
+            <summary><strong>Nota despre nivelul de evidenta</strong><span class="hint">click pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Argumentul lui Susskind se bazeaza pe fizica bine stabilita (termodinamica, mecanica cuantica, teoria informatiei).
+                Partea despre emergenta si identitate este mai <b>filozofica</b> decat stiintifica.
+                Concluzia "moartea nu e un eveniment fizic" este o <b>afirmatie despre ontologie</b> (natura realitatii),
+                nu un rezultat experimental. Este o interpretare — profunda si bine argumentata, dar deschisa dezbaterii.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre modul comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul "comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul acestei pagini, casetele violet (marcate cu <code>data-commentary</code>) ofera comentarii de meta-nivel:
+            ce inseamna afirmatia, cat de puternica e, ce alternative exista.
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Comentarii on/off" in antet pentru a le ascunde/arata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si nota:</b> Acest infografic interactiv traduce si vizualizeaza argumentul lui Leonard Susskind despre natura mortii din perspectiva fizicii fundamentale.
+        Nu este consiliere medicala sau filozofica. Vizualizarile si simulatoarele sunt instrumente conceptuale menite sa ajute la intelegerea ideilor, nu substitute pentru lectura originala.
+      </p>
+      <p style="margin-top:10px">
+        Toti termenii stiintifici sunt explicati in termeni simpli, accesibili. Pentru aprofundare: cautati "unitaritate cuantica", "paradoxul informatiei din gaurile negre", "proprietati emergente in fizica".
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Particle Entropy Simulator
+    // ──────────────────────────────────────────────────────
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    const energySlider = document.getElementById('energySlider');
+    const energyReadout = document.getElementById('energyReadout');
+    const entropyReadout = document.getElementById('entropyReadout');
+    const entropyFill = document.getElementById('entropyFill');
+    const entropyLabel = document.getElementById('entropyLabel');
+
+    let particles = [];
+    const PARTICLE_COUNT = 80;
+    let animId;
+
+    function initCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+    }
+
+    function createParticles() {
+      particles = [];
+      const w = canvas.width / window.devicePixelRatio;
+      const h = canvas.height / window.devicePixelRatio;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      // Create organized grid in center (like a cell structure)
+      const cols = 10;
+      const rows = 8;
+      const spacing = 14;
+      const startX = cx - (cols * spacing) / 2;
+      const startY = cy - (rows * spacing) / 2;
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const homeX = startX + col * spacing + spacing / 2;
+        const homeY = startY + row * spacing + spacing / 2;
+        particles.push({
+          x: homeX,
+          y: homeY,
+          homeX: homeX,
+          homeY: homeY,
+          vx: 0,
+          vy: 0,
+          radius: 3 + Math.random() * 2,
+          type: Math.random() < 0.5 ? 'a' : 'b', // two types
+          entropy: 0
+        });
+      }
+    }
+
+    function updateParticles() {
+      const energy = parseInt(energySlider.value) / 100; // 1 = full energy, 0 = dead
+      const chaos = 1 - energy; // Higher chaos when less energy
+      const w = canvas.width / window.devicePixelRatio;
+      const h = canvas.height / window.devicePixelRatio;
+
+      particles.forEach(p => {
+        // Target entropy for this particle
+        const targetEntropy = chaos;
+        p.entropy += (targetEntropy - p.entropy) * 0.02;
+
+        // When energy is high, particles stick to home positions
+        // When energy is low, they drift randomly
+        const homeForce = energy * 0.08;
+        const randomForce = p.entropy * 0.5;
+
+        // Pull toward home
+        p.vx += (p.homeX - p.x) * homeForce;
+        p.vy += (p.homeY - p.y) * homeForce;
+
+        // Random drift
+        p.vx += (Math.random() - 0.5) * randomForce;
+        p.vy += (Math.random() - 0.5) * randomForce;
+
+        // Damping
+        p.vx *= 0.92;
+        p.vy *= 0.92;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Bounce off walls
+        if (p.x < p.radius) { p.x = p.radius; p.vx *= -0.5; }
+        if (p.x > w - p.radius) { p.x = w - p.radius; p.vx *= -0.5; }
+        if (p.y < p.radius) { p.y = p.radius; p.vy *= -0.5; }
+        if (p.y > h - p.radius) { p.y = h - p.radius; p.vy *= -0.5; }
+      });
+    }
+
+    function drawParticles() {
+      const w = canvas.width / window.devicePixelRatio;
+      const h = canvas.height / window.devicePixelRatio;
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw connections between nearby particles when ordered
+      const energy = parseInt(energySlider.value) / 100;
+      if (energy > 0.3) {
+        ctx.strokeStyle = `rgba(122,215,255,${energy * 0.15})`;
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 20 * energy + 5) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        // Color based on entropy
+        let r, g, b, a;
+        if (p.entropy < 0.33) {
+          // Green (ordered)
+          r = 117; g = 240; b = 182; a = 0.9 - p.entropy * 0.3;
+        } else if (p.entropy < 0.66) {
+          // Yellow/orange (degrading)
+          const t = (p.entropy - 0.33) / 0.33;
+          r = 255; g = Math.round(210 - t * 30); b = Math.round(122 - t * 20); a = 0.7;
+        } else {
+          // Red (disordered)
+          r = 255; g = 122; b = 153; a = 0.5 + (1 - p.entropy) * 0.3;
+        }
+
+        // Glow
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${a * 0.15})`;
+        ctx.fill();
+
+        // Particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+        ctx.fill();
+      });
+    }
+
+    function updateEntropyDisplay() {
+      const energy = parseInt(energySlider.value);
+      energyReadout.textContent = energy + '%';
+
+      const entropy = Math.round(100 - energy * 0.85);
+      const entropyPct = entropy + '%';
+
+      entropyFill.style.width = entropyPct;
+
+      let label, color, readoutText;
+      if (entropy < 30) {
+        label = entropy + '% — sistem ordonat (viu)';
+        color = 'linear-gradient(90deg,var(--good),var(--warn))';
+        readoutText = 'scazuta';
+      } else if (entropy < 55) {
+        label = entropy + '% — in degradare';
+        color = 'linear-gradient(90deg,var(--warn),var(--orange))';
+        readoutText = 'medie';
+      } else if (entropy < 80) {
+        label = entropy + '% — grav deteriorat';
+        color = 'linear-gradient(90deg,var(--orange),var(--bad))';
+        readoutText = 'ridicata';
+      } else {
+        label = entropy + '% — aproape echilibru (mort?)';
+        color = 'linear-gradient(90deg,var(--bad),rgba(255,122,153,.5))';
+        readoutText = 'maxima';
+      }
+
+      entropyLabel.textContent = label;
+      entropyFill.style.background = color;
+      entropyReadout.textContent = readoutText;
+    }
+
+    function animate() {
+      updateParticles();
+      drawParticles();
+      animId = requestAnimationFrame(animate);
+    }
+
+    energySlider.addEventListener('input', updateEntropyDisplay);
+
+    // Init
+    initCanvas();
+    createParticles();
+    updateEntropyDisplay();
+    animate();
+
+    window.addEventListener('resize', () => {
+      initCanvas();
+      createParticles();
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Thought Experiment Steps
+    // ──────────────────────────────────────────────────────
+    const teSteps = document.querySelectorAll('.teStep');
+    let currentStep = 0;
+
+    function cycleSteps() {
+      teSteps.forEach(s => s.classList.remove('active'));
+      teSteps[currentStep].classList.add('active');
+      currentStep = (currentStep + 1) % teSteps.length;
+    }
+    setInterval(cycleSteps, 3000);
+
+    teSteps.forEach((step, i) => {
+      step.addEventListener('click', () => {
+        teSteps.forEach(s => s.classList.remove('active'));
+        step.classList.add('active');
+        currentStep = (i + 1) % teSteps.length;
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Vote system
+    // ──────────────────────────────────────────────────────
+    const votes = { da: 0, nu: 0, ambiguu: 0 };
+    // Simulate some "existing" votes for interest
+    votes.da = Math.floor(Math.random() * 40) + 25;
+    votes.nu = Math.floor(Math.random() * 30) + 15;
+    votes.ambiguu = Math.floor(Math.random() * 50) + 30;
+
+    function handleVote(choice) {
+      votes[choice]++;
+      document.querySelectorAll('.voteBtn').forEach(b => b.classList.remove('selected'));
+      document.getElementById(choice === 'da' ? 'voteDA' : choice === 'nu' ? 'voteNU' : 'voteAMB').classList.add('selected');
+
+      const total = votes.da + votes.nu + votes.ambiguu;
+      const pctDa = Math.round(votes.da / total * 100);
+      const pctNu = Math.round(votes.nu / total * 100);
+      const pctAmb = Math.round(votes.ambiguu / total * 100);
+
+      document.getElementById('voteResult').innerHTML =
+        `<b>Rezultate:</b> "Da, sunt eu" <span style="color:var(--good)">${pctDa}%</span> &bull; ` +
+        `"Nu, e o copie" <span style="color:var(--bad)">${pctNu}%</span> &bull; ` +
+        `"E ambiguu" <span style="color:var(--violet)">${pctAmb}%</span> ` +
+        `<span style="color:var(--faint)">(${total} voturi simulate)</span>`;
+
+      showToast('Votul tau a fost inregistrat!');
+    }
+    // Make handleVote global
+    window.handleVote = handleVote;
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpEntropy').addEventListener('click', () => {
+      document.getElementById('entropyViz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpTE').addEventListener('click', () => {
+      document.getElementById('thoughtExp').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1624 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce cerul nu este in timp real — Leonard Susskind — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv: nimic din ce vezi nu se intampla acum. Lumina calatoreste cu viteza finita, atmosfera o curbeaza si o intarzie. Bazat pe o prezentare de Leonard Susskind." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Delay table */
+    .delayTable{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+    .delayTable th{
+      text-align:left;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--faint);
+      padding:8px 10px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .delayTable td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+    .delayTable tr:hover td{background:rgba(255,255,255,.03)}
+    .delayTable .val{color:var(--text);font-weight:700;font-family:var(--mono);font-size:14px}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Hallmarks list adapted for delay objects */
+    .delayCards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .delayCards{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .delayCards{grid-template-columns:1fr}
+    }
+
+    /* Distance calculator */
+    #calcResult{
+      margin-top:12px;
+      padding:14px;
+      border:1px solid rgba(122,215,255,.3);
+      border-radius:14px;
+      background:rgba(122,215,255,.06);
+      font-size:14px;
+      min-height:60px;
+      transition:all .3s ease;
+    }
+
+    /* Animated photon path */
+    @keyframes photonTravel {
+      0% { offset-distance: 0%; opacity:1; }
+      100% { offset-distance: 100%; opacity:.3; }
+    }
+    .photon{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 12px var(--cyan), 0 0 24px rgba(122,215,255,.4);
+      position:absolute;
+    }
+
+    /* Refraction diagram labels */
+    .refractLabel{
+      font-size:11px;
+      fill:var(--muted);
+      font-family:var(--sans);
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Stylized light rays bending through atmosphere -->
+            <path d="M40,20 C120,30 180,80 250,120 C320,160 400,180 500,190" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <path d="M20,60 C100,50 200,100 300,140 C380,170 440,160 500,150" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <path d="M80,10 C160,40 240,110 340,130 C400,142 460,120 510,100" fill="none" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" opacity=".4" />
+            <!-- Stars / photons -->
+            <circle cx="40" cy="20" r="6" fill="rgba(255,255,255,.7)" />
+            <circle cx="20" cy="60" r="5" fill="rgba(255,255,255,.5)" />
+            <circle cx="80" cy="10" r="4" fill="rgba(255,255,255,.45)" />
+            <circle cx="500" cy="190" r="10" fill="rgba(122,215,255,.4)" />
+            <circle cx="500" cy="150" r="8" fill="rgba(187,167,255,.35)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> fizica luminii &bull; relativitate &bull; observare &bull; atmosfera</div>
+          <h1>De ce cerul nu este in timp real</h1>
+          <p class="subtitle">
+            Nimic din ceea ce vezi nu se intampla <b>acum</b>. Stelele, Luna, Soarele, norii, chiar si cerul albastru
+            sunt imagini din trecut. Lumina calatoreste cu viteza finita, atmosfera o curbeaza si o intarzie.
+            Cerul este o <b>redare intarziata</b> a unor evenimente care s-au petrecut deja.
+            Bazat pe o prezentare de <b>Leonard Susskind</b>.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Calculeaza intarzierile</button>
+            <button class="btn" id="jumpRefract">Refractia atmosferica</button>
+            <button class="btn" id="toggleNotes">Comentarii ON / OFF</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Cifre cheie">
+          <div class="stat">
+            <div class="label">Viteza luminii in vid</div>
+            <div class="value" style="color:var(--cyan)">299.792 km/s</div>
+            <div class="note">Limita cosmica. Nimic nu o poate depasi.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Viteza luminii in aer</div>
+            <div class="value" style="color:var(--violet)">299.703 km/s</div>
+            <div class="note">Cu ~90 km/s mai lenta decat in vid.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Intarzierea Soarelui</div>
+            <div class="value" style="color:var(--orange)">8 min 20 sec</div>
+            <div class="note">Soarele pe care il vezi exista in trecutul cu 8+ minute.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Zi suplimentara / an</div>
+            <div class="value" style="color:var(--good)">~24 ore extra</div>
+            <div class="note">Refractia atmosferica ne ofera +4 min lumina/zi.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTIUNEA 1: Ideea principala -->
+      <section class="card" aria-label="Ideea centrala">
+        <div class="cardHeader">
+          <h2>Ideea centrala: observarea este mereu intarziata</h2>
+          <div class="chip"><b>c = finit</b> &rarr; intarziere universala</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Lumina calatoreste extrem de repede, dar <b>nu instantaneu</b>. Orice vezi, de la un obiect la 1 metru distanta
+                pana la galaxii de la miliarde de ani-lumina, este o imagine din trecut. Intarzierea depinde de distanta:
+                cu cat obiectul e mai departe, cu atat "trecutul" pe care il vezi e mai indepartat.
+              </p>
+              <p class="muted">
+                Pentru obiecte din jur (aceeasi camera, aceeasi cladire), intarzierea e atat de mica incat e imposibil de simtit:
+                <b>nanosecunde</b> (miliardimi de secunda). Dar pe masura ce privim mai departe, intarzierile cresc
+                la <b>microsecunde, secunde, minute, ani</b> si chiar <b>miliarde de ani</b>.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Scala intarzierilor">
+                <div class="small" style="margin-bottom:10px">Cat de intarziat este ceea ce vezi:</div>
+                <div class="delayCards">
+                  <div class="pill"><span>Obiect la 1 m</span><span class="tag">3,3 ns</span></div>
+                  <div class="pill"><span>Pasare la 100 m</span><span class="tag">330 ns</span></div>
+                  <div class="pill"><span>Avion la 10 km</span><span class="tag">33 &mu;s</span></div>
+                  <div class="pill"><span>Nor la 5 km</span><span class="tag">17 &mu;s</span></div>
+                  <div class="pill"><span>Orizont la 50 km</span><span class="tag">170 &mu;s</span></div>
+                  <div class="pill"><span>Luna</span><span class="tag" style="color:var(--cyan)">1,3 sec</span></div>
+                  <div class="pill"><span>Soarele</span><span class="tag" style="color:var(--orange)">8 min 20 s</span></div>
+                  <div class="pill"><span>Proxima Centauri</span><span class="tag" style="color:var(--violet)">4,2 ani</span></div>
+                  <div class="pill"><span>Galaxii indepartate</span><span class="tag" style="color:var(--bad)">mld. ani</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">ns = nanosecunde &bull; &mu;s = microsecunde &bull; Fiecare obiect apare cu o intarziere proportionala cu distanta sa.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest lucru nu e doar o curiozitate. E o <b>lege fundamentala a universului</b>: nimic nu poate
+            calatori mai repede decat lumina, nici informatia, nici cauzalitatea. Prin urmare, observarea instantanee este
+            fizic imposibila. Nu e o limitare a ochilor tai, ci a structurii spatiu-timpului.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 2: Calculator interactiv + Tabel detaliat -->
+      <section class="row">
+        <div class="card" id="calcCard" aria-label="Calculator de intarziere">
+          <div class="cardHeader">
+            <h2>Calculator interactiv de intarziere</h2>
+            <div class="chip">alege distanta &rarr; vezi intarzierea</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Misca slider-ul pentru a vedea cat de mult este intarziata lumina de la orice distanta,
+              de la un obiect din camera ta pana la marginea universului observabil.
+            </p>
+
+            <div class="control" style="margin-bottom:12px">
+              <label>
+                <span>Distanta</span>
+                <span class="readout" id="distReadout">384.400 km (Luna)</span>
+              </label>
+              <input id="distSlider" type="range" min="0" max="100" value="50" step="1"/>
+            </div>
+
+            <div id="calcResult">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div>
+                  <div class="small">DISTANTA</div>
+                  <div class="mono" style="font-size:18px;font-weight:700;margin-top:4px;color:var(--cyan)" id="crDist">384.400 km</div>
+                </div>
+                <div>
+                  <div class="small">INTARZIERE</div>
+                  <div class="mono" style="font-size:18px;font-weight:700;margin-top:4px;color:var(--orange)" id="crDelay">1,28 secunde</div>
+                </div>
+              </div>
+              <div class="hr"></div>
+              <div class="small" id="crNote">Lumina de la Luna ajunge la tine dupa 1,28 secunde. Luna pe care o vezi este Luna din trecut.</div>
+            </div>
+
+            <div class="controls">
+              <button class="btn" onclick="setDist(0)">Masa ta (1 m)</button>
+              <button class="btn" onclick="setDist(25)">Avion (10 km)</button>
+              <button class="btn" onclick="setDist(50)">Luna</button>
+              <button class="btn" onclick="setDist(75)">Soarele</button>
+              <button class="btn" onclick="setDist(88)">Proxima Centauri</button>
+              <button class="btn" onclick="setDist(100)">Galaxie 13 mld a.l.</button>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observa cum trecerea de la "nanosecunde" la "miliarde de ani" pare un salt imens, dar
+              fizica e aceeasi: distanta / viteza luminii = intarziere. Nu exista un prag magic unde intarzierea incepe. Ea exista mereu.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Tabel detaliat">
+          <div class="cardHeader">
+            <h2>Intarzierile cerului, punct cu punct</h2>
+            <div class="chip"><b>Date:</b> distanta &rarr; intarziere</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Fiecare obiect pe care il vezi pe cer are propria "varsta" la momentul observarii.
+              Iata un tabel cu intarzierile reale.
+            </p>
+
+            <div style="overflow-x:auto">
+              <table class="delayTable">
+                <thead>
+                  <tr>
+                    <th>Obiect</th>
+                    <th>Distanta</th>
+                    <th>Intarziere</th>
+                    <th>Ce inseamna</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Obiect la 1 mm</td>
+                    <td>0,001 m</td>
+                    <td class="val">3,3 ps</td>
+                    <td>Picosecunde. Imposibil de simtit.</td>
+                  </tr>
+                  <tr>
+                    <td>Obiect la 1 m</td>
+                    <td>1 m</td>
+                    <td class="val">3,3 ns</td>
+                    <td>Nanosecunde. Creierul nu le simte.</td>
+                  </tr>
+                  <tr>
+                    <td>Pasare (100 m)</td>
+                    <td>100 m</td>
+                    <td class="val">330 ns</td>
+                    <td>Inca total neglijabil.</td>
+                  </tr>
+                  <tr>
+                    <td>Nor (5 km)</td>
+                    <td>5.000 m</td>
+                    <td class="val">17 &mu;s</td>
+                    <td>Norul s-a miscat 0,1 mm intre timp.</td>
+                  </tr>
+                  <tr>
+                    <td>Avion (10 km)</td>
+                    <td>10.000 m</td>
+                    <td class="val">33 &mu;s</td>
+                    <td>Avionul s-a deplasat ~8 mm.</td>
+                  </tr>
+                  <tr>
+                    <td>Cer albastru (10 km)</td>
+                    <td>~10 km</td>
+                    <td class="val">8 min 20 s + 33 &mu;s</td>
+                    <td>Lumina a plecat de la Soare acum 8+ minute!</td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--cyan)">Luna</td>
+                    <td>384.400 km</td>
+                    <td class="val" style="color:var(--cyan)">1,3 sec</td>
+                    <td>Luna vazuta e Luna de acum 1,3 secunde.</td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--orange)">Soarele</td>
+                    <td>150 mil. km</td>
+                    <td class="val" style="color:var(--orange)">8 min 20 s</td>
+                    <td>Daca ar exploda, ai afla peste 8 minute.</td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--violet)">Proxima Centauri</td>
+                    <td>4,2 a.l.</td>
+                    <td class="val" style="color:var(--violet)">4,2 ani</td>
+                    <td>O vezi cum era acum 4 ani si ceva.</td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--bad)">Galaxii indepartate</td>
+                    <td>mld. a.l.</td>
+                    <td class="val" style="color:var(--bad)">miliarde de ani</td>
+                    <td>Le vezi cum erau inainte sa existe Pamantul.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="hr"></div>
+            <div class="small">ps = picosecunde &bull; ns = nanosecunde &bull; &mu;s = microsecunde &bull; a.l. = ani-lumina</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 3: Viteza luminii in aer vs vid + SVG -->
+      <section class="row">
+        <div class="card" aria-label="Lumina in aer vs vid">
+          <div class="cardHeader">
+            <h2>Lumina in vid vs. lumina in aer</h2>
+            <div class="chip"><b>n = 1,0003</b> indicele de refractie</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Noi nu traim in vid. Traim la fundul unui <b>ocean de aer</b> (azot, oxigen, CO2, vapori de apa)
+              care se intinde ~100 km deasupra noastra. Lumina calatoreste mai incet in aer decat in vid.
+            </p>
+            <div class="viz" aria-label="Comparatie viteze">
+              <svg viewBox="0 0 980 260" role="img">
+                <defs>
+                  <linearGradient id="vidGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.6)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.1)"/>
+                  </linearGradient>
+                  <linearGradient id="airGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.6)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.1)"/>
+                  </linearGradient>
+                </defs>
+                <!-- Vid bar -->
+                <text x="30" y="50" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">In vid (spatiu cosmic)</text>
+                <rect x="30" y="60" width="920" height="40" rx="10" fill="url(#vidGrad)" stroke="rgba(122,215,255,.3)" stroke-width="1"/>
+                <text x="40" y="86" font-size="14" fill="rgba(255,255,255,.9)" font-weight="700" font-family="ui-monospace">299.792.458 m/s</text>
+                <text x="700" y="86" font-size="12" fill="rgba(122,215,255,.8)">= limita cosmica absoluta</text>
+
+                <!-- Air bar (slightly shorter) -->
+                <text x="30" y="140" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">In aer (la nivelul marii)</text>
+                <rect x="30" y="150" width="917" height="40" rx="10" fill="url(#airGrad)" stroke="rgba(187,167,255,.3)" stroke-width="1"/>
+                <text x="40" y="176" font-size="14" fill="rgba(255,255,255,.9)" font-weight="700" font-family="ui-monospace">299.702.547 m/s</text>
+                <text x="700" y="176" font-size="12" fill="rgba(187,167,255,.8)">cu ~90 km/s mai lent</text>
+
+                <!-- Difference annotation -->
+                <line x1="947" y1="100" x2="947" y2="150" stroke="rgba(255,179,138,.5)" stroke-width="2" stroke-dasharray="4 3"/>
+                <text x="800" y="220" font-size="12" fill="rgba(255,179,138,.8)">Diferenta: ~90.000 m/s</text>
+                <text x="800" y="238" font-size="11" fill="rgba(255,255,255,.5)">Mica, dar reala si masurabilita</text>
+              </svg>
+            </div>
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Diferenta de viteza pare neglijabila (0,03%), dar are consecinte uriase.
+              Tocmai aceasta incetinire provoaca <b>refractia</b>: lumina isi schimba directia cand trece dintr-un mediu
+              in altul cu densitate diferita. Aceasta refractie face ca Soarele de la orizont sa fie un "fantoma".
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="refractCard" aria-label="Refractia atmosferica">
+          <div class="cardHeader">
+            <h2>Refractia atmosferica: lumina care se curbeaza</h2>
+            <div class="chip">Soarele fantoma de la orizont</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Aerul de langa sol e mai dens decat aerul de sus. Cand lumina coboara prin atmosfera, ea
+              trece din aer mai putin dens in aer mai dens si se <b>curbeaza in jos</b>. Rezultatul?
+              Obiectele de la orizont par <b>mai sus</b> decat sunt in realitate.
+            </p>
+
+            <div class="viz" aria-label="Diagrama refractie">
+              <svg viewBox="0 0 980 380" role="img" id="refractionSvg">
+                <defs>
+                  <linearGradient id="skyGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(20,30,60,.3)"/>
+                    <stop offset="0.4" stop-color="rgba(40,60,120,.15)"/>
+                    <stop offset="1" stop-color="rgba(80,120,180,.08)"/>
+                  </linearGradient>
+                  <linearGradient id="groundGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(60,80,40,.2)"/>
+                    <stop offset="1" stop-color="rgba(30,40,20,.3)"/>
+                  </linearGradient>
+                  <filter id="sunGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="8" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Sky -->
+                <rect x="0" y="0" width="980" height="280" fill="url(#skyGrad)"/>
+
+                <!-- Ground / horizon -->
+                <rect x="0" y="280" width="980" height="100" fill="url(#groundGrad)"/>
+                <line x1="0" y1="280" x2="980" y2="280" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+
+                <!-- Atmosphere layers -->
+                <text x="920" y="30" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">Aer rar (altitudine)</text>
+                <text x="920" y="140" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">Aer mediu</text>
+                <text x="920" y="268" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="end">Aer dens (sol)</text>
+                <line x1="0" y1="90" x2="980" y2="90" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="0" y1="185" x2="980" y2="185" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="6 4"/>
+
+                <!-- Actual sun position (below horizon) -->
+                <g filter="url(#sunGlow)">
+                  <circle cx="120" cy="310" r="28" fill="rgba(255,179,138,.25)" stroke="rgba(255,179,138,.3)" stroke-width="1"/>
+                  <circle cx="120" cy="310" r="18" fill="rgba(255,210,122,.3)"/>
+                </g>
+                <text x="160" y="318" font-size="11" fill="rgba(255,179,138,.8)">Pozitia reala a Soarelui</text>
+                <text x="160" y="334" font-size="10" fill="rgba(255,255,255,.4)">(sub orizont!)</text>
+
+                <!-- Apparent sun position (above horizon, refracted) -->
+                <g filter="url(#sunGlow)">
+                  <circle cx="120" cy="252" r="22" fill="rgba(255,210,122,.5)" stroke="rgba(255,210,122,.4)" stroke-width="1"/>
+                  <circle cx="120" cy="252" r="14" fill="rgba(255,230,160,.6)"/>
+                </g>
+                <text x="155" y="248" font-size="11" fill="rgba(255,210,122,.9)">Pozitia aparenta (ce vezi tu)</text>
+                <text x="155" y="264" font-size="10" fill="rgba(255,255,255,.4)">refractia il ridica cu ~0,6 grade</text>
+
+                <!-- Curved light path -->
+                <path d="M120,310 C200,290 350,260 490,230 C630,200 750,180 880,170" fill="none" stroke="rgba(122,215,255,.6)" stroke-width="2.5" stroke-dasharray="8 4"/>
+                <text x="500" y="218" font-size="11" fill="rgba(122,215,255,.7)">Traiectoria curbata a luminii</text>
+
+                <!-- Straight line (where you'd expect it) -->
+                <path d="M120,310 L880,170" fill="none" stroke="rgba(255,122,153,.25)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <text x="500" y="260" font-size="10" fill="rgba(255,122,153,.5)">Linia dreapta (fara atmosfera)</text>
+
+                <!-- Observer -->
+                <circle cx="880" cy="270" r="6" fill="rgba(255,255,255,.7)"/>
+                <text x="860" y="295" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Tu</text>
+
+                <!-- Angle annotation -->
+                <path d="M880,270 L850,252 L865,240" fill="none" stroke="rgba(117,240,182,.4)" stroke-width="1"/>
+                <text x="830" y="235" font-size="10" fill="rgba(117,240,182,.6)">0,6 grade</text>
+              </svg>
+            </div>
+
+            <div class="row2" style="margin-top:12px">
+              <div class="risk">
+                <div class="rTop"><strong>Rasarit +2 minute</strong><span class="badge" style="color:var(--good)">bonus</span></div>
+                <p>Refractia iti arata Soarele inainte sa ajunga la orizont.</p>
+                <div class="meter"><i style="width:65%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Apus +2 minute</strong><span class="badge" style="color:var(--good)">bonus</span></div>
+                <p>Soarele e deja sub orizont cand il mai vezi.</p>
+                <div class="meter"><i style="width:65%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Faptul ca Soarele de la orizont e un <b>"fantoma"</b> este poate cel mai uimitor lucru din tot textul.
+              Cand il vezi atingand orizontul, el e deja complet sub orizont. Daca atmosfera ar disparea brusc, Soarele ar
+              disparea instant. Aceasta iluzie ne ofera ~24 ore extra de lumina pe an!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 4: Cerul albastru + Fulgerul -->
+      <section class="row">
+        <div class="card" aria-label="Cerul albastru">
+          <div class="cardHeader">
+            <h2>De ce cerul albastru nu e in timp real</h2>
+            <div class="chip">lumina imprastiata de atmosfera</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cerul albastru nu vine din spatiul cosmic. Vine din <b>moleculele de aer</b> de la
+              cativa kilometri deasupra ta. Dar lumina care face cerul albastru a plecat de la <b>Soare</b>
+              acum 8 minute si 20 de secunde, apoi a fost imprastiata de molecule si a coborat pana la ochii tai.
+            </p>
+
+            <div class="viz" aria-label="Calatoria luminii albastre">
+              <svg viewBox="0 0 980 300" role="img">
+                <defs>
+                  <linearGradient id="scatterGrad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(122,215,255,.15)"/>
+                    <stop offset="1" stop-color="rgba(60,100,200,.05)"/>
+                  </linearGradient>
+                  <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6"/>
+                  </filter>
+                </defs>
+
+                <rect x="0" y="0" width="980" height="300" fill="rgba(0,0,0,.05)"/>
+
+                <!-- Sun -->
+                <g filter="url(#sunGlow)">
+                  <circle cx="80" cy="60" r="35" fill="rgba(255,210,122,.35)"/>
+                  <circle cx="80" cy="60" r="22" fill="rgba(255,230,160,.5)"/>
+                </g>
+                <text x="80" y="115" font-size="11" fill="rgba(255,210,122,.8)" text-anchor="middle">Soarele</text>
+                <text x="80" y="130" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">(150 mil km)</text>
+
+                <!-- Arrow 1: Sun to atmosphere -->
+                <path d="M120,60 C250,50 350,60 440,100" fill="none" stroke="rgba(255,210,122,.5)" stroke-width="3" stroke-linecap="round"/>
+                <text x="260" y="55" font-size="11" fill="rgba(255,210,122,.6)">8 min 20 sec</text>
+
+                <!-- Scattering point -->
+                <circle cx="460" cy="110" r="12" fill="rgba(122,215,255,.3)" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+                <g filter="url(#glowBlue)">
+                  <circle cx="460" cy="110" r="6" fill="rgba(122,215,255,.6)"/>
+                </g>
+                <text x="460" y="90" font-size="11" fill="rgba(122,215,255,.8)" text-anchor="middle">Molecula de aer</text>
+                <text x="460" y="145" font-size="10" fill="rgba(255,255,255,.4)" text-anchor="middle">(altitudine ~10 km)</text>
+
+                <!-- Scattered rays in multiple directions -->
+                <line x1="460" y1="110" x2="380" y2="40" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+                <line x1="460" y1="110" x2="540" y2="40" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+                <line x1="460" y1="110" x2="520" y2="160" stroke="rgba(122,215,255,.2)" stroke-width="1"/>
+
+                <!-- Arrow 2: Atmosphere to eye -->
+                <path d="M475,115 C550,140 650,180 750,240" fill="none" stroke="rgba(122,215,255,.6)" stroke-width="3" stroke-linecap="round"/>
+                <text x="600" y="165" font-size="11" fill="rgba(122,215,255,.6)">~33 microsecunde</text>
+
+                <!-- Observer eye -->
+                <circle cx="770" cy="255" r="8" fill="rgba(255,255,255,.6)"/>
+                <text x="770" y="280" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Ochiul tau</text>
+
+                <!-- Total delay -->
+                <rect x="620" y="20" width="340" height="50" rx="12" fill="rgba(0,0,0,.3)" stroke="rgba(255,179,138,.3)" stroke-width="1"/>
+                <text x="640" y="42" font-size="12" fill="rgba(255,255,255,.6)">Intarziere totala a cerului albastru:</text>
+                <text x="640" y="60" font-size="16" fill="rgba(255,179,138,.9)" font-weight="700">8 min 20 sec + 33 &mu;s</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Cerul albastru e un fenomen de <b>imprastiere Rayleigh</b>. Moleculele de aer imprastie
+              mai mult lumina albastra (lungime de unda scurta) decat lumina rosie. Dar cel mai important:
+              toata lumina aceasta a parasit Soarele cu 8+ minute in urma. Cerul pe care il vezi este o "redare istorica" a luminii solare.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Exemplul fulgerului">
+          <div class="cardHeader">
+            <h2>Fulgerul: fantoma de 33 microsecunde</h2>
+            <div class="chip">lumina vs. sunet</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Toata lumea stie ca tunetul vine dupa fulger: sunetul calatoreste la ~340 m/s, mult mai incet
+              decat lumina. Dar ce nu realizeaza majoritatea: <b>si fulgerul pe care il vezi e intarziat</b>.
+            </p>
+
+            <div class="flow" aria-label="Cronologie fulger">
+              <div class="flowNode">
+                <h3>T = 0,000 secunde</h3>
+                <p>Fulgerul se produce la 10 km distanta. Descarcarea electrica dureaza cateva milisecunde.</p>
+                <div class="meta"><span class="badge">eveniment real</span><span class="badge" style="color:var(--warn)">nu il vezi inca</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>T = 0,000033 secunde (33 &mu;s)</h3>
+                <p>Lumina fulgerului ajunge la ochii tai. Dar fulgerul s-a stins deja. <b>Plasma s-a racit, descarcarea s-a terminat.</b></p>
+                <div class="meta"><span class="badge" style="color:var(--cyan)">vezi flashul</span><span class="badge">e deja "istorie"</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>T = ~30 secunde</h3>
+                <p>Sunetul (tunetul) ajunge la tine. Ai vazut flashul cu 30 secunde inainte, dar si acel flash era o imagine din trecut.</p>
+                <div class="meta"><span class="badge" style="color:var(--orange)">auzi tunetul</span><span class="badge">dubla intarziere</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Fiecare observatie vizuala este o observatie a ceva care <b>nu mai exista in forma in care il vezi</b>.
+              Obiectul s-a miscat. Timpul a trecut. Realitatea s-a schimbat.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Susskind subliniaza ca fulgerul este un exemplu perfect: toata lumea intelege ca tunetul
+              vine cu intarziere, dar putini realizeaza ca si lumina vine cu intarziere. Diferenta e doar de grad (microsecunde vs. secunde),
+              nu de natura. Principiul e identic.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 5: Ionosfera si GPS -->
+      <section class="card" aria-label="Ionosfera si GPS">
+        <div class="cardHeader">
+          <h2>Ionosfera: filtrul invizibil care intarzie semnalele</h2>
+          <div class="chip"><b>50-1000 km</b> altitudine</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Deasupra atmosferei obisnuite exista <b>ionosfera</b>: un strat (50-1000+ km) unde atomii sunt
+                <b>ionizati</b> (li s-au smuls electroni) de radiatia ultravioleta a Soarelui. Cand lumina sau
+                unde radio trec prin acest strat, interactioneaza cu electronii liberi si sunt <b>incetinite</b>.
+              </p>
+              <p class="muted">
+                Pentru <b>lumina vizibila</b>, intarzierea ionosferica e neglijabila (nanosecunde).
+                Dar pentru <b>unde radio</b> (cum sunt semnalele GPS la ~1,5 GHz), intarzierea poate
+                insemna <b>zeci de metri</b> de eroare in pozitionare.
+              </p>
+              <p class="muted">
+                De aceea satelitii GPS moderni emit pe <b>frecvente multiple</b>: ionosfera intarzie
+                diferit fiecare frecventa, si comparand intarzierile se poate calcula corectia exacta.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <div class="small" style="margin-bottom:10px">Straturile prin care trece lumina:</div>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>1. Spatiu cosmic (vid)</h3>
+                    <p>Lumina calatoreste cu viteza maxima: 299.792 km/s. Nici o incetinire.</p>
+                    <div class="meta"><span class="badge">c = maxim</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>2. Ionosfera (50-1000 km)</h3>
+                    <p>Electroni liberi incetinesc undele radio. Lumina vizibila: efect minim.</p>
+                    <div class="meta"><span class="badge" style="color:var(--warn)">intarziere radio</span><span class="badge">eroare GPS</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>3. Atmosfera (0-100 km)</h3>
+                    <p>Aerul dens incetineste lumina, o curbeaza (refractie). Cel mai mare efect vizual.</p>
+                    <div class="meta"><span class="badge" style="color:var(--cyan)">refractie</span><span class="badge" style="color:var(--violet)">imprastiere</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>4. Ochiul tau</h3>
+                    <p>Retina proceseaza lumina, creierul construieste imaginea. Intarziere: ~50 ms suplimentare.</p>
+                    <div class="meta"><span class="badge" style="color:var(--orange)">procesare neurala</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea cheie: cerul pe care il vezi a fost <b>filtrat de multiple straturi</b>, fiecare introducand
+            propria intarziere si distorsiune. Nu e o fereastra transparenta spre "acum". E un sistem optic complex
+            care iti livreaza o versiune intarziata, curbata si filtrarta a realitatii.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 6: Relativitate si "acum" nu exista -->
+      <section class="row">
+        <div class="card" aria-label="Relativitate">
+          <div class="cardHeader">
+            <h2>Relativitatea: "acum" nu exista cu adevarat</h2>
+            <div class="chip"><b>Einstein</b> simultaneitatea e relativa</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              In relativitatea speciala a lui Einstein, <b>nu exista un "acum" universal</b>.
+              Doi observatori care se misca cu viteze diferite nu sunt de acord despre ce evenimente
+              sunt simultane. "Acum" depinde de cine esti si cum te misti.
+            </p>
+
+            <div class="viz" aria-label="Conuri de lumina">
+              <svg viewBox="0 0 980 340" role="img">
+                <defs>
+                  <linearGradient id="coneGrad1" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(122,215,255,.25)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.02)"/>
+                  </linearGradient>
+                  <linearGradient id="coneGrad2" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.25)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.02)"/>
+                  </linearGradient>
+                </defs>
+
+                <rect x="0" y="0" width="980" height="340" fill="rgba(0,0,0,.04)"/>
+
+                <!-- Time axis -->
+                <line x1="490" y1="30" x2="490" y2="310" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                <text x="500" y="25" font-size="11" fill="rgba(255,255,255,.4)">Timp</text>
+
+                <!-- Space axis -->
+                <line x1="100" y1="170" x2="880" y2="170" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                <text x="885" y="174" font-size="11" fill="rgba(255,255,255,.4)">Spatiu</text>
+
+                <!-- Observer point (you, here, now) -->
+                <circle cx="490" cy="170" r="8" fill="rgba(255,255,255,.8)"/>
+                <text x="490" y="195" font-size="12" fill="rgba(255,255,255,.7)" text-anchor="middle" font-weight="700">Tu, aici</text>
+
+                <!-- Past light cone (below = past) -->
+                <polygon points="490,170 200,310 780,310" fill="url(#coneGrad2)" stroke="rgba(187,167,255,.3)" stroke-width="1"/>
+                <text x="490" y="290" font-size="13" fill="rgba(187,167,255,.7)" text-anchor="middle" font-weight="700">Conul de lumina trecut</text>
+                <text x="490" y="308" font-size="11" fill="rgba(255,255,255,.4)" text-anchor="middle">Tot ce poti observa (tot ce poate ajunge la tine)</text>
+
+                <!-- Future light cone (above = future) -->
+                <polygon points="490,170 200,30 780,30" fill="url(#coneGrad1)" stroke="rgba(122,215,255,.3)" stroke-width="1"/>
+                <text x="490" y="60" font-size="13" fill="rgba(122,215,255,.7)" text-anchor="middle" font-weight="700">Conul de lumina viitor</text>
+                <text x="490" y="78" font-size="11" fill="rgba(255,255,255,.4)" text-anchor="middle">Tot ce poti influenta (informatia ta poate ajunge acolo)</text>
+
+                <!-- Outside cones labels -->
+                <text x="150" y="170" font-size="11" fill="rgba(255,122,153,.5)" text-anchor="middle">Inaccesibil</text>
+                <text x="830" y="170" font-size="11" fill="rgba(255,122,153,.5)" text-anchor="middle">Inaccesibil</text>
+
+                <!-- "Now" line with question marks -->
+                <line x1="200" y1="170" x2="780" y2="170" stroke="rgba(255,210,122,.4)" stroke-width="2" stroke-dasharray="6 4"/>
+                <text x="255" y="162" font-size="11" fill="rgba(255,210,122,.7)">"Acum"? Depinde de observator...</text>
+              </svg>
+            </div>
+
+            <div class="row2" style="margin-top:12px">
+              <div class="flowNode">
+                <h3>Ce poti observa</h3>
+                <p>Doar evenimentele din <b>conul tau de lumina trecut</b>: acele lucruri de la care lumina a avut timp sa ajunga la tine.</p>
+                <div class="meta"><span class="badge" style="color:var(--violet)">con trecut</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Ce poti influenta</h3>
+                <p>Doar evenimentele din <b>conul tau de lumina viitor</b>: acele lucruri pana la care informatia ta poate ajunge.</p>
+                <div class="meta"><span class="badge" style="color:var(--cyan)">con viitor</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este ideea cea mai profunda din prezentare. "Cerul nu e in timp real" nu e doar o curiozitate
+              tehnica, ci decurge din <b>structura fundamentala a spatiu-timpului</b>. Nu exista un "acum" absolut care sa se intinda
+              in tot spatiul. Exista doar conul tau de lumina trecut, tot ceea ce ai putut observa pana in acest moment.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Conul de lumina personal">
+          <div class="cardHeader">
+            <h2>Cerul este personal</h2>
+            <div class="chip">fiecare observator vede altceva</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Fiecare persoana are propriul <b>con de lumina trecut</b>, o regiune usor diferita a spatiu-timpului.
+              Cerul pe care il vezi tu este intersectia conului tau de lumina trecut cu atmosfera.
+              Cineva aflat la 1000 km distanta vede un cer usor diferit.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Nu exista un "cer obiectiv" in timp real</h3>
+                <p>Nu exista o versiune "adevarata" a cerului de acum la care toti observatorii au acces simultan.
+                Fiecare vede propria colectie de "atunci"-uri din momente diferite ale trecutului, asamblate intr-o singura imagine.</p>
+                <div class="meta"><span class="badge">observer-dependent</span><span class="badge">no shared "now"</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Cerul = masina timpului</h3>
+                <p>Cand privesti cerul noptii, fiecare stea pe care o vezi este din alt moment al trecutului.
+                Unele sunt de acum cateva ani, altele de acum mii de ani, altele de acum milioane de ani.
+                Toate apar simultan in ochii tai, dar provin din momente radical diferite ale istoriei universului.</p>
+                <div class="meta"><span class="badge" style="color:var(--orange)">colaj temporal</span><span class="badge" style="color:var(--violet)">fereastra in istorie</span></div>
+              </div>
+            </div>
+
+            <details data-commentary>
+              <summary><strong>De ce conteaza acest lucru?</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Susskind ofera patru motive:</p>
+                <p><b>1)</b> Schimba felul in care gandesti despre observare si realitate. Nimic din ce vezi nu e "acum".</p>
+                <p><b>2)</b> In unele contexte, intarzierile chiar conteaza: GPS, astronomie, masuratori de precizie.</p>
+                <p><b>3)</b> Se leaga de intrebari profunde din fizica: natura timpului, cauzalitatea, structura spatiu-timpului.</p>
+                <p><b>4)</b> Si cel mai important: <b>este adevarat</b>. Cerul NU este in timp real. A intelege acest lucru iti ofera
+                o apreciere mai profunda pentru cat de extraordinara este vederea, cat de remarcabila este lumina
+                si cat de straniu este universul in care traim.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 7: Simulator interactiv - lumina calatoare -->
+      <section class="card" aria-label="Simulator de propagare">
+        <div class="cardHeader">
+          <h2>Simulator: trimite un foton si vezi cat dureaza</h2>
+          <div class="chip">animatie interactiva</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Alege o destinatie si apasa "Lanseaza fotonul" pentru a vedea o animatie
+            (la scara comprimata) a calatoriei luminii de la sursa la ochiul tau.
+          </p>
+
+          <div class="viz" id="photonViz" style="position:relative;min-height:200px">
+            <svg viewBox="0 0 980 180" role="img" id="photonSvg">
+              <defs>
+                <filter id="photonGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="180" fill="rgba(0,0,0,.05)"/>
+
+              <!-- Source -->
+              <circle id="photonSrc" cx="60" cy="90" r="18" fill="rgba(255,210,122,.3)" stroke="rgba(255,210,122,.4)" stroke-width="1"/>
+              <text id="photonSrcLabel" x="60" y="130" font-size="11" fill="rgba(255,210,122,.7)" text-anchor="middle">Soarele</text>
+
+              <!-- Travel path -->
+              <line x1="90" y1="90" x2="890" y2="90" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4 4"/>
+
+              <!-- Photon (animated) -->
+              <g id="photonBall" filter="url(#photonGlow)" opacity="0">
+                <circle cx="90" cy="90" r="7" fill="rgba(122,215,255,.9)"/>
+                <circle cx="90" cy="90" r="4" fill="rgba(255,255,255,.9)"/>
+              </g>
+
+              <!-- Eye -->
+              <circle cx="910" cy="90" r="10" fill="rgba(255,255,255,.5)" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+              <text x="910" y="125" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">Ochiul tau</text>
+
+              <!-- Time display -->
+              <text id="photonTime" x="490" y="40" font-size="16" fill="rgba(122,215,255,.9)" text-anchor="middle" font-weight="700"></text>
+              <text id="photonNote" x="490" y="165" font-size="12" fill="rgba(255,255,255,.5)" text-anchor="middle"></text>
+            </svg>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Destinatie</span>
+              </label>
+              <select id="photonDest" style="width:100%;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.3);color:var(--text);font-size:13px">
+                <option value="room">Obiect din camera (1 m) - 3,3 ns</option>
+                <option value="bird">Pasare (100 m) - 330 ns</option>
+                <option value="cloud">Nor (5 km) - 17 &mu;s</option>
+                <option value="plane">Avion (10 km) - 33 &mu;s</option>
+                <option value="moon" selected>Luna (384.400 km) - 1,3 sec</option>
+                <option value="sun">Soarele (150 mil km) - 8 min 20 sec</option>
+                <option value="proxima">Proxima Centauri (4,2 a.l.) - 4,2 ani</option>
+                <option value="galaxy">Galaxie (13 mld a.l.) - 13 miliarde ani</option>
+              </select>
+            </div>
+            <div class="control" style="display:flex;align-items:center;justify-content:center">
+              <button class="btn" id="launchPhoton" style="width:100%">Lanseaza fotonul</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTIUNEA 8: Rezumat si concluzii -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Rezumat: ce am invatat?</h2>
+          <div class="chip"><b>Teza:</b> cerul nu e in timp real</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Observarea e mereu intarziata</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu exista o distanta speciala de la care intarzierea "incepe". Ea exista mereu,
+                chiar si pentru obiecte aflate la milimetri de ochii tai. E o proprietate fundamentala a universului,
+                nu o limitare a simturilor.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Atmosfera curbeaza si filtreaza lumina</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Refractia atmosferica face ca Soarele de la orizont sa fie un "fantoma" (deja sub orizont).
+                Ionosfera intarzie semnalele radio. Cerul albastru e lumina veche de 8 minute, imprastiata.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) "Acum" nu exista in mod absolut</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                In relativitatea lui Einstein, simultaneitatea e relativa. Nu exista un moment "acum" universal
+                valabil pentru toti observatorii. Observarea e mereu o privire in conul de lumina trecut.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Cerul e o masina a timpului</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cand privesti cerul noptii, fiecare stea vine dintr-un alt moment al trecutului.
+                Este un colaj temporal, o fereastra in istoria universului, asamblata de ochii si creierul tau
+                intr-o singura imagine aparent simultana.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <!-- Quiz section -->
+          <h3 style="margin:0 0 10px;font-size:15px">Test rapid: ai inteles conceptele?</h3>
+          <div class="checklist" id="quiz">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Daca Soarele ar exploda acum, ai afla imediat?</strong><em>gandeste-te...</em></div>
+                <div class="d">Nu. Ai afla abia dupa 8 minute si 20 de secunde, cat dureaza lumina sa ajunga de la Soare la Pamant.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Soarele de la apus este cu adevarat acolo unde il vezi?</strong><em>gandeste-te...</em></div>
+                <div class="d">Nu. Cand il vezi atingand orizontul, el e deja complet sub orizont. E un "fantoma" creat de refractia atmosferica.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Exista vreo observare cu adevarat "in timp real"?</strong><em>gandeste-te...</em></div>
+                <div class="d">Nu. Nici macar pentru obiecte la 1 mm distanta. Intarzierea e de 3,3 picosecunde: infima, dar nu zero. Universul nu permite observare instantanee.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Luna pe care o vezi exista "acum"?</strong><em>gandeste-te...</em></div>
+                <div class="d">Nu. Luna pe care o vezi este Luna de acum 1,3 secunde. In 1,3 secunde, Luna s-a miscat pe orbita cu aproximativ 1,3 km.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="quizScore">Verifica raspunsurile</button>
+            <button class="btn" id="quizReset">Reseteaza</button>
+          </div>
+          <div class="small" id="quizOut" style="margin-top:10px"></div>
+
+          <details data-commentary style="margin-top:12px">
+            <summary><strong>Cuvintele lui Susskind</strong><span class="hint">apasa pentru citat</span></summary>
+            <div class="detailBody">
+              <p style="font-style:italic;color:rgba(255,255,255,.78)">
+                "Data viitoare cand te uiti la cer, la albastrul cerului, la nori, la Soare sau Luna sau stele,
+                aminteste-ti: nu vezi 'acum'. Vezi 'atunci'. O colectie de 'atunci'-uri din momente diferite ale
+                trecutului, asamblate intr-o singura experienta vizuala. Cerul este o masina a timpului,
+                o fereastra in istorie, o iluzie atent orchestrata care pare imediata, dar este de fapt
+                o redare intarziata a luminii din trecut."
+              </p>
+              <p style="margin-top:8px">&mdash; Leonard Susskind (parafrazat)</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary about toggle -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre modul "Comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre marcate cu "Comentariu" ofera analize suplimentare:
+            cat de solid e argumentul, ce implicatii are, cum se leaga de fizica mai larga.
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Comentarii ON / OFF" din antet pentru a le
+            ascunde/arata pe toate simultan. Asta iti permite sa comuti intre "ce spune Susskind" si
+            "de ce e important si ce inseamna mai profund".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce si vizualiza
+        o prezentare a fizicianului Leonard Susskind despre de ce cerul nu este in timp real. Nu este un
+        manual de fizica. Vizualizarile si simulatoarele sunt instrumente conceptuale pentru a intelege ideile,
+        nu substitut pentru studierea fizicii.
+      </p>
+      <p style="margin-top:10px">
+        Toate textele sunt in romana, cu explicatii simplificate. Pentru aprofundare: studiaza relativitatea speciala,
+        optica atmosferica si electromagnetismul.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Calculator interactiv de intarziere
+    // ──────────────────────────────────────────────────────
+    const distSlider = document.getElementById('distSlider');
+    const distReadout = document.getElementById('distReadout');
+    const crDist = document.getElementById('crDist');
+    const crDelay = document.getElementById('crDelay');
+    const crNote = document.getElementById('crNote');
+
+    const C = 299792458; // m/s
+
+    // Logarithmic scale from 1m to 1.23e26 m (13 billion light years)
+    const distStops = [
+      { v: 0,   dist: 1,            label: '1 m (obiect din camera)',       unit: 'm' },
+      { v: 10,  dist: 100,          label: '100 m (pasare)',                unit: 'm' },
+      { v: 20,  dist: 2000,         label: '2 km (nor jos)',                unit: 'km' },
+      { v: 25,  dist: 10000,        label: '10 km (avion)',                 unit: 'km' },
+      { v: 30,  dist: 50000,        label: '50 km (orizont)',               unit: 'km' },
+      { v: 40,  dist: 384400000,    label: '384.400 km (Luna)',             unit: 'km' },
+      { v: 50,  dist: 384400000,    label: '384.400 km (Luna)',             unit: 'km' },
+      { v: 60,  dist: 1.496e11,     label: '150 mil. km (Soarele)',         unit: 'mil. km' },
+      { v: 75,  dist: 1.496e11,     label: '150 mil. km (Soarele)',         unit: 'mil. km' },
+      { v: 85,  dist: 3.97e16,      label: '4,2 ani-lumina (Proxima Centauri)', unit: 'a.l.' },
+      { v: 88,  dist: 3.97e16,      label: '4,2 ani-lumina (Proxima Centauri)', unit: 'a.l.' },
+      { v: 95,  dist: 2.37e22,      label: '2,5 mil. a.l. (Andromeda)',     unit: 'a.l.' },
+      { v: 100, dist: 1.23e26,      label: '13 mld. a.l. (univers observabil)', unit: 'a.l.' },
+    ];
+
+    function lerpDist(val) {
+      val = parseFloat(val);
+      for (let i = 0; i < distStops.length - 1; i++) {
+        if (val >= distStops[i].v && val <= distStops[i+1].v) {
+          const t = (val - distStops[i].v) / (distStops[i+1].v - distStops[i].v);
+          const logD = Math.log10(distStops[i].dist) + t * (Math.log10(distStops[i+1].dist) - Math.log10(distStops[i].dist));
+          return Math.pow(10, logD);
+        }
+      }
+      return distStops[distStops.length - 1].dist;
+    }
+
+    function closestLabel(val) {
+      val = parseFloat(val);
+      let best = distStops[0];
+      let bestDiff = Infinity;
+      for (const s of distStops) {
+        const d = Math.abs(s.v - val);
+        if (d < bestDiff) { bestDiff = d; best = s; }
+      }
+      return best.label;
+    }
+
+    function formatDist(meters) {
+      if (meters < 1000) return meters.toFixed(1) + ' m';
+      if (meters < 1e6) return (meters / 1000).toFixed(1) + ' km';
+      if (meters < 1e9) return (meters / 1e6).toFixed(1) + ' mii km';
+      if (meters < 1e12) return (meters / 1e9).toFixed(1) + ' mil. km';
+      const ly = meters / 9.461e15;
+      if (ly < 1000) return ly.toFixed(2) + ' ani-lumina';
+      if (ly < 1e6) return (ly / 1000).toFixed(1) + ' mii a.l.';
+      if (ly < 1e9) return (ly / 1e6).toFixed(1) + ' mil. a.l.';
+      return (ly / 1e9).toFixed(1) + ' mld. a.l.';
+    }
+
+    function formatDelay(seconds) {
+      if (seconds < 1e-9) return (seconds * 1e12).toFixed(1) + ' picosecunde';
+      if (seconds < 1e-6) return (seconds * 1e9).toFixed(1) + ' nanosecunde';
+      if (seconds < 1e-3) return (seconds * 1e6).toFixed(1) + ' microsecunde';
+      if (seconds < 1) return (seconds * 1000).toFixed(1) + ' milisecunde';
+      if (seconds < 60) return seconds.toFixed(2) + ' secunde';
+      if (seconds < 3600) return (seconds / 60).toFixed(1) + ' minute';
+      if (seconds < 86400) return (seconds / 3600).toFixed(1) + ' ore';
+      if (seconds < 86400 * 365.25) return (seconds / 86400).toFixed(1) + ' zile';
+      const years = seconds / (86400 * 365.25);
+      if (years < 1000) return years.toFixed(1) + ' ani';
+      if (years < 1e6) return (years / 1000).toFixed(1) + ' mii de ani';
+      if (years < 1e9) return (years / 1e6).toFixed(1) + ' milioane de ani';
+      return (years / 1e9).toFixed(1) + ' miliarde de ani';
+    }
+
+    function getNote(seconds) {
+      if (seconds < 1e-6) return 'Intarzierea e atat de mica incat creierul nu o poate percepe. Dar ea EXISTA.';
+      if (seconds < 1e-3) return 'Microsecunde: invizibile pentru simturi, dar masurabile cu instrumente precise.';
+      if (seconds < 1) return 'Fractiuni de secunda. Nu le simti, dar realitatea s-a schimbat intre timp.';
+      if (seconds < 60) return 'Secunde. Obiectul pe care il vezi a apucat sa se miste semnificativ de atunci.';
+      if (seconds < 3600) return 'Minute. Lumina pe care o vezi a plecat cu minute in urma. Sursa poate arata diferit acum.';
+      if (seconds < 86400 * 365.25) return 'Ore sau zile. Vezi o versiune "veche" a obiectului, ca o fotografie din trecut.';
+      const years = seconds / (86400 * 365.25);
+      if (years < 100) return 'Ani. Steaua pe care o vezi arata poate complet diferit acum, sau a disparut deja.';
+      if (years < 1e6) return 'Mii de ani. Civilizatii intregi au aparut si disparut de cand lumina asta a plecat.';
+      return 'Milioane sau miliarde de ani. Vezi universul dintr-o era in care Pamantul nici nu exista.';
+    }
+
+    function updateCalc() {
+      const val = parseFloat(distSlider.value);
+      const meters = lerpDist(val);
+      const delay = meters / C;
+
+      distReadout.textContent = closestLabel(val);
+      crDist.textContent = formatDist(meters);
+      crDelay.textContent = formatDelay(delay);
+      crNote.textContent = getNote(delay);
+    }
+
+    function setDist(val) {
+      distSlider.value = val;
+      updateCalc();
+    }
+
+    distSlider.addEventListener('input', updateCalc);
+    updateCalc();
+
+    // ──────────────────────────────────────────────────────
+    // Photon simulator
+    // ──────────────────────────────────────────────────────
+    const photonData = {
+      room:    { dist: 1,         name: 'Obiect din camera', delay: '3,3 nanosecunde',  animTime: 300 },
+      bird:    { dist: 100,       name: 'Pasare',            delay: '330 nanosecunde',   animTime: 400 },
+      cloud:   { dist: 5000,      name: 'Nor',               delay: '17 microsecunde',   animTime: 600 },
+      plane:   { dist: 10000,     name: 'Avion',             delay: '33 microsecunde',   animTime: 800 },
+      moon:    { dist: 384400e3,  name: 'Luna',              delay: '1,3 secunde',       animTime: 1300 },
+      sun:     { dist: 1.496e11,  name: 'Soarele',           delay: '8 min 20 sec',      animTime: 2500 },
+      proxima: { dist: 3.97e16,   name: 'Proxima Centauri',  delay: '4,2 ani',           animTime: 3500 },
+      galaxy:  { dist: 1.23e26,   name: 'Galaxie',           delay: '13 miliarde ani',   animTime: 5000 },
+    };
+
+    let photonAnim = null;
+    document.getElementById('launchPhoton').addEventListener('click', () => {
+      if (photonAnim) cancelAnimationFrame(photonAnim);
+
+      const dest = document.getElementById('photonDest').value;
+      const data = photonData[dest];
+      const ball = document.getElementById('photonBall');
+      const timeLabel = document.getElementById('photonTime');
+      const noteLabel = document.getElementById('photonNote');
+      const srcLabel = document.getElementById('photonSrcLabel');
+
+      srcLabel.textContent = data.name;
+      ball.setAttribute('opacity', '1');
+
+      const startX = 90;
+      const endX = 890;
+      const startTime = performance.now();
+      const duration = data.animTime;
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        const x = startX + eased * (endX - startX);
+
+        ball.querySelector('circle').setAttribute('cx', x);
+        ball.querySelectorAll('circle')[1].setAttribute('cx', x);
+
+        const pct = Math.round(t * 100);
+        timeLabel.textContent = t < 1 ? `Fotonul calatoreste... ${pct}%` : `Ajuns! Intarziere: ${data.delay}`;
+
+        if (t < 1) {
+          noteLabel.textContent = `Distanta: ${formatDist(data.dist)} | Lumina calatoreste la ${formatDist(C)}/s`;
+          photonAnim = requestAnimationFrame(step);
+        } else {
+          noteLabel.textContent = `Ce ai vazut este o imagine veche de ${data.delay}. Nu e "acum".`;
+          showToast(`Fotonul a ajuns de la ${data.name}. Intarziere: ${data.delay}`);
+          setTimeout(() => { ball.setAttribute('opacity', '0'); }, 2000);
+        }
+      }
+
+      photonAnim = requestAnimationFrame(step);
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('calcCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpRefract').addEventListener('click', () => {
+      document.getElementById('refractCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Quiz scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('quizScore').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#quiz input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 100) msg = `${pct}% — Excelent! Ai inteles perfect: nimic din ce vezi nu e in timp real.`;
+      else if (pct >= 75) msg = `${pct}% — Foarte bine! Reciteste explicatiile pentru intrebarile nebiafate.`;
+      else if (pct >= 50) msg = `${pct}% — Pe drum bun. Raspunsul corect la TOATE intrebarile este "Nu".`;
+      else msg = `${pct}% — Hint: raspunsul la fiecare intrebare este "Nu". Lumina are mereu o intarziere!`;
+
+      document.getElementById('quizOut').innerHTML = `<b>Scorul tau:</b> ${msg}`;
+      showToast('Quiz verificat!');
+    });
+
+    document.getElementById('quizReset').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#quiz input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('quizOut').innerHTML = '';
+      showToast('Quiz resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2400);
+    }
+  </script>
+</body>
+</html>
