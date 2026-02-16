@@ -168,6 +168,10 @@
         .leaf-item:hover .leaf-name { color: rgba(255,255,255,0.85); }
 
         /* Category colors */
+        .cat-demis .branch-header { border-left-color: #7af0ff; }
+        .cat-demis .leaf-dot { background: #7af0ff; }
+        .cat-demis .branch-icon { color: #7af0ff; }
+
         .cat-psi .branch-header { border-left-color: #bba7ff; }
         .cat-psi .leaf-dot { background: #bba7ff; }
         .cat-psi .branch-icon { color: #bba7ff; }
@@ -369,6 +373,13 @@
             match: f => f.startsWith('psi-')
         },
         {
+            id: 'demis',
+            label: 'AI / Demis Hassabis',
+            icon: '\u{1F916}',
+            cat: 'cat-demis',
+            match: f => f.startsWith('demis-') || f === 'chat-vs-agentic-ai.html'
+        },
+        {
             id: 'fiz',
             label: 'Fizic\u0103 / Leonard Susskind',
             icon: '\u{1F30C}',
@@ -415,7 +426,7 @@
     function prettifyName(filename) {
         return filename
             .replace(/\.html$/, '')
-            .replace(/^(psi|fiz)-/, '')
+            .replace(/^(psi|fiz|demis)-/, '')
             .replace(/---/g, ' \u2014 ')
             .replace(/-/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase());
