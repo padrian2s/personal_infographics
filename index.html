@@ -176,6 +176,10 @@
         .cat-psi .leaf-dot { background: #bba7ff; }
         .cat-psi .branch-icon { color: #bba7ff; }
 
+        .cat-psiro .branch-header { border-left-color: #d4a7ff; }
+        .cat-psiro .leaf-dot { background: #d4a7ff; }
+        .cat-psiro .branch-icon { color: #d4a7ff; }
+
         .cat-fiz .branch-header { border-left-color: #7ad7ff; }
         .cat-fiz .leaf-dot { background: #7ad7ff; }
         .cat-fiz .branch-icon { color: #7ad7ff; }
@@ -367,10 +371,17 @@
     const TREE = [
         {
             id: 'psi',
-            label: 'Psihologie / Carl Jung',
+            label: 'Psihologie / Carl Jung (EN)',
             icon: '\u{1F9E0}',
             cat: 'cat-psi',
-            match: f => f.startsWith('psi-')
+            match: f => f.startsWith('psi-') && !f.startsWith('psi-ro-')
+        },
+        {
+            id: 'psi-ro',
+            label: 'Psihologie / Carl Jung (RO)',
+            icon: '\u{1F9E0}',
+            cat: 'cat-psiro',
+            match: f => f.startsWith('psi-ro-')
         },
         {
             id: 'demis',
@@ -426,7 +437,7 @@
     function prettifyName(filename) {
         return filename
             .replace(/\.html$/, '')
-            .replace(/^(psi|fiz|demis)-/, '')
+            .replace(/^(psi-ro|psi|fiz|demis)-/, '')
             .replace(/---/g, ' \u2014 ')
             .replace(/-/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase());

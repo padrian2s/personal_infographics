@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dorința revine după blocajul emoțional — Carl Jung — Infografic</title>
+  <meta name="description" content="Infografic interactiv care explica de ce dorinta se retrage in timpul blocajului emotional si cum revine ea in siguranta, conform psihologiei lui Carl Jung." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(117,240,182,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(187,167,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--good)); box-shadow: 0 0 22px rgba(117,240,182,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--good));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Hallmarks / pills grid */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Wave simulator */
+    .waveCanvas{
+      width:100%;
+      height:220px;
+      display:block;
+      border-radius:var(--radius2);
+    }
+
+    /* Phase timeline */
+    .timeline{
+      display:grid;
+      grid-template-columns: repeat(5,1fr);
+      gap:6px;
+      margin-top:12px;
+    }
+    .tlStep{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:10px 8px;
+      text-align:center;
+      transition: border-color .2s, background .2s;
+      cursor:pointer;
+      position:relative;
+    }
+    .tlStep::after{
+      content:'';
+      position:absolute;
+      right:-6px;top:50%;
+      width:6px;height:2px;
+      background:rgba(255,255,255,.15);
+    }
+    .tlStep:last-child::after{display:none}
+    .tlStep.active{
+      border-color: var(--cyan);
+      background: rgba(122,215,255,.1);
+    }
+    .tlStep .tlNum{font-size:18px;font-weight:700;color:var(--cyan)}
+    .tlStep .tlLabel{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3}
+    @media (max-width: 640px){
+      .timeline{grid-template-columns: repeat(3,1fr)}
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(187,167,255,.35)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Wave retreating and returning -->
+            <path d="M20,170 C80,160 100,80 160,100 C220,120 240,170 300,160 C360,150 380,60 440,90 C470,105 490,80 510,75" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <path d="M20,140 Q130,50 260,140 Q390,50 510,130" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".4" />
+            <!-- Subtle pulse dots -->
+            <circle cx="160" cy="100" r="8" fill="rgba(122,215,255,.5)">
+              <animate attributeName="r" values="6;10;6" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".5;.8;.5" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="440" cy="90" r="6" fill="rgba(117,240,182,.5)">
+              <animate attributeName="r" values="4;8;4" dur="4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values=".4;.7;.4" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="300" cy="160" r="5" fill="rgba(187,167,255,.4)">
+              <animate attributeName="r" values="3;7;3" dur="3.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; blocaj emoțional &bull; revenirea instinctului</div>
+          <h1>Dorința revine după blocajul emoțional</h1>
+          <p class="subtitle">
+            Blocajul emoțional nu se întâmplă pentru că dorința este slabă. Se întâmplă pentru că psihicul devine copleșit de prea mult control, prea multă auto-monitorizare.
+            Jung credea că dorința nu moare — ea se <b>retrage</b>. Și retragerea nu este același lucru cu pierderea.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la simulatorul de unde</button>
+            <button class="btn" id="jumpCheck">Salt la lista de auto-evaluare</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Concepte cheie rezumate">
+          <div class="stat">
+            <div class="label">Teză centrală</div>
+            <div class="value">Retragere, nu pierdere</div>
+            <div class="note">Dorința se retrage când simțirea devine nesigură sau epuizantă.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cum revine</div>
+            <div class="value">Prin siguranță internă</div>
+            <div class="note">Nu prin stimulare externă, ci prin permisiunea de a simți.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Concepte Jung</div>
+            <div class="value">Instinct &bull; Ego &bull; Spațiu</div>
+            <div class="note">Instinctul se retrage când Eul controlează totul. Are nevoie de spațiu.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ritmul natural</div>
+            <div class="value">Apropiere → Retragere → Din nou</div>
+            <div class="note">Dorința revine în valuri, nu dintr-o dată. Fiecare val construiește încredere.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- De ce dispare dorinta -->
+      <section class="card" aria-label="De ce dispare dorința">
+        <div class="cardHeader">
+          <h2>De ce dispare dorința? Anatomia blocajului emoțional</h2>
+          <div class="chip"><b>Jung:</b> psihicul se protejează</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Dorința nu este un gând. Nu este o decizie. Nu este ceva ce invoci prin efort. Dorința este o <b>mișcare a instinctului</b>.
+                Iar instinctul nu răspunde la presiune, instrucțiuni sau disciplină. El răspunde la <b>permisiune</b>.
+              </p>
+              <p class="muted">
+                Blocajul emoțional apare când permisiunea este retrasă prea mult timp. La un moment dat, a simți profund a devenit asociat cu un <b>cost</b>:
+                conflict, dezamăgire, supraîncărcare emoțională, auto-trădare repetată. Psihicul s-a adaptat. Nu a șters dorința — a pus-o <b>în spatele unui geam</b>.
+              </p>
+              <p class="muted">
+                Ai devenit funcțional, stabil, conștient de sine. Dar vitalitatea s-a stins treptat.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Aceasta este o distincție esențială: blocajul emoțional nu este lipsă de dorință, ci un mecanism de protecție. Psihicul „alege" distanța nu permanent, ci protectiv. Înțelegerea acestui lucru schimbă complet abordarea vindecării.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Cauzele blocajului">
+                <div class="small" style="margin-bottom:10px">Ce a declanșat blocajul — costurile simțirii profunde:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Conflict emoțional</span><span class="tag">cost</span></div>
+                  <div class="pill"><span>Dezamăgire repetată</span><span class="tag">cost</span></div>
+                  <div class="pill"><span>Supraîncărcare emoțională</span><span class="tag">cost</span></div>
+                  <div class="pill"><span>Auto-trădare repetată</span><span class="tag">cost</span></div>
+                  <div class="pill"><span>Ego prea dominant</span><span class="tag">control</span></div>
+                  <div class="pill"><span>Auto-monitorizare excesivă</span><span class="tag">control</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Jung credea că instinctul se retrage când conștiința devine prea dominantă. Când Eul monitorizează fiecare sentiment, instinctul nu se mai simte binevenit.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simulatorul de unde al dorintei -->
+      <section class="card" id="vizSection" aria-label="Simulatorul de unde al dorinței">
+        <div class="cardHeader">
+          <h2>Simulatorul de unde: retragerea și revenirea dorinței</h2>
+          <div class="chip">instinct &bull; siguranță &bull; permisiune</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Această vizualizare arată cum dorința fluctuează: în blocaj, ea este „plată" (aproape zero mișcare). Pe măsură ce siguranța internă crește, undele revin — inițial mici și fragile, apoi mai puternice.
+          </p>
+
+          <div class="viz" aria-label="Simulare vizuală">
+            <canvas class="waveCanvas" id="waveCanvas" width="960" height="220"></canvas>
+
+            <div class="legend" aria-label="Legendă">
+              <div class="key"><span class="sw" style="background: rgba(122,215,255,.9)"></span> Instinct / dorință</div>
+              <div class="key"><span class="sw" style="background: rgba(255,122,153,.7)"></span> Control al Eului</div>
+              <div class="key"><span class="sw" style="background: rgba(117,240,182,.7)"></span> Siguranță internă</div>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="Controale simulator">
+            <div class="control">
+              <label>
+                <span>Nivel de blocaj emoțional</span>
+                <span class="readout" id="shutdownReadout">60%</span>
+              </label>
+              <input id="shutdownSlider" type="range" min="0" max="100" value="60" />
+              <div class="small" style="margin-top:8px">Mai mare = mai mult blocaj. Dorința se aplatizează pe măsură ce controlul crește.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Siguranță internă</span>
+                <span class="readout" id="safetyReadout">30%</span>
+              </label>
+              <input id="safetySlider" type="range" min="0" max="100" value="30" />
+              <div class="small" style="margin-top:8px">Mai mare = mai multă siguranță. Instinctul își permite să revină.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest simulator este <b>conceptual</b> — ilustrează vizual ideea că dorința nu revine prin stimulare (noutate, intensitate, efort), ci prin siguranță internă. Cu cât reduci controlul și crești siguranța, cu atât „unda" instinctului revine la amplitudine.
+          </div>
+        </div>
+      </section>
+
+      <!-- Cum revine dorinta + Greseli comune -->
+      <section class="row">
+        <div class="card" aria-label="Cum revine dorința">
+          <div class="cardHeader">
+            <h2>Cum revine dorința: primii pași fragili</h2>
+            <div class="chip">fragmente, nu flux</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea că atunci când instinctul este ignorat, el devine <b>timid</b>. Nu reapare zgomotos. Așteaptă.
+              Și când revine, o face în liniște — adesea în momente care par nesemnificative.
+            </p>
+
+            <div class="flow" aria-label="Semnele revenirii">
+              <div class="flowNode">
+                <h3>1) Sclipiri fugare</h3>
+                <p>Un interes care durează două secunde. O scurtă căldură. O atracție subtilă care dispare înainte de a deveni clară. Oamenii blocați emoțional resping aceste momente rapid — le judecă, le analizează, le suprimă.</p>
+                <div class="meta"><span class="badge">interes scurt</span><span class="badge">căldură fugitivă</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Inconsistența ca semn de vindecare</h3>
+                <p>Dorința poate apărea și dispărea. Mulți interpretează aceasta ca dovadă că ceva e încă „stricat". Dar Jung ar spune: inconsistența este un semn de <b>vindecare</b>, nu de eșec. Instinctul revine în fragmente înainte de a reveni ca flux.</p>
+                <div class="meta"><span class="badge">fragmente</span><span class="badge">nu eșec</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Vulnerabilitatea apare alături</h3>
+                <p>Când blocajul se ridică ușor, simțirea nu revine selectiv. Nu primești dorința fără expunere. Nu primești căldura fără sensibilitate. Unii se retrag tocmai când dorința începe să revină — confundă sensibilitatea cu slăbiciunea.</p>
+                <div class="meta"><span class="badge">vulnerabilitate ≠ slăbiciune</span><span class="badge">contact</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Dorința nu revine la sinele vechi</h3>
+                <p>Mulți așteaptă inconștient ca dorința să se simtă cum era: intensă, consumatoare, fără efort. Dar acea versiune aparținea unei structuri psihice diferite. După blocaj, dorința este mai liniștită, mai ancorată, mai puțin dramatică.</p>
+                <div class="meta"><span class="badge">intensitate ≠ vitalitate</span><span class="badge">prezență</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este poate cea mai importantă distincție din întregul text: <b>intensitatea nu este același lucru cu vitalitatea</b>. Intensitatea vine adesea din tensiune. Vitalitatea vine din flux. Dorința după blocaj nu este despre evadare sau urgență — este despre prezență.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Greșeli comune">
+          <div class="cardHeader">
+            <h2>Greșeli care blochează revenirea dorinței</h2>
+            <div class="chip"><b>Jung:</b> instinctul nu suportă supravegherea</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Oamenii emoțional inteligenți greșesc adesea cel mai mult în această fază — pentru că vor ca dorința să fie coerentă, previzibilă, explicabilă.
+            </p>
+
+            <div class="riskGrid" aria-label="Greșeli">
+              <div class="risk">
+                <div class="rTop"><strong>Interogarea</strong><span class="badge">control</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>„Ce înseamnă asta? Unde duce? De ce simt asta acum?" — în momentul în care apar aceste întrebări, instinctul se strânge din nou. Interogarea se simte ca supraveghere.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Așteptarea pregătirii</strong><span class="badge">ego</span></div>
+                <div class="meter"><i style="width:62%"></i></div>
+                <p>„Pregătirea" este un concept al Eului. Instinctul nu așteaptă pregătirea — el răspunde la invitație. Invitații mici: lasă un moment să dureze în loc de a-l închide.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Cererea de sens prematur</strong><span class="badge">presiune</span></div>
+                <div class="meter"><i style="width:68%"></i></div>
+                <p>Oamenii vor să știe ce duce un sentiment înainte de a-l permite. Instinctul nu funcționează așa. Dorința trebuie să se miște fără scop la început.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Utilizarea dorinței ca instrument</strong><span class="badge">presiune</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Încercarea de a canaliza dorința spre rezultate (conexiune, validare, ușurare) o transformă în presiune. Iar presiunea recreează blocajul.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Jung avertiza: dorința nu poate crește sub supraveghere. Ea are nevoie de spațiu unde simțirea este permisă a fi ineficientă, neclară, neproductivă.</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ironia centrală: tocmai oamenii care se auto-cunosc cel mai bine pot bloca cel mai eficient revenirea instinctului. Introspecția excesivă devine ea însăși o formă de control. Jung ar spune: „Introspecția pregătește terenul, dar instinctul crește în propriul ritm."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diagrama: de la fantezie la experienta -->
+      <section class="card" aria-label="De la fantezie la experiență">
+        <div class="cardHeader">
+          <h2>Schimbarea critică: de la fantezie la experiență</h2>
+          <div class="chip">minte → corp</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                În timpul blocajului, dorința supraviețuiește adesea doar în imaginație — în gând, în amintire, în dor care nu ajunge niciodată la acțiune.
+                Când dorința revine, ea încearcă să se mute <b>din minte în corp</b>. Aceasta se simte nefamiliar.
+              </p>
+              <p class="muted">
+                Poți observa că fantezia își pierde forța de atracție, în timp ce simpla <b>prezență</b> devine mai semnificativă: mai puțină imagine, mai multă senzație.
+              </p>
+              <p class="muted">
+                Pentru oamenii emoțional inteligenți, aceasta poate părea <b>decepționantă</b> la început. Sunt obișnuiți să înțeleagă dorința mental. Dar instinctul nu trăiește în explicație — el trăiește în <b>imediat</b>.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Jung credea că separarea minte-corp este una dintre marile boli ale conștiinței moderne. Psihicul se vindecă nu când „înțelegi" mai mult, ci când permiți corpului să simtă fără ca mintea să intervină imediat pentru a evalua.
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Diagrama fantezie vs experiență">
+                <svg viewBox="0 0 480 360" role="img" aria-label="De la fantezie la experiență somatică">
+                  <defs>
+                    <filter id="soft3" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <linearGradient id="fantGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(187,167,255,.3)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.05)"/>
+                    </linearGradient>
+                    <linearGradient id="expGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(117,240,182,.05)"/>
+                      <stop offset="1" stop-color="rgba(117,240,182,.3)"/>
+                    </linearGradient>
+                  </defs>
+                  <g filter="url(#soft3)">
+                    <!-- Top: Fantasy/Mind zone -->
+                    <rect x="40" y="20" width="400" height="130" rx="18" fill="url(#fantGrad)" stroke="rgba(187,167,255,.25)"/>
+                    <text x="60" y="52" font-size="14" fill="rgba(187,167,255,.9)" font-weight="700">FANTEZIE / MINTE</text>
+                    <text x="60" y="72" font-size="11" fill="rgba(255,255,255,.55)">Imagini, amintiri, dor, scenarii mentale</text>
+                    <text x="60" y="92" font-size="11" fill="rgba(255,255,255,.55)">Dorința trăiește doar „în cap"</text>
+                    <text x="60" y="112" font-size="11" fill="rgba(255,255,255,.55)">Funcțional dar fără vitalitate</text>
+                    <text x="60" y="132" font-size="11" fill="rgba(255,255,255,.4)">↑ Zona blocajului emoțional</text>
+
+                    <!-- Arrow down -->
+                    <line x1="240" y1="155" x2="240" y2="195" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <text x="260" y="180" font-size="11" fill="rgba(255,179,138,.7)">tranziție: dorința coboară</text>
+
+                    <!-- Bottom: Experience/Body zone -->
+                    <rect x="40" y="200" width="400" height="130" rx="18" fill="url(#expGrad)" stroke="rgba(117,240,182,.25)"/>
+                    <text x="60" y="232" font-size="14" fill="rgba(117,240,182,.9)" font-weight="700">EXPERIENȚĂ / CORP</text>
+                    <text x="60" y="252" font-size="11" fill="rgba(255,255,255,.55)">Senzații, confort, prezență, căldură fizică</text>
+                    <text x="60" y="272" font-size="11" fill="rgba(255,255,255,.55)">Dorința se simte, nu se gândește</text>
+                    <text x="60" y="292" font-size="11" fill="rgba(255,255,255,.55)">Instinctul trăiește în imediat</text>
+                    <text x="60" y="312" font-size="11" fill="rgba(255,255,255,.4)">↓ Zona vindecării</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vinovația + Relationalitatea -->
+      <section class="row">
+        <div class="card" aria-label="Vinovăția în revenire">
+          <div class="cardHeader">
+            <h2>Vinovăția: reziduul supra-adaptării</h2>
+            <div class="chip">tolerare, nu rezolvare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Oamenii emoțional inteligenți simt adesea <b>vinovăție</b> când dorința revine: vinovăție pentru că doresc, pentru că au nevoie, pentru că simt ceva ce nu poate fi justificat imediat.
+            </p>
+            <p class="muted">
+              Această vinovăție este un <b>reziduu al supra-adaptării</b>. Ai învățat că a dori era perturbator, incomod, periculos. Când dorința revine, ea aduce disconfort alături de plăcere.
+            </p>
+
+            <div class="flowNode">
+              <h3>Poziția lui Jung</h3>
+              <p>Această vinovăție trebuie <b>tolerată, nu rezolvată</b>. Ea se estompează doar când instinctului i se permite să existe fără apărare. Nu trebuie să „justifici" dorința — trebuie doar să o lași să fie.</p>
+              <div class="meta"><span class="badge">toleranță</span><span class="badge">fără apărare</span><span class="badge">permisiune</span></div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este o lecție contraintuitivă: nu rezolvi vinovăția prin analiză sau raționalizare. O rezolvi prin repetarea experienței de a simți fără consecințe negative. Corpul învață prin experiență, nu prin logică.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Dorința revine relațional">
+          <div class="cardHeader">
+            <h2>Dorința revine în relație</h2>
+            <div class="chip"><b>Jung:</b> permeabilitate, nu dependență</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Dorința nu revine în izolare — revine <b>relațional</b>. Nu neapărat romantic la început, dar relațional:
+              te simți mai afectat de alții, mai responsiv la prezență, mai impact de apropiere.
+            </p>
+            <p class="muted">
+              Aceasta poate fi copleșitoare dacă ai fost auto-suficient emoțional mult timp. Tentația este să te retragi în autonomie, să reafirmi controlul.
+              Dar Jung avertiza: <b>prea multă autonomie înfometează erosul</b>. Dorința crește în schimb, în rezonanță, în prezență reciprocă.
+            </p>
+
+            <div class="row2">
+              <div class="risk">
+                <div class="rTop"><strong>Permeabilitate</strong><span class="badge" style="color:var(--good)">sănătos</span></div>
+                <div class="meter"><i style="width:80%;background:linear-gradient(90deg, var(--cyan), var(--good))"></i></div>
+                <p>Psihicul se vindecă când poate fi „atins" fără a fi „invadat". Aceasta nu înseamnă dependență — înseamnă deschidere.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Autonomie excesivă</strong><span class="badge" style="color:var(--bad)">risc</span></div>
+                <div class="meter"><i style="width:55%;background:linear-gradient(90deg, var(--warn), var(--bad))"></i></div>
+                <p>Independența emoțională totală nu este putere — este încă o formă de protecție. Dorința nu poate crește în vid relațional.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este o nuanță importantă: „vindecarea" nu înseamnă să devii din nou dependent. Înseamnă să permiți conexiunea fără a pierde identitatea. Jung numea aceasta „cooperare" între conștiință și instinct — nu control, nu colaps, ci <b>colaborare</b>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ritmul natural al revenirii -->
+      <section class="card" aria-label="Ritmul natural">
+        <div class="cardHeader">
+          <h2>Ritmul natural: apropiere → retragere → din nou</h2>
+          <div class="chip">val după val</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Dorința nu revine dintr-o dată. Vine în <b>valuri</b>. Apropiere, retragere, din nou apropiere.
+            Acest ritm este natural. De fiecare dată când permiți dorinței să se apropie fără a o bloca, se construiește încredere.
+            Nu conștient, ci <b>somatic</b>. Corpul învață că simțirea nu mai este periculoasă.
+          </p>
+
+          <div class="timeline" id="timeline" aria-label="Fazele revenirii">
+            <div class="tlStep active" data-tl="0">
+              <div class="tlNum">1</div>
+              <div class="tlLabel">Blocaj total</div>
+            </div>
+            <div class="tlStep" data-tl="1">
+              <div class="tlNum">2</div>
+              <div class="tlLabel">Primele sclipiri</div>
+            </div>
+            <div class="tlStep" data-tl="2">
+              <div class="tlNum">3</div>
+              <div class="tlLabel">Inconsistență</div>
+            </div>
+            <div class="tlStep" data-tl="3">
+              <div class="tlNum">4</div>
+              <div class="tlLabel">Adâncire</div>
+            </div>
+            <div class="tlStep" data-tl="4">
+              <div class="tlNum">5</div>
+              <div class="tlLabel">Cooperare</div>
+            </div>
+          </div>
+
+          <div id="tlContent" style="margin-top:14px">
+            <div class="flowNode">
+              <h3>Faza 1: Blocaj total</h3>
+              <p>Simțirea este plată, nu dureroasă. Durerea încă necesită simțire. Blocajul este absența mișcării. Ești funcțional, stabil, dar „stins". Sistemul nervos este încă în alertă chiar dacă nu se întâmplă nimic.</p>
+              <div class="meta"><span class="badge">platitudine</span><span class="badge">vigilență ascunsă</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung credea că adevărata vitalitate apare când conștiința face un pas înapoi suficient pentru ca instinctul să conducă — fără a fi abandonat. Nu control, nu colaps, ci <b>cooperare</b> între conștiință și instinct.
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista de auto-evaluare -->
+      <section class="card" id="checkSection" aria-label="Lista de auto-evaluare">
+        <div class="cardHeader">
+          <h2>Lista de auto-evaluare: unde te afli?</h2>
+          <div class="chip">reflecție personală</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifează afirmațiile care se potrivesc cu experiența ta actuală. Aceasta nu este un diagnostic — este un instrument de auto-observare bazat pe cadrul jungian al blocajului emoțional și al revenirii instinctului.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu simt prea mult, chiar când lucrurile merg bine</strong><em>platitudine</em></div>
+                <div class="d">Sistemul este încă în pază. Chiar și în absența amenințărilor, ceva rămâne „stins" sau „plat".</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am sclipiri de interes care dispar rapid</strong><em>testare</em></div>
+                <div class="d">Momente fugare de atracție sau căldură care se sting înainte de a deveni clare — instinctul testează dacă e sigur.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Analizez ce simt înainte de a-mi permite să simt</strong><em>control</em></div>
+                <div class="d">Mintea intervine imediat: „Ce înseamnă? E ok? Unde duce?" — și instinctul se retrage din nou.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Simt vinovăție când doresc ceva</strong><em>supra-adaptare</em></div>
+                <div class="d">Vinovăție pentru că doresc, pentru că am nevoie, pentru că simt ceva fără justificare imediată.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Dorința trăiește mai mult în imaginație decât în corp</strong><em>fantezie</em></div>
+                <div class="d">Dorința supraviețuiește în gânduri, scenarii mentale, amintiri — dar rareori ajunge la acțiune sau senzație fizică.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Mă retrag când cineva se apropie prea mult</strong><em>protecție</em></div>
+                <div class="d">Apropierea declanșează o nevoie de spațiu, autonomie, control. Permeabilitatea se simte ca amenințare.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Aștept ca dorința să se simtă ca înainte</strong><em>nostalgie</em></div>
+                <div class="d">Caut intensitatea veche. Dorința de acum pare „prea liniștită" — dar poate aceasta este forma ei vindecată.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sensibilitatea mă sperie uneori</strong><em>vulnerabilitate</em></div>
+                <div class="d">Când blocajul se ridică, simți mai mult — nu doar plăcere, ci și incertitudine. Sensibilitatea revine întreagă, nu selectiv.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculează unde te afli</button>
+            <button class="btn" id="resetBtn">Resetează lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Fiecare bifare nu este un „simptom" ci un <b>semnal</b> — indică unde te afli în procesul de revenire. Primele 4 afirmații sugerează blocaj activ. Ultimele 4 sugerează că dorința deja testează dacă e sigur să revină. Ambele stări fac parte din vindecare.
+          </div>
+        </div>
+      </section>
+
+      <!-- Mesajul final -->
+      <section class="card" aria-label="Concluzie">
+        <div class="cardHeader">
+          <h2>Teza finală: dorința nu revine să te copleșească</h2>
+          <div class="chip"><b>Jung:</b> cooperare, nu control</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce înseamnă cu adevărat revenirea</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Dorința nu revine ca urgență. Nu revine ca intensitate. Și aproape niciodată nu revine ca certitudine.
+                Ea revine <b>cu precauție</b> — mai ales după perioade lungi de suprimare.
+                Psihicul nu are încredere imediat. El testează.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce necesită din partea ta</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Răbdare care pare contraintuitivă. Trebuie să lași ceva să crească fără a-l gestiona.
+                Trebuie să tolerezi vinovăția fără a o rezolva.
+                Trebuie să permiți conexiunea fără a controla rezultatul.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Când corpul are încredere</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Când corpul are încredere, dorința se adâncește. Jung credea că adevărata vitalitate apare când conștiința face un pas înapoi suficient
+                pentru ca instinctul să conducă — fără a fi abandonat. Nu control, nu colaps, ci <b>cooperare</b>.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Rezumat vizual">
+                <div class="small" style="margin-bottom:12px">Cele 3 reguli ale revenirii:</div>
+                <div class="flow">
+                  <div class="flowNode" style="border-color:rgba(122,215,255,.3)">
+                    <h3 style="color:var(--cyan)">1. Siguranța, nu stimularea</h3>
+                    <p>Dorința revine prin siguranță internă. Mai multă noutate sau intensitate doar epuizează sistemul. Permisiunea este cheia.</p>
+                  </div>
+                  <div class="flowNode" style="border-color:rgba(117,240,182,.3)">
+                    <h3 style="color:var(--good)">2. Spațiu, nu supraveghere</h3>
+                    <p>Instinctul nu poate crește sub supraveghere. Nu analiza fiecare senzație. Lasă-o să existe fără scop, fără evaluare, fără presiune.</p>
+                  </div>
+                  <div class="flowNode" style="border-color:rgba(187,167,255,.3)">
+                    <h3 style="color:var(--violet)">3. Răbdare, nu control</h3>
+                    <p>Dorința vine în valuri. Fiecare val în care nu o blochezi construiește încredere somatică. Corpul învață că simțirea nu mai e periculoasă.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Ultima întrebare</strong><span class="hint">apasă pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Dacă ai observat sclipiri mici de dorință — o căldură scurtă, momente de apropiere care te confuzează mai mult decât te entuziasmează —
+                nu le resping. Nu le anunța. <b>Recunoaște-le.</b>
+              </p>
+              <p style="margin-top:10px;color:var(--cyan);font-weight:600">
+                Jung credea că instinctul și conștiința pot în sfârșit lucra împreună. Dorința nu revine să te copleșească — revine când ești în sfârșit gata să lași viața să curgă prin tine.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Despre comentarii -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toată pagina, casetele albastre (marcate cu <code>data-commentary</code>) oferă comentarii la nivel meta:
+            cât de puternică este afirmația? Ce perspective alternative există? Care sunt nuanțele?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasă „Comută comentariul" în partea de sus pentru a ascunde/arăta toate casetele de comentariu odată.
+            Astfel poți comuta între „ce spune textul original" și „ce interpretare critică oferim noi".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un text despre cum dorința revine după blocajul emoțional, conform psihologiei jungiene.
+        Nu este consiliere psihologică sau medicală. Vizualizările, simulatorul și comentariile sunt instrumente conceptuale menite să ajute la reflecție, nu substituturi pentru terapie sau ghidare clinică profesionistă.
+      </p>
+      <p style="margin-top:10px">
+        Pentru întrebări, corecturi sau pentru a aprofunda: consultă literatura de specialitate despre psihologia analitică a lui Carl Jung, reglarea sistemului nervos și psihoterapie somatică.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Wave Simulator (Canvas)
+    // ──────────────────────────────────────────────────────
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const shutdownSlider = document.getElementById('shutdownSlider');
+    const safetySlider = document.getElementById('safetySlider');
+    const shutdownReadout = document.getElementById('shutdownReadout');
+    const safetyReadout = document.getElementById('safetyReadout');
+
+    let animFrame;
+    let time = 0;
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * (window.devicePixelRatio || 1);
+      canvas.height = rect.height * (window.devicePixelRatio || 1);
+      ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    }
+
+    function drawWave() {
+      const w = canvas.getBoundingClientRect().width;
+      const h = canvas.getBoundingClientRect().height;
+      const shutdown = parseInt(shutdownSlider.value) / 100;
+      const safety = parseInt(safetySlider.value) / 100;
+
+      shutdownReadout.textContent = `${shutdownSlider.value}%`;
+      safetyReadout.textContent = `${safetySlider.value}%`;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Background grid
+      ctx.strokeStyle = 'rgba(255,255,255,.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 22) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 22) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      const mid = h / 2;
+
+      // Desire/Instinct wave (cyan)
+      const desireAmp = (1 - shutdown * 0.85) * (0.3 + safety * 0.7) * (h * 0.35);
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(122,215,255,.85)';
+      ctx.lineWidth = 3;
+      for (let x = 0; x < w; x++) {
+        const t = (x / w) * Math.PI * 6 + time;
+        const wave1 = Math.sin(t) * desireAmp;
+        const wave2 = Math.sin(t * 1.7 + 1.3) * desireAmp * 0.3;
+        const y = mid + wave1 + wave2;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // Fill under desire wave
+      ctx.lineTo(w, mid);
+      ctx.lineTo(0, mid);
+      ctx.fillStyle = 'rgba(122,215,255,.06)';
+      ctx.fill();
+
+      // Control wave (red, inverse - higher shutdown = higher control)
+      const controlAmp = shutdown * (h * 0.2);
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(255,122,153,.5)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+      for (let x = 0; x < w; x++) {
+        const t = (x / w) * Math.PI * 4 + time * 0.6;
+        const y = mid - controlAmp * 0.8 + Math.sin(t) * controlAmp * 0.3;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Safety baseline (green)
+      const safetyLevel = mid + (h * 0.3) - safety * (h * 0.5);
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(117,240,182,.5)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([3, 6]);
+      ctx.moveTo(0, safetyLevel);
+      ctx.lineTo(w, safetyLevel);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Labels
+      ctx.font = '11px ui-sans-serif, system-ui';
+      ctx.fillStyle = 'rgba(255,255,255,.5)';
+      ctx.fillText('Blocaj mare / Siguranță mică', 10, 18);
+      ctx.fillText('Vitalitate / Flux', w - 110, h - 8);
+
+      time += 0.02;
+      animFrame = requestAnimationFrame(drawWave);
+    }
+
+    window.addEventListener('resize', () => { resizeCanvas(); });
+    shutdownSlider.addEventListener('input', () => {});
+    safetySlider.addEventListener('input', () => {});
+
+    resizeCanvas();
+    drawWave();
+
+    // ──────────────────────────────────────────────────────
+    // Timeline interactivity
+    // ──────────────────────────────────────────────────────
+    const tlPhases = [
+      {
+        title: 'Faza 1: Blocaj total',
+        body: 'Simțirea este plată, nu dureroasă. Durerea încă necesită simțire. Blocajul este absența mișcării. Ești funcțional, stabil, dar „stins". Sistemul nervos este încă în alertă chiar dacă nu se întâmplă nimic — a învățat vigilența.',
+        badges: ['platitudine', 'vigilență ascunsă']
+      },
+      {
+        title: 'Faza 2: Primele sclipiri',
+        body: 'Un interes care durează două secunde. O căldură scurtă. Un confort în apropiere. Un răspuns corporal care nu ajunge încă la minte. Jung ar spune: psihicul testează din nou mediul — întreabă „Este sigur acum?"',
+        badges: ['testare', 'sclipiri fugare']
+      },
+      {
+        title: 'Faza 3: Inconsistență confuză',
+        body: 'Dorința apare și dispare. Atracția se aprinde, apoi se stinge. Apropierea se simte caldă, apoi brusc distantă. Aceasta nu este defect — este instinctul care revine în fragmente înainte de a reveni ca flux. Fiecare fragment construiește încredere somatică.',
+        badges: ['fragmente ≠ eșec', 'vindecare invizibilă']
+      },
+      {
+        title: 'Faza 4: Adâncire și schimbare de textură',
+        body: 'Dorința se mută din minte în corp. Fantezia pierde forța; prezența devine mai semnificativă. Dorința este mai liniștită, mai ancorată, mai puțin dramatică. Poate părea „decepționantă" comparativ cu intensitatea veche — dar aceasta este forma ei vindecată.',
+        badges: ['prezență > fantezie', 'calm ≠ plictiseală']
+      },
+      {
+        title: 'Faza 5: Cooperare între conștiință și instinct',
+        body: 'Conștiința face un pas înapoi suficient pentru ca instinctul să conducă — fără a fi abandonat. Nu control, nu colaps, ci cooperare. Corpul are încredere că simțirea nu mai este periculoasă. Dorința se adâncește și devine parte din flux.',
+        badges: ['cooperare', 'flux', 'vitalitate']
+      }
+    ];
+
+    const tlSteps = document.querySelectorAll('.tlStep');
+    const tlContent = document.getElementById('tlContent');
+
+    function renderTl(idx) {
+      tlSteps.forEach((s, i) => s.classList.toggle('active', i === idx));
+      const p = tlPhases[idx];
+      tlContent.innerHTML = `
+        <div class="flowNode">
+          <h3>${p.title}</h3>
+          <p>${p.body}</p>
+          <div class="meta">${p.badges.map(b => `<span class="badge">${b}</span>`).join('')}</div>
+        </div>
+      `;
+    }
+
+    tlSteps.forEach((step, i) => {
+      step.addEventListener('click', () => renderTl(i));
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', () => {
+      document.getElementById('checkSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+
+      const first4 = Array.from(checkboxes).slice(0, 4).filter(cb => cb.checked).length;
+      const last4 = Array.from(checkboxes).slice(4).filter(cb => cb.checked).length;
+
+      let msg = '';
+      if (first4 >= 3 && last4 <= 1) {
+        msg = 'Indicii de blocaj activ predominant. Dorința este încă în mare parte retrasă. Prioritatea: siguranță internă și reducerea auto-monitorizării.';
+      } else if (first4 >= 2 && last4 >= 2) {
+        msg = 'Fază de tranziție. Blocajul coexistă cu primele sclipiri de revenire. Prioritatea: nu analiza sclipirile — lasă-le să existe.';
+      } else if (last4 >= 3) {
+        msg = 'Dorința testează deja dacă e sigur să revină. Prioritatea: tolerează vinovăția, permite vulnerabilitatea, nu forța intensitatea veche.';
+      } else if (checked === 0) {
+        msg = 'Nicio bifare. Fie procesul este diferit de acest cadru, fie integrarea e deja avansată.';
+      } else {
+        msg = `${checked} din ${total} bifate. Explorează ce rezonează cel mai mult — acel punct este ușa ta spre conștientizare.`;
+      }
+
+      document.getElementById('scoreOut').innerHTML = `<b>Evaluarea ta:</b> ${msg}`;
+      showToast('Evaluare calculată');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

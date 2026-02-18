@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce dorinta nu moare odata cu varsta — Psihologia iubirii la maturitate (Carl Jung)</title>
+  <meta name="description" content="Infografic interactiv despre psihologia dorintei in varsta a treia, bazat pe ideile lui Carl Jung. De ce dorinta nu dispare, ci se transforma." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,179,138,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,122,153,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Spectrum bar */
+    .spectrum{
+      height:14px;border-radius:99px;overflow:hidden;margin-top:8px;
+      background: linear-gradient(90deg, var(--violet), var(--bad), var(--orange));
+      position:relative;
+    }
+    .spectrum .marker{
+      position:absolute;top:-2px;width:4px;height:18px;background:#fff;border-radius:2px;
+      box-shadow:0 0 8px rgba(255,255,255,.5);
+    }
+
+    /* Phase cards */
+    .phaseGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width:780px){.phaseGrid{grid-template-columns:1fr}}
+    .phaseCard{
+      border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(0,0,0,.18);padding:14px;
+      text-align:center;
+    }
+    .phaseCard .phaseIcon{font-size:28px;margin-bottom:8px;display:block}
+    .phaseCard h3{margin:0 0 6px;font-size:14px}
+    .phaseCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Heart-like curves -->
+            <path d="M160,180 C160,80 60,40 60,110 C60,160 160,220 160,180 Z" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".5" />
+            <path d="M160,180 C160,80 260,40 260,110 C260,160 160,220 160,180 Z" fill="none" stroke="url(#g2)" stroke-width="3" opacity=".5" />
+            <!-- Flowing lines representing time -->
+            <path d="M20,160 C80,100 140,180 200,120 C260,60 340,140 420,80 C460,55 490,70 510,50" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity=".4" />
+            <path d="M30,190 C90,130 180,200 260,140 C340,80 400,160 480,110" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".35" />
+            <circle cx="160" cy="140" r="12" fill="rgba(255,255,255,.5)" />
+            <circle cx="350" cy="100" r="8" fill="rgba(255,255,255,.4)" />
+            <circle cx="80" cy="120" r="6" fill="rgba(255,255,255,.35)" />
+            <circle cx="440" cy="85" r="7" fill="rgba(255,255,255,.3)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiand &bull; dorinta &bull; maturitate</div>
+          <h1>De ce dorinta nu moare odata cu varsta: psihologia iubirii la maturitate</h1>
+          <p class="subtitle">
+            Majoritatea oamenilor cred ca dorinta are o data de expirare. Dar psihologia spune altceva:
+            <b>dorinta nu dispare, ci isi schimba locatia</b> -- din corp in suflet, din urgenta in profunzime, din fantezie in adevar.
+            Aceasta pagina exploreaza ce se intampla cu iubirea si dorinta pe masura ce imbatrinim, prin prisma lui Carl Jung.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpTransform">Transformarea dorintei</button>
+            <button class="btn" id="jumpChecklist">Ghid de integrare</button>
+            <button class="btn" id="toggleNotes">Afiseaza / ascunde comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei principale">
+          <div class="stat">
+            <div class="label">Teza centrala</div>
+            <div class="value">Dorinta se transforma</div>
+            <div class="note">Nu dispare -- isi schimba forma din urgenta fizica in profunzime emotionala.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Carl Jung</div>
+            <div class="value">Integrare, nu reprimare</div>
+            <div class="note">A doua jumatate a vietii e pentru reconciliere interioara, nu pentru cuceriri.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Paradoxul varstei</div>
+            <div class="value">Corp slabit, suflet sincer</div>
+            <div class="note">Corpul slabeste, ego-ul se inmoaie, dar sufletul devine onest.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Pericolul</div>
+            <div class="value">Dorinta redusa la tacere</div>
+            <div class="note">Dorinta neexprimata nu se vindeca. Se transforma in amaraciune.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: The Big Myth -->
+      <section class="card" aria-label="Mitul principal">
+        <div class="cardHeader">
+          <h2>Minciuna pe care societatea o repeta: dorinta apartine tineretii</h2>
+          <div class="chip"><b>Mit demontat</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Societatea celebreaza dorinta cand e <b>puternica si vizibila</b> -- pasiunea tineretii, inimile care bat repede, noptile nesabuite. Dar cand dorinta devine <b>linistita, reflexiva, interioara</b>, lumea o considera disparuta.
+              </p>
+              <p class="muted">
+                Aceasta este prima minciuna. In realitate, dorinta se muta din urmarire in prezenta, din foame in sens, din fantezie in amintire. Un om in varsta poate sa nu urmareasca iubirea, dar o simte mai deplin cand aceasta apare.
+              </p>
+              <p class="muted">
+                <b>Psihologic, dorinta nu e doar sexuala.</b> Este nevoia de a te contopi cu cineva, de a fi recunoscut, de a te simti viu in ochii altuia. Aceasta nevoie nu moare cu varsta -- dimpotriva, devine mai ascutita pe masura ce imbatranirea inlatura iluziile.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Comparatie dorinta">
+                <div class="small" style="margin-bottom:10px">Cum se schimba dorinta cu varsta:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Urgenta fizica</span><span class="tag">tinerete</span></div>
+                  <div class="pill"><span>Nevoie de validare</span><span class="tag">tinerete</span></div>
+                  <div class="pill"><span>Fantezie si intensitate</span><span class="tag">tinerete</span></div>
+                  <div class="pill"><span>Prezenta linistita</span><span class="tag">maturitate</span></div>
+                  <div class="pill"><span>Adevar si profunzime</span><span class="tag">maturitate</span></div>
+                  <div class="pill"><span>Comuniune, nu cucerire</span><span class="tag">maturitate</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Confuzia fundamentala vine din faptul ca echivalam „dorinta" cu „comportament vizibil." Dar dorinta este un fenomen psihic, nu doar fizic. Atunci cand corpul incetineste, psihicul nu se opreste -- doar ca expresia dorintei devine mai subtila si mai greu de detectat din exterior.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: The Transformation of Desire -->
+      <section class="row" id="transform">
+        <div class="card" aria-label="Transformarea dorintei">
+          <div class="cardHeader">
+            <h2>Cum se transforma dorinta pe masura ce imbatrinim</h2>
+            <div class="chip">de la foc la lumina</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cand esti tanar, dorinta arde repede pentru ca se teme de pierdere. Cand esti batran, dorinta straluceste incet pentru ca a infruntat deja pierderea. Aceasta este intelepciunea linistita a imbatranirii.
+            </p>
+
+            <div class="flow" aria-label="Etapele transformarii">
+              <div class="flowNode">
+                <h3>1) Din corp in psihic</h3>
+                <p>Cand oamenii sunt tineri, dorinta traieste in corp -- e puternica, urgenta, nelinistita. Cere actiune. Pe masura ce imbatrinim, corpul incetineste, dar psihicul nu. Dorinta se muta in imaginatie, amintire si atasament emotional.</p>
+                <div class="meta">
+                  <span class="badge">relocare interioara</span><span class="badge">profunzime</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Din intensitate in adevar</h3>
+                <p>Psihicul nu mai vrea intensitate de dragul intensitatii. Vrea adevar. Conexiune reala. A fi vazut fara a juca un rol. A fi atins fara a fi consumat. A fi apreciat fara a fi urmarit.</p>
+                <div class="meta">
+                  <span class="badge">autenticitate</span><span class="badge">onestitate emotionala</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Din cucerire in comuniune</h3>
+                <p>Iubirea la maturitate nu e despre a fi dorit de multi, ci despre a fi inteles de unul singur. Oamenii in varsta nu mai urmaresc agitatie -- cauta siguranta emotionala. Si totusi dorinta nu dispare in siguranta. Se transforma in tandrete, rabdare, prezenta.</p>
+                <div class="meta">
+                  <span class="badge">comuniune</span><span class="badge">tandrete</span><span class="badge">prezenta</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Paradoxul: corp slab, suflet sincer</h3>
+                <p>Un om in varsta poate sta in liniste langa cineva drag si sa simta mai multa dorinta in acea tacere decat simte un tanar in toata zarva lui. Corpul slabeste, ego-ul se inmoaie, dar sufletul devine sincer. Si dorinta sincera este cea mai puternica.</p>
+                <div class="meta">
+                  <span class="badge">paradox</span><span class="badge">esenta</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta transformare nu e o pierdere -- e o rafinare. Ganditi-va la diferenta dintre un foc de tabara care arde totul in jur si flacara unei lumanari care lumineaza calm. Ambele sunt foc. Dar una are directie si sens.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Vizualizare spectru">
+          <div class="cardHeader">
+            <h2>Spectrul dorintei de-a lungul vietii</h2>
+            <div class="chip">vizualizare interactiva</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Folositi sliderul de mai jos pentru a vedea cum se schimba <b>caracteristicile dorintei</b> pe masura ce varsta creste. Nu e vorba de mai putin, ci de altfel.
+            </p>
+
+            <div class="viz" aria-label="Simulare dorinta">
+              <svg viewBox="0 0 980 380" id="desireSvg" role="img" aria-label="Vizualizare transformarea dorintei">
+                <defs>
+                  <linearGradient id="dg1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.6)" />
+                    <stop offset=".5" stop-color="rgba(187,167,255,.6)" />
+                    <stop offset="1" stop-color="rgba(117,240,182,.6)" />
+                  </linearGradient>
+                  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.04)"/>
+
+                <!-- Axes -->
+                <g opacity=".9">
+                  <path d="M80 30 L80 320 L940 320" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                </g>
+
+                <!-- Labels -->
+                <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.60)">
+                  <text x="80" y="350">20 ani</text>
+                  <text x="260" y="350">35 ani</text>
+                  <text x="440" y="350">50 ani</text>
+                  <text x="620" y="350">65 ani</text>
+                  <text x="820" y="350">80+ ani</text>
+                  <text x="80" y="20" fill="rgba(255,255,255,.85)" font-weight="700" font-size="14">Intensitatea dorintei vs. profunzimea ei</text>
+                </g>
+
+                <!-- Curves -->
+                <path id="intensityCurve" fill="none" stroke="var(--bad)" stroke-width="3" stroke-linecap="round" filter="url(#softGlow)"/>
+                <path id="depthCurve" fill="none" stroke="var(--violet)" stroke-width="3" stroke-linecap="round" filter="url(#softGlow)"/>
+                <path id="wisdomCurve" fill="none" stroke="var(--good)" stroke-width="3" stroke-linecap="round" filter="url(#softGlow)"/>
+
+                <!-- Age marker -->
+                <line id="ageMarker" x1="200" y1="30" x2="200" y2="320" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-dasharray="5 5"/>
+                <text id="ageLabel" x="200" y="370" font-family="ui-sans-serif,system-ui" font-size="13" fill="var(--text)" text-anchor="middle"></text>
+              </svg>
+
+              <div class="legend" aria-label="Legenda">
+                <div class="key"><span class="sw" style="background: var(--bad)"></span> Intensitate fizica</div>
+                <div class="key"><span class="sw" style="background: var(--violet)"></span> Profunzime emotionala</div>
+                <div class="key"><span class="sw" style="background: var(--good)"></span> Intelepciune / adevar</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Varsta simulata</span>
+                  <span class="readout" id="ageReadout">50 ani</span>
+                </label>
+                <input id="ageSlider" type="range" min="20" max="90" value="50" />
+                <div class="small" style="margin-top:8px">Observati cum pe masura ce intensitatea scade, profunzimea si intelepciunea cresc.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Nivel de reprimare</span>
+                  <span class="readout" id="repReadout">30%</span>
+                </label>
+                <input id="repSlider" type="range" min="0" max="100" value="30" />
+                <div class="small" style="margin-top:8px">Reprimarea dorintei nu o face sa dispara -- o face sa se acumuleze si sa devina amaraciune.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta vizualizare e <i>conceptuala</i> -- nu exista unitati precise de masura. Scopul e sa arate ideea centrala: dorinta nu scade la zero, ci isi schimba natura. Intensitatea fizica se diminueaza, dar profunzimea emotionala creste.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Jung's key insight -->
+      <section class="row">
+        <div class="card" aria-label="Ce spune Jung">
+          <div class="cardHeader">
+            <h2>Ce spune Carl Jung despre dorinta neexprimata</h2>
+            <div class="chip">psihologie analitica</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Conform lui Carl Jung, orice este negat de constient nu se dizolva. Se muta in inconstient si asteapta conditiile potrivite sa reapara. Varsta inaintata ofera aceste conditii.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Copiii cresc, carierele se incheie</h3>
+                <p>Rolurile sociale se destind, zgomotul se stinge. Ce ramane este viata interioara. Si pentru multi oameni in varsta, acea viata interioara e plina de iubire neterminata.</p>
+                <div class="meta"><span class="badge">tranzitie</span><span class="badge">viata interioara</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Dorinta netraita se acumuleaza</h3>
+                <p>Oamenii presupun ca daca dorinta nu a fost exprimata ani de zile, trebuie sa fi disparut. Psihologic, opusul e adevarat. Dorinta netraita capata greutate si in varsta, cand distractiile cad, revine cu o forta surprinzatoare.</p>
+                <div class="meta"><span class="badge">acumulare</span><span class="badge">forta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Nu aventuri, ci dor</h3>
+                <p>Dorul de atingerea care nu a fost niciodata pe deplin oferita, de intimitatea care a fost amanata, de cuvintele inghitite ca sa supravietuiesti. De aceea multi batrani dezvolta atasamente emotionale bruste -- un vecin, un ingrijitor, o amintire.</p>
+                <div class="meta"><span class="badge">dor</span><span class="badge">atasament brusc</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea lui Jung este ca psihicul opereaza dupa propriile legi. Nu asculta de reguli sociale sau de ce „se cuvine" la o anumita varsta. Ceea ce a fost reprimat gaseste intotdeauna o cale de a reveni la suprafata.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Nostalgia si emotia neterminata">
+          <div class="cardHeader">
+            <h2>Nostalgia: emotia neterminata a dorintei</h2>
+            <div class="chip"><b>De ce amintirile se intensifica</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Amintirile despre iubire nu se estompeaza -- se intensifica. Mintea reviziteaza momente din nou si din nou. Nu cu regret, ci cu dor de conexiune. De aceea nostalgia este atat de puternica la batranete.
+            </p>
+            <p class="muted">
+              <b>Nostalgia nu e despre trecut.</b> Este despre emotii neterminate. Si dorinta este una dintre cele mai neterminate emotii pe care le poarta un om.
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 480 220" role="img" aria-label="Ciclu: dorinta neexprimata">
+                <defs>
+                  <linearGradient id="ng1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.4)"/>
+                  </linearGradient>
+                  <filter id="nsoft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#nsoft)">
+                  <!-- Circle path -->
+                  <circle cx="240" cy="110" r="80" fill="none" stroke="url(#ng1)" stroke-width="6" opacity=".6"/>
+                  <!-- Arrow hints -->
+                  <path d="M320,110 L312,100" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M320,110 L312,120" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Labels around cycle -->
+                  <text x="240" y="24" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.8)" text-anchor="middle" font-weight="700">Amintire</text>
+                  <text x="340" y="115" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.8)" text-anchor="start">Dor</text>
+                  <text x="240" y="210" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.8)" text-anchor="middle">Nostalgie</text>
+                  <text x="140" y="115" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.8)" text-anchor="end">Dorinta</text>
+
+                  <!-- Center -->
+                  <circle cx="240" cy="110" r="30" fill="rgba(187,167,255,.12)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <text x="240" y="107" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.85)" text-anchor="middle">Emotie</text>
+                  <text x="240" y="121" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.85)" text-anchor="middle">neterminata</text>
+                </g>
+              </svg>
+            </div>
+
+            <p class="muted">
+              Cand esti tanar, crezi ca e timp. Timp sa iubesti mai tarziu. Timp sa fii sincer mai tarziu. Varsta inlatura aceasta fantezie. Brusc, fiecare conexiune conteaza. Fiecare atingere are greutate. Fiecare moment de apropiere pare rar si sacru.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Nostalgia nu e un semn de slabiciune. Este psihicul care proceseaza ce a ramas neintegrat. Cand o recunoastem ca atare, ea devine un instrument de vindecare, nu o sursa de suferinta.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Dangers of suppression -->
+      <section class="card" aria-label="Pericolele reprimarii">
+        <div class="cardHeader">
+          <h2>Ce se intampla cand dorinta e redusa la tacere</h2>
+          <div class="chip"><b>Pericol:</b> amaraciune si izolare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Multi oameni in varsta sufera nu pentru ca dorinta a disparut, ci pentru ca <b>nu are unde sa se duca</b> -- nu are limbaj, nu are permisiune, nu are spatiu. Li se spune: „Ai trait destul. Ar trebui sa fi trecut de asta. N-ar trebui sa mai vrei."
+              </p>
+              <p class="muted">
+                Dar psihicul nu se supune regulilor sociale. Dorinta nu cere voie. Asteapta, linistita, rabdatoare, pana cand cineva o vede fara judecata.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Rusine in loc de curiozitate</h3>
+                  <p>Multi au fost invatati ca a dori este egoist, ca sexualitatea are o data de expirare, ca nevoile emotionale trebuie depasite. Asa ca atunci cand dorinta apare, simt rusine. Aceasta rusine este devastatoare -- forteaza dorinta inapoi in tacere.</p>
+                  <div class="meta"><span class="badge" style="color:var(--bad)">rusine</span><span class="badge">tacere fortata</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Dorinta tacuta nu se vindeca -- putrezeste</h3>
+                  <p>Devine amaraciune. Devine tristete fara nume. Devine resentiment fata de lume, fata de tinerete, fata de timpul insusi. Psihologic, aceasta nu e imbatranire. Este viata netraita.</p>
+                  <div class="meta"><span class="badge" style="color:var(--bad)">amaraciune</span><span class="badge" style="color:var(--warn)">resentiment</span><span class="badge">rigiditate</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="riskGrid" aria-label="Consecintele reprimarii">
+                <div class="risk">
+                  <div class="rTop"><strong>Izolare emotionala</strong><span class="badge">interior</span></div>
+                  <div class="meter"><i style="width:75%"></i></div>
+                  <p>Poti fi inconjurat de familie si tot sa te simti nevazut, pentru ca dorinta nu e despre activitate -- e despre recunoastere.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Rigiditate afectiva</strong><span class="badge">aparare</span></div>
+                  <div class="meter"><i style="width:65%"></i></div>
+                  <p>Unii oameni in varsta devin reci, detasati -- nu pentru ca sunt gata cu viata, ci pentru ca viata nu a fost lasata sa-i atinga pe deplin.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Amaraciune cronica</strong><span class="badge">acumulare</span></div>
+                  <div class="meter"><i style="width:70%"></i></div>
+                  <p>Dorinta suprimata decenii la rand nu dispare. Se transforma in resentiment generalizat si inchidere emotionala.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Singuratatate existentiala</strong><span class="badge">profund</span></div>
+                  <div class="meter"><i style="width:80%"></i></div>
+                  <p>Nu singuratate fizica -- singuratate emotionala. Sentimentul ca nimeni nu te mai vede cu adevarat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta este probabil cea mai importanta idee din intreaga analiza: suferinta in varsta vine rar din absenta dorintei. Vine din faptul ca dorinta exista, dar a fost interzisa. Diferenta e cruciala si are implicatii profunde pentru cum tratam oamenii in varsta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Jung's second half of life -->
+      <section class="row">
+        <div class="card" aria-label="A doua jumatate a vietii">
+          <div class="cardHeader">
+            <h2>Jung: a doua jumatate a vietii este pentru integrare</h2>
+            <div class="chip">reconciliere interioara</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Carl Jung credea ca a doua jumatate a vietii nu este destinata expansiunii exterioare, ci reconcilierii interioare. Este vorba de a pune in acord ce ai trait cu ce ai negat.
+            </p>
+
+            <div class="phaseGrid">
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">I</span>
+                <h3>Prima jumatate</h3>
+                <p>Expansiune, cucerire, constructie. Dorinta e indreptata in afara -- spre lume, spre celalalt, spre realizari.</p>
+              </div>
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">II</span>
+                <h3>Punctul de tranzitie</h3>
+                <p>Copiii cresc. Carierele se incheie. Rolurile sociale se destind. Ramane viata interioara.</p>
+              </div>
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">III</span>
+                <h3>A doua jumatate</h3>
+                <p>Integrare. Dorinta nu mai e foame, ci prezenta. Nu mai cere dovezi ca exista. Vrea sa se odihneasca undeva real.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              Cand dorinta este integrata la batranete, nu distruge stabilitatea. <b>Aduce pace.</b> Permite oamenilor sa se simta vii fara sa actioneze nesabuit. Pot spune: „da, inca simt. Da, inca vreau conexiune. Da, inca contez." Aceasta recunoastere in sine e vindecatoare.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Integrarea nu inseamna a actiona asupra fiecarei dorinte. Inseamna a o recunoaste, a o intelege si a-i da un loc in constiinta, in loc de a o exila in tacere. Aceasta diferenta e centrala in psihologia jungiand.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Dorinta sanatoasa la batranete">
+          <div class="cardHeader">
+            <h2>Cum arata dorinta sanatoasa la batranete</h2>
+            <div class="chip"><b>Forma finala</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Dorinta sanatoasa la batranete nu arata ca in filme. Nu e dramatica. Nu e urgenta. Nu cere dovezi. E mai linistita, dar mai onesta.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A fi vazut fara a juca un rol</strong><em>autenticitate</em></div>
+                  <div class="d">Dorinta de a fi perceput asa cum esti cu adevarat, fara masca sociala, fara performanta.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A fi atins fara a fi consumat</strong><em>tandrete</em></div>
+                  <div class="d">Atingerea fizica ramane importanta, dar nu mai e vorba de posesie -- e vorba de prezenta.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A fi apreciat fara a fi urmarit</strong><em>recunoastere</em></div>
+                  <div class="d">Nu mai e nevoie de validare din multi ochi. E suficient un singur om care te intelege.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A recunoaste: „Inca simt"</strong><em>demnitate</em></div>
+                  <div class="d">Simpla recunoastere ca dorinta exista -- fara rusine, fara judecata -- restaureaza demnitatea.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A gasi sens in conexiune, nu in actiune</strong><em>pace</em></div>
+                  <div class="d">Dorinta nu mai trebuie sa se manifeste prin actiuni. Poate trai in prezenta, in tandrete, in tacere impartasita.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>A accepta ce este, fara a invidia trecutul</strong><em>intelepciune</em></div>
+                  <div class="d">Iubirea batrana nu invidaza trecutul si nu concureaza cu timpul. Accepta ce este si gaseste sens inauntru.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculeaza scorul de integrare</button>
+              <button class="btn" id="resetBtn">Reseteaza lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta lista nu e un test clinic. E un ghid de auto-reflectie bazat pe principiile jungiene. Scopul e sa recunoasteti unde va aflati in procesul de integrare a dorintei -- nu sa va judecati.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Young love vs Old love -->
+      <section class="card" aria-label="Comparatie iubire tanara vs matura">
+        <div class="cardHeader">
+          <h2>Iubirea tanara vs. iubirea matura: o comparatie</h2>
+          <div class="chip">doua forme ale aceluiasi foc</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" style="padding:14px">
+            <svg viewBox="0 0 980 300" role="img" aria-label="Comparatie vizuala">
+              <defs>
+                <linearGradient id="cg1" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,122,153,.35)"/>
+                  <stop offset="1" stop-color="rgba(187,167,255,.35)"/>
+                </linearGradient>
+                <filter id="csoft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#csoft)">
+                <!-- Left: young love -->
+                <rect x="40" y="30" width="420" height="240" rx="18" fill="rgba(0,0,0,.15)" stroke="rgba(255,122,153,.25)"/>
+                <text x="250" y="62" font-family="ui-sans-serif,system-ui" font-size="16" fill="var(--bad)" font-weight="700" text-anchor="middle">Iubirea tanara</text>
+                <text x="70" y="95" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Arde repede -- se teme de pierdere</text>
+                <text x="70" y="120" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Cauta intensitate pentru sine</text>
+                <text x="70" y="145" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Vrea sa fie dorita de multi</text>
+                <text x="70" y="170" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Condusa de fantezie si proiectie</text>
+                <text x="70" y="195" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Urgenta, nelinistita, exploziva</text>
+                <text x="70" y="220" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Rareori atinge acceptarea</text>
+                <text x="70" y="250" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.60)">Foc de tabara -- arde totul in jur</text>
+
+                <!-- Arrow -->
+                <path d="M480,150 L500,150" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M497,145 L505,150 L497,155" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-linecap="round"/>
+
+                <!-- Right: old love -->
+                <rect x="520" y="30" width="420" height="240" rx="18" fill="rgba(0,0,0,.15)" stroke="rgba(187,167,255,.25)"/>
+                <text x="730" y="62" font-family="ui-sans-serif,system-ui" font-size="16" fill="var(--violet)" font-weight="700" text-anchor="middle">Iubirea matura</text>
+                <text x="550" y="95" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Straluceste incet -- a infruntat pierderea</text>
+                <text x="550" y="120" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Cauta adevar si prezenta</text>
+                <text x="550" y="145" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Vrea sa fie inteleasa de unul</text>
+                <text x="550" y="170" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Condusa de recunoastere si adevar</text>
+                <text x="550" y="195" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Linistita, concentrata, profunda</text>
+                <text x="550" y="220" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.75)">Gaseste pace in acceptare</text>
+                <text x="550" y="250" font-family="ui-sans-serif,system-ui" font-size="13" fill="rgba(255,255,255,.60)">Flacara de lumanare -- lumineaza calm</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta comparatie nu e o judecata de valoare. Ambele forme sunt valide. Dar daca am intelege ca iubirea matura nu e o versiune inferioara a celei tinere, ci o forma complet diferita, am trata batranetea cu mult mai mult respect si empatie.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 7: The dangerous beauty of old love -->
+      <section class="card" aria-label="Frumusetea periculoasa">
+        <div class="cardHeader">
+          <h2>De ce iubirea la batranete este „periculoasa"</h2>
+          <div class="chip">nu pentru ca e nesabuita, ci pentru ca e reala</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Iubirea batrana nu e periculoasa pentru ca e nesabuita -- e periculoasa pentru ca e <b>reala</b>. Cand dorinta a fost suprimata decenii la rand, nu dispare. <b>Asteapta.</b>
+              </p>
+              <p class="muted">
+                Si in varsta, cand distractiile cad -- copiii au crescut, cariera s-a terminat, zgomotul s-a stins -- dorinta revine. Nu ca foame, ci ca <b>sens</b>. Nu ca aventura sexuala, ci ca nevoie de a fi vazut o ultima data, de a fi cunoscut fara performanta, de a fi tinut fara asteptari.
+              </p>
+
+              <details>
+                <summary><strong>De ce apar atasamente emotionale bruste?</strong><span class="hint">click pentru detalii</span></summary>
+                <div class="detailBody">
+                  <p>Multi oameni in varsta dezvolta brusc atasamente intense fata de un vecin, un ingrijitor, un prieten. O amintire declansata de un cantec sau un miros poate deschide o cascada emotionala. E confuz, chiar infricosator. Se intreaba: „De ce acum? De ce simt asta la varsta mea?"</p>
+                  <p>Raspunsul e simplu dar inconfortabil: <b>pentru ca acum exista spatiu.</b> Mai devreme in viata, dorinta era ingropata sub responsabilitate, datorie, supravietuire. Acum ca supravietuirea nu mai consuma toata energia psihica, dorinta reapare.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary><strong>Diferenta cruciala: viata netraita vs. imbatranire</strong><span class="hint">click pentru detalii</span></summary>
+                <div class="detailBody">
+                  <p>Jung credea ca multi oameni nu sufera din cauza imbatranirii, ci din cauza <b>vietii netraite</b>. Cand dorinta e negata chiar si la batranete, psihicul sufera. Unii devin rigizi emotional, reci, detasati -- nu pentru ca sunt gata cu viata, ci pentru ca viata nu a fost lasata sa-i atinga pe deplin.</p>
+                  <p>Iubirea batrana nu e tragica pentru ca exista. <b>E tragica cand este redusa la tacere.</b></p>
+                </div>
+              </details>
+            </div>
+
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 320" role="img" aria-label="Dorinta suprimata vs integrata">
+                  <defs>
+                    <filter id="dsoft" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#dsoft)">
+                    <!-- Suppressed path -->
+                    <rect x="20" y="20" width="400" height="120" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.25)"/>
+                    <text x="220" y="50" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--bad)" font-weight="700" text-anchor="middle">Dorinta suprimata</text>
+                    <text x="40" y="78" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.7)">Rusine &rarr; Tacere &rarr; Amaraciune &rarr; Rigiditate</text>
+                    <text x="40" y="100" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.7)">Resentiment &rarr; Izolare &rarr; Singuratate</text>
+                    <text x="40" y="125" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.5)">Rezultat: viata netraita</text>
+
+                    <!-- Arrow down -->
+                    <text x="220" y="165" font-family="ui-sans-serif,system-ui" font-size="14" fill="rgba(255,255,255,.4)" text-anchor="middle">vs.</text>
+
+                    <!-- Integrated path -->
+                    <rect x="20" y="180" width="400" height="120" rx="16" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.25)"/>
+                    <text x="220" y="210" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--good)" font-weight="700" text-anchor="middle">Dorinta integrata</text>
+                    <text x="40" y="238" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.7)">Recunoastere &rarr; Acceptare &rarr; Tandrete &rarr; Pace</text>
+                    <text x="40" y="260" font-family="ui-sans-serif,system-ui" font-size="12" fill="rgba(255,255,255,.7)">Prezenta &rarr; Demnitate &rarr; Vindecare</text>
+                    <text x="40" y="285" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.5)">Rezultat: viata pe deplin traita</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea centrala nu e ca oamenii in varsta ar trebui sa actioneze asupra fiecarei dorinte. E ca ar trebui sa aiba <b>permisiunea interna</b> de a recunoaste ca dorinta exista. Aceasta permisiune singura -- fara actiune, fara drama -- poate transforma suferinta in pace.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 8: Summary thesis -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Teza finala: dorinta nu moare -- isi pierde iluziile</h2>
+          <div class="chip"><b>Esenta</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Dorinta se transforma, nu dispare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Se muta din corp in suflet, din intensitate in adevar, din fantezie in prezenta. Ce ramane nu e slabiciune -- e esenta.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Suferinta vine din tacere, nu din dorinta</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Oamenii in varsta nu sufera pentru ca vor prea mult. Sufera pentru ca nu li s-a permis niciodata sa vrea. Recunoasterea dorintei restaureaza demnitatea.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Integrarea aduce pace, nu haos</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cand dorinta e recunoscuta constienta, nu distruge -- vindeca. Permite sa spui „inca simt" fara rusine si fara actiuni nesabuite.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Iubirea batrana e cea mai sincera</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Dorinta tanara arde repede pentru ca se teme de pierdere. Dorinta batrana straluceste incet pentru ca a infruntat-o deja. Aceasta e intelepciunea linistita a imbatranirii.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre aplicabilitate</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Aceste idei nu sunt doar filozofie abstracta. Sunt relevante pentru cum tratam parintii, bunicii si in cele din urma pe noi insine. Daca intelegem ca dorinta la batranete nu e o anomalie, ci o parte naturala si sanatoasa a psihicului uman, putem oferi oamenilor in varsta ceea ce au cel mai mult nevoie: <b>permisiunea de a simti, fara judecata.</b>
+              </p>
+              <p>
+                Uneori intelepciunea de care avem nevoie vine din a asculta ceea ce ni s-a spus sa ignoram.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Afiseaza / ascunde comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele colorate mov (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            ce inseamna fiecare idee? Ce nuante lipsesc? Cum se aplica in practica?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasati „Afiseaza / ascunde comentariul" din partea de sus pentru a le ascunde sau arata pe toate deodata.
+            Aceasta va permite sa comutati intre „ce spune textul original" si „ce analiza suplimentara ofera aceasta pagina."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si precautii:</b> Acest infografic interactiv a fost creat pentru a traduce si vizualiza un text despre psihologia dorintei la batranete, bazat pe ideile lui Carl Jung.
+        Nu este consiliere psihologica. Vizualizarile, simulatorul si comentariile sunt instrumente conceptuale menite sa ajute la intelegerea ideilor, nu inlocuitoare ale terapiei sau cercetarii primare.
+      </p>
+      <p style="margin-top:10px">
+        Sursa: Analiza psihologica bazata pe conceptele lui Carl Jung despre individuatie, umbra si a doua jumatate a vietii.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Desire Transformation Simulator
+    // ──────────────────────────────────────────────────────
+    const ageSlider = document.getElementById('ageSlider');
+    const repSlider = document.getElementById('repSlider');
+    const ageReadout = document.getElementById('ageReadout');
+    const repReadout = document.getElementById('repReadout');
+
+    function renderDesire() {
+      const age = parseInt(ageSlider.value);
+      const rep = parseInt(repSlider.value) / 100;
+
+      ageReadout.textContent = `${age} ani`;
+      repReadout.textContent = `${repSlider.value}%`;
+
+      const W = 980, H = 380;
+      const padL = 80, padR = 40, padT = 30, padB = 60;
+      const graphW = W - padL - padR;
+      const graphH = H - padT - padB;
+
+      const points = 60;
+
+      function intensity(t) {
+        // High at 20, drops with age
+        const normalized = (t - 20) / 70;
+        return Math.max(0.08, 1 - normalized * 0.85) * (1 - rep * 0.3);
+      }
+
+      function depth(t) {
+        // Low at 20, rises with age
+        const normalized = (t - 20) / 70;
+        const base = 0.15 + normalized * 0.75;
+        // Repression reduces depth
+        return base * (1 - rep * 0.5);
+      }
+
+      function wisdom(t) {
+        // Very low at 20, rises significantly after 40
+        const normalized = Math.max(0, (t - 30) / 60);
+        const base = 0.05 + normalized * normalized * 0.85;
+        // Repression blocks wisdom
+        return base * (1 - rep * 0.6);
+      }
+
+      let intPath = '', depPath = '', wisPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = 20 + (i / points) * 70;
+        const x = padL + ((t - 20) / 70) * graphW;
+
+        const iY = padT + graphH - intensity(t) * graphH;
+        const dY = padT + graphH - depth(t) * graphH;
+        const wY = padT + graphH - wisdom(t) * graphH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        intPath += `${cmd}${x},${iY} `;
+        depPath += `${cmd}${x},${dY} `;
+        wisPath += `${cmd}${x},${wY} `;
+      }
+
+      document.getElementById('intensityCurve').setAttribute('d', intPath);
+      document.getElementById('depthCurve').setAttribute('d', depPath);
+      document.getElementById('wisdomCurve').setAttribute('d', wisPath);
+
+      // Age marker
+      const markerX = padL + ((age - 20) / 70) * graphW;
+      document.getElementById('ageMarker').setAttribute('x1', markerX);
+      document.getElementById('ageMarker').setAttribute('x2', markerX);
+      document.getElementById('ageLabel').setAttribute('x', markerX);
+      document.getElementById('ageLabel').textContent = `${age} ani`;
+    }
+
+    ageSlider.addEventListener('input', renderDesire);
+    repSlider.addEventListener('input', renderDesire);
+    renderDesire();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpTransform').addEventListener('click', () => {
+      document.getElementById('transform').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpChecklist').addEventListener('click', () => {
+      document.getElementById('checklist').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% -- Nivel ridicat de integrare! Recunoasteti si acceptati dorinta cu maturitate.`;
+      else if (pct >= 60) msg = `${pct}% -- Fundatie buna. Continuati procesul de recunoastere si acceptare.`;
+      else if (pct >= 40) msg = `${pct}% -- Moderat. Exista spatiu de crestere in acceptarea dorintei fara judecata.`;
+      else msg = `${pct}% -- Mult loc de imbunatatit. Incepeti prin a va permite sa recunoasteti: „Inca simt."`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul dvs. de integrare:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

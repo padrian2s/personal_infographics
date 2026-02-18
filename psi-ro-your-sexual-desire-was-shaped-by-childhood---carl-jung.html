@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dorinta ta sexuala a fost modelata de copilarie — Carl Jung — Infografic</title>
+  <meta name="description" content="Infografic interactiv care explica cum dorinta sexuala din viata adulta isi are originile in tiparele emotionale din copilarie, conform psihologiei lui Carl Jung." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pill tags */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Layers diagram */
+    .layersDiagram{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:0;
+      padding:20px 0;
+    }
+    .layerRing{
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;
+      font-size:13px;
+      font-weight:600;
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor:default;
+      position:relative;
+    }
+    .layerRing:hover{transform:scale(1.05);box-shadow: 0 0 40px rgba(187,167,255,.3)}
+
+    /* Phase slider */
+    .phaseTrack{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:8px;
+      margin-top:12px;
+    }
+    .phaseStep{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:10px;
+      text-align:center;
+      transition: border-color .2s, background .2s;
+      cursor:pointer;
+    }
+    .phaseStep.active{
+      border-color: var(--violet);
+      background: rgba(187,167,255,.12);
+    }
+    .phaseStep .phNum{font-size:20px;font-weight:700;color:var(--violet)}
+    .phaseStep .phLabel{font-size:11px;color:var(--muted);margin-top:4px}
+
+    @media (max-width: 640px){
+      .phaseTrack{grid-template-columns: repeat(2,1fr)}
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(122,215,255,.35)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Abstract psyche layers -->
+            <circle cx="260" cy="110" r="80" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".5"/>
+            <circle cx="260" cy="110" r="55" fill="none" stroke="url(#g2)" stroke-width="3" opacity=".6"/>
+            <circle cx="260" cy="110" r="30" fill="rgba(255,122,153,.25)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+            <!-- Connections radiating -->
+            <line x1="260" y1="30" x2="180" y2="180" stroke="url(#g1)" stroke-width="2" opacity=".3"/>
+            <line x1="260" y1="30" x2="340" y2="180" stroke="url(#g2)" stroke-width="2" opacity=".3"/>
+            <line x1="180" y1="60" x2="340" y2="160" stroke="rgba(255,179,138,.3)" stroke-width="1.5" opacity=".3"/>
+            <!-- Dots -->
+            <circle cx="260" cy="110" r="8" fill="rgba(255,255,255,.6)"/>
+            <circle cx="200" cy="70" r="5" fill="rgba(187,167,255,.5)"/>
+            <circle cx="320" cy="70" r="5" fill="rgba(255,122,153,.5)"/>
+            <circle cx="200" cy="155" r="4" fill="rgba(122,215,255,.4)"/>
+            <circle cx="320" cy="155" r="4" fill="rgba(117,240,182,.4)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; dorință &bull; copilărie &bull; umbră</div>
+          <h1>Dorința ta sexuală a fost modelată de copilărie</h1>
+          <p class="subtitle">
+            Dorința nu a apărut la întâmplare. Nu a început cu hormonii sau cu atracția fizică. A început mult mai devreme — când erai neputincios, observând, absorbind, adaptându-te.
+            Carl Jung credea că nimic intens din viața adultă nu vine din neant, mai ales <b>dorința</b>.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la diagrama psihicului</button>
+            <button class="btn" id="jumpCheck">Salt la lista de reflecție</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Concepte cheie rezumate">
+          <div class="stat">
+            <div class="label">Teză centrală</div>
+            <div class="value">Copilăria → Dorință adultă</div>
+            <div class="note">Tiparele emoționale din copilărie modelează dorința sexuală a adultului.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanism</div>
+            <div class="value">Inconștientul repetă</div>
+            <div class="note">Psihicul repetă experiențele emoționale neterminate până devin conștiente.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Concepte Jung</div>
+            <div class="value">Umbra &bull; Individuare</div>
+            <div class="note">Umbra conține ce ai reprimat; individuarea înseamnă integrare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Vindecarea</div>
+            <div class="value">Conștientizare, nu suprimare</div>
+            <div class="note">Nu elimini dorința — o înțelegi. Apoi ea se transformă.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Originile dorintei -->
+      <section class="card" aria-label="Originile dorintei">
+        <div class="cardHeader">
+          <h2>De unde vine dorința? Copilăria ca matrice</h2>
+          <div class="chip"><b>Jung:</b> supraviețuirea lasă tipare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Ca și copil, nu ți-ai ales mediul. Ai învățat cum să <b>supraviețuiești</b> în el.
+                Iar supraviețuirea lasă tipare adânci. Aceste tipare nu dispar — ele devin „limbajul" dorinței tale de adult.
+              </p>
+              <p class="muted">
+                Jung credea că inconștientul nu gândește în termeni morali. El gândește în <b>amintiri</b>.
+                Repetă experiențele emoționale până când acestea devin conștiente.
+                De aceea oamenii se simt atrași de situații pe care intelectual le urăsc.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Aceasta nu este o acuzație la adresa părinților. Este un model psihologic care explică de ce dorința adultă poate părea irațională — ea urmează o logică emoțională învățată foarte devreme, înainte de formarea gândirii raționale.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Tipare copilărie-dorință">
+                <div class="small" style="margin-bottom:10px">Cum copilăria modelează dorința — exemple de tipare:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Iubire inconsistentă</span><span class="tag">dorința urmărește</span></div>
+                  <div class="pill"><span>Afecțiune condiționată</span><span class="tag">dorința performează</span></div>
+                  <div class="pill"><span>Căldură + tensiune</span><span class="tag">dorința = confuzie</span></div>
+                  <div class="pill"><span>Apropierea nesigură</span><span class="tag">dorința = distanță</span></div>
+                  <div class="pill"><span>Atenție doar când te conformezi</span><span class="tag">dorința câștigă</span></div>
+                  <div class="pill"><span>Iubire = tăcere</span><span class="tag">dorința tace</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Sexul devine limbajul pe care sistemul tău nervos îl cunoaște deja — nu pentru că ești „stricat", ci pentru că psihicul repetă ceea ce înțelege.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compulsia de a repeta + Umbra -->
+      <section class="row">
+        <div class="card" aria-label="Compulsia de a repeta">
+          <div class="cardHeader">
+            <h2>Compulsia de a repeta</h2>
+            <div class="chip">nu cauți plăcere, cauți completare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a numit aceasta „compulsia de a repeta" — încercarea inconștientă de a rezolva experiențele emoționale neterminate. Nu urmărești plăcerea. <b>Urmărești completarea.</b>
+            </p>
+
+            <div class="flow" aria-label="Lanțul repetiției">
+              <div class="flowNode">
+                <h3>1) Tiparul original</h3>
+                <p>Copilul învață ce înseamnă „conexiunea" — nu ce ar trebui să fie, ci ce a fost de fapt. Haosul, distanța, efortul emoțional — toate devin „intimitate" pentru psihic.</p>
+                <div class="meta"><span class="badge">amintire corporală</span><span class="badge">familiaritate</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Dorința ca scurtătură</h3>
+                <p>Dorința sexuală devine cea mai rapidă scurtătură înapoi spre acea familiaritate emoțională. Nu pentru că te vindecă, ci pentru că se simte <b>recognoscibil</b>.</p>
+                <div class="meta"><span class="badge">recognoscibil ≠ sănătos</span><span class="badge">compulsie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Ciclul se repetă</h3>
+                <p>Întâlnești pe cineva, declanșează tiparul vechi. Corpul răspunde înainte de minte. Dorința se aprinde. Apoi durerea familiară revine: distanță, confuzie, rușine.</p>
+                <div class="meta"><span class="badge">bucla repetitivă</span><span class="badge">orbire necesară</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Intensitatea confundată cu intimitatea</h3>
+                <p>De aceea unii oameni se plictisesc cu bunătatea, constanța pare fadă, iar haosul pare „viu". Corpul confundă intensitatea cu intimitatea, pentru că intensitatea era necesară ca să primești atenție.</p>
+                <div class="meta"><span class="badge">haos = viață</span><span class="badge">calm = plictiseală</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea cheie nu este că dorința este „greșită", ci că ea urmează o logică emoțională inconștientă. Sistemul nervos confundă familiaritatea cu siguranța — chiar și când familiaritatea era nesigură. Recunoașterea acestui tipar este primul pas spre libertate.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Umbra jungiană">
+          <div class="cardHeader">
+            <h2>Umbra: memoria neintegrată</h2>
+            <div class="chip"><b>Jung:</b> umbra nu este imorală</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Umbra ta nu este imorală. Este <b>memorie neintegrată</b>. Umbra conține tot ce a trebuit să reprimi pentru a aparține, a supraviețui, a fi iubit.
+            </p>
+
+            <div class="riskGrid" aria-label="Ce învață umbra">
+              <div class="risk">
+                <div class="rTop"><strong>Nevoi ignorate</strong><span class="badge">foame</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Dacă nevoile emoționale au fost ignorate, umbra a învățat foamea. Dorința devine o cerere deghizată de validare.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Granițe încălcate</strong><span class="badge">confuzie</span></div>
+                <div class="meter"><i style="width:58%"></i></div>
+                <p>Dacă granițele au fost depășite, umbra a învățat confuzia. Sexul devine un loc în care limitele sunt neclare.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Iubire inconsistentă</strong><span class="badge">dor</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Dacă iubirea a fost inconsistentă, umbra a învățat dorul. Dorința urmărește ceea ce se retrage.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Rușinea</strong><span class="badge">auto-judecată</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Rușinea nu este despre sex. Este despre sinele vechi care a învățat să dorească în tăcere, să aibă nevoie fără să ceară, să accepte firimituri drept intimitate.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Sexul devine scena unde aceste energii nerezolvate se manifestă — nu deliberat, nu conștient, dar repetitiv.</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Conceptul de „umbră" al lui Jung nu este despre „partea rea" a ta. Este despre tot ce a fost împins sub suprafață. Umbra este neutră — conține atât potențial creativ, cât și durere neprelucrată. Integrarea ei nu înseamnă „a te lăsa pradă" impulsurilor, ci a le înțelege originea.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diagrama psihicului -->
+      <section class="card" id="vizSection" aria-label="Diagrama straturilor psihicului">
+        <div class="cardHeader">
+          <h2>Straturile psihicului: de la suprafață la adâncime</h2>
+          <div class="chip">conștient &bull; inconștient personal &bull; umbra</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Jung a descris psihicul ca având mai multe straturi. La suprafață este <b>Eul conștient</b> — identitatea ta de zi cu zi.
+                Sub el se află <b>inconștientul personal</b> cu amintiri și tipare reprimate.
+                Și mai adânc se găsește <b>Umbra</b> — tot ce ai suprimat pentru a fi acceptat.
+              </p>
+              <p class="muted">
+                Dorința sexuală traversează toate aceste straturi. Ea poate porni de la o atracție conștientă, dar este alimentată de forțe din inconștient. De aceea dorința poate fi surprinzătoare, contradictorie, sau copleșitoare.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Această diagramă simplificată vizualizează ideea că dorința nu este unidimensională. Ea are rădăcini profunde pe care „logica" de suprafață nu le poate vedea fără introspecție deliberată.
+              </div>
+            </div>
+            <div>
+              <div class="viz" aria-label="Diagrama vizuală a straturilor">
+                <svg viewBox="0 0 480 400" role="img" aria-label="Straturile psihicului după Jung">
+                  <defs>
+                    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="8" result="b"/>
+                      <feMerge>
+                        <feMergeNode in="b"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(187,167,255,.25)"/>
+                      <stop offset="100%" stop-color="rgba(187,167,255,.05)"/>
+                    </radialGradient>
+                    <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(122,215,255,.2)"/>
+                      <stop offset="100%" stop-color="rgba(122,215,255,.05)"/>
+                    </radialGradient>
+                    <radialGradient id="rg3" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="rgba(255,122,153,.25)"/>
+                      <stop offset="100%" stop-color="rgba(255,122,153,.05)"/>
+                    </radialGradient>
+                  </defs>
+                  <g filter="url(#softGlow)">
+                    <!-- Outer: Umbra -->
+                    <circle cx="240" cy="200" r="170" fill="url(#rg3)" stroke="rgba(255,122,153,.35)" stroke-width="2"/>
+                    <text x="240" y="55" text-anchor="middle" font-size="13" fill="rgba(255,122,153,.85)" font-weight="700">UMBRA</text>
+                    <text x="240" y="72" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">tot ce ai reprimat pentru a fi iubit</text>
+
+                    <!-- Middle: Inconștient personal -->
+                    <circle cx="240" cy="200" r="115" fill="url(#rg2)" stroke="rgba(122,215,255,.35)" stroke-width="2"/>
+                    <text x="240" y="108" text-anchor="middle" font-size="12" fill="rgba(122,215,255,.85)" font-weight="700">INCONȘTIENT PERSONAL</text>
+                    <text x="240" y="124" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)">amintiri, tipare, emoții reprimate</text>
+
+                    <!-- Inner: Eul conștient -->
+                    <circle cx="240" cy="200" r="60" fill="url(#rg1)" stroke="rgba(187,167,255,.5)" stroke-width="2"/>
+                    <text x="240" y="195" text-anchor="middle" font-size="13" fill="rgba(187,167,255,.95)" font-weight="700">EUL</text>
+                    <text x="240" y="212" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.6)">conștient</text>
+
+                    <!-- Arrows showing desire flow -->
+                    <line x1="240" y1="260" x2="240" y2="330" stroke="rgba(255,179,138,.5)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <text x="240" y="355" text-anchor="middle" font-size="11" fill="rgba(255,179,138,.7)">Dorința traversează toate straturile</text>
+                    <text x="240" y="372" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.4)">de la profunzime spre suprafață</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fantezii ca simboluri + Stiluri de atasament -->
+      <section class="row">
+        <div class="card" aria-label="Fanteziile ca simboluri">
+          <div class="cardHeader">
+            <h2>Fanteziile sexuale: simboluri, nu perversiuni</h2>
+            <div class="chip">inconștientul vorbește prin imagini</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung explica că fanteziile sexuale adesea surprind oamenii. Dar ele sunt <b>simbolice, nu literale</b>.
+              Fantezia nu este despre act în sine — este despre <b>poziția emoțională</b>: putere, supunere, a fi ales, a fi văzut, a fi consumat, a fi în control.
+            </p>
+
+            <div class="flow" aria-label="Tipare fantezii-copilărie">
+              <div class="flowNode">
+                <h3>Copilul neputincios</h3>
+                <p>Un copil care s-a simțit neputincios poate fantaza despre <b>control</b> — nu dintr-un instinct „rău", ci din nevoia de a echilibra o experiență de vulnerabilitate extremă.</p>
+                <div class="meta"><span class="badge">neputință → control</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Copilul invizibil</h3>
+                <p>Un copil care s-a simțit invizibil poate fantaza despre a fi <b>dorit intens</b> — psihicul caută compensare pentru lipsa de atenție.</p>
+                <div class="meta"><span class="badge">invizibilitate → a fi dorit</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Copilul responsabil</h3>
+                <p>Un copil care a purtat responsabilități prea devreme poate fantaza despre <b>abandon</b> (surrender) — nevoia de a fi liber de povara controlului constant.</p>
+                <div class="meta"><span class="badge">supra-responsabilizare → abandon</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">Dorința vorbește prin imagini pentru că inconștientul nu folosește limbajul. Folosește simboluri. Iar când aceste simboluri sunt ignorate, ele devin mai puternice.</div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Această perspectivă jungiană este eliberatoare: fanteziile nu sunt „defecte" de reparat. Sunt <b>mesageri</b> care indică unde adaptarea din copilărie a lăsat urme. Scopul nu este de a judeca fanteziile, ci de a le înțelege originea emoțională.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stiluri de atașament și dorință">
+          <div class="cardHeader">
+            <h2>Cum stilurile de atașament devin tipare sexuale</h2>
+            <div class="chip"><b>Nu conștient,</b> dar fiabil</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Oamenii cred adesea că sunt atrași de un „tip". În realitate, răspund la un <b>climat emoțional familiar</b>.
+              Dorința nu întreabă „Este sănătos?" — ea întreabă <b>„Se simte ca acasă?"</b>
+            </p>
+
+            <div class="riskGrid" aria-label="Stiluri de atașament">
+              <div class="risk">
+                <div class="rTop"><strong>Hipersensibilitatea</strong><span class="badge">scanare continuă</span></div>
+                <div class="meter"><i style="width:72%"></i></div>
+                <p>Dacă în copilărie ai învățat să scanezi stări, expresii, tonuri — acea hiper-atenție devine „sensibilitate sexuală". Simți profund, te atașezi repede, te pierzi ușor.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Detașarea protectoare</strong><span class="badge">emoții slabe</span></div>
+                <div class="meter"><i style="width:55%"></i></div>
+                <p>Dacă apropierea a fost copleșitoare sau invazivă, dorința a învățat distanța și controlul. Sexul e sigur doar când emoțiile rămân slabe. Plăcere fără vulnerabilitate.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Supra-dăruirea</strong><span class="badge">câștigă apropierea</span></div>
+                <div class="meter"><i style="width:68%"></i></div>
+                <p>Dacă apropierea cerea efort emoțional, dorința a învățat să „câștige" intimitatea. Efortul devine erotic. Dai mai mult decât primești și numești asta „iubire".</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Urmărirea retragerii</strong><span class="badge">magnetism</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Dacă iubirea venea cu distanță emoțională, psihicul a învățat să urmărească ce se retrage. Distanța se simte magnetică. Disponibilitatea pare „plictisitoare".</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceste tipare nu sunt „defecte de personalitate". Sunt strategii de supraviețuire create de un copil genial în adaptare. Problema apare când strategia din copilărie conduce alegerile adultului fără ca acesta să o vadă.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dorinta ca reglare + Drumul vindecarii -->
+      <section class="row">
+        <div class="card" aria-label="Dorința ca mecanism de reglare">
+          <div class="cardHeader">
+            <h2>Dorința ca reglare nervoasă</h2>
+            <div class="chip">nu plăcere — stabilizare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Când o nevoie emoțională fundamentală rămâne neîmplinită, ea nu dispare — se <b>deghizează</b>.
+              Dorința devine un costum. Poți dori validare, dar o simți ca poftă. Poți dori siguranță, dar o simți ca obsesie.
+              Poți dori conexiune, dar ești atras de persoane indisponibile.
+            </p>
+
+            <div class="viz" aria-label="Diagrama deghizării dorinței">
+              <svg viewBox="0 0 980 260" role="img" aria-label="Nevoia reală se deghizează în dorință">
+                <defs>
+                  <linearGradient id="dg1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.4)"/>
+                  </linearGradient>
+                  <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#soft2)">
+                  <!-- Left box: Real need -->
+                  <rect x="40" y="30" width="280" height="200" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(187,167,255,.3)"/>
+                  <text x="60" y="65" font-size="15" fill="rgba(187,167,255,.9)" font-weight="700">Nevoia reală</text>
+                  <text x="60" y="90" font-size="12" fill="rgba(255,255,255,.6)">Validare</text>
+                  <text x="60" y="112" font-size="12" fill="rgba(255,255,255,.6)">Siguranță</text>
+                  <text x="60" y="134" font-size="12" fill="rgba(255,255,255,.6)">Conexiune</text>
+                  <text x="60" y="156" font-size="12" fill="rgba(255,255,255,.6)">A fi văzut</text>
+                  <text x="60" y="178" font-size="12" fill="rgba(255,255,255,.6)">Autonomie</text>
+                  <text x="60" y="205" font-size="11" fill="rgba(255,255,255,.4)">(invizibilă pentru mintea conștientă)</text>
+
+                  <!-- Arrows -->
+                  <path d="M320 80 C400 80, 400 60, 440 60" fill="none" stroke="url(#dg1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                  <path d="M320 110 C400 110, 400 100, 440 100" fill="none" stroke="url(#dg1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                  <path d="M320 140 C400 140, 400 140, 440 140" fill="none" stroke="url(#dg1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                  <path d="M320 170 C400 170, 400 180, 440 180" fill="none" stroke="url(#dg1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+
+                  <text x="360" y="35" font-size="11" fill="rgba(255,255,255,.5)">se deghizează în →</text>
+
+                  <!-- Right box: Felt as -->
+                  <rect x="440" y="30" width="280" height="200" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="460" y="65" font-size="15" fill="rgba(255,122,153,.9)" font-weight="700">Simțită ca</text>
+                  <text x="460" y="90" font-size="12" fill="rgba(255,255,255,.6)">Poftă / Lust</text>
+                  <text x="460" y="112" font-size="12" fill="rgba(255,255,255,.6)">Obsesie</text>
+                  <text x="460" y="134" font-size="12" fill="rgba(255,255,255,.6)">Atracție spre indisponibil</text>
+                  <text x="460" y="156" font-size="12" fill="rgba(255,255,255,.6)">Excitație compulsivă</text>
+                  <text x="460" y="178" font-size="12" fill="rgba(255,255,255,.6)">Nevoie de control</text>
+                  <text x="460" y="205" font-size="11" fill="rgba(255,255,255,.4)">(vizibilă, dar confuză)</text>
+
+                  <!-- Bottom note -->
+                  <rect x="40" y="240" width="680" height="1" fill="rgba(255,255,255,.1)"/>
+                </g>
+              </svg>
+            </div>
+
+            <p class="muted">
+              De aceea dorința poate fi compulsivă. Nu este despre plăcere — este despre <b>reglare</b>. Sistemul nervos încearcă să se stabilizeze folosind instrumentele învățate devreme.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Această perspectivă schimbă radical modul în care privim „dependența" de relații sau sexualitate compulsivă. Nu e un deficit moral — e un sistem nervos care încearcă disperat să regleze ceva ce nu a fost niciodată adresat la nivel emoțional.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="checkSection" aria-label="Drumul vindecării">
+          <div class="cardHeader">
+            <h2>Drumul vindecării: de la compulsie la alegere conștientă</h2>
+            <div class="chip"><b>Jung:</b> integrare, nu suprimare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung avertiza că ce reprimăm nu dispare — acționează <b>autonom</b>. Suprimarea dorinței o întărește.
+              Nu ești menit să ucizi dorința — ești menit <b>să o înțelegi</b>. Integrarea nu începe cu schimbarea comportamentului. Începe cu schimbarea <b>relației</b> cu dorința.
+            </p>
+
+            <div class="phaseTrack" id="phaseTrack" aria-label="Fazele vindecării">
+              <div class="phaseStep active" data-phase="0">
+                <div class="phNum">1</div>
+                <div class="phLabel">Observare</div>
+              </div>
+              <div class="phaseStep" data-phase="1">
+                <div class="phNum">2</div>
+                <div class="phLabel">Trasare</div>
+              </div>
+              <div class="phaseStep" data-phase="2">
+                <div class="phNum">3</div>
+                <div class="phLabel">Separare</div>
+              </div>
+              <div class="phaseStep" data-phase="3">
+                <div class="phNum">4</div>
+                <div class="phLabel">Re-învățare</div>
+              </div>
+              <div class="phaseStep" data-phase="4">
+                <div class="phNum">5</div>
+                <div class="phLabel">Maturare</div>
+              </div>
+            </div>
+
+            <div id="phaseContent" style="margin-top:14px">
+              <div class="flowNode">
+                <h3>Faza 1: Observare</h3>
+                <p>Când dorința apare, fă o pauză — nu pentru a rezista, ci pentru a observa. Ce emoție vine prima? Singurătate, tensiune, neliniște, invizibilitate, neputință? Dorința rareori apare singură. Ea „călărește" un alt sentiment. Acel sentiment este ușa.</p>
+                <div class="meta"><span class="badge">pauză</span><span class="badge">ce simți înainte?</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung spunea că „individuarea" este procesul de a deveni cine ești cu adevărat — nu cine a trebuit să fii. Dorința sexuală se maturizează când nu mai este folosită pentru a regla rănile vechi. Ea devine <b>expresie, nu compensare</b>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista de reflecție personală -->
+      <section class="card" aria-label="Lista de reflecție">
+        <div class="cardHeader">
+          <h2>Lista de reflecție personală</h2>
+          <div class="chip">auto-explorare ghidată</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifează afirmațiile care rezonează cu experiența ta. Aceasta nu este un test psihologic — este un instrument de auto-reflecție bazat pe ideile lui Jung despre cum copilăria modelează dorința.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Mă simt atras/ă de ceea ce mă rănește</strong><em>intensitate</em></div>
+                <div class="d">Intensitatea se simte erotică, iar calmul se simte plictisitor. Confund intensitatea cu intimitatea.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Urmăresc ce se retrage</strong><em>magnetism</em></div>
+                <div class="d">Sunt atras/ă de persoane indisponibile emoțional. Distanța mă face să doresc mai mult.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Dau mai mult decât primesc</strong><em>supra-dăruire</em></div>
+                <div class="d">Simt că trebuie să „câștig" apropierea prin efort emoțional. Dacă nu muncesc pentru relație, nu mă simt valorificat/ă.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Simt rușine după dorință</strong><em>conflict intern</em></div>
+                <div class="d">Dorința mea intră în conflict cu identitatea mea conștientă. Mă întreb „De ce vreau asta? Ce e greșit la mine?"</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Mă atașez foarte repede</strong><em>hiper-legare</em></div>
+                <div class="d">Mă conectez profund și rapid. Mă pierd ușor în celălalt — nu din slăbiciune, ci din antrenament emoțional timpuriu.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Evit vulnerabilitatea în intimitate</strong><em>protecție</em></div>
+                <div class="d">Prefer plăcere fără emoție profundă. Intimitatea reală mă face să mă simt expus/ă și nesigur/ă.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Recunosc un tipar repetitiv</strong><em>ciclu</em></div>
+                <div class="d">Relațiile mele tind să urmeze același scenariu emoțional. Aceleași dinamici, aceleași dureri, persoane diferite.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Intimitatea sănătoasă mi se pare nefamiliară</strong><em>pace ≠ plictiseală</em></div>
+                <div class="d">Când cineva este constant, disponibil și blând, ceva se simte „greșit" sau „plictisitor" — de fapt, este nefamiliar.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculează scorul de conștientizare</button>
+            <button class="btn" id="resetBtn">Resetează lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Scopul nu este un „diagnostic" — este conștientizarea. Jung spunea: „Până nu faci inconștientul conștient, el îți va conduce viața și tu îl vei numi destin." Fiecare bifare este un pas spre a vedea tiparul, nu spre a te judeca.
+          </div>
+        </div>
+      </section>
+
+      <!-- Ce se intampla dupa vindecare -->
+      <section class="card" aria-label="Dorința după vindecare">
+        <div class="cardHeader">
+          <h2>Dorința vindecată: ce rămâne după compulsie</h2>
+          <div class="chip"><b>Teza finală:</b> nu pierzi dorința</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce se schimbă</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu pierzi dorința când te vindeci. Pierzi <b>dorința compulsivă</b>.
+                Ce rămâne este intimitate fără foame, atracție fără frică, conexiune fără auto-trădare.
+              </p>
+              <div class="hr"></div>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Dorința vindecată nu se grăbește. Nu imploră. Nu intră în panică. Așteaptă. Răspunde. <b>Alege.</b>
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Pacea nefamiliară</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Trecerea de la dorință compulsivă la dorință conștientă poate fi confundată cu „plictiseala". Dar nu este plictiseală — este <b>pace nefamiliară</b>.
+                Tiparul vechi alimenta adrenalina. Cel nou alimentează conexiunea.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Comparație: compulsiv vs. vindecat">
+                <div class="small" style="margin-bottom:12px">Dorința compulsivă vs. Dorința vindecată:</div>
+                <div class="flow">
+                  <div class="flowNode" style="border-color:rgba(255,122,153,.3)">
+                    <h3 style="color:var(--bad)">Dorință compulsivă</h3>
+                    <p>Urgentă, copleșitoare, repetitivă. Condusă de sinele copilului. Se simte „puternică" dar este <b>veche</b>.</p>
+                    <div class="meta">
+                      <span class="badge">grăbire</span><span class="badge">panică</span><span class="badge">implorare</span><span class="badge">compulsie</span>
+                    </div>
+                  </div>
+                  <div class="flowNode" style="border-color:rgba(117,240,182,.3)">
+                    <h3 style="color:var(--good)">Dorință vindecată</h3>
+                    <p>Liniștită, ancorată, selectivă. Nu mai slabă, ci mai <b>curată</b>. Răspunde la ceea ce este prezent, nu la ceea ce este familiar.</p>
+                    <div class="meta">
+                      <span class="badge">așteptare</span><span class="badge">răspuns</span><span class="badge">alegere</span><span class="badge">expresie</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Întrebarea finală a lui Jung</strong><span class="hint">apasă pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Jung scria că individuarea este procesul de a deveni cine ești cu adevărat — nu cine a trebuit să fii.
+                Copilăria ți-a modelat dorința, dar <b>nu are dreptul să îți decidă viitorul</b>.
+                Odată ce vezi tiparul, nu mai ești înăuntrul lui. Și din acel moment, fiecare alegere devine conștientă.
+              </p>
+              <p style="margin-top:10px;color:var(--violet);font-weight:600">
+                Întreabă-te în seara aceasta: „Această dorință vine de la cine am fost — sau de la cine devin?"
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Despre comentarii -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toată pagina, casetele colorate cu violet (marcate cu <code>data-commentary</code>) oferă comentarii la nivel meta:
+            cât de puternică este afirmația? Ce perspective alternative există? Care este nivelul dovezilor?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasă „Comută comentariul" în partea de sus pentru a ascunde/arăta toate casetele de comentariu odată.
+            Astfel poți comuta între „ce spune textul original" și „ce interpretare critică oferim noi".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un text despre cum dorința sexuală este modelată de copilărie, conform psihologiei jungiene.
+        Nu este consiliere psihologică sau medicală. Vizualizările, diagramele și comentariile sunt instrumente conceptuale menite să ajute la reflecție, nu substituturi pentru terapie sau ghidare clinică profesionistă.
+      </p>
+      <p style="margin-top:10px">
+        Pentru întrebări, corecturi sau pentru a aprofunda: consultă literatura de specialitate despre psihologia analitică a lui Carl Jung, teoria atașamentului și psihoterapie.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Phase steps interactivity
+    // ──────────────────────────────────────────────────────
+    const phases = [
+      {
+        title: 'Faza 1: Observare',
+        body: 'Când dorința apare, fă o pauză — nu pentru a rezista, ci pentru a observa. Ce emoție vine prima? Singurătate, tensiune, neliniște, invizibilitate, neputință? Dorința rareori apare singură. Ea „călărește" un alt sentiment. Acel sentiment este ușa.',
+        badges: ['pauză', 'ce simți înainte?']
+      },
+      {
+        title: 'Faza 2: Trasare înapoi',
+        body: 'Când trasezi dorința înapoi, nu găsești sex. Găsești un sine mai tânăr care încearcă să regleze ceva neîmplinit. Întreabă-te: „Ce parte din mine a învățat să dorească asta?" — nu „De ce vreau asta?"',
+        badges: ['trasare', 'originea emoțională']
+      },
+      {
+        title: 'Faza 3: Separare',
+        body: 'Realizezi că acest impuls aparține unei amintiri, nu unui mandat. Conștientizarea rupe identificarea. Nu mai ești „în" dorință — ești în relație cu ea. Jung numea asta „diferențiere a Eului".',
+        badges: ['memorie ≠ mandat', 'diferențiere']
+      },
+      {
+        title: 'Faza 4: Re-învățare corporală',
+        body: 'Corpul învață prin experiență, nu prin logică. Începi să alegi încet, să simți complet, să te oprești când ceva se simte familiar în loc de adevărat. Siguranța nu mai necesită intensitate. Apropierea nu mai necesită performanță.',
+        badges: ['experiență nouă', 'încredere câștigată']
+      },
+      {
+        title: 'Faza 5: Maturarea dorinței',
+        body: 'Dorința devine mai liniștită, mai ancorată, mai selectivă. Nu mai slabă — mai curată. Nu mai urmărești ce se simte intens, ci răspunzi la ceea ce se simte prezent. Aceasta poate părea „plictiseală" la început, dar este pace nefamiliară.',
+        badges: ['prezență', 'alegere conștientă']
+      }
+    ];
+
+    const phaseSteps = document.querySelectorAll('.phaseStep');
+    const phaseContent = document.getElementById('phaseContent');
+
+    function renderPhase(idx) {
+      phaseSteps.forEach((s, i) => s.classList.toggle('active', i === idx));
+      const p = phases[idx];
+      phaseContent.innerHTML = `
+        <div class="flowNode">
+          <h3>${p.title}</h3>
+          <p>${p.body}</p>
+          <div class="meta">${p.badges.map(b => `<span class="badge">${b}</span>`).join('')}</div>
+        </div>
+      `;
+    }
+
+    phaseSteps.forEach((step, i) => {
+      step.addEventListener('click', () => renderPhase(i));
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', () => {
+      document.getElementById('checklist').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 75) msg = `${pct}% — Nivel ridicat de conștientizare. Recunoști multe tipare — acesta este primul pas spre integrare.`;
+      else if (pct >= 50) msg = `${pct}% — Conștientizare moderată. Câteva tipare rezonează — explorarea lor poate aduce claritate.`;
+      else if (pct >= 25) msg = `${pct}% — Câteva rezonanțe. Chiar și un singur tipar recunoscut poate fi un punct de plecare valoros.`;
+      else msg = `${pct}% — Puține rezonanțe identificate. Fie tiparul este diferit, fie integrarea e deja avansată.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tău de conștientizare:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce ești mereu cel care înțelege și nu primește nimic înapoi — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre tiparul psihologic al celui care înțelege pe toată lumea dar nu se simte niciodată înțeles. Bazat pe psihologia Jungiană: empatie fără limite, persona unilaterală, umbra și integrarea." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,179,138,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(187,167,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--orange)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks / pills list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--cyan);}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Quote block */
+    .quoteBlock{
+      border-left: 3px solid var(--orange);
+      padding: 14px 16px;
+      background: rgba(255,179,138,.06);
+      border-radius: 0 14px 14px 0;
+      margin: 10px 0;
+      font-style: italic;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .quoteBlock .author{
+      font-style: normal;
+      font-size: 12px;
+      color: var(--orange);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Balance bar */
+    .balanceBar{
+      display:flex;
+      height: 32px;
+      border-radius: 99px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      margin: 10px 0;
+    }
+    .balanceBar .bGive{
+      background: linear-gradient(90deg, rgba(122,215,255,.5), rgba(122,215,255,.25));
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--text);font-weight:600;
+      transition: width .4s ease;
+    }
+    .balanceBar .bReceive{
+      background: linear-gradient(90deg, rgba(255,179,138,.25), rgba(255,179,138,.5));
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--text);font-weight:600;
+      transition: width .4s ease;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(187,167,255,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Two figures: one giving (large, open), one receiving (small, closed) -->
+            <!-- Giving figure - large open circle -->
+            <circle cx="200" cy="110" r="65" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".5"/>
+            <circle cx="200" cy="110" r="40" fill="none" stroke="rgba(122,215,255,.25)" stroke-width="1.5" opacity=".6"/>
+            <!-- Arrows flowing outward from giver -->
+            <path d="M265,95 Q300,80 330,90" fill="none" stroke="rgba(122,215,255,.4)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M265,110 Q305,110 330,110" fill="none" stroke="rgba(122,215,255,.35)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M265,125 Q300,140 330,130" fill="none" stroke="rgba(122,215,255,.3)" stroke-width="4" stroke-linecap="round"/>
+            <!-- Receiving figure - smaller, more opaque -->
+            <circle cx="370" cy="110" r="35" fill="rgba(255,179,138,.08)" stroke="url(#g2)" stroke-width="2" opacity=".6"/>
+            <!-- No arrows back - asymmetry -->
+            <!-- Small glow dots -->
+            <circle cx="200" cy="110" r="8" fill="rgba(122,215,255,.3)" />
+            <circle cx="370" cy="110" r="5" fill="rgba(255,179,138,.3)" />
+            <circle cx="150" cy="70" r="4" fill="rgba(255,255,255,.3)" />
+            <circle cx="420" cy="150" r="3" fill="rgba(255,255,255,.25)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; empatie &bull; limite &bull; echilibru</div>
+          <h1>De ce ești mereu cel care înțelege și nu primește nimic înapoi</h1>
+          <p class="subtitle">
+            Există un tip special de epuizare care nu vine din a face prea mult, ci din a fi <b>prea înțelegător</b>.
+            Înțelegi pe toată lumea, dar nimeni nu te înțelege cu adevărat pe tine. Nu pentru că sunt incapabili,
+            ci pentru că i-ai antrenat inconștient <b>să nu o facă</b>. Acest infografic explorează tiparul psihologic din spatele acestui fenomen.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpTrap">Salt la capcana psihologică</button>
+            <button class="btn" id="jumpFix">Salt la schimbările practice</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei cheie">
+          <div class="stat">
+            <div class="label">Problema centrală</div>
+            <div class="value">Empatie fără limite</div>
+            <div class="note">Empatia fără granițe devine auto-ștergere, nu generozitate.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Originea</div>
+            <div class="value">Adaptare din copilărie</div>
+            <div class="note">Ai învățat că a fi perceptiv te ține în siguranță. Empatia a devenit supraviețuire.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Efectul</div>
+            <div class="value">Persona unilaterală</div>
+            <div class="note">Te supraidentifici cu rolul „celui puternic" și umbra crește.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Soluția</div>
+            <div class="value">Integrare, nu duritate</div>
+            <div class="note">Nu deveni mai dur. Devino mai solid. Asertivitate, nu agresivitate.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SECTION: Tiparul de bază -->
+      <section class="card" aria-label="Tiparul de bază">
+        <div class="cardHeader">
+          <h2>Tiparul: cel care înțelege pe toată lumea</h2>
+          <div class="chip"><b>Diagnostic:</b> empatie ca supraviețuire</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Observi asta prima dată în relații. Asculți mai mult. Îți explici singur comportamentul celuilalt. Scuzi ce te-a rănit pentru că
+                „înțelegi de unde vine." Și încetișor, ceva începe să se degradeze în interior.
+              </p>
+              <p class="muted">
+                Cei care rezonează cu această durere nu se văd ca victime. Se văd ca <b>maturi, empatici, inteligenți emoțional</b>.
+                Sunt cei care spun: „E în regulă. Înțeleg. N-a vrut să facă rău. A trecut prin multe."
+              </p>
+              <div class="quoteBlock">
+                „Și acea propoziție — «Înțeleg» — devine cea mai periculoasă propoziție din lumea lor interioară.
+                Pentru că încheie conversația. Închide bucla emoțională. Previne confruntarea, reciprocitatea și echilibrul."
+                <span class="author">— Principiu Jungian</span>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding: 14px" aria-label="Semne ale tiparului">
+                <div class="small" style="margin-bottom:10px">Semne că acest tipar te descrie:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Asculți mai mult decât ești ascultat</span><span class="tag">semn</span></div>
+                  <div class="pill"><span>Scuzi ce te-a rănit</span><span class="tag">semn</span></div>
+                  <div class="pill"><span>Verifici primul cum e celălalt</span><span class="tag">semn</span></div>
+                  <div class="pill"><span>Reții detalii pe care alții le uită</span><span class="tag">semn</span></div>
+                  <div class="pill"><span>Ții spațiu pe care nimeni nu ți-l ține</span><span class="tag">semn</span></div>
+                  <div class="pill"><span>Te simți invizibil în propria viață</span><span class="tag">efect</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Dacă mai mult de 3 puncte rezonează, acest infografic descrie un tipar activ din psihicul tău.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest tipar nu este „frumusețe morală" — este o adaptare psihologică. Jung ar spune că empatia excesivă fără limite este la fel de dezechilibrată ca agresivitatea. Psihicul caută echilibru, iar când energia curge doar într-o direcție, compensarea vine prin resentiment, oboseală sau colaps emoțional brusc.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Originea și mecanismul -->
+      <section class="row">
+        <div class="card" aria-label="Originea tiparului">
+          <div class="cardHeader">
+            <h2>Originea: adaptarea din copilărie</h2>
+            <div class="chip">empatia ca strategie de supraviețuire</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Mulți oameni care sunt mereu „cel înțelegător" au adoptat acest rol devreme, adesea ca și copii.
+              Au învățat inconștient că a fi perceptiv, calm și conștient emoțional face mediul <b>mai sigur</b>.
+            </p>
+
+            <div class="flow" aria-label="Evoluția adaptării">
+              <div class="flowNode">
+                <h3>1) Copilărie: empatia = siguranță</h3>
+                <p>Citirea stărilor emoționale ale celorlalți previne conflictul. A fi „cel rezonabil" câștigă aprobare. Empatia devine un mecanism de supraviețuire.</p>
+                <div class="meta">
+                  <span class="badge">adaptare</span><span class="badge">protecție</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Adolescență: rolul se solidifică</h3>
+                <p>Devii „persoana la care apelează toată lumea." Identitatea ta se construiește în jurul a fi „cel puternic emoțional, cel sigur, cel care înțelege."</p>
+                <div class="meta"><span class="badge">identitate fixată</span><span class="badge">persona</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Viața adultă: costul ascuns</h3>
+                <p>Ce te-a protejat acum te costă liniștit. Empatia fără limite nu rămâne empatie — devine <b>auto-ștergere</b>. Începi să-ți interpretezi propriile nevoi ca „nerezonabile."</p>
+                <div class="meta"><span class="badge">auto-ștergere</span><span class="badge">epuizare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Umbra crește</h3>
+                <p>Furia, nevoia de a fi ales (nu doar de a fi de ajutor), dorința de a fi prioritizat — toate merg „sub pământ." Emoțiile îngropate nu dispar. Ele <b>fermentează</b>.</p>
+                <div class="meta"><span class="badge">resentiment</span><span class="badge">amărăciune secretă</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung a descris psihicul ca un sistem care caută echilibru mereu. Când empatia devine unilaterală — dai fără să primești — psihicul compensează prin resentiment, oboseală cronică sau colaps emoțional brusc. Nu e defect de caracter — e fizica psihicului.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Persona unilaterală">
+          <div class="cardHeader">
+            <h2>Persona unilaterală și umbra care crește</h2>
+            <div class="chip"><b>Jung:</b> ce dezechilibrezi se compensează</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a numit „persona" masca pe care o porți în lume. Când te supraidentifici cu „cel care înțelege",
+              totul ce nu se potrivește cu acest rol merge în umbră.
+            </p>
+
+            <div class="riskGrid" aria-label="Ce conține umbra">
+              <div class="risk">
+                <div class="rTop"><strong>Furia ta</strong><span class="badge">umbră</span></div>
+                <div class="meter"><i style="width:72%"></i></div>
+                <p>N-ai voie să fii furios — nu se potrivește cu rolul „celui care înțelege." Dar furia nu dispare, doar se transformă în resentiment pasiv.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Nevoia de a fi ales</strong><span class="badge">umbră</span></div>
+                <div class="meter"><i style="width:68%"></i></div>
+                <p>Vrei să fii prioritizat, nu doar de ajutor. Dar nevoia asta pare „egoistă" conform rolului tău, așa că o reprimi.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dorința de a fi văzut</strong><span class="badge">umbră</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Vrei să fii cunoscut, nu doar acomodant. Înlocuiești a fi cu adevărat cunoscut cu a fi mereu disponibil.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dorința de validare</strong><span class="badge">umbră</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Speri că prin consistența ta, ceilalți vor „observa" și vor reciproca natural. Dar speranța nu e strategie psihologică.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Umbra nu e rea sau imorală. Este tot ce dezavuezi pentru a menține o identitate. Cu cât negi mai mult, cu atât crește.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Rezultatul paradoxal: îți pasă profund, dar ești și obosit de a-ți păsa. Iubești, dar ești și amărât în liniște. Înțelegi, dar începi să te simți folosit. Și cel mai dureros: nu te simți îndreptățit să ceri mai mult — pentru că te-ai convins că a înțelege pe alții înseamnă a nu avea nevoie de nimic înapoi.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Vizualizare echilibru energetic -->
+      <section class="card" aria-label="Simulator echilibru energetic" id="balanceSim">
+        <div class="cardHeader">
+          <h2>Simulator: echilibrul energetic în relații</h2>
+          <div class="chip">vizualizare interactivă</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Acest simulator arată cum se schimbă dinamica relațională pe măsură ce ajustezi limitele și asertivitatea.
+            Observă cum raportul „dai / primești" se modifică în funcție de intervențiile tale.
+          </p>
+
+          <div class="viz" id="viz" aria-label="Vizualizare echilibru">
+            <svg viewBox="0 0 980 360" id="balSvg" role="img" aria-label="Echilibrul energetic în relații">
+              <defs>
+                <linearGradient id="gGive" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(122,215,255,.5)"/>
+                  <stop offset="1" stop-color="rgba(122,215,255,.15)"/>
+                </linearGradient>
+                <linearGradient id="gReceive" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(255,179,138,.5)"/>
+                  <stop offset="1" stop-color="rgba(255,179,138,.15)"/>
+                </linearGradient>
+                <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="360" fill="rgba(0,0,0,.05)"/>
+              <!-- axes -->
+              <g opacity=".9">
+                <path d="M70 30 L70 300 L940 300" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+              </g>
+              <!-- labels -->
+              <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                <text x="70" y="22" fill="rgba(255,255,255,.88)" font-weight="700">Energie emoțională: dăruire vs. primire</text>
+                <text x="70" y="340" font-size="12" fill="rgba(255,255,255,.62)">Timp în relație →</text>
+                <text x="12" y="180" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 12 180)">Intensitate</text>
+              </g>
+              <!-- areas + curves drawn by JS -->
+              <path id="giveArea" fill="rgba(122,215,255,.10)" stroke="none"/>
+              <path id="receiveArea" fill="rgba(255,179,138,.08)" stroke="none"/>
+              <path id="giveCurve" stroke="rgba(122,215,255,.90)" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#soft2)"/>
+              <path id="receiveCurve" stroke="rgba(255,179,138,.85)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- balance line -->
+              <path id="balanceLine" stroke="rgba(117,240,182,.5)" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
+              <g id="balGrid"></g>
+            </svg>
+
+            <div class="legend" aria-label="Legendă">
+              <div class="key"><span class="sw" style="background: rgba(122,215,255,.90)"></span> Energie dăruită (empatie, atenție, sprijin)</div>
+              <div class="key"><span class="sw" style="background: rgba(255,179,138,.85)"></span> Energie primită (reciprocitate, înțelegere)</div>
+              <div class="key"><span class="sw" style="background: rgba(117,240,182,.50)"></span> Linia echilibrului ideal</div>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="Controale simulator">
+            <div class="control">
+              <label>
+                <span>Nivel limite personale</span>
+                <span class="readout" id="boundaryReadout">20%</span>
+              </label>
+              <input id="boundarySlider" type="range" min="0" max="100" value="20" />
+              <div class="small" style="margin-top:8px">Mai mare = limite mai clare, mai puțină supra-dăruire.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Asertivitate</span>
+                <span class="readout" id="assertReadout">15%</span>
+              </label>
+              <input id="assertSlider" type="range" min="0" max="100" value="15" />
+              <div class="small" style="margin-top:8px">Mai mare = mai multă auto-exprimare, relații mai echilibrate.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="small" style="margin-bottom:6px"><b>Balanța curentă (dăruire vs. primire):</b></div>
+            <div class="balanceBar">
+              <div class="bGive" id="bGive" style="width:78%">Dai: 78%</div>
+              <div class="bReceive" id="bReceive" style="width:22%">Primești: 22%</div>
+            </div>
+            <div class="small" id="balanceMsg">Dezechilibru major. Ești o „utilitate emoțională", nu un egal emoțional.</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest simulator este o metaforă vizuală — nu măsoară ceva real. Scopul este să arăți principiul: când crești limitele și asertivitatea, linia de primire urcă și se apropie de linia de dăruire. Relații care nu rezistă la acest echilibru <b>nu erau reciproce</b> — erau gestionate de tine singur.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Capcana psihologică -->
+      <section class="row" id="trapSection">
+        <div class="card" aria-label="Capcana psihologică">
+          <div class="cardHeader">
+            <h2>Capcana psihologică: de ce oamenii iau de la tine</h2>
+            <div class="chip">structură, nu răutate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Oamenii nu iau de la tine pentru că sunt răuvoitori. Iau pentru că <b>structura relației permite asta</b>.
+              Ființele umane sunt profund inconștiente în felul în care relaționează — răspund la tipare, nu la intenții.
+            </p>
+
+            <div class="flow" aria-label="De ce se întâmplă">
+              <div class="flowNode">
+                <h3>Nu ceri claritate</h3>
+                <p>Nu insisti pe reciprocitate. Nu faci absența emoțională incomodă. Psihicul celuilalt se relaxează — instinctiv, nu conștient.</p>
+                <div class="meta"><span class="badge">lipsa tensiunii psihice</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Eșec al tensiunii psihice (Jung)</h3>
+                <p>Jung credea că creșterea se întâmplă când forțe opuse sunt ținute în tensiune: nevoie și restrângere, apropriere și distanță, dăruire și primire. Când tu colapsezi acea tensiune înțelegând totul, celălalt <b>nu mai trebuie să crească</b>.</p>
+                <div class="meta"><span class="badge">fără presiune de maturizare</span><span class="badge">confort fals</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Empatia ta devine pernă pentru subdezvoltarea lor</h3>
+                <p>Nu trebuie să reflecteze. Nu trebuie să apară diferit. Nu trebuie să se maturizeze. Pernele nu inspiră schimbare.</p>
+                <div class="meta"><span class="badge">comoditate</span><span class="badge">stagnare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Oamenii simt vinovăție doar la încălcarea unei limite</h3>
+                <p>Dacă nu există limită, nu există vinovăție — doar convenabilitate. Explici comportamentul lor înainte ca ei să o facă. Ierți înainte ca ei să recunoască. Normalizezi absența emoțională numind-o „natura lor."</p>
+                <div class="meta"><span class="badge">nicio limită = nicio vinovăție</span></div>
+              </div>
+            </div>
+
+            <div class="quoteBlock">
+              „Ai devenit o utilitate emoțională, nu un egal emoțional. Iar utilitățile sunt folosite, nu prețuite."
+              <span class="author">— Observație psihologică</span>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este o observație structurală, nu morală. Nu înseamnă „e vina ta." Înseamnă că tiparul pe care îl prezinți — fără confruntare, fără fricțiune, fără cerințe — antrenează inconștient pe celălalt să nu investească. Oamenii respectă ce îi costă ceva: efort, ajustare, disconfort. Când a fi în viața ta nu costă nimic emoțional, este valorizat mai puțin inconștient.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Adevăruri dificile">
+          <div class="cardHeader">
+            <h2>Adevărurile dureroase pe care cele mai multe persoane le evită</h2>
+            <div class="chip"><b>Confruntare:</b> cu realitatea</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Una dintre cele mai dureroase realizări nu este că oamenii te-au rănit — ci că mulți dintre ei <b>nici măcar nu se simt rău</b> pentru asta.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Speranța nu e strategie</strong><span class="badge">iluzie</span></div>
+                <div class="meter"><i style="width:30%"></i></div>
+                <p>Speri că vor observa. Speri că vor reciproca natural. Speri că consistența ta îi va învăța. Dar tăcerea nu-i învață pe oameni să le pese — îi învață că tăcerea e acceptabilă.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Nu ești prea înțelegător</strong><span class="badge">adevăr</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Ești <b>sub-exprimat</b>. Ai perspicacitate fără asertivitate. Empatie fără cerere. Conștientizare fără auto-pledoarie.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Înțelegerea a înlocuit intimitatea</strong><span class="badge">substituție</span></div>
+                <div class="meter"><i style="width:68%"></i></div>
+                <p>În loc să fii cunoscut, ai devenit acomodant. În loc să fii întâmpinat, ai devenit adaptabil. În loc să fii susținut, ai devenit puternic.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Supra-dăruiești pentru a evita</strong><span class="badge">mecanism</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Supra-dăruiești pentru a evita conflictul, respingerea sau abandonul. Nu te face slab — te face adaptiv. Dar adaptările care nu sunt actualizate devin auto-trădare.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quoteBlock">
+              „Dacă o relație se prăbușește când nu mai supra-dăruiești, nu a fost niciodată reciprocă. A fost gestionată. Tu ai fost lipiciul. Și lipiciul se consumă."
+              <span class="author">— Principiu terapeutic</span>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observă ce se întâmplă pe termen lung: nu furie exterioară, ci <b>retragere interioară</b>. Nu mai întrebi. Nu mai aștepți. Nu mai crezi că poți fi întâmpinat. Așa empatia se transformă în rezignare liniștită. Dar această rezignare nu e maturitate — e abandonare de sine deghizată în calm.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Cele 4 schimbări practice -->
+      <section class="card" id="fixSection" aria-label="Schimbările practice">
+        <div class="cardHeader">
+          <h2>Cele 4 schimbări: de la empatie unilaterală la echilibru</h2>
+          <div class="chip"><b>Soluție:</b> integrare, nu duritate</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Majoritatea oamenilor rămân blocați în acest tipar crezând că există doar două opțiuni: fii înțelegător și epuizat, sau pune limite și devino crud.
+            Această credință e falsă. Scopul nu a fost niciodată să devii mai dur. A fost să devii <b>mai solid</b>.
+          </p>
+
+          <div class="split">
+            <div class="flowNode">
+              <h3 style="color: var(--cyan)">Schimbarea 1: Oprește pre-înțelegerea</h3>
+              <p>Nu mai umple golurile emoționale înainte ca ele să fie recunoscute. Nu mai îndulci adevărul tău pentru a proteja pe alții de disconfort.</p>
+              <p style="margin-top:8px">În loc să spui „Înțeleg", <b>pauză</b>. În loc să explici comportamentul lor în locul lor, <b>lasă-l fără răspuns</b>. Acea pauză creează tensiune psihică. Și tensiunea revelează cine este dispus să te întâmpine.</p>
+              <div class="meta"><span class="badge">pauză</span><span class="badge">tensiune psihică</span><span class="badge">revelație</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color: var(--orange)">Schimbarea 2: Lasă-i să simtă absența ta</h3>
+              <p>Nu plecând dramatic, ci nemaifuncționând excesiv. Nu mai verifica primul. Nu mai salva tăcerea. Nu mai menține apropierea singur.</p>
+              <p style="margin-top:8px">Lasă relația să reflecte echilibrul real. E terifiant la început — vei vedea clar cine rămâne doar când tu porți greutatea. <b>Claritatea doare mereu înainte să vindece.</b></p>
+              <div class="meta"><span class="badge">stop supra-funcționare</span><span class="badge">test de reciprocitate</span></div>
+            </div>
+          </div>
+          <div style="height:10px"></div>
+          <div class="split">
+            <div class="flowNode">
+              <h3 style="color: var(--violet)">Schimbarea 3: Revendică furia ca informație</h3>
+              <p>Furia nu e comportament — e <b>informație</b>. Te spune unde te-ai abandonat pe tine.</p>
+              <p style="margin-top:8px">În loc să o reprimi, ascultă — nu pentru a acționa pe ea, ci pentru a-i înțelege mesajul. Furia zice: „Asta a contat. Asta a trecut o linie. Aveam nevoie de mai mult."</p>
+              <p style="margin-top:8px">Când onorezi acel mesaj interior, nu mai „scurgi" resentiment exterior. Așa rămâi cald fără a fi poros.</p>
+              <div class="meta"><span class="badge">furia ca mesaj</span><span class="badge">auto-onorare</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color: var(--good)">Schimbarea 4: Renunță la fantezie</h3>
+              <p>Eliberează fantezia că „a fi bun" îi va face pe oameni să dea înapoi. Oamenii nu reciprocează pentru că meriți — reciprocează pentru că <b>relația o cere</b>.</p>
+              <p style="margin-top:8px">Cerința nu e cruzime. E <b>structură</b>. Nu trebuie să-ți explici limitele. Nu trebuie să-ți anunți respectul de sine. Sistemul tău nervos se va schimba primul. Disponibilitatea ta se va schimba. Răspunsurile tale se vor schimba. Toleranța ta se va schimba.</p>
+              <p style="margin-top:8px">Și oamenii se vor ajusta sau vor pleca. <b>Ambele rezultate sunt aliniere.</b></p>
+              <div class="meta"><span class="badge">structură, nu cruzime</span><span class="badge">aliniere naturală</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung credea că atunci când o trăsătură este supradezoltată, opusul ei trebuie invitat conștient înapoi în psihic. Ai supradezvoltat înțelegerea. Deci ce trebuie să revină este <b>asertivitatea</b> — nu agresivitate, nu explicație, ci <b>prezență</b>. Primul pas e intern, nu comportamental.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Auto-evaluare interactivă -->
+      <section class="card" aria-label="Auto-evaluare">
+        <div class="cardHeader">
+          <h2>Auto-evaluare: unde te afli pe drumul echilibrului</h2>
+          <div class="chip">instrument interactiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifează afirmațiile care reflectă starea ta actuală. Cele mai multe bifare sugerează progres real.
+          </p>
+
+          <div class="checklist" id="progressChecklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am recunoscut tiparul</strong><em>bază</em></div>
+                <div class="d">Văd că sunt cel care înțelege pe toată lumea și rareori se simte înțeles. Am numit asta clar.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu mai pre-înțeleg automat</strong><em>practică</em></div>
+                <div class="d">Am început să fac pauze înainte de a scuza comportamentul celorlalți. Las lucrurile să stea fără explicație.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am lăsat relații să-și arate echilibrul real</strong><em>curaj</em></div>
+                <div class="d">Am oprit supra-funcționarea în cel puțin o relație și am observat ce se întâmplă când nu mai port eu greutatea.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am ascultat furia ca informație</strong><em>integrare</em></div>
+                <div class="d">Am recunoscut momentele în care furia mea spunea „asta a contat" sau „asta a trecut o limită" — fără a o reprima sau a exploda.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu mai confund limitele cu cruzimea</strong><em>maturitate</em></div>
+                <div class="d">Am înțeles că a pune limite nu este pedeapsă, ci structură. Exprimarea de sine nu este agresivitate.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Am renunțat la fantezia reciprocității automate</strong><em>eliberare</em></div>
+                <div class="d">Nu mai sper că „vor observa." Permit relațiilor să fie ceea ce sunt, nu ceea ce le gestionez eu să fie.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sunt înțeles de oamenii potriviți</strong><em>transformare</em></div>
+                <div class="d">Am trecut de la „cel care înțelege pe toată lumea" la „cel care este înțeles de oamenii potriviți." Nu e pierdere — e precizie.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="progressScoreBtn">Calculează progresul</button>
+            <button class="btn" id="progressResetBtn">Resetează</button>
+          </div>
+          <div class="small" id="progressScoreOut" style="margin-top:10px"></div>
+        </div>
+      </section>
+
+      <!-- SECTION: Transformarea -->
+      <section class="card" aria-label="Transformarea finală">
+        <div class="cardHeader">
+          <h2>Transformarea liniștită</h2>
+          <div class="chip"><b>Rezultat:</b> precizie, nu pierdere</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">De la „cel care înțelege pe toată lumea"...</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cel care ascultă mai mult decât e ascultat. Cel care verifică primul. Cel care ține spațiu pe care nimeni nu i-l ține.
+                Cel care se simte invizibil în propria viață emoțională. Cel care a înlocuit intimitatea cu acomodarea.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">...la „cel care este înțeles de oamenii potriviți"</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Aceasta nu e pierdere. Este <b>precizie</b>. Nu mai ești utilitatea emoțională a tuturor.
+                Ești o persoană completă — cu empatie <i>și</i> asertivitate, cu înțelegere <i>și</i> cerințe, cu blândețe <i>și</i> limite.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Nu ești stricat</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu ești naiv. Te-ai adaptat devreme. Acum e momentul să <b>evoluezi</b>.
+                Înțelegerea nu ar trebui să te coste pe tine însuți.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Rezumatul în 3 principii</h3>
+              <div class="flow" style="margin-top:8px">
+                <div class="flowNode">
+                  <h3 style="color:var(--cyan);font-size:13px">1. Fricțiunea face prezența semnificativă</h3>
+                  <p>Când înțelegerea ta elimină orice fricțiune, prezența ta este valorizată mai puțin. Permite fricțiunea.</p>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--orange);font-size:13px">2. Tăcerea nu predă grija</h3>
+                  <p>Tăcerea predă că tăcerea e acceptabilă. Exprimarea creează spațiul în care reciprocitatea poate apărea.</p>
+                </div>
+                <div class="flowNode">
+                  <h3 style="color:var(--good);font-size:13px">3. Ambele rezultate sunt aliniere</h3>
+                  <p>Oamenii se ajustează sau pleacă. Dacă pleacă când nu mai supra-dăruiești, relația nu a fost reciprocă. Ambele sunt aliniere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Notă finală despre acest infografic</strong><span class="hint">apasă pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce un conținut despre tiparele psihologice ale empatiei excesive, bazat pe principii Jungiene.
+                Nu este sfat terapeutic. Dacă tiparul descris rezonează profund, lucrul cu un psihoterapeut poate transforma
+                aceste idei abstracte în schimbare reală și susținută.
+              </p>
+              <p style="margin-top:8px">
+                <b>Reține:</b> scopul nu este să devii mai puțin empatic. Este să devii <b>complet</b> — cu empatie și asertivitate,
+                cu înțelegere și auto-pledoarie, cu blândețe și soliditate. Jung credea că integrarea, nu represiunea sau rebeliunea, este sarcina creșterii.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary mode explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. conținut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul acestei pagini, casetele albastre (marcate cu <code>data-commentary</code>) oferă comentarii meta-nivel:
+            cât de puternică este afirmația? Ce nuanțe lipsesc? Ce alternative există?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasă „Comută comentariul" din partea de sus pentru a ascunde/afișa toate casetele de comentariu.
+            Astfel poți comuta între „iată ce spune textul sursă" și „iată o perspectivă critică asupra acelei afirmații."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și avertismente:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un conținut despre tiparele psihologice ale empatiei fără limite.
+        Nu este sfat terapeutic sau psihologic. Vizualizările, simulatorul și comentariile sunt instrumente conceptuale, nu înlocuitoare pentru cercetare primară sau îndrumare clinică.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: consultă lucrările lui Carl Jung despre persona, umbră și integrare, precum și literatura modernă despre limite sănătoase și asertivitate.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Balance Simulator (SVG visualization)
+    // ──────────────────────────────────────────────────────
+    const boundarySlider = document.getElementById('boundarySlider');
+    const assertSlider = document.getElementById('assertSlider');
+    const boundaryReadout = document.getElementById('boundaryReadout');
+    const assertReadout = document.getElementById('assertReadout');
+
+    function renderBalance() {
+      const boundary = parseInt(boundarySlider.value) / 100;
+      const assertiveness = parseInt(assertSlider.value) / 100;
+
+      boundaryReadout.textContent = `${boundarySlider.value}%`;
+      assertReadout.textContent = `${assertSlider.value}%`;
+
+      const W = 980, H = 360;
+      const padding = 70;
+      const graphW = W - padding - 40;
+      const graphH = H - 100;
+      const points = 60;
+      const baseline = H - 60;
+
+      const combined = (boundary * 0.5 + assertiveness * 0.5);
+
+      // Give curve: high at start, decreasing with boundaries
+      function giveFn(t) {
+        const baseGive = 0.85 - combined * 0.35;
+        const wave = Math.sin(t * 0.8) * 0.1 * (1 - combined * 0.5);
+        const decay = -t * 0.01 * combined;
+        return Math.max(0.15, baseGive + wave + decay);
+      }
+
+      // Receive curve: low at start, increasing with assertiveness
+      function receiveFn(t) {
+        const baseReceive = 0.15 + combined * 0.45;
+        const wave = Math.sin(t * 0.6 + 2) * 0.08 * combined;
+        const growth = t * 0.015 * combined;
+        return Math.min(0.85, baseReceive + wave + growth);
+      }
+
+      let givePath = '', receivePath = '';
+      let giveAreaPath = '', receiveAreaPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = (i / points) * 10;
+        const x = padding + (i / points) * graphW;
+
+        const gVal = giveFn(t);
+        const rVal = receiveFn(t);
+
+        const gY = baseline - gVal * graphH;
+        const rY = baseline - rVal * graphH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        givePath += `${cmd}${x.toFixed(1)},${gY.toFixed(1)} `;
+        receivePath += `${cmd}${x.toFixed(1)},${rY.toFixed(1)} `;
+      }
+
+      giveAreaPath = `M${padding},${baseline} ${givePath} L${padding + graphW},${baseline} Z`;
+      receiveAreaPath = `M${padding},${baseline} ${receivePath} L${padding + graphW},${baseline} Z`;
+
+      // Balance line (50%)
+      const balY = baseline - 0.5 * graphH;
+      const balLine = `M${padding},${balY} L${padding + graphW},${balY}`;
+
+      document.getElementById('giveCurve').setAttribute('d', givePath);
+      document.getElementById('receiveCurve').setAttribute('d', receivePath);
+      document.getElementById('giveArea').setAttribute('d', giveAreaPath);
+      document.getElementById('receiveArea').setAttribute('d', receiveAreaPath);
+      document.getElementById('balanceLine').setAttribute('d', balLine);
+
+      // Grid
+      const grid = document.getElementById('balGrid');
+      grid.innerHTML = '';
+      const labels = ['Început', 'Obișnuință', 'Conștientizare', 'Practică', 'Echilibru'];
+      for (let i = 0; i < 5; i++) {
+        const x = padding + (i / 4) * graphW;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', 30);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', 300);
+        line.setAttribute('stroke', 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', 322);
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'rgba(255,255,255,.55)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = labels[i];
+        grid.appendChild(label);
+      }
+
+      // Update balance bar
+      const givePct = Math.round((1 - combined * 0.5) * 100);
+      const receivePct = 100 - givePct;
+      const bGive = document.getElementById('bGive');
+      const bReceive = document.getElementById('bReceive');
+      bGive.style.width = givePct + '%';
+      bGive.textContent = `Dai: ${givePct}%`;
+      bReceive.style.width = receivePct + '%';
+      bReceive.textContent = `Primești: ${receivePct}%`;
+
+      const balMsg = document.getElementById('balanceMsg');
+      if (combined >= 0.75) {
+        balMsg.textContent = 'Echilibru sănătos. Dai și primești în proporții apropiate. Relații reciproce.';
+      } else if (combined >= 0.5) {
+        balMsg.textContent = 'Progres bun. Limitele încep să creeze spațiu pentru reciprocitate.';
+      } else if (combined >= 0.25) {
+        balMsg.textContent = 'Dezechilibru moderat. Încă dai semnificativ mai mult decât primești.';
+      } else {
+        balMsg.textContent = 'Dezechilibru major. Ești o „utilitate emoțională", nu un egal emoțional.';
+      }
+    }
+
+    boundarySlider.addEventListener('input', renderBalance);
+    assertSlider.addEventListener('input', renderBalance);
+    renderBalance();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpTrap').addEventListener('click', () => {
+      document.getElementById('trapSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpFix').addEventListener('click', () => {
+      document.getElementById('fixSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariu vizibil' : 'Comentariu ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Progress checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('progressScoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#progressChecklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Transformare avansată. Ești pe drumul de la „cel care înțelege pe toată lumea" la „cel înțeles de oamenii potriviți."`;
+      else if (pct >= 60) msg = `${pct}% – Progres solid. Ai început să integrezi asertivitatea alături de empatie.`;
+      else if (pct >= 40) msg = `${pct}% – La mijlocul drumului. Continuă cu cele 4 schimbări, pas cu pas.`;
+      else if (pct >= 15) msg = `${pct}% – Ai recunoscut tiparul. Primul pas: oprește pre-înțelegerea automată.`;
+      else msg = `${pct}% – La început. Citește secțiunea despre cele 4 schimbări și începe cu una singură.`;
+
+      document.getElementById('progressScoreOut').innerHTML = `<b>Nivelul tău de progres:</b> ${msg}`;
+      showToast('Progres calculat');
+    });
+
+    document.getElementById('progressResetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#progressChecklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('progressScoreOut').innerHTML = '';
+      showToast('Listă resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

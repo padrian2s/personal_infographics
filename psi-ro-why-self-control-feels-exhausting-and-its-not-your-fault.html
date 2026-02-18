@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce autocontrolul te epuizează — și nu e vina ta | Infografic</title>
+  <meta name="description" content="Infografic interactiv despre psihologia autocontrolului: de ce voința nu funcționează, rolul inconștientului, identitatea, mediul și reglarea emoțională." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--violet)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Energy bar interactive */
+    .energyBar{
+      height:28px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);overflow:hidden;position:relative;margin-top:8px;
+    }
+    .energyBar > .fill{display:block;height:100%;border-radius:99px;transition:width .5s ease;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad))}
+    .energyBar > .lbl{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;font-family:var(--mono);color:var(--text)}
+
+    /* Triangle diagram */
+    .triGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+    @media(max-width:640px){.triGrid{grid-template-columns:1fr}}
+    .triCard{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(0,0,0,.18);padding:14px;text-align:center}
+    .triCard .icon{font-size:28px;margin-bottom:8px}
+    .triCard h4{margin:0 0 6px;font-size:14px}
+    .triCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Brain silhouette abstract -->
+            <ellipse cx="260" cy="100" rx="120" ry="90" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".4"/>
+            <path d="M180,100 C180,50 220,30 260,30 C300,30 340,50 340,100" fill="none" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+            <path d="M200,110 C210,140 250,160 260,160 C270,160 310,140 320,110" fill="none" stroke="url(#g2)" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+            <!-- Neural paths -->
+            <path d="M220,70 C240,90 260,60 280,80 C300,100 320,70 340,90" fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+            <path d="M200,90 C220,110 250,80 270,100 C290,120 320,90 350,110" fill="none" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <!-- Pulse dots -->
+            <circle cx="260" cy="80" r="8" fill="rgba(187,167,255,.6)"/>
+            <circle cx="220" cy="100" r="5" fill="rgba(122,215,255,.5)"/>
+            <circle cx="300" cy="95" r="6" fill="rgba(255,179,138,.5)"/>
+            <circle cx="250" cy="130" r="4" fill="rgba(117,240,182,.5)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; autocontrol &bull; reglare emoțională</div>
+          <h1>De ce autocontrolul te epuizează — și nu e vina ta</h1>
+          <p class="subtitle">
+            Majoritatea oamenilor cred că autocontrolul înseamnă forță. Dar dacă ar fi așa, cei mai puternici nu ar ceda niciodată.
+            Acest infografic explorează <b>de ce voința singură eșuează</b> și ce funcționează de fapt: conștientizare, design al mediului și integrare psihică.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la simulatorul de energie</button>
+            <button class="btn" id="jumpFix">Salt la soluții practice</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei cheie rezumate">
+          <div class="stat">
+            <div class="label">Concepția greșită</div>
+            <div class="value">Voință = Forță</div>
+            <div class="note">Cei mai mulți cred că autocontrolul înseamnă să te forțezi mai tare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Adevărul</div>
+            <div class="value">Conștientizare, nu forță</div>
+            <div class="note">Autocontrolul real vine din înțelegerea de ce cedezi, nu din efort brut.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Perspectiva Jung</div>
+            <div class="value">Psihicul e împărțit</div>
+            <div class="note">O parte vrea creștere; alta vrea confort. Conflictul intern e rădăcina.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Soluția</div>
+            <div class="value">Identitate + Mediu + Emoții</div>
+            <div class="note">Când aceste trei se aliniază, disciplina devine naturală.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Mitul voinței -->
+      <section class="card" aria-label="Mitul voinței">
+        <div class="cardHeader">
+          <h2>Mitul voinței: de ce „forțează-te mai tare" nu funcționează</h2>
+          <div class="chip"><b>Idee centrală:</b> forța suprimă, nu rezolvă</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Majoritatea oamenilor cred că autocontrolul înseamnă putere — să te forțezi să faci ce e corect, să spui „nu" mai ferm decât ceilalți.
+                Dar dacă ar fi așa, oamenii puternici nu ar recidiva, nu ar amâna, nu ar reveni la obiceiuri pe care le-au jurat că le-au abandonat.
+              </p>
+              <p class="muted">
+                <b>Adevărul psihologic:</b> când încerci să te controlezi doar prin voință, lupți prea târziu.
+                Până când tentația apare, decizia a fost deja luată în tăcere, inconștient, sub nivelul conștiinței.
+                Mintea conștientă crede că e la conducere, dar psihologia spune altceva — acțiunile tale sunt de obicei decise <b>înainte</b> să simți că ai ales.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Aceasta contrazice „mentalitatea de hustle". Problema nu e că nu te străduiești destul — e că te lupți cu o parte din tine pe care nici nu o vezi. Forța nu rezolvă conflictul interior; doar îl suprimă temporar.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Forță vs Conștientizare">
+                <div class="small" style="margin-bottom:10px">Ce spun majoritatea vs. ce arată psihologia:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>„Forțează-te mai mult"</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>„Motivează-te zilnic"</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>„Spune nu mai tare"</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>Înțelege ce te împinge</span><span class="tag" style="color:var(--good)">real</span></div>
+                  <div class="pill"><span>Construiește un mediu potrivit</span><span class="tag" style="color:var(--good)">real</span></div>
+                  <div class="pill"><span>Integrează, nu suprima</span><span class="tag" style="color:var(--good)">real</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Psihicul împărțit (Jung) + Umbra -->
+      <section class="row">
+        <div class="card" aria-label="Psihicul împărțit">
+          <div class="cardHeader">
+            <h2>Psihicul împărțit — perspectiva lui Carl Jung</h2>
+            <div class="chip">creștere vs. confort</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Conform lui Carl Jung, psihicul nu este unificat. Este <b>împărțit</b>. Există o parte din tine care vrea creștere, sens
+              și împlinire pe termen lung. Și există o altă parte care vrea confort, ușurare și siguranță imediată.
+            </p>
+            <p class="muted">
+              Când autocontrolul eșuează, nu e pentru că nu ai încercat destul. E pentru că aceste două părți sunt <b>în conflict</b>.
+              Și forța nu rezolvă niciodată conflictul interior — doar îl suprimă.
+            </p>
+
+            <div class="viz" aria-label="Diagrama conflictului interior">
+              <svg viewBox="0 0 700 280" role="img" aria-label="Conflictul dintre sinele conștient și inconștient">
+                <defs>
+                  <linearGradient id="gc1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.4)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.4)"/>
+                  </linearGradient>
+                  <linearGradient id="gc2" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,179,138,.4)"/>
+                  </linearGradient>
+                  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#soft)">
+                  <rect x="30" y="40" width="280" height="100" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.3)"/>
+                  <text x="52" y="74" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700">Partea care vrea creștere</text>
+                  <text x="52" y="98" font-size="12" fill="rgba(255,255,255,.65)">Sens, disciplină, obiective pe termen lung</text>
+                  <text x="52" y="118" font-size="12" fill="rgba(255,255,255,.65)">Conștiință, rațiune, ambiție</text>
+
+                  <rect x="390" y="40" width="280" height="100" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="412" y="74" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700">Partea care vrea confort</text>
+                  <text x="412" y="98" font-size="12" fill="rgba(255,255,255,.65)">Ușurare, siguranță, plăcere imediată</text>
+                  <text x="412" y="118" font-size="12" fill="rgba(255,255,255,.65)">Inconștient, supraviețuire, impuls</text>
+
+                  <path d="M310 90 C340 60, 360 60, 390 90" fill="none" stroke="url(#gc1)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+                  <path d="M390 90 C360 120, 340 120, 310 90" fill="none" stroke="url(#gc2)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+                  <text x="328" y="72" font-size="11" fill="rgba(255,255,255,.6)">conflict</text>
+
+                  <rect x="130" y="180" width="440" height="70" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.10)"/>
+                  <text x="160" y="210" font-size="14" fill="rgba(255,255,255,.86)" font-weight="700">Când forța suprimă conflictul:</text>
+                  <text x="160" y="232" font-size="12" fill="rgba(255,255,255,.65)">„O să încep mâine" • „Doar de data asta" • „Merit asta" • „Recuperez mai târziu"</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceste fraze familiare nu sunt scuze — sunt <b>semnale</b>. Sunt indicii că inconștientul respinge ceea ce îi impui conștient. Cu cât le ignori mai mult, cu atât devin mai puternice.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Umbra lui Jung">
+          <div class="cardHeader">
+            <h2>Umbra și efectul de recul</h2>
+            <div class="chip"><b>Jung:</b> ce e negat se întoarce</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Conform lui Jung, orice e negat expresia în conștiință <b>se va întoarce din inconștient</b>, adesea în formă distorsionată.
+              Aceasta este Umbra la lucru.
+            </p>
+            <p class="muted">
+              Când suprimi dorințele, emoțiile sau nevoia de odihnă, ele nu dispar. <b>Așteaptă.</b> Și revin când garda îți e jos.
+            </p>
+
+            <div class="flow" aria-label="Ciclul suprimare-explozie">
+              <div class="flowNode">
+                <h3>1) Suprimare prin voință</h3>
+                <p>Ții dietă perfectă, ești productiv, rămâi calm — printr-un efort enorm de rezistență internă.</p>
+                <div class="meta"><span class="badge">consum energetic</span><span class="badge">tensiune internă</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Bateria psihică se golește</h3>
+                <p>Fiecare act de rezistență drenează aceleași resurse mentale. Seara, după stres, după respingere — resursele se termină.</p>
+                <div class="meta"><span class="badge">oboseală decizională</span><span class="badge">vulnerabilitate</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Explozia compensatorie</h3>
+                <p>Mâncat compulsiv, procrastinare, furie — psihicul caută echilibru. Jung numește asta <b>compensare</b>: umbra revine cu forță.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">recidivă</span><span class="badge" style="color:var(--bad)">rușine</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Rușinea amplifică ciclul</h3>
+                <p>Te etichetezi „leneș" sau „slab". Rușinea creează rezistență internă suplimentară. Rezistența produce rebeliune. Ciclul se repetă.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">spirală descendentă</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Momentul cheie: nu pierzi controlul pentru că ești slab. Îl pierzi pentru că <b>ceva din interior a fost ignorat prea mult timp</b>. Impulsul nu era dușmanul — neglijarea era.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simulatorul de energie -->
+      <section class="card" id="viz" aria-label="Simulatorul de energie a voinței">
+        <div class="cardHeader">
+          <h2>Simulatorul de energie: cum se golește voința</h2>
+          <div class="chip">interactiv — ajustează parametrii</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Voința nu este o resursă pe care o ai — este o resursă pe care o <b>cheltuiești</b>.
+            Fiecare decizie costă energie. Fiecare act de rezistență drenează resurse mentale.
+            Acest simulator vizualizează cum stresul și deciziile repetate golesc „bateria" psihică pe parcursul zilei.
+          </p>
+
+          <div class="viz" aria-label="Graficul energiei voinței">
+            <svg viewBox="0 0 980 350" id="energySvg" role="img" aria-label="Curba energiei voinței pe parcursul zilei">
+              <defs>
+                <linearGradient id="efade" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(117,240,182,.15)"/>
+                  <stop offset="1" stop-color="rgba(255,122,153,.05)"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="980" height="350" fill="rgba(0,0,0,.05)"/>
+              <!-- Axes -->
+              <g opacity=".9">
+                <path d="M70 30 L70 290 L940 290" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none"/>
+              </g>
+              <g id="eGrid"></g>
+              <path id="energyArea" fill="url(#efade)" stroke="none"/>
+              <path id="energyCurve" stroke="rgba(117,240,182,.9)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path id="energyCurveStress" stroke="rgba(255,122,153,.7)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="7 7"/>
+              <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                <text x="70" y="20" fill="rgba(255,255,255,.88)" font-weight="700">Energia voinței pe parcursul zilei</text>
+                <text x="70" y="330" font-size="12" fill="rgba(255,255,255,.62)">Ora zilei</text>
+                <text x="12" y="170" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 12 170)">Energie disponibilă</text>
+              </g>
+              <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.70)">
+                <text x="750" y="54">linie continuă = stres scăzut</text>
+                <text x="750" y="74">linie întreruptă = stres ridicat</text>
+              </g>
+            </svg>
+
+            <div class="legend" aria-label="Legendă">
+              <div class="key"><span class="sw" style="background: rgba(117,240,182,.9)"></span> Energie (stres scăzut)</div>
+              <div class="key"><span class="sw" style="background: rgba(255,122,153,.7)"></span> Energie (stres ridicat)</div>
+              <div class="key"><span class="sw" style="background: linear-gradient(90deg, rgba(117,240,182,.3), rgba(255,122,153,.3))"></span> Zona de risc</div>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="Controale simulator">
+            <div class="control">
+              <label>
+                <span>Nivel de stres</span>
+                <span class="readout" id="stressReadout">40%</span>
+              </label>
+              <input id="stressSlider" type="range" min="0" max="100" value="40"/>
+              <div class="small" style="margin-top:8px">Mai mult stres = voință mai puțină disponibilă de-a lungul zilei.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Decizii zilnice</span>
+                <span class="readout" id="decisionsReadout">25</span>
+              </label>
+              <input id="decisionsSlider" type="range" min="5" max="80" value="25"/>
+              <div class="small" style="margin-top:8px">Fiecare decizie „costă" energie. Reducerea deciziilor conservă resurse.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Simulatorul este <b>conceptual</b> — ilustrează ideea centrală: voința se consumă în timp, iar stresul accelerează consumul. Implicația practică: nu te baza pe voință seara, nu lua decizii importante când ești epuizat, și reduce numărul de decizii banale prin automatizare.
+          </div>
+        </div>
+      </section>
+
+      <!-- Disciplina = design, nu forță -->
+      <section class="row">
+        <div class="card" aria-label="Disciplina e design">
+          <div class="cardHeader">
+            <h2>Disciplina e design, nu forță</h2>
+            <div class="chip">creierul economisește energie</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Oamenii care par extrem de disciplinați rareori luptă cu tentația toată ziua.
+              Nu se trezesc mai motivați ca tine. Nu au voință supraomenească. Pur și simplu
+              <b>au eliminat nevoia de a decide</b>.
+            </p>
+            <p class="muted">
+              Și-au structurat viața astfel încât alegerea greșită necesită efort, iar alegerea corectă se întâmplă
+              <b>implicit</b>. Aceasta nu e lene — este inteligență.
+            </p>
+
+            <div class="riskGrid" aria-label="Mediul ca factor de decizie">
+              <div class="risk">
+                <div class="rTop"><strong>Telefonul la îndemână</strong><span class="badge" style="color:var(--bad)">distracție</span></div>
+                <p>Va fi folosit. Nu pentru că ești slab, ci pentru că sistemul nervos alege calea cea mai ușoară.</p>
+                <div class="meter"><i style="width:80%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Mâncarea nesănătoasă vizibilă</strong><span class="badge" style="color:var(--bad)">tentație</span></div>
+                <p>Va fi mâncată. Creierul tău a evoluat pentru supraviețuire, nu disciplină — alege ce e imediat disponibil.</p>
+                <div class="meter"><i style="width:75%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Telefon în altă cameră</strong><span class="badge" style="color:var(--good)">design</span></div>
+                <p>Fricțiunea adăugată reduce dramatic utilizarea. Alegerea bună devine calea implicită.</p>
+                <div class="meter"><i style="width:25%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Doar alimente sănătoase acasă</strong><span class="badge" style="color:var(--good)">design</span></div>
+                <p>Când alegerile proaste necesită efort (ieșit din casă), autocontrolul se întâmplă automat.</p>
+                <div class="meter"><i style="width:20%"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Principiul de bază: <b>mediul modelează comportamentul mai mult decât intenția</b>. Dacă te bazezi pe motivație, arzi combustibil constant. Dacă te bazezi pe structură, creierul se relaxează. Autocontrolul se îmbunătățește nu când te forțezi mai tare, ci când reduci fricțiunea.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stresul și sistemul nervos">
+          <div class="cardHeader">
+            <h2>Stresul schimbă totul</h2>
+            <div class="chip"><b>Mod:</b> căutare de ușurare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Când ești obosit, anxios, singur sau copleșit, autocontrolul se prăbușește.
+              Nu pentru că îți lipsește disciplina, ci pentru că creierul trece în <b>modul de căutare a ușurării</b>.
+            </p>
+            <p class="muted">
+              În această stare, obiectivele pe termen lung pierd greutate emoțională. Confortul pe termen scurt devine rege.
+              De aceea autocontrolul <b>nu poate fi separat de reglarea emoțională</b>.
+            </p>
+
+            <div class="flow" aria-label="De ce stresul distruge disciplina">
+              <div class="flowNode">
+                <h3>Sistemul nervos supraîncărcat</h3>
+                <p>Stres cronic, oboseală, anxietate, singurătate — toate activează modul de supraviețuire al creierului.</p>
+                <div class="meta"><span class="badge">fight-or-flight</span><span class="badge">cortizol ridicat</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Obiectivele pierd relevanță</h3>
+                <p>Creierul prioritizează supraviețuirea imediată. Dieta, exercițiul, productivitatea par irelevante când ești în criză.</p>
+                <div class="meta"><span class="badge">prezent &gt; viitor</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Impulsuri compensatorii</h3>
+                <p>Mâncare, scrolling, alcool, procrastinare — nu sunt „eșecuri", ci încercări ale creierului de a regla emoțiile.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">auto-medicație</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small" style="font-style:italic">
+              „Nu poți depăși prin disciplină un sistem nervos epuizat. Niciun sistem de obiceiuri nu supraviețuiește stresului cronic.
+              Nicio voință nu bate presiunea emoțională nerezolvată."
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Înainte de a te întreba „De ce nu mă pot controla?", întreabă-te mai degrabă: <b>„De ce încearcă mintea mea să evadeze?"</b> Dacă viața ta nu conține odihnă, siguranță și echilibru emoțional, disciplina va simți mereu ca o pedeapsă.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cele 3 piloni: Identitate + Mediu + Reglare emoțională -->
+      <section class="card" aria-label="Cei trei piloni">
+        <div class="cardHeader">
+          <h2>Cei 3 piloni ai autocontrolului durabil</h2>
+          <div class="chip">identitate &bull; mediu &bull; emoții</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Forma cea mai înaltă de autocontrol este aproape invizibilă. Fără luptă, fără argumente interioare, fără rezistență dramatică — doar <b>absența tentației</b>.
+            Acest lucru se întâmplă când trei elemente se aliniază. Dacă lipsește chiar și unul, disciplina devine fragilă.
+          </p>
+
+          <div class="triGrid">
+            <div class="triCard">
+              <div class="icon" style="color:var(--cyan)">&#9670;</div>
+              <h4 style="color:var(--cyan)">Identitate</h4>
+              <p>Când spui „Încerc să mă schimb", mintea ta aude incertitudine. Când spui „Așa sunt eu", mintea se aliniază automat. Identitatea elimină negocierea.</p>
+            </div>
+            <div class="triCard">
+              <div class="icon" style="color:var(--violet)">&#9632;</div>
+              <h4 style="color:var(--violet)">Mediu</h4>
+              <p>Fiecare obiect din jurul tău este o sugestie. Dacă mediul declanșează constant tipare vechi, vei depinde de voință zilnic — și asta e o strategie pierdută.</p>
+            </div>
+            <div class="triCard">
+              <div class="icon" style="color:var(--good)">&#9673;</div>
+              <h4 style="color:var(--good)">Reglare emoțională</h4>
+              <p>Mintea caută ușurare înainte de sens. Dacă viața nu conține siguranță, odihnă și echilibru emoțional, niciun sistem de obiceiuri nu supraviețuiește.</p>
+            </div>
+          </div>
+
+          <div class="viz" style="margin-top:14px" aria-label="Diagrama alinierii">
+            <svg viewBox="0 0 700 260" role="img" aria-label="Triunghi: identitate, mediu, reglare emoțională">
+              <defs>
+                <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="10" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#glow2)">
+                <!-- Triangle -->
+                <polygon points="350,30 120,220 580,220" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+                <polygon points="350,30 120,220 580,220" fill="rgba(187,167,255,.04)"/>
+
+                <!-- Vertices -->
+                <circle cx="350" cy="30" r="16" fill="rgba(122,215,255,.25)" stroke="rgba(122,215,255,.5)" stroke-width="2"/>
+                <text x="350" y="35" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="700">I</text>
+
+                <circle cx="120" cy="220" r="16" fill="rgba(187,167,255,.25)" stroke="rgba(187,167,255,.5)" stroke-width="2"/>
+                <text x="120" y="225" text-anchor="middle" font-size="13" fill="var(--violet)" font-weight="700">M</text>
+
+                <circle cx="580" cy="220" r="16" fill="rgba(117,240,182,.25)" stroke="rgba(117,240,182,.5)" stroke-width="2"/>
+                <text x="580" y="225" text-anchor="middle" font-size="13" fill="var(--good)" font-weight="700">E</text>
+
+                <!-- Labels -->
+                <text x="350" y="10" text-anchor="middle" font-size="12" fill="rgba(122,215,255,.8)">Identitate</text>
+                <text x="60" y="235" text-anchor="middle" font-size="12" fill="rgba(187,167,255,.8)">Mediu</text>
+                <text x="645" y="235" text-anchor="middle" font-size="12" fill="rgba(117,240,182,.8)">Emoții</text>
+
+                <!-- Center -->
+                <circle cx="350" cy="157" r="30" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+                <text x="350" y="153" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.85)" font-weight="700">ALINIERE</text>
+                <text x="350" y="170" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.55)">= autocontrol natural</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Când conștientul și inconștientul nu se mai luptă, energia nu se mai pierde. Și când energia nu se mai pierde, disciplina devine naturală. La acest nivel, autocontrolul nu mai simte ca un control — simte ca o <b>claritate</b>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Lista practică -->
+      <section class="row" aria-label="Soluții practice">
+        <div class="card" id="fix" aria-label="Lista practică de implementare">
+          <div class="cardHeader">
+            <h2>Ghid practic: cum construiești autocontrol durabil</h2>
+            <div class="chip">implementare pas cu pas</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bazat pe principiile discutate, iată acțiuni concrete pe care le poți implementa imediat.
+              Nu ai nevoie de „mai multă voință" — ai nevoie de un sistem mai inteligent.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Reproiectează mediul</strong><em>cel mai mare impact</em></div>
+                  <div class="d">Elimină tentațiile din câmpul vizual. Pune telefonul în altă cameră. Ține doar alimente sănătoase acasă. Fă alegerea corectă să fie calea implicită.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Reduce deciziile zilnice</strong><em>conservă energie</em></div>
+                  <div class="d">Pregătește hainele seara. Planifică mâncarea în avans. Automatizează rutinele. Fiecare decizie eliminată e energie salvată pentru momentele care contează.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Adoptă o identitate nouă</strong><em>nu „încerc", ci „sunt"</em></div>
+                  <div class="d">Nu spune „Încerc să fiu disciplinat". Spune „Sunt o persoană disciplinată". Identitatea elimină dezbaterea internă — comportamentul urmează automat.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Odihna e non-negociabilă</strong><em>previne colapsul</em></div>
+                  <div class="d">Odihnește-te înainte de burnout. Eliberează tensiunea înainte de colaps. Abordează emoțiile înainte de compulsie. Disciplina e imposibilă cu un sistem nervos epuizat.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Întreabă „Ce evit?"</strong><em>conștientizare</em></div>
+                  <div class="d">Când simți tentația, nu lupta cu ea. Întreabă-te: Ce emoție evit? Ce nevoie e nesatisfăcută? Ce parte din mine e „înfometată"?</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Renunță la rușine</strong><em>rușinea amplifică ciclul</em></div>
+                  <div class="d">Când te etichetezi „leneș" sau „slab", creezi rezistență internă care produce rebeliune. Înlocuiește judecata cu curiozitate.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Programează deciziile dificile dimineața</strong><em>voința e o resursă</em></div>
+                  <div class="d">Energia psihică e maximă dimineața. Nu lua decizii importante seara sau după perioade de stres intens. Protejează „bateria" mentală.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Reglare emoțională activă</strong><em>fundația disciplinei</em></div>
+                  <div class="d">Meditație, jurnal, terapie, mișcare, natură — orice te ajută să procesezi emoțiile înainte ca ele să se transforme în impulsuri.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculează scorul meu de aliniere</button>
+              <button class="btn" id="resetBtn">Resetează lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Dacă faci doar două lucruri: (1) reproiectează mediul și (2) adresează stresul emoțional. Aceste două acțiuni vor genera mai mult autocontrol decât orice cantitate de „forță de voință".
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Când pierzi controlul">
+          <div class="cardHeader">
+            <h2>De ce pierzi controlul în momente specifice</h2>
+            <div class="chip">tipare, nu întâmplare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Dacă autocontrolul ar fi doar despre voință, ai eșua aleatoriu.
+              Dar observă: nu pierzi controlul oricând. Îl pierzi în <b>momente specifice</b>.
+            </p>
+
+            <div class="riskGrid" aria-label="Momentele vulnerabile">
+              <div class="risk">
+                <div class="rTop"><strong>Noaptea târziu</strong><span class="badge" style="color:var(--bad)">risc maxim</span></div>
+                <p>Bateria decizională s-a golit de-a lungul zilei. Impulsurile preiau controlul.</p>
+                <div class="meter"><i style="width:90%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>După stres emoțional</strong><span class="badge" style="color:var(--bad)">risc ridicat</span></div>
+                <p>Creierul trece în modul de căutare a ușurării. Obiectivele pe termen lung devin irelevante.</p>
+                <div class="meter"><i style="width:82%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>După perioade de disciplină extremă</strong><span class="badge" style="color:var(--warn)">compensare</span></div>
+                <p>Dietă perfectă → atac de mâncat. Productivitate intensă → colaps. Calm forțat → explozie.</p>
+                <div class="meter"><i style="width:75%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>După respingere sau singurătate</strong><span class="badge" style="color:var(--warn)">nevoie nesatisfăcută</span></div>
+                <p>Mintea caută compensare pentru durerea socială prin plăceri imediate.</p>
+                <div class="meter"><i style="width:70%"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Aceste tipare nu sunt accidentale. Ele dezvăluie ceva important: voința nu e o resursă pe care o ai — e o resursă pe care o cheltuiești.
+              Și majoritatea oamenilor o cheltuiesc nechibzuit.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observația crucială: „prăbușirile" urmează adesea perioade de disciplină extremă. Psihicul caută mereu echilibru. Dacă suprimi prea mult, recidiva e inevitabilă. Antidotul nu e mai multă suprimare, ci mai multă <b>integrare</b>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Integrarea vs Suprimarea -->
+      <section class="card" aria-label="Integrare vs Suprimare">
+        <div class="cardHeader">
+          <h2>Integrare vs. suprimare: teza finală</h2>
+          <div class="chip"><b>Teză:</b> plenitudine, nu rigiditate</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Autocontrolul real nu e suprimare — e integrare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu e vorba despre a domina dorința. E vorba despre a o <b>înțelege</b>, apoi a redesena viața astfel încât dorința să nu te mai saboteze.
+                Când lumea ta interioară e aliniată, disciplina încetează să simtă ca durere. Începe să simtă ca <b>pace</b>.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">De ce oamenii disciplinați nu vorbesc despre disciplină</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu experimentează disciplina ca efort. O experimentează ca pace interioară.
+                Nu au nevoie să se forțeze, să se motiveze sau să se amenințe cu consecințe.
+                Pur și simplu acționează <b>în aliniere</b>.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Întrebarea fundamentală</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Dacă te lupți cu autocontrolul, nu te întreba cum să devii mai puternic.
+                Întreabă-te cum să devii <b>mai complet</b>.
+                Pentru că plenitudinea face ce voința nu poate face niciodată.
+              </p>
+              <div class="hr"></div>
+
+              <details>
+                <summary><strong>De ce funcționează această abordare?</strong><span class="hint">click pentru detalii</span></summary>
+                <div class="detailBody">
+                  <p>Pentru că abordează cauza, nu simptomul. Voința atacă comportamentul de suprafață.
+                  Integrarea adresează conflictul subiacent. Când partea conștientă și inconștientă nu mai sunt în război,
+                  energia nu se mai pierde. Și când energia nu se mai pierde, disciplina devine un efect secundar natural al alinierii interioare.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary><strong>Există dovezi științifice?</strong><span class="hint">click pentru detalii</span></summary>
+                <div class="detailBody">
+                  <p>Da, parțial. Modelul „ego depletion" (Roy Baumeister) susține ideea că voința e o resursă limitată, deși studii recente au nuanțat acest concept.
+                  Cercetările pe modificarea mediului (nudge theory, BJ Fogg) confirmă puterea designului ambiental.
+                  Psihologia jungiană a Umbrei rămâne un cadru clinic valoros, deși mai greu de studiat experimental.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta este recadrarea centrală: autocontrolul nu e despre a deveni rigid — e despre a deveni integrat.
+            Când nu te mai lupți cu tine, nu mai ai nevoie de „forță de voință". Aceasta e psihologia autocontrolului pe care majoritatea oamenilor o ratează.
+          </div>
+        </div>
+      </section>
+
+      <!-- Despre butonul de comentarii -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul acestei pagini, casetele violet (marcate cu <code>data-commentary</code>) oferă comentarii la nivel meta:
+            cât de solidă e afirmația? Ce cadre alternative există? Ce nivel de dovezi susține ideea?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasă „Comută comentariul" din antet pentru a le ascunde/arăta pe toate deodată.
+            Asta îți permite să alternezi între „ce spune narațiunea" și „perspectiva mea critică".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și avertismente:</b> Acest infografic interactiv a fost generat pentru a traduce vizual o narațiune despre psihologia autocontrolului,
+        bazată pe concepte jungiene și psihologie modernă. Nu este sfat medical sau psihologic profesional.
+        Vizualizările, simulatorul și comentariile sunt instrumente conceptuale care te ajută să gândești critic despre afirmațiile prezentate.
+      </p>
+      <p style="margin-top:10px">
+        Pentru întrebări sau aprofundare: consultă literatura de specialitate pe epuizarea ego-ului (ego depletion), teoria nudge, psihologia jungiană și reglarea emoțională.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Simulatorul de energie a voinței
+    // ──────────────────────────────────────────────────────
+    const stressSlider = document.getElementById('stressSlider');
+    const decisionsSlider = document.getElementById('decisionsSlider');
+    const stressReadout = document.getElementById('stressReadout');
+    const decisionsReadout = document.getElementById('decisionsReadout');
+
+    function renderEnergy() {
+      const stress = parseInt(stressSlider.value) / 100;
+      const decisions = parseInt(decisionsSlider.value);
+
+      stressReadout.textContent = stressSlider.value + '%';
+      decisionsReadout.textContent = decisions;
+
+      const W = 980, H = 350;
+      const padding = 70;
+      const graphW = W - padding - 40;
+      const graphH = H - 90;
+      const hours = 18; // 6am to midnight
+      const points = 54;
+      const xScale = graphW / hours;
+
+      function energyLevel(t, stressFactor, decisionDrain) {
+        const baseDecay = 0.015 * (decisionDrain / 25);
+        const stressPenalty = stressFactor * 0.4;
+        const energy = Math.max(0.05, 1.0 - baseDecay * t - stressPenalty * (1 - Math.exp(-t * 0.15)));
+        return energy;
+      }
+
+      let normalPath = '', stressPath = '', areaPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = (i / points) * hours;
+        const x = padding + t * xScale;
+
+        const eNormal = energyLevel(t, 0.1, decisions);
+        const eStress = energyLevel(t, stress, decisions);
+
+        const yNormal = 40 + (1 - eNormal) * graphH;
+        const yStress = 40 + (1 - eStress) * graphH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        normalPath += cmd + x + ',' + yNormal + ' ';
+        stressPath += cmd + x + ',' + yStress + ' ';
+        if (i === 0) areaPath = 'M' + x + ',' + yNormal + ' ';
+        else areaPath += 'L' + x + ',' + yNormal + ' ';
+      }
+
+      const baseline = 40 + graphH;
+      areaPath += 'L' + (padding + graphW) + ',' + baseline + ' L' + padding + ',' + baseline + ' Z';
+
+      document.getElementById('energyCurve').setAttribute('d', normalPath);
+      document.getElementById('energyCurveStress').setAttribute('d', stressPath);
+      document.getElementById('energyArea').setAttribute('d', areaPath);
+
+      // Grid + time labels
+      const grid = document.getElementById('eGrid');
+      grid.innerHTML = '';
+      for (let h = 0; h <= hours; h += 2) {
+        const x = padding + h * xScale;
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x);
+        line.setAttribute('y1', 30);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', 290);
+        line.setAttribute('stroke', 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', 308);
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'rgba(255,255,255,.55)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = (6 + h) + ':00';
+        grid.appendChild(label);
+      }
+    }
+
+    stressSlider.addEventListener('input', renderEnergy);
+    decisionsSlider.addEventListener('input', renderEnergy);
+    renderEnergy();
+
+    // ──────────────────────────────────────────────────────
+    // Navigare
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', function() {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpFix').addEventListener('click', function() {
+      document.getElementById('fix').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Comutare comentariu
+    // ──────────────────────────────────────────────────────
+    var commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      var items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Scor aliniere
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      var total = checkboxes.length;
+      var pct = Math.round((checked / total) * 100);
+
+      var msg = '';
+      if (pct >= 85) msg = pct + '% — Aliniere excelentă! Ai un sistem solid de autocontrol.';
+      else if (pct >= 60) msg = pct + '% — Fundație bună. Consolidează zonele unde mai ai lacune.';
+      else if (pct >= 40) msg = pct + '% — Moderat. Alege 1-2 acțiuni suplimentare de adoptat constant.';
+      else msg = pct + '% — Mult loc de îmbunătățire. Începe cu reproiectarea mediului + gestionarea stresului.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tău de aliniere:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Notificări toast
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

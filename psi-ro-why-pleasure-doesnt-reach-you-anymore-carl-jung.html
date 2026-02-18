@@ -1,0 +1,1240 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce plăcerea nu te mai atinge — Carl Jung — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre amorțirea emoțională și de ce plăcerea nu te mai ajunge, conform viziunii lui Carl Jung: protecție, nu slăbiciune." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,179,138,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(187,167,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--orange), var(--cyan)); box-shadow: 0 0 22px rgba(255,179,138,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,179,138,.7);
+      padding: 10px 12px;
+      background: rgba(255,179,138,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,179,138,.50)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.40)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(187,167,255,.40)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.30)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- A wave that flattens — pleasure signal fading -->
+            <path d="M20,110 C60,30 100,180 160,70 C200,10 240,150 300,110 C340,80 380,120 420,105 C460,95 490,108 510,105" fill="none" stroke="url(#g1)" stroke-width="9" stroke-linecap="round" opacity=".6" />
+            <!-- Flat line underneath — the numbness baseline -->
+            <path d="M20,145 L510,145" fill="none" stroke="url(#g2)" stroke-width="5" stroke-linecap="round" opacity=".35" stroke-dasharray="12 8" />
+            <!-- Dimming dots — pleasure points fading -->
+            <circle cx="160" cy="70" r="11" fill="rgba(255,179,138,.6)" />
+            <circle cx="300" cy="110" r="8" fill="rgba(255,179,138,.35)" />
+            <circle cx="420" cy="105" r="6" fill="rgba(255,179,138,.2)" />
+            <circle cx="80" cy="130" r="7" fill="rgba(122,215,255,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; amorțire emoțională &bull; reconectare</div>
+          <h1>De ce plăcerea nu te mai atinge</h1>
+          <p class="subtitle">
+            Nimic nu e în neregulă cu viața ta. Și totuși nimic nu te mai ajunge — nici plăcerea, nici entuziasmul, nici dorința.
+            Carl Jung credea că această amorțire <b>nu e slăbiciune — e protecție</b>. Această pagină explorează de ce psihicul se închide și cum se poate redeschide.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpMech">Sari la mecanisme</button>
+            <button class="btn" id="jumpReturn">Sari la reconectare</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei principale rezumate">
+          <div class="stat">
+            <div class="label">Cauza centrală</div>
+            <div class="value">Protecție, nu defect</div>
+            <div class="note">Psihicul a învățat să blocheze plăcerea pentru a te ține în siguranță.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanismul</div>
+            <div class="value">Receptivitate blocată</div>
+            <div class="note">Problema nu e lipsa stimulării — e un sistem închis.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Paradoxul</div>
+            <div class="value">Funcțional, dar gol</div>
+            <div class="note">Recunoscător dar vid, confortabil dar neliniștit, viu dar neatins.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Calea înapoi</div>
+            <div class="value">Profunzime, nu intensitate</div>
+            <div class="note">Plăcerea revine nu prin forțarea bucuriei, ci prin permisiunea de a simți.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: Pleasure as permission -->
+      <section class="card" aria-label="Plăcerea ca permisiune">
+        <div class="cardHeader">
+          <h2>Plăcerea nu e doar o senzație — e o permisiune</h2>
+          <div class="chip"><b>Jung:</b> psihicul alege supraviețuirea, nu fericirea</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Plăcerea nu dispare brusc. Se estompează <b>liniștit, aproape politicos</b>, până într-o zi realizezi că nimic nu te mai ajunge cu adevărat.
+                Râzi, dar nu aterizează. Reușești, dar se simte gol. Te odihnești, dar nu te simți restaurat.
+              </p>
+              <p class="muted">
+                Majoritatea presupun că ceva e în neregulă cu viața lor. Cred că au nevoie de mai multă excitație, mai multă stimulare.
+                Dar Jung credea opusul: <b>amorțirea apare nu pentru că viața nu are plăcere, ci pentru că psihicul a învățat să o blocheze</b>.
+              </p>
+              <p class="muted">
+                Plăcerea nu e doar o senzație. E <b>permisiune</b>. Și mulți oameni au pierdut acea permisiune demult.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Plăcerea ca permisiune">
+                <svg viewBox="0 0 440 300" role="img">
+                  <defs>
+                    <filter id="softP" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <linearGradient id="permGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(255,179,138,.35)"/>
+                      <stop offset="1" stop-color="rgba(255,179,138,.05)"/>
+                    </linearGradient>
+                  </defs>
+                  <g filter="url(#softP)">
+                    <!-- Open system (top) -->
+                    <rect x="30" y="15" width="175" height="120" rx="18" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.3)" stroke-width="1.5"/>
+                    <text x="118" y="42" font-size="12" fill="rgba(117,240,182,.9)" text-anchor="middle" font-weight="700">Sistem deschis</text>
+                    <!-- Waves entering -->
+                    <path d="M50,80 C70,60 90,100 110,70 C130,50 150,90 170,65" fill="none" stroke="rgba(117,240,182,.6)" stroke-width="2" stroke-linecap="round"/>
+                    <text x="118" y="115" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">Plăcerea intră → se simte</text>
+
+                    <!-- Closed system (top right) -->
+                    <rect x="235" y="15" width="175" height="120" rx="18" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.3)" stroke-width="1.5"/>
+                    <text x="323" y="42" font-size="12" fill="rgba(255,122,153,.9)" text-anchor="middle" font-weight="700">Sistem închis</text>
+                    <!-- Waves blocked -->
+                    <path d="M255,80 C275,60 295,100 315,70" fill="none" stroke="rgba(255,122,153,.4)" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="320" y1="55" x2="320" y2="100" stroke="rgba(255,122,153,.5)" stroke-width="3"/>
+                    <text x="323" y="115" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">Plăcerea e blocată → nu se simte</text>
+
+                    <!-- Bottom explanation -->
+                    <rect x="30" y="160" width="380" height="120" rx="18" fill="rgba(0,0,0,.15)" stroke="rgba(255,255,255,.1)"/>
+                    <text x="50" y="188" font-size="12" fill="rgba(255,179,138,.9)" font-weight="700">De ce se închide sistemul?</text>
+                    <text x="50" y="210" font-size="11" fill="rgba(255,255,255,.6)">La un moment dat, a simți pe deplin a devenit nesigur.</text>
+                    <text x="50" y="228" font-size="11" fill="rgba(255,255,255,.6)">Psihicul a redus intensitatea fără să te întrebe.</text>
+                    <text x="50" y="246" font-size="11" fill="rgba(255,255,255,.55)">Nu e slăbiciune — e inteligență. Jung: psihicul alege</text>
+                    <text x="50" y="264" font-size="11" fill="rgba(255,255,255,.55)">mereu supraviețuirea înainte de fericire.</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung ne spune că poți inunda un sistem închis cu plăcere și nimic nu se va înregistra. Problema nu e stimularea — e <b>receptivitatea</b>. Asta explică de ce „sfaturile" de tipul „fii pozitiv" sau „găsește un hobby" par insultătoare când ești amorțit.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: How adaptation creates numbness + How it used to feel -->
+      <section class="row">
+        <div class="card" aria-label="Adaptarea care creează amorțirea">
+          <div class="cardHeader">
+            <h2>Cum adaptarea creează amorțirea</h2>
+            <div class="chip">nu traumă — repetiție</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Nu e neapărat dramatic sau traumatic în sensul evident. E <b>repetitiv</b>. Ai învățat să te ții în mâini, să rămâi funcțional, să nu vrei prea mult, să nu simți prea adânc.
+            </p>
+
+            <div class="flow" aria-label="Lanțul adaptării">
+              <div class="flowNode">
+                <h3>1) Emoțiile au devenit inconveniente</h3>
+                <p>Poate dorința ducea la dezamăgire. Poate bucuria era urmată de pierdere. Poate emoțiile erau deranjante pentru cei din jur.</p>
+                <div class="meta"><span class="badge">mediu</span><span class="badge">învățare implicită</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Psihicul a redus intensitatea</h3>
+                <p>A luat decizia fără să te întrebe. Nu un eveniment dramatic — o ajustare treptată, ca un volum dat încet în jos.</p>
+                <div class="meta"><span class="badge">protecție automată</span><span class="badge">reducerea volumului</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Plăcerea necesită abandon — dar tu ești vigilent</h3>
+                <p>Plăcerea cere deschidere, predare, acceptarea de a fi afectat. Dacă ai petrecut ani fiind vigilent, gestionându-te, rămânând alert, deschiderea pare periculoasă. Chiar și când nimic nu e în neregulă.</p>
+                <div class="meta"><span class="badge">abandon vs. control</span><span class="badge">gardă permanentă</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Rezultat: funcțional, dar nu viu</h3>
+                <p>Înalt adaptat, înalt funcțional, înalt conținut. Nu te prăbușești. Dar nici nu te simți viu. Jung numea asta o sciziune între personalitatea conștientă și viața emoțională profundă.</p>
+                <div class="meta"><span class="badge">sciziune</span><span class="badge">suprafață vs. profunzime</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E important ce ne spune Jung aici: oamenii care se descurcă cel mai bine sunt adesea cei mai amorțiți. Sunt atât de bine adaptați încât sistemul lor de protecție funcționează perfect — inclusiv împotriva plăcerii.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Cum obișnuia să se simtă">
+          <div class="cardHeader">
+            <h2>Gândește-te cum obișnuia să se simtă plăcerea</h2>
+            <div class="chip"><b>Atunci vs. Acum</b></div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Nu doar excitație — ci <b>absorbție</b>. Să fii tras într-un lucru, să pierzi noțiunea timpului, să fii mișcat. Acum compară cu cum trăiești: <b>măsurat, controlat, eficient, economic emoțional</b>. Nimic nu penetrează.
+            </p>
+
+            <div class="riskGrid" style="margin-top:12px">
+              <div class="risk">
+                <div class="rTop"><strong>Atunci: Absorbție</strong><span class="badge" style="color:var(--good)">deschis</span></div>
+                <div class="meter"><i style="width:85%"></i></div>
+                <p>Pierderea în ceva, uimirea, fluxul, timpul care dispare — simțeai lucrurile cu tot corpul.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Acum: Monitorizare</strong><span class="badge" style="color:var(--bad)">închis</span></div>
+                <div class="meter"><i style="width:25%"></i></div>
+                <p>Te uiți pe tine experimentând în loc să fii înăuntru. Analiza ucide imediatitatea. Momentele frumoase par îndepărtate.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Atunci: Surpriză</strong><span class="badge" style="color:var(--good)">receptiv</span></div>
+                <div class="meter"><i style="width:78%"></i></div>
+                <p>Lucrurile te puteau lua prin surprindere. Aveai capacitatea de a fi uluit, emoționat, copleșit pozitiv.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Acum: Predictibilitate</strong><span class="badge" style="color:var(--warn)">gardă</span></div>
+                <div class="meter"><i style="width:35%"></i></div>
+                <p>Experiența se simte subțire. Vrei lucruri, obții lucruri, consumi lucruri — dar senzația e diluată.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="small">Jung a avertizat: când autocontrolul e prelungit, sufletul se liniștește. Nu pentru că n-are nimic de spus, ci pentru că a învățat că nu va fi ascultat.</p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> De aceea oamenii aleargă după stimulare tot mai puternică când se instalează amorțirea: mai mult conținut, mai mult zgomot, mai multă intensitate. Dar intensitatea fără deschidere doar adâncește amorțirea. Problema nu e cantitatea — e calitatea receptivității.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Multiple layers of why -->
+      <section class="card" id="mech" aria-label="Straturile amorțirii">
+        <div class="cardHeader">
+          <h2>Straturile amorțirii: de ce se închide psihicul</h2>
+          <div class="chip">doliu &bull; umbra &bull; viața modernă &bull; control moral &bull; frică</div>
+        </div>
+        <div class="cardBody">
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Doliu nerezolvat</strong><span class="badge" style="color:var(--cyan)">profunzime</span></div>
+              <div class="meter"><i style="width:75%"></i></div>
+              <p>Nu doar doliu pentru oameni — doliu pentru versiuni ale tale, cine nu ai devenit, ce a trebuit să renunți, dorințele amânate „pentru mai târziu". Când doliul nu e simțit conștient, amorțește <b>întregul spectru emoțional</b>. Psihicul nu închide selectiv durerea — închide totul.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Umbra conține vitalitatea</strong><span class="badge" style="color:var(--violet)">Jung: umbra</span></div>
+              <div class="meter"><i style="width:70%"></i></div>
+              <p>Umbra nu conține doar agresivitate sau întuneric — conține și <b>vitalitate</b>. Părți din tine care voiau mai mult, simțeau mai mult, riscau mai mult. Dacă acele părți au fost judecate sau reprimate, au fost împinse în inconștient — împreună cu plăcerea pe care o purtau.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Viața modernă: fără pauză</strong><span class="badge" style="color:var(--orange)">mediu</span></div>
+              <div class="meter"><i style="width:68%"></i></div>
+              <p>Ecrane, informație, zgomot, așteptări, performanță. Nu există pauză suficient de lungă pentru ca simțirea să iasă la suprafață. Plăcerea nu e produsă de stimulare — e produsă de <b>prezență</b>. Și prezența necesită siguranță. Sistemul nervos nu primește niciodată semnalul că poate să se odihnească emoțional.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Control moral: dorința suprimată</strong><span class="badge" style="color:var(--warn)">eros</span></div>
+              <div class="meter"><i style="width:72%"></i></div>
+              <p>Ai învățat să fii rezonabil, responsabil, conținut. Să amâni gratificarea, să gestionezi impulsurile. La început pare maturitate. Dar când suprimarea devine cronică, dorința își pierde vocea. Jung: dorința nu e o problemă de eliminat — e o <b>forță vitală de integrat</b>.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Represiunea lui Eros</strong><span class="badge" style="color:var(--bad)">vitalitate</span></div>
+              <div class="meter"><i style="width:76%"></i></div>
+              <p>Nu doar sexualitate — ci <b>vitalitate, conexiune, energie de viață</b>. Când erosul e reprimat, viața devine funcțională dar uscată. Te simți util, dar nu mișcat. Mâncarea pare fadă. Atingerea pare distantă. Succesul pare anticlimactic — același sistem care blochează dorința blochează și plăcerea.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Frica de vulnerabilitate</strong><span class="badge" style="color:var(--bad)">protecție</span></div>
+              <div class="meter"><i style="width:65%"></i></div>
+              <p>Plăcerea te face vulnerabil. Când te bucuri profund, te deschizi pierderii, dezamăgirii, dependenței. Dacă ai experimentat pierdere bruscă sau trădare după momente de fericire, psihicul ține minte. Alege <b>neutralitatea</b> — care pare mai sigură decât bucuria.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Sens externalizat</strong><span class="badge" style="color:var(--faint)">persona</span></div>
+              <div class="meter"><i style="width:58%"></i></div>
+              <p>Alergi după obiective, metrici, rezultate. Dar plăcerea nu vine din realizare — vine din <b>rezonanță</b>. Când trăiești din persona (sinele adaptat, acceptabil social), viața interioară merge sub pământ. Plăcerea nu te ajunge pentru că nu poate trece prin persona — are nevoie de sinele real.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Analiza ucide imediatitatea</strong><span class="badge" style="color:var(--faint)">conștiință</span></div>
+              <div class="meter"><i style="width:52%"></i></div>
+              <p>Viața modernă te învață să analizezi totul, să cuantifici, să explici. Dar plăcerea e <b>instinctivă</b>. Nu poți gândi drumul spre plăcere — trebuie să o permiți. Când conștiința devine prea dominantă, instinctul se retrage, iar cu el — și plăcerea.</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observă că Jung identifică multiple straturi, nu o singură cauză. Amorțirea e un fenomen <b>multistratificat</b>: doliu nedigerat + umbra reprimată + viața modernă + controlul moral + frica de vulnerabilitate + viața din persona + supraanaliza. Fiecare strat adaugă un alt zid între tine și capacitatea de a simți.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Interactive simulator + The key paradox -->
+      <section class="row">
+        <div class="card" aria-label="Simulatorul receptivității">
+          <div class="cardHeader">
+            <h2>Simulatorul: receptivitate vs. stimulare</h2>
+            <div class="chip">vizualizare interactivă</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Acest simulator ilustrează ideea lui Jung: <b>cantitatea de stimulare nu contează dacă receptivitatea e blocată</b>. Doar deschiderea interioară permite plăcerii să ajungă.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Simulator receptivitate">
+              <svg viewBox="0 0 480 280" id="recSvg" role="img" aria-label="Grafic receptivitate vs plăcere simțită">
+                <defs>
+                  <linearGradient id="pleasGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(255,179,138,.05)"/>
+                    <stop offset="1" stop-color="rgba(255,179,138,.3)"/>
+                  </linearGradient>
+                  <linearGradient id="stimGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.05)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.15)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="480" height="280" fill="rgba(0,0,0,.05)"/>
+                <!-- Axes -->
+                <path d="M50 15 L50 240 L460 240" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                <text x="10" y="135" font-size="11" fill="rgba(255,255,255,.5)" transform="rotate(-90 10 135)">Nivel</text>
+                <text x="250" y="268" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">Timp →</text>
+
+                <!-- Areas & lines drawn by JS -->
+                <path id="pleasArea" fill="url(#pleasGrad)" stroke="none"/>
+                <path id="stimArea" fill="url(#stimGrad)" stroke="none"/>
+                <path id="pleasLine" fill="none" stroke="rgba(255,179,138,.9)" stroke-width="2.5" stroke-linecap="round"/>
+                <path id="stimLine" fill="none" stroke="rgba(122,215,255,.5)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4"/>
+
+                <!-- Dots -->
+                <circle id="pleasDot" r="5" fill="var(--orange)" opacity=".9"/>
+
+                <g font-size="11" fill="rgba(255,255,255,.6)">
+                  <text x="60" y="28">Ridicat</text>
+                  <text x="60" y="236">Scăzut</text>
+                </g>
+              </svg>
+
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: var(--orange)"></span> Plăcere simțită efectiv</div>
+                <div class="key"><span class="sw" style="background: var(--cyan); opacity:.5"></span> Stimulare externă (cantitate)</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Receptivitate (deschidere)</span>
+                  <span class="readout" id="recReadout">40%</span>
+                </label>
+                <input id="recSlider" type="range" min="0" max="100" value="40" />
+                <div class="small" style="margin-top:8px">Cât de deschis e sistemul tău emoțional.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Stimulare externă</span>
+                  <span class="readout" id="stimReadout">70%</span>
+                </label>
+                <input id="stimSlider" type="range" min="0" max="100" value="70" />
+                <div class="small" style="margin-top:8px">Cantitatea de experiențe plăcute disponibile.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observă: chiar dacă stimularea externă e la maxim, plăcerea simțită rămâne aproape de zero dacă receptivitatea e blocată. Asta e lecția centrală — nu ai nevoie de mai mult, ai nevoie de <b>mai deschis</b>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Contradictiile dureroase">
+          <div class="cardHeader">
+            <h2>Contradicțiile dureroase ale amorțirii</h2>
+            <div class="chip"><b>Paradox:</b> plinătate fără loc</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung descrie amorțirea ca una dintre cele mai confuze stări: nu e goliciune — e <b>plinătate care nu are unde să se ducă</b>.
+            </p>
+
+            <div class="hallmarks" style="margin-top:12px">
+              <div class="pill"><span>Recunoscător, dar gol</span><span class="tag" style="color:var(--warn)">paradox</span></div>
+              <div class="pill"><span>Confortabil, dar neliniștit</span><span class="tag" style="color:var(--warn)">paradox</span></div>
+              <div class="pill"><span>Viu, dar neatins</span><span class="tag" style="color:var(--warn)">paradox</span></div>
+              <div class="pill"><span>Realizezi lucruri, dar se simt goale</span><span class="tag" style="color:var(--orange)">persona</span></div>
+              <div class="pill"><span>Voiai bucuria, dar o eviți instinctiv</span><span class="tag" style="color:var(--bad)">protecție</span></div>
+              <div class="pill"><span>Crezi că ești „stricat"</span><span class="tag" style="color:var(--bad)">iluzie</span></div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="flow" style="margin-top:8px">
+              <div class="flowNode" style="border-color:rgba(122,215,255,.3)">
+                <h3 style="color:var(--cyan)">Jung: asta nu e un defect — e un semnal</h3>
+                <p>Psihicul semnalează că prea multă viață a fost trăită în exterior și insuficient în interior. Plăcerea necesită atenție înspre interior — senzație, simțire fără evaluare. Dar viața modernă te învață să analizezi totul. Și analiza ucide imediatitatea.</p>
+                <div class="meta"><span class="badge">dezechilibru</span><span class="badge">nu defect</span></div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(255,179,138,.3)">
+                <h3 style="color:var(--orange)">Disperarea liniștită</h3>
+                <p>Începi să crezi că ceva e fundamental în neregulă cu tine. Că ești stricat. Că bucuria „nu e pentru tine". Dar Jung ar spune: e un semn de dezechilibru, nu de defect. Psihicul semnalează o nevoie de reconciliere — ceva despărțit vrea să se întoarcă.</p>
+                <div class="meta"><span class="badge">auto-diagnostic fals</span><span class="badge">nevoie de reconciliere</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> „Amorțirea nu e goliciune. E plinătate care nu are unde să se ducă." Aceasta e poate cea mai importantă idee din întreaga narațiune. Problema nu e că ți s-a luat ceva — e că tot ce ai acumulat (tristețe neexprimată, furie suprimată, dorință netrăită, epuizare nerecunoscută) ține porțile închise.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Rhythm and the psyche -->
+      <section class="card" aria-label="Ritmul psihic">
+        <div class="cardHeader">
+          <h2>Ritmul psihic: de ce pauza e esențială</h2>
+          <div class="chip">angajare ↔ retragere</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Jung credea că psihicul are nevoie de <b>ritm</b>: angajare și retragere, acțiune și reflecție, conexiune și singurătate.
+                Când nu există retragere, psihicul nu poate digera experiența. Experiența nedigerată se transformă în <b>oboseală emoțională</b>.
+              </p>
+              <p class="muted">
+                Plăcerea nu te ajunge pentru că sistemul tău e <b>supraîncărcat, nu gol</b>. Confuzia modernă: oamenii confundă plăcerea cu intensitatea.
+                Aleargă după senzații tot mai puternice sperând că ceva va sparge bariera. Dar intensitatea fără deschidere doar adâncește amorțirea.
+              </p>
+
+              <div class="viz" style="padding:14px;margin-top:10px">
+                <svg viewBox="0 0 440 180" role="img" aria-label="Ritm vs. supraîncărcare">
+                  <defs>
+                    <linearGradient id="rhythmG" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(117,240,182,.4)"/>
+                      <stop offset=".5" stop-color="rgba(122,215,255,.3)"/>
+                      <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Healthy rhythm -->
+                  <text x="20" y="22" font-size="12" fill="rgba(117,240,182,.8)" font-weight="600">Ritm sănătos (angajare ↔ retragere)</text>
+                  <path d="M30,80 C80,30 130,130 180,80 C230,30 280,130 330,80 C380,30 420,100 440,80" fill="none" stroke="url(#rhythmG)" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                  <!-- Overloaded flatline -->
+                  <text x="20" y="120" font-size="12" fill="rgba(255,122,153,.8)" font-weight="600">Supraîncărcare (fără pauză)</text>
+                  <path d="M30,150 L440,150" fill="none" stroke="rgba(255,122,153,.5)" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 5"/>
+                  <text x="200" y="172" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Constant stimulat → nicio pauză → nimic nu se simte</text>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">Ce consumă ritmul natural</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Stimulare constantă</h3>
+                  <p>Ecrane, informație, notificări, conținut — sistemul nervos nu primește niciodată semnalul „poți să te oprești".</p>
+                  <div class="meta"><span class="badge">zgomot extern</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Optimizare perpetuă</h3>
+                  <p>Viața modernă te învață să rămâi alert, să optimizezi, să răspunzi, să te îmbunătățești. Corpul nu primește niciodată semnalul că se poate odihni emoțional.</p>
+                  <div class="meta"><span class="badge">performanță</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Lipsa singurătății reale</h3>
+                  <p>Jung credea în echilibrul conexiune-solitudine. Fără retragere reală, experiența nu e digerată. Se acumulează ca oboseală cronică.</p>
+                  <div class="meta"><span class="badge">digestie psihică</span></div>
+                </div>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Jung: „Sistemele apărate nu simt plăcere. Ele monitorizează." Asta e diferența fundamentală — nu e că nu ți se întâmplă lucruri bune. E că ești în mod constant în modul de supraveghere, nu în modul de receptare.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Self-assessment + Return of pleasure -->
+      <section class="row">
+        <div class="card" id="check" aria-label="Auto-evaluare">
+          <div class="cardHeader">
+            <h2>Auto-evaluare: recunoști aceste semne?</h2>
+            <div class="chip">listă de verificare interactivă</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bifează semnele pe care le recunoști. Nu e un diagnostic — e un instrument de conștientizare bazat pe descrierile lui Jung.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Râzi, dar nu „aterizează"</strong><em>deconectare</em></div>
+                  <div class="d">Momentele plăcute se întâmplă, dar nu le simți cu adevărat. E ca și cum ai privi printr-un geam.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Succesul se simte gol</strong><em>anticlimactic</em></div>
+                  <div class="d">Obții ce ai visat, dar satisfacția e scurtă sau absentă. Te gândești deja la următorul obiectiv.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Te odihnești, dar nu te simți restaurat</strong><em>oboseală reziduală</em></div>
+                  <div class="d">Dormi, dar dimineața nu e proaspătă. Vacanța nu te reîncarcă. Corpul se odihnește, psihicul nu.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dorința pare o amintire, nu o forță</strong><em>eros estompat</em></div>
+                  <div class="d">Îți amintești ce înseamnă să vrei ceva intens, dar acum dorința pare distantă, neconvingătoare.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Alergi după stimulare tot mai puternică</strong><em>escalare</em></div>
+                  <div class="d">Mai mult conținut, mai mult zgomot, senzații mai tari — sperând că ceva va sparge bariera. Dar nimic nu funcționează.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Mâncarea pare fadă, atingerea distantă</strong><em>senzorial estompat</em></div>
+                  <div class="d">Nu doar emoțional — și senzorial. Plăcerile simple au pierdut intensitatea.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Te uiți pe tine experimentând în loc să fii înăuntru</strong><em>observator</em></div>
+                  <div class="d">Chiar în momentele frumoase, ești un observator al propriei experiențe, nu un participant complet.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Crezi că „bucuria nu e pentru tine"</strong><em>auto-diagnostic fals</em></div>
+                  <div class="d">Ai ajuns să accepți amorțirea ca stare normală. Poate chiar crezi că ești „stricat" sau că fericirea pur și simplu nu ți se potrivește.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Neutralitatea pare mai sigură decât bucuria</strong><em>protecție activă</em></div>
+                  <div class="d">Instinctiv eviți să te bucuri prea mult — pentru că bucuria deschide poarta pierderii și dezamăgirii.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ai suportat mult, mult timp, fără să procesezi</strong><em>acumulare</em></div>
+                  <div class="d">Perioade lungi de stres, responsabilitate emoțională, îngrijire. Ai fost puternic. Dar forța fără eliberare creează rigiditate — și rigiditatea nu poate primi plăcere.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculează scorul de recunoaștere</button>
+              <button class="btn" id="resetBtn">Resetează lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Dacă multe dintre aceste semne par familiare, nu înseamnă că ești „stricat". Jung ar spune că psihicul tău e la un <b>prag</b> — un semnal că vrea o nouă relație cu simțirea. Nu haos, nu indulgență, ci <b>integrare</b>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="return" aria-label="Cum revine plăcerea">
+          <div class="cardHeader">
+            <h2>Cum revine plăcerea: calea lui Jung</h2>
+            <div class="chip"><b>Nu forțare</b> — permisiune</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea că amorțirea <b>nu e starea finală</b>. E un prag — un semnal că psihicul vrea o nouă relație cu simțirea.
+              Plăcerea nu se întoarce prin forțarea pozitivității, goana după stimulare sau auto-îmbunătățire.
+              Se întoarce când psihicul se simte suficient de sigur să se <b>înmoaie</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color: rgba(255,179,138,.3)">
+                <h3 style="color:var(--orange)">1) Permite profunzimea, nu intensitatea</h3>
+                <p>Nu alerga după mai multă stimulare. Permite-ți să fii afectat din nou — chiar dacă ce vine prima dată e greutate, plictiseală sau doliu. Plăcerea nu e opusul durerii — e opusul <b>deconectării</b>. Până când conexiunea e restaurată, nimic frumos nu te va atinge cu adevărat.</p>
+                <div class="meta"><span class="badge">profunzime</span><span class="badge">permisiune</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(122,215,255,.3)">
+                <h3 style="color:var(--cyan)">2) Lasă-te afectat fără explicație</h3>
+                <p>Simte fără evaluare. Jung avertiza: când conștiința devine prea explicativă, misterul dispare. Și fără mister, dorința slăbește. Nu poți gândi drumul spre plăcere — trebuie să o <b>permiți</b>.</p>
+                <div class="meta"><span class="badge">prezență</span><span class="badge">abandon controlat</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(187,167,255,.3)">
+                <h3 style="color:var(--violet)">3) Creează spațiu pentru pauze reale</h3>
+                <p>Psihicul are nevoie de retragere pentru a digera experiența. Fără pauze, totul se acumulează ca oboseală. Singurătate intenționată, tăcere, absența stimulării — acestea nu sunt evitare, sunt condiții necesare pentru ca simțirea să iasă la suprafață.</p>
+                <div class="meta"><span class="badge">ritm</span><span class="badge">digestie psihică</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(117,240,182,.3)">
+                <h3 style="color:var(--good)">4) Reconciliază-te cu ce ai reprimat</h3>
+                <p>Tristețe neexprimată, furie suprimată, dorință netrăită, epuizare nerecunoscută — toate acestea țin porțile închise. Plăcerea nu poate reveni până nu e spațiu pentru tot ce a fost ținut la distanță. Jung: „Permite-ți să fii afectat. Chiar dacă ce vine prima dată e greutate."</p>
+                <div class="meta"><span class="badge">reconciliere</span><span class="badge">integrare</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(255,210,122,.3)">
+                <h3 style="color:var(--warn)">5) Trăiește din sinele real, nu din persona</h3>
+                <p>Persona (sinele social, adaptat) e eficientă, dar nu e vie. Când viața e trăită din obligație, plăcerea se estompează. Plăcerea apare natural când ceea ce faci se aliniază cu ceva intern — <b>rezonanță</b>, nu realizare.</p>
+                <div class="meta"><span class="badge">autenticitate</span><span class="badge">rezonanță</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 440 100" role="img" aria-label="Spectrul reconectării">
+                <defs>
+                  <linearGradient id="retGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(255,122,153,.35)"/>
+                    <stop offset=".3" stop-color="rgba(255,179,138,.3)"/>
+                    <stop offset=".5" stop-color="rgba(255,210,122,.3)"/>
+                    <stop offset=".7" stop-color="rgba(122,215,255,.3)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.35)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="20" y="20" width="400" height="36" rx="18" fill="url(#retGrad)" stroke="rgba(255,255,255,.12)"/>
+                <text x="50" y="43" font-size="10" fill="rgba(255,255,255,.7)" font-weight="600">Amorțire</text>
+                <text x="168" y="43" font-size="10" fill="rgba(255,255,255,.7)" font-weight="600">Greutate / Doliu</text>
+                <text x="310" y="43" font-size="10" fill="rgba(255,255,255,.7)" font-weight="600">Deschidere</text>
+                <text x="383" y="43" font-size="10" fill="rgba(255,255,255,.9)" font-weight="700">Viață</text>
+                <text x="220" y="78" font-size="10" fill="rgba(255,255,255,.55)" text-anchor="middle">Calea nu e de la amorțire direct la bucurie — trece prin tot ce a fost evitat</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Mesajul final al lui Jung: amorțirea nu ești tu. E ce se întâmplă când prea mult din tine a rămas neauzit. Plăcerea nu se întoarce forțat — se întoarce când psihicul simte că e suficient de sigur să se deschidă din nou. Și asta începe cu <b>permisiunea de a simți</b> — nu bucurie mai întâi, ci orice vine.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary card -->
+      <section class="card" aria-label="Sinteză">
+        <div class="cardHeader">
+          <h2>Sinteză: ce ne spune Jung, pe scurt</h2>
+          <div class="chip"><b>Teza:</b> protecție → prag → reconectare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Amorțirea e protecție, nu defect</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Psihicul a redus intensitatea pentru a te ține în siguranță. Plăcerea necesită abandon, iar tu ai petrecut ani fiind vigilent. Sistemul s-a închis — nu din slăbiciune, ci din inteligență adaptativă.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Problema nu e lipsa stimulării — e receptivitatea blocată</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Poți inunda un sistem închis cu plăcere și nimic nu se va înregistra. Soluția nu e „mai mult" — e „mai deschis".
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Multiple straturi blochează simțirea</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Doliu nedigerat, umbra reprimată, viața modernă fără pauze, control moral excesiv, frica de vulnerabilitate, viața din persona, supraanaliza. Fiecare strat adaugă un alt zid.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Plăcerea revine prin permisiune, nu prin forțare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu prin pozitivitate forțată sau stimulare mai puternică. Ci prin profunzime, pauze reale, reconciliere cu ce a fost reprimat, și viață din sinele real. Calea trece prin tot ce a fost evitat — dar duce spre vitalitate.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Notă finală</strong><span class="hint">apasă pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce o narațiune bazată pe ideile lui Carl Jung despre amorțire emoțională și pierderea plăcerii. Interpretarea urmează spiritul jungian, dar nu e un substitut pentru terapie. Dacă te-ai recunoscut în aceste descrieri, tratează asta ca un punct de plecare — nu un verdict. Amorțirea e un prag, nu o condamnare. Psihicul tău nu e stricat — cere o nouă relație cu simțirea. Dacă vrei să explorezi mai departe, caută un terapeut specializat în psihologie analitică (jungiană).
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle info -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. descriere</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe această pagină, casetele colorate cu portocaliu (marcate cu <code>data-commentary</code>) oferă comentariu meta: cât de puternică e afirmația? Ce alternative de interpretare există?
+          </p>
+          <p class="muted">
+            Implicit, comentariul e <b>vizibil</b>. Apasă „Comută comentariul" din antet pentru a ascunde/afișa toate casetele simultan.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și avertismente:</b> Acest infografic interactiv a fost generat pentru a traduce o narațiune despre amorțirea emoțională și pierderea plăcerii din perspectiva lui Carl Jung. Nu este consiliere psihologică. Vizualizările, simulatorul și comentariul sunt instrumente conceptuale de reflecție, nu substitute pentru terapie sau îndrumare profesională.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: consultă literatura de specialitate despre psihologia analitică jungiană, individuare, integrarea umbrei și conceptul de Eros.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Receptivity vs. Pleasure Simulator
+    // ──────────────────────────────────────────────────────
+    var recSlider = document.getElementById('recSlider');
+    var stimSlider = document.getElementById('stimSlider');
+    var recReadout = document.getElementById('recReadout');
+    var stimReadout = document.getElementById('stimReadout');
+
+    function renderSim() {
+      var rec = parseInt(recSlider.value) / 100;
+      var stim = parseInt(stimSlider.value) / 100;
+
+      recReadout.textContent = recSlider.value + '%';
+      stimReadout.textContent = stimSlider.value + '%';
+
+      var W = 480, H = 280;
+      var pad = 50;
+      var gW = W - pad - 20;
+      var gH = H - 60;
+      var pts = 40;
+      var baseline = H - 40;
+
+      var pleasPath = '', stimPath = '';
+      var pleasAreaPath = '', stimAreaPath = '';
+
+      for (var i = 0; i <= pts; i++) {
+        var t = i / pts;
+        var x = pad + t * gW;
+
+        // Stimulation stays constant (with slight wave)
+        var stimVal = stim * 0.85 + Math.sin(t * Math.PI * 3) * 0.06;
+        var sy = baseline - stimVal * gH;
+
+        // Pleasure felt = stimulation * receptivity (with noise)
+        var pleasVal = stim * rec * 0.95 + Math.sin(t * Math.PI * 5 + rec * 2) * 0.04 * rec;
+        pleasVal = Math.max(0.02, Math.min(1, pleasVal));
+        var py = baseline - pleasVal * gH;
+
+        var cmd = i === 0 ? 'M' : 'L';
+        pleasPath += cmd + x + ',' + py + ' ';
+        stimPath += cmd + x + ',' + sy + ' ';
+      }
+
+      pleasAreaPath = 'M' + pad + ',' + baseline + ' ' + pleasPath + 'L' + (pad + gW) + ',' + baseline + ' Z';
+      stimAreaPath = 'M' + pad + ',' + baseline + ' ' + stimPath + 'L' + (pad + gW) + ',' + baseline + ' Z';
+
+      document.getElementById('pleasLine').setAttribute('d', pleasPath);
+      document.getElementById('stimLine').setAttribute('d', stimPath);
+      document.getElementById('pleasArea').setAttribute('d', pleasAreaPath);
+      document.getElementById('stimArea').setAttribute('d', stimAreaPath);
+
+      // Dot at midpoint
+      var midT = 0.5;
+      var midX = pad + midT * gW;
+      var midPleas = stim * rec * 0.95 + Math.sin(midT * Math.PI * 5 + rec * 2) * 0.04 * rec;
+      midPleas = Math.max(0.02, Math.min(1, midPleas));
+      document.getElementById('pleasDot').setAttribute('cx', midX);
+      document.getElementById('pleasDot').setAttribute('cy', baseline - midPleas * gH);
+    }
+
+    recSlider.addEventListener('input', renderSim);
+    stimSlider.addEventListener('input', renderSim);
+    renderSim();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpMech').addEventListener('click', function() {
+      document.getElementById('mech').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpReturn').addEventListener('click', function() {
+      document.getElementById('return').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    var commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      var items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariu vizibil' : 'Comentariu ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      var total = checkboxes.length;
+      var pct = Math.round((checked / total) * 100);
+
+      var msg = '';
+      if (pct >= 80) msg = pct + '% — Recunoastere puternica. Psihicul tau semnaleaza intens ca vrea o noua relatie cu simtirea. Nu esti "stricat" — esti la un prag.';
+      else if (pct >= 55) msg = pct + '% — Recunoastere semnificativa. Mai multe straturi de amortire sunt prezente. Merita sa le explorezi cu blandete.';
+      else if (pct >= 30) msg = pct + '% — Unele semne sunt prezente. Ai zone de deschidere, dar si zone unde sistemul e inchis.';
+      else msg = pct + '% — Recunoastere scazuta. Fie receptivitatea e mai deschisa, fie amortirea se manifesta diferit la tine.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tau de recunoastere:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

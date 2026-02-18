@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ce se intampla cand te intelegi pe tine insuti — Infografic Psihologie</title>
+  <meta name="description" content="Infografic interactiv despre cum auto-cunoasterea nu adauga nimic vietii tale — ci elimina. Si de aceea schimba totul." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(117,240,182,.08), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(187,167,255,.10), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--good)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Layer cards */
+    .layerGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width:800px){.layerGrid{grid-template-columns:1fr}}
+    .layerCard{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:14px 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .layerCard::before{
+      content:'';
+      position:absolute;top:0;left:0;right:0;
+      height:3px;
+      border-radius:16px 16px 0 0;
+    }
+    .layerCard h3{margin:0 0 6px;font-size:13px}
+    .layerCard p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Spectrum bar */
+    .spectrumWrap{margin-top:12px}
+    .spectrumBar{
+      height:32px;
+      border-radius:99px;
+      background: linear-gradient(90deg,
+        rgba(255,122,153,.5),
+        rgba(255,210,122,.5),
+        rgba(117,240,182,.5),
+        rgba(122,215,255,.5));
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:visible;
+    }
+    .spectrumMarker{
+      position:absolute;
+      width:4px;height:40px;
+      background:var(--text);
+      border-radius:4px;
+      top:-4px;
+      transition: left .3s ease;
+      box-shadow: 0 0 12px rgba(255,255,255,.3);
+    }
+    .spectrumLabels{
+      display:flex;justify-content:space-between;
+      margin-top:6px;
+      font-size:10px;color:var(--faint);
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.45)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(187,167,255,.45)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Peeling layers / self-discovery motif -->
+            <ellipse cx="260" cy="110" rx="100" ry="80" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".4"/>
+            <ellipse cx="260" cy="110" rx="70" ry="56" fill="none" stroke="url(#g2)" stroke-width="2.5" opacity=".5"/>
+            <ellipse cx="260" cy="110" rx="40" ry="32" fill="none" stroke="rgba(117,240,182,.5)" stroke-width="2.5" opacity=".6"/>
+            <circle cx="260" cy="110" r="10" fill="rgba(117,240,182,.6)"/>
+            <!-- Scattered awareness dots -->
+            <circle cx="140" cy="60" r="5" fill="rgba(255,255,255,.35)" />
+            <circle cx="380" cy="70" r="6" fill="rgba(255,255,255,.3)" />
+            <circle cx="170" cy="170" r="4" fill="rgba(255,255,255,.25)" />
+            <circle cx="350" cy="160" r="7" fill="rgba(255,255,255,.35)" />
+            <circle cx="420" cy="140" r="4" fill="rgba(255,255,255,.2)" />
+            <!-- Path from outer to inner -->
+            <path d="M140,60 C180,80 220,95 250,108" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="3 3"/>
+            <path d="M380,70 C340,85 300,98 270,108" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="3 3"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie &bull; auto-cunoastere &bull; transformare interioara</div>
+          <h1>Ce se intampla cand te intelegi pe tine insuti</h1>
+          <p class="subtitle">
+            Auto-cunoasterea nu adauga nimic vietii tale. <b>Elimina lucruri.</b> De aceea schimba totul.
+            Aceasta pagina exploreaza cum cunoasterea de sine te desparte de iluzii, de scuze si de confortul ignorantei —
+            si ce apare in locul lor.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la vizualizare</button>
+            <button class="btn" id="jumpCheck">Mergi la auto-evaluare</button>
+            <button class="btn" id="toggleNotes">Comuta comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Concepte cheie rezumate">
+          <div class="stat">
+            <div class="label">Paradoxul central</div>
+            <div class="value">Elimina, nu adauga</div>
+            <div class="note">Auto-cunoasterea nu iti da puteri noi. Iti ia confortul, scuzele si iluziile.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Prima schimbare</div>
+            <div class="value">Tiparele devin vizibile</div>
+            <div class="note">Ce parea ghinion incepe sa arate ca si comportament. Ce parea confuzie — evitare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Efectul principal</div>
+            <div class="value">Responsabilitate, nu pedeapsa</div>
+            <div class="note">Nu mai poti spune "nu am stiut." Stii. Si asta creeaza obligatia de a actiona.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Destinatia</div>
+            <div class="value">Stabilitate, nu incredere</div>
+            <div class="note">Nu devii increzator — devii familiar cu tine. Stii unde stai. Stii cand sa pleci.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: The paradox - removes, doesn't add -->
+      <section class="card" aria-label="Paradoxul auto-cunoasterii">
+        <div class="cardHeader">
+          <h2>Paradoxul auto-cunoasterii: elimina, nu adauga</h2>
+          <div class="chip"><b>Idee centrala:</b> pierdere care elibereaza</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Majoritatea oamenilor cred ca auto-cunoasterea inseamna sa iti descoperi punctele forte, talentele sau scopul.
+                Dar primul lucru pe care il face cunoasterea reala de sine este <b>sa iti ia confortul</b>.
+              </p>
+              <p class="muted">
+                Inainte sa te cunosti, viata pare negociabila. Poti da vina pe circumstante, pe oameni, pe momentul nepotrivit.
+                Totul pare flexibil. In momentul in care incepi cu adevarat sa te cunosti, acea flexibilitate <b>dispare</b>.
+              </p>
+              <p class="muted">
+                Incepi sa vezi tipare — nu in lume, ci <b>in tine</b>. Observi cum reactionezi sub presiune,
+                cum eviti anumite conversatii, cum repeti aceleasi decizii emotionale spunandu-ti o alta poveste.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Aceasta inversiune este esentiala: auto-cunoasterea nu este o achizitie, ci o pierdere. Pierzi confortul de a nu observa, scuzele care iti protejau imaginea de sine, iluzia ca lucrurile "ti se intampla pur si simplu." In acea pierdere, claritatea pare cruda — nu pentru ca adevarul este dur, ci pentru ca cere ceva de la tine.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Ce elimina auto-cunoasterea">
+                <div class="small" style="margin-bottom:10px">Ce elimina auto-cunoasterea — si ce dezvaluie in schimb:</div>
+                <div class="layerGrid">
+                  <div class="layerCard" style="border-top:3px solid var(--bad)">
+                    <h3 style="color:var(--bad)">Elimina: coincidenta</h3>
+                    <p>Ce parea ghinion incepe sa arate ca un tipar de comportament. Ce parea confuzie se reveleaza ca evitare.</p>
+                  </div>
+                  <div class="layerCard" style="border-top:3px solid var(--warn)">
+                    <h3 style="color:var(--warn)">Elimina: scuzele</h3>
+                    <p>Nu mai poti spune "nu mi-am dat seama." Ti-ai dat seama. Si realizarea poarta greutate.</p>
+                  </div>
+                  <div class="layerCard" style="border-top:3px solid var(--good)">
+                    <h3 style="color:var(--good)">Dezvaluie: claritate</h3>
+                    <p>Fiecare alegere devine mai clara — nu mai usoara, ci mai clara. Simti cand ceva nu se aliniaza.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Patterns become visible + Personality is learned -->
+      <section class="row">
+        <div class="card" aria-label="Tiparele devin vizibile">
+          <div class="cardHeader">
+            <h2>Tiparele devin vizibile</h2>
+            <div class="chip">comportament, nu noroc</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Auto-cunoasterea elimina coincidenta. Incepi sa vezi ca personalitatea ta nu este cine esti —
+              este <b>ceea ce ai invatat sa devii</b>. Obiceiurile, preferintele, declansatorii, raspunsurile emotionale
+              nu sunt accidente. Au fost modelate de mediu, de frica, de adaptare.
+            </p>
+
+            <div class="flow" aria-label="Progresie: de la orbire la vedere">
+              <div class="flowNode">
+                <h3>1) Observi cum reactionezi sub presiune</h3>
+                <p>Nu mai este automat. Vezi tiparul: acelasi tip de reactie, aceeasi strategie de evitare, aceleasi scuze — de fiecare data.</p>
+                <div class="meta"><span class="badge">tipar comportamental</span><span class="badge">repetitie vizibila</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Observi cum eviti anumite conversatii</h3>
+                <p>Nu mai e "nu am chef." Vezi ca este frica: frica de conflict, de dezaprobare, de a fi inteles gresit.</p>
+                <div class="meta"><span class="badge">evitare constienta</span><span class="badge">frica vizibila</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Observi cand minti — mai ales pe tine</h3>
+                <p>Simti cand taci nu pentru ca esti calm, ci pentru ca ti-e frica de conflict. Simti cand spui "e bine" dar resentimentul creste dedesubt.</p>
+                <div class="meta"><span class="badge">onestitate interna</span><span class="badge">auto-minciuna vizibila</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Observi tipare in ceilalti</h3>
+                <p>Incepi sa simti cand cineva evita adevarul. Cand o relatie e construita pe convenienta, nu pe onestitate. Nu te face superior — te face mai constient.</p>
+                <div class="meta"><span class="badge">perceptie sociala</span><span class="badge">distanta de iluzie</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este prima schimbare majora. Viata nu mai pare aleatoare. Incepi sa vezi ca reactiile tale au o logica — nu una pe care ai ales-o, ci una pe care ai <i>invatat-o</i>. Odata ce vezi logica, nu o mai poti ignora.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Toleranta se schimba">
+          <div class="cardHeader">
+            <h2>Cum iti schimba toleranta</h2>
+            <div class="chip"><b>Efect:</b> tolerezi mai putin haos</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Auto-cunoasterea iti schimba toleranta. Tolerezi mai putina auto-tradare, mai putin haos emotional,
+              mai putina prefacatorie. Si <b>aici incepe totul sa se schimbe</b>. Nu cand castigi motivatie —
+              ci cand pierzi capacitatea de a te minti pe tine insuti.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Auto-tradare</strong><span class="badge">toleranta scazuta</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Fiecare compromis devine intentional. Inainte taceai pentru ca era mai usor. Acum stii ca taceai din frica.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Haos emotional</strong><span class="badge">filtru activ</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Nu mai accepti sa fii tras in drame care nu te privesc. Energia devine prea pretioasa.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Prefacatorie</strong><span class="badge">cost vizibil</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Performanta sociala devine epuizanta. Nu mai poti face ca si cum totul este bine cand nu este.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Nealiniere generala</strong><span class="badge">greutate</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Te simti epuizat nu din efort, ci din rezistenta la ceea ce stii. Fiecare intarziere adauga greutate.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Barele de mai sus nu sunt masuratori clinice — sunt vizualizari ale ideii ca auto-cunoasterea creste sensibilitatea la nealiniere.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Viata nu se schimba cand castigi motivatie. Se schimba cand pierzi capacitatea de a te minti. Odata ce stii, fiecare alegere devine mai clara. Nu mai usoara — mai clara. Si claritatea este o forma de putere.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: The stuck feeling + responsibility -->
+      <section class="card" aria-label="Sentimentul de blocare">
+        <div class="cardHeader">
+          <h2>Zona de blocare: stii prea mult ca sa te intorci, prea putin ca sa avansezi</h2>
+          <div class="chip"><b>Faza critica:</b> tranzitia incomoda</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Multi oameni rezista <b>inconstient</b> auto-cunoasterii. Citesc destul, reflecteaza destul,
+                schimba limbajul — dar nu comportamentul. Devin constienti in teorie, dar amortiiti in practica.
+                De ce? Pentru ca <b>auto-cunoasterea deplina forteaza o decizie</b>.
+              </p>
+              <p class="muted">
+                Nu mai poti pretinde ignoranta. Nu mai poti pretinde ca nu stii ce te raneste.
+                Nu mai poti spune "asa e viata." Auto-cunoasterea expune ceea ce ai evitat.
+                Si evitarea pare mai sigura decat transformarea.
+              </p>
+              <p class="muted">
+                Aici se simt oamenii blocati: <b>nelinistiti, necomozi, obositi emotional</b>.
+                Nu pentru ca viata e mai grea, ci pentru ca nealinierea este epuizanta.
+                Te simti epuizat nu din efort, ci din rezistenta la ceea ce stii.
+              </p>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Aceasta este faza in care multi abandoneaza procesul. Confunda greutatea cu esecul. Dar greutatea este <b>informatie</b>. Iti arata unde viata ta nu se mai potriveste cu cine devii. Nu este inamicul — este busola.
+              </div>
+            </div>
+            <div>
+              <div class="viz" id="viz" style="padding:14px" aria-label="Spectrul auto-cunoasterii">
+                <svg viewBox="0 0 440 320" role="img" aria-label="Diagrama zonei de blocare">
+                  <defs>
+                    <linearGradient id="gZone" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0" stop-color="rgba(255,122,153,.4)" />
+                      <stop offset=".35" stop-color="rgba(255,210,122,.4)" />
+                      <stop offset=".65" stop-color="rgba(255,210,122,.4)" />
+                      <stop offset="1" stop-color="rgba(117,240,182,.4)" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="320" fill="rgba(0,0,0,.03)"/>
+
+                  <!-- Zones -->
+                  <rect x="30" y="40" width="110" height="180" rx="14" fill="rgba(255,122,153,.06)" stroke="rgba(255,122,153,.2)" stroke-width="1"/>
+                  <text x="85" y="70" text-anchor="middle" font-size="11" fill="rgba(255,122,153,.8)" font-weight="700" font-family="ui-sans-serif, system-ui">IGNORANTA</text>
+                  <text x="85" y="90" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">confortabila</text>
+                  <text x="85" y="108" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">dar costisitoare</text>
+
+                  <rect x="165" y="40" width="110" height="180" rx="14" fill="rgba(255,210,122,.06)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+                  <text x="220" y="70" text-anchor="middle" font-size="11" fill="rgba(255,210,122,.8)" font-weight="700" font-family="ui-sans-serif, system-ui">BLOCARE</text>
+                  <text x="220" y="90" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">stii dar nu actionezi</text>
+                  <text x="220" y="108" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">nelinistit, obosit</text>
+
+                  <rect x="300" y="40" width="110" height="180" rx="14" fill="rgba(117,240,182,.06)" stroke="rgba(117,240,182,.2)" stroke-width="1"/>
+                  <text x="355" y="70" text-anchor="middle" font-size="11" fill="rgba(117,240,182,.8)" font-weight="700" font-family="ui-sans-serif, system-ui">ALINIERE</text>
+                  <text x="355" y="90" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">actiunile se potrivesc</text>
+                  <text x="355" y="108" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)" font-family="ui-sans-serif, system-ui">cu ceea ce stii</text>
+
+                  <!-- Arrows -->
+                  <path d="M140,130 L165,130" stroke="rgba(255,255,255,.25)" stroke-width="2" marker-end="url(#arrow)" fill="none"/>
+                  <path d="M275,130 L300,130" stroke="rgba(255,255,255,.25)" stroke-width="2" fill="none"/>
+
+                  <!-- Key labels inside zones -->
+                  <g font-family="ui-sans-serif, system-ui" font-size="10" fill="rgba(255,255,255,.5)">
+                    <text x="85" y="145" text-anchor="middle">"Nu am stiut"</text>
+                    <text x="85" y="165" text-anchor="middle">"Nu e vina mea"</text>
+                    <text x="85" y="185" text-anchor="middle">"Asa e viata"</text>
+
+                    <text x="220" y="145" text-anchor="middle">"Stiu dar nu pot"</text>
+                    <text x="220" y="165" text-anchor="middle">"Simt ca ceva nu e bine"</text>
+                    <text x="220" y="185" text-anchor="middle">"Sunt obosit fara motiv"</text>
+
+                    <text x="355" y="145" text-anchor="middle">"Stiu si actionez"</text>
+                    <text x="355" y="165" text-anchor="middle">"Am incredere in ce simt"</text>
+                    <text x="355" y="185" text-anchor="middle">"Viata e simpla, nu usoara"</text>
+                  </g>
+
+                  <!-- Spectrum bar at bottom -->
+                  <rect x="30" y="250" width="380" height="16" rx="8" fill="url(#gZone)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                  <circle id="specDot" cx="180" cy="258" r="8" fill="var(--text)" stroke="rgba(0,0,0,.3)" stroke-width="2">
+                    <animate attributeName="opacity" values=".7;1;.7" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+
+                  <g font-family="ui-sans-serif, system-ui" font-size="10" fill="rgba(255,255,255,.45)">
+                    <text x="30" y="290">Ignoranta</text>
+                    <text x="195" y="290" text-anchor="middle">Blocare</text>
+                    <text x="410" y="290" text-anchor="end">Aliniere</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="controls">
+                <div class="control">
+                  <label>
+                    <span>Nivel auto-cunoastere</span>
+                    <span class="readout" id="knowReadout">40%</span>
+                  </label>
+                  <input id="knowSlider" type="range" min="0" max="100" value="40" />
+                  <div class="small" style="margin-top:8px">Muta glisorul pentru a vedea cum se schimba pozitia pe spectru.</div>
+                </div>
+                <div class="control">
+                  <label>
+                    <span>Nivel de actiune</span>
+                    <span class="readout" id="actReadout">25%</span>
+                  </label>
+                  <input id="actSlider" type="range" min="0" max="100" value="25" />
+                  <div class="small" style="margin-top:8px">Cat de mult actionezi in concordanta cu ceea ce stii despre tine.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Sensitivity sharpens + Priorities rearrange -->
+      <section class="row">
+        <div class="card" aria-label="Sensibilitatea se ascute">
+          <div class="cardHeader">
+            <h2>Sensibilitatea se ascute</h2>
+            <div class="chip">greutatea ca informatie</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Auto-cunoasterea ascute sensibilitatea. Observi cand o conversatie te costa energie.
+              Cand o relatie cere sa te micsorezi. Cand o rutina te toceste. Inainte, aceste lucruri
+              se pierdeau in fundal. Acum <b>ies in evidenta</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Simti mai mult</h3>
+                <p>Gandesti mai mult. Observi mai mult. Si asta face viata sa se simta mai grea. Dar greutatea nu e inamicul — este informatie. Iti arata unde esti nealiniat.</p>
+                <div class="meta"><span class="badge">suprastimulare</span><span class="badge">perceptie ascutita</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Prioritatile se rearanjaza</h3>
+                <p>Lucrurile pe care le urmareaisi inceteaza sa mai para importante. Lucruri pe care le ignorai incep sa ceara atentie. Incepi sa apreciezi pacea peste aprobare, claritatea peste confort, adevarul peste usurinta.</p>
+                <div class="meta"><span class="badge">reorientare</span><span class="badge">valori noi</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Deliberare, nu intarziere</h3>
+                <p>Nu devii plictisitor — devii <b>deliberat</b>. Dar deliberarea pare lenta intr-o lume dependenta de distragere. Asa ca auto-cunoasterea poate parea singuratice.</p>
+                <div class="meta"><span class="badge">intentionalitate</span><span class="badge">ritm propriu</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta sensibilitate crescuta nu te face "prea sensibil." Te face precis. Dar precizia intr-o lume imprecisa poate fi izolatoare. Nu te potrivesti in aceleasi ritmuri. Nu raspunzi la fel. Nu evadezi la fel. Si asta poate face pe unii sa se intrebe daca procesul i-a facut mai rau. Nu i-a facut — i-a facut <b>onesti</b>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Simplu vs usor">
+          <div class="cardHeader">
+            <h2>Simplu nu inseamna usor</h2>
+            <div class="chip"><b>Distinctie:</b> claritate vs confort</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Auto-cunoasterea nu face viata mai usoara. O face <b>mai simpla</b>. Exista o diferenta.
+              Usor elimina efortul. Simplu elimina confuzia.
+            </p>
+
+            <div class="row2">
+              <div class="risk">
+                <div class="rTop"><strong>Usor (inainte)</strong><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">iluzie</span></div>
+                <p>Viata parea negociabila. Puteai da vina pe altii. Puteai repeta tipare si le numeai "personalitate." Efortul era ascuns.</p>
+                <div class="meter"><i style="width:40%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Simplu (dupa)</strong><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">claritate</span></div>
+                <p>Stii ce te epuizeaza. Stii ce te stabilizeaza. Stii ce merita angajamentul. Confuzia dispare, chiar daca efortul ramane.</p>
+                <div class="meter"><i style="width:70%"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <div class="small" style="margin-bottom:10px">Ecuatia auto-cunoasterii:</div>
+              <div class="hallmarks">
+                <div class="pill"><span>Auto-cunoastere</span><span class="tag">input</span></div>
+                <div class="pill"><span>Responsabilitate</span><span class="tag">proces</span></div>
+                <div class="pill"><span>Stabilitate</span><span class="tag">rezultat</span></div>
+              </div>
+              <div class="hr"></div>
+              <div class="hallmarks">
+                <div class="pill"><span>Pierzi: coincidenta</span><span class="tag" style="border-color:rgba(255,122,153,.3)">eliminat</span></div>
+                <div class="pill"><span>Pierzi: scuzele</span><span class="tag" style="border-color:rgba(255,122,153,.3)">eliminat</span></div>
+                <div class="pill"><span>Pierzi: iluzia controlului extern</span><span class="tag" style="border-color:rgba(255,122,153,.3)">eliminat</span></div>
+                <div class="pill"><span>Castigi: claritate</span><span class="tag" style="border-color:rgba(117,240,182,.3)">dezvaluit</span></div>
+                <div class="pill"><span>Castigi: stabilitate interioara</span><span class="tag" style="border-color:rgba(117,240,182,.3)">dezvaluit</span></div>
+                <div class="pill"><span>Castigi: integritate</span><span class="tag" style="border-color:rgba(117,240,182,.3)">dezvaluit</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta distinctie este subtila dar importanta. Multi oameni renunta la auto-cunoastere pentru ca viata nu devine mai "usoara." Dar obiectivul nu este confortul — este claritatea. Si claritatea este o forma de putere, chiar daca nu se simte asa la inceput.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Self-evaluation checklist -->
+      <section class="row" aria-label="Auto-evaluare">
+        <div class="card" id="checkSection" aria-label="Lista de auto-evaluare">
+          <div class="cardHeader">
+            <h2>Unde esti in procesul auto-cunoasterii?</h2>
+            <div class="chip">auto-evaluare interactiva</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bifeaza afirmatiile care rezonaza cu experienta ta actuala. Acest instrument nu este un diagnostic —
+              este o oglinda pentru reflectie personala.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Observ tipare repetitive in reactiile mele</strong><em>constiinta de tipar</em></div>
+                  <div class="d">Nu mai par aleatorii. Vezi aceeasi reactie, aceleasi strategii de evitare, aceleasi scuze — din nou si din nou.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Simt cand ma mint pe mine</strong><em>onestitate interna</em></div>
+                  <div class="d">Observ cand spun "e bine" dar simt resentiment. Observ cand tac din frica, nu din calm.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Distragerea pare mai subtire</strong><em>perceptie ascutita</em></div>
+                  <div class="d">Lucrurile care inainte te distrau eficient acum par goale. Scuzele suna mai tare. Glume care inainte te faceau sa razi acum par goale.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Tolerez mai putina auto-tradare</strong><em>prag ridicat</em></div>
+                  <div class="d">Fiecare compromis se simte intentional. Nu mai pot pretinde ca "asa e viata." Stiu ca am o alegere — si asta e greu.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ma simt "diferit" dar nu stiu exact de ce</strong><em>tranzitie activa</em></div>
+                  <div class="d">Nu ma mai potrivesc in aceleasi ritmuri. Raspund diferit. Nu evadez la fel. Ceva s-a schimbat, dar din interior.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Apreciez pacea peste aprobarea celorlalti</strong><em>reorientare valorica</em></div>
+                  <div class="d">Aprobarea externa a pierdut din putere. Claritatea si linistea interioara au devenit mai importante decat sa fiu placut.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Aleg mai deliberat, nu mai impulsiv</strong><em>intentionalitate</em></div>
+                  <div class="d">Nu agonizez la fel de mult. Nu am nevoie de reasigurare constanta. Stiu ce ma epuizeaza si ce ma stabilizeaza.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Am incetat sa ma mai lupt cu mine</strong><em>acceptare</em></div>
+                  <div class="d">Nu mai irosesc energie punand la indoiala ceea ce simt. Am incredere in semnalele mele interne. Nu pentru ca am mereu dreptate, ci pentru ca sunt onest.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculeaza scorul de auto-cunoastere</button>
+              <button class="btn" id="resetBtn">Reseteaza lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Scorul nu masoara "succesul." Procesul auto-cunoasterii nu are o linie de sosire. Are o adancime. Daca ai bifat ceva, inseamna ca procesul este activ in tine. Daca nu ai bifat nimic, poate ca esti la inceputul unui drum care va fi incomod dar transformator.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stabilitate">
+          <div class="cardHeader">
+            <h2>Destinatia: stabilitate, nu incredere in sine</h2>
+            <div class="chip">familiaritate cu sinele</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ceea ce oamenii confunda cu increderea in sine este de fapt <b>familiaritatea cu sinele</b>.
+              Stii unde stai. Stii cand sa ramai. Stii cand sa pleci. Stii cand sa vorbesti. Stii cand tacerea e putere.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Incetezi sa te fortezi in roluri nepotrivite</h3>
+                <p>Nu te mai explici oamenilor care nu vor sa inteleaga. Nu mai urmaresti validare de la surse care nu o pot oferi.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">eliberare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Actiunile se aliniaza cu ceea ce stii</h3>
+                <p>Integritate: ceea ce faci se potriveste cu ceea ce simti si stii. Acea aliniere elimina tensiunea interna.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(122,215,255,.3);color:var(--cyan)">coerenta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Viata devine mai linistita dar mai puternica</h3>
+                <p>Tolerezi mai putin haos. Accepti mai putina nealiniere. Respecti limitele tale. Si din cauza asta, ceilalti te experimenteaza diferit.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">stabilitate</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <details data-commentary>
+              <summary><strong>De ce "calm" inlocuieste "entuziasm"</strong><span class="hint">click pentru a extinde</span></summary>
+              <div class="detailBody">
+                <p>
+                  Cand auto-cunoasterea se maturizeaza, deciziile inceteaza sa mai para dramatice. Nu mai agonizezi la fel de mult.
+                  Nu mai ai nevoie de reasigurare constanta. Stii ce te epuizeaza. Stii ce te stabilizeaza.
+                  Stii ce merita angajamentul si ce nu. Acea claritate creeaza <b>calm</b> — nu entuziasm. Calm.
+                </p>
+              </div>
+            </details>
+
+            <details data-commentary>
+              <summary><strong>Lumea nu devine mai usoara — devine mai clara</strong><span class="hint">click pentru a extinde</span></summary>
+              <div class="detailBody">
+                <p>
+                  Si claritatea este putere. Pentru ca atunci cand vezi clar, alegi deliberat.
+                  Nu te grabesti. Nu te agati. Nu urmaresti ce nu se potriveste.
+                  Te misti cu intentie. Aceasta cunoastere creeaza stabilitate — nu perfectiune,
+                  nu certitudine despre totul, doar <b>stabilitate</b>. Si stabilitatea schimba cum se simte viata.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: The complete arc -->
+      <section class="card" aria-label="Arcul complet">
+        <div class="cardHeader">
+          <h2>Arcul complet al auto-cunoasterii</h2>
+          <div class="chip">harta intregii calatorii</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Auto-cunoasterea creeaza responsabilitate</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu responsabilitate pentru tot, ci responsabilitate pentru ceea ce tolerezi. Devii constient
+                cat de des accepti disconfortul in loc sa risti schimbarea. Cat de mult din viata ta e modelat de frica:
+                frica de dezamagire, de neintelegie, de a sta singur.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Auto-cunoasterea face fricile vizibile</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Frica de disruptie, de dezamagire, de a fi inteles gresit, de a sta singur — toate devin vizibile.
+                Si odata vizibile, devin mai greu de ascultat. Nu le mai poti urma orbeste.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Auto-cunoasterea construieste integritate</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Actiunile incep sa se potriveasca cu ceea ce simti si stii.
+                Nu mai esti impartit intre ceea ce vrei si ceea ce faci.
+                Acea aliniere elimina tensiunea interna. Nu te transforma in altcineva — <b>te readuce la tine</b>.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Totul se schimba — nu zgomotos, ci permanent</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Lumea nu devine brusc mai usoara, dar devine mai clara. Si claritatea este putere.
+                Cand vezi clar, alegi deliberat. Nu te grabesti. Nu te agati. Nu urmaresti ce nu se potriveste.
+                Te misti cu intentie. Aceasta este stabilitatea pe care auto-cunoasterea o construieste.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Reflectie finala: odata ce te cunosti, totul se schimba</strong><span class="hint">click pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Nu pentru ca devii altcineva. Ci pentru ca incetezi sa te mai tradezi pe tine insuti.
+                Auto-cunoasterea construieste integritate. Actiunile tale incep sa se potriveasca cu ceea ce simti si stii.
+                Nu mai esti impartit. Si acel lucru simplu — sa nu mai fii impartit — schimba <b>totul</b>.
+              </p>
+              <p style="margin-top:8px">
+                Nu zgomotos. Dar permanent. Odata ce te cunosti, nu mai pierzi nimic real.
+                Pierzi doar ceea ce nu ti-a apartinut niciodata cu adevarat.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta comentariul"</h2>
+          <div class="chip">interpretare vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata aceasta pagina, casetele albastre (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            ce inseamna un concept mai profund, cum sa il interpretezi, ce nuante exista.
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Comuta comentariul" din partea de sus pentru a ascunde/afisa
+            toate casetele de comentariu dintr-odata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un text despre auto-cunoastere si transformare interioara.
+        Nu este sfat medical sau psihologic. Vizualizarile, simulatoarele si comentariile sunt instrumente conceptuale care te ajuta sa reflectezi,
+        nu inlocuitoare pentru terapie sau ghidare profesionala.
+      </p>
+      <p style="margin-top:10px">
+        Pentru explorare mai profunda: cauta lucrari despre auto-cunoastere, psihologia sinelui si dezvoltare personala de autori precum Carl Jung, Carl Rogers sau Irvin Yalom.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Spectrum Simulator (SVG dot position)
+    // ──────────────────────────────────────────────────────
+    const knowSlider = document.getElementById('knowSlider');
+    const actSlider = document.getElementById('actSlider');
+    const knowReadout = document.getElementById('knowReadout');
+    const actReadout = document.getElementById('actReadout');
+    const specDot = document.getElementById('specDot');
+
+    function renderSpectrum() {
+      const knowledge = parseInt(knowSlider.value) / 100;
+      const action = parseInt(actSlider.value) / 100;
+
+      knowReadout.textContent = `${knowSlider.value}%`;
+      actReadout.textContent = `${actSlider.value}%`;
+
+      // Position based on combination of knowledge and action
+      // Low knowledge = left (ignorance), high knowledge + low action = middle (stuck), high both = right (alignment)
+      let position;
+      if (knowledge < 0.3) {
+        position = knowledge * 1.5; // 0 to 0.45
+      } else if (action < knowledge * 0.6) {
+        // Stuck zone: know more than you act on
+        position = 0.3 + knowledge * 0.2; // 0.3 to 0.5
+      } else {
+        // Alignment zone: action matches knowledge
+        position = 0.3 + (knowledge + action) * 0.35; // 0.3 to 1.0
+      }
+
+      position = Math.min(1, Math.max(0, position));
+      const x = 30 + position * 380;
+      specDot.setAttribute('cx', x);
+    }
+
+    knowSlider.addEventListener('input', renderSpectrum);
+    actSlider.addEventListener('input', renderSpectrum);
+    renderSpectrum();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', () => {
+      document.getElementById('checkSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariul este vizibil' : 'Comentariul este ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Auto-cunoastere profunda. Actiunile tale reflecta ceea ce stii. Stabilitatea interioara este vizibila.`;
+      else if (pct >= 60) msg = `${pct}% – In proces activ. Stii multe despre tine. Provocarea acum este sa actionezi in concordanta cu ceea ce stii.`;
+      else if (pct >= 40) msg = `${pct}% – Inceputul claritatii. Ai inceput sa observi tiparele. Disconfortul pe care il simti este normal — este procesul care lucreaza.`;
+      else msg = `${pct}% – La inceput de drum. Poate ca ai momente de recunoastere, dar procesul este inca la suprafata. Este ok — fiecare calatorie are propriul ritm.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tau de auto-cunoastere:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

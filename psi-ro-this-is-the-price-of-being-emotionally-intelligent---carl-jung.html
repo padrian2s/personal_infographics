@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pretul inteligentei emotionale — Carl Jung — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre pretul ascuns al inteligentei emotionale, conform viziunii lui Carl Jung: ce sacrifici cand devii cel care gestioneaza mereu emotiile." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Spectrum bar */
+    .spectrum{
+      height:32px;
+      border-radius:16px;
+      background: linear-gradient(90deg, var(--violet), var(--cyan), var(--good));
+      position:relative;
+      margin:14px 0 8px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .spectrum .marker{
+      position:absolute;
+      top:-6px;
+      width:4px;height:44px;
+      background:var(--text);
+      border-radius:4px;
+      transition: left .3s ease;
+    }
+    .specLabels{display:flex;justify-content:space-between;font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Two intertwining paths: one vibrant, one fading — representing the split -->
+            <path d="M30,180 C80,60 140,160 220,80 C280,20 340,120 400,60 C440,30 480,50 510,30" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".7" />
+            <path d="M30,140 C90,180 160,40 240,140 C300,200 360,80 420,140 C460,170 490,110 510,130" fill="none" stroke="url(#g2)" stroke-width="7" stroke-linecap="round" opacity=".5" />
+            <!-- Nodes representing emotional peaks that get dimmer -->
+            <circle cx="220" cy="80" r="12" fill="rgba(187,167,255,.7)" />
+            <circle cx="400" cy="60" r="9" fill="rgba(187,167,255,.4)" />
+            <circle cx="130" cy="120" r="8" fill="rgba(122,215,255,.5)" />
+            <circle cx="340" cy="110" r="6" fill="rgba(255,255,255,.3)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; inteligență emoțională &bull; prețul adaptării</div>
+          <h1>Prețul inteligenței emoționale: ce sacrifici fără să știi</h1>
+          <p class="subtitle">
+            Inteligența emoțională e lăudată ca maturitate, stăpânire de sine, empatie. Dar Carl Jung a avertizat că
+            <b>fiecare forță psihologică se plătește în altă parte</b>. Nimic din psihic nu e gratuit.
+            Această pagină explorează costul ascuns al celui care gestionează mereu emoțiile celorlalți.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpCosts">Sari la cascada costurilor</button>
+            <button class="btn" id="jumpCheck">Sari la autoevaluare</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei principale rezumate">
+          <div class="stat">
+            <div class="label">Ideea centrală</div>
+            <div class="value">Adaptare, nu autenticitate</div>
+            <div class="note">Inteligența emoțională apare când exprimarea liberă devine riscantă.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanismul</div>
+            <div class="value">Control → Amorțire</div>
+            <div class="note">Controlul cronic al emoțiilor duce la pierderea intensității.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Costul principal</div>
+            <div class="value">Calm, dar nu viu</div>
+            <div class="note">Echilibru prin reglare constantă ≠ vitalitate.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Soluția lui Jung</div>
+            <div class="value">Integrare, nu abandon</div>
+            <div class="note">Nu devii mai puțin inteligent emoțional — devii mai puțin controlat.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: How emotional intelligence forms -->
+      <section class="card" aria-label="Cum se formează inteligența emoțională">
+        <div class="cardHeader">
+          <h2>Cum se formează inteligența emoțională</h2>
+          <div class="chip"><b>Sursa:</b> adaptare, nu medii sigure</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Inteligența emoțională <b>nu apare</b> în medii unde emoțiile sunt primite, reflectate și exprimate liber. În acele medii, oamenii pur și simplu <b>simt</b> — nu trebuie să gestioneze.
+              </p>
+              <p class="muted">
+                Ea se dezvoltă când <b>a simți liber devine riscant</b>. La un moment dat, ai învățat că emoția brută creează probleme: conflict, instabilitate, disconfort pentru ceilalți. Așa că te-ai adaptat.
+              </p>
+              <div class="flow" style="margin-top:12px">
+                <div class="flowNode">
+                  <h3>Ai învățat să citești camerele</h3>
+                  <p>În loc să te exprimi, ai început să observi tonul, tensiunea, așteptările celorlalți.</p>
+                  <div class="meta"><span class="badge">hiper-vigilență</span><span class="badge">anticipare</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Ai învățat să reglezi în loc să reacționezi</h3>
+                  <p>Furia devine explicație calmă. Tristețea devine compoziție. Dorința devine răbdare.</p>
+                  <div class="meta"><span class="badge">traducere emoțională</span><span class="badge">auto-editare</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Ai învățat să faci pauză în loc să simți</h3>
+                  <p>Pauzele au devenit automate — nicio emoție nu mai ajunge la suprafață nefiltrată.</p>
+                  <div class="meta"><span class="badge">suprimare subtilă</span><span class="badge">control</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Diagrama: cum se formează">
+                <svg viewBox="0 0 440 380" role="img" aria-label="Mediu nesigur duce la adaptare emoțională">
+                  <defs>
+                    <linearGradient id="formGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(187,167,255,.4)" />
+                      <stop offset="1" stop-color="rgba(255,122,153,.3)" />
+                    </linearGradient>
+                    <filter id="softG" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="6" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#softG)">
+                    <!-- Top: free expression (vibrant) -->
+                    <rect x="30" y="20" width="380" height="70" rx="16" fill="rgba(117,240,182,.12)" stroke="rgba(117,240,182,.3)" />
+                    <text x="50" y="50" font-size="13" fill="rgba(117,240,182,.9)" font-weight="700">Mediu sigur: simți liber</text>
+                    <text x="50" y="72" font-size="11" fill="rgba(255,255,255,.6)">Emoțiile sunt primite → nu e nevoie de gestionare</text>
+
+                    <!-- Arrow down -->
+                    <path d="M220,95 L220,125" stroke="rgba(255,255,255,.25)" stroke-width="2" marker-end="url(#arrowF)"/>
+                    <text x="230" y="115" font-size="10" fill="rgba(255,255,255,.45)">DAR dacă mediul e nesigur...</text>
+
+                    <!-- Middle: adaptation -->
+                    <rect x="30" y="130" width="380" height="90" rx="16" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.3)" />
+                    <text x="50" y="158" font-size="13" fill="rgba(255,210,122,.9)" font-weight="700">Mediu imprevizibil: adaptare</text>
+                    <text x="50" y="178" font-size="11" fill="rgba(255,255,255,.6)">Emoția brută creează probleme → înveți să reglezi</text>
+                    <text x="50" y="198" font-size="11" fill="rgba(255,255,255,.5)">Jung: psihicul alege adaptarea, nu autenticitatea, când e în joc supraviețuirea</text>
+
+                    <!-- Arrow down -->
+                    <path d="M220,225 L220,255" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+
+                    <!-- Bottom: cost -->
+                    <rect x="30" y="260" width="380" height="90" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.3)" />
+                    <text x="50" y="290" font-size="13" fill="rgba(255,122,153,.9)" font-weight="700">Rezultat: inteligență emoțională + cost ascuns</text>
+                    <text x="50" y="310" font-size="11" fill="rgba(255,255,255,.6)">Calm, empatic, stabil — dar vitalitatea e sacrificată</text>
+                    <text x="50" y="330" font-size="11" fill="rgba(255,255,255,.5)">Adaptarea cere întotdeauna un sacrificiu (Jung)</text>
+                  </g>
+                </svg>
+                <div class="small" style="margin-top:8px">Jung credea că psihicul devine expert în orice îl menține în siguranță.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung nu spune că inteligența emoțională e rea. El spune că e o <b>adaptare rafinată</b> — iar orice adaptare vine cu un sacrificiu. Problema apare când adaptarea înlocuiește complet expresia autentică.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: The Split + Spontaneity loss -->
+      <section class="row">
+        <div class="card" aria-label="Sciziunea ascunsă">
+          <div class="cardHeader">
+            <h2>Sciziunea ascunsă: conștiință vs. instinct</h2>
+            <div class="chip">echilibru ≠ vitalitate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Primul lucru sacrificat e <b>spontaneitatea</b>. Oamenii inteligenti emoțional învață devreme să anticipeze consecințele.
+              Simt schimbările emoționale înainte ca alții s-o facă. Pot prezice reacții, stări, rezultate.
+            </p>
+            <p class="muted">
+              Așa că se ajustează preventiv. Cu timpul, asta creează o personalitate <b>compusă, gândită, măsurată</b>.
+              Dar sub suprafață se întâmplă ceva subtil: <b>nu mai lași emoțiile să-și completeze arcul natural</b>.
+            </p>
+
+            <div class="viz" style="padding:14px;margin-top:10px">
+              <svg viewBox="0 0 440 200" role="img" aria-label="Emoțiile sunt tăiate înainte de arc complet">
+                <defs>
+                  <linearGradient id="arcFull" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.6)" />
+                    <stop offset="1" stop-color="rgba(122,215,255,.6)" />
+                  </linearGradient>
+                  <linearGradient id="arcCut" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.5)" />
+                    <stop offset="1" stop-color="rgba(255,210,122,.5)" />
+                  </linearGradient>
+                </defs>
+                <!-- Full emotional arc -->
+                <text x="20" y="25" font-size="12" fill="rgba(117,240,182,.8)" font-weight="600">Arc complet (spontan)</text>
+                <path d="M30,160 C100,20 200,20 280,160" fill="none" stroke="url(#arcFull)" stroke-width="3.5" stroke-linecap="round" opacity=".8"/>
+                <!-- Truncated arc -->
+                <text x="20" y="100" font-size="12" fill="rgba(255,122,153,.8)" font-weight="600">Arc trunchiat (reglat)</text>
+                <path d="M30,160 C70,100 120,90 170,120" fill="none" stroke="url(#arcCut)" stroke-width="3.5" stroke-linecap="round" opacity=".8" stroke-dasharray="6 4"/>
+                <text x="180" y="118" font-size="10" fill="rgba(255,122,153,.7)">← tăiat aici</text>
+
+                <!-- Labels -->
+                <text x="300" y="55" font-size="11" fill="rgba(255,255,255,.6)">Furia e înmuiată înainte de forță</text>
+                <text x="300" y="75" font-size="11" fill="rgba(255,255,255,.6)">Bucuria e temperată înainte de abandon</text>
+                <text x="300" y="95" font-size="11" fill="rgba(255,255,255,.6)">Dorința e negociată înainte de urgență</text>
+                <text x="300" y="120" font-size="11" fill="rgba(255,255,255,.5)">Nimic nu te mai mișcă prea tare</text>
+
+                <text x="30" y="190" font-size="11" fill="rgba(255,255,255,.5)" font-style="italic">Jung: asta creează o sciziune între conștiință și instinct</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung spunea că atunci când personalitatea conștientă devine prea dominantă, instinctul se retrage — iar instinctul e locul unde trăiește <b>vitalitatea</b>. De aceea oamenii emoțional inteligenți simt o goliciune liniștită pe care nu o pot explica.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce rămâne în urmă">
+          <div class="cardHeader">
+            <h2>Starea rezultată: funcțional, dar amorțit</h2>
+            <div class="chip"><b>Paradox:</b> calm, dar nu satisfăcut</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Nimic nu e în neregulă. Viața funcționează. Relațiile sunt stabile. Ești capabil. Dar <b>ceva pare estompat</b>.
+            </p>
+
+            <div class="hallmarks" style="margin-top:12px">
+              <div class="pill"><span>Calm, dar nu profund satisfăcut</span><span class="tag" style="color:var(--warn)">subtil</span></div>
+              <div class="pill"><span>Perspicace, dar nu hrănit</span><span class="tag" style="color:var(--warn)">subtil</span></div>
+              <div class="pill"><span>Rezistent, dar obosit în liniște</span><span class="tag" style="color:var(--warn)">subtil</span></div>
+              <div class="pill"><span>Poți explica ce simți mai bine decât poți simți</span><span class="tag" style="color:var(--bad)">sciziune</span></div>
+              <div class="pill"><span>Ții spațiu pentru alții, dar nu pentru tine</span><span class="tag" style="color:var(--bad)">sciziune</span></div>
+              <div class="pill"><span>Viața e gestionabilă, dar nu se mișcă</span><span class="tag" style="color:var(--bad)">stagnare</span></div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="small">Jung: prețul inteligenței emoționale este <b>intensitatea</b>. Nu mai simți maximele ca odinioară, dar nici nu te prăbușești ca alții. Plătești stabilitatea cu senzația.</p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e o observație profundă: echilibrul obținut prin reglare constantă nu e la fel cu <b>a fi viu</b>. Ești expert la înțelegerea emoțiilor, dar fără a fi pe deplin <b>în interiorul lor</b>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Cascade of costs -->
+      <section class="card" id="costs" aria-label="Cascada costurilor">
+        <div class="cardHeader">
+          <h2>Cascada costurilor: ce sacrifici punct cu punct</h2>
+          <div class="chip">intensitate &bull; dorință &bull; furie &bull; odihnă &bull; conexiune</div>
+        </div>
+        <div class="cardBody">
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Pierderea intensității</strong><span class="badge" style="color:var(--violet)">senzație</span></div>
+              <div class="meter"><i style="width:72%"></i></div>
+              <p>Nu mai simți maximele cum le simțeai. Bucuria pare atenuată, entuziasmul e scurt, plăcerea nu zăbovește. Psihicul a fost antrenat să țină intensitatea la distanță — intensitatea amenință controlul.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Pierderea dorinței</strong><span class="badge" style="color:var(--orange)">eros</span></div>
+              <div class="meter"><i style="width:68%"></i></div>
+              <p>Dorința nu prosperă sub supraveghere constantă. Când fiecare impuls e evaluat — „E potrivit? E sigur? E înțelept?" — dorința își pierde forța. Nu ai încetat să vrei. Ai încetat să te lași să vrei profund.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Furia întoarsă spre interior</strong><span class="badge" style="color:var(--bad)">agresiune</span></div>
+              <div class="meter"><i style="width:78%"></i></div>
+              <p>Furia are o funcție: marchează granițe, restaurează respectul de sine, mobilizează energie. Când e constant înmuiată, resentimentul se acumulează. Jung: agresiunea neexprimată nu dispare — se întoarce spre interior, devenind autocritică, epuizare, amărăciune.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Imposibilitatea odihnei adevărate</strong><span class="badge" style="color:var(--cyan)">vigilență</span></div>
+              <div class="meter"><i style="width:65%"></i></div>
+              <p>Odihna adevărată cere abandon — oprirea vigilenței, lăsarea sistemului nervos să nu mai monitorizeze. Dar oamenii emoțional inteligenți nu se opresc niciodată din monitorizat. Te culci, dar nu aterizezi cu adevărat.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Dificultatea de a primi</strong><span class="badge" style="color:var(--warn)">vulnerabilitate</span></div>
+              <div class="meter"><i style="width:70%"></i></div>
+              <p>A primi cere vulnerabilitate fără control. Să te lași văzut fără explicație, fără auto-editare. Asta e profund inconfortabil pentru cineva a cărui identitate e construită pe claritate emoțională. Sprijinul oferit nu „aterizează" cu adevărat.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Pierderea surprizei emoționale</strong><span class="badge" style="color:var(--good)">predictibilitate</span></div>
+              <div class="meter"><i style="width:55%"></i></div>
+              <p>Anticipezi mereu rezultatele. Rareori ești surprins. Asta dă stabilitate, dar elimină noutatea. Când deja înțelegi de ce se întâmplă ceva, impactul emoțional se pierde. Viața devine predictibilă — și predictibilitatea estompează simțirea.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Erodarea granițelor</strong><span class="badge" style="color:var(--bad)">empatie excesivă</span></div>
+              <div class="meter"><i style="width:73%"></i></div>
+              <p>Pare contraintuitiv, dar oamenii emoțional inteligenți se supraextind: scuză comportamente inacceptabile, contextualizează lipsa de respect, empatizează cu rănirea. Înțelegerea devine auto-trădare. Jung: empatia excesivă fără contra-balans instinctual duce la epuizare psihică.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Singurătatea celui puternic</strong><span class="badge" style="color:var(--violet)">nefiind văzut</span></div>
+              <div class="meter"><i style="width:80%"></i></div>
+              <p>Ai învățat să fii containerul, nu cel conținut. Ceilalți se sprijină pe tine. Dar puțini știu cum să țină pe cineva care mereu ține pe alții. Devii puternic în liniște — și singur în liniște. Oamenii îți văd forța, rareori nevoia.</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observă schema: fiecare cost e o consecință a aceluiași mecanism — <b>supracontrolul cronic</b>. Prețul nu se plătește dintr-o dată. Se plătește încet: în bucurie atenuată, dorință reținută, oboseală liniștită, în senzația că viața e gestionabilă dar nu se mișcă.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Unconscious compensation -->
+      <section class="row">
+        <div class="card" aria-label="Compensația inconștientului">
+          <div class="cardHeader">
+            <h2>Compensația inconștientului</h2>
+            <div class="chip">ce se întâmplă sub suprafață</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea că inconștientul încearcă mereu să restabilească echilibrul. Dacă prea mult control domină personalitatea conștientă, inconștientul răspunde cu <b>amorțire, oboseală sau retragere emoțională bruscă</b>. Nu e o prăbușire — e o <b>corecție</b>.
+            </p>
+
+            <div class="flow" aria-label="Forme de compensare">
+              <div class="flowNode">
+                <h3>Aplatizare emoțională</h3>
+                <p>Încă înțelegi emoțiile conceptual, dar nu le mai experimentezi cu profunzime. Bucuria pare atenuată. Entuziasmul e scurt. Plăcerea nu rămâne.</p>
+                <div class="meta"><span class="badge">intensitate redusă</span><span class="badge">detașare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Reacții emoționale întârziate</h3>
+                <p>Simți lucrurile mai târziu: ore, zile, uneori ani după un eveniment. În momentul real ești compus, funcțional. Dar sentimentul ajunge când nu mai e util. Inconștientul ține un registru al a tot ce a fost amânat.</p>
+                <div class="meta"><span class="badge">procesare întârziată</span><span class="badge">acumulare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Colaps emoțional brusc</h3>
+                <p>Oamenii emoțional inteligenți se mențin împreună mult timp — ani, decenii. Apoi, aparent fără cauză, se simt copleșiți de ceva mic: un comentariu, o schimbare, o pierdere pe care credeau că au procesat-o deja. Psihicul nu reacționează doar la momentul prezent — eliberează tot ce nu a fost simțit complet.</p>
+                <div class="meta"><span class="badge">prag depășit</span><span class="badge">eliberare acumulată</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Presiune internă fără sursă clară</h3>
+                <p>Neliniște pe care nu o poți justifica. O iritare care nu se potrivește circumstanțelor. Emoție brută, dorință impulsivă, nevoi egoiste, reacții iraționale — toate astea nu dispar. Merg sub suprafață.</p>
+                <div class="meta"><span class="badge">umbra emoțională</span><span class="badge">compensare</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung spunea: „Inconștientul nu operează pe termene limită. Operează pe acumulare." Cu cât mai multe emoții sunt amânate, cu atât mai grea e revenirea lor finală.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Simulatorul control vs. vitalitate">
+          <div class="cardHeader">
+            <h2>Simulatorul control vs. vitalitate</h2>
+            <div class="chip">vizualizare interactivă</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Acest simulator vizual arată relația inversă pe care Jung o descrie: cu cât crește controlul emoțional, cu atât vitalitatea simțită scade.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Simulator control-vitalitate">
+              <svg viewBox="0 0 480 300" id="simSvg" role="img" aria-label="Grafic control vs vitalitate">
+                <defs>
+                  <linearGradient id="vitGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.05)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.3)"/>
+                  </linearGradient>
+                  <linearGradient id="ctrlGrad" x1="0" x2="0" y1="1" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.05)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.3)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="480" height="300" fill="rgba(0,0,0,.05)"/>
+                <!-- Axes -->
+                <path d="M50 20 L50 260 L460 260" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+                <text x="10" y="145" font-size="11" fill="rgba(255,255,255,.5)" transform="rotate(-90 10 145)">Nivel</text>
+                <text x="250" y="285" font-size="11" fill="rgba(255,255,255,.5)" text-anchor="middle">Control emoțional →</text>
+
+                <!-- Areas & lines drawn by JS -->
+                <path id="vitArea" fill="url(#vitGrad)" stroke="none"/>
+                <path id="ctrlArea" fill="url(#ctrlGrad)" stroke="none"/>
+                <path id="vitLine" fill="none" stroke="rgba(117,240,182,.9)" stroke-width="2.5" stroke-linecap="round"/>
+                <path id="ctrlLine" fill="none" stroke="rgba(187,167,255,.9)" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- Marker -->
+                <circle id="vitDot" r="5" fill="var(--good)" opacity=".9"/>
+                <circle id="ctrlDot" r="5" fill="var(--violet)" opacity=".9"/>
+
+                <g font-size="11" fill="rgba(255,255,255,.6)">
+                  <text x="60" y="32">Ridicat</text>
+                  <text x="60" y="255">Scăzut</text>
+                </g>
+              </svg>
+
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: var(--good)"></span> Vitalitate / Intensitate simțită</div>
+                <div class="key"><span class="sw" style="background: var(--violet)"></span> Control emoțional</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Nivel de control emoțional</span>
+                  <span class="readout" id="ctrlReadout">50%</span>
+                </label>
+                <input id="ctrlSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">Mai mult control → mai puțină intensitate resimțită.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Presiune acumulată</span>
+                  <span class="readout" id="pressReadout">30%</span>
+                </label>
+                <input id="pressSlider" type="range" min="0" max="100" value="30" />
+                <div class="small" style="margin-top:8px">Emoții amânate care se acumulează în inconștient.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest simulator e conceptual — ilustrează idea lui Jung că vitalitatea și controlul emoțional au o relație inversă. „Scopul nu e să devii mai puțin inteligent emoțional — ci mai puțin controlat."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Identity trap -->
+      <section class="card" aria-label="Capcana identității">
+        <div class="cardHeader">
+          <h2>Când inteligența emoțională devine identitate</h2>
+          <div class="chip"><b>Avertisment:</b> abilitate → cușcă</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Supracontrolul nu apare peste noapte. E construit <b>strat cu strat</b> — prin repetiție, necesitate, recompensă.
+                Când exprimi emoție și creezi tensiune, prioritizezi claritatea în detrimentul onestității. Nu încetezi să simți — <b>începi să traduci</b>.
+              </p>
+              <p class="muted">
+                Lumea te numește matur, echilibrat, „înțelept dincolo de vârsta ta". Psihicul observă această recompensă și repetă comportamentul.
+                Cu timpul, inteligența emoțională nu mai e o abilitate — <b>devine o identitate</b>.
+              </p>
+              <p class="muted">
+                Nu doar reglezi emoții — <b>devii regulatorul</b>. Jung avertiza: când eul se identifică prea puternic cu o funcție, funcția opusă e împinsă în inconștient. Așa se formează dezechilibrul.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 260" role="img">
+                  <defs>
+                    <filter id="cageGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#cageGlow)">
+                    <!-- Cage metaphor -->
+                    <rect x="120" y="30" width="200" height="200" rx="20" fill="none" stroke="rgba(187,167,255,.3)" stroke-width="2" stroke-dasharray="8 4"/>
+                    <!-- Bars -->
+                    <line x1="160" y1="30" x2="160" y2="230" stroke="rgba(187,167,255,.15)" stroke-width="1.5"/>
+                    <line x1="200" y1="30" x2="200" y2="230" stroke="rgba(187,167,255,.15)" stroke-width="1.5"/>
+                    <line x1="240" y1="30" x2="240" y2="230" stroke="rgba(187,167,255,.15)" stroke-width="1.5"/>
+                    <line x1="280" y1="30" x2="280" y2="230" stroke="rgba(187,167,255,.15)" stroke-width="1.5"/>
+                    <!-- Inner glow (the self) -->
+                    <circle cx="220" cy="130" r="30" fill="rgba(122,215,255,.15)" stroke="rgba(122,215,255,.4)" stroke-width="2"/>
+                    <text x="220" y="135" font-size="11" fill="rgba(122,215,255,.9)" text-anchor="middle" font-weight="600">Sinele</text>
+                    <!-- Labels -->
+                    <text x="220" y="18" font-size="12" fill="rgba(187,167,255,.8)" text-anchor="middle" font-weight="600">Cușca identității emoționale</text>
+                    <text x="220" y="252" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Când abilitatea devine identitate, scapi cu greu</text>
+                    <!-- Outside labels -->
+                    <text x="30" y="80" font-size="10" fill="rgba(255,255,255,.5)">emoție brută</text>
+                    <text x="350" y="80" font-size="10" fill="rgba(255,255,255,.5)">dorință</text>
+                    <text x="30" y="190" font-size="10" fill="rgba(255,255,255,.5)">nevoi egoiste</text>
+                    <text x="350" y="190" font-size="10" fill="rgba(255,255,255,.5)">reacții</text>
+                    <!-- Arrows pointing away (pushed to unconscious) -->
+                    <path d="M115,80 L70,80" stroke="rgba(255,122,153,.4)" stroke-width="1.5" marker-end="url(#arrowR)"/>
+                    <path d="M325,80 L370,80" stroke="rgba(255,122,153,.4)" stroke-width="1.5"/>
+                    <path d="M115,190 L70,190" stroke="rgba(255,122,153,.4)" stroke-width="1.5"/>
+                    <path d="M325,190 L370,190" stroke="rgba(255,122,153,.4)" stroke-width="1.5"/>
+                  </g>
+                </svg>
+                <div class="small" style="margin-top:8px">Calitățile reprimate nu dispar. Merg în subteran, în inconștient — și cer compensare.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> „Inteligența emoțională nu e inamicul. Dar când înlocuiește complet expresia emoțională, devine o cușcă." Prețul: bucurie atenuată, dorință reținută, oboseală tăcută, senzația că viața e gestionabilă dar nu se mișcă.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Self-assessment -->
+      <section class="row">
+        <div class="card" id="check" aria-label="Auto-evaluare">
+          <div class="cardHeader">
+            <h2>Auto-evaluare: recunoști aceste semne?</h2>
+            <div class="chip">listă de verificare interactivă</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bifează semnele pe care le recunoști în tine. Nu e un diagnostic — e un instrument de conștientizare bazat pe descrierile lui Jung.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Te simți calm dar nu profund satisfăcut</strong><em>stabilitate goală</em></div>
+                  <div class="d">Viața funcționează, relațiile sunt stabile, ești capabil — dar ceva pare estompat, ca și cum privești prin sticlă.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Poți explica ce simți mai bine decât poți simți</strong><em>sciziune cognitivă</em></div>
+                  <div class="d">Înțelegi emoțiile conceptual, dar nu le experimentezi cu profunzime. Analiza a înlocuit trăirea.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ești mereu cel care „ține" pentru alții</strong><em>container permanent</em></div>
+                  <div class="d">Alții se sprijină pe tine, se deschid, se simt în siguranță. Dar puțini știu cum să fie acolo pentru tine la fel.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Obosești fără motiv evident</strong><em>oboseala sufletului</em></div>
+                  <div class="d">Nu e oboseală fizică — e epuizarea de a monitoriza constant tonul, contextul, curentele emoționale, chiar și în tăcere.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ești mai dur cu tine decât cu oricine altcineva</strong><em>furie internalizată</em></div>
+                  <div class="d">Furia care n-a fost niciodată lăsată în exterior devine autocritică, epuizare, amărăciune tăcută. Ești blând cu alții și sever cu tine.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dorința pare stinsă sau îndepărtată</strong><em>eros supravegheat</em></div>
+                  <div class="d">Nu ai încetat să vrei — ai încetat să te lași să vrei profund. Dorința a fost negociată până la dispariție.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Nu te poți odihni cu adevărat</strong><em>vigilență permanentă</em></div>
+                  <div class="d">Te culci dar nu „aterizezi". Sistemul nervos nu primește niciodată semnalul că poate să se oprească din monitorizat.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Empatia ta te face să tolerezi prea mult</strong><em>granițe erodate</em></div>
+                  <div class="d">Scuzi comportamente inacceptabile, contextualizezi lipsa de respect, empatizezi cu cei care te rănesc. Înțelegerea devine trădare de sine.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ai simțit un colaps brusc aparent fără cauză</strong><em>acumulare eliberată</em></div>
+                  <div class="d">Te-ai menținut ani de zile, apoi ceva mic te-a copleșit. Psihicul nu reacționa la momentul prezent — elibera tot ce fusese amânat.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculează scorul de recunoaștere</button>
+              <button class="btn" id="resetBtn">Resetează lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest exercițiu nu e un test psihologic validat. E un instrument de reflecție bazat pe ideile lui Jung. Dacă multe dintre aceste semne ți se par familiare, nu înseamnă că ești „stricat" — înseamnă că psihicul tău semnalează un dezechilibru care cere atenție.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Soluția lui Jung: integrarea">
+          <div class="cardHeader">
+            <h2>Soluția lui Jung: integrarea</h2>
+            <div class="chip"><b>Nu mai puțin inteligent</b> — mai puțin controlat</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung n-a argumentat niciodată pentru haos. A argumentat pentru <b>integrare</b>. Părțile din tine care au învățat să regleze trebuie să învețe <b>să se înmoaie</b>. Cele care au învățat să gestioneze trebuie să învețe <b>să primească</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color: rgba(117,240,182,.3)">
+                <h3 style="color:var(--good)">Permite emoțiile să se miște fără interpretare imediată</h3>
+                <p>Lasă furia să existe înainte de a o explica. Lasă dorința fără să o negociezi. Lasă tristețea fără să-i dai sens prea repede. E inconfortabil — amenință identitatea pe care ai construit-o ca să supraviețuiești.</p>
+                <div class="meta"><span class="badge">permisiune</span><span class="badge">arc emoțional complet</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(122,215,255,.3)">
+                <h3 style="color:var(--cyan)">Învață să fii conținut, nu doar container</h3>
+                <p>Exercițiu: lasă pe cineva să te vadă fără explicație, fără auto-editare, fără traducere emoțională. Nu trebuie să înțelegi totul înainte de a-l simți.</p>
+                <div class="meta"><span class="badge">vulnerabilitate</span><span class="badge">receptivitate</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(187,167,255,.3)">
+                <h3 style="color:var(--violet)">Echilibrul prin integrarea opusului</h3>
+                <p>Jung credea că echilibrul se restabilește nu prin respingerea unei forțe, ci prin integrarea opusului ei. Pentru oamenii emoțional inteligenți, asta înseamnă: instinct, spontaneitate, permisiune — nu haos, ci <b>mișcare</b>.</p>
+                <div class="meta"><span class="badge">individuare</span><span class="badge">plenitudine</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 440 120" role="img" aria-label="Spectrul integrării">
+                <rect x="20" y="30" width="400" height="40" rx="20" fill="none" stroke="rgba(255,255,255,.12)"/>
+                <rect x="20" y="30" width="400" height="40" rx="20" fill="linear-gradient(90deg, rgba(187,167,255,.2), rgba(122,215,255,.15), rgba(117,240,182,.2))"/>
+                <!-- Gradient fill -->
+                <defs>
+                  <linearGradient id="specGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset=".5" stop-color="rgba(122,215,255,.3)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.4)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="22" y="32" width="396" height="36" rx="18" fill="url(#specGrad)"/>
+                <text x="55" y="55" font-size="11" fill="rgba(255,255,255,.8)" font-weight="600">Supracontrol</text>
+                <text x="185" y="55" font-size="11" fill="rgba(255,255,255,.9)" font-weight="700">INTEGRARE</text>
+                <text x="340" y="55" font-size="11" fill="rgba(255,255,255,.8)" font-weight="600">Haos</text>
+                <!-- Target marker -->
+                <circle cx="220" cy="50" r="8" fill="none" stroke="var(--text)" stroke-width="2"/>
+                <circle cx="220" cy="50" r="3" fill="var(--text)"/>
+                <text x="220" y="90" font-size="10" fill="rgba(255,255,255,.6)" text-anchor="middle">Zona optimă: nici rigiditate, nici dezordine</text>
+                <text x="220" y="110" font-size="10" fill="rgba(255,255,255,.5)" text-anchor="middle">Jung: „Conștientizarea te-a făcut puternic. Dar nu trebuie să te lase gol."</text>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Mesajul final al lui Jung nu e „renunță la inteligența emoțională". E: <b>adaugă ceva înapoi</b> — instinct, spontaneitate, permisiune. Nu haos, ci mișcare. Altfel, inteligența emoțională devine distanță emoțională, iar psihicul va continua să ceară compensare prin amorțire, oboseală sau insatisfacție tăcută.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary card -->
+      <section class="card" aria-label="Sinteză">
+        <div class="cardHeader">
+          <h2>Sinteză: ce spune Jung, pe scurt</h2>
+          <div class="chip"><b>Teza:</b> adaptare → cost → integrare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Inteligența emoțională e o adaptare, nu un dar</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Se formează în medii unde exprimarea liberă era riscantă. Psihicul alege supraviețuirea, nu autenticitatea. Asta funcționează — dar vine cu un preț.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Prețul se plătește încet și invizibil</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Intensitate pierdută, dorință estompată, furie internalizată, odihnă imposibilă, singurătatea celui puternic, granițe erodate. Viața e gestionabilă, dar nu se mișcă.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Inconștientul cere compensare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Amorțire, reacții întârziate, colapsuri bruște, presiune internă fără sursă. Psihicul încearcă să restabilească echilibrul.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Soluția: integrare, nu abandon</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu devii reactiv sau imprudent. Înveți să lași emoțiile să se miște fără interpretare imediată. Adaugi înapoi: instinct, spontaneitate, permisiune. Scopul e <b>mai puțin control, nu mai puțină inteligență</b>.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Notă finală despre context</strong><span class="hint">apasă pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce o narațiune care face afirmații puternice bazate pe ideile lui Carl Jung. Interpretarea e fidelă spiritului jungian, dar nu e un substitut pentru terapie sau consiliere profesională. Dacă te-ai recunoscut în aceste descrieri, consideră asta ca un punct de plecare pentru auto-reflecție, nu ca un diagnostic. Pentru explorare mai profundă, caută un terapeut specializat în psihologie analitică (jungiană) sau procesul de individuare.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle info -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. descriere</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe această pagină, casetele colorate cu violet (marcate cu <code>data-commentary</code>) oferă comentariu meta: cât de puternică e afirmația? Ce alternative de interpretare există?
+          </p>
+          <p class="muted">
+            Implicit, comentariul e <b>vizibil</b>. Apasă „Comută comentariul" din antet pentru a ascunde/afișa toate casetele de comentariu simultan. Asta îți permite să comuți între „ce spune narațiunea" și „ce interpretare critică putem avea."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și avertismente:</b> Acest infografic interactiv a fost generat pentru a traduce o narațiune despre prețul inteligenței emoționale din perspectiva lui Carl Jung. Nu este consiliere psihologică. Vizualizările, simulatorul și comentariul sunt instrumente conceptuale care te ajută să reflectezi asupra ideilor, nu substitute pentru terapie sau îndrumare profesională.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: consultă literatura de specialitate despre psihologia analitică jungiană, procesul de individuare și integrarea umbrei.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Control vs. Vitality Simulator
+    // ──────────────────────────────────────────────────────
+    const ctrlSlider = document.getElementById('ctrlSlider');
+    const pressSlider = document.getElementById('pressSlider');
+    const ctrlReadout = document.getElementById('ctrlReadout');
+    const pressReadout = document.getElementById('pressReadout');
+
+    function renderSim() {
+      const ctrl = parseInt(ctrlSlider.value) / 100;
+      const press = parseInt(pressSlider.value) / 100;
+
+      ctrlReadout.textContent = ctrlSlider.value + '%';
+      pressReadout.textContent = pressSlider.value + '%';
+
+      const W = 480, H = 300;
+      const pad = 50;
+      const gW = W - pad - 20;
+      const gH = H - 80;
+      const pts = 40;
+
+      let vitPath = '', ctrlPath = '';
+      let vitAreaPath = '', ctrlAreaPath = '';
+      const baseline = H - 40;
+
+      for (let i = 0; i <= pts; i++) {
+        const t = i / pts;
+        const x = pad + t * gW;
+
+        // Vitality decreases as control increases (with some noise)
+        const vitBase = 1.0 - ctrl * 0.8;
+        const vitNoise = Math.sin(t * Math.PI * 4 + press * 3) * 0.08 * (1 - ctrl);
+        const vit = Math.max(0.05, vitBase + vitNoise - press * 0.15);
+        const vy = baseline - vit * gH;
+
+        // Control line rises
+        const ctrlVal = 0.15 + ctrl * 0.75 + Math.sin(t * Math.PI * 2) * 0.05;
+        const cy = baseline - ctrlVal * gH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        vitPath += cmd + x + ',' + vy + ' ';
+        ctrlPath += cmd + x + ',' + cy + ' ';
+      }
+
+      vitAreaPath = 'M' + pad + ',' + baseline + ' ' + vitPath + 'L' + (pad + gW) + ',' + baseline + ' Z';
+      ctrlAreaPath = 'M' + pad + ',' + baseline + ' ' + ctrlPath + 'L' + (pad + gW) + ',' + baseline + ' Z';
+
+      document.getElementById('vitLine').setAttribute('d', vitPath);
+      document.getElementById('ctrlLine').setAttribute('d', ctrlPath);
+      document.getElementById('vitArea').setAttribute('d', vitAreaPath);
+      document.getElementById('ctrlArea').setAttribute('d', ctrlAreaPath);
+
+      // Position dots at midpoint
+      const midIdx = Math.floor(pts / 2);
+      const midT = midIdx / pts;
+      const midX = pad + midT * gW;
+      const vitMid = Math.max(0.05, (1.0 - ctrl * 0.8) + Math.sin(midT * Math.PI * 4 + press * 3) * 0.08 * (1 - ctrl) - press * 0.15);
+      const ctrlMid = 0.15 + ctrl * 0.75 + Math.sin(midT * Math.PI * 2) * 0.05;
+
+      document.getElementById('vitDot').setAttribute('cx', midX);
+      document.getElementById('vitDot').setAttribute('cy', baseline - vitMid * gH);
+      document.getElementById('ctrlDot').setAttribute('cx', midX);
+      document.getElementById('ctrlDot').setAttribute('cy', baseline - ctrlMid * gH);
+    }
+
+    ctrlSlider.addEventListener('input', renderSim);
+    pressSlider.addEventListener('input', renderSim);
+    renderSim();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpCosts').addEventListener('click', function() {
+      document.getElementById('costs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', function() {
+      document.getElementById('check').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    var commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      var items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariu vizibil' : 'Comentariu ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      var total = checkboxes.length;
+      var pct = Math.round((checked / total) * 100);
+
+      var msg = '';
+      if (pct >= 80) msg = pct + '% — Recunoaștere puternică. Probabil porți mult din ceea ce Jung descrie. Integrarea nu e optional — e necesară.';
+      else if (pct >= 55) msg = pct + '% — Recunoaștere semnificativă. Mai multe din aceste tipare sunt prezente. Merită să le explorezi conștient.';
+      else if (pct >= 30) msg = pct + '% — Unele semne sunt prezente. Ai zone de flexibilitate, dar și zone de supracontrol.';
+      else msg = pct + '% — Recunoaștere scăzută. Fie emoțiile curg mai liber, fie tiparul se manifestă diferit la tine.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tău de recunoaștere:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

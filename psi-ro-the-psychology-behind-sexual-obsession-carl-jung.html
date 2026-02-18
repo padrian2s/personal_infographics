@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Psihologia din spatele obsesiei sexuale — Carl Jung</title>
+  <meta name="description" content="Infografic interactiv despre psihologia obsesiei sexuale din perspectiva lui Carl Jung. De ce obsesia nu e despre sex, ci despre munca interioara neterminata." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,122,153,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(122,215,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--bad), var(--violet)); box-shadow: 0 0 22px rgba(255,122,153,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color: var(--bad)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,122,153,.7);
+      padding: 10px 12px;
+      background: rgba(255,122,153,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Phase cards */
+    .phaseGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width:780px){.phaseGrid{grid-template-columns:1fr}}
+    .phaseCard{
+      border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(0,0,0,.18);padding:14px;
+      text-align:center;
+    }
+    .phaseCard .phaseIcon{font-size:28px;margin-bottom:8px;display:block;color:var(--muted)}
+    .phaseCard h3{margin:0 0 6px;font-size:14px}
+    .phaseCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Cycle diagram */
+    .cycleGrid{
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      gap:10px;
+    }
+    @media (max-width:780px){.cycleGrid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:480px){.cycleGrid{grid-template-columns:1fr}}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,122,153,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Spiral/loop representing obsessive cycle -->
+            <path d="M100,180 C100,60 200,20 260,110 C320,200 180,200 180,110 C180,40 280,20 320,100 C360,180 260,200 240,130" fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="round" opacity=".5" />
+            <path d="M340,130 C380,60 440,80 460,110 C480,140 460,180 420,160" fill="none" stroke="url(#g2)" stroke-width="5" stroke-linecap="round" opacity=".4" />
+            <!-- Glow points -->
+            <circle cx="260" cy="110" r="14" fill="rgba(255,255,255,.45)" />
+            <circle cx="180" cy="110" r="9" fill="rgba(255,255,255,.35)" />
+            <circle cx="100" cy="180" r="7" fill="rgba(255,255,255,.3)" />
+            <circle cx="420" cy="160" r="8" fill="rgba(255,255,255,.3)" />
+            <circle cx="340" cy="130" r="6" fill="rgba(255,255,255,.25)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiand &bull; obsesie &bull; umbra &bull; proiectie</div>
+          <h1>Psihologia din spatele obsesiei sexuale: ce incearca psihicul sa-ti spuna</h1>
+          <p class="subtitle">
+            Obsesia sexuala rareori e despre sex. E un <b>semnal al psihicului</b> ca ceva important a fost ignorat.
+            Conform lui Carl Jung, cand dorinta devine obsesiva, ea nu mai functioneaza ca instinct -- a fost „deturnata" de inconstient.
+            Aceasta pagina decodifica ce se intampla cu adevarat sub suprafata.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpShadow">Umbra si proiectia</button>
+            <button class="btn" id="jumpIntegration">Calea spre integrare</button>
+            <button class="btn" id="toggleNotes">Afiseaza / ascunde comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei principale">
+          <div class="stat">
+            <div class="label">Teza centrala</div>
+            <div class="value">Nu e despre sex</div>
+            <div class="note">Obsesia sexuala e un semnal de gol interior nerecunoscut, nu de exces de libido.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanism cheie</div>
+            <div class="value">Proiectia</div>
+            <div class="note">Proiectezi calitati inconstiente pe altcineva, apoi te simti atras magnetic de ele.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Carl Jung</div>
+            <div class="value">Umbra cere atentie</div>
+            <div class="note">Ce reprimi nu dispare -- coboara in inconstient si revine cu forta.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Solutia</div>
+            <div class="value">Integrare, nu suprimare</div>
+            <div class="note">Obsesia se dizolva cand reclami ce ai proiectat si intelegi mesajul interior.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: What obsession really is -->
+      <section class="card" aria-label="Ce este obsesia cu adevarat">
+        <div class="cardHeader">
+          <h2>Ce este cu adevarat obsesia sexuala (si ce nu este)</h2>
+          <div class="chip"><b>Redefinire</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Majoritatea oamenilor cred ca obsesia sexuala inseamna libido excesiv, lipsa de disciplina sau exces de dorinta. Dar <b>psihologic, obsesia indica ceva mult mai specific: o fixare a energiei psihice.</b>
+              </p>
+              <p class="muted">
+                In psihologia jungiand, libidoul nu este doar energie sexuala. Este <b>energie psihica</b> -- forta care conduce atentia, imaginatia, dorul si cautarea de sens. Cand aceasta energie se blocheaza pe o singura persoana, imagine sau fantezie, psihicul incearca sa compenseze ceva ce lipseste in alta parte.
+              </p>
+              <p class="muted">
+                <b>Obsesia sexuala nu apare din plenitudine. Apare din gol interior nerecunoscut.</b>
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Ce NU este obsesia">
+                <div class="small" style="margin-bottom:10px">Ce cred oamenii vs. ce spune psihologia:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Libido excesiv</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>Lipsa de disciplina</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>Problema morala</span><span class="tag" style="color:var(--bad)">mit</span></div>
+                  <div class="pill"><span>Fixare a energiei psihice</span><span class="tag" style="color:var(--good)">real</span></div>
+                  <div class="pill"><span>Gol interior nerecunoscut</span><span class="tag" style="color:var(--good)">real</span></div>
+                  <div class="pill"><span>Foame emotionala cu masca sexuala</span><span class="tag" style="color:var(--good)">real</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta distinctie este fundamentala. A confunda obsesia cu „prea mult sex" e ca si cum ai confunda febra cu boala insasi. Obsesia e un simptom, nu cauza. Cauza se afla in partile neintegrate ale psihicului.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Why it feels involuntary -->
+      <section class="row">
+        <div class="card" aria-label="De ce pare involuntara">
+          <div class="cardHeader">
+            <h2>De ce obsesia pare incontrolabila</h2>
+            <div class="chip">sub suprafata constiintei</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Obsesia sexuala pare incontrolabila pentru ca <b>nu e condusa de mintea constienta</b>. O ocoleste complet. Cand oamenii spun „nu stiu de ce ma tot gandesc la asta," sunt precisi. Chiar nu stiu, pentru ca procesul are loc sub nivelul constiintei.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Libidoul separat de constiinta</h3>
+                <p>Cand energia psihica e separata de constiinta, nu dispare. Se reorganizeaza in inconstient. Si inconstientul nu vorbeste in logica -- vorbeste in imagini, impulsuri, fantezii si compulsii.</p>
+                <div class="meta"><span class="badge">inconstient</span><span class="badge">imagini</span><span class="badge">compulsii</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>De ce pare primitiva</h3>
+                <p>Obsesia nu negociaza. Nu raspunde la argumente rationale. Nu-i pasa de consecinte. Mintea constienta incearca sa argumenteze cu ea, dar obsesia nu e un argument -- e o <b>presiune</b> creata de o parte a psihicului careia i-a fost negata expresia.</p>
+                <div class="meta"><span class="badge">presiune</span><span class="badge">sub constiinta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Reprimarea intensifica, nu rezolva</h3>
+                <p>Jung avertiza: ce reprimi nu dispare. Coboara in inconstient si revine cu forta mai mare. De aceea obsesia sexuala se intensifica adesea cand incerci sa fii „puternic." Cu cat negi mai mult sensul din spatele dorintei, cu atat ea devine mai puternica.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">reprimare</span><span class="badge" style="color:var(--warn)">intensificare</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta explicatie elibereaza de vina: obsesia nu e dovada ca esti slab sau imoral. E dovada ca ceva din tine a fost ignorat mult timp. Controlul functioneaza asupra comportamentului, dar nu asupra sursei. Sursa cere intelegere, nu forta.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Bucla tragica">
+          <div class="cardHeader">
+            <h2>Bucla tragica a obsesiei</h2>
+            <div class="chip"><b>Ciclu:</b> foame care nu se satura</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Psihicul pune mereu aceeasi intrebare gresita: „Daca ma apropii de ei, ma voi simti in sfarsit complet?" Dar intrebarea reala este interna: „Ce parte din mine incerc sa reclaim prin ei?"
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 480 320" role="img" aria-label="Ciclu obsesie">
+                <defs>
+                  <linearGradient id="cl1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,179,138,.4)"/>
+                  </linearGradient>
+                  <linearGradient id="cl2" x1="1" x2="0" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,122,153,.4)"/>
+                  </linearGradient>
+                  <filter id="clsoft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#clsoft)">
+                  <!-- Outer cycle -->
+                  <circle cx="240" cy="160" r="110" fill="none" stroke="url(#cl1)" stroke-width="6" opacity=".5" stroke-dasharray="12 6"/>
+
+                  <!-- Arrow indicators -->
+                  <path d="M350,160 L342,150" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M350,160 L342,170" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Labels -->
+                  <text x="240" y="38" font-family="ui-sans-serif,system-ui" font-size="12" fill="var(--bad)" text-anchor="middle" font-weight="700">Fantezie / dorinta</text>
+                  <text x="368" y="165" font-family="ui-sans-serif,system-ui" font-size="12" fill="var(--orange)" text-anchor="start" font-weight="700">Urmarire</text>
+                  <text x="240" y="290" font-family="ui-sans-serif,system-ui" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">Usurare temporara</text>
+                  <text x="110" y="165" font-family="ui-sans-serif,system-ui" font-size="12" fill="var(--violet)" text-anchor="end" font-weight="700">Foamea revine</text>
+
+                  <!-- Center -->
+                  <circle cx="240" cy="160" r="40" fill="rgba(255,122,153,.08)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                  <text x="240" y="155" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.85)" text-anchor="middle" font-weight="700">Gol interior</text>
+                  <text x="240" y="172" font-family="ui-sans-serif,system-ui" font-size="10" fill="rgba(255,255,255,.6)" text-anchor="middle">nerecunoscut</text>
+                </g>
+              </svg>
+            </div>
+
+            <p class="muted">
+              Obiectul obsesiei este <b>simbolic</b>. Crezi ca esti obsedat de o persoana, dar psihologic acea persoana poarta o imagine de care psihicul tau are nevoie: putere, validare, libertate, intensitate, intregire. Persoana devine un container pentru ce iti lipseste intern.
+            </p>
+            <p class="muted">
+              De aceea obsesia se simte mai mare decat realitatea. Nu vrei doar persoana -- vrei ce <b>reprezinta</b> ea. Si pentru ca reprezentarea traieste in psihic, nu in lumea reala, niciun contact nu o satisface cu adevarat.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este distinctia cruciala: obsesia nu e atractie exagerata -- e <b>proiectie</b>. Tu proiectezi calitati proprii nerecunoscute pe altcineva si apoi te simti atras de acele calitati ca si cum ar fi ale lor. In realitate, sunt ale tale.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: The Shadow -->
+      <section class="row" id="shadow">
+        <div class="card" aria-label="Umbra in obsesie">
+          <div class="cardHeader">
+            <h2>Rolul Umbrei: ce ai reprimat se intoarce</h2>
+            <div class="chip">psihologia umbrei</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a descris <b>Umbra</b> ca acele parti ale personalitatii care au fost respinse, ignorate sau suprimate pentru a te adapta. Aceste parti nu dispar. Asteapta. Si cand conditiile permit, se intorc cu forta.
+            </p>
+
+            <div class="split">
+              <div>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>Ce e Umbra in context sexual</h3>
+                    <p>Nu neaparat umbra sexuala, ci <b>umbra psihologica</b>: trasaturi precum asertivitatea, intensitatea, dominanta, vulnerabilitatea, creativitatea, simtul de a fi viu. Daca aceste trasaturi au fost descurajate sau rusinificate, ele se retrag in inconstient.</p>
+                    <div class="meta"><span class="badge">asertivitate</span><span class="badge">vulnerabilitate</span><span class="badge">intensitate</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>De ce sexualitatea devine container</h3>
+                    <p>Cand trasaturile reprimate revin, adesea se ataseaza de imagini sexuale pentru ca sexualitatea este unul dintre putinele containere permise social pentru intensitate. Asa ca psihicul concentreaza totul acolo.</p>
+                    <div class="meta"><span class="badge">concentrare</span><span class="badge">container social</span></div>
+                  </div>
+                  <div class="flowNode">
+                    <h3>De ce obsesia pare disproportionata</h3>
+                    <p>Dorinta se simte mai mare decat situatia o justifica pentru ca transporta mai mult decat energie sexuala. Transporta <b>energie de viata reprimata</b>.</p>
+                    <div class="meta"><span class="badge" style="color:var(--bad)">disproportie</span><span class="badge">energie reprimata</span></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="viz" style="padding:14px">
+                  <svg viewBox="0 0 440 380" role="img" aria-label="Diagrama umbrei">
+                    <defs>
+                      <filter id="ssoft" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="5" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                      </filter>
+                    </defs>
+                    <g filter="url(#ssoft)">
+                      <!-- Conscious self -->
+                      <rect x="120" y="20" width="200" height="80" rx="16" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.25)"/>
+                      <text x="220" y="52" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--cyan)" font-weight="700" text-anchor="middle">Eul constient</text>
+                      <text x="220" y="75" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Ce accepti despre tine</text>
+
+                      <!-- Arrow down -->
+                      <path d="M220,100 L220,130" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                      <text x="240" y="120" font-family="ui-sans-serif,system-ui" font-size="10" fill="rgba(255,255,255,.4)">reprimare</text>
+
+                      <!-- Shadow -->
+                      <rect x="80" y="140" width="280" height="90" rx="16" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.25)"/>
+                      <text x="220" y="170" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--violet)" font-weight="700" text-anchor="middle">Umbra</text>
+                      <text x="220" y="195" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Asertivitate, intensitate, vulnerabilitate,</text>
+                      <text x="220" y="215" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">creativitate, simtul de a fi viu</text>
+
+                      <!-- Arrow down -->
+                      <path d="M220,230 L220,260" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                      <text x="245" y="250" font-family="ui-sans-serif,system-ui" font-size="10" fill="rgba(255,255,255,.4)">se ataseaza de</text>
+
+                      <!-- Sexual imagery -->
+                      <rect x="100" y="270" width="240" height="80" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.25)"/>
+                      <text x="220" y="300" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--bad)" font-weight="700" text-anchor="middle">Obsesie sexuala</text>
+                      <text x="220" y="325" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Container pentru toata energia</text>
+                      <text x="220" y="340" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">reprimata, nu doar sexuala</text>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea ca obsesia sexuala poate transporta energie non-sexuala reprimata (asertivitate, creativitate, vitalitate) este una dintre cele mai iluminante perspective jungiene. Explica de ce obsesia se simte „mai mare decat sexul" -- pentru ca <i>este</i>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Proiectia">
+          <div class="cardHeader">
+            <h2>Proiectia: cand plasezi autoritatea in afara ta</h2>
+            <div class="chip">pierderea autoritatii interioare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a numit acest mecanism <b>proiectie</b>: proiectezi calitati inconstiente pe o alta persoana, apoi te simti atras magnetic de ea. Obsesia nu e cu cine sunt ei, ci cu <b>ce poarta ei pentru tine</b>.
+            </p>
+
+            <div class="riskGrid" aria-label="Efectele proiectiei">
+              <div class="risk">
+                <div class="rTop"><strong>Pierderea judecatii</strong><span class="badge">autoritate</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Nu mai ai incredere in propria judecata. Te indoiesti de tine. Rationalizezi comportamente pe care in mod normal le-ai pune sub semnul intrebarii.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dependenta psihologica</strong><span class="badge">proiectie</span></div>
+                <div class="meter"><i style="width:78%"></i></div>
+                <p>Persoana, fantezia sau imaginea devine sursa de sens. A o pierde simte ca si cum te-ai pierde pe tine insuti.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Intregire imprumutata</strong><span class="badge">instabil</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Intregirea imprumutata de la altcineva e instabila prin natura ei. Trebuie sa se prabuseasca in cele din urma.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Teama de prabusire</strong><span class="badge">agrypnie</span></div>
+                <div class="meter"><i style="width:72%"></i></div>
+                <p>Te agati de obsesie ca sa eviti durerea deziluzionarii. Dar deziluzionarea nu e distrugere -- e intoarcerea energiei la sine.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Barele de mai sus nu sunt scoruri clinice -- sunt reprezentari vizuale ale intensitatii fenomenelor descrise.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Proiectia e mecanismul central. Cand o recunosti, obsesia incepe sa se dezumfle. Nu pentru ca persoana s-a schimbat, ci pentru ca psihicul nu mai are nevoie de proiectie. Aceasta este cheia de la care totul se descuie.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Emotional deprivation and the vitality loop -->
+      <section class="card" aria-label="Deprivarea emotionala">
+        <div class="cardHeader">
+          <h2>Obsesia ca foame emotionala: de ce pare vitala</h2>
+          <div class="chip"><b>Mecanism:</b> obsesia ca stimulare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Obsesia sexuala vine adesea din <b>deprivare emotionala</b>, nu din exces sexual. Cand tandretea, vulnerabilitatea sau auto-expresia sunt blocate, libidoul nu are unde sa se duca. Asa ca se intensifica.
+              </p>
+              <p class="muted">
+                Obsesia sexuala e adesea <b>foame emotionala care poarta o masca sexuala</b>. Urgenta si disperarea pe care le simti nu sunt pentru ca e nevoie de sex, ci pentru ca e nevoie de <b>conexiune</b>. Dar psihicul nu diferentiaza intotdeauna. Daca nevoile emotionale nu sunt recunoscute constient, inconstientul le traduce in limbaj instinctual: dorinta.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Bucla de intarire periculoasa</h3>
+                  <p>Chiar si obsesia dureroasa poate parea mai buna decat amorteala emotionala. Macar se intampla ceva. Macar te simti viu. Psihicul asociaza obsesia cu vitalitatea -- asa ca revine la ea nu pentru ca vrea suferinta, ci pentru ca vrea intensitate.</p>
+                  <div class="meta"><span class="badge" style="color:var(--warn)">amorteala vs. obsesie</span><span class="badge">intensitate</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>De ce oamenii sunt „dependenti" de propria obsesie</h3>
+                  <p>O urasc, dar le e frica de cum ar arata viata fara ea: liniste, vid, nimic. Aceasta frica mentine ciclul in viata. Daca viata se simte plata, obsesia devine stimulare. Daca identitatea e fragila, obsesia devine focus.</p>
+                  <div class="meta"><span class="badge">dependenta</span><span class="badge" style="color:var(--bad)">frica de vid</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 400" role="img" aria-label="Obsesia ca stimulare">
+                  <defs>
+                    <filter id="vsoft" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#vsoft)">
+                    <!-- Top: emotional block -->
+                    <rect x="60" y="20" width="320" height="70" rx="14" fill="rgba(255,179,138,.08)" stroke="rgba(255,179,138,.25)"/>
+                    <text x="220" y="50" font-family="ui-sans-serif,system-ui" font-size="13" fill="var(--orange)" font-weight="700" text-anchor="middle">Tandretea / vulnerabilitatea blocata</text>
+                    <text x="220" y="72" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Nevoile emotionale nu au expresie</text>
+
+                    <path d="M220,90 L220,115" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+
+                    <!-- Libido intensified -->
+                    <rect x="60" y="120" width="320" height="70" rx="14" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.25)"/>
+                    <text x="220" y="150" font-family="ui-sans-serif,system-ui" font-size="13" fill="var(--bad)" font-weight="700" text-anchor="middle">Libidoul se intensifica</text>
+                    <text x="220" y="172" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Energia psihica se concentreaza sexual</text>
+
+                    <path d="M220,190 L220,215" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+
+                    <!-- Temporary vitality -->
+                    <rect x="60" y="220" width="320" height="70" rx="14" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.25)"/>
+                    <text x="220" y="250" font-family="ui-sans-serif,system-ui" font-size="13" fill="var(--warn)" font-weight="700" text-anchor="middle">Senzatie temporara de vitalitate</text>
+                    <text x="220" y="272" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">„Macar simt ceva" &rarr; se simte viu</text>
+
+                    <path d="M220,290 L220,315" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+
+                    <!-- Emptiness returns -->
+                    <rect x="60" y="320" width="320" height="60" rx="14" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.25)"/>
+                    <text x="220" y="348" font-family="ui-sans-serif,system-ui" font-size="13" fill="var(--violet)" font-weight="700" text-anchor="middle">Golul revine &rarr; ciclu se repeta</text>
+                    <text x="220" y="368" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Problema reala ramane neadresata</text>
+
+                    <!-- Return arrow -->
+                    <path d="M380,355 C420,355 440,200 440,50 C440,20 400,20 380,50" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2" stroke-dasharray="5 4"/>
+                    <text x="445" y="200" font-family="ui-sans-serif,system-ui" font-size="10" fill="rgba(255,255,255,.35)" transform="rotate(90 445 200)">ciclu</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta explicatie e eliberatoare: obsesia nu e semn ca esti „slab" sau „stricat." E semn ca o nevoie emotionala profunda nu a fost recunoscuta. Cand o recunosti ca ce este, obsesia isi pierde din puterea compulsiva.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: When obsession appears -->
+      <section class="row">
+        <div class="card" aria-label="Cand apare obsesia">
+          <div class="cardHeader">
+            <h2>Cand apare obsesia: momentele de tranzitie</h2>
+            <div class="chip">dupa pierdere sau reprimare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Obsesia sexuala apare adesea in <b>momente de tranzitie</b>: dupa pierdere, dupa suprimare, dupa perioade lungi de restrictie emotionala. Psihicul compenseaza ce a fost negat.
+            </p>
+
+            <div class="phaseGrid">
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">I</span>
+                <h3>Dupa pierdere</h3>
+                <p>Cand un partener, o relatie sau o identitate se pierde, psihicul cauta sa umple golul prin intensitate.</p>
+              </div>
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">II</span>
+                <h3>Dupa reprimare lunga</h3>
+                <p>Daca intimitatea emotionala a fost blocata mult timp, libidoul se poate intensifica compulsiv.</p>
+              </div>
+              <div class="phaseCard">
+                <span class="phaseIcon" aria-hidden="true">III</span>
+                <h3>Dupa sacrificarea autenticitatii</h3>
+                <p>Daca ai trait mult timp „pentru altii" si ai sacrificat cine esti cu adevarat, dorinta devine compulsiva ca o cerere de recunoastere.</p>
+              </div>
+            </div>
+
+            <p class="muted" style="margin-top:12px">
+              <b>Psihicul cauta mereu echilibru.</b> Cand echilibrul e ignorat constient, e impus inconstient. De aceea obsesia apare adesea cand „nu te astepti" -- pentru ca psihicul nu asteapta permisiunea ta.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> A intelege <i>cand</i> apare obsesia te ajuta sa intelegi <i>de ce</i>. Nu e un defect de caracter -- e psihicul care reactioneaza la un dezechilibru. Aceasta perspectiva transforma rusine in curiozitate, ceea ce e primul pas spre vindecare.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Pierderea echilibrului temporal">
+          <div class="cardHeader">
+            <h2>Pierderea echilibrului temporal: blocajul in bucla</h2>
+            <div class="chip">timpul se prabuseste</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              O trasatura cheie a obsesiei sexuale este <b>pierderea echilibrului temporal</b>. Mintea revine mereu la aceleasi ganduri, aceleasi amintiri, aceleasi fantezii. Timpul se prabuseste. Te simti blocat intr-o bucla, incapabil sa avansezi emotional.
+            </p>
+            <p class="muted">
+              Aceasta se intampla pentru ca <b>obsesia suspenda dezvoltarea</b>. Psihicul opreste progresul pana cand conflictul de baza e abordat. Obsesia sexuala nu e o impingere inainte -- e un semnal sa te opresti si sa privesti inauntru.
+            </p>
+
+            <div class="viz" style="padding:14px">
+              <svg viewBox="0 0 480 200" role="img" aria-label="Bucla temporala">
+                <defs>
+                  <filter id="tsoft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#tsoft)">
+                  <!-- Timeline that loops -->
+                  <path d="M40,100 L120,100 C160,100 180,40 220,40 C260,40 260,160 220,160 C180,160 180,40 220,40" fill="none" stroke="rgba(255,122,153,.5)" stroke-width="4" stroke-linecap="round"/>
+                  <!-- Continued timeline (after integration) -->
+                  <path d="M260,100 L460,100" fill="none" stroke="rgba(117,240,182,.4)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6"/>
+
+                  <text x="80" y="85" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">viata</text>
+                  <text x="220" y="18" font-family="ui-sans-serif,system-ui" font-size="11" fill="var(--bad)" text-anchor="middle">obsesie</text>
+                  <text x="220" y="195" font-family="ui-sans-serif,system-ui" font-size="11" fill="var(--bad)" text-anchor="middle">(bucla)</text>
+                  <text x="370" y="85" font-family="ui-sans-serif,system-ui" font-size="11" fill="var(--good)" text-anchor="middle">dupa integrare</text>
+
+                  <!-- Integration point -->
+                  <circle cx="260" cy="100" r="8" fill="var(--good)" opacity=".6"/>
+                  <text x="260" y="130" font-family="ui-sans-serif,system-ui" font-size="10" fill="rgba(255,255,255,.6)" text-anchor="middle">integrare</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Vizualizarea de mai sus arata esenta: obsesia te tine intr-o bucla temporala pana cand intelegi mesajul. Dupa integrare, energia se elibereaza si viata poate continua inainte.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: The collapse and recovery -->
+      <section class="card" aria-label="Prabusirea si recuperarea">
+        <div class="cardHeader">
+          <h2>Cand obsesia se prabuseste: de la epuizare la recuperare</h2>
+          <div class="chip">intoarcerea energiei la sine</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Cand obsesia se rupe, libidoul nu dispare. Se intoarce inauntru. Si acea intoarcere poate parea doliu -- nu doar doliu pentru persoana, ci doliu pentru <b>iluzia ca ea te completa</b>.
+              </p>
+              <p class="muted">
+                De aceea obsesia se incheie adesea cu <b>epuizare</b>. Psihicul a cheltuit energie enorma mentinand proiectia. Odata ce nu o mai poate sustine, se instaleaza oboseala. Aceasta oboseala nu e depresie -- e <b>recuperare</b>. Recuperare din energia directionata gresit.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Prabusirea proiectiei</h3>
+                  <p>Deziluzionarea nu e distrugere. Este intoarcerea energiei la sine. Cand obsesia se rupe, nu pierzi persoana -- pierzi iluzia.</p>
+                  <div class="meta"><span class="badge">deziluzionare</span><span class="badge">intoarcere</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Epuizare si doliu</h3>
+                  <p>Oboseala care urmeaza e naturala. Psihicul cere ceva diferit acum: nu suprimare, nu indulgenta, ci integrare.</p>
+                  <div class="meta"><span class="badge">epuizare</span><span class="badge">recuperare</span></div>
+                </div>
+                <div class="flowNode" style="border-color:rgba(117,240,182,.25)">
+                  <h3 style="color:var(--good)">Integrarea</h3>
+                  <p>Integrarea inseamna a reclama ce ai proiectat. A intreba: „Ce calitate am cedat? Ce parte din mine am atribuit-o lor? Ce energie refuz sa-mi asum?" Obsesia se dizolva cand aceste intrebari primesc raspunsuri oneste.</p>
+                  <div class="meta"><span class="badge" style="color:var(--good)">reclamare</span><span class="badge" style="color:var(--good)">onestitate</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 350" role="img" aria-label="De la proiectie la integrare">
+                  <defs>
+                    <filter id="isoft" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="5" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#isoft)">
+                    <!-- Top: projection outward -->
+                    <rect x="40" y="20" width="360" height="80" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.25)"/>
+                    <text x="220" y="50" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--bad)" font-weight="700" text-anchor="middle">Proiectie in exterior</text>
+                    <text x="220" y="75" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Energia psihica &rarr; atribuita altcuiva</text>
+
+                    <!-- Arrow down: collapse -->
+                    <path d="M220,100 L220,140" stroke="rgba(255,210,122,.4)" stroke-width="3"/>
+                    <text x="260" y="125" font-family="ui-sans-serif,system-ui" font-size="10" fill="var(--warn)">prabusire</text>
+
+                    <!-- Middle: grief -->
+                    <rect x="40" y="145" width="360" height="70" rx="16" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.25)"/>
+                    <text x="220" y="175" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--warn)" font-weight="700" text-anchor="middle">Doliu si epuizare</text>
+                    <text x="220" y="200" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Doliu pentru iluzia de intregire</text>
+
+                    <!-- Arrow down: integration -->
+                    <path d="M220,215 L220,255" stroke="rgba(117,240,182,.4)" stroke-width="3"/>
+                    <text x="260" y="240" font-family="ui-sans-serif,system-ui" font-size="10" fill="var(--good)">reclamare</text>
+
+                    <!-- Bottom: integration -->
+                    <rect x="40" y="260" width="360" height="80" rx="16" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.25)"/>
+                    <text x="220" y="290" font-family="ui-sans-serif,system-ui" font-size="14" fill="var(--good)" font-weight="700" text-anchor="middle">Integrare</text>
+                    <text x="220" y="315" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Energia revine la sine &rarr; crestere</text>
+                    <text x="220" y="332" font-family="ui-sans-serif,system-ui" font-size="11" fill="rgba(255,255,255,.6)" text-anchor="middle">Obsesia nu a fost niciodata despre sex</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest traseu -- proiectie, prabusire, doliu, integrare -- este ciclul natural de vindecare. Nu e un esec. E procesul prin care psihicul isi recupereaza energia si o redirectioneaza spre crestere interioara. Integrarea nu e rapida sau intelectuala -- e rabdatoare si onesta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 7: Integration guide (checklist) -->
+      <section class="card" id="integration" aria-label="Ghid de integrare">
+        <div class="cardHeader">
+          <h2>Calea spre integrare: intrebari si pasi</h2>
+          <div class="chip"><b>Practic:</b> de la obsesie la intelegere</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Obsesia nu e menita sa fie traita in permanenta. E menita sa fie <b>decodificata</b>. Psihicul o foloseste ca pe un semnal luminos: „Uita-te aici. Lipseste ceva." Dar majoritatea oamenilor continua sa urmareasca obiectul dorintei in loc sa citeasca mesajul.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ce calitate am cedat?</strong><em>proiectie</em></div>
+                <div class="d">Intreaba-te: ce anume ma atrage la persoana aceasta? Putere? Libertate? Intensitate? Vulnerabilitate? Aceasta calitate iti apartine de fapt tie.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ce parte din mine am atribuit-o lor?</strong><em>reclamare</em></div>
+                <div class="d">Obsesia se dizolva cand recunosti ca ceea ce admiri (sau doresti) in celalalt este, de fapt, o parte din tine pe care ai refuzat sa o traiesti.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ce energie refuz sa-mi asum?</strong><em>umbra</em></div>
+                <div class="d">Asertivitate? Creativitate? Sexualitate? Dreptul de a fi intens? Identifica ce ai reprimat si da-i un loc constient, nu un loc in obsesie.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ce nevoie emotionala reala e mascata?</strong><em>decodificare</em></div>
+                <div class="d">Obsesia sexuala e adesea foame de conexiune, recunoastere sau validare travestita in limbaj sexual. Ce ai nevoie cu adevarat?</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Pot sa accept golul fara sa fug de el?</strong><em>curaj</em></div>
+                <div class="d">Multi se tem de linistea care ar ramane daca obsesia ar disparea. Poti sta cu acel vid fara sa te intorci la ciclu? Aceasta e adevarata forta.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Inteleg ca obsesia e informatie, nu pedeapsa?</strong><em>compasiune</em></div>
+                <div class="d">Obsesia nu dovedeste ca esti slab sau stricat. Dovedeste ca ceva din tine a fost ignorat mult timp. E un mesaj, nu o sentinta.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculeaza scorul de integrare</button>
+            <button class="btn" id="resetBtn">Reseteaza lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceste intrebari nu sunt un exercitiu intelectual rapid. Sunt intrebari care cer timp, rabdare si onestitate. Obsesia nu s-a construit intr-o zi si nu se va dizolva intr-o zi. Dar fiecare intrebare la care raspunzi sincer readuce o parte din energia pierduta inapoi la tine.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 8: Interactive simulator -->
+      <section class="card" aria-label="Simulator interactiv">
+        <div class="cardHeader">
+          <h2>Simulator: dinamica obsesiei si integrarii</h2>
+          <div class="chip">vizualizare interactiva</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Folositi sliderele de mai jos pentru a explora cum se schimba dinamica psihica in functie de nivelul de reprimare si gradul de integrare.
+          </p>
+
+          <div class="viz" aria-label="Simulator obsesie">
+            <svg viewBox="0 0 980 380" id="obsSvg" role="img" aria-label="Dinamica obsesiei">
+              <defs>
+                <filter id="oGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.04)"/>
+
+              <!-- Axes -->
+              <g opacity=".9">
+                <path d="M80 30 L80 320 L940 320" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none" />
+              </g>
+
+              <!-- Labels -->
+              <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.60)">
+                <text x="80" y="350">Timp</text>
+                <text x="940" y="350" text-anchor="end">Vindecare</text>
+                <text x="80" y="20" fill="rgba(255,255,255,.85)" font-weight="700" font-size="14">Intensitatea obsesiei vs. nivelul de integrare</text>
+              </g>
+
+              <!-- Curves -->
+              <path id="obsCurve" fill="none" stroke="var(--bad)" stroke-width="3" stroke-linecap="round" filter="url(#oGlow)"/>
+              <path id="intCurve" fill="none" stroke="var(--good)" stroke-width="3" stroke-linecap="round" filter="url(#oGlow)"/>
+              <path id="shadowCurve" fill="none" stroke="var(--violet)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4" filter="url(#oGlow)"/>
+            </svg>
+
+            <div class="legend" aria-label="Legenda">
+              <div class="key"><span class="sw" style="background: var(--bad)"></span> Intensitatea obsesiei</div>
+              <div class="key"><span class="sw" style="background: var(--good)"></span> Nivel de integrare</div>
+              <div class="key"><span class="sw" style="background: var(--violet)"></span> Prezenta umbrei (constientizata)</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Nivel de reprimare</span>
+                <span class="readout" id="repReadout">60%</span>
+              </label>
+              <input id="repSlider" type="range" min="0" max="100" value="60" />
+              <div class="small" style="margin-top:8px">Cu cat reprimi mai mult, cu atat obsesia e mai intensa si mai rezistenta.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Grad de integrare</span>
+                <span class="readout" id="intReadout">20%</span>
+              </label>
+              <input id="intSlider" type="range" min="0" max="100" value="20" />
+              <div class="small" style="margin-top:8px">Integrarea scade intensitatea obsesiei si creste constientizarea umbrei.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest simulator e <i>conceptual</i> -- arata principiul, nu date clinice reale. Ideea centrala: reprimarea hrăneste obsesia, integrarea o dizolva. Nu exista un buton magic -- procesul e gradual, dar directia conteaza.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 9: Final thesis -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Teza finala: cand dorinta e inteleasa, inceteaza sa fie o capcana</h2>
+          <div class="chip"><b>Esenta</b></div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Obsesia nu e despre sex</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                E despre munca interioara neterminata. Psihicul cere integrarea unor parti negate: asertivitate, vulnerabilitate, intensitate, creativitate, dreptul de a te simti viu.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Proiectia e mecanismul central</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Proiectezi calitati nerecunoscute pe altcineva si apoi te simti atras magnetic. Obsesia nu e cu ei -- e cu partea din tine pe care ei o poarta.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Reprimarea hrăneste, integrarea vindeca</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Controlul functioneaza asupra comportamentului, dar nu asupra sursei. Sursa cere intelegere: ce calitate am cedat? Ce nevoie e mascata? Ce energie refuz sa-mi asum?
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Obsesia e informatie, nu pedeapsa</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu dovedeste ca esti slab. Dovedeste ca ceva important a fost ignorat. Conform lui Jung, ce cere atentia ta cu aceasta intensitate nu e rareori obiectul real -- e psihicul care te roaga sa reclami ceva ce ai cedat inconstient.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala: nici suprimare, nici indulgenta</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Nimic din aceasta analiza nu cere sa-ti suprimai dorinta. Nimic nu cere nici sa actionezi asupra ei. Aceasta faza e despre <b>intelegere</b>, nu pedeapsa, nu indulgenta. Cand dorinta e inteleasa, ea inceteaza sa fie o capcana. Devine informatie.
+              </p>
+              <p>
+                Si aceasta e poate cea mai puternica idee jungiand: ceea ce te bantuie cu cea mai mare intensitate este rareori obiectul real. E psihicul care te roaga sa devii mai intreg.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Afiseaza / ascunde comentariul"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele colorate rosu (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            ce inseamna fiecare idee? Ce nuante lipsesc? Cum se aplica in practica?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasati „Afiseaza / ascunde comentariul" din partea de sus pentru a le ascunde sau arata pe toate deodata.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si precautii:</b> Acest infografic interactiv a fost creat pentru a traduce si vizualiza un text despre psihologia obsesiei sexuale din perspectiva lui Carl Jung.
+        Nu este consiliere psihologica sau psihiatrica. Vizualizarile, simulatorul si comentariile sunt instrumente conceptuale menite sa ajute la intelegerea ideilor, nu inlocuitoare ale terapiei sau cercetarii primare.
+      </p>
+      <p style="margin-top:10px">
+        Daca obsesia sexuala interfereaza semnificativ cu viata ta, consulta un specialist in sanatate mintala. Aceasta pagina ofera perspective, nu diagnostic sau tratament.
+      </p>
+      <p style="margin-top:10px">
+        Sursa: Analiza psihologica bazata pe conceptele lui Carl Jung despre proiectie, umbra, libido si individuatie.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Obsession Dynamics Simulator
+    // ──────────────────────────────────────────────────────
+    const repSlider = document.getElementById('repSlider');
+    const intSlider = document.getElementById('intSlider');
+    const repReadout = document.getElementById('repReadout');
+    const intReadout = document.getElementById('intReadout');
+
+    function renderObs() {
+      const rep = parseInt(repSlider.value) / 100;
+      const integ = parseInt(intSlider.value) / 100;
+
+      repReadout.textContent = `${repSlider.value}%`;
+      intReadout.textContent = `${intSlider.value}%`;
+
+      const W = 980, H = 380;
+      const padL = 80, padR = 40, padT = 30, padB = 60;
+      const graphW = W - padL - padR;
+      const graphH = H - padT - padB;
+      const points = 60;
+
+      function obsIntensity(t) {
+        // High repression = high obsession that slowly declines with integration
+        const base = rep * 0.9;
+        const decline = integ * t * 0.8;
+        const wave = Math.sin(t * 4 * Math.PI) * 0.08 * (1 - integ);
+        return Math.max(0.05, base - decline + wave);
+      }
+
+      function integLevel(t) {
+        // Grows over time, faster with higher integration slider
+        const growth = integ * t;
+        return Math.min(0.95, 0.05 + growth * 0.85);
+      }
+
+      function shadowAwareness(t) {
+        // Rises with integration, delayed start
+        const delayed = Math.max(0, t - 0.2);
+        return Math.min(0.9, integ * delayed * 0.9);
+      }
+
+      let obsPath = '', intPath = '', shadPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = i / points;
+        const x = padL + t * graphW;
+
+        const oY = padT + graphH - obsIntensity(t) * graphH;
+        const iY = padT + graphH - integLevel(t) * graphH;
+        const sY = padT + graphH - shadowAwareness(t) * graphH;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        obsPath += `${cmd}${x},${oY} `;
+        intPath += `${cmd}${x},${iY} `;
+        shadPath += `${cmd}${x},${sY} `;
+      }
+
+      document.getElementById('obsCurve').setAttribute('d', obsPath);
+      document.getElementById('intCurve').setAttribute('d', intPath);
+      document.getElementById('shadowCurve').setAttribute('d', shadPath);
+    }
+
+    repSlider.addEventListener('input', renderObs);
+    intSlider.addEventListener('input', renderObs);
+    renderObs();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpShadow').addEventListener('click', () => {
+      document.getElementById('shadow').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpIntegration').addEventListener('click', () => {
+      document.getElementById('integration').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% -- Nivel ridicat de auto-intelegere! Procesul de integrare e in plina desfasurare.`;
+      else if (pct >= 60) msg = `${pct}% -- Progres bun. Continuati sa explorati intrebarile cu onestitate si rabdare.`;
+      else if (pct >= 40) msg = `${pct}% -- Inceput promitator. Fiecare intrebare la care raspundeti sincer readuce energie.`;
+      else msg = `${pct}% -- Incepeti prin a accepta ca obsesia e un mesaj, nu o pedeapsa. Fara judecata.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul dvs. de integrare:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1257 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Odata ce te vezi clar, nu mai poti pretinde — Infografic Psihologie</title>
+  <meta name="description" content="Infografic interactiv despre cum claritatea de sine face imposibila prefacatoria si ce se intampla cand incepi sa te vezi cu adevarat." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Energy viz */
+    .energyBar{
+      height:28px;
+      border-radius:99px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      margin-top:8px;
+      position:relative;
+    }
+    .energyBar > .fill{
+      height:100%;
+      border-radius:99px;
+      transition: width .4s ease;
+    }
+    .energyBar > .lbl{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--text);font-weight:600;
+      pointer-events:none;
+    }
+
+    /* Phases */
+    .phaseGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+    }
+    @media (max-width:800px){.phaseGrid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:500px){.phaseGrid{grid-template-columns:1fr}}
+    .phaseCard{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:14px 12px;
+      text-align:center;
+    }
+    .phaseCard .phaseNum{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:32px;height:32px;border-radius:99px;
+      font-weight:700;font-size:14px;
+      margin-bottom:8px;
+    }
+    .phaseCard h3{margin:0 0 6px;font-size:13px}
+    .phaseCard p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Mirror/reflection motif -->
+            <ellipse cx="260" cy="110" rx="120" ry="80" fill="none" stroke="url(#g1)" stroke-width="2.5" opacity=".5"/>
+            <ellipse cx="260" cy="110" rx="80" ry="55" fill="none" stroke="url(#g2)" stroke-width="2" opacity=".5"/>
+            <line x1="260" y1="30" x2="260" y2="190" stroke="rgba(255,255,255,.15)" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Silhouette left (masked self) -->
+            <circle cx="230" cy="85" r="16" fill="rgba(187,167,255,.3)" />
+            <path d="M214,105 Q230,130 246,105" fill="none" stroke="rgba(187,167,255,.35)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Silhouette right (real self) -->
+            <circle cx="290" cy="85" r="16" fill="rgba(122,215,255,.4)" />
+            <path d="M274,105 Q290,130 306,105" fill="none" stroke="rgba(122,215,255,.45)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Glow dots -->
+            <circle cx="180" cy="60" r="6" fill="rgba(255,255,255,.4)" />
+            <circle cx="340" cy="160" r="7" fill="rgba(255,255,255,.35)" />
+            <circle cx="400" cy="70" r="5" fill="rgba(255,255,255,.3)" />
+            <circle cx="130" cy="150" r="5" fill="rgba(255,255,255,.25)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie &bull; claritate de sine &bull; autenticitate</div>
+          <h1>Odata ce te vezi clar, nu mai poti pretinde</h1>
+          <p class="subtitle">
+            Prefacatoria functioneaza doar cand nu te vezi cu adevarat. In momentul in care te cunosti pe tine insuti, fiecare compromis devine vizibil,
+            fiecare rol fortat devine obositor, iar intoarcerea la vechile masti devine imposibila. Aceasta pagina explica <b>de ce claritatea schimba totul</b>.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la vizualizare</button>
+            <button class="btn" id="jumpCheck">Mergi la lista de verificare</button>
+            <button class="btn" id="toggleNotes">Comuta comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Concepte cheie rezumate">
+          <div class="stat">
+            <div class="label">Ideea centrala</div>
+            <div class="value">Claritatea ucide prefacatoria</div>
+            <div class="note">Nu devii curajos — devii constient. Si constiinta elimina izolarea emotionala.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanismul</div>
+            <div class="value">Constiinta elimina amortirea</div>
+            <div class="note">Simti fiecare compromis, fiecare performanta inutila, fiecare autotradadare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Costul ascuns</div>
+            <div class="value">Pretinderea consuma energie</div>
+            <div class="note">Inainte nu observai efortul. Acum il simti in corp: tensiune, oboseala, iritare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Rezultatul</div>
+            <div class="value">Coerenta, nu incredere in sine</div>
+            <div class="note">Interiorul si exteriorul se aliniaza. Tensiunea interna dispare. Apare linistea.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: The core shift -->
+      <section class="card" aria-label="Schimbarea fundamentala">
+        <div class="cardHeader">
+          <h2>De ce claritatea face prefacatoria imposibila</h2>
+          <div class="chip"><b>Idee centrala:</b> constiinta schimba totul</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Inainte de claritate, poti juca roluri fara sa observi costul. Spui ce trebuie, esti de acord,
+                te potrivesti asteptarilor — si pare normal. Dar in momentul in care <b>te vezi cu adevarat</b>,
+                acele roluri incep sa devina grele. Nu gresite — <b>grele</b>.
+              </p>
+              <p class="muted">
+                Devii constient de distanta dintre cine esti si cine pretinzi ca esti.
+                Apare o pauza inainte de a vorbi, o ezitare inainte de a fi de acord, un disconfort subtil dupa ce zambesti.
+                Aceste momente nu existau inainte. Ele apar <b>doar dupa ce claritatea incepe</b>.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Observa ce se sustine aici: nu esti brusc mai curajos. Pur si simplu devii constient. Constiinta elimina stratul de protectie — acum simti frecarea fiecarui compromis pe care il faci. Este o schimbare de perceptie, nu de personalitate.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Fazele clarificarii">
+                <div class="small" style="margin-bottom:10px">Cele 4 faze ale tranzitiei de la prefacatorie la autenticitate:</div>
+                <div class="phaseGrid">
+                  <div class="phaseCard">
+                    <div class="phaseNum" style="background:rgba(187,167,255,.2);color:var(--violet)">1</div>
+                    <h3>Amortire</h3>
+                    <p>Joci roluri fara sa observi costul. Totul pare normal.</p>
+                  </div>
+                  <div class="phaseCard">
+                    <div class="phaseNum" style="background:rgba(122,215,255,.2);color:var(--cyan)">2</div>
+                    <h3>Trezire</h3>
+                    <p>Incepi sa simti disconfortul. Apare ezitarea.</p>
+                  </div>
+                  <div class="phaseCard">
+                    <div class="phaseNum" style="background:rgba(255,210,122,.2);color:var(--warn)">3</div>
+                    <h3>Tensiune</h3>
+                    <p>Pretinderea devine munca. Oboseala apare rapid.</p>
+                  </div>
+                  <div class="phaseCard">
+                    <div class="phaseNum" style="background:rgba(117,240,182,.2);color:var(--good)">4</div>
+                    <h3>Aliniere</h3>
+                    <p>Renunti la performanta. Apare linistea interioara.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Body signals + awareness -->
+      <section class="row">
+        <div class="card" aria-label="Semnalele corpului">
+          <div class="cardHeader">
+            <h2>Semnalele corpului: cum simti nealinierea</h2>
+            <div class="chip">semnale, nu pedeapsa</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Odata ce te vezi clar, corpul tau reactioneaza mai repede decat mintea. De fiecare data cand
+              actionezi impotriva a ceea ce stii, apare un cost — nu vinovatie, nu frica, ci <b>oboseala</b>.
+            </p>
+
+            <div class="flow" aria-label="Semnalele nealinierii">
+              <div class="flowNode">
+                <h3>Tensiune in piept</h3>
+                <p>O strangarare subtila care apare cand spui ceva ce nu simti. Nu este panica — este un semnal ca exista o divergenta intre interior si exterior.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">semnal fizic</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Iritare persistenta</h3>
+                <p>O iritare fara motiv aparent dupa interactiuni in care ai fost "de acord" cand nu erai cu adevarat. Este corpul care iti spune ca ai facut un compromis.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">semnal emotional</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Sentiment de distanta fata de sine</h3>
+                <p>Te simti deconectat chiar daca participi. Esti acolo fizic dar absent emotional — pentru ca performezi in loc sa fii prezent.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">semnal relational</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Epuizare disproportionata</h3>
+                <p>Te simti epuizat nu din cauza efortului fizic, ci din cauza rezistentei la ceea ce stii. Fiecare moment de prefacatorie costa energie pe care inainte nu o observai.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(122,215,255,.3);color:var(--cyan)">semnal energetic</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceste semnale nu sunt pedeapsa — sunt <b>calibrare</b>. Corpul tau iti arata unde esti nealiniat. Epuizarea devine profesorul tau: in loc sa intrebi "E gresit ce fac?", incepi sa intrebi "De ce ma epuizeaza asta?"
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Vizualizarea energiei">
+          <div class="cardHeader">
+            <h2>Costul energetic al prefacatoriei</h2>
+            <div class="chip"><b>Vizual:</b> unde se duce energia</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Prefacatoria a consumat intotdeauna energie. Pur si simplu nu observai inainte. Acum observi.
+              Foloseste glisorul pentru a explora cum claritatea dezvaluie costurile ascunse.
+            </p>
+
+            <div class="viz" id="viz" aria-label="Simulator de energie">
+              <svg viewBox="0 0 980 380" id="energySvg" role="img" aria-label="Distributia energiei: prefacatorie vs autenticitate">
+                <defs>
+                  <linearGradient id="gPretend" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.8)" />
+                    <stop offset="1" stop-color="rgba(255,179,138,.6)" />
+                  </linearGradient>
+                  <linearGradient id="gAuth" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(117,240,182,.8)" />
+                    <stop offset="1" stop-color="rgba(122,215,255,.6)" />
+                  </linearGradient>
+                  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.04)"/>
+
+                <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                  <text x="40" y="26" fill="rgba(255,255,255,.88)" font-weight="700">Distributia energiei in functie de nivelul de claritate</text>
+                </g>
+
+                <!-- Bars -->
+                <g id="energyBars" filter="url(#soft)">
+                  <text x="40" y="70" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Gestionarea perceptiilor</text>
+                  <rect x="240" y="56" width="0" height="22" rx="11" fill="url(#gPretend)" id="bar1" opacity=".85"/>
+                  <text x="240" y="70" font-size="11" fill="rgba(255,255,255,.8)" id="bar1t" font-family="var(--mono)"></text>
+
+                  <text x="40" y="110" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Explicarea sinelui</text>
+                  <rect x="240" y="96" width="0" height="22" rx="11" fill="url(#gPretend)" id="bar2" opacity=".85"/>
+                  <text x="240" y="110" font-size="11" fill="rgba(255,255,255,.8)" id="bar2t" font-family="var(--mono)"></text>
+
+                  <text x="40" y="150" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Indulcirea adevarului</text>
+                  <rect x="240" y="136" width="0" height="22" rx="11" fill="url(#gPretend)" id="bar3" opacity=".85"/>
+                  <text x="240" y="150" font-size="11" fill="rgba(255,255,255,.8)" id="bar3t" font-family="var(--mono)"></text>
+
+                  <text x="40" y="190" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Anticiparea reactiilor</text>
+                  <rect x="240" y="176" width="0" height="22" rx="11" fill="url(#gPretend)" id="bar4" opacity=".85"/>
+                  <text x="240" y="190" font-size="11" fill="rgba(255,255,255,.8)" id="bar4t" font-family="var(--mono)"></text>
+
+                  <path d="M240 220 L700 220" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="4 4"/>
+                  <text x="40" y="250" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Prezenta autentica</text>
+                  <rect x="240" y="236" width="0" height="22" rx="11" fill="url(#gAuth)" id="bar5" opacity=".85"/>
+                  <text x="240" y="250" font-size="11" fill="rgba(255,255,255,.8)" id="bar5t" font-family="var(--mono)"></text>
+
+                  <text x="40" y="290" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Calm interior</text>
+                  <rect x="240" y="276" width="0" height="22" rx="11" fill="url(#gAuth)" id="bar6" opacity=".85"/>
+                  <text x="240" y="290" font-size="11" fill="rgba(255,255,255,.8)" id="bar6t" font-family="var(--mono)"></text>
+
+                  <text x="40" y="330" font-size="12" fill="rgba(255,255,255,.6)" font-family="ui-sans-serif, system-ui">Energie disponibila</text>
+                  <rect x="240" y="316" width="0" height="22" rx="11" fill="url(#gAuth)" id="bar7" opacity=".85"/>
+                  <text x="240" y="330" font-size="11" fill="rgba(255,255,255,.8)" id="bar7t" font-family="var(--mono)"></text>
+                </g>
+
+                <g font-family="ui-sans-serif, system-ui" font-size="11" fill="rgba(255,255,255,.5)">
+                  <text x="240" y="370">0%</text>
+                  <text x="460" y="370">50%</text>
+                  <text x="690" y="370">100%</text>
+                </g>
+              </svg>
+
+              <div class="legend" aria-label="Legenda">
+                <div class="key"><span class="sw" style="background: linear-gradient(90deg, rgba(255,122,153,.8), rgba(255,179,138,.6))"></span> Energie irosita pe prefacatorie</div>
+                <div class="key"><span class="sw" style="background: linear-gradient(90deg, rgba(117,240,182,.8), rgba(122,215,255,.6))"></span> Energie pentru autenticitate</div>
+              </div>
+            </div>
+
+            <div class="controls" aria-label="Controlul simulatorului">
+              <div class="control">
+                <label>
+                  <span>Nivel de claritate</span>
+                  <span class="readout" id="clarityReadout">30%</span>
+                </label>
+                <input id="claritySlider" type="range" min="0" max="100" value="30" />
+                <div class="small" style="margin-top:8px">Mai multa claritate = mai putina energie pe prefacatorie, mai multa pe autenticitate.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Presiune sociala</span>
+                  <span class="readout" id="pressureReadout">50%</span>
+                </label>
+                <input id="pressureSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">Presiunea sociala creste costul energetic al oricarui nivel de claritate.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest simulator este <i>conceptual</i> — arata o idee simpla: cu cat te cunosti mai bine, cu atat mai putina energie irosesti pe gestionarea aparentelor si cu atat mai multa energie ai pentru a trai autentic. Presiunea sociala complica ecuatia, dar nu o schimba fundamental.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Point of no return -->
+      <section class="card" aria-label="Punctul fara intoarcere">
+        <div class="cardHeader">
+          <h2>Punctul fara intoarcere: de ce nu poti reveni la prefacatorie</h2>
+          <div class="chip"><b>Mecanism:</b> prefacatoria isi pierde inocenta</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Acesta nu este un punct de intoarcere fortat. Pur si simplu, odata ce <b>vezi prin ceva</b>,
+                nu mai poti participa pe deplin la acel ceva. Prefacatoria isi pierde inocenta — inainte, nu stiai
+                ce faci. Acum stii. Si <b>a sti elimina neutralitatea</b>.
+              </p>
+              <p class="muted">
+                Sistemul tau nervos nu mai tolereaza nealinierea. O simti imediat: o rezistenta subtila,
+                o pierdere de energie, un sentiment de distanta fata de tine insuti. Aceste semnale te ghideaza.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Inainte de claritate</h3>
+                  <p>Urmai regulile nescrise automat: fii placut, fii previzibil, fii pe placul tuturor. Conversatiile erau performante, nu schimburi reale.</p>
+                  <div class="meta"><span class="badge">conformism automat</span><span class="badge">confort aparent</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Dupa claritate</h3>
+                  <p>Observi aceste reguli. Simti tensiunea. Realizezi cat de des oamenii vorbesc nu pentru a exprima adevarul, ci pentru a mentine confortul.</p>
+                  <div class="meta"><span class="badge">constiinta activa</span><span class="badge">tensiune productiva</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 440 360" role="img" aria-label="Diagrama punctului de intoarcere">
+                  <defs>
+                    <linearGradient id="gPath" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(187,167,255,.6)"/>
+                      <stop offset="1" stop-color="rgba(122,215,255,.6)"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="0" y="0" width="440" height="360" fill="rgba(0,0,0,.03)"/>
+
+                  <!-- Path line -->
+                  <path d="M60,300 C60,200 120,180 220,180" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2" stroke-dasharray="6 4"/>
+                  <path d="M220,180 C320,180 380,100 380,40" fill="none" stroke="url(#gPath)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Point of no return -->
+                  <circle cx="220" cy="180" r="12" fill="rgba(255,210,122,.3)" stroke="rgba(255,210,122,.6)" stroke-width="2"/>
+                  <circle cx="220" cy="180" r="5" fill="rgba(255,210,122,.8)"/>
+
+                  <!-- Labels -->
+                  <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.7)">
+                    <text x="30" y="320" font-size="11">Prefacatorie</text>
+                    <text x="30" y="334" font-size="10" fill="rgba(255,255,255,.45)">confortabila dar costisitoare</text>
+
+                    <text x="220" y="215" text-anchor="middle" fill="rgba(255,210,122,.9)" font-weight="700" font-size="11">PUNCT FARA INTOARCERE</text>
+                    <text x="220" y="230" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">"Stii ce faci acum"</text>
+
+                    <text x="340" y="30" font-size="11" fill="rgba(117,240,182,.8)">Autenticitate</text>
+                    <text x="310" y="44" font-size="10" fill="rgba(255,255,255,.45)">incomoda dar usoara</text>
+                  </g>
+
+                  <!-- Zones -->
+                  <rect x="20" y="250" width="180" height="40" rx="10" fill="rgba(255,122,153,.06)" stroke="rgba(255,122,153,.15)" stroke-width="1"/>
+                  <text x="110" y="274" text-anchor="middle" font-size="10" fill="rgba(255,122,153,.7)" font-family="ui-sans-serif, system-ui">Zona de amortire</text>
+
+                  <rect x="240" y="50" width="180" height="40" rx="10" fill="rgba(117,240,182,.06)" stroke="rgba(117,240,182,.15)" stroke-width="1"/>
+                  <text x="330" y="74" text-anchor="middle" font-size="10" fill="rgba(117,240,182,.7)" font-family="ui-sans-serif, system-ui">Zona de coerenta</text>
+                </svg>
+              </div>
+
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> "Punctul fara intoarcere" nu este dramatic. Este subtil. Nu esti fortat sa te schimbi imediat, dar prefacatoria si-a pierdut inocenta. Stii ce faci — si a sti elimina posibilitatea de a trai neutru in neautenticitate.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Isolation and connection filtering -->
+      <section class="row">
+        <div class="card" aria-label="Izolarea subtila">
+          <div class="cardHeader">
+            <h2>Izolarea subtila: cand claritatea creeaza distanta</h2>
+            <div class="chip">tranzitie, nu esec</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cand incetezi sa mai performezi, unele conexiuni se slabesc — nu toate, doar cele construite
+              pe convenienta. Asta poate parea o pierdere, dar este de fapt <b>acuratete</b>.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Nu mai razi usor la lucruri goale</strong><span class="badge">filtru social</span></div>
+                <div class="meter"><i style="width:55%"></i></div>
+                <p>Nu mai participi automat la interactiuni care nu rezonaza cu tine. Nu esti distant — esti selectiv.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Nu mai esti de acord automat</strong><span class="badge">onestitate</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Eziti inainte de a spune "da". Intrebi de ce esti de acord. Simti rezistenta acolo unde era conformism.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Nu te mai explici la nesfarsit</strong><span class="badge">limite</span></div>
+                <div class="meter"><i style="width:50%"></i></div>
+                <p>Incetezi sa justifici fiecare decizie. Nu esti rigid — esti fundamentat.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Oamenii simt schimbarea</strong><span class="badge">relational</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Ceilalti simt ca nu mai participi la fel. Nu pentru ca esti distant, ci pentru ca nu mai pretinzi.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Aceasta izolare nu este respingere — este tranzitie. Te muti de la validare externa la aliniere interna.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Multi oameni confunda singuratatea cu esecul in aceasta faza. Dar nimic nu este gresit cu tine. Pur si simplu nu mai performezi. Si performanta era lipiciul care tinea multe conexiuni laolalta. Conexiunile care raman sunt cele reale.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Filtrarea conexiunilor">
+          <div class="cardHeader">
+            <h2>Cum claritatea iti filtreaza lumea</h2>
+            <div class="chip"><b>Rezultat:</b> mai putin, dar mai real</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Claritatea nu taie oamenii din viata ta. Ea <b>dezvaluie ce este real</b>. Incepi sa vezi
+              cine raspunde prezentei tale, nu conformismului tau. Cine ramane cand esti onest, nu cand esti placut.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Conexiuni bazate pe convenienta</h3>
+                <p>Necesitau sa fii altcineva. Presupuneau performanta constanta. Se destrama natural cand incetezi sa mai joci rolul.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">se estompeaza</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Conexiuni bazate pe autenticitate</h3>
+                <p>Nu necesita efort constant. Permit pauze, onestitate, retinere. Simti mai putina presiune de a mentine o imagine.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">se intaresc</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <details data-commentary>
+              <summary><strong>De ce "linistea" inlocuieste "performanta"</strong><span class="hint">click pentru a extinde</span></summary>
+              <div class="detailBody">
+                <p>
+                  Ce este real se simte mai linistit decat ce este performativ. Acea liniste poate parea goala la inceput.
+                  Poti sa ratezi usurinta de a te integra, simplitatea de a nu gandi, confortul apartenentei automate.
+                  Dar acel confort avea un cost. Si acum il vezi. Nu il mai poti ignora.
+                </p>
+              </div>
+            </details>
+
+            <details data-commentary>
+              <summary><strong>De la validare externa la aliniere interna</strong><span class="hint">click pentru a extinde</span></summary>
+              <div class="detailBody">
+                <p>
+                  Incetezi sa mai ai nevoie de aprobare pentru fiecare alegere. Incetezi sa iti explici limitele oamenilor
+                  care nu le respecta. Incetezi sa iti suprajustifici deciziile. Nu devii indiferent — devii <b>fundamentat</b>.
+                  Esti prezent fara a fi reactiv, onest fara a fi agresiv, clar fara a fi defensiv.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Checklist - signs of clarity -->
+      <section class="row" aria-label="Lista de verificare">
+        <div class="card" id="checkSection" aria-label="Semne ale claritatii">
+          <div class="cardHeader">
+            <h2>Semne ca ai inceput sa te vezi clar</h2>
+            <div class="chip">auto-evaluare interactiva</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Bifeaza semnele pe care le recunosti in propria experienta. Nu este un test — este o oglinda.
+              Cu cat mai multe bifezi, cu atat mai mult claritatea ta de sine a progresat.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Simti ezitare inainte de a fi de acord</strong><em>semnal subtil</em></div>
+                  <div class="d">Inainte spuneai "da" automat. Acum te opresti si te intrebi de ce esti de acord. Acea pauza este claritatea la lucru.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Prefacatoria te epuizeaza</strong><em>cost energetic</em></div>
+                  <div class="d">Ce inainte parea inofensiv acum se simte necinestit — nu fata de altii, ci fata de tine. Autotradadrea devine mai greu de tolerat.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Observi cand cuvintele nu se potrivesc cu sentimentele</strong><em>constiinta activa</em></div>
+                  <div class="d">Simti imediat cand spui ceva ce nu simti. Distanta dintre exterior si interior devine vizibila si incomoda.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Taci mai mult decat inainte</strong><em>schimbare naturala</em></div>
+                  <div class="d">Nu din frica, ci din constiinta. Asculti mai mult. Raspunzi mai putin. Linistea nu mai este evitare — este alegere.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Unele conexiuni s-au schimbat</strong><em>filtrare naturala</em></div>
+                  <div class="d">Nu ai rupt relatii — dar unele s-au racit natural. Cele care au ramas nu necesita performanta din partea ta.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Preferi calmul in locul intensitatii</strong><em>maturitate emotionala</em></div>
+                  <div class="d">Inainte cautai entuziasm. Acum respecti stabilitatea. Cand ceva e corect, se simte calm — nu incantator.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ai incredere in primul semnal</strong><em>calibrare interna</em></div>
+                  <div class="d">Nu mai ai nevoie sa te convingi. Cand ceva e gresit, simti imediat. Cand ceva e corect, simti liniste. Ai incredere in acel semnal.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Nu mai urmaresti sa fii pe placul tuturor</strong><em>eliberare</em></div>
+                  <div class="d">Nu mai corectezi neintelegerile imediat. Nu mai urmaresti sa fii placut. Nu mai suprajustifici limitele tale.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculeaza scorul de claritate</button>
+              <button class="btn" id="resetBtn">Reseteaza lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta nu este o evaluare clinica. Este un instrument de reflectie. Daca ai bifat mai mult de jumatate, esti probabil in procesul activ al clarificarii de sine — un proces care nu se termina, ci se adanceste.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Coerenta vs incredere">
+          <div class="cardHeader">
+            <h2>Coerenta, nu incredere in sine</h2>
+            <div class="chip">ce confunda oamenii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ceea ce oamenii confunda cu increderea in sine este de fapt <b>coerenta</b>: experienta ta interioara
+              se potriveste cu comportamentul tau exterior. Acea aliniere elimina tensiunea interna.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Dormi mai bine</h3>
+                <p>Nu pentru ca viata e mai usoara, ci pentru ca nu mai esti impartit interior. Nu te mai lupti cu tine insuti.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">beneficiu fizic</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Gandesti mai clar</h3>
+                <p>Energia pe care o foloseai pentru gestionarea aparentelor este acum disponibila pentru gandire reala.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(122,215,255,.3);color:var(--cyan)">beneficiu cognitiv</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Te recuperezi mai repede dupa dezamagiri</h3>
+                <p>Nu pentru ca nu te doare, ci pentru ca nu mai adaugi autotradadre peste durere.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">rezilienta</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="viz" style="padding:14px">
+              <div class="small" style="margin-bottom:10px">Ecuatia finala a claritatii:</div>
+              <div class="hallmarks">
+                <div class="pill"><span>Claritate de sine</span><span class="tag">input</span></div>
+                <div class="pill"><span>Coerenta interioara</span><span class="tag">proces</span></div>
+                <div class="pill"><span>Usurare (nu iluminare)</span><span class="tag">rezultat</span></div>
+              </div>
+              <div class="hr"></div>
+              <div class="small">
+                Consecinta reala a clarificarii de sine nu este superioritatea sau iluminarea. Este <b>usurarea</b> — eliberarea de efortul constant al nealinierii.
+                Odata ce simti aceasta usurare, prefacatoria devine inutila. Nu interzisa — inutila. Nu iti mai ofera nimic.
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acesta este argumentul final: nu este vorba despre a deveni o persoana "mai buna". Este vorba despre a inceta sa porti ceva ce nu a fost niciodata al tau. Adevarul se simte mai usor decat performanta pe care o duceai. Si odata ce simti acea usurare, nu exista drum inapoi.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: The progression - from pretending to authenticity -->
+      <section class="card" aria-label="Progresia completa">
+        <div class="cardHeader">
+          <h2>Progresia completa: de la prefacatorie la autenticitate</h2>
+          <div class="chip">harta intregului proces</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Prefacatoria nu se prabuseste dintr-odata</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Se estompeaza treptat. Nu pentru ca iei o decizie, ci pentru ca sistemul tau nu o mai sustine.
+                La inceput, inca incerci: zambesti cand nu simti, esti de acord cand ceva nu se potriveste. Dar experienta s-a schimbat.
+                Pretinderea se simte acum <b>puternica</b> — nu mai e invizibila.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Oboseala devine profesorul tau</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Incetezi sa te intrebi "E gresit asta?" si incepi sa te intrebi "De ce ma epuizeaza asta?"
+                Oboseala este onesta. Nu argumenteaza. Nu negociaza. Iti spune pur si simplu ce nu se mai potriveste.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Viata se schimba in liniste</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Incetezi sa reactionezi automat. Te opresti inainte de a raspunde. <b>Simti</b> deciziile in loc sa te grabesti.
+                Nu pentru ca esti nesigur, ci pentru ca esti precis. Cand ceva e gresit, o simti imediat.
+                Cand ceva e corect, se simte <b>calm</b>.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Increderea inlocuieste prefacatoria</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu increderea in sine — <b>increderea in semnalele tale</b>. Ai incredere ca disconfortul este informatie.
+                Ca ezitarea inseamna ceva. Ca tacerea este uneori mai inteleapta decat explicatia.
+                Pe masura ce aceasta incredere creste, viata ta devine mai putin aglomerata — nu goala, ci <b>filtrata</b>.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala: de ce nu exista drum inapoi</strong><span class="hint">click pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Nu pentru ca esti prizonierul adevarului, ci pentru ca adevarul se simte mai usor decat performanta pe care o duceai.
+                Odata ce simti aceasta usurare, prefacatoria devine nu interzisa, ci <b>inutila</b>.
+                Nu iti mai ofera nimic. Si cand ceva inceteaza sa iti ofere ceva, il lasi sa plece in mod natural.
+              </p>
+              <p style="margin-top:8px">
+                Odata ce te vezi clar, nu pierzi nimic real. Doar incetezi sa porti ceea ce nu a fost niciodata al tau.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta comentariul"</h2>
+          <div class="chip">interpretare vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata aceasta pagina, casetele violet (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            ce inseamna un concept, cum sa il interpretezi, ce nuante exista.
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Comuta comentariul" din partea de sus pentru a ascunde/afisa
+            toate casetele de comentariu dintr-odata. Astfel poti alterna intre "ce spune textul" si "ce inseamna cu adevarat".
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si disclaimer:</b> Acest infografic interactiv a fost creat pentru a traduce vizual un text despre claritatea de sine si autenticitate.
+        Nu este sfat medical sau psihologic. Vizualizarile, simulatorul si comentariile sunt instrumente conceptuale care te ajuta sa reflectezi asupra ideilor prezentate,
+        nu inlocuitoare pentru terapie sau ghidare profesionala.
+      </p>
+      <p style="margin-top:10px">
+        Pentru explorare mai profunda: cauta lucrari despre autenticitate, auto-cunoastere, si psihologia sinelui de autori precum Carl Rogers, Brene Brown sau Irvin Yalom.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Energy Distribution Simulator
+    // ──────────────────────────────────────────────────────
+    const claritySlider = document.getElementById('claritySlider');
+    const pressureSlider = document.getElementById('pressureSlider');
+    const clarityReadout = document.getElementById('clarityReadout');
+    const pressureReadout = document.getElementById('pressureReadout');
+
+    function renderEnergy() {
+      const clarity = parseInt(claritySlider.value) / 100;
+      const pressure = parseInt(pressureSlider.value) / 100;
+
+      clarityReadout.textContent = `${claritySlider.value}%`;
+      pressureReadout.textContent = `${pressureSlider.value}%`;
+
+      const maxW = 460;
+
+      // Pretending costs (decrease with clarity, increase with pressure)
+      const pretendBase = 1 - clarity;
+      const pretendMod = pretendBase * (0.5 + pressure * 0.5);
+
+      const managing = Math.round(pretendMod * 85 + 10);
+      const explaining = Math.round(pretendMod * 70 + 8);
+      const softening = Math.round(pretendMod * 75 + 5);
+      const anticipating = Math.round(pretendMod * 80 + 7);
+
+      // Authenticity gains (increase with clarity)
+      const authBase = clarity;
+      const presence = Math.round(authBase * 80 + 15);
+      const calm = Math.round(authBase * 85 + 10);
+      const available = Math.round(authBase * 90 + 8);
+
+      function setBar(id, pct) {
+        const bar = document.getElementById(id);
+        const txt = document.getElementById(id + 't');
+        const w = Math.round((pct / 100) * maxW);
+        bar.setAttribute('width', w);
+        txt.textContent = pct + '%';
+        txt.setAttribute('x', 240 + w + 8);
+      }
+
+      setBar('bar1', managing);
+      setBar('bar2', explaining);
+      setBar('bar3', softening);
+      setBar('bar4', anticipating);
+      setBar('bar5', presence);
+      setBar('bar6', calm);
+      setBar('bar7', available);
+    }
+
+    claritySlider.addEventListener('input', renderEnergy);
+    pressureSlider.addEventListener('input', renderEnergy);
+    renderEnergy();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', () => {
+      document.getElementById('checkSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariul este vizibil' : 'Comentariul este ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Claritate avansata. Te vezi pe tine insuti cu o onestitate remarcabila. Autenticitatea a devenit naturala.`;
+      else if (pct >= 60) msg = `${pct}% – Claritate in crestere. Esti in procesul activ al descoperirii de sine. Prefacatoria devine din ce in ce mai grea.`;
+      else if (pct >= 40) msg = `${pct}% – Inceputurile claritatii. Ai inceput sa observi nealinierile. Procesul este in desfasurare.`;
+      else msg = `${pct}% – Inca in zona de confort. Poate ca ai momente de claritate, dar prefacatoria este inca confortabila. Este ok — fiecare proces are ritmul sau.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tau de claritate:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

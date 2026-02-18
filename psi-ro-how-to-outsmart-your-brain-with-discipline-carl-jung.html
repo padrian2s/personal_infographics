@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cum sa-ti depasesti creierul prin disciplina — Carl Jung | Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv despre disciplina si psihologia jungiana: de ce forta nu functioneaza, cum lucreaza inconstientul si cum sa proiectezi schimbarea in loc sa o fortezi." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,179,138,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(187,167,255,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--orange)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--cyan), var(--orange));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Resistance meter */
+    .resMeter{
+      display:flex;gap:0;border-radius:12px;overflow:hidden;height:36px;
+      border:1px solid rgba(255,255,255,.12);
+      margin-top:10px;
+    }
+    .resMeter > div{
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--muted);
+      transition: all .4s ease;
+    }
+
+    /* Scenario cards */
+    .scenario{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:14px;
+      cursor:pointer;
+      transition: all .2s ease;
+    }
+    .scenario:hover{
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+    }
+    .scenario h4{margin:0 0 6px;font-size:13px}
+    .scenario p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+    .scenario .reaction{
+      margin-top:8px;padding:8px 10px;
+      border-radius:12px;
+      background:rgba(0,0,0,.15);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px;color:var(--faint);
+      display:none;
+    }
+    .scenario.open .reaction{display:block}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,179,138,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(187,167,255,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Brain-like abstract shape -->
+            <path d="M120,160 C160,40 260,30 310,100 C340,140 380,80 420,110 C460,140 480,60 500,80" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M80,130 C140,180 200,50 280,140 C330,190 390,120 460,150" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".5" />
+            <!-- Gear/structure dots -->
+            <circle cx="310" cy="100" r="12" fill="rgba(255,255,255,.5)" />
+            <circle cx="200" cy="80" r="7" fill="rgba(122,215,255,.5)" />
+            <circle cx="400" cy="120" r="8" fill="rgba(255,179,138,.45)" />
+            <circle cx="140" cy="140" r="6" fill="rgba(187,167,255,.45)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiana &bull; disciplina &bull; design comportamental</div>
+          <h1>Cum sa-ti depasesti creierul prin disciplina: perspectiva lui Carl Jung</h1>
+          <p class="subtitle">
+            Jung credea ca mintea nu poate fi cucerita asa cum cuceresti un dusman. Psihicul nu e ceva de dominat, ci ceva de inteles, ascultat si integrat.
+            Aceasta pagina exploreaza de ce <b>forta nu functioneaza</b> si cum sa proiectezi schimbarea in loc sa o fortezi.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la diagrama rezistentei</button>
+            <button class="btn" id="jumpDesign">Salt la design comportamental</button>
+            <button class="btn" id="toggleNotes">Comuta comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei-cheie sumarizate">
+          <div class="stat">
+            <div class="label">Problema reala</div>
+            <div class="value">Nu lipsa de vointa</div>
+            <div class="note">Ci o neintelegere a felului in care mintea functioneaza de fapt.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Inconstientul</div>
+            <div class="value">Actioneaza primul</div>
+            <div class="note">Intentia constienta vine mai tarziu, adesea prea tarziu.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Solutia</div>
+            <div class="value">Proiecteaza, nu forta</div>
+            <div class="note">Mediul si structura conteaza mai mult decat vointa bruta.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Rezultatul</div>
+            <div class="value">Disciplina devine invizibila</div>
+            <div class="note">Cand cine esti si ce faci se aliniaza, efortul scade.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Mitul disciplinei -->
+      <section class="card" aria-label="Mitul disciplinei">
+        <div class="cardHeader">
+          <h2>Mitul disciplinei: "Daca ai vrea cu adevarat, ai face"</h2>
+          <div class="chip"><b>Mit:</b> vointa = caracter</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Probabil ca porti de mult timp o credinta care suna cam asa: <b>"Daca ai vrea cu adevarat, ai face."</b> Daca ai avea mai multa disciplina, viata ta ar arata diferit. Aceasta credinta pare atat de evidenta incat rareori e pusa sub semnul intrebarii.
+              </p>
+              <p class="muted">
+                Apare in momente obisnuite. Te trezesti dimineata. Camera e inca intunecata. Telefonul e chiar langa tine. Planificai sa te trezesti devreme. Dar inainte sa realizezi ce se intampla, mana ta ajunge la telefon. Notificari, mesaje, scroll. 10 minute trec, apoi 20.
+              </p>
+              <p class="muted">
+                Si undeva in fundal, o voce familiara apare: <i>"Ce e in neregula cu tine? De ce nu poti sa te ridici ca alti oameni?"</i> Acea voce se simte ca onestitate, dar nu este. E o interpretare pusa peste un raspuns biologic.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Creierul tau, inca pe jumatate adormit, a cautat stimulare si confort fiindca exact asa e proiectat sa faca in stari de energie scazuta. Inconstientul nu-i pasa de planurile tale. Ii pasa de reglarea energiei si emotiilor.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Credinte false despre disciplina">
+                <div class="small" style="margin-bottom:10px">Credinte comune care saboteaza schimbarea:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>"Daca vreau destul, voi face"</span><span class="tag">mit</span></div>
+                  <div class="pill"><span>"Sunt lenes de la natura"</span><span class="tag">eticheta</span></div>
+                  <div class="pill"><span>"Maine va fi diferit"</span><span class="tag">iluzie</span></div>
+                  <div class="pill"><span>"Trebuie doar sa ma fortez"</span><span class="tag">forta</span></div>
+                  <div class="pill"><span>"Altii pot, deci si eu ar trebui"</span><span class="tag">comparatie</span></div>
+                  <div class="pill"><span>"Lipsa de disciplina = esec moral"</span><span class="tag">vinovatie</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Fiecare din aceste credinte transforma o problema de <b>design</b> intr-o problema de <b>caracter</b>. Jung ar spune: nu esti defect, esti doar neinteles.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cum functioneaza de fapt creierul -->
+      <section class="row">
+        <div class="card" aria-label="Cum lucreaza inconstientul">
+          <div class="cardHeader">
+            <h2>Cum functioneaza de fapt creierul tau</h2>
+            <div class="chip">inconstientul actioneaza primul</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung ti-ar reaminti ca inconstientul actioneaza mereu primul. Intentia constienta vine mai tarziu si adesea prea tarziu. Ideea moderna de disciplina presupune ca mintea constienta e la conducere, ca tu dai o instructiune si restul tau ar trebui sa se supuna. Dar experienta traita spune altceva.
+            </p>
+
+            <div class="flow" aria-label="Ce se intampla de fapt">
+              <div class="flowNode">
+                <h3>1) Te asezi la laptop cu un scop clar</h3>
+                <p>Ecranul straluceste. Deschizi documentul. Cateva secunde, totul e bine.</p>
+                <div class="meta"><span class="badge">intentie</span><span class="badge">start</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Degetele deviaza</h3>
+                <p>Un tab nou se deschide. Social media, stiri, un video pe care nu planificai sa-l urmaresti. Si din nou, aceeasi judecata apare.</p>
+                <div class="meta"><span class="badge">distragere</span><span class="badge">automatism</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Te etichetezi: distras, nedisciplinat</h3>
+                <p>Dar observa ce s-a intamplat de fapt: nu incercai sa te sabotezi. <b>Raspundeai la un disconfort subtil.</b> Sarcina din fata ta se simtea neclara, dificila sau goala emotional.</p>
+                <div class="meta"><span class="badge">judecata</span><span class="badge">autocritica</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Inconstientul a redirectionat energia</h3>
+                <p>Inconstientul a inregistrat asta ca o amenintare la echilibru si te-a redirectionat linistit spre ceva mai usor. Nu a cerut permisiunea. Nu s-a anuntat. Pur si simplu s-a intamplat.</p>
+                <div class="meta"><span class="badge">protectie</span><span class="badge">redirectionare</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung a explicat ca ceea ce nu faci constient se va exprima oricum, adesea in moduri care te confuza sau te frustreaza. Cand disciplina e incadrata ca un esec moral, rezistenta creste si mai mult. Psihicul nu suporta sa fie rusinat.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="vizSection" aria-label="Diagrama rezistentei">
+          <div class="cardHeader">
+            <h2>Paradoxul fortei: cu cat impingi mai tare, cu atat rezistenta creste</h2>
+            <div class="chip"><b>Jung:</b> forta creeaza rezistenta</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              De aceea disciplina bazata pe forta creeaza un paradox. Cu cat impingi mai tare, cu atat mai multa rezistenta generezi. Poti reusi pe termen scurt, dar costul e mare. Eventual, psihicul se revolta, nu din rautate, ci din autoprotectie.
+            </p>
+
+            <div class="viz" aria-label="Diagrama fortei vs. rezistentei">
+              <svg viewBox="0 0 980 350" role="img" id="resistSvg">
+                <defs>
+                  <linearGradient id="forceGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.7)" />
+                    <stop offset="1" stop-color="rgba(255,122,153,.7)" />
+                  </linearGradient>
+                  <linearGradient id="resistGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,179,138,.5)" />
+                    <stop offset="1" stop-color="rgba(187,167,255,.7)" />
+                  </linearGradient>
+                  <filter id="softR" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="980" height="350" fill="rgba(0,0,0,.04)"/>
+
+                <!-- Axes -->
+                <g opacity=".8">
+                  <path d="M80 30 L80 290 L920 290" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none"/>
+                </g>
+                <text x="80" y="316" font-size="12" fill="rgba(255,255,255,.55)" font-family="system-ui">Nivel scazut de forta</text>
+                <text x="800" y="316" font-size="12" fill="rgba(255,255,255,.55)" font-family="system-ui">Nivel ridicat de forta</text>
+                <text x="20" y="160" font-size="12" fill="rgba(255,255,255,.55)" font-family="system-ui" transform="rotate(-90 20 160)">Rezultat</text>
+
+                <g filter="url(#softR)">
+                  <!-- Forta curve (starts effective, then plateaus/drops) -->
+                  <path id="forcePath" d="" fill="none" stroke="url(#forceGrad)" stroke-width="4" stroke-linecap="round"/>
+                  <!-- Resistance curve (grows with force) -->
+                  <path id="resistPath" d="" fill="none" stroke="url(#resistGrad)" stroke-width="4" stroke-linecap="round"/>
+                  <!-- Design approach (gentle upward) -->
+                  <path id="designPath" d="" fill="none" stroke="rgba(117,240,182,.7)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6"/>
+                </g>
+
+                <g font-family="system-ui" font-size="12" fill="rgba(255,255,255,.70)">
+                  <text x="700" y="100" fill="rgba(255,122,153,.8)">Rezistenta interioara</text>
+                  <text x="700" y="180" fill="rgba(122,215,255,.8)">Rezultat prin forta</text>
+                  <text x="700" y="230" fill="rgba(117,240,182,.8)">Rezultat prin design</text>
+                </g>
+              </svg>
+
+              <div class="legend">
+                <div class="key"><span class="sw" style="background: rgba(122,215,255,.8)"></span> Rezultat prin forta (se plafoneaza)</div>
+                <div class="key"><span class="sw" style="background: rgba(255,122,153,.8)"></span> Rezistenta interioara (creste)</div>
+                <div class="key"><span class="sw" style="background: rgba(117,240,182,.8)"></span> Rezultat prin design (creste constant)</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="control">
+                <label>
+                  <span>Nivel de forta aplicata</span>
+                  <span class="readout" id="forceReadout">50%</span>
+                </label>
+                <input id="forceSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">Mai multa forta = mai multa rezistenta. Observa cum curba rosie creste.</div>
+              </div>
+              <div class="control">
+                <label>
+                  <span>Nivel de design al mediului</span>
+                  <span class="readout" id="designReadout">50%</span>
+                </label>
+                <input id="designSlider" type="range" min="0" max="100" value="50" />
+                <div class="small" style="margin-top:8px">Mai mult design = crestere constanta, fara epuizare.</div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest simulator e conceptual. Punctul esential: forta produce rezultate pe termen scurt dar genereaza rezistenta crescatoare. Designul mediului produce rezultate mai lente initial, dar sustenabile si fara epuizare.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ciclul eroziunii increderii in sine -->
+      <section class="card" aria-label="Ciclul eroziunii">
+        <div class="cardHeader">
+          <h2>Ciclul eroziunii increderii in sine</h2>
+          <div class="chip">de ce te simti "nesigur pe tine"</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" aria-label="Diagrama ciclului vicios">
+            <svg viewBox="0 0 980 320" role="img">
+              <defs>
+                <linearGradient id="cyc1" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,122,153,.4)" />
+                  <stop offset="1" stop-color="rgba(255,210,122,.4)" />
+                </linearGradient>
+                <linearGradient id="cyc2" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,210,122,.4)" />
+                  <stop offset="1" stop-color="rgba(255,122,153,.4)" />
+                </linearGradient>
+                <filter id="cycSoft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="8" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="320" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#cycSoft)">
+                <rect x="40" y="50" width="300" height="90" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.25)" stroke-width="2"/>
+                <text x="62" y="84" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700" font-family="system-ui">Promisiune + Presiune</text>
+                <text x="62" y="108" font-size="12" fill="rgba(255,255,255,.65)" font-family="system-ui">"Maine va fi diferit. Ma voi forta."</text>
+                <text x="62" y="126" font-size="11" fill="rgba(255,122,153,.7)" font-family="system-ui">Asteptari nerealiste + autocritica</text>
+
+                <rect x="640" y="50" width="300" height="90" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,210,122,.25)" stroke-width="2"/>
+                <text x="662" y="84" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700" font-family="system-ui">Esec + Vinovatie</text>
+                <text x="662" y="108" font-size="12" fill="rgba(255,255,255,.65)" font-family="system-ui">"Nu am reusit din nou. Ce e gresit cu mine?"</text>
+                <text x="662" y="126" font-size="11" fill="rgba(255,210,122,.7)" font-family="system-ui">Eroziunea increderii in sine</text>
+
+                <path d="M340 95 C420 40, 560 40, 640 95" fill="none" stroke="url(#cyc1)" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+                <path d="M640 140 C560 200, 420 200, 340 140" fill="none" stroke="url(#cyc2)" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+
+                <text x="460" y="60" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle" font-family="system-ui">Incercare prin forta</text>
+                <text x="460" y="212" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle" font-family="system-ui">Noua promisiune + mai multa presiune</text>
+
+                <rect x="200" y="240" width="580" height="60" rx="16" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+                <text x="490" y="268" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700" text-anchor="middle" font-family="system-ui">Inconstientul nu mai ia planurile in serios</text>
+                <text x="490" y="286" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle" font-family="system-ui">Experienta l-a invatat ca planurile sunt urmate de presiune, vinovatie sau epuizare.</text>
+              </g>
+            </svg>
+          </div>
+
+          <p class="muted" style="margin-top:12px">
+            Tragedia este ca aceasta lupta erodeaza incet increderea in sine. De fiecare data cand nu reusesti sa duci la capat, te simti putin mai putin de incredere pentru tine insuti. Si cand nu mai ai incredere in propriile intentii, disciplina devine si mai grea.
+          </p>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung credea ca schimbarea reala incepe in momentul in care nu mai intrebi "de ce sunt atat de slab?" si incepi sa intrebi "ce parte din mine este ignorata?" Rezistenta nu e dusmanul. Este informatie.
+          </div>
+        </div>
+      </section>
+
+      <!-- Mediul conteaza + scenarii interactive -->
+      <section class="row">
+        <div class="card" id="designSection" aria-label="Design comportamental">
+          <div class="cardHeader">
+            <h2>Mediul: profesorul tau tacit</h2>
+            <div class="chip">proiecteaza, nu forta</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Odata ce nu te mai invinuiesti, atentia se muta natural in afara. Incepi sa observi cat de mult comportamentul tau depinde de lumea din jur. Jung intelegea ca psihicul e profund modelat de mediul sau: simboluri, spatii, rutine si ritmuri vorbesc direct inconstientului.
+            </p>
+
+            <div class="small" style="margin-bottom:10px">Apasa pe fiecare scenariu pentru a vedea reactia psihicului:</div>
+
+            <div class="flow">
+              <div class="scenario" onclick="this.classList.toggle('open')">
+                <h4>Scenariu: telefonul langa pat</h4>
+                <p>Telefonul e la indemana. Creierul tau a evoluat sa observe si sa raspunda la stimulii din apropiere.</p>
+                <div class="reaction">
+                  <b>Reactia psihicului:</b> Mana se intinde automat. Nu e lipsa de disciplina, e biologie. <b>Solutie:</b> Lasa telefonul in alta camera in seara precedenta.
+                </div>
+              </div>
+
+              <div class="scenario" onclick="this.classList.toggle('open')">
+                <h4>Scenariu: biroul dezordonat</h4>
+                <p>Spatiul de lucru e plin de obiecte, hartii, distractii vizuale.</p>
+                <div class="reaction">
+                  <b>Reactia psihicului:</b> Mintea oglindeste dezordinea. Inconstientul e deja suprasolicitat inainte sa incepi. <b>Solutie:</b> Curata biroul si deschide documentul de lucru inainte sa te asezi.
+                </div>
+              </div>
+
+              <div class="scenario" onclick="this.classList.toggle('open')">
+                <h4>Scenariu: seara dupa o zi lunga</h4>
+                <p>Vii acasa obosit. Umerii se lasa in momentul in care te asezi pe canapea. Aveai intentia de a face sport sau a citi.</p>
+                <div class="reaction">
+                  <b>Reactia psihicului:</b> Sistemul nervos cauta odihna si familiaritate dupa efort. Nu intelege auto-imbunatatirea pe termen lung. Intelege usurarea. <b>Solutie:</b> Rutina de tranzitie: schimba hainele, prepara ceva simplu, paseste afara un minut.
+                </div>
+              </div>
+
+              <div class="scenario" onclick="this.classList.toggle('open')">
+                <h4>Scenariu: sarcina vaga de lucru</h4>
+                <p>Deschizi laptopul cu intentia de a fi productiv, dar sarcina e nedefinita.</p>
+                <div class="reaction">
+                  <b>Reactia psihicului:</b> Inconstientul evita ambiguitatea. Prefera cai cunoscute. <b>Solutie:</b> Sparge sarcina in ceva ce poate fi inceput fara gandire. Cand calea e evidenta, rezistenta scade.
+                </div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observa cat de diferit se simte asta fata de a te forta. Nu exista argument interior, nici autocritica, doar miscare pe o cale familiara. Jung ar spune ca asa prefera psihicul sa se schimbe: bland, indirect, fara umilinta.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Stivuirea obiceiurilor">
+          <div class="cardHeader">
+            <h2>Stivuirea obiceiurilor: ritm, nu forta</h2>
+            <div class="chip">secvente familiare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Stivuirea obiceiurilor functioneaza fiindca ataseaza un comportament nou la ceva ce deja faci. Inconstientul iubeste secventele. Gaseste confort in ritm. In timp, noul comportament se simte natural fiindca nu mai sta singur.
+            </p>
+
+            <div class="checklist" id="habitStack">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dupa ce imi spal dintii</strong><em>dimineata</em></div>
+                  <div class="d">Fac 2 minute de intinderi. Corpul se trezeste, rutina e ancorta de ceva ce oricum fac.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dupa ce imi fac cafeaua</strong><em>dimineata</em></div>
+                  <div class="d">Deschid jurnalul si scriu 3 randuri. Nu e mult, dar e suficient ca sa deschida un canal.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dupa ce ajung la birou</strong><em>lucru</em></div>
+                  <div class="d">Documentul de lucru e deja deschis (l-am pregatit aseara). Incep fara decizie.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Dupa cina</strong><em>seara</em></div>
+                  <div class="d">O plimbare scurta de 10 minute in loc de canapea. Rutina de tranzitie intre activitate si odihna.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Inainte de culcare</strong><em>seara</em></div>
+                  <div class="d">Telefonul merge in alta camera. Citesc 5 pagini. Secventa inlocuieste scrollul.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculeaza scorul de aliniere</button>
+              <button class="btn" id="resetBtn">Reseteaza lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung ar descrie asta ca o creare de armonie intre intentia interioara si structura exterioara. Cand mediul sustine comportamentul, inconstientul coopereaza. Cand nu, nicio cantitate de vointa nu poate sustine efortul pe termen lung.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Identitate si individuatie -->
+      <section class="card" aria-label="Identitate si individuatie">
+        <div class="cardHeader">
+          <h2>Identitate: inconstientul urmareste ce faci, nu ce promiti</h2>
+          <div class="chip"><b>Jung:</b> individuatie</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Jung credea ca cele mai profunde schimbari de comportament provin din schimbari de <b>identitate</b>, nu identitatea pe care o declari, ci cea care se formeaza linistit prin experienta repetata. Inconstientul urmareste ce faci, nu ce promiti. In timp, construieste o poveste despre cine esti.
+              </p>
+              <p class="muted">
+                Poate iti spui ca esti cineva care se lupta cu consistenta. Cineva care incepe dar nu termina. Aceste etichete par faptice, dar sunt de fapt <b>rezumate ale tiparelor trecute</b>. Si tiparele se pot schimba.
+              </p>
+              <p class="muted">
+                Cand incepi sa actionezi diferit, chiar si in moduri mici, inconstientul ia nota. Povestea interioara se actualizeaza. Nu mai esti cineva care se lupta mereu cu sine. Esti cineva care urmeaza o structura blanda.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 400 320" role="img">
+                  <defs>
+                    <filter id="idGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="8" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#idGlow)">
+                    <!-- Inainte -->
+                    <rect x="20" y="20" width="160" height="130" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(255,122,153,.25)" stroke-width="2"/>
+                    <text x="40" y="50" font-size="14" fill="rgba(255,122,153,.85)" font-weight="700" font-family="system-ui">Inainte</text>
+                    <text x="40" y="72" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Sunt nedisciplinat"</text>
+                    <text x="40" y="90" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Incep dar nu termin"</text>
+                    <text x="40" y="108" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Ma lupt mereu cu mine"</text>
+                    <text x="40" y="134" font-size="10" fill="rgba(255,122,153,.6)" font-family="system-ui">Etichete = rezumate ale trecutului</text>
+
+                    <!-- Dupa -->
+                    <rect x="220" y="20" width="160" height="130" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(117,240,182,.25)" stroke-width="2"/>
+                    <text x="240" y="50" font-size="14" fill="rgba(117,240,182,.85)" font-weight="700" font-family="system-ui">Dupa</text>
+                    <text x="240" y="72" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Urmez o rutina simpla"</text>
+                    <text x="240" y="90" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Mediul ma sustine"</text>
+                    <text x="240" y="108" font-size="11" fill="rgba(255,255,255,.6)" font-family="system-ui">"Nu e eroism, e usurinta"</text>
+                    <text x="240" y="134" font-size="10" fill="rgba(117,240,182,.6)" font-family="system-ui">Identitate = tipar actualizat</text>
+
+                    <!-- Sageata -->
+                    <path d="M180 85 L220 85" stroke="rgba(255,255,255,.3)" stroke-width="3" stroke-linecap="round"/>
+                    <polygon points="218,78 230,85 218,92" fill="rgba(255,255,255,.3)"/>
+
+                    <!-- Individuatie -->
+                    <rect x="60" y="180" width="280" height="120" rx="20" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.2)" stroke-width="2"/>
+                    <text x="200" y="210" font-size="15" fill="rgba(187,167,255,.9)" font-weight="700" text-anchor="middle" font-family="system-ui">Individuatie (Jung)</text>
+                    <text x="200" y="234" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle" font-family="system-ui">A deveni intreg, nu a forta imbunatatiri</text>
+                    <text x="200" y="256" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle" font-family="system-ui">Cand constiinta si inconstientul sunt aliniate,</text>
+                    <text x="200" y="274" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle" font-family="system-ui">energia curge. Cand sunt in razboi, se scurge.</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung a numit acest proces <b>individuatie</b>: a deveni intreg, nu a forta imbunatatirea. Disciplina in acest sens devine un efect secundar al alinierii. Cand cine esti si ce faci incep sa se potriveasca, efortul scade. Nu te mai tragi inainte. Te misti in directia care se simte coerenta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Viziunea: o seara peste cateva luni -->
+      <section class="card" aria-label="Viziunea viitorului">
+        <div class="cardHeader">
+          <h2>O seara peste cateva luni</h2>
+          <div class="chip">asa arata disciplina cand nu mai e lupta</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Imagineaza-ti o seara peste cateva luni. Vii acasa obosit, dar in loc sa te prabusesti automat, treci printr-o rutina familiara. Schimbi hainele. Pregatesti ceva simplu. Stai cu o carte sau pasesti afara un moment.
+          </p>
+          <p class="muted">
+            Nu e niciun eroism in asta. Doar usurinta. <b>Asa arata disciplina cand nu mai e o lupta.</b>
+          </p>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Usurinta in loc de efort</strong><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">aliniere</span></div>
+              <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--good),var(--cyan))"></i></div>
+              <p>Nu te mai lupti cu tine. Rutinele curg natural din structura pe care ai construit-o.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Incredere in sine restaurata</strong><span class="badge" style="border-color:rgba(122,215,255,.3);color:var(--cyan)">identitate</span></div>
+              <div class="meter"><i style="width:80%;background:linear-gradient(90deg,var(--cyan),var(--violet))"></i></div>
+              <p>Inconstientul a observat tiparele noi. Povestea despre cine esti s-a actualizat.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Rezistenta minima</strong><span class="badge" style="border-color:rgba(187,167,255,.3);color:var(--violet)">armonie</span></div>
+              <div class="meter"><i style="width:20%;background:linear-gradient(90deg,var(--violet),var(--orange))"></i></div>
+              <p>Constiinta si inconstientul nu mai sunt in razboi. Energia curge in loc sa se scurga.</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Disciplina invizibila</strong><span class="badge" style="border-color:rgba(255,179,138,.3);color:var(--orange)">design</span></div>
+              <div class="meter"><i style="width:90%;background:linear-gradient(90deg,var(--orange),var(--good))"></i></div>
+              <p>Nu mai exista ca un concept separat. E doar modul in care traiesti.</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Usurarea din aceasta realizare e profunda. Nu ai fost niciodata stricat. Nu ai fost niciodata lenes. Pur si simplu incercai sa te schimbi intr-un mod pe care psihicul il respinge. Cand nu te mai lupti cu tine si incepi sa proiectezi pentru tine, disciplina devine linistita. Aproape invizibila.
+          </div>
+        </div>
+      </section>
+
+      <!-- Rezumat si teza -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Asadar, care e teza?</h2>
+          <div class="chip"><b>Teza:</b> proiecteaza viata, nu forta disciplina</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Nu esti defect</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Ceea ce ai numit "lipsa de disciplina" nu e un esec personal. E o neintelegere a felului in care mintea functioneaza. Creierul tau face exact ce a fost proiectat sa faca: cauta energie minima, confort si familiaritate.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Rezistenta e informatie, nu dusman</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cand te impiedici, nu intreaba "de ce sunt atat de slab?" ci "ce parte din mine e ignorata?" Rezistenta iti spune ca ceva in mediu sau in abordare nu se potriveste cu felul in care mintea ta functioneaza.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Proiecteaza mai bine, nu forta mai tare</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Elimina frictiunea, creeaza secvente familiare, adapteaza mediul. Cand mediul sustine comportamentul, inconstientul coopereaza. Aceasta e schimbarea durabila.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Intrebarea finala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Intrebarea cu care ramai nu e <i>"cum sa fortez disciplina?"</i> ci <b>"cum sa traiesc in asa fel incat disciplina sa devina inutila?"</b> Ce s-ar schimba daca ai trata rezistenta ca ghid in loc de esec?
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre perspectiva lui Jung</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce un continut narativ care foloseste perspectivele lui Jung intr-un context modern de auto-imbunatatire. Jung nu a vorbit explicit despre "habit stacking" sau "environmental design" in termeni contemporani, dar filozofia sa despre integrarea inconstientului, respectul fata de rezistenta psihica si individuatie se aliniaza profund cu aceste abordari. Trateaza totul de aici ca material de reflectie si aplicare practica, nu ca o prescriptie rigida.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Despre toggle-ul de comentariu -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta comentariul"</h2>
+          <div class="chip">interpretare vs. prezentare</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele albastre (marcate cu <code>data-commentary</code>) ofera comentariu la nivel meta: cat de puternica este afirmatia? Ce inseamna practic? Ce alternative exista?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Comuta comentariul" in partea de sus pentru a ascunde sau arata toate casetele de comentariu simultan.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si precautii:</b> Acest infografic interactiv a fost generat pentru a traduce un continut narativ despre disciplina si psihologia jungiana.
+        Nu este sfat medical sau psihologic. Vizualizarile, simulatorul si comentariul sunt instrumente conceptuale pentru a te ajuta sa gandesti asupra ideilor, nu inlocuitori ai cercetarii sau indrumarii profesionale.
+      </p>
+      <p style="margin-top:10px">
+        Pentru intrebari sau aprofundare: consulta lucrarile originale ale lui Carl Jung despre inconstient, individuatie si psihologia analitica.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Force vs. Resistance Simulator (SVG visualization)
+    // ──────────────────────────────────────────────────────
+    const forceSlider = document.getElementById('forceSlider');
+    const designSlider = document.getElementById('designSlider');
+    const forceReadout = document.getElementById('forceReadout');
+    const designReadout = document.getElementById('designReadout');
+
+    function renderResistance() {
+      const forceLevel = parseInt(forceSlider.value) / 100;
+      const designLevel = parseInt(designSlider.value) / 100;
+
+      forceReadout.textContent = forceSlider.value + '%';
+      designReadout.textContent = designSlider.value + '%';
+
+      const W = 980, H = 350;
+      const padL = 80, padR = 60, padT = 40, padB = 60;
+      const graphW = W - padL - padR;
+      const graphH = H - padT - padB;
+      const points = 50;
+
+      let forcePath = '';
+      let resistPath = '';
+      let designPath = '';
+
+      for (let i = 0; i <= points; i++) {
+        const t = i / points; // 0 to 1
+        const x = padL + t * graphW;
+
+        // Force result: initially rises, then plateaus/drops with high force
+        const forceResult = Math.min(1, t * 2 * (1 + forceLevel * 0.3)) * (1 - t * t * forceLevel * 0.6);
+        const forceY = padT + graphH - forceResult * graphH * 0.8;
+
+        // Resistance: grows exponentially with force
+        const resistance = t * t * (0.3 + forceLevel * 0.7);
+        const resistY = padT + graphH - resistance * graphH * 0.85;
+
+        // Design result: steady upward
+        const designResult = t * (0.3 + designLevel * 0.7);
+        const designY = padT + graphH - designResult * graphH * 0.8;
+
+        const cmd = i === 0 ? 'M' : 'L';
+        forcePath += cmd + x + ',' + forceY + ' ';
+        resistPath += cmd + x + ',' + resistY + ' ';
+        designPath += cmd + x + ',' + designY + ' ';
+      }
+
+      document.getElementById('forcePath').setAttribute('d', forcePath);
+      document.getElementById('resistPath').setAttribute('d', resistPath);
+      document.getElementById('designPath').setAttribute('d', designPath);
+    }
+
+    forceSlider.addEventListener('input', renderResistance);
+    designSlider.addEventListener('input', renderResistance);
+    renderResistance();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpDesign').addEventListener('click', () => {
+      document.getElementById('designSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariu vizibil' : 'Comentariu ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#habitStack input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = pct + '% – Aliniere excelenta! Ai o structura solida care sustine comportamentul.';
+      else if (pct >= 60) msg = pct + '% – Bun inceput. Adauga inca 1-2 secvente la rutina ta.';
+      else if (pct >= 40) msg = pct + '% – Moderat. Alege cele mai usoare secvente si incepe de acolo.';
+      else msg = pct + '% – Mult loc de imbunatatit. Alege o singura secventa si practic-o 7 zile.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tau de aliniere:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#habitStack input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

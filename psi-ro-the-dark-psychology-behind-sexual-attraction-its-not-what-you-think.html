@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Psihologia obscură din spatele atracției sexuale — Nu e ce crezi | Infografic</title>
+  <meta name="description" content="Infografic interactiv despre psihologia profundă a atracției sexuale: proiecția jungiană, anima/animus, tipare inconștiente, de ce intensitatea nu e iubire și cum să recunoști proiecția." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(255,122,153,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--bad), var(--violet)); box-shadow: 0 0 22px rgba(255,122,153,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--bad)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(255,122,153,.7);
+      padding: 10px 12px;
+      background: rgba(255,122,153,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Phase cards */
+    .phaseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+    @media(max-width:740px){.phaseGrid{grid-template-columns:1fr}}
+    .phaseCard{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(0,0,0,.18);padding:14px;text-align:center}
+    .phaseCard .phaseNum{font-size:28px;font-weight:700;margin-bottom:6px}
+    .phaseCard h4{margin:0 0 6px;font-size:14px}
+    .phaseCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Spectrum bar */
+    .spectrum{height:14px;border-radius:99px;background:linear-gradient(90deg,var(--good),var(--warn),var(--bad),var(--violet));margin:10px 0;opacity:.7}
+    .specLabels{display:flex;justify-content:space-between;font-size:11px;color:var(--faint)}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,122,153,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Two overlapping silhouettes / mirrors -->
+            <ellipse cx="220" cy="110" rx="70" ry="85" fill="none" stroke="url(#g1)" stroke-width="3" opacity=".4"/>
+            <ellipse cx="300" cy="110" rx="70" ry="85" fill="none" stroke="url(#g2)" stroke-width="3" opacity=".4"/>
+            <!-- Overlap zone -->
+            <path d="M260,35 C240,60 240,160 260,185 C280,160 280,60 260,35Z" fill="rgba(187,167,255,.12)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+            <!-- Connection lines -->
+            <path d="M180,80 C210,100 250,70 260,90" fill="none" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+            <path d="M340,80 C310,100 270,70 260,90" fill="none" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+            <path d="M200,140 C230,120 250,150 260,130" fill="none" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <path d="M320,140 C290,120 270,150 260,130" fill="none" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <!-- Pulse dots -->
+            <circle cx="260" cy="90" r="8" fill="rgba(255,122,153,.6)"/>
+            <circle cx="220" cy="70" r="5" fill="rgba(187,167,255,.5)"/>
+            <circle cx="300" cy="70" r="5" fill="rgba(122,215,255,.5)"/>
+            <circle cx="260" cy="150" r="6" fill="rgba(255,179,138,.5)"/>
+            <circle cx="200" cy="130" r="4" fill="rgba(255,122,153,.4)"/>
+            <circle cx="320" cy="130" r="4" fill="rgba(117,240,182,.4)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiană &bull; atracție &bull; proiecție &bull; umbra</div>
+          <h1>Psihologia obscură din spatele atracției sexuale — nu e ce crezi</h1>
+          <p class="subtitle">
+            Atracția sexuală rareori se anunță politicos. Nu cere logică, permisiune sau planuri pe termen lung.
+            Acest infografic explorează <b>de ce ești atras de cine ești atras</b> — și de ce răspunsul se află în inconștientul tău, nu în cealaltă persoană.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la simulatorul proiecției</button>
+            <button class="btn" id="jumpFix">Salt la ghidul practic</button>
+            <button class="btn" id="toggleNotes">Comută comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Concepte cheie">
+          <div class="stat">
+            <div class="label">Mecanismul central</div>
+            <div class="value">Proiecția</div>
+            <div class="note">Nu reacționezi la cine sunt ei. Reacționezi la o imagine interioară activată.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Perspectiva Jung</div>
+            <div class="value">Anima / Animus</div>
+            <div class="note">Imaginea interioară inconștientă a opusului — purtătoare de mister și dorință.</div>
+          </div>
+          <div class="stat">
+            <div class="label">De ce intensitatea</div>
+            <div class="value">Familiaritate, nu sănătate</div>
+            <div class="note">Sistemul nervos nu caută ce e sănătos. Caută ce e cunoscut.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Soluția</div>
+            <div class="value">Recunoaște proiecția</div>
+            <div class="note">Când proiecția e recunoscută, vraja se slăbește. Începe maturitatea psihologică.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Ce e atracția cu adevărat -->
+      <section class="card" aria-label="Ce e atracția cu adevărat">
+        <div class="cardHeader">
+          <h2>Ce este atracția sexuală — dincolo de „chimie"</h2>
+          <div class="chip"><b>Cadru:</b> psihologie jungiană</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Atracția sexuală nu se anunță politicos. Vine brusc — ca un impuls în corp, înainte ca mintea să apuce să proceseze.
+                O privire, un ton al vocii, un moment de distanță, și ceva în tine se strânge.
+                Inima bate mai repede. Gândurile se îngustează. Persoana devine importantă <b>mult dincolo de cât știi de fapt despre ea</b>.
+              </p>
+              <p class="muted">
+                Majoritatea numesc asta „chimie". Dar „chimia" e doar un cuvânt pe care îl folosim când nu înțelegem ce se întâmplă sub suprafață.
+                Din perspectiva lui Jung, acest moment <b>nu e deloc aleatoriu</b>. Ce te prinde emoțional nu vine din mintea conștientă —
+                se ridică din inconștient, din straturi ale psihicului formate cu mult înainte să fii capabil de alegere.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Ideea centrală care deranjează: atracția nu e ceva ce <b>decizi</b>. E ceva ce se <b>întâmplă prin tine</b>. Nu ești la conducere — inconștientul tău este. Aceasta e premisa întregii analize jungiene.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Ce ar trebui vs ce se întâmplă">
+                <div class="small" style="margin-bottom:10px">Dacă atracția ar fi rațională vs. cum funcționează de fapt:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Ai fi atras de cei buni cu tine</span><span class="tag" style="color:var(--cyan)">logic</span></div>
+                  <div class="pill"><span>Ai dori pe cei disponibili emoțional</span><span class="tag" style="color:var(--cyan)">logic</span></div>
+                  <div class="pill"><span>Atracția ar crește cu siguranța</span><span class="tag" style="color:var(--cyan)">logic</span></div>
+                  <div class="pill"><span>Ești atras de cei care te confuzionează</span><span class="tag" style="color:var(--bad)">real</span></div>
+                  <div class="pill"><span>Dorința crește când se retrag</span><span class="tag" style="color:var(--bad)">real</span></div>
+                  <div class="pill"><span>Disponibilitatea completă stinge atracția</span><span class="tag" style="color:var(--bad)">real</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proiecția jungiană -->
+      <section class="row">
+        <div class="card" aria-label="Mecanismul proiecției">
+          <div class="cardHeader">
+            <h2>Proiecția: ecranul pe care îl proiectezi</h2>
+            <div class="chip">nu-i vezi; îi simți simbolic</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              În psihologia jungiană, <b>proiecția</b> apare când psihicul plasează material inconștient interior asupra altei persoane.
+              Nu reacționezi la cine sunt ei cu adevărat — reacționezi la o <b>imagine interioară</b> care a fost activată.
+              Persoana devine un ecran pe care inconștientul tău proiectează sens, dor și dorință.
+            </p>
+            <p class="muted">
+              De aceea atracția se simte „fatidică". Jung a observat: când proiecția e cea mai puternică,
+              <b>cunoașterea reală a celeilalte persoane e cea mai slabă</b>. Nu-i vezi clar. Îi simți <b>simbolic</b>.
+              Par mai mari ca viața, încărcați cu semnificație, ca și cum ar purta ceva esențial ce ție îți lipsește.
+            </p>
+
+            <div class="viz" aria-label="Diagrama proiecției">
+              <svg viewBox="0 0 700 300" role="img" aria-label="Mecanismul proiecției jungiene">
+                <defs>
+                  <linearGradient id="pg1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.35)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.35)"/>
+                  </linearGradient>
+                  <linearGradient id="pg2" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(187,167,255,.35)"/>
+                    <stop offset="1" stop-color="rgba(122,215,255,.35)"/>
+                  </linearGradient>
+                  <filter id="psoft" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#psoft)">
+                  <!-- Tu -->
+                  <rect x="30" y="30" width="200" height="110" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(187,167,255,.3)"/>
+                  <text x="52" y="64" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700">Tu (conștient)</text>
+                  <text x="52" y="86" font-size="12" fill="rgba(255,255,255,.65)">Crezi că reacționezi la</text>
+                  <text x="52" y="104" font-size="12" fill="rgba(255,255,255,.65)">persoana reală</text>
+                  <text x="52" y="124" font-size="11" fill="rgba(255,122,153,.7)">De fapt: răspunzi la o imagine</text>
+
+                  <!-- Inconștientul -->
+                  <rect x="30" y="170" width="200" height="100" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="52" y="204" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700">Inconștientul tău</text>
+                  <text x="52" y="226" font-size="12" fill="rgba(255,255,255,.65)">Anima/Animus, complexe,</text>
+                  <text x="52" y="244" font-size="12" fill="rgba(255,255,255,.65)">tipare emoționale vechi</text>
+
+                  <!-- Ecranul / Persoana -->
+                  <rect x="430" y="70" width="240" height="160" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(122,215,255,.3)"/>
+                  <text x="460" y="104" font-size="15" fill="rgba(255,255,255,.90)" font-weight="700">Persoana reală</text>
+                  <text x="460" y="128" font-size="12" fill="rgba(255,255,255,.65)">Funcționează ca un ecran</text>
+                  <text x="460" y="148" font-size="12" fill="rgba(255,255,255,.65)">pe care proiectezi:</text>
+                  <text x="460" y="172" font-size="12" fill="rgba(255,122,153,.8)">sens, dor, dorință,</text>
+                  <text x="460" y="192" font-size="12" fill="rgba(255,122,153,.8)">material emoțional nerezolvat</text>
+                  <text x="460" y="216" font-size="11" fill="rgba(255,255,255,.5)">Cine sunt ei cu adevărat? Încă nu știi.</text>
+
+                  <!-- Arrows -->
+                  <path d="M130 140 L130 170" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-dasharray="4 4"/>
+                  <path d="M230 90 C300 60, 370 60, 430 110" fill="none" stroke="url(#pg1)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+                  <path d="M230 220 C320 250, 380 200, 430 180" fill="none" stroke="url(#pg2)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+                  <text x="305" y="50" font-size="11" fill="rgba(255,255,255,.55)">proiecție conștientă</text>
+                  <text x="305" y="250" font-size="11" fill="rgba(255,255,255,.55)">proiecție inconștientă</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Implicația este profundă: la începutul atracției, <b>nu te relaționezi cu un om real</b> — te relaționezi cu un simbol. De aceea realitatea dezamăgește mai târziu: când proiecția se retrage, ceea ce părea destin devine... uman.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Familiaritatea, nu sănătatea">
+          <div class="cardHeader">
+            <h2>De ce corpul recunoaște intensitatea, nu sănătatea</h2>
+            <div class="chip"><b>Cheie:</b> sistemul nervos caută ce-i cunoscut</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ce recunoaște corpul <b>nu e iubire</b>. Recunoaște <b>familiaritatea</b>.
+              Sistemul nervos nu caută ce e sănătos — caută ce e <b>cunoscut</b>.
+            </p>
+            <p class="muted">
+              Intensitatea pare familiară. Imprevizibilitatea emoțională pare familiară. Distanța amestecată cu validare pare familiară —
+              mai ales dacă iubirea timpurie a fost inconsistentă, condiționată sau a necesitat efort pentru a fi câștigată.
+            </p>
+
+            <div class="flow" aria-label="Cum se activează tiparele">
+              <div class="flowNode">
+                <h3>1) Tipare emoționale vechi (din copilărie)</h3>
+                <p>Modele de atașament formate în relațiile timpurii stau dormante în inconștient. Iubirea condiționată, abandonul, distanța emoțională — toate lasă amprente.</p>
+                <div class="meta"><span class="badge">atașament</span><span class="badge">memorie implicită</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Cineva le oglindește îndeajuns de bine</h3>
+                <p>Când întâlnești pe cineva care oglindește aceste tipare — intens dar distant, care oferă atenție apoi se retrage — dorința se aprinde.</p>
+                <div class="meta"><span class="badge">rezonanță</span><span class="badge" style="color:var(--bad)">activare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Dorința devine misiune</h3>
+                <p>Nu ești atras doar de persoană. Ești atras de <b>posibilitate</b> — psihicul încearcă să completeze ceva neterminat. Dorința se transformă în urgență.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">compulsie</span><span class="badge">nevoie de plenitudine</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small" style="font-style:italic">
+              „Atracția sexuală devine încercarea psihicului de a completa ceva neterminat. Nu ești atras doar de persoană — ești atras de posibilitatea de a te face complet."
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta explică de ce ești atras irezistibil de oameni despre care <b>știi rațional</b> că nu sunt potriviți. Logica aparține minții conștiente. Atracția sexuală trăiește mai adânc — într-un tărâm modelat de simboluri, memorie și material emoțional neterminat.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anima / Animus -->
+      <section class="card" aria-label="Anima și Animus">
+        <div class="cardHeader">
+          <h2>Anima și Animus: imaginea interioară a opusului</h2>
+          <div class="chip">arhetipurile dorului profund</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                În termenii lui Jung, atracția sexuală activează adesea <b>anima</b> (imaginea feminină inconștientă la bărbat) sau
+                <b>animus</b> (imaginea masculină inconștientă la femeie). Această figură interioară poartă profunzime emoțională,
+                mister, vitalitate și semnificație.
+              </p>
+              <p class="muted">
+                Când cineva din exterior seamănă cu această imagine interioară, <b>dorința explodează</b>.
+                Simți că ai întâlnit ceva profund, chiar sacru. Dar nu te relaționezi încă cu un om real —
+                te relaționezi cu un <b>simbol</b>.
+              </p>
+            </div>
+            <div>
+              <div class="phaseGrid" style="grid-template-columns:1fr 1fr">
+                <div class="phaseCard">
+                  <div class="phaseNum" style="color:var(--bad)">A</div>
+                  <h4 style="color:var(--bad)">Anima</h4>
+                  <p>Imaginea feminină inconștientă la bărbat. Poartă emoție, receptivitate, mister. Când e proiectată, femeia pare „magică".</p>
+                </div>
+                <div class="phaseCard">
+                  <div class="phaseNum" style="color:var(--cyan)">A</div>
+                  <h4 style="color:var(--cyan)">Animus</h4>
+                  <p>Imaginea masculină inconștientă la femeie. Poartă acțiune, autoritate, direcție. Când e proiectat, bărbatul pare „destinul".</p>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+              <div class="small">De aceea realitatea dezamăgește: când proiecția se retrage, ce părea destin devine banal. Ce părea irezistibil devine uman.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Jung credea că retragerea proiecției e <b>necesară</b> pentru ca relația reală să înceapă. Dar majoritatea oamenilor nu rămân pentru această etapă — caută sentimentul din nou, la o altă persoană, pe care inconștientul poate proiecta din nou. Așa se repetă tiparul.
+          </div>
+        </div>
+      </section>
+
+      <!-- Simulatorul proiecției -->
+      <section class="card" id="viz" aria-label="Simulatorul proiecției">
+        <div class="cardHeader">
+          <h2>Simulator: intensitatea atracției vs. cunoașterea reală</h2>
+          <div class="chip">interactiv — ajustează parametrii</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Jung a observat un paradox: <b>când proiecția e maximă, cunoașterea reală e minimă</b> — și invers.
+            Pe măsură ce cunoști cu adevărat o persoană, „magia" se diminuează. Acest simulator vizualizează relația inversă
+            dintre proiecție și realitate pe parcursul unei relații.
+          </p>
+
+          <div class="viz" aria-label="Graficul proiecție vs. cunoaștere">
+            <svg viewBox="0 0 980 350" id="projSvg" role="img" aria-label="Curbe: proiecție scade pe măsură ce cunoașterea crește">
+              <rect x="0" y="0" width="980" height="350" fill="rgba(0,0,0,.05)"/>
+              <g opacity=".9">
+                <path d="M70 30 L70 290 L940 290" stroke="rgba(255,255,255,.20)" stroke-width="1.2" fill="none"/>
+              </g>
+              <g id="pGrid"></g>
+              <path id="projArea" fill="rgba(255,122,153,.08)" stroke="none"/>
+              <path id="projCurve" stroke="rgba(255,122,153,.85)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path id="knowCurve" stroke="rgba(122,215,255,.85)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path id="knowCurveAware" stroke="rgba(117,240,182,.7)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="7 7"/>
+              <g font-family="ui-sans-serif, system-ui" font-size="13" fill="rgba(255,255,255,.75)">
+                <text x="70" y="20" fill="rgba(255,255,255,.88)" font-weight="700">Proiecție vs. cunoaștere reală pe parcursul relației</text>
+                <text x="70" y="330" font-size="12" fill="rgba(255,255,255,.62)">Timp in relație</text>
+                <text x="12" y="170" font-size="12" fill="rgba(255,255,255,.62)" transform="rotate(-90 12 170)">Intensitate</text>
+              </g>
+              <g font-family="ui-sans-serif, system-ui" font-size="12" fill="rgba(255,255,255,.70)">
+                <text x="750" y="54">roșu = proiecție</text>
+                <text x="750" y="74">albastru = cunoaștere reală</text>
+                <text x="750" y="94">verde (punctat) = cu conștiență</text>
+              </g>
+            </svg>
+
+            <div class="legend" aria-label="Legendă">
+              <div class="key"><span class="sw" style="background: rgba(255,122,153,.85)"></span> Intensitatea proiecției</div>
+              <div class="key"><span class="sw" style="background: rgba(122,215,255,.85)"></span> Cunoaștere reală a persoanei</div>
+              <div class="key"><span class="sw" style="background: rgba(117,240,182,.7)"></span> Cunoaștere (cu conștiență activă)</div>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="Controale simulator">
+            <div class="control">
+              <label>
+                <span>Nivel de indisponibilitate</span>
+                <span class="readout" id="unavailReadout">60%</span>
+              </label>
+              <input id="unavailSlider" type="range" min="0" max="100" value="60"/>
+              <div class="small" style="margin-top:8px">Cu cât persoana e mai indisponibilă, cu atât proiecția se intensifică mai mult.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Conștiență de sine</span>
+                <span class="readout" id="awarenessReadout">30%</span>
+              </label>
+              <input id="awarenessSlider" type="range" min="0" max="100" value="30"/>
+              <div class="small" style="margin-top:8px">Conștiența accelerează recunoașterea proiecției și reduce „vraja".</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observă cum la un nivel scăzut de conștiență și nivel ridicat de indisponibilitate, proiecția rămâne puternică multă vreme. Dar cu conștiință crescută, linia verde arată cum cunoașterea reală poate fi accelerată. Aceasta e diferența între a fi „posedat" de atracție și a o <b>folosi ca instrument de autocunoaștere</b>.
+          </div>
+        </div>
+      </section>
+
+      <!-- De ce intensitatea e dependentă + dopamina -->
+      <section class="row">
+        <div class="card" aria-label="Atracția ca dependență">
+          <div class="cardHeader">
+            <h2>Cum atracția devine dependentă</h2>
+            <div class="chip"><b>Mecanism:</b> dopamina în „vreau", nu „am"</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Atracția sexuală în acest sens psihologic profund nu e despre conexiune — e despre <b>activare</b>.
+              E alimentată de anticipare, nu de împlinire. De tensiune, nu de siguranță. De dor, nu de intimitate.
+            </p>
+            <p class="muted">
+              <b>Dopamina crește în „vreau", nu în „am".</b> Sistemul nervos rămâne alert, încărcat, viu.
+              Calmul pare plictisitor. Stabilitatea pare goală. Haosul pare <b>semnificativ</b>.
+            </p>
+
+            <div class="riskGrid" aria-label="Semnele atracției-dependentă">
+              <div class="risk">
+                <div class="rTop"><strong>Confuzia excitare / anxietate</strong><span class="badge" style="color:var(--bad)">pericol</span></div>
+                <p>Corpul nu distinge ușor între excitare și anxietate. Ambele accelerează inima, ascuțesc focusul, creează intensitate.</p>
+                <div class="meter"><i style="width:85%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Amplificarea prin distanță</strong><span class="badge" style="color:var(--warn)">paradox</span></div>
+                <p>Cu cât persoana e mai departe emoțional, cu atât proiecția e mai puternică. Absența intensifică fantezia.</p>
+                <div class="meter"><i style="width:78%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Urgența falsă</strong><span class="badge" style="color:var(--warn)">iluzie</span></div>
+                <p>Există un sentiment că „trebuie să se întâmple ceva" — că această conexiune contează mai mult decât permite logica.</p>
+                <div class="meter"><i style="width:72%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Colapsul la disponibilitate</strong><span class="badge" style="color:var(--violet)">dizolvare</span></div>
+                <p>Când persoana devine complet disponibilă, ceva interior se liniștește sau chiar dispare. „Magia" se stinge.</p>
+                <div class="meter"><i style="width:65%"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Aceste mecanisme nu sunt semnul unei relații profunde — sunt semnul unei <b>proiecții active</b>.
+              Confuzia dintre activare și intimitate, dintre obsesie și profunzime, e principala capcană.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung credea că atâta timp cât proiecția nu e recunoscută, rămâi <b>posedat</b> de ea. Persoana pare irezistibilă. Dorința pare incontrolabilă. Crezi că ți se întâmplă ceva. Dar ce se întâmplă de fapt e că inconștientul tău a preluat conducerea — și nu-i pasă de rezultate. Îi pasă doar de expresie.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Cum proiecția creează atașament">
+          <div class="cardHeader">
+            <h2>Cum proiecția se transformă în atașament</h2>
+            <div class="chip">identitatea se reorganizează</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ce face atracția sexuală atât de greu de rupt nu e sentimentul în sine — ci <b>identitatea pe care o construiește în tăcere în jurul tău</b>.
+              Jung credea că atunci când proiecția e activă, nu doar dorești cealaltă persoană —
+              te <b>reorganizezi în jurul ei</b>.
+            </p>
+
+            <div class="flow" aria-label="Procesul de atașament prin proiecție">
+              <div class="flowNode">
+                <h3>1) Dispoziția ta depinde de prezența lor</h3>
+                <p>Starea ta de spirit urcă și coboară în funcție de atenția pe care ți-o acordă. Fără să-ți dai seama, echilibrul tău interior e cedat altcuiva.</p>
+                <div class="meta"><span class="badge">dependență emoțională</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Persoana devine un punct de referință</h3>
+                <p>Gândurile se repetă. Fantasmele se derulează în buclă. Persoana devine centrul psihicului tău — nu pentru că ai ales-o conștient, ci pentru că inconștientul a ridicat-o la rang de <b>simbol</b>.</p>
+                <div class="meta"><span class="badge">obsesie</span><span class="badge">simbol de sens</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Respingerea taie adânc</h3>
+                <p>Nu simți că pierzi o persoană. Simți că pierzi <b>o parte din propriul psihic</b>. Anxietatea explodează. Mintea caută explicații, redă momente, cuvinte, expresii.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">pierdere de sine</span><span class="badge" style="color:var(--bad)">anxietate</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Ciclul se repetă</h3>
+                <p>Dacă nu recunoști proiecția, cauți o altă persoană care să o poarte. Tiparul se repetă — de-a lungul relațiilor, anilor, uneori a unei vieți întregi.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">repetiție compulsivă</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung descria momentul în care proiecția începe să crape ca una dintre cele mai dureroase, dar <b>necesare</b> experiențe psihologice. Materialul inconștient trebuie fie reclamat, fie va căuta un nou obiect. Majoritatea evită acest moment — și așa se perpetuează bucla.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fazele proiecției -->
+      <section class="card" aria-label="Cele 3 faze ale proiecției">
+        <div class="cardHeader">
+          <h2>Cele 3 faze ale proiecției în atracție</h2>
+          <div class="chip">de la vraja inițială la maturitate</div>
+        </div>
+        <div class="cardBody">
+          <div class="phaseGrid">
+            <div class="phaseCard" style="border-color:rgba(255,122,153,.25)">
+              <div class="phaseNum" style="color:var(--bad)">I</div>
+              <h4 style="color:var(--bad)">Faza proiecției</h4>
+              <p>Persoana pare mitică, mai mare ca viața. Totul pare destin. Un răspuns întârziat pare semnificativ. O atingere pare electrică. Un moment de atenție e intoxicant. Te relaționezi cu un simbol, nu cu un om.</p>
+            </div>
+            <div class="phaseCard" style="border-color:rgba(255,210,122,.25)">
+              <div class="phaseNum" style="color:var(--warn)">II</div>
+              <h4 style="color:var(--warn)">Retragerea proiecției</h4>
+              <p>Realitatea se instalează. Ce părea destin devine banal. Ce părea irezistibil devine uman. Intensitatea se prăbușește. Mulți confundă asta cu plictiseala sau eșecul — și pleacă.</p>
+            </div>
+            <div class="phaseCard" style="border-color:rgba(117,240,182,.25)">
+              <div class="phaseNum" style="color:var(--good)">III</div>
+              <h4 style="color:var(--good)">Relația reală (sau repetiția)</h4>
+              <p>Dacă rămâi și integrezi ceea ce ai proiectat, începe relația reală. Dacă pleci, cauți un nou „ecran" — și ciclul se repetă. Alegerea definește maturitatea psihologică.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="spectrum"></div>
+          <div class="specLabels">
+            <span>Proiecție maximă / cunoaștere minimă</span>
+            <span>Proiecție retrasă / cunoaștere reală</span>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Faza II e momentul critic. Jung credea că retragerea proiecției e <b>necesară</b> pentru ca relația autentică să înceapă. Dar majoritatea oamenilor nu rămân — caută din nou sentimentul la altcineva. Aceasta e diferența dintre maturitate psihologică și repetiție compulsivă.
+          </div>
+        </div>
+      </section>
+
+      <!-- Ghid practic -->
+      <section class="row" aria-label="Ghid practic">
+        <div class="card" id="fix" aria-label="Cum recunoști proiecția">
+          <div class="cardHeader">
+            <h2>Ghid practic: cum recunoști și integrezi proiecția</h2>
+            <div class="chip">autocunoaștere activă</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea că fiecare atracție puternică conține o <b>invitație ascunsă</b> — nu de a fuziona cu altcineva,
+              ci de a integra ceea ce a fost proiectat. Ce admiri, dorești sau ești obsedat e adesea o parte <b>renegată din propriul psihic</b>,
+              care cere să fie trăită conștient.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Întreabă: „Ce văd în ei ce-mi lipsește mie?"</strong><em>proiecție → integrare</em></div>
+                  <div class="d">Misterul, forța, libertatea, vulnerabilitatea pe care o vezi în ei — e adesea ceva ce nu ai permis să trăiești în tine. Reclamă-l.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Verifică: intensitate ≠ compatibilitate</strong><em>discriminare critică</em></div>
+                  <div class="d">Intensitatea emoțională nu e dovadă de iubire sau compatibilitate. E adesea semnul unei proiecții active. Separă senzația de realitate.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Observă tiparul din relațiile trecute</strong><em>repetiție = inconștient activ</em></div>
+                  <div class="d">Dacă ești atras mereu de același „tip" de persoană (distant, imprevizibil, indisponibil), nu e coincidență. E un tipar inconștient care cere atenție.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Încetinește, nu reacționa</strong><em>pauza conștientă</em></div>
+                  <div class="d">Când simți atracția intensă, nu acționa imediat. Stai cu senzația. Observ-o fără a o alimenta cu fantezie. Aceasta reduce puterea proiecției.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Explorează atașamentul tău timpuriu</strong><em>rădăcinile tiparului</em></div>
+                  <div class="d">Cum arăta iubirea în copilărie? Era condiționată? Inconsistentă? Trebuia câștigată? Atracțiile tale de azi reflectă adesea acele tipare vechi.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Rămâi pentru Faza II</strong><em>maturitate psihologică</em></div>
+                  <div class="d">Când „magia" se stinge și apare dezamăgirea, nu fugi. Aceasta e faza în care relația reală poate începe — sau unde repetiția începe, dacă pleci.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox"/>
+                <div>
+                  <div class="t"><strong>Lucrează cu un terapeut sau jurnal</strong><em>integrare conștientă</em></div>
+                  <div class="d">Proiecția nu e ceva ce poți „gândi" să dispară. E nevoie de procesare profundă — terapie jungiană, lucru cu visele, scris reflexiv, analiză a umbrelor.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculează scorul meu de conștiență</button>
+              <button class="btn" id="resetBtn">Resetează lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Mesajul final al lui Jung: „Ce nu aducem în conștiență revine ca destin." Atracția sexuală e unul dintre cele mai puternice locuri unde acest lucru se întâmplă. Dar odată ce vezi tiparul, <b>nu mai are aceeași putere asupra ta</b>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Întrebarea fundamentală">
+          <div class="cardHeader">
+            <h2>Teza finală: dorința fie te înrobește, fie devine ușă</h2>
+            <div class="chip"><b>Jung:</b> conștiență sau repetiție</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Atracția sexuală pare rară, puternică și profund personală. Dar când îndepărtezi fantezia, chimia și poveștile pe care ni le spunem,
+              ce rămâne e ceva mult mai tulburător:
+            </p>
+            <p class="muted" style="font-size:15px">
+              <b>Atracția nu alege. Ea e aleasă de părți din tine care nu au fost niciodată pe deplin văzute.</b>
+            </p>
+
+            <div class="hr"></div>
+
+            <div class="row2">
+              <div class="risk" style="border-color:rgba(255,122,153,.25)">
+                <div class="rTop"><strong>Fără conștiență</strong><span class="badge" style="color:var(--bad)">repetiție</span></div>
+                <p>Continui să confunzi intensitatea cu adevărul. Proiecția rămâne invizibilă. Tiparul se repetă. Dorința te controlează din umbră.</p>
+                <div class="meter"><i style="width:85%"></i></div>
+              </div>
+              <div class="risk" style="border-color:rgba(117,240,182,.25)">
+                <div class="rTop"><strong>Cu conștiență</strong><span class="badge" style="color:var(--good)">integrare</span></div>
+                <p>Recunoști proiecția. Intensitatea nu dispare peste noapte, dar se slăbește. Separi ce aparține celuilalt de ce aparține ție. Dorința devine ușă spre autocunoaștere.</p>
+                <div class="meter"><i style="width:30%"></i></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <details>
+              <summary><strong>Întrebarea pe care Jung ar pune-o</strong><span class="hint">click pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Gândește-te la persoana de care ești cel mai atras acum. Întreabă-te sincer:
+                <b>Ești atras de cine sunt ei? Sau de ce trezesc în tine?</b>
+                Răspunsul onest la această întrebare e începutul maturității psihologice.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><strong>Ce se întâmplă când proiecția e integrată?</strong><span class="hint">click pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Până la integrare, atracția te va lega din exterior. După integrare, atracția se întoarce <b>spre interior</b>.
+                Nu mai cauți în alții ce-ți lipsește ție. Începi să trăiești acele calități direct.
+                Aceasta e momentul în care dorința fie te înrobește, fie devine o poartă spre conștiință.
+                Jung numea asta <b>individuarea</b> — procesul de a deveni complet.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><strong>Există dovezi științifice moderne?</strong><span class="hint">click pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Parțial. Teoria atașamentului (Bowlby, Ainsworth) confirmă că tiparele timpurii influențează atracțiile adulte.
+                Neuroștiința dorului (dopamina, circuitul recompensei) susține mecanismul „vreau, nu am".
+                Psihologia proiecției rămâne mai greu de studiat experimental, dar terapeuții o observă clinic de decenii.
+                Cadrul jungian oferă un limbaj bogat pentru fenomene pe care știința încă le studiază fragmentar.</p>
+              </div>
+            </details>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu final:</b> „Până nu faci inconștientul conștient, el îți va dirija viața și vei numi asta destin." — Carl Jung.
+              Atracția sexuală e una dintre cele mai puternice arene unde acest principiu operează. Și aceasta e doar începutul poveștii.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Despre butonul de comentarii -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul „Comută comentariul"</h2>
+          <div class="chip">interpretare vs. narațiune</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul acestei pagini, casetele roșii (marcate cu <code>data-commentary</code>) oferă comentarii la nivel meta:
+            cât de solidă e afirmația? Ce cadre alternative există? Ce distincții importante lipsesc din narațiunea originală?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasă „Comută comentariul" din antet pentru a le ascunde/arăta pe toate deodată.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și avertismente:</b> Acest infografic interactiv traduce vizual o narațiune despre psihologia jungiană a atracției sexuale.
+        Nu este sfat psihologic profesional și nu înlocuiește terapia. Vizualizările, simulatorul și comentariile sunt instrumente conceptuale
+        pentru gândire critică, nu diagnostice.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: consultă lucrările lui Carl Jung (în special „Aion" și „Tipuri psihologice"), teoria atașamentului (Bowlby, Ainsworth)
+        și neuroștiința dorului (Berridge, Robinson).
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Simulatorul proiecție vs. cunoaștere reală
+    // ──────────────────────────────────────────────────────
+    var unavailSlider = document.getElementById('unavailSlider');
+    var awarenessSlider = document.getElementById('awarenessSlider');
+    var unavailReadout = document.getElementById('unavailReadout');
+    var awarenessReadout = document.getElementById('awarenessReadout');
+
+    function renderProjection() {
+      var unavail = parseInt(unavailSlider.value) / 100;
+      var awareness = parseInt(awarenessSlider.value) / 100;
+
+      unavailReadout.textContent = unavailSlider.value + '%';
+      awarenessReadout.textContent = awarenessSlider.value + '%';
+
+      var W = 980, H = 350;
+      var padding = 70;
+      var graphW = W - padding - 40;
+      var graphH = H - 90;
+      var months = 24;
+      var points = 72;
+      var xScale = graphW / months;
+
+      // Projection: starts high, decays over time; unavailability slows decay
+      function projection(t, unavailFactor) {
+        var decayRate = 0.08 * (1 - unavailFactor * 0.7);
+        return Math.max(0.05, 1.0 * Math.exp(-decayRate * t) + unavailFactor * 0.3 * Math.exp(-0.02 * t));
+      }
+
+      // Knowledge: starts low, grows; awareness accelerates growth
+      function knowledge(t, awarenessFactor) {
+        var growthRate = 0.06 + awarenessFactor * 0.08;
+        return Math.min(0.95, 0.05 + (1 - Math.exp(-growthRate * t)));
+      }
+
+      var projPath = '', knowPath = '', knowAwarePath = '', areaPath = '';
+
+      for (var i = 0; i <= points; i++) {
+        var t = (i / points) * months;
+        var x = padding + t * xScale;
+
+        var proj = projection(t, unavail);
+        var know = knowledge(t, 0.1);
+        var knowAware = knowledge(t, awareness);
+
+        var yProj = 40 + (1 - proj) * graphH;
+        var yKnow = 40 + (1 - know) * graphH;
+        var yKnowAware = 40 + (1 - knowAware) * graphH;
+
+        var cmd = i === 0 ? 'M' : 'L';
+        projPath += cmd + x + ',' + yProj + ' ';
+        knowPath += cmd + x + ',' + yKnow + ' ';
+        knowAwarePath += cmd + x + ',' + yKnowAware + ' ';
+
+        if (i === 0) areaPath = 'M' + x + ',' + yProj + ' ';
+        else areaPath += 'L' + x + ',' + yProj + ' ';
+      }
+
+      var baseline = 40 + graphH;
+      areaPath += 'L' + (padding + graphW) + ',' + baseline + ' L' + padding + ',' + baseline + ' Z';
+
+      document.getElementById('projCurve').setAttribute('d', projPath);
+      document.getElementById('knowCurve').setAttribute('d', knowPath);
+      document.getElementById('knowCurveAware').setAttribute('d', knowAwarePath);
+      document.getElementById('projArea').setAttribute('d', areaPath);
+
+      // Grid + time labels
+      var grid = document.getElementById('pGrid');
+      grid.innerHTML = '';
+      for (var m = 0; m <= months; m += 3) {
+        var gx = padding + m * xScale;
+        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', gx);
+        line.setAttribute('y1', 30);
+        line.setAttribute('x2', gx);
+        line.setAttribute('y2', 290);
+        line.setAttribute('stroke', 'rgba(255,255,255,.06)');
+        line.setAttribute('stroke-width', '1');
+        grid.appendChild(line);
+
+        var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', gx);
+        label.setAttribute('y', 308);
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'rgba(255,255,255,.55)');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = m + ' luni';
+        grid.appendChild(label);
+      }
+    }
+
+    unavailSlider.addEventListener('input', renderProjection);
+    awarenessSlider.addEventListener('input', renderProjection);
+    renderProjection();
+
+    // ──────────────────────────────────────────────────────
+    // Navigare
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', function() {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpFix').addEventListener('click', function() {
+      document.getElementById('fix').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Comutare comentariu
+    // ──────────────────────────────────────────────────────
+    var commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', function() {
+      commentaryVisible = !commentaryVisible;
+      var items = document.querySelectorAll('[data-commentary]');
+      items.forEach(function(el) {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Scor conștiență
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      var checked = Array.from(checkboxes).filter(function(cb) { return cb.checked; }).length;
+      var total = checkboxes.length;
+      var pct = Math.round((checked / total) * 100);
+
+      var msg = '';
+      if (pct >= 85) msg = pct + '% — Conștiență ridicată! Ești pe drumul integrării proiecțiilor.';
+      else if (pct >= 60) msg = pct + '% — Progres solid. Continuă să observi tiparele și să te întrebi „de ce".';
+      else if (pct >= 40) msg = pct + '% — Început bun. Alege 1-2 practici de aprofundat săptămâna aceasta.';
+      else msg = pct + '% — Mult de explorat. Începe cu o singură întrebare: „Ce trezește această persoană în mine?"';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tău de conștiență:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      var checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetată');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Notificări toast
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(function() {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

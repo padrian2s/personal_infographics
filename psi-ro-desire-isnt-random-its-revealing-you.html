@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dorinta nu e intamplatoare — te dezvaluie pe tine | Infografic psihologic</title>
+  <meta name="description" content="Infografic interactiv despre psihologia dorintei: de ce dorinta nu e despre cealalta persoana, ci despre tine. Cum tiparele emotionale din copilarie iti modeleaza atractia si cum integrarea transforma compulsia in alegere libera." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Hallmarks grid */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Spectrum bar */
+    .spectrum{
+      display:grid;
+      grid-template-columns: repeat(5,1fr);
+      gap:6px;
+      margin-top:12px;
+    }
+    .specItem{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(0,0,0,.18);
+      padding:10px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      transition: background .2s, border-color .2s;
+      cursor:default;
+    }
+    .specItem b{display:block;font-size:20px;margin-bottom:4px}
+    @media (max-width:640px){.spectrum{grid-template-columns:repeat(2,1fr)}}
+
+    /* Slider custom */
+    .phaseBar{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:12px;
+    }
+    .phaseBar .dot{
+      width:12px;height:12px;border-radius:99px;
+      border:2px solid rgba(255,255,255,.3);
+      transition: background .2s, border-color .2s;
+    }
+    .phaseBar .dot.active{border-color:var(--violet);background:var(--violet);box-shadow:0 0 12px rgba(187,167,255,.4)}
+    .phaseLabel{font-size:11px;color:var(--muted);min-width:80px;text-align:center}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Heart-like pulse paths -->
+            <path d="M30,130 C80,40 150,180 260,80 C320,30 380,150 500,60" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M30,170 C100,90 200,200 300,120 C370,70 430,160 500,110" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".6" />
+            <!-- Symbolic nodes -->
+            <circle cx="260" cy="80" r="12" fill="rgba(255,255,255,.6)" />
+            <circle cx="150" cy="160" r="8" fill="rgba(255,255,255,.4)" />
+            <circle cx="400" cy="100" r="9" fill="rgba(255,255,255,.45)" />
+            <circle cx="80" cy="90" r="6" fill="rgba(255,255,255,.35)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie profunda &bull; dorinta &bull; atasament &bull; vindecare</div>
+          <h1>Dorinta nu e intamplatoare &mdash; te dezvaluie pe tine</h1>
+          <p class="subtitle">
+            Dorinta nu iti spune ce vrea cealalta persoana. Iti spune ce e neterminat in tine. De ce te simti atras de oameni care nu ti se potrivesc?
+            De ce intensitatea bate logica? Pentru ca dorinta nu urmeaza adevaruri &mdash; urmeaza <b>tipare emotionale vechi</b>.
+            Aceasta pagina explica mecanismul si cum poti transforma compulsia in alegere libera.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la diagrama dorintei</button>
+            <button class="btn" id="jumpChecklist">Mergi la lista de integrare</button>
+            <button class="btn" id="toggleNotes">Comuta modul comentariu</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei cheie">
+          <div class="stat">
+            <div class="label">Teza centrala</div>
+            <div class="value">Dorinta = mesaj interior</div>
+            <div class="note">Nu e despre cealalta persoana, ci despre o nevoie nerezolvata din tine.</div>
+          </div>
+          <div class="stat">
+            <div class="label">De ce e irationala</div>
+            <div class="value">Memorie emotionala veche</div>
+            <div class="note">Sistemul nervos recunoaste semnale familiare, nu semnale sanatoase.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Costul ignorarii</div>
+            <div class="value">Repetitie compulsiva</div>
+            <div class="note">Aceleasi tipare cu fete diferite, aceeasi emotie de fiecare data.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Vindecarea</div>
+            <div class="value">Integrare, nu suprimare</div>
+            <div class="note">Urgenta dispare. Dorinta devine informatie, nu comanda.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: Ce e dorinta cu adevarat -->
+      <section class="card" aria-label="Ce este dorinta">
+        <div class="cardHeader">
+          <h2>Ce este dorinta cu adevarat?</h2>
+          <div class="chip"><b>Idee-cheie:</b> mesaj intern, nu extern</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Dorinta rareori se anunta clar. Nu spune ce vrea. Creeaza doar <b>urgenta</b> &mdash; o atractie, o fixatie,
+                un sentiment ca ceva lipseste si ca aceasta persoana sau acest moment ar putea completa golul.
+                Cei mai multi oameni confunda aceasta urgenta cu adevarul.
+              </p>
+              <p class="muted">
+                Ei presupun ca dorinta inseamna aliniere. Ca intensitatea inseamna compatibilitate.
+                Ca atractia inseamna ca urmeaza ceva bun. Dar dorinta nu functioneaza asa.
+              </p>
+              <p class="muted">
+                <b>Dorinta nu este un mesaj despre cealalta persoana. Este un mesaj despre tine</b> &mdash;
+                despre ceva neterminat, nerezolvat, ceva care inca cere sa fie vazut.
+                De aceea dorinta pare irationala.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Confuzii frecvente">
+                <div class="small" style="margin-bottom:10px">Confuzii frecvente pe care le face mintea:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Urgenta = adevar</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                  <div class="pill"><span>Intensitate = compatibilitate</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                  <div class="pill"><span>Atractie = destin</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                  <div class="pill"><span>Chimie = conexiune reala</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                  <div class="pill"><span>Familiaritate = siguranta</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                  <div class="pill"><span>Dorinta = iubire</span><span class="tag" style="color:var(--bad)">fals</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Dorinta urmeaza ce e <b>familiar</b>, nu ce e <b>sanatos</b>. Puterea ei vine din ceea ce ascunde.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta e distinctia esentiala: dorinta nu e ghidul tau spre fericire &mdash; e harta ranilor tale.
+            Daca o tratezi ca pe un GPS catre "persoana potrivita," vei repeta acelasi traseu. Daca o tratezi ca pe un diagnostic,
+            poti incepe sa intelegi de ce anumiti oameni te "magnetizeaza" si altii nu.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Mecanismul - Memoria emotionala -->
+      <section class="row">
+        <div class="card" aria-label="Memoria emotionala">
+          <div class="cardHeader">
+            <h2>De unde vine dorinta? Memoria emotionala</h2>
+            <div class="chip">sistemul nervos recunoaste tipare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Dorinta nu incepe in prezent. Este <b>activata</b> in prezent, dar <b>formata mai devreme</b>.
+              Cu mult inainte sa stii ce e atractia, sistemul tau nervos deja invata:
+              cum se simte apropierea, cat costa atentia, ce trebuie sa devii ca sa primesti iubire.
+            </p>
+            <p class="muted">
+              Aceste lectii nu au fost predate cu cuvinte. Au fost absorbite prin experienta:
+              momente de caldura, momente de absenta, momente in care afectiunea a parut conditionata,
+              momente in care intensitatea a inlocuit siguranta.
+            </p>
+
+            <div class="flow" aria-label="Lant cauzal">
+              <div class="flowNode">
+                <h3>1) Experienta timpurie</h3>
+                <p>Corpul a invatat ce inseamna conexiunea &mdash; daca a venit cu caldura, cu distanta, cu imprevizibilitate sau cu conditii.</p>
+                <div class="meta"><span class="badge">copilarie</span><span class="badge">atasament</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Tipar stocat in sistem nervos</h3>
+                <p>Sistemul nervos a memorat: "asa se simte apropierea." Nu conteaza daca era sanatoasa &mdash; era <b>familiara</b>.</p>
+                <div class="meta"><span class="badge">memorie corporala</span><span class="badge">conditionare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Activare in prezent</h3>
+                <p>Cand intalnesti pe cineva care emite un semnal emotional similar, corpul reactioneaza: strangere in piept, caldura, fixatie. Nu e imaginatie &mdash; e <b>recunoastere</b>.</p>
+                <div class="meta"><span class="badge">trigger</span><span class="badge">semnal familiar</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Confuzie: "Aceasta persoana e speciala"</h3>
+                <p>Mintea interpreteaza activarea corporala ca pe un semn de compatibilitate. De fapt, raspunzi unui <b>tipar vechi</b>, nu persoanei din fata ta.</p>
+                <div class="meta"><span class="badge">iluzie</span><span class="badge">proiectie</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> De aceea unele persoane par "magnetic irezistibile" din prima secunda &mdash; o voce, o privire, un mod de a se misca loveste ceva adanc.
+              Nu reactionezi la momentul prezent. Reactionezi la un tipar din trecut. Dorinta isi aminteste inainte sa o faci tu.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce activeaza dorinta">
+          <div class="cardHeader">
+            <h2>Ce activeaza dorinta (si de ce "siguranta" pare plictisitoare)</h2>
+            <div class="chip"><b>Paradox:</b> calm = absenta?</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Dorinta se hraneste cu <b>anticipare, incertitudine, speranta de rezolutie</b>.
+              De aceea dorinta creste adesea in preajma persoanelor indisponibile emotional &mdash;
+              ele recreeaza o tensiune familiara pe care corpul a invatat sa o asocieze cu conexiunea.
+            </p>
+
+            <div class="riskGrid" aria-label="Tipare de activare">
+              <div class="risk">
+                <div class="rTop"><strong>Daca afectiunea era incerta</strong><span class="badge">copilarie</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>Dorinta poate fi acum atrasa de <b>incertitudine</b>. "Nu stiu unde ma aflu" simte ca iubire.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Daca atentia venea inconsistent</strong><span class="badge">copilarie</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Dorinta poate rava acum <b>intensitate</b>. Momentele rare de conexiune devin dependenta.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Daca apropierea cerea performanta</strong><span class="badge">copilarie</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Dorinta se poate atasa de cei <b>greu de atins</b>. Trebuie sa "meriti" iubirea.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Daca intensitatea inlocuia siguranta</strong><span class="badge">copilarie</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Dorinta confunda <b>activarea</b> cu viata. Calmul pare gol.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              De aceea conexiunile sigure pot parea <b>plictisitoare</b> la inceput. Nu pentru ca le lipseste profunzimea,
+              ci pentru ca nu activeaza alarme vechi &mdash; iar sistemul tau confunda calmul cu absenta.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este poate cea mai importanta idee practica: daca "chimia" este de fapt recunoasterea unui tipar dureros,
+              atunci absenta chimiei nu inseamna absenta iubirii &mdash; poate insemna ca relatia este, pentru prima data, <b>sanatoasa</b>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: SVG Visualization - Ciclul dorintei -->
+      <section class="card" id="vizSection" aria-label="Diagrama dorintei">
+        <div class="cardHeader">
+          <h2>Ciclul dorintei neexaminate vs. dorinta integrata</h2>
+          <div class="chip">compulsie vs. alegere</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" aria-label="Diagrama ciclului dorintei">
+            <svg viewBox="0 0 980 440" role="img" aria-label="Ciclul dorintei: compulsie vs integrare">
+              <defs>
+                <linearGradient id="cBad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,122,153,.45)" />
+                  <stop offset="1" stop-color="rgba(255,179,138,.45)" />
+                </linearGradient>
+                <linearGradient id="cGood" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(117,240,182,.45)" />
+                  <stop offset="1" stop-color="rgba(122,215,255,.45)" />
+                </linearGradient>
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <rect x="0" y="0" width="980" height="440" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#soft)">
+                <!-- Left cycle: compulsive -->
+                <text x="240" y="30" font-size="15" fill="rgba(255,122,153,.9)" font-weight="700" text-anchor="middle">CICLUL COMPULSIV (neexaminat)</text>
+
+                <rect x="60" y="50" width="360" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)" />
+                <text x="240" y="78" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Semnal familiar &rarr; Activare corporala</text>
+                <text x="240" y="98" font-size="11" fill="var(--muted)" text-anchor="middle">Strangere in piept, caldura, fixatie</text>
+
+                <path d="M240 110 L240 130" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="60" y="130" width="360" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)" />
+                <text x="240" y="158" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Interpretare: "Aceasta e persoana!"</text>
+                <text x="240" y="178" font-size="11" fill="var(--muted)" text-anchor="middle">Urgenta, senzatie de destin</text>
+
+                <path d="M240 190 L240 210" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="60" y="210" width="360" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)" />
+                <text x="240" y="238" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Actiune impulsiva &rarr; Repetitie</text>
+                <text x="240" y="258" font-size="11" fill="var(--muted)" text-anchor="middle">Aceleasi tipare, fete diferite</text>
+
+                <path d="M240 270 L240 290" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="60" y="290" width="360" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(255,122,153,.3)" />
+                <text x="240" y="318" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Dezamagire &rarr; Golul revine</text>
+                <text x="240" y="338" font-size="11" fill="var(--muted)" text-anchor="middle">Nu voiai persoana, voiai sentimentul</text>
+
+                <!-- Loop arrow left -->
+                <path d="M60 350 C20 350, 20 80, 60 80" fill="none" stroke="url(#cBad)" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+                <text x="14" y="215" font-size="11" fill="rgba(255,122,153,.7)" transform="rotate(-90 14 215)" text-anchor="middle">se repeta</text>
+
+                <!-- Right path: integrated -->
+                <text x="730" y="30" font-size="15" fill="rgba(117,240,182,.9)" font-weight="700" text-anchor="middle">CALEA INTEGRATA (examinata)</text>
+
+                <rect x="550" y="50" width="370" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.3)" />
+                <text x="735" y="78" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Semnal familiar &rarr; Activare corporala</text>
+                <text x="735" y="98" font-size="11" fill="var(--muted)" text-anchor="middle">Aceeasi senzatie, dar observata</text>
+
+                <path d="M735 110 L735 130" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="550" y="130" width="370" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.3)" />
+                <text x="735" y="158" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Pauza: "Ce parte din mine vorbeste?"</text>
+                <text x="735" y="178" font-size="11" fill="var(--muted)" text-anchor="middle">Curiozitate in loc de reactie</text>
+
+                <path d="M735 190 L735 210" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="550" y="210" width="370" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.3)" />
+                <text x="735" y="238" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Intelegere: dorinta dezvaluie o rana</text>
+                <text x="735" y="258" font-size="11" fill="var(--muted)" text-anchor="middle">Informatia inlocuieste urgenta</text>
+
+                <path d="M735 270 L735 290" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+
+                <rect x="550" y="290" width="370" height="60" rx="16" fill="rgba(0,0,0,.20)" stroke="rgba(117,240,182,.3)" />
+                <text x="735" y="318" font-size="14" fill="var(--text)" text-anchor="middle" font-weight="600">Alegere libera &rarr; Conexiune reala</text>
+                <text x="735" y="338" font-size="11" fill="var(--muted)" text-anchor="middle">Prezenta, nu foame. Interes, nu obsesie.</text>
+
+                <!-- Down arrow right - no loop -->
+                <rect x="550" y="370" width="370" height="50" rx="16" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.2)" />
+                <text x="735" y="400" font-size="13" fill="rgba(117,240,182,.9)" text-anchor="middle" font-weight="600">Dorinta devine semnal, nu volan</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <div class="key"><span class="sw" style="background: rgba(255,122,153,.8)"></span> Ciclul compulsiv (se repeta)</div>
+            <div class="key"><span class="sw" style="background: rgba(117,240,182,.8)"></span> Calea integrata (evolueaza)</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Diferenta fundamentala nu e sa <i>nu mai simti</i> dorinta, ci sa <i>nu mai fii controlat</i> de ea.
+            In ciclul compulsiv, dorinta actioneaza ca o comanda. In calea integrata, dorinta devine informatie.
+            Acelasi semnal, raspuns diferit.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Conflictul intern -->
+      <section class="row">
+        <div class="card" aria-label="Conflictul intern">
+          <div class="cardHeader">
+            <h2>Conflictul intern: "Vreau pace, dar ma atrage haosul"</h2>
+            <div class="chip">insight vs. integrare</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Iti spui ca vrei stabilitate, dar te simti atras de intensitate. Iti spui ca vrei liniste, dar te atrage haosul.
+              Asta nu e ipocrizie &mdash; e <b>decalajul intre intelegere si integrare</b>.
+            </p>
+            <p class="muted">
+              Constientizarea ta poate fi inaintea sistemului nervos. Si acel decalaj e inconfortabil.
+              Dorinta continua sa apara in acel spatiu. Nu inseamna ca regresi &mdash; inseamna ca <b>observi</b>.
+            </p>
+
+            <div class="row2">
+              <div class="flowNode">
+                <h3>Ce crede mintea</h3>
+                <p>"Daca inteleg tiparul, ar trebui sa nu mai simt atractia." Dar constientizarea nu rescrie automat conditionarea.</p>
+                <div class="meta"><span class="badge">insight</span><span class="badge">asteptare nerealista</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Ce face corpul</h3>
+                <p>Continua sa reactioneze la semnale familiare. Invatarea dureaza. Dorinta te va testa pana cand se simte <b>inteleasa</b>, nu suprimata.</p>
+                <div class="meta"><span class="badge">conditionare</span><span class="badge">repetitie necesara</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Multi oameni se judeca in aceasta faza. Cred ca ar trebui sa elimine dorinta. Dar constientizarea <b>dezvaluie</b> dorinta &mdash; nu o elimina.
+              Si dezvaluirea poate parea mai puternica la inceput, pentru ca nu mai amoresti semnalul.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Momentul in care vezi tiparul si totusi simti atractia nu e un esec &mdash; e stadiul in care se afla <b>cei mai multi oameni care cresc</b>.
+              Invatarea ca atractia nu e o comanda si ca intensitatea nu e destin este un proces, nu un eveniment.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Dorinta neexaminata vs inteleasa">
+          <div class="cardHeader">
+            <h2>Dorinta neexaminata vs. dorinta inteleasa</h2>
+            <div class="chip"><b>Transformare:</b> obsesie &rarr; informatie</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cand dorinta e neinteleasa, devine <b>obsesie</b>: urgenta, presiune de a actiona acum, senzatia ca ceva se pierde daca nu raspunzi imediat.
+              Aceasta urgenta nu e iubire &mdash; e <b>activare</b>: sistemul nervos in alerta in jurul unui semnal familiar.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Dorinta neexaminata</strong><span class="badge" style="color:var(--bad)">compulsiva</span></div>
+                <div class="meter"><i style="width:85%"></i></div>
+                <p>Urgenta, fixatie, idealizare, actiune impulsiva, golul dupa ce senzatia trece. "Nu voiai persoana. Voiai sentimentul pe care l-a activat."</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dorinta inteleasa</strong><span class="badge" style="color:var(--good)">informativa</span></div>
+                <div class="meter"><i style="width:30%"></i></div>
+                <p>Curiozitate in loc de compulsie, interes in loc de obsesie, caldura in loc de fixatie. Nu mai urmaresti sentimentul &mdash; il permiti.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Dorinta nu vrea sa fie satisfacuta &mdash; vrea sa fie <b>inteleasa</b>.
+              Pana atunci, se va repeta cu fete diferite, povesti diferite, aceeasi emotie.
+              Cand e inteleasa, nu dispare &mdash; isi schimba limbajul.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: Interactive - Spectrul dorintei -->
+      <section class="card" aria-label="Spectrul dorintei">
+        <div class="cardHeader">
+          <h2>Spectrul dorintei: de la compulsie la alegere</h2>
+          <div class="chip">exploreaza fiecare faza</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Dorinta nu se schimba brusc. Trece prin faze. Foloseste sliderul de mai jos pentru a explora fiecare stadiu
+            al transformarii &mdash; de la reactie automata la alegere constienta.
+          </p>
+
+          <div class="control" style="margin-top:12px">
+            <label>
+              <span>Faza de integrare</span>
+              <span class="readout" id="phaseReadout">Faza 1</span>
+            </label>
+            <input id="phaseSlider" type="range" min="1" max="5" value="1" step="1" />
+          </div>
+
+          <div class="spectrum" id="spectrumDisplay">
+            <div class="specItem" id="sp1" style="border-color:rgba(255,122,153,.4)">
+              <b>1</b> Reactie automata
+            </div>
+            <div class="specItem" id="sp2">
+              <b>2</b> Prima recunoastere
+            </div>
+            <div class="specItem" id="sp3">
+              <b>3</b> Conflict intern
+            </div>
+            <div class="specItem" id="sp4">
+              <b>4</b> Integrare activa
+            </div>
+            <div class="specItem" id="sp5">
+              <b>5</b> Alegere libera
+            </div>
+          </div>
+
+          <div class="flowNode" style="margin-top:12px" id="phaseDescription">
+            <h3 id="phaseTitle">Faza 1: Reactie automata</h3>
+            <p id="phaseText">Dorinta apare ca urgenta. Activarea corporala e interpretata ca "Aceasta e persoana potrivita."
+              Actionezi impulsiv. Nu pui intrebari. Senzatia e puternica si o confunzi cu adevarul.
+              Intensitatea pare destinul. Repetitia e invizibila.</p>
+            <div class="meta" id="phaseMeta">
+              <span class="badge">urgenta</span><span class="badge">fixatie</span><span class="badge">actiune impulsiva</span>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Cele cinci faze nu sunt o scara liniara &mdash; poti oscila intre ele.
+            Progresul arata asa: petreci din ce in ce mai mult timp in fazele 4 si 5, dar fazele 1-3 inca apar uneori.
+            Vindecarea nu inseamna perfectiune, ci <b>raspuns diferit la acelasi semnal</b>.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 6: Ce se schimba cand dorinta e integrata -->
+      <section class="row">
+        <div class="card" aria-label="Ce se schimba">
+          <div class="cardHeader">
+            <h2>Ce se schimba cand dorinta e integrata?</h2>
+            <div class="chip">urgenta &rarr; claritate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Vindecarea nu inseamna sa pierzi dorinta, sa devii neutru sau nemiscat.
+              Vindecarea <b>elimina urgenta</b>. Disperarea dispare prima.
+              Nu mai simti ca trebuie sa actionezi imediat, ca ceva se pierde daca nu raspunzi acum.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Inainte de integrare</h3>
+                <p>Dorinta iti <b>ingusteaza</b> focusul. O singura persoana pare raspunsul. O singura conexiune pare esentiala. O singura experienta pare inevitabila.</p>
+                <div class="meta"><span class="badge">obsesie</span><span class="badge">compulsie</span><span class="badge">ingustat</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Dupa integrare</h3>
+                <p>Dorinta se <b>extinde</b>. Devine spatioasa. Simti curiozitate in loc de compulsie, interes in loc de obsesie, caldura in loc de fixatie.
+                  Nu mai urmaresti sentimentul &mdash; il <b>permiti</b>.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">curiozitate</span><span class="badge" style="color:var(--good)">prezenta</span><span class="badge" style="color:var(--good)">alegere</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              Incepi sa observi calitati <b>diferite</b> care te atrag: consecventa, prezenta, disponibilitate emotionala.
+              Lucruri care inainte pareau invizibile incep sa para <b>ancorante</b>. Nu incitante in modul vechi, dar <b>reale</b>.
+            </p>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Activarea nu e viata. Activarea e sistemul nervos in modul de alerta, confundand stimularea cu sensul.
+              Viata reala e mai stabila. Nu urca si coboara vertiginos. Nu are nevoie de haos ca sa ramana interesanta.
+              Permite dorintei sa existe <b>fara sa-ti coste pacea</b>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="checklistSection" aria-label="Lista de integrare">
+          <div class="cardHeader">
+            <h2>Lista practica de integrare a dorintei</h2>
+            <div class="chip">pasi concret de urmat</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Integrarea nu e teorie. E practica zilnica. Acesti pasi sunt extrasi direct din principiile prezentate.
+              Bifeaza ce deja aplici si calculeaza-ti scorul.
+            </p>
+
+            <div class="checklist" id="checklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Opreste-te si intreaba</strong><em>inainte de a actiona</em></div>
+                  <div class="d">"Ce parte din mine vorbeste acum?" Aceasta singura intrebare opreste ciclul automat.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Observa fara sa actionezi</strong><em>practica zilnica</em></div>
+                  <div class="d">Simte dorinta fara sa te pierzi in ea. Atractia nu e o comanda &mdash; e informatie.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Identifica tiparul</strong><em>jurnal / reflectie</em></div>
+                  <div class="d">Ce e similar intre persoanele care te atrag puternic? Ce dinamica repeti? Ce emotie e constanta?</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Tolereaza "plictiseala" conexiunii sanatoase</strong><em>reprogramare</em></div>
+                  <div class="d">Calmul nu e absenta. Daca o persoana stabila "nu te misca," poate ca lipsa activarii e exact semnul ca e sanatos.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Separa chimia de compatibilitate</strong><em>discernamant</em></div>
+                  <div class="d">Chimia poate fi recunoasterea unui tipar dureros. Compatibilitatea se construieste &mdash; nu izbucneste.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Ofera atentie ranii interne</strong><em>autogestionare</em></div>
+                  <div class="d">Dorinta trimitea in afara ceea ce trebuia dat inauntru. Odata ce oferi atentie intern, dorinta nu mai trebuie sa te traga in afara.</div>
+                </div>
+              </div>
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Nu suprima, nu judeca</strong><em>acceptare</em></div>
+                  <div class="d">Dorinta si constientizarea pot coexista. Nu trebuie sa ucizi dorinta ca sa fii liber de ea. Trebuie sa asculti pana termina de vorbit.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculeaza scorul de integrare</button>
+              <button class="btn" id="resetBtn">Reseteaza lista</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Daca faci doar doua lucruri: (1) intreaba "ce parte din mine vorbeste?" inainte de a actiona si
+              (2) tolereaza disconfortul de a nu reactiona impulsiv. Acestea singure pot rupe ciclul repetitiv.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 7: Mesajul real al dorintei -->
+      <section class="card" aria-label="Mesajul real">
+        <div class="cardHeader">
+          <h2>Mesajul real al dorintei</h2>
+          <div class="chip"><b>Teza:</b> dorinta nu a fost niciodata inamicul tau</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Dorinta nu e despre cealalta persoana</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Dorinta iti arata unde psihicul tau e neterminat, unde istoria ta emotionala inca are influenta,
+                unde cauti completare in exterior. Majoritatea oamenilor nu invata niciodata asta &mdash;
+                urmaresc dorinta toata viata crezand ca ii conduce inainte, cand de fapt <b>indica inapoi</b>: spre o nevoie neimplinita.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Integrarea transforma relatiile</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu pentru ca ai devenit mai putin pasional, ci pentru ca ai devenit mai <b>intreg</b>.
+                Nu mai ceri altei persoane sa completeze o poveste pe care nu a inceput-o.
+                O intalnesti dintr-un loc de <b>prezenta, nu de foame</b>.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Semnalul final</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Mesajul dorintei nu a fost niciodata "urmareste aceasta persoana" sau "actioneaza acum" sau "aceasta e alesul."
+                Mesajul a fost: <b>exista o parte din tine care are nevoie de atentie</b>.
+                Odata ce oferi acea atentie intern, dorinta nu mai trebuie sa te traga in afara.
+                Devine <b>alegere</b> in loc de <b>compulsie</b>.
+              </p>
+              <div class="hr"></div>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Poti alege conexiunea in loc sa fii tras in ea. Poti spune da fara sa te tradezi.
+                Poti spune nu fara frica de gol. Asta e integrarea.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala: ce nu e si ce e dorinta</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Nu confunda intensitatea cu intimitatea. Nu confunda atractia cu destinul.
+                Nu confunda chimia cu compatibilitatea. <b>Dorinta devine semnal, nu volan.</b>
+                Te informeaza. Nu te mai conduce. Aceasta e schimbarea.
+                Nu pentru ca ai devenit mai putin pasional, ci pentru ca ai devenit mai intreg.
+              </p>
+              <p style="margin-top:8px">
+                Dorinta nu a fost niciodata inamicul tau. A fost un <b>mesaj</b>.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta modul comentariu"</h2>
+          <div class="chip">interpretare vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata aceasta pagina, casetele violet (marcate cu <code>data-commentary</code>) ofera comentarii la un nivel superior:
+            cat de puternica e afirmatia? Ce alternative exista? Ce nuante lipsesc?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Comuta modul comentariu" in antet pentru a le ascunde/arata pe toate simultan.
+            Asta iti permite sa comuti intre "ce spune textul" si "ce inseamna cu adevarat."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si declinare a responsabilitatii:</b> Acest infografic interactiv a fost generat pentru a traduce vizual un text despre psihologia dorintei.
+        Nu este sfat medical sau terapeutic. Vizualizarile, diagramele si comentariile sunt instrumente conceptuale care te ajuta sa gandesti despre idei,
+        nu substitut pentru cercetare primara sau indrumare clinica.
+      </p>
+      <p style="margin-top:10px">
+        Dorinta nu a fost niciodata inamicul tau. A fost un mesaj. Intrebarea e daca esti pregatit sa-l asculti.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Phase slider
+    const phaseSlider = document.getElementById('phaseSlider');
+    const phaseReadout = document.getElementById('phaseReadout');
+    const phaseTitle = document.getElementById('phaseTitle');
+    const phaseText = document.getElementById('phaseText');
+    const phaseMeta = document.getElementById('phaseMeta');
+
+    const phases = [
+      {
+        title: 'Faza 1: Reactie automata',
+        text: 'Dorinta apare ca urgenta. Activarea corporala e interpretata ca "Aceasta e persoana potrivita." Actionezi impulsiv. Nu pui intrebari. Senzatia e puternica si o confunzi cu adevarul. Intensitatea pare destinul. Repetitia e invizibila.',
+        badges: ['urgenta', 'fixatie', 'actiune impulsiva'],
+        color: 'rgba(255,122,153,.4)'
+      },
+      {
+        title: 'Faza 2: Prima recunoastere',
+        text: 'Incepi sa observi tiparul. Realizezi ca esti atras de aceleasi dinamici, de aceleasi tipuri de indisponibilitate. Dar inca simti atractia la fel de puternic. Constientizarea e prezenta, dar nu a rescris inca conditionarea.',
+        badges: ['observare', 'confuzie', 'tiparul vizibil'],
+        color: 'rgba(255,210,122,.4)'
+      },
+      {
+        title: 'Faza 3: Conflict intern',
+        text: 'Vezi tiparul si totusi simti atractia. Te intrebi: "De ce inca ma atrage asta?" Mintea stie, dar corpul insista. Acest decalaj e inconfortabil. Multi se judeca in aceasta faza, crezand ca ar trebui sa fie "vindecati" deja.',
+        badges: ['decalaj insight-corp', 'auto-judecata', 'frustrare'],
+        color: 'rgba(255,179,138,.4)'
+      },
+      {
+        title: 'Faza 4: Integrare activa',
+        text: 'Incepi sa raspunzi diferit aceluiasi semnal. Te opresti inainte de a actiona. Intrebi "ce parte din mine vorbeste?" Tolerezi disconfortul de a nu reactiona. Dorinta inca apare, dar nu te mai controleaza. Inveti ca atractia nu e o comanda.',
+        badges: ['pauza', 'intrebare interna', 'toleranta'],
+        color: 'rgba(122,215,255,.4)'
+      },
+      {
+        title: 'Faza 5: Alegere libera',
+        text: 'Dorinta devine informatie, nu comanda. Simti curiozitate in loc de compulsie. Observi calitati noi care te atrag: consecventa, prezenta, disponibilitate. Poti alege conexiunea in loc sa fii tras in ea. Poti spune da fara sa te tradezi si nu fara frica de gol.',
+        badges: ['libertate', 'prezenta', 'conexiune reala'],
+        color: 'rgba(117,240,182,.4)'
+      }
+    ];
+
+    function updatePhase() {
+      const idx = parseInt(phaseSlider.value) - 1;
+      const p = phases[idx];
+      phaseReadout.textContent = `Faza ${idx + 1}`;
+      phaseTitle.textContent = p.title;
+      phaseText.textContent = p.text;
+      phaseMeta.innerHTML = p.badges.map(b => `<span class="badge">${b}</span>`).join('');
+
+      for (let i = 1; i <= 5; i++) {
+        const el = document.getElementById('sp' + i);
+        if (i === idx + 1) {
+          el.style.borderColor = p.color;
+          el.style.background = p.color.replace('.4)', '.12)');
+        } else {
+          el.style.borderColor = 'rgba(255,255,255,.12)';
+          el.style.background = 'rgba(0,0,0,.18)';
+        }
+      }
+    }
+
+    phaseSlider.addEventListener('input', updatePhase);
+    updatePhase();
+
+    // Navigation
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpChecklist').addEventListener('click', () => {
+      document.getElementById('checklistSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Commentary toggle
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // Checklist scoring
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Integrare avansata! Dorinta a devenit informatie, nu comanda.`;
+      else if (pct >= 60) msg = `${pct}% – Fundatie buna. Continua sa practici observarea fara reactie.`;
+      else if (pct >= 40) msg = `${pct}% – In curs de dezvoltare. Alege 1-2 practici suplimentare.`;
+      else msg = `${pct}% – Mult loc de crestere. Incepe cu intrebarea: "Ce parte din mine vorbeste acum?"`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tau de integrare:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

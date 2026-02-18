@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sincronicitati — Carl Jung | Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv despre sincronicitati dupa Carl Jung: coincidente semnificative, psihicul inconstient, simbol si individuatie." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--violet)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--violet), var(--cyan));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Sync viz */
+    .syncViz{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px,1fr));
+      gap: 6px;
+      margin-top:10px;
+    }
+    .syncDot{
+      aspect-ratio:1;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;
+      color:var(--muted);
+      transition: all .4s ease;
+      cursor:pointer;
+    }
+    .syncDot.active{
+      background: rgba(187,167,255,.2);
+      border-color: rgba(187,167,255,.5);
+      color:var(--text);
+      box-shadow: 0 0 20px rgba(187,167,255,.2);
+    }
+
+    /* Phase indicator */
+    .phaseBar{
+      display:flex;gap:0;margin-top:10px;border-radius:12px;overflow:hidden;height:32px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .phaseBar > div{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      font-size:11px;color:var(--muted);
+      transition: all .3s ease;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Infinity / synchronicity loops -->
+            <ellipse cx="180" cy="110" rx="120" ry="60" fill="none" stroke="url(#g1)" stroke-width="8" opacity=".5" />
+            <ellipse cx="340" cy="110" rx="120" ry="60" fill="none" stroke="url(#g2)" stroke-width="8" opacity=".5" />
+            <circle cx="260" cy="110" r="14" fill="rgba(255,255,255,.6)" />
+            <circle cx="100" cy="80" r="6" fill="rgba(187,167,255,.5)" />
+            <circle cx="420" cy="80" r="6" fill="rgba(122,215,255,.5)" />
+            <circle cx="260" cy="60" r="5" fill="rgba(255,179,138,.4)" />
+            <circle cx="260" cy="165" r="5" fill="rgba(117,240,182,.4)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie jungiana &bull; sincronicitate &bull; sens si destin</div>
+          <h1>Sincronicitati: cand coincidentele au un sens profund</h1>
+          <p class="subtitle">
+            Carl Jung credea ca viata nu este o serie de intamplari la voia sortii, ci un camp de semnificatie in care starile interioare si evenimentele exterioare se pot alinia in moduri pe care logica singura nu le poate explica.
+            Aceasta pagina exploreaza ideea de <b>coincidenta semnificativa</b> si ce se intampla cand incepi sa asculti in loc sa ignori.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Salt la diagrama sincronicitatii</button>
+            <button class="btn" id="jumpPractice">Salt la practica</button>
+            <button class="btn" id="toggleNotes">Comuta comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei-cheie sumarizate">
+          <div class="stat">
+            <div class="label">Definitie</div>
+            <div class="value">Coincidenta semnificativa</div>
+            <div class="note">Evenimente legate nu prin cauza, ci prin sens.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cand apar</div>
+            <div class="value">La rascruce interioara</div>
+            <div class="note">In momente de tensiune, nesiguranta sau cautare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ce nu sunt</div>
+            <div class="value">Nu sunt magie sau superstitie</div>
+            <div class="note">Sunt oglindiri ale starilor psihice care devin constiente.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Scopul real</div>
+            <div class="value">Reconectarea cu sinele interior</div>
+            <div class="note">Nu sa vanezi semne, ci sa traiesti cu intentie si sens.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Ce este sincronicitatea -->
+      <section class="card" aria-label="Definitie sincronicitate">
+        <div class="cardHeader">
+          <h2>Ce este sincronicitatea?</h2>
+          <div class="chip"><b>Jung:</b> coincidenta semnificativa</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Jung a folosit cuvantul <b>sincronicitate</b> pentru a descrie coincidentele care au un sens personal profund, evenimente legate nu prin cauza si efect, ci prin <b>semnificatie</b>. El vedea viata umana nu ca un lant de intamplari aleatorii, ci ca un camp in care lumea interioara si cea exterioara se pot suprapune in moduri pe care logica nu le poate explica pe deplin.
+              </p>
+              <p class="muted">
+                <b>Exemplu simplu:</b> Te gandesti la cineva cu care nu ai mai vorbit de ani de zile, si chiar in acea zi iti scrie un mesaj neasteptat. Sau te lupti cu o decizie, te simti pierdut, si o fraza dintr-o carte, o conversatie auzita din intamplare, sau un simbol pe care il tot intalnesti pare sa reflecte exact ceea ce simti tu.
+              </p>
+              <div class="callout" data-commentary>
+                <b>Comentariu:</b> Jung nu a sustinut ca aceste momente sfideaza realitatea. El a sugerat ca realitatea ar putea fi mai profunda decat presupunem. Ca lumea interioara si cea exterioara nu sunt atat de separate pe cat ne place sa credem.
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Tipuri de sincronicitate">
+                <div class="small" style="margin-bottom:10px">Exemple comune de sincronicitati:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Gandesti la cineva, te contacteaza</span><span class="tag">clasic</span></div>
+                  <div class="pill"><span>Numere sau simboluri repetitive</span><span class="tag">tipar</span></div>
+                  <div class="pill"><span>Raspunsuri din carti/conversatii</span><span class="tag">ecou</span></div>
+                  <div class="pill"><span>Intalniri "la momentul potrivit"</span><span class="tag">timing</span></div>
+                  <div class="pill"><span>Vise care se reflecta in realitate</span><span class="tag">vis</span></div>
+                  <div class="pill"><span>Teme care se repeta in zile diferite</span><span class="tag">recurenta</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Aceste momente te opresc pentru o secunda. Ceva din tine spune: <i>"Asta se simte diferit."</i> Nu magic in mod dramatic, doar semnificativ.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- De ce apar sincronicitatile -->
+      <section class="row">
+        <div class="card" aria-label="De ce apar">
+          <div class="cardHeader">
+            <h2>De ce apar sincronicitatile?</h2>
+            <div class="chip">raspunsul psihicului la dezechilibru</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a observat ceva ce majoritatea oamenilor pierd din vedere fiindca se misca prea repede: sincronicitatile nu apar de obicei cand viata e confortabila si previzibila. Ele tind sa apara in perioade de <b>tensiune interioara</b>, momente de nesiguranta, conflict sau cautare tacuta a sensului.
+            </p>
+
+            <div class="flow" aria-label="Lantul cauzal">
+              <div class="flowNode">
+                <h3>1) Dezechilibru interior</h3>
+                <p>Simti un gol, o nelimurire, o decizie pe care o amani. Ceva important lipseste, dar nu poti numi exact ce anume.</p>
+                <div class="meta">
+                  <span class="badge">tensiune</span><span class="badge">cautare</span>
+                </div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Inconstientul compenseaza</h3>
+                <p>Cand sensul lipseste in exterior, psihicul il cauta in interior. Sincronicitatile apar nu ca semne supranaturale, ci ca <b>compensari</b>: inconstientul incearca sa restabileasca echilibrul.</p>
+                <div class="meta"><span class="badge">compensare</span><span class="badge">echilibru</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Atentie si pauza</h3>
+                <p>Aceste momente te fac sa incetinesti. Intr-o lume care te trage constant in afara, sincronicitatea te trage inauntru.</p>
+                <div class="meta"><span class="badge">reflectie</span><span class="badge">prezenta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Recunoastere si integrare</h3>
+                <p>Cand raspunzi acestor momente nu prin superstitie, ci prin constientizare de sine, ele nu mai trebuie sa se repete atat de puternic. Psihicul se simte ascultat.</p>
+                <div class="meta"><span class="badge">integrare</span><span class="badge">crestere</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung a avertizat si impotriva vanarii obsesive a sincronicitatilor. Sensul nu e ceva de urmarit in mod frantic. Cand faci asta, pierzi inradacinarea. Sincronicitatile nu inlocuiesc gandirea, ci o completeaza.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Lumea moderna si golul de sens">
+          <div class="cardHeader">
+            <h2>Lumea moderna: bogata in stimuli, saraca in sens</h2>
+            <div class="chip"><b>Jung:</b> conditia moderna</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung ar spune: aceasta este conditia moderna. O lume plina de stimulare, dar saraca in semnificatie. Religia, mitul, ritualul si simbolurile comune odata ofereau oamenilor un limbaj pentru viata interioara. Astazi, aceste structuri s-au slabit.
+            </p>
+
+            <div class="riskGrid" aria-label="Pierderi de sens">
+              <div class="risk">
+                <div class="rTop"><strong>Religie si ritual</strong><span class="badge">slabit</span></div>
+                <div class="meter"><i style="width:30%"></i></div>
+                <p>Structurile care odata ofereau sens colectiv au pierdut mult din influenta lor.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Mituri si simboluri comune</strong><span class="badge">erodat</span></div>
+                <div class="meter"><i style="width:25%"></i></div>
+                <p>Limbajul comun pentru viata interioara aproape ca a disparut din cultura moderna.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Stimulare digitala</strong><span class="badge">excesiva</span></div>
+                <div class="meter"><i style="width:85%"></i></div>
+                <p>Zgomotul digital umple linistea, dar nu o satisface. Deschizi o aplicatie, apoi alta, iar miscarea e automata.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Povara interioara</strong><span class="badge">crescuta</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Esti asteptat sa creezi singur scopul, implinirea si identitatea. Suna eliberator, dar psihologic este epuizant.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="small">
+              Cand sensul lipseste in exterior, psihicul nu renunta, ci il cauta in alt mod. Sincronicitatile apar adesea ca raspuns la aceasta suprasolicitare.
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este o perspectiva, nu un fapt dovedit stiintific. Dar e utila ca un model: daca simti un gol persistent pe care stimularea externa nu-l umple, ar putea fi un semn ca viata ta interioara cere atentie.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diagrama sincronicitatii -->
+      <section class="card" id="vizSection" aria-label="Diagrama sincronicitatii">
+        <div class="cardHeader">
+          <h2>Anatomia unei sincronicitati</h2>
+          <div class="chip">interior si exterior se intalnesc</div>
+        </div>
+        <div class="cardBody">
+          <div class="viz" aria-label="Diagrama vizuala">
+            <svg viewBox="0 0 980 400" role="img" aria-label="Diagrama: starea interioara si evenimentul exterior converg">
+              <defs>
+                <linearGradient id="syncG1" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(187,167,255,.5)" />
+                  <stop offset="1" stop-color="rgba(122,215,255,.5)" />
+                </linearGradient>
+                <linearGradient id="syncG2" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,179,138,.5)" />
+                  <stop offset="1" stop-color="rgba(117,240,182,.5)" />
+                </linearGradient>
+                <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="10" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <rect x="0" y="0" width="980" height="400" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#softGlow)">
+                <!-- Lumea interioara (stanga) -->
+                <rect x="40" y="60" width="380" height="120" rx="20" fill="rgba(0,0,0,.20)" stroke="rgba(187,167,255,.3)" stroke-width="2"/>
+                <text x="62" y="96" font-size="16" fill="rgba(255,255,255,.90)" font-weight="700" font-family="system-ui">Lumea interioara</text>
+                <text x="62" y="120" font-size="13" fill="rgba(255,255,255,.65)" font-family="system-ui">Ganduri, emotii, stari psihice,</text>
+                <text x="62" y="138" font-size="13" fill="rgba(255,255,255,.65)" font-family="system-ui">intrebari nerostite, tensiuni</text>
+                <text x="62" y="162" font-size="12" fill="rgba(187,167,255,.8)" font-family="system-ui">Inconstientul activeaza un tipar</text>
+
+                <!-- Lumea exterioara (dreapta) -->
+                <rect x="560" y="60" width="380" height="120" rx="20" fill="rgba(0,0,0,.20)" stroke="rgba(122,215,255,.3)" stroke-width="2"/>
+                <text x="582" y="96" font-size="16" fill="rgba(255,255,255,.90)" font-weight="700" font-family="system-ui">Lumea exterioara</text>
+                <text x="582" y="120" font-size="13" fill="rgba(255,255,255,.65)" font-family="system-ui">Evenimente, intalniri, cuvinte auzite,</text>
+                <text x="582" y="138" font-size="13" fill="rgba(255,255,255,.65)" font-family="system-ui">simboluri, "coincidente"</text>
+                <text x="582" y="162" font-size="12" fill="rgba(122,215,255,.8)" font-family="system-ui">Un eveniment extern pare sa raspunda</text>
+
+                <!-- Sageti convergente -->
+                <path d="M420 120 C470 120, 480 120, 490 200" fill="none" stroke="url(#syncG1)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                <path d="M560 120 C510 120, 500 120, 490 200" fill="none" stroke="url(#syncG2)" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+
+                <!-- Punctul de sincronicitate -->
+                <circle cx="490" cy="220" r="30" fill="rgba(187,167,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                <circle cx="490" cy="220" r="16" fill="rgba(255,255,255,.5)"/>
+                <text x="490" y="270" font-size="14" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="middle" font-family="system-ui">SINCRONICITATE</text>
+                <text x="490" y="290" font-size="12" fill="rgba(255,255,255,.6)" text-anchor="middle" font-family="system-ui">Conectate nu prin cauza, ci prin sens</text>
+
+                <!-- Rezultat -->
+                <rect x="290" y="320" width="400" height="60" rx="16" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                <text x="490" y="348" font-size="14" fill="rgba(255,255,255,.85)" font-weight="700" text-anchor="middle" font-family="system-ui">Momentul de pauza si reflectie</text>
+                <text x="490" y="366" font-size="12" fill="rgba(255,255,255,.60)" text-anchor="middle" font-family="system-ui">"Ce parte din mine este activata acum?"</text>
+
+                <path d="M490 250 L490 320" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-dasharray="5 5"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <div class="key"><span class="sw" style="background: rgba(187,167,255,.8)"></span> Lumea interioara (psihic)</div>
+            <div class="key"><span class="sw" style="background: rgba(122,215,255,.8)"></span> Lumea exterioara (evenimente)</div>
+            <div class="key"><span class="sw" style="background: rgba(255,255,255,.6)"></span> Punctul de convergenta (sens)</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta diagrama este conceptuala. Punctul esential este ca sincronicitatea nu este nici pur interioara, nici pur exterioara, ci apare la intersectia lor. Nu e cauza-efect, ci rezonanta de sens.
+          </div>
+        </div>
+      </section>
+
+      <!-- Cum actioneaza inconstientul -->
+      <section class="row">
+        <div class="card" aria-label="Limbajul inconstientului">
+          <div class="cardHeader">
+            <h2>Cum vorbeste inconstientul?</h2>
+            <div class="chip">prin simboluri, nu prin cuvinte</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea ca inconstientul vorbeste prin <b>simboluri</b> fiindca simbolurile ocolesc rezistenta. Confruntarea directa de obicei nu functioneaza: daca psihicul ar tipa la tine, l-ai inchide. Asa ca in schimb, el sopteste prin coincidenta. Aranjaza sens in loc sa ceara atentie.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Simbol, nu instructiune</h3>
+                <p>Sincronicitatile nu sunt comenzi de urmat orbeste. Sunt <b>oglinzi</b> care reflecta stari interioare care devin constiente. Ele nu iti spun ce sa faci, ci iti arata ce a fost activat in tine.</p>
+                <div class="meta"><span class="badge">oglinda</span><span class="badge">reflectie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Sopteste, nu striga</h3>
+                <p>Momentele sincronistice ajung linistit, ca o atingere pe umar. Nu sunt dramatice, sunt subtile. Simti ca esti vazut, inteles.</p>
+                <div class="meta"><span class="badge">subtilitate</span><span class="badge">tacere</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Daca nu asculti, se repeta mai tare</h3>
+                <p>Daca dezechilibrul interior ramane, sensul va bate din nou la usa, adesea mai puternic. Psihicul nu renunta.</p>
+                <div class="meta"><span class="badge">persistenta</span><span class="badge">escaladare</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este perspectiva lui Jung, nu o afirmatie stiintifica testabila. Dar ca model al mintii, este uimitor de util: daca iti tratezi reactiile interne ca informatii (nu ca dusmanul), devii mult mai constient de sine.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Simulatorul de constientizare">
+          <div class="cardHeader">
+            <h2>Simulatorul de constientizare</h2>
+            <div class="chip">da click pe fiecare nivel</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Exploreaza fazele raspunsului tau la o sincronicitate. Fiecare nivel reflecta o atitudine diferita.
+            </p>
+
+            <div class="phaseBar" id="phaseBar">
+              <div style="background:rgba(255,122,153,.15)" data-phase="0">Ignori</div>
+              <div style="background:rgba(255,210,122,.1)" data-phase="1">Observi</div>
+              <div style="background:rgba(187,167,255,.1)" data-phase="2">Reflectezi</div>
+              <div style="background:rgba(122,215,255,.1)" data-phase="3">Integrezi</div>
+              <div style="background:rgba(117,240,182,.1)" data-phase="4">Traiesti</div>
+            </div>
+
+            <div id="phaseDesc" style="margin-top:12px">
+              <div class="flowNode">
+                <h3 id="phaseName">Alege o faza</h3>
+                <p id="phaseText" class="muted">Apasa pe una din fazele de mai sus pentru a vedea detalii.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="control">
+              <label>
+                <span>Nivelul de ascultare interioara</span>
+                <span class="readout" id="listenReadout">50%</span>
+              </label>
+              <input id="listenSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">Cu cat asculti mai mult viata interioara, cu atat sincronicitatile devin mai blande si mai rare. Se transforma din intreruperi in compani linistiti.</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acest simulator nu masoara ceva real, ci ilustreaza ideea centrala a lui Jung: cand dialogul cu inconstientul e deschis, sensul nu mai trebuie sa se anunte prin perturbari.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- De ce sincronicitatile te nelimuresc -->
+      <section class="card" aria-label="De ce deranjeaza">
+        <div class="cardHeader">
+          <h2>De ce sincronicitatile te nelinisteaza?</h2>
+          <div class="chip">provoaca ideea de observator pasiv</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Motivul pentru care sincronicitatile ii deranjeaza pe oameni nu este ca sunt ciudate. Este fiindca <b>provoaca ideea ca esti doar un observator pasiv</b> care se misca prin univers fara sens.
+              </p>
+              <p class="muted">
+                Daca sensul poate aparea fara controlul tau, atunci viata nu ti se doar intampla, ci <b>iti raspunde</b>. Aceasta este zona in care multi se simt inconfortabil.
+              </p>
+              <p class="muted">
+                Esti obisnuit sa crezi ca gandurile tale raman in capul tau si ca lumea sta afara. Sincronicitatea estompeaza aceasta linie. Sugereaza ca, atunci cand iti ignori viata interioara prea mult timp, ea gaseste alte cai sa iti vorbeasca.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <svg viewBox="0 0 400 280" role="img">
+                  <defs>
+                    <filter id="innerGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="8" result="b"/>
+                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+                  <g filter="url(#innerGlow)">
+                    <!-- Doua cercuri care se suprapun -->
+                    <circle cx="150" cy="140" r="95" fill="none" stroke="rgba(187,167,255,.35)" stroke-width="3"/>
+                    <text x="100" y="100" font-size="13" fill="rgba(187,167,255,.8)" font-family="system-ui">GANDURI</text>
+                    <text x="95" y="120" font-size="11" fill="rgba(255,255,255,.5)" font-family="system-ui">"Raman in capul meu"</text>
+
+                    <circle cx="250" cy="140" r="95" fill="none" stroke="rgba(122,215,255,.35)" stroke-width="3"/>
+                    <text x="260" y="100" font-size="13" fill="rgba(122,215,255,.8)" font-family="system-ui">LUMEA</text>
+                    <text x="255" y="120" font-size="11" fill="rgba(255,255,255,.5)" font-family="system-ui">"Sta afara"</text>
+
+                    <!-- Zona de suprapunere -->
+                    <text x="175" y="150" font-size="12" fill="rgba(255,255,255,.85)" font-weight="700" font-family="system-ui">SENS</text>
+                    <text x="167" y="168" font-size="10" fill="rgba(255,255,255,.55)" font-family="system-ui">Sincronicitate</text>
+                    <text x="155" y="185" font-size="10" fill="rgba(255,255,255,.45)" font-family="system-ui">Linia se estompeaza</text>
+
+                    <text x="200" y="260" font-size="11" fill="rgba(255,210,122,.7)" text-anchor="middle" font-family="system-ui">"Viata nu ti se doar intampla. Iti raspunde."</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Intrebarea pe care Jung te invita sa o pui nu este daca sincronicitatile sunt reale sau imaginare. Intrebarea mai profunda este: <i>de ce tind sa apara cand te aflii la o rascruce psihologica?</i> Si ce se intampla cand nu le mai ignori, ci incepi sa asculti.
+          </div>
+        </div>
+      </section>
+
+      <!-- Cand sensul e trait constient -->
+      <section class="row">
+        <div class="card" aria-label="Traire constienta a sensului">
+          <div class="cardHeader">
+            <h2>Cand sensul e trait constient</h2>
+            <div class="chip">de la coincidenta la coerenta</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung credea ca atunci cand sensul e trait constient, nu mai trebuie sa se anunte prin perturbari. Sincronicitatile nu sunt recompense si nu sunt mesaje trimise din afara ta. Sunt semne ale unui <b>dialog care incearca sa inceapa</b> intre viata ta constienta si cea inconstienta.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Dialogul ignorat</h3>
+                <p>Cand dialogul este ignorat, sensul apare in fragmente, coincidente care te surprind dar se sterg repede cand rutina te trage inapoi.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">fragmentat</span><span class="badge">tranzitor</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Dialogul inceput</h3>
+                <p>Cand dialogul e binevenit, viata incepe sa se simta ciudat de coerenta. Nu mai ai nevoie de semne dramatice. Sensul vine in moduri mai linistite.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">coerent</span><span class="badge">natural</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="row2">
+              <div class="risk">
+                <div class="rTop"><strong>Inainte: nevoie de semne</strong><span class="badge">exterior</span></div>
+                <div class="meter"><i style="width:80%"></i></div>
+                <p>Cauti confirmare din afara. Fiecare coincidenta e analizata obsesiv.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dupa: aliniere interioara</strong><span class="badge">interior</span></div>
+                <div class="meter"><i style="width:35%"></i></div>
+                <p>Ai incredere in raspunsurile interioare. Nu mai esti disperat dupa confirmare externa.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta este tranzitia pe care o descrie Jung: de la a vana semne externe la a trai cu aliniere interioara. Nu e vorba de superstitie versus rationalitate, ci de viata traita pe suprafata versus viata traita in profunzime.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Intrebarea esentiala">
+          <div class="cardHeader">
+            <h2>Intrebarea esentiala a lui Jung</h2>
+            <div class="chip">nu daca, ci cum</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung nu te invita sa crezi orbeste in sincronicitati. Te invita la o intrebare mult mai profunda:
+            </p>
+
+            <div class="viz" style="padding:20px;text-align:center">
+              <svg viewBox="0 0 700 200" role="img">
+                <defs>
+                  <filter id="qGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="12" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#qGlow)">
+                  <rect x="50" y="30" width="600" height="140" rx="24" fill="rgba(0,0,0,.2)" stroke="rgba(187,167,255,.25)" stroke-width="2"/>
+                  <text x="350" y="78" font-size="16" fill="rgba(255,255,255,.6)" text-anchor="middle" font-family="system-ui">Intrebarea reala nu este:</text>
+                  <text x="350" y="105" font-size="14" fill="rgba(255,255,255,.5)" text-anchor="middle" font-family="system-ui" font-style="italic">"Sincronicitatile sunt reale?"</text>
+                  <text x="350" y="138" font-size="17" fill="rgba(255,255,255,.95)" text-anchor="middle" font-family="system-ui" font-weight="700">Intrebarea reala este:</text>
+                  <text x="350" y="162" font-size="15" fill="rgba(187,167,255,.9)" text-anchor="middle" font-family="system-ui" font-style="italic">"Viata ta are loc pentru sens?"</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="flow" style="margin-top:12px">
+              <div class="flowNode">
+                <h3>Daca da...</h3>
+                <p>Sincronicitatile devin <b>compani blandi</b>. Apar natural, fara cautare, si confirma o aliniere care deja exista.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">armonie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Daca nu...</h3>
+                <p>Sincronicitatile apar ca <b>intreruperi</b>. Deranjeaza, confuza, si se repeta pana cand ceva se schimba.</p>
+                <div class="meta"><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">perturbari</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acesta este punctul catre care Jung ne ghideaza: o viata in care sensul nu este vanat, ci intrupat. In care simbolurile nu sunt interpretate la nesfarsit, ci traite prin actiune si reflectie. In care psihicul nu trebuie sa strige fiindca este deja ascultat.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Practica: lista de actiune -->
+      <section class="card" id="practice" aria-label="Ghid practic">
+        <div class="cardHeader">
+          <h2>Ghid practic: cum sa raspunzi sincronicitatilor</h2>
+          <div class="chip">de la teorie la actiune</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe baza perspectivelor lui Jung, iata un ghid practic pentru cum sa integrezi sincronicitatile in viata ta, fara superstitie si fara cinic. O cale de mijloc a constientizarii.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu le ignora si nu le vanezi</strong><em>echilibru</em></div>
+                <div class="d">Jung a avertizat impotriva ambelor extreme. Nu respinge coincidentele semnificative ca "nimic", dar nici nu transforma viata intr-un puzzle care trebuie rezolvat obsesiv.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Opreste-te si observa</strong><em>pauza</em></div>
+                <div class="d">Cand simti acel moment de "asta se simte diferit", nu trece mai departe. Opreste-te. Observa ce simti. Ce ganduri apar? Ce emotie este activata?</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Intreaba: "Ce parte din mine e activata?"</strong><em>reflectie</em></div>
+                <div class="d">In loc sa intrebi "Ce inseamna asta?", intreaba "Ce emotie, frica sau dorinta cere sa fie recunoscuta?" Asta te muta de la superstitie la constientizare de sine.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Tine un jurnal al momentelor semnificative</strong><em>practica</em></div>
+                <div class="d">Nu un jurnal de "semne", ci un jurnal al starilor interioare. Noteaza ce simteai cand a aparut momentul si ce intrebari iti puneai.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Creeaza spatiu pentru liniste</strong><em>tacere</em></div>
+                <div class="d">Inconstientul nu poate vorbi daca esti mereu inundat de stimuli. Fa loc pentru momente fara ecran, fara zgomot, fara distragere.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu astepta confirmare din afara</strong><em>incredere</em></div>
+                <div class="d">Scopul final nu e sa primesti mai multe sincronicitati, ci sa traiesti cu o aliniere interioara care face coincidentele mai putin necesare.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Integreaza, nu doar intelegi</strong><em>actiune</em></div>
+                <div class="d">Perspectiva fara integrare se dizolva intotdeauna. Daca un moment te-a miscata, schimba ceva concret in viata ta, chiar si ceva mic.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculeaza scorul de constientizare</button>
+            <button class="btn" id="resetBtn">Reseteaza lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta lista nu e un "plan de actiune" rigid. E mai mult un set de atitudini. Esenta este simpla: trateaza-ti viata interioara cu aceeasi seriozitate cu care ti-o tratezi pe cea exterioara.
+          </div>
+        </div>
+      </section>
+
+      <!-- Cele 3 stadii ale relatiei cu sincronicitatea -->
+      <section class="card" aria-label="Trei stadii">
+        <div class="cardHeader">
+          <h2>Cele 3 stadii ale relatiei tale cu sensul</h2>
+          <div class="chip">suprafata &bull; cautare &bull; integrare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div class="flowNode">
+              <h3>1) Viata pe suprafata</h3>
+              <p>Sincronicitatile apar dar sunt ignorate. Rutina te trage inapoi. Perspectivele se sterg fiindca nimic nu se schimba pentru a le sustine. Sensul e tratat ca "doar o coincidenta".</p>
+              <div class="meta"><span class="badge">ignorare</span><span class="badge">rutina</span><span class="badge" style="border-color:rgba(255,122,153,.3);color:var(--bad)">deconectat</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>2) Cautarea activa</h3>
+              <p>Incepi sa observi tipare. Exista riscul sa devii obsesiv. Jung avertiza: sensul nu e ceva de vanat frantic. Pericolul este sa pierzi inradacinarea cautand "mesaje" peste tot.</p>
+              <div class="meta"><span class="badge">observare</span><span class="badge">risc de obsesie</span><span class="badge" style="border-color:rgba(255,210,122,.3);color:var(--warn)">tranzitie</span></div>
+            </div>
+          </div>
+          <div style="height:10px"></div>
+          <div class="flowNode">
+            <h3>3) Sens intrupat</h3>
+            <p>Nu mai ai nevoie de semne dramatice. Sensul se arata in moduri mai linistite, in alegeri care se simt aliniate, in decizii care au mai putina rezistenta interioara, intr-un sentiment de corectitudine care nu are nevoie de explicatii. Lumea nu devine magica, ci <b>inteligibila</b>.</p>
+            <div class="meta"><span class="badge">aliniere</span><span class="badge">integrare</span><span class="badge" style="border-color:rgba(117,240,182,.3);color:var(--good)">conectat</span></div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Gandeste-te la aceste stadii ca la un sistem de control: (1) ignorarea semnalului, (2) supraanaliza semnalului, (3) integrarea naturala a semnalului. Maturitatea psihologica inseamna sa ajungi la stadiul 3.
+          </div>
+        </div>
+      </section>
+
+      <!-- Rezumat si teza -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Asadar, care e teza?</h2>
+          <div class="chip"><b>Teza:</b> traieste cu sens, nu vana semne</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) Sincronicitatea nu e magie</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu e ceva supranatural. E un dialog intre viata constienta si cea inconstienta. Cand acest dialog este ignorat, sensul apare in fragmente. Cand e binevenit, viata se simte coerenta.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Scopul real nu e "mai multe coincidente"</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Scopul este sa traiesti cu o constientizare care face coincidentele mai putin necesare. Sa nu mai ai nevoie sa fii intrerupt ca sa acorzi atentie vietii tale interioare.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Intrebarea finala</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Ce s-ar schimba daca ai incepe sa restabilesti sensul in mod constient, in loc sa astepti sa apara prin coincidenta? Acesta este locul in care avertismentul lui Jung devine cel mai relevant.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Mesajul central</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Gandeste-te la sincronicitate ca la un <b>meta-semnal</b>: nu iti spune ce sa faci, ci iti spune ca ceva in tine cere atentie. Cand asculti, semnalul devine mai bland. Cand ignori, devine mai puternic.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre perspectiva lui Jung</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Acest infografic traduce un continut narativ care face afirmatii puternice. Sincronicitatea nu este un concept stiintific testabil in sensul clasic, ci un <b>cadru de intelegere</b> propus de Jung pentru a da sens unor experiente pe care gandirea strict rationala le respinge. Trateaza totul de aici ca material de reflectie, nu ca sfat medical sau prescriptie de viata. Daca rezonezi cu aceste idei, aprofundeaza-le prin lectura directa a lucrarilor lui Jung si prin propria practica de constientizare.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Despre toggle-ul de comentariu -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta comentariul"</h2>
+          <div class="chip">interpretare vs. prezentare</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe toata pagina, casetele colorate (marcate cu <code>data-commentary</code>) ofera comentariu la nivel meta: cat de puternica este afirmatia? Ce alternative exista? Ce inseamna practic?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Comuta comentariul" in partea de sus pentru a ascunde sau arata toate casetele de comentariu simultan. Asta iti permite sa comuti intre "ce spune naratiunea" si "cum interpretez eu acea afirmatie."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite si precautii:</b> Acest infografic interactiv a fost generat pentru a traduce un continut narativ despre sincronicitatile lui Carl Jung.
+        Nu este sfat medical sau psihologic. Vizualizarile, simulatorul si comentariul sunt instrumente conceptuale pentru a te ajuta sa gandesti asupra ideilor, nu inlocuitori ai cercetarii sau indrumarii profesionale.
+      </p>
+      <p style="margin-top:10px">
+        Pentru intrebari sau aprofundare: consulta lucrarile originale ale lui Carl Jung despre sincronicitate, arhetipuri si individuatie.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Phase bar interactive
+    // ──────────────────────────────────────────────────────
+    const phases = [
+      {name: 'Ignori', text: 'Respingi coincidentele ca "nimic". Viata merge pe pilot automat. Rutina te trage inapoi inainte sa ai timp sa reflectezi. Inconstientul nu este ascultat, asa ca va incerca din nou.', color: 'rgba(255,122,153,.2)'},
+      {name: 'Observi', text: 'Incepi sa remarci tipare. Un numar care se repeta, o conversatie care pare sa raspunda unei intrebari interioare. Nu stii inca ce sa faci cu asta, dar nu mai ignori.', color: 'rgba(255,210,122,.15)'},
+      {name: 'Reflectezi', text: 'In loc sa intrebi "Ce inseamna asta?", intrebi "Ce parte din mine e activata?". Te muti de la superstitie la constientizare de sine. Momentele iti devin oglinzi.', color: 'rgba(187,167,255,.15)'},
+      {name: 'Integrezi', text: 'Perspectivele nu mai raman abstracte. Schimbi ceva concret: o decizie, o conversatie, un obicei. Psihicul se simte ascultat si semnalele devin mai blande.', color: 'rgba(122,215,255,.15)'},
+      {name: 'Traiesti cu sens', text: 'Nu mai ai nevoie de semne dramatice. Sensul vine in alegeri aliniate, in decizii cu mai putina rezistenta interioara. Lumea nu e magica, e inteligibila. Coincidentele devin compani blandi.', color: 'rgba(117,240,182,.15)'}
+    ];
+
+    document.getElementById('phaseBar').addEventListener('click', function(e) {
+      const phaseEl = e.target.closest('[data-phase]');
+      if (!phaseEl) return;
+      const idx = parseInt(phaseEl.dataset.phase);
+      const phase = phases[idx];
+
+      document.getElementById('phaseName').textContent = phase.name;
+      document.getElementById('phaseText').textContent = phase.text;
+
+      // Highlight active phase
+      document.querySelectorAll('#phaseBar > div').forEach((el, i) => {
+        el.style.background = i === idx ? phase.color : '';
+        el.style.color = i === idx ? 'var(--text)' : '';
+        el.style.fontWeight = i === idx ? '700' : '';
+      });
+
+      showToast('Faza: ' + phase.name);
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Listen slider
+    // ──────────────────────────────────────────────────────
+    const listenSlider = document.getElementById('listenSlider');
+    const listenReadout = document.getElementById('listenReadout');
+
+    listenSlider.addEventListener('input', function() {
+      const val = parseInt(this.value);
+      listenReadout.textContent = val + '%';
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpPractice').addEventListener('click', () => {
+      document.getElementById('practice').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariu vizibil' : 'Comentariu ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = pct + '% – Constientizare puternica! Esti deschis dialogului cu viata interioara.';
+      else if (pct >= 60) msg = pct + '% – Bun inceput. Continua sa cultivi aceste atitudini.';
+      else if (pct >= 40) msg = pct + '% – Moderat. Alege 1-2 practici pe care sa le adopti cu regularitate.';
+      else msg = pct + '% – Mult loc de imbunatatit. Incepe cu pauza si observarea.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tau de constientizare:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

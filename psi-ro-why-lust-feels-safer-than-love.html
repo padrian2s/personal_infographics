@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce pofta pare mai sigura decat iubirea — Infografic interactiv</title>
+  <meta name="description" content="Infografic interactiv care explica de ce sistemul nervos prefera intensitatea in locul intimitatii si cum putem trece de la supravietuire la prezenta autentica." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,122,153,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--bad)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Spectrum bar */
+    .spectrum{
+      display:flex;align-items:stretch;gap:0;
+      border-radius:12px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      height:48px;
+      margin-top:10px;
+    }
+    .spectrum .seg{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:600;color:rgba(0,0,0,.8);
+      text-align:center;padding:4px 6px;
+      transition: flex .3s ease;
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    /* Interactive slider */
+    .sliderViz{
+      position:relative;
+      height:60px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      background:rgba(0,0,0,.18);
+      margin-top:12px;
+      overflow:hidden;
+    }
+    .sliderViz .fill{
+      position:absolute;left:0;top:0;bottom:0;
+      border-radius:12px;
+      transition: width .3s ease;
+    }
+    .sliderViz .sliderLabel{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      font-size:13px;font-weight:700;z-index:2;
+    }
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(255,122,153,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Abstract heart shape dissolving into scattered fragments -->
+            <path d="M260,180 C260,180 160,100 180,60 C200,20 240,40 260,80 C280,40 320,20 340,60 C360,100 260,180 260,180Z" fill="none" stroke="url(#g1)" stroke-width="4" opacity=".5" />
+            <path d="M200,90 Q230,50 260,75 Q290,50 320,90" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round" opacity=".6" />
+            <!-- Scattered fragments representing disconnection -->
+            <circle cx="160" cy="140" r="5" fill="rgba(255,122,153,.6)" />
+            <circle cx="360" cy="140" r="5" fill="rgba(187,167,255,.6)" />
+            <circle cx="200" cy="170" r="4" fill="rgba(255,255,255,.4)" />
+            <circle cx="320" cy="170" r="4" fill="rgba(255,255,255,.4)" />
+            <circle cx="260" cy="45" r="6" fill="rgba(255,255,255,.5)" />
+            <!-- Shield outline -->
+            <path d="M420,60 L450,50 L480,60 L480,100 Q450,130 420,100Z" fill="none" stroke="rgba(255,179,138,.4)" stroke-width="3" opacity=".5" />
+            <path d="M60,80 Q90,60 120,80 Q120,120 90,140 Q60,120 60,80Z" fill="none" stroke="rgba(117,240,182,.35)" stroke-width="3" opacity=".4" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie profunda &bull; atasament &bull; sistemul nervos</div>
+          <h1>De ce pofta pare mai sigura decat iubirea</h1>
+          <p class="subtitle">
+            Pofta (dorinta fizica) se simte imediata, curata, controlabila. Iubirea nu. Iubirea cere prezenta, vulnerabilitate si riscul de a fi vazut in timp.
+            Aceasta pagina explica <b>de ce sistemul nervos prefera intensitatea in locul intimitatii</b> si cum putem trece de la supravietuire la prezenta autentica.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la diagrama Pofta vs. Iubire</button>
+            <button class="btn" id="jumpFix">Mergi la vindecarea tiparelor</button>
+            <button class="btn" id="toggleNotes">Activeaza/dezactiveaza comentariul</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei cheie rezumate">
+          <div class="stat">
+            <div class="label">Mecanismul central</div>
+            <div class="value">Intensitate vs. Intimitate</div>
+            <div class="note">Pofta ofera conexiune fara istorie; iubirea cere sa ramai prezent.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Originea</div>
+            <div class="value">Atasament nesigur din copilarie</div>
+            <div class="note">Apropierea emotionala instabila invata corpul sa se fereasca de iubire.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Costul ascuns</div>
+            <div class="value">Singuratate dupa intensitate</div>
+            <div class="note">Pofta nu poate sustine durerea, vulnerabilitatea sau doliul.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Vindecarea</div>
+            <div class="value">De la supravietuire la prezenta</div>
+            <div class="note">Sistemul nervos poate invata ca a ramane este supravietuibil.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: What lust offers vs love demands -->
+      <section class="card" aria-label="Pofta vs. Iubire">
+        <div class="cardHeader">
+          <h2>Ce ofera pofta si ce cere iubirea</h2>
+          <div class="chip"><b>Ideea cheie:</b> control vs. vulnerabilitate</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--bad)">Pofta (dorinta fizica)</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Nu intreaba cine esti cu adevarat</h3>
+                  <p>Cere doar cum faci pe cineva sa se simta in acel moment. Nu e nevoie de istorie, viitor sau coerenta emotionala.</p>
+                  <div class="meta"><span class="badge">fara istorie</span><span class="badge">fara viitor</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Ocoleste mecanismele de aparare</h3>
+                  <p>Activeaza dorinta fara sa activeze atasamentul. Ofera intensitate fara responsabilitate, conexiune fara continuitate.</p>
+                  <div class="meta"><span class="badge">intensitate</span><span class="badge">fara obligatie</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Creeaza iluzia intimitatii</h3>
+                  <p>Te simti ales, dorit, cautat. Dar nu ti se cere sa ramai. Poti pleca inainte sa fii parasit.</p>
+                  <div class="meta"><span class="badge">control</span><span class="badge">distanta reglabila</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">Iubirea</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Expune tiparele si ranile</h3>
+                  <p>Iubirea reflecta parti din tine pe care pofta nu le atinge niciodata. De aici incepe frica.</p>
+                  <div class="meta"><span class="badge">vulnerabilitate</span><span class="badge">oglinda</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Cere sa ramai</h3>
+                  <p>Sa fii martor in toate starile, defectele, contradictiile si nevoile. Pentru multi, asta pare mai periculos decat respingerea.</p>
+                  <div class="meta"><span class="badge">prezenta</span><span class="badge">continuitate</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Cere mutualitate</h3>
+                  <p>Trebuie sa dai cat primesti. Sa fii afectat. Sa fii responsabil. Nu poti extrage dorinta fara sa-ti oferi lumea interioara.</p>
+                  <div class="meta"><span class="badge">reciprocitate</span><span class="badge">responsabilitate</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Diferenta esentiala nu este intre "bine" si "rau." Pofta si iubirea servesc functii diferite. Problema apare cand pofta devine singurul mod de a simti conexiune, inlocuind capacitatea de a tolera intimitatea reala.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Nervous system + childhood origins -->
+      <section class="row">
+        <div class="card" aria-label="Sistemul nervos">
+          <div class="cardHeader">
+            <h2>Sistemul nervos nu cauta fericirea. Cauta familiaritatea.</h2>
+            <div class="chip">corpul isi aminteste</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Daca apropierea emotionala a insemnat candva instabilitate, neglijare sau retragere, corpul isi aminteste chiar si ani mai tarziu.
+              Cand iubirea se apropie, corpul se incordeaza. Cand apare pofta, corpul se relaxeaza, pentru ca pofta nu ameninta rana veche.
+            </p>
+
+            <div class="viz" aria-label="Diagrama: Raspunsul sistemului nervos">
+              <svg viewBox="0 0 980 320" role="img">
+                <defs>
+                  <linearGradient id="ns1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)" />
+                    <stop offset="1" stop-color="rgba(187,167,255,.4)" />
+                  </linearGradient>
+                  <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <rect x="0" y="0" width="980" height="320" fill="rgba(0,0,0,.04)"/>
+
+                <g filter="url(#softGlow)">
+                  <!-- Childhood box -->
+                  <rect x="40" y="40" width="260" height="100" rx="18" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)"/>
+                  <text x="62" y="72" font-size="15" fill="rgba(255,255,255,.9)" font-weight="700">Copilarie</text>
+                  <text x="62" y="96" font-size="12" fill="rgba(255,255,255,.7)">Apropierea = durere / instabilitate</text>
+                  <text x="62" y="116" font-size="12" fill="rgba(255,255,255,.7)">Regula invatata: nu te baza pe nimeni</text>
+
+                  <!-- Arrow -->
+                  <path d="M300 90 C360 90, 360 90, 380 90" fill="none" stroke="url(#ns1)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+
+                  <!-- Adult pattern box -->
+                  <rect x="380" y="40" width="260" height="100" rx="18" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)"/>
+                  <text x="402" y="72" font-size="15" fill="rgba(255,255,255,.9)" font-weight="700">Tipar adult</text>
+                  <text x="402" y="96" font-size="12" fill="rgba(255,255,255,.7)">Stabilitatea pare "suspecta"</text>
+                  <text x="402" y="116" font-size="12" fill="rgba(255,255,255,.7)">Intensitatea pare "vie"</text>
+
+                  <!-- Arrow -->
+                  <path d="M640 90 C700 90, 700 90, 720 90" fill="none" stroke="url(#ns1)" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+
+                  <!-- Result box -->
+                  <rect x="720" y="40" width="230" height="100" rx="18" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)"/>
+                  <text x="742" y="72" font-size="15" fill="rgba(255,255,255,.9)" font-weight="700">Rezultat</text>
+                  <text x="742" y="96" font-size="12" fill="rgba(255,255,255,.7)">Fugi de iubire sanatoasa</text>
+                  <text x="742" y="116" font-size="12" fill="rgba(255,255,255,.7)">Cauti ceea ce e familiar, nu fericit</text>
+
+                  <!-- Bottom insight -->
+                  <rect x="40" y="180" width="910" height="100" rx="18" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.10)"/>
+                  <text x="62" y="210" font-size="14" fill="rgba(255,255,255,.86)" font-weight="700">De ce relatiile sanatoase pot parea "plictisitoare"</text>
+                  <text x="62" y="236" font-size="12" fill="rgba(255,255,255,.7)">Nu pentru ca le lipseste profunzimea, ci pentru ca profunzimea se simte nesigura.</text>
+                  <text x="62" y="258" font-size="12" fill="rgba(255,255,255,.7)">Stabilitatea pare stranie. Consistenta pare suspecta. Grija pare neconvingatoare.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Acesta este un punct esential: atractia nu este preferinta. Este memorie. Corpul isi aminteste cum se simtea apropierea si cauta sa o repete. Uneori in speranta de a stapani situatia, alteori in speranta de a o repara.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Originile din copilarie">
+          <div class="cardHeader">
+            <h2>Originile: inainte ca dorinta sa devina sexuala</h2>
+            <div class="chip">atasament emotional</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Acest tipar nu incepe cu sexul. Incepe cu apropierea emotionala. Mult inainte ca dorinta sa devina sexuala, a fost emotionala.
+              Si pentru multi, apropierea emotionala a fost inconsistenta.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Grija a aparut... si apoi a disparut</h3>
+                <p>Afectiunea a parut conditionata. Atentia a parut imprevizibila. Sistemul nervos a invatat o regula: nu te baza pe apropiere, pentru ca nu va dura.</p>
+                <div class="meta"><span class="badge">atasament nesigur</span><span class="badge">adaptare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Corpul a invatat sa tanjeasca dupa intensitate, nu consistenta</h3>
+                <p>Intensitatea se simte vie. Creeaza urgenta. Si urgenta pare mai sigura decat asteptarea. Asteptarea cere incredere. Increderea cere siguranta. Siguranta nu a fost garantata.</p>
+                <div class="meta"><span class="badge">urgenta = siguranta</span><span class="badge">asteptare = pericol</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Dorinta sexuala ofera ceva foarte specific</h3>
+                <p>Conexiune fara istorie. Apropiere fara obligatie. Atingere fara expunere. Poti fi dorit fara sa fii cunoscut.</p>
+                <div class="meta"><span class="badge">iluzie de intimitate</span><span class="badge">fara risc</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ceea ce numim "tip" sau "chimie" este adesea o repetare a dinamicii de atasament din copilarie. Nu cautam partenerul potrivit; cautam tiparele familiare. De aceea oamenii se intorc la relatii care ii ranesc.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Desire intensifies with distance -->
+      <section class="card" aria-label="Dorinta si distanta">
+        <div class="cardHeader">
+          <h2>De ce dorinta se intensifica cu distanta si indisponibilitatea</h2>
+          <div class="chip"><b>Tipar:</b> incertitudinea pare familiara</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Dorinta se intensifica adesea cu distanta, cu indisponibilitatea, cu incertitudinea. Pentru ca incertitudinea se simte familiara.
+                Corpul confunda familiaritatea cu siguranta.
+              </p>
+              <div class="riskGrid" style="margin-top:12px">
+                <div class="risk">
+                  <div class="rTop"><strong>Partener disponibil emotional</strong><span class="badge" style="color:var(--good)">calm</span></div>
+                  <div class="meter"><i style="width:25%;background:var(--good)"></i></div>
+                  <p>Dorinta poate scadea. Nu pentru ca ceva e gresit, ci pentru ca sistemul nervos nu recunoaste tiparul.</p>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Partener distant / inconsistent</strong><span class="badge" style="color:var(--bad)">familiar</span></div>
+                  <div class="meter"><i style="width:80%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                  <p>Dorinta creste brusc. Tiparul se potriveste cu cablajul emotional din copilarie.</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Spectrul atractiei">
+                <div class="small" style="margin-bottom:10px">Spectrul raspunsului la atractie:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Pasiune maxima unde iubirea e retinuta</span><span class="tag">tipar</span></div>
+                  <div class="pill"><span>Dorinta creste chiar inainte de abandon</span><span class="tag">tipar</span></div>
+                  <div class="pill"><span>Intoarcerea la relatii dureroase</span><span class="tag">repetitie</span></div>
+                  <div class="pill"><span>Plictiseala in relatii sanatoase</span><span class="tag">alarma falsa</span></div>
+                  <div class="pill"><span>Confuzia dintre drama si chimie</span><span class="tag">conditionare</span></div>
+                  <div class="pill"><span>Obsesia ca reglare a anxietatii</span><span class="tag">mecanism</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Sistemul nervos nu alearga dupa placere. Alearga dupa rezolutie, dupa incheierea povestii vechi.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta nu este o alegere constienta. Este un raspuns conditionat. Multi oameni cred ca sunt atrasi de "oamenii gresiti." Dar atractia nu este preferinta. Este memorie emotionala care se repeta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: The cost of lust as strategy -->
+      <section class="row">
+        <div class="card" aria-label="Costul poftei">
+          <div class="cardHeader">
+            <h2>Costul ascuns: cand intensitatea nu mai e suficienta</h2>
+            <div class="chip">pretul strategiei</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Pofta nu poate sa te tina cand viata se prabuseste. Nu poate contine doliul. Nu poate supravietui vulnerabilitatii.
+              Cu timpul, ceea ce candva parea sigur incepe sa se simta gol.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Dorinta devine compulsiva</h3>
+                <p>Nevoia de intensitate creste, dar satisfactia dupa scade. Ciclul se repeta din ce in ce mai repede.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">compulsie</span><span class="badge">toleranta crescuta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Conexiunea pare trecatoare</h3>
+                <p>Fiecare intalnire se simte intensa, dar golul revine imediat dupa. Nimic nu se acumuleaza, nimic nu dureaza.</p>
+                <div class="meta"><span class="badge" style="color:var(--warn)">efemer</span><span class="badge">repetitie</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Golul urmeaza intensitatii</h3>
+                <p>Intrebarea apare linistit: "De ce ma simt mai singur dupa apropiere?" Aceasta este semnalul ca strategia si-a atins limita.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">singuratate</span><span class="badge">semnal</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Siguranta pe care pofta o ofera este reala, dar este temporara si regresiva. Cu cat o folosesti mai mult ca unica poarta catre conexiune, cu atat se largeste golul pe care incerci sa-l umpli.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Costul din perspectiva relatiilor">
+          <div class="cardHeader">
+            <h2>Ce se intampla in relatii</h2>
+            <div class="chip"><b>Efect:</b> sabotaj relational</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Multi oameni saboteaza relatii sanatoase devreme. Asteapta "valul" de intensitate.
+              Cand nu vine, presupun ca lipseste ceva. Dar ceea ce lipseste nu este chimia. Este vechea tensiune familiara.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Confuzia "lipsa chimiei"</strong><span class="badge">frecvent</span></div>
+                <div class="meter"><i style="width:70%"></i></div>
+                <p>"Nu simt aceeasi intensitate" = lipsa tensiunii de supravietuire, nu lipsa iubirii.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Plictiseala in siguranta</strong><span class="badge">frecvent</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Stabilitatea pare straina. Consistenta pare suspecta. Grija pare un capcana.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Fuga spre intensitate</strong><span class="badge">ciclic</span></div>
+                <div class="meter"><i style="width:75%"></i></div>
+                <p>Redeschid tipare vechi, confunda usurarea cu adevarul, cauta urgenta in locul conexiunii.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Singuratate cronica</strong><span class="badge">rezultat</span></div>
+                <div class="meter"><i style="width:80%"></i></div>
+                <p>Sexul devine compensare, nu expresie. Conexiunea devine evadare, nu hrana.</p>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Tensiunea nu a fost niciodata iubire. A fost energie de supravietuire. Cand energia de supravietuire dispare, apare un vid. Si psihicul intra in panica.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 5: The healing process -->
+      <section class="card" id="fix" aria-label="Procesul de vindecare">
+        <div class="cardHeader">
+          <h2>Cand sistemul nervos incepe sa se miste de la pofta spre iubire</h2>
+          <div class="chip"><b>Tranzitia:</b> nu se simte ca vindecare</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Cand vindecarea incepe, nu se simte calduroasa si reconfortanta. Se simte plata, linistitia, nestimulanta.
+                Pentru ca ceea ce pleaca nu este dorinta in sine. Este intensitatea care masca frica.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Faza de sevraj</h3>
+                  <p>Nu de la sex, ci de la o strategie de adaptare. Emotii nerezolvate apar la suprafata. Doliul apare. Tristete fara cauza clara. Gol care nu poate fi umplut cu senzatii.</p>
+                  <div class="meta"><span class="badge" style="color:var(--warn)">sevraj</span><span class="badge">emotii nerezolvate</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Punctul de intoarcere</h3>
+                  <p>Cei mai multi interpreteaza gresit aceasta faza si se intorc. Alearga din nou dupa intensitate. Confunda usurarea cu adevarul. Dar usurarea nu este aliniere.</p>
+                  <div class="meta"><span class="badge" style="color:var(--bad)">risc de recadere</span><span class="badge">confuzie</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Recalibrarea</h3>
+                  <p>Daca ramai in aceasta faza, ceva se schimba incet. Sistemul nervos incepe sa tolereze linistea. Prezenta nu mai pare amenintatoare. Dorinta nu dispare, isi schimba textura.</p>
+                  <div class="meta"><span class="badge" style="color:var(--good)">recalibrare</span><span class="badge">crestere</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;font-size:14px">Cum se schimba dorinta:</h3>
+              <div class="riskGrid" style="grid-template-columns:1fr">
+                <div class="risk">
+                  <div class="rTop"><strong>Inainte: dorinta frantca</strong><span class="badge" style="color:var(--bad)">vechi</span></div>
+                  <p>Ascutita, consumatoare, exigenta. Bazata pe urgenta si frica de pierdere.</p>
+                  <div class="meter"><i style="width:85%;background:linear-gradient(90deg,var(--warn),var(--bad))"></i></div>
+                </div>
+                <div class="risk">
+                  <div class="rTop"><strong>Dupa: dorinta intemeiata</strong><span class="badge" style="color:var(--good)">nou</span></div>
+                  <p>Calda, profunda, invitatoare. Bazata pe prezenta si siguranta emotionala.</p>
+                  <div class="meter"><i style="width:55%;background:linear-gradient(90deg,var(--cyan),var(--good))"></i></div>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+
+              <h3 style="margin:0 0 10px;font-size:14px">Ce abilitati noi cere iubirea:</h3>
+              <div class="flow">
+                <div class="flowNode">
+                  <p>Capacitatea de a ramane prezent emotional fara a te abandona pe tine insuti.</p>
+                  <div class="meta"><span class="badge">prezenta</span></div>
+                </div>
+                <div class="flowNode">
+                  <p>Capacitatea de a fi vazut fara a te prabusi.</p>
+                  <div class="meta"><span class="badge">curaj</span></div>
+                </div>
+                <div class="flowNode">
+                  <p>Capacitatea de a primi fara neincredere.</p>
+                  <div class="meta"><span class="badge">deschidere</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Disconfortul din aceasta faza nu este un semnal de alarma. Este recalibrare. Momentul in care opresti folosirea poftei pentru a-ti regla frica de abandon, intimitatea se schimba. Nu mai urmaresti oameni care se retrag. Nu mai confuzi distanta cu atractie. Nu mai ai nevoie de dorinta ca sa-ti dovedesti valoarea.
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive self-assessment -->
+      <section class="card" aria-label="Autoevaluare interactiva">
+        <div class="cardHeader">
+          <h2>Autoevaluare: unde te afli pe spectru?</h2>
+          <div class="chip">exercitiu interactiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifeaza afirmatiile care rezona cu tine. Aceasta nu este un diagnostic, ci un instrument de constientizare.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Intensitatea imi pare mai sigura decat apropierea</strong><em>tipar central</em></div>
+                <div class="d">Simt ca pierd ceva cand o relatie e calma si stabila, dar ma simt "viu/vie" cand e imprevizibila.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ma plictisesc in relatii sanatoase</strong><em>alarma falsa</em></div>
+                <div class="d">Stabilitatea imi pare suspecta. Consistenta imi pare plictisitoare. Grija imi pare neconvingatoare.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ma simt mai singur/a dupa intimitate fizica</strong><em>costul strategiei</em></div>
+                <div class="d">Dupa momente intense, golul revine. Nimic nu se acumuleaza. Senzatia de conexiune se evapora repede.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sunt atras/a de persoane indisponibile</strong><em>repetitie a tiparului</em></div>
+                <div class="d">Dorinta creste cu distanta. Indisponibilitatea imi pare magnetica. Disponibilitatea imi pare neinteresanta.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Confund drama cu chimie</strong><em>conditionare</em></div>
+                <div class="d">Tensiunea, incertitudinea si frica de pierdere imi par "pasiune". Calmul imi pare lipsa de atractie.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Plec inainte sa fiu parasit/a</strong><em>control</em></div>
+                <div class="d">Prefer sa pun capat lucrurilor decat sa risc sa fiu vulnerabil/a. Distanta imi da un sentiment de siguranta.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>In copilarie, apropierea a fost inconsistenta</strong><em>originea</em></div>
+                <div class="d">Grija a aparut si a disparut. Afectiunea a parut conditionata. Am invatat ca apropierea nu dureaza.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Folosesc dorinta ca sa reglez anxietatea</strong><em>mecanism</em></div>
+                <div class="d">Obsesia, cautarea intensa, fanteziile romantice/sexuale imi dau un sens si imi distrag atentia de la emotii dificile.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculeaza scorul meu de constientizare</button>
+            <button class="btn" id="resetBtn">Reseteaza lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Scopul nu este sa te judeci. Este sa observi. Constientizarea este primul pas catre schimbare. Daca ai bifat multe puncte, asta nu inseamna ca esti "stricat/a" ci ca ai dezvoltat strategii inteligente de supravietuire care acum te limiteaza.
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive visualization: Lust vs Love spectrum -->
+      <section class="card" id="viz" aria-label="Vizualizare interactiva">
+        <div class="cardHeader">
+          <h2>Simulatorul Pofta vs. Iubire: unde se afla sistemul tau nervos?</h2>
+          <div class="chip">slider interactiv</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Misca sliderul pentru a vedea cum se schimba raspunsul emotional pe masura ce sistemul nervos trece de la modul de supravietuire la modul de prezenta.
+          </p>
+
+          <div class="viz" aria-label="Vizualizare spectru">
+            <svg viewBox="0 0 980 360" id="spectrumSvg" role="img" aria-label="Spectrul de la supravietuire la prezenta">
+              <defs>
+                <linearGradient id="specGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,122,153,.8)" />
+                  <stop offset="0.5" stop-color="rgba(255,210,122,.8)" />
+                  <stop offset="1" stop-color="rgba(117,240,182,.8)" />
+                </linearGradient>
+                <filter id="specGlow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="4" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <rect x="0" y="0" width="980" height="360" fill="rgba(0,0,0,.04)"/>
+
+              <!-- Spectrum bar -->
+              <rect x="70" y="40" width="840" height="24" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.1)"/>
+              <rect x="70" y="40" width="840" height="24" rx="12" fill="url(#specGrad)" opacity=".3"/>
+
+              <!-- Labels -->
+              <text x="70" y="84" font-size="12" fill="rgba(255,122,153,.9)" font-weight="700">SUPRAVIETUIRE</text>
+              <text x="440" y="84" font-size="12" fill="rgba(255,210,122,.9)" font-weight="700" text-anchor="middle">TRANZITIE</text>
+              <text x="910" y="84" font-size="12" fill="rgba(117,240,182,.9)" font-weight="700" text-anchor="end">PREZENTA</text>
+
+              <!-- Dynamic elements updated by JS -->
+              <circle id="specMarker" cx="490" cy="52" r="14" fill="rgba(255,255,255,.9)" stroke="rgba(255,255,255,.3)" stroke-width="2" filter="url(#specGlow)"/>
+
+              <!-- Trait boxes -->
+              <g id="traitBoxes">
+                <rect x="70" y="110" width="260" height="220" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(255,122,153,.3)" id="boxSurvival"/>
+                <text x="90" y="138" font-size="14" fill="rgba(255,122,153,.9)" font-weight="700">Modul supravietuire</text>
+                <text x="90" y="162" font-size="12" fill="rgba(255,255,255,.7)" id="t1">Dorinta intensa dar goala</text>
+                <text x="90" y="182" font-size="12" fill="rgba(255,255,255,.7)" id="t2">Fuga de vulnerabilitate</text>
+                <text x="90" y="202" font-size="12" fill="rgba(255,255,255,.7)" id="t3">Control prin distanta</text>
+                <text x="90" y="222" font-size="12" fill="rgba(255,255,255,.7)" id="t4">Atractie spre indisponibilitate</text>
+                <text x="90" y="242" font-size="12" fill="rgba(255,255,255,.7)" id="t5">Singuratate dupa intensitate</text>
+                <text x="90" y="262" font-size="12" fill="rgba(255,255,255,.7)" id="t6">Obsesia ca reglare</text>
+                <text x="90" y="282" font-size="12" fill="rgba(255,255,255,.7)" id="t7">Drama = chimie</text>
+
+                <rect x="360" y="110" width="260" height="220" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(255,210,122,.3)" id="boxTransition"/>
+                <text x="380" y="138" font-size="14" fill="rgba(255,210,122,.9)" font-weight="700">Zona de tranzitie</text>
+                <text x="380" y="162" font-size="12" fill="rgba(255,255,255,.7)" id="t8">Sevraj de la intensitate</text>
+                <text x="380" y="182" font-size="12" fill="rgba(255,255,255,.7)" id="t9">Emotii nerezolvate apar</text>
+                <text x="380" y="202" font-size="12" fill="rgba(255,255,255,.7)" id="t10">Linistea pare "gresita"</text>
+                <text x="380" y="222" font-size="12" fill="rgba(255,255,255,.7)" id="t11">Tentatia de a te intoarce</text>
+                <text x="380" y="242" font-size="12" fill="rgba(255,255,255,.7)" id="t12">Confuzie intre usurare si adevar</text>
+                <text x="380" y="262" font-size="12" fill="rgba(255,255,255,.7)" id="t13">Doliu fara cauza clara</text>
+
+                <rect x="650" y="110" width="260" height="220" rx="16" fill="rgba(0,0,0,.2)" stroke="rgba(117,240,182,.3)" id="boxPresence"/>
+                <text x="670" y="138" font-size="14" fill="rgba(117,240,182,.9)" font-weight="700">Modul prezenta</text>
+                <text x="670" y="162" font-size="12" fill="rgba(255,255,255,.7)" id="t14">Dorinta calda, profunda</text>
+                <text x="670" y="182" font-size="12" fill="rgba(255,255,255,.7)" id="t15">Prezenta fara amenintare</text>
+                <text x="670" y="202" font-size="12" fill="rgba(255,255,255,.7)" id="t16">Consistenta pare sigura</text>
+                <text x="670" y="222" font-size="12" fill="rgba(255,255,255,.7)" id="t17">Sexul = expresie, nu compensare</text>
+                <text x="670" y="242" font-size="12" fill="rgba(255,255,255,.7)" id="t18">Conexiunea = hrana, nu evadare</text>
+                <text x="670" y="262" font-size="12" fill="rgba(255,255,255,.7)" id="t19">Singuratatea se dizolva</text>
+                <text x="670" y="282" font-size="12" fill="rgba(255,255,255,.7)" id="t20">A ramane e supravietuibil</text>
+              </g>
+            </svg>
+
+            <div class="legend">
+              <div class="key"><span class="sw" style="background:rgba(255,122,153,.9)"></span> Supravietuire (pofta ca aparare)</div>
+              <div class="key"><span class="sw" style="background:rgba(255,210,122,.9)"></span> Tranzitie (sevraj si confuzie)</div>
+              <div class="key"><span class="sw" style="background:rgba(117,240,182,.9)"></span> Prezenta (iubire intemeiata)</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <label>
+                <span>Pozitia pe spectru</span>
+                <span class="readout" id="specReadout">50%</span>
+              </label>
+              <input id="specSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">0% = supravietuire totala, 100% = prezenta deplina</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Nivel de constientizare</span>
+                <span class="readout" id="awareReadout">50%</span>
+              </label>
+              <input id="awareSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">Cat de constient esti de propriile tipare.</div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Acest simulator este conceptual, nu o masurare clinica. Scopul este sa vizualizezi faptul ca trecerea de la supravietuire la prezenta este un proces gradual, nu un salt brusc. Majoritatea oamenilor oscileaza intre zone.
+          </div>
+        </div>
+      </section>
+
+      <!-- The real shift -->
+      <section class="card" aria-label="Schimbarea reala">
+        <div class="cardHeader">
+          <h2>Schimbarea reala: de la supravietuire la prezenta</h2>
+          <div class="chip"><b>Teza:</b> a ramane este supravietuibil</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce se schimba concret</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu mai urmaresti oameni care se retrag. Nu mai confuzi distanta cu atractie. Nu mai ai nevoie de dorinta ca sa-ti dovedesti valoarea.
+                Sexul devine expresie, nu compensare. Conexiunea devine hrana, nu evadare.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Singuratatea care urma poftei incepe sa se dizolve</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu pentru ca ai gasit corpul potrivit, ci pentru ca ai invatat sa ramai prezent cu o alta fiinta umana fara sa dispari.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Mesajul central</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Schimbarea reala nu este de la pofta la iubire, ci de la <b>supravietuire la prezenta</b>.
+                Iubirea nu ocoleaste ranile. Le atinge. Nu te distrage de la frica. O expune bland, in mod repetat, pana cand corpul invata un adevar nou:
+              </p>
+              <div style="height:10px"></div>
+              <div class="flowNode" style="border-color:rgba(117,240,182,.3);background:rgba(117,240,182,.06)">
+                <h3 style="color:var(--good)">Apropierea poate fi sigura</h3>
+                <p>Prezenta poate dura. Dorinta nu trebuie sa te coste centrul tau. Si "real" nu inseamna intotdeauna "intens." Uneori inseamna "linistitor." Pentru cineva care a trait toata viata in modul de supravietuire, linistirea este nefamiliara. Dar disconfortul aici nu este un avertisment. Este recalibrare.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">adevar nou</span><span class="badge" style="color:var(--good)">recalibrare</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre procesul de vindecare</strong><span class="hint">apasa pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Pofta pare mai sigura decat iubirea doar pana cand sistemul tau nervos invata ca a ramane este supravietuibil.
+                Acest proces nu este lin si nici confortabil. Implica doliu, confuzie si perioade in care linistea pare insuportabila.
+                Dar fiecare moment in care alegi sa ramai prezent in loc sa fugi spre intensitate este un pas spre recablarea sistemului nervos.
+                Nu ai nevoie sa te opresti din a simti dorinta. Ai nevoie sa inveti ca dorinta poate coexista cu siguranta.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- About commentary toggle -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Activeaza/dezactiveaza comentariul"</h2>
+          <div class="chip">interpretare vs. continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            In aceasta pagina, casetele violet (marcate cu <code>data-commentary</code>) ofera comentarii la nivel meta:
+            ce inseamna tiparul? Ce nuante lipsesc? Ce perspective alternative exista?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Activeaza/dezactiveaza comentariul" in partea de sus pentru a ascunde/arata toate casetele de comentariu deodata.
+            Astfel poti comuta intre "iata ce spune materialul original" si "iata reflectia critica asupra acelei afirmatii."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Mentiuni si avertismente:</b> Acest infografic interactiv a fost generat pentru a traduce un material despre dinamica pofta/iubire, atasament si sistemul nervos.
+        Nu este sfat medical sau terapeutic. Vizualizarile, simulatorul si comentariul sunt instrumente conceptuale care te ajuta sa gandesti la aceste tipare, nu inlocuitori pentru terapie sau orientare profesionala.
+      </p>
+      <p style="margin-top:10px">
+        Sursa: Psychadic. Pentru intrebari sau aprofundare: consulta literatura de specialitate despre teoria atasamentului, reglarea emotionala si psihoterapia relatiilor.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Spectrum slider visualization
+    const specSlider = document.getElementById('specSlider');
+    const awareSlider = document.getElementById('awareSlider');
+    const specReadout = document.getElementById('specReadout');
+    const awareReadout = document.getElementById('awareReadout');
+    const specMarker = document.getElementById('specMarker');
+
+    function updateSpectrum() {
+      const val = parseInt(specSlider.value);
+      const aware = parseInt(awareSlider.value);
+      specReadout.textContent = val + '%';
+      awareReadout.textContent = aware + '%';
+
+      // Move marker
+      const x = 70 + (val / 100) * 840;
+      specMarker.setAttribute('cx', x);
+
+      // Update box opacities based on position
+      const survival = Math.max(0, 1 - val / 50);
+      const transition = 1 - Math.abs(val - 50) / 50;
+      const presence = Math.max(0, (val - 50) / 50);
+
+      document.getElementById('boxSurvival').setAttribute('stroke-opacity', 0.2 + survival * 0.8);
+      document.getElementById('boxTransition').setAttribute('stroke-opacity', 0.2 + transition * 0.8);
+      document.getElementById('boxPresence').setAttribute('stroke-opacity', 0.2 + presence * 0.8);
+
+      // Set text opacity based on awareness and position
+      const baseOpacity = 0.3 + (aware / 100) * 0.6;
+      for (let i = 1; i <= 7; i++) {
+        const el = document.getElementById('t' + i);
+        if (el) el.setAttribute('fill', `rgba(255,255,255,${(baseOpacity * (0.3 + survival * 0.7)).toFixed(2)})`);
+      }
+      for (let i = 8; i <= 13; i++) {
+        const el = document.getElementById('t' + i);
+        if (el) el.setAttribute('fill', `rgba(255,255,255,${(baseOpacity * (0.3 + transition * 0.7)).toFixed(2)})`);
+      }
+      for (let i = 14; i <= 20; i++) {
+        const el = document.getElementById('t' + i);
+        if (el) el.setAttribute('fill', `rgba(255,255,255,${(baseOpacity * (0.3 + presence * 0.7)).toFixed(2)})`);
+      }
+    }
+
+    specSlider.addEventListener('input', updateSpectrum);
+    awareSlider.addEventListener('input', updateSpectrum);
+    updateSpectrum();
+
+    // Navigation buttons
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('viz').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpFix').addEventListener('click', () => {
+      document.getElementById('fix').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Commentary toggle
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariul este vizibil' : 'Comentariul este ascuns');
+    });
+
+    // Checklist scoring
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = pct + '% - Nivel ridicat de constientizare. Ai identificat multe tipare. Urmatorul pas: observa fara sa te judeci.';
+      else if (pct >= 60) msg = pct + '% - Constientizare semnificativa. Multe dintre aceste tipare iti sunt familiare. Asta e un punct de pornire puternic.';
+      else if (pct >= 35) msg = pct + '% - Constientizare moderata. Unele tipare rezona, altele nu. E normal; nu toata lumea experimenteaza aceleasi dinamici.';
+      else msg = pct + '% - Putine tipare rezona. Asta poate insemna ca ai un stil de atasament mai sigur, sau ca aceste dinamici nu sunt centrale pentru tine.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tau de constientizare:</b> ' + msg;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

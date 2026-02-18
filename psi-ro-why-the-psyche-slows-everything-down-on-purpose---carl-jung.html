@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De ce psihicul incetineste totul in mod deliberat — Carl Jung — Infografic</title>
+  <meta name="description" content="Infografic interactiv care explica de ce psihicul incetineste totul in mod intentionat, conform psihologiei lui Carl Jung: incetinirea nu e esec, ci recalibrare interioara." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(187,167,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(122,215,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 22px rgba(187,167,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Pills */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(187,167,255,.7);
+      padding: 10px 12px;
+      background: rgba(187,167,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Phase indicator */
+    .phaseBar{
+      display:flex;gap:0;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);margin-top:10px;
+    }
+    .phaseBar .seg{
+      flex:1;padding:10px 8px;text-align:center;font-size:11px;color:var(--text);
+      border-right:1px solid rgba(255,255,255,.08);
+      transition: background .3s;
+    }
+    .phaseBar .seg:last-child{border-right:none}
+    .phaseBar .seg b{display:block;font-size:13px;margin-bottom:3px}
+
+    /* Accordion */
+    .accordion{display:grid;gap:10px}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(187,167,255,.55)" />
+              <stop offset="1" stop-color="rgba(122,215,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Slow wave that descends then rises — symbolizing deceleration and return -->
+            <path d="M20,80 C80,160 140,170 200,150 C280,120 320,180 400,160 C450,148 480,90 500,70" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity=".6" />
+            <path d="M20,130 C100,60 180,190 260,140 C340,90 400,160 500,120" fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" opacity=".5" />
+            <!-- Stillness points -->
+            <circle cx="200" cy="150" r="12" fill="rgba(187,167,255,.5)" />
+            <circle cx="400" cy="160" r="9" fill="rgba(122,215,255,.45)" />
+            <circle cx="80" cy="140" r="7" fill="rgba(255,255,255,.35)" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> psihologie junghiana &bull; incetinire &bull; recalibrare interioara</div>
+          <h1>De ce psihicul incetineste totul in mod deliberat</h1>
+          <p class="subtitle">
+            Cand totul incetineste in viata ta, nu e un semn ca esti defect. Conform lui Carl Jung, psihicul retrage energia din actiune atunci cand structurile interioare au nevoie de reorganizare. <b>Incetinirea este inteligenta, nu slabiciune.</b>
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpViz">Mergi la diagrama energiei</button>
+            <button class="btn" id="jumpCheck">Mergi la lista de auto-evaluare</button>
+            <button class="btn" id="toggleNotes">Comuta modul comentariu</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Idei cheie rezumate">
+          <div class="stat">
+            <div class="label">Ideea centrala</div>
+            <div class="value">Incetinirea = reglare</div>
+            <div class="note">Psihicul aplica frana cand directia actuala nu mai corespunde adevarului interior.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mecanismul</div>
+            <div class="value">Retragerea energiei</div>
+            <div class="note">Energia care alimenta actiunea exterioara e redirectionata spre interior, pentru integrare.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Ce simti</div>
+            <div class="value">Motivatia scade, totul pare greu</div>
+            <div class="note">Nu e apatie, e un proces de contineralizare — psihicul spune "stai aici".</div>
+          </div>
+          <div class="stat">
+            <div class="label">Rezultatul</div>
+            <div class="value">Coerenta si aliniere</div>
+            <div class="note">Daca ii permiti procesul, claritatea revine — nu ca revelatie, ci ca un sens calm al directiei.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- Card 1: Incetinirea nu e colaps -->
+      <section class="card" aria-label="Incetinirea nu e colaps">
+        <div class="cardHeader">
+          <h2>Incetinirea nu este colaps — este reglare</h2>
+          <div class="chip"><b>Jung:</b> retragerea strategica a energiei</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Cand psihicul incetineste totul, majoritatea oamenilor presupun ca au esuat. Cred ca au pierdut ritmul, ca au devenit lenesi, ca ceva s-a stricat. Dar din punct de vedere psihologic, <b>incetinirea e opusul colapsului</b> — e reglare.
+              </p>
+              <p class="muted">
+                Psihicul nu se grabeste cand simte suprasarcina. Aplica frana nu fiindca esti slab, ci fiindca a continua cu aceeasi viteza ar deteriora ceva esential. Intr-o lume care egaleaza miscarea cu progresul, aceasta incetinire pare regresie — dar nu este.
+              </p>
+              <p class="muted">
+                Jung a observat ca <b>ori de cate ori inconstientul are nevoie de reorganizare, el retrage energia din efortul constient</b>. Nu permanent, nu distructiv — ci strategic.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Viteza vs aliniere">
+                <div class="small" style="margin-bottom:10px">Ce simti vs ce se intampla de fapt:</div>
+                <div class="hallmarks">
+                  <div class="pill"><span>Motivatia se stinge</span><span class="tag">simptom</span></div>
+                  <div class="pill"><span>Interesul se ingusteaza</span><span class="tag">simptom</span></div>
+                  <div class="pill"><span>Efortul creste, rezultatele scad</span><span class="tag">simptom</span></div>
+                  <div class="pill"><span>Deciziile par grele</span><span class="tag">simptom</span></div>
+                  <div class="pill"><span>Energia se redirectioneaza</span><span class="tag">cauza</span></div>
+                  <div class="pill"><span>Directia nu mai corespunde</span><span class="tag">cauza</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Toate simptomele de mai sus sunt <b>feedback</b>, nu defecte. Psihicul foloseste rezistenta pentru a comunica limite.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta perspectiva inverseaza narativul obisnuit. In loc sa tratezi incetinirea ca pe o problema de rezolvat, Jung o prezinta ca pe un mesaj de descifrat. Intrebarea nu e "cum imi recapat motivatia?" ci "ce incearca psihicul meu sa-mi spuna?"
+          </div>
+        </div>
+      </section>
+
+      <!-- Row: Burnout + Rezistenta ego -->
+      <section class="row">
+        <div class="card" aria-label="De la adaptare la burnout">
+          <div class="cardHeader">
+            <h2>De la supra-adaptare la burnout</h2>
+            <div class="chip">costul ascuns al conformarii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Burnout-ul apare adesea dupa perioade lungi de <b>supra-adaptare</b> — te-ai adaptat asteptarilor, rolurilor, cerintelor. Ai facut ce functiona. Dar adaptarea are un cost.
+            </p>
+            <p class="muted">
+              In cele din urma, psihicul cere "rambursarea". Nu sub forma de criza, ci sub forma de incetinire. Retrage energia spre interior pentru a reevalua, recalibra si a pune intrebari pe care le-ai evitat cand totul mergea prea repede.
+            </p>
+
+            <div class="flow" aria-label="Lant cauzal">
+              <div class="flowNode">
+                <h3>1) Supra-adaptarea</h3>
+                <p>Te conformezi rolurilor, asteptarilor celorlalti, cerintelor externe. Functionezi, dar pe pilot automat.</p>
+                <div class="meta"><span class="badge">conformare</span><span class="badge">performanta</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Costul se acumuleaza</h3>
+                <p>Parti din tine sunt neglijate. Intrebari esentiale raman neadresate: "De ce fac asta? Pentru cine?"</p>
+                <div class="meta"><span class="badge">neglijare interioara</span><span class="badge">datorie psihica</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Psihicul aplica frana</h3>
+                <p>Energia e retrasa din actiune si redirectionata spre reflectie. Motivatia scade, efortul pare inutil.</p>
+                <div class="meta"><span class="badge">incetinire</span><span class="badge">recalibrare</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Intrebari care ies la suprafata</h3>
+                <p>"De ce fac asta? Pentru cine e? Ce parte din mine e neglijata?" Aceste intrebari nu apar in miscare — apar in pauza.</p>
+                <div class="meta"><span class="badge">auto-examinare</span><span class="badge">claritate</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Burnout-ul nu e doar "epuizare fizica" — e un semnal ca ai functionat prea mult timp pe baza unor motivatii care nu-ti mai apartin. Incetinirea e mecanismul de corectie al psihicului.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Rezistenta ego-ului">
+          <div class="cardHeader">
+            <h2>Cand ego-ul se opune incetinirii</h2>
+            <div class="chip"><b>Conflict:</b> ego vs psihic</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Ego-ul interpreteaza aceasta retragere ca pe un pericol: slabeste mecanismele obisnuite de coping, nu te mai poti distrage usor, nu te poti baza pe productivitate pentru a-ti stabiliza sentimentul de valoare. Asa ca ego-ul protesteaza.
+            </p>
+
+            <div class="riskGrid" aria-label="Moduri de rezistenta">
+              <div class="risk">
+                <div class="rTop"><strong>"Ceva nu e in regula"</strong><span class="badge">panica</span></div>
+                <p>Ego-ul semnaleaza alarma: "Ramai in urma, trebuie sa faci mai mult." Dar psihicul nu raspunde la aceste cerinte.</p>
+                <div class="meter"><i style="width:70%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Productivitate fortata</strong><span class="badge">evitare</span></div>
+                <p>Umpli spatiul cu distractie, hack-uri de productivitate, obiective fortate. Dar asta creeaza conflict — psihicul nu coopereaza cu forta.</p>
+                <div class="meter"><i style="width:65%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Stagnare care devine anxietate</strong><span class="badge">escaladare</span></div>
+                <p>Cand incetinirea e combatuta, devine inconfortabila — nu fiindca e gresita, ci fiindca e respinsa activ.</p>
+                <div class="meter"><i style="width:80%"></i></div>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Criza de identitate</strong><span class="badge">vulnerabilitate</span></div>
+                <p>Cand miscarea se opreste, identitatea se clatina — mai ales pentru cei a caror valoare e legata de actiune si productie.</p>
+                <div class="meter"><i style="width:75%"></i></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Jung a crezut ca psihicul prioritizeaza <b>integritatea</b> in fata succesului. Succesul fara integritate duce la fragmentare — iar fragmentarea e exact ce psihicul incearca sa previna prin incetinire.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Energy redistribution SVG diagram -->
+      <section class="card" id="vizSection" aria-label="Diagrama redistributiei energiei">
+        <div class="cardHeader">
+          <h2>Redistribuirea energiei: de la exterior spre interior</h2>
+          <div class="chip">nu pierdere, ci redirectionare</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Ceea ce pare pierderea impulsului la suprafata este de fapt o <b>deplasare a energiei sub nivelul constientei</b>. Energia care era folosita pentru mentinerea aparentelor, indeplinirea asteptarilor sau urmarirea rezultatelor e acum trasa spre interior.
+          </p>
+
+          <div class="viz" id="viz" aria-label="Diagrama fluxului de energie">
+            <svg viewBox="0 0 980 380" role="img" aria-label="Vizualizare flux energie exterior vs interior">
+              <defs>
+                <linearGradient id="extGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(255,179,138,.6)" />
+                  <stop offset="1" stop-color="rgba(255,122,153,.4)" />
+                </linearGradient>
+                <linearGradient id="intGrad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="rgba(122,215,255,.6)" />
+                  <stop offset="1" stop-color="rgba(187,167,255,.5)" />
+                </linearGradient>
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge>
+                    <feMergeNode in="b"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <rect x="0" y="0" width="980" height="380" fill="rgba(0,0,0,.04)"/>
+
+              <g filter="url(#soft)">
+                <!-- External energy bar (shrinks) -->
+                <rect x="60" y="50" rx="14" ry="14" height="60" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)" id="extBarBg" width="400"/>
+                <rect x="60" y="50" rx="14" ry="14" height="60" fill="url(#extGrad)" id="extBar" width="360"/>
+                <text x="80" y="36" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Energie exterioara (actiune, performanta, aparente)</text>
+                <text id="extLabel" x="430" y="86" font-size="14" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="end">80%</text>
+
+                <!-- Arrow -->
+                <path d="M490,110 C490,160 490,160 490,180" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+                <text x="500" y="155" font-size="11" fill="rgba(255,255,255,.55)">redistribuire</text>
+
+                <!-- Internal energy bar (grows) -->
+                <rect x="60" y="190" rx="14" ry="14" height="60" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.14)" id="intBarBg" width="400"/>
+                <rect x="60" y="190" rx="14" ry="14" height="60" fill="url(#intGrad)" id="intBar" width="90"/>
+                <text x="80" y="176" font-size="13" fill="rgba(255,255,255,.85)" font-weight="700">Energie interioara (reflectie, integrare, recalibrare)</text>
+                <text id="intLabel" x="430" y="226" font-size="14" fill="rgba(255,255,255,.9)" font-weight="700" text-anchor="end">20%</text>
+
+                <!-- Descriptions on right side -->
+                <rect x="520" y="40" width="420" height="80" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="540" y="66" font-size="12" fill="rgba(255,179,138,.9)" font-weight="700">Activitati exterioare care consuma energie:</text>
+                <text x="540" y="86" font-size="11" fill="rgba(255,255,255,.65)">mentinerea aparentelor, indeplinirea asteptarilor,</text>
+                <text x="540" y="102" font-size="11" fill="rgba(255,255,255,.65)">urmarirea rezultatelor, productivitate, roluri sociale</text>
+
+                <rect x="520" y="180" width="420" height="80" rx="14" fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)"/>
+                <text x="540" y="206" font-size="12" fill="rgba(122,215,255,.9)" font-weight="700">Procese interioare care primesc energie:</text>
+                <text x="540" y="226" font-size="11" fill="rgba(255,255,255,.65)">reevaluare, discernamant emotional, integrare a</text>
+                <text x="540" y="242" font-size="11" fill="rgba(255,255,255,.65)">materialului inconstient, reformularea identitara</text>
+
+                <!-- Bottom note -->
+                <rect x="60" y="290" width="860" height="60" rx="14" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)"/>
+                <text x="80" y="316" font-size="12" fill="rgba(255,255,255,.7)">Aceasta miscare interioara e inconfortabila fiindca elimina recompensa exterioara. Nu mai esti alimentat de urgenta.</text>
+                <text x="80" y="336" font-size="12" fill="rgba(255,255,255,.7)">Nu mai esti purtat de impuls. Esti lasat cu tine insuti. Acolo incepe rezistenta.</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="controls" aria-label="Control redistribuire">
+            <div class="control">
+              <label>
+                <span>Grad de incetinire</span>
+                <span class="readout" id="slowReadout">50%</span>
+              </label>
+              <input id="slowSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">Misca slider-ul: la stanga = miscare normala; la dreapta = incetinire completa.</div>
+            </div>
+            <div class="control">
+              <label>
+                <span>Nivelul de rezistenta al ego-ului</span>
+                <span class="readout" id="resistReadout">mediu</span>
+              </label>
+              <input id="resistSlider" type="range" min="0" max="100" value="50" />
+              <div class="small" style="margin-top:8px">Cu cat rezistenta e mai mare, cu atat tensiunea interna creste.</div>
+            </div>
+          </div>
+
+          <div class="legend" aria-label="Legenda">
+            <div class="key"><span class="sw" style="background: rgba(255,179,138,.8)"></span> Energie exterioara</div>
+            <div class="key"><span class="sw" style="background: rgba(122,215,255,.8)"></span> Energie interioara</div>
+            <div class="key"><span class="sw" style="background: linear-gradient(90deg, var(--warn), var(--bad))"></span> Tensiune (daca rezisti)</div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Diagrama de mai sus e <i>conceptuala</i>. Ideea centrala: energia nu dispare, ci se muta. Ceea ce pare letargie exterioara e de fapt activitate interioara intensa, doar ca e invizibila si nu aduce aplauze.
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 schimbari interioare -->
+      <section class="card" aria-label="Cele 4 schimbari interioare">
+        <div class="cardHeader">
+          <h2>Cele 4 schimbari interioare din faza de incetinire</h2>
+          <div class="chip">ce se intampla de fapt sub suprafata</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div class="flowNode">
+              <h3 style="color:var(--orange)">1) Motivatiile vechi se dizolva</h3>
+              <p>Realizezi ca ceea ce te-a impins ani de zile nu te mai misca. Asta sperie, fiindca motivatia e legata de identitate. Cand motivatia dispare, apare intrebarea: <b>"Cine sunt fara asta?"</b></p>
+              <div class="meta"><span class="badge">eliberare</span><span class="badge">pierdere identitara</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--cyan)">2) Sensibilitatea emotionala creste</h3>
+              <p>Nu neaparat emotii dramatice, ci o constientizare a tonului emotional. Observi cand ceva "nu suna bine", cand o conversatie te epuizeaza, cand un rol pare constrangator.</p>
+              <div class="meta"><span class="badge">discernamant</span><span class="badge">perceptie fina</span></div>
+            </div>
+          </div>
+          <div style="height:10px"></div>
+          <div class="split">
+            <div class="flowNode">
+              <h3 style="color:var(--violet)">3) Nevoia de liniste creste</h3>
+              <p>Nu doar liniste fizica — liniste interioara. Zgomotul devine iritant. Stimularea constanta pare invaziva. Psihicul reduce stimularea ca semnalele subtile sa poata fi percepute.</p>
+              <div class="meta"><span class="badge">retragere selectiva</span><span class="badge">nu depresie</span></div>
+            </div>
+            <div class="flowNode">
+              <h3 style="color:var(--good)">4) Perceptia timpului se schimba</h3>
+              <p>Zilele par mai lente. Obiectivele par indepartate. Termenele limita isi pierd incarcatura emotionala. Psihicul prioritizeaza <b>procesul in fata rezultatului</b> si te ancoreaza in prezent.</p>
+              <div class="meta"><span class="badge">prezent</span><span class="badge">proces, nu rezultat</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Multi oameni confunda punctul 3 cu depresia. Dar depresia prabuseste energia fara discriminare. Incetinirea junghiana e <b>selectiva</b> — inca iti pasa, inca functionezi, doar ca nu mai esti dispus sa risipesti energie pe ce nu mai corespunde. Aceasta selectivitate este inteligenta.
+          </div>
+        </div>
+      </section>
+
+      <!-- Faza de integrare -->
+      <section class="row">
+        <div class="card" aria-label="Integrarea">
+          <div class="cardHeader">
+            <h2>Integrarea: de ce nu se poate face la viteza</h2>
+            <div class="chip">procesul invizibil al reconstruirii</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Jung a descris <b>integrarea</b> ca procesul prin care materialul inconstient devine compatibil cu viata constienta. Acest proces necesita incetineala fiindca materialul inconstient nu iese la suprafata "curat".
+            </p>
+            <p class="muted">
+              Vine sub forma de nelinist vaga, oboseala emotionala, dezinteres subit, tristete tacuta fara poveste. Daca viata continua cu viteza mare, aceste semnale sunt inecate. Asa ca psihicul reduce volumul in alte parti — iti reduce apetitul pentru stimulare, iti atenueaza dorinta de a performa, iti ingusteaza focusul.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Metafora constructiei">
+              <svg viewBox="0 0 980 220" role="img">
+                <defs>
+                  <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#glow2)">
+                  <!-- Building metaphor -->
+                  <rect x="60" y="40" width="260" height="140" rx="14" fill="rgba(255,122,153,.12)" stroke="rgba(255,122,153,.3)"/>
+                  <text x="80" y="70" font-size="14" fill="rgba(255,122,153,.9)" font-weight="700">Fara integrare</text>
+                  <text x="80" y="92" font-size="12" fill="rgba(255,255,255,.6)">Construiesti pe fundatii</text>
+                  <text x="80" y="110" font-size="12" fill="rgba(255,255,255,.6)">care deja se clatina.</text>
+                  <text x="80" y="134" font-size="12" fill="rgba(255,255,255,.6)">Rezultat: dezorientare,</text>
+                  <text x="80" y="152" font-size="12" fill="rgba(255,255,255,.6)">cicluri repetitive de burnout.</text>
+
+                  <path d="M340,110 L400,110" stroke="rgba(255,255,255,.3)" stroke-width="2" stroke-dasharray="6 4" fill="none"/>
+                  <text x="348" y="100" font-size="11" fill="rgba(255,255,255,.5)">vs</text>
+
+                  <rect x="420" y="40" width="260" height="140" rx="14" fill="rgba(117,240,182,.10)" stroke="rgba(117,240,182,.3)"/>
+                  <text x="440" y="70" font-size="14" fill="rgba(117,240,182,.9)" font-weight="700">Cu integrare</text>
+                  <text x="440" y="92" font-size="12" fill="rgba(255,255,255,.6)">Psihicul opreste constructia.</text>
+                  <text x="440" y="110" font-size="12" fill="rgba(255,255,255,.6)">Verifica structura.</text>
+                  <text x="440" y="134" font-size="12" fill="rgba(255,255,255,.6)">Redistribuie greutatea.</text>
+                  <text x="440" y="152" font-size="12" fill="rgba(255,255,255,.6)">Rezultat: stabilitate interioara.</text>
+
+                  <rect x="720" y="40" width="220" height="140" rx="14" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.2)"/>
+                  <text x="740" y="70" font-size="14" fill="rgba(187,167,255,.9)" font-weight="700">Retine</text>
+                  <text x="740" y="96" font-size="12" fill="rgba(255,255,255,.6)">Integrarea nu e productiva</text>
+                  <text x="740" y="114" font-size="12" fill="rgba(255,255,255,.6)">in sensul clasic. E intretinere.</text>
+                  <text x="740" y="138" font-size="12" fill="rgba(255,255,255,.6)">Nu are aplauze. Dar fara ea,</text>
+                  <text x="740" y="156" font-size="12" fill="rgba(255,255,255,.6)">orice vine dupa e instabil.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> A mentine tensiunea fara a actiona e una din cele mai mature abilitati psihologice. Dar rareori e predata. In schimb, oamenii sunt invatati sa elibereze tensiunea imediat prin actiune, distractie sau rationalizare — ceea ce intrerupe integrarea.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Continerea">
+          <div class="cardHeader">
+            <h2>Continerea: arta de a "sta cu tensiunea"</h2>
+            <div class="chip">maturitate psihologica</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              <b>Continerea</b> este modul psihicului de a spune "stai aici — ceva trebuie procesat." Majoritatea oamenilor nu stiu cum sa stea. Sunt antrenati sa se miste, sa repare, sa optimizeze.
+            </p>
+            <p class="muted">
+              Cand psihicul cere continere, ei simt tensiune — se simt prinsi intre dorinta de a actiona si incapacitatea de a o face. Aceasta tensiune nu e menita sa fie rezolvata rapid — e menita sa fie <b>sustinuta</b>.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Tensiunea e eliberata prea repede</h3>
+                <p>Integrarea e intrerupta. Psihicul nu primeste timpul necesar pentru reorganizare. Aceleasi tipare revin mai tarziu, adesea mai puternic.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">cicluri repetitive</span><span class="badge" style="color:var(--bad)">burnout recurent</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Tensiunea e sustinuta cu rabdare</h3>
+                <p>Presiunea scade. Comparatia dispare. Urgenta isi pierde controlul. Te opresti din a te depasi pe tine insuti. Si in acea liniste, o claritate subtila incepe sa se formeze.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">coerenta</span><span class="badge" style="color:var(--good)">aliniere</span><span class="badge" style="color:var(--good)">directie</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <details data-commentary>
+              <summary><strong>Ce forma ia claritatea care se formeaza?</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Nu raspunsuri inca, ci directie. Un sens al a ceea ce nu mai potriveste. Un sens al a ceea ce nu poate fi reluat. Aceasta constientizare e adevarata munca a acestei faze. Psihicul incetineste totul intentionat ca sa poti vedea <b>ce ascundea viteza</b>.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fazele incetinirii -->
+      <section class="card" aria-label="Fazele incetinirii">
+        <div class="cardHeader">
+          <h2>Fazele incetinirii: de la panica la coerenta</h2>
+          <div class="chip">un traseu, nu un blocaj</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Incetinirea urmeaza adesea <b>faza de panica</b>. Panica este reactia ego-ului la pierderea controlului. Incetinirea este raspunsul psihicului la acea panica — stabilizeaza, ancoreaza, reduce zgomotul ca reorientarea sa poata incepe.
+          </p>
+
+          <div class="phaseBar" id="phaseBar">
+            <div class="seg" style="background:rgba(255,122,153,.15)" data-phase="0">
+              <b>1. Panica</b>
+              Ego-ul pierde controlul
+            </div>
+            <div class="seg" style="background:rgba(255,210,122,.12)" data-phase="1">
+              <b>2. Incetinire</b>
+              Psihicul aplica frana
+            </div>
+            <div class="seg" style="background:rgba(187,167,255,.12)" data-phase="2">
+              <b>3. Continere</b>
+              Stai cu tensiunea
+            </div>
+            <div class="seg" style="background:rgba(122,215,255,.12)" data-phase="3">
+              <b>4. Integrare</b>
+              Material inconstient procesat
+            </div>
+            <div class="seg" style="background:rgba(117,240,182,.12)" data-phase="4">
+              <b>5. Coerenta</b>
+              Claritate si directie
+            </div>
+          </div>
+
+          <div id="phaseDetail" style="margin-top:12px">
+            <div class="flowNode">
+              <h3 id="phaseTitle">Apasa pe o faza de mai sus</h3>
+              <p id="phaseDesc">Fiecare faza de mai sus este un pas intr-un traseu natural. Apasa pentru a vedea detalii despre fiecare.</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Observa ca traseul nu e linear — poti oscila intre faze. Dar directia generala e clara: de la reactia ego-ului (panica) la raspunsul psihicului (coerenta). Curajul sta in a nu te intoarce la panica cand procesul devine inconfortabil.
+          </div>
+        </div>
+      </section>
+
+      <!-- Auto-evaluare -->
+      <section class="card" id="checkSection" aria-label="Auto-evaluare">
+        <div class="cardHeader">
+          <h2>Lista de auto-evaluare: esti intr-o faza de incetinire?</h2>
+          <div class="chip">verificare personala</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Bifeaza ce rezoneza cu experienta ta actuala. Aceasta nu e o evaluare clinica — e un instrument de reflectie bazat pe conceptele lui Jung.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Motivatia s-a stins fara un motiv clar</strong><em>semnal de baza</em></div>
+                <div class="d">Nu s-a intamplat nimic dramatic, dar impulsul de a face lucruri a scazut vizibil. Te simti "blocat" fara sa intelegi de ce.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Efortul creste, dar rezultatele scad</strong><em>rezistenta psihica</em></div>
+                <div class="d">Incerci sa impingi, dar totul pare mai greu. Cu cat te straduiesti mai mult, cu atat devine mai greoi.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Simti nevoia de liniste si simplitate</strong><em>retragere selectiva</em></div>
+                <div class="d">Zgomotul, socializar-ea excesiva, stimularea constanta te obosesc mai mult ca inainte. Preferi sa fii singur.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Rolurile si asteptarile par constrangatoare</strong><em>inadecvare emergenta</em></div>
+                <div class="d">Ceea ce inainte functiona acum pare fortat. Rolurile sociale, profesionale sau relationale nu mai "se potrivesc".</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Intrebari existentiale ies la suprafata</strong><em>auto-examinare</em></div>
+                <div class="d">"De ce fac asta?", "Pentru cine traiesc?", "Ce parte din mine e neglijata?" — intrebari pe care le evitai cand erai ocupat.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sensibilitatea emotionala a crescut</strong><em>discernamant</em></div>
+                <div class="d">Observi mai repede cand ceva "nu suna bine" — conversatii care te epuizeaza, situatii care nu se mai aliniaza cu tine.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Perceptia timpului s-a schimbat</strong><em>ancorare in prezent</em></div>
+                <div class="d">Zilele par mai lente. Obiectivele pe termen lung par irelevent de indepartate. Termenele limita nu te mai alarmeaza ca inainte.</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Nu te-ai prabusit, dar nici nu avansezi</strong><em>zona de prag</em></div>
+                <div class="d">Viata ta e intacta. Responsabilitatile exista. Oportunitatile pot fi prezente. Dar ceva din interior refuza sa impinga inainte.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculeaza scorul de incetinire</button>
+            <button class="btn" id="resetBtn">Reseteaza lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Daca ai bifat multe puncte, nu e un diagnostic — e un indiciu ca psihicul tau ar putea fi intr-o faza de recalibrare. Cel mai important lucru: nu te judeca pentru asta. Jung spunea ca adevarata munca nu e sa "te repari", ci sa asculti ce iti spune incetinirea.
+          </div>
+        </div>
+      </section>
+
+      <!-- Ce faci practic -->
+      <section class="row">
+        <div class="card" aria-label="Ce sa faci practic">
+          <div class="cardHeader">
+            <h2>Ce sa faci (si ce sa nu faci) in aceasta faza</h2>
+            <div class="chip">ghid practic</div>
+          </div>
+          <div class="cardBody">
+            <div class="split">
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">Ce sa faci</h3>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>Permite pauza fara auto-judecata</h3>
+                    <p>Daca permiti aceasta faza fara sa te judeci, ceva se schimba. Presiunea scade, comparatia se diminueaza.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Renunta la a forta claritatea</h3>
+                    <p>Nu te mai agata de raspunsuri. Opreste-te din a te explica. In acea retinere, coerenta revine incet.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Asculta semnalele subtile</h3>
+                    <p>Nelinist vaga, oboseala emotionala, tristete fara poveste — toate sunt mesaje ale inconstientului care cer atentie.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Accepta ca "intretinerea" e munca reala</h3>
+                    <p>Pregatirea e invizibila. Nu exista aplauze pentru recalibrare. Dar fara ea, orice vine dupa ar fi instabil.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 style="margin:0 0 8px;font-size:14px;color:var(--bad)">Ce sa nu faci</h3>
+                <div class="flow">
+                  <div class="flowNode">
+                    <h3>Nu forta accelerarea</h3>
+                    <p>Cu cat incerci mai mult sa treci peste, cu atat totul devine mai greu. Psihicul nu coopereaza cu forta.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Nu umple spatiul cu distractii</h3>
+                    <p>Hack-uri de productivitate, obiective noi, activitati frenetice — toate sunt forme de evitare a mesajului interior.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Nu confunda incetinirea cu esecul</h3>
+                    <p>Valoarea ta nu a fost niciodata problema. Alinierea este. Jung credea ca psihicul prioritizeaza integritatea, nu succesul.</p>
+                  </div>
+                  <div class="flowNode">
+                    <h3>Nu te intoarce la "normal"</h3>
+                    <p>"Normalul" a fost construit pe conditii care nu mai sunt stabile interior. A te intoarce ar insemna sa tradezi ce emerge.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Rezultatul final">
+          <div class="cardHeader">
+            <h2>Ce se intampla daca permiti procesul</h2>
+            <div class="chip"><b>Rezultat:</b> impuls autentic</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Psihicul incetineste totul in mod deliberat ca <b>urmatoarea ta miscare sa nu fie reactiva</b>. Ca atunci cand impulsul revine, sa fie al tau — nu imprumutat. Ca atunci cand actionezi din nou, sa nu fie pentru a fugi de disconfort, ci pentru a exprima un adevar.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Transformare">
+              <svg viewBox="0 0 980 200" role="img">
+                <defs>
+                  <linearGradient id="transGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                    <stop offset=".5" stop-color="rgba(187,167,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.5)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="980" height="200" fill="rgba(0,0,0,.04)"/>
+
+                <rect x="40" y="30" width="260" height="140" rx="16" fill="rgba(255,122,153,.08)" stroke="rgba(255,122,153,.2)"/>
+                <text x="60" y="60" font-size="14" fill="rgba(255,122,153,.9)" font-weight="700">Inainte de integrare</text>
+                <text x="60" y="82" font-size="12" fill="rgba(255,255,255,.6)">"Credeam ca ma pierd"</text>
+                <text x="60" y="100" font-size="12" fill="rgba(255,255,255,.6)">Impuls imprumutat</text>
+                <text x="60" y="118" font-size="12" fill="rgba(255,255,255,.6)">Actiune din disconfort</text>
+                <text x="60" y="136" font-size="12" fill="rgba(255,255,255,.6)">Cicluri repetitive</text>
+
+                <line x1="320" y1="100" x2="380" y2="100" stroke="url(#transGrad)" stroke-width="4" stroke-dasharray="8 4"/>
+                <rect x="360" y="70" width="260" height="60" rx="14" fill="rgba(187,167,255,.08)" stroke="rgba(187,167,255,.2)"/>
+                <text x="380" y="96" font-size="13" fill="rgba(187,167,255,.9)" font-weight="700">Faza de incetinire si integrare</text>
+                <text x="380" y="116" font-size="11" fill="rgba(255,255,255,.55)">continere, recalibrare, discernamant</text>
+
+                <line x1="640" y1="100" x2="700" y2="100" stroke="url(#transGrad)" stroke-width="4" stroke-dasharray="8 4"/>
+
+                <rect x="680" y="30" width="260" height="140" rx="16" fill="rgba(117,240,182,.08)" stroke="rgba(117,240,182,.2)"/>
+                <text x="700" y="60" font-size="14" fill="rgba(117,240,182,.9)" font-weight="700">Dupa integrare</text>
+                <text x="700" y="82" font-size="12" fill="rgba(255,255,255,.6)">"De fapt, eram reconstruit"</text>
+                <text x="700" y="100" font-size="12" fill="rgba(255,255,255,.6)">Impuls propriu</text>
+                <text x="700" y="118" font-size="12" fill="rgba(255,255,255,.6)">Actiune din adevar</text>
+                <text x="700" y="136" font-size="12" fill="rgba(255,255,255,.6)">Sens de aliniere calma</text>
+              </svg>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted">
+              Cei care trec prin acest proces spun adesea acelasi lucru: <b>"Credeam ca ma pierd, dar de fapt eram reconstruit."</b> Daca lucrurile par mai lente acum, nu te grabi sa repari asta. Nimic nu-ti cere sa impingi. Nimic nu cere claritate imediata. Incetinirea exista cu un scop.
+            </p>
+
+            <details data-commentary>
+              <summary><strong>Citat final din Jung</strong><span class="hint">apasa pentru detalii</span></summary>
+              <div class="detailBody">
+                <p>Carl Jung credea ca atunci cand psihicul retrage energia, protejeaza individul de a construi un viitor pe un teren interior instabil. Aceasta faza nu e aici sa te opreasca — <b>e aici sa te stabilizeze</b>.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- About commentary -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comuta modul comentariu"</h2>
+          <div class="chip">interpretare vs continut</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe parcursul acestei pagini, casetele violet (marcate cu <code>data-commentary</code>) ofera comentariu de meta-nivel: cum se aplica ideile lui Jung in practica? Ce nuante trebuie retinute?
+          </p>
+          <p class="muted">
+            Implicit, comentariul este <b>vizibil</b>. Apasa "Comuta modul comentariu" in partea de sus pentru a ascunde/afisa toate casetele de comentariu simultan.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Mentiuni si declinarea responsabilitatii:</b> Acest infografic interactiv a fost creat pentru a traduce vizual concepte din psihologia junghiana despre incetinirea psihica si integrare. Nu este consiliere psihologica sau medicala. Vizualizarile si comentariul sunt instrumente conceptuale — nu inlocuiesc cercetarea primara sau indrumare clinica profesionala.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: consulta lucrarile originale ale lui Carl Jung, in special <i>Tipuri psihologice</i>, <i>Arhetipurile si inconstientul colectiv</i>, si <i>Psihologia si alchimia</i>.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Energy redistribution simulator
+    // ──────────────────────────────────────────────────────
+    const slowSlider = document.getElementById('slowSlider');
+    const resistSlider = document.getElementById('resistSlider');
+    const slowReadout = document.getElementById('slowReadout');
+    const resistReadout = document.getElementById('resistReadout');
+
+    function renderEnergy() {
+      const slow = parseInt(slowSlider.value);
+      const resist = parseInt(resistSlider.value);
+
+      slowReadout.textContent = slow + '%';
+
+      if (resist < 33) resistReadout.textContent = 'scazut';
+      else if (resist < 66) resistReadout.textContent = 'mediu';
+      else resistReadout.textContent = 'ridicat';
+
+      const maxW = 400;
+      const extW = maxW * (1 - slow / 100) * 0.9 + maxW * 0.1;
+      const intW = maxW * (slow / 100) * 0.9 + maxW * 0.1;
+
+      const extPct = Math.round((extW / maxW) * 100);
+      const intPct = Math.round((intW / maxW) * 100);
+
+      document.getElementById('extBar').setAttribute('width', extW);
+      document.getElementById('intBar').setAttribute('width', intW);
+      document.getElementById('extLabel').textContent = extPct + '%';
+      document.getElementById('intLabel').textContent = intPct + '%';
+    }
+
+    slowSlider.addEventListener('input', renderEnergy);
+    resistSlider.addEventListener('input', renderEnergy);
+    renderEnergy();
+
+    // ──────────────────────────────────────────────────────
+    // Phase bar interaction
+    // ──────────────────────────────────────────────────────
+    const phaseData = [
+      {
+        title: '1. Panica — reactia ego-ului',
+        desc: 'Ego-ul simte ca pierde controlul. Apare anxietatea, urgenta de a "face ceva", senzatia ca "ceva nu e in regula". Aceasta e prima reactie — nu e realitate, e alarma ego-ului.'
+      },
+      {
+        title: '2. Incetinire — raspunsul psihicului',
+        desc: 'Psihicul intervine si retrage energia din actiune. Motivatia scade, impulsul se diminueaza, totul pare mai greu. Nu e pedeapsa — e feedback. Directia actuala nu mai corespunde adevarului interior.'
+      },
+      {
+        title: '3. Continere — a sta cu tensiunea',
+        desc: 'Tensiunea dintre dorinta de a actiona si incapacitatea de a o face trebuie sustinuta, nu rezolvata imediat. Aceasta e una din cele mai mature abilitati psihologice — si una din cele mai rar predate.'
+      },
+      {
+        title: '4. Integrare — procesarea materialului inconstient',
+        desc: 'Materialul inconstient devine compatibil cu viata constienta. Motivatii vechi se dizolva, sensibilitatea creste, nevoia de liniste se intensifica, perceptia timpului se schimba. Procesul nu e vizibil, dar e real.'
+      },
+      {
+        title: '5. Coerenta — claritate si directie',
+        desc: 'Nu raspunsuri finale, ci un sens calm al directiei. Un "simt cand ceva e corect, simt cand ceva e fals." Acest simt vine din integrare, nu din presiune. Si cand impulsul revine, e autentic — nu imprumutat.'
+      }
+    ];
+
+    document.querySelectorAll('.phaseBar .seg').forEach(seg => {
+      seg.style.cursor = 'pointer';
+      seg.addEventListener('click', () => {
+        const idx = parseInt(seg.dataset.phase);
+        document.getElementById('phaseTitle').textContent = phaseData[idx].title;
+        document.getElementById('phaseDesc').textContent = phaseData[idx].desc;
+
+        document.querySelectorAll('.phaseBar .seg').forEach(s => s.style.outline = 'none');
+        seg.style.outline = '2px solid rgba(255,255,255,.3)';
+        seg.style.outlineOffset = '-2px';
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Navigation
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpViz').addEventListener('click', () => {
+      document.getElementById('vizSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('jumpCheck').addEventListener('click', () => {
+      document.getElementById('checkSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariul este vizibil' : 'Comentariul este ascuns');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = pct + '% — Indicii puternice ca te afli intr-o faza profunda de recalibrare. Permite-i procesul fara judecata.';
+      else if (pct >= 60) msg = pct + '% — Semnale clare de incetinire. Psihicul tau lucreaza — ofera-i spatiu.';
+      else if (pct >= 35) msg = pct + '% — Cateva semnale de incetinire. Fii atent la ce se schimba in interior.';
+      else msg = pct + '% — Putine semnale. Fie nu esti intr-o faza de incetinire, fie procesul abia incepe.';
+
+      document.getElementById('scoreOut').innerHTML = '<b>Scorul tau:</b> ' + msg;
+      showToast('Scorul a fost calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista a fost resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
