@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Summitul AI India: Pichai, Hassabis si Manyika despre Viitorul AI — Infografic</title>
+  <meta name="description" content="Infografic interactiv despre dezbaterea de la Summitul AI India intre Sundar Pichai, Demis Hassabis si James Manyika privind impactul AI asupra Indiei, locurilor de munca si viitorului." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Hallmarks list */
+    .hallmarks{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .hallmarks{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .hallmarks{grid-template-columns:1fr}
+    }
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 740px){
+      .controls{grid-template-columns:1fr}
+    }
+
+    .control{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    input[type="range"]{width:100%;margin-top:10px;accent-color:var(--cyan)}
+    .control .readout{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;width:50%;background: linear-gradient(90deg, var(--good), var(--warn), var(--bad));filter:saturate(1.1)}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    .row3{display:grid;grid-template-columns: 1fr 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row3{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+      z-index:999;
+    }
+
+    /* Speaker quote style */
+    .quote{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      padding: 12px;
+      margin-top: 10px;
+      position: relative;
+    }
+    .quote::before{
+      content: "\201C";
+      position: absolute;
+      top: -4px;
+      left: 10px;
+      font-size: 32px;
+      color: var(--cyan);
+      opacity: .5;
+      line-height: 1;
+    }
+    .quote .qtext{color: var(--muted); font-size: 13px; line-height: 1.55; padding-left: 20px; font-style: italic;}
+    .quote .qauthor{margin-top: 6px; font-size: 12px; color: var(--faint); padding-left: 20px;}
+
+    /* Speaker pill */
+    .speakerPill{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .sp-sundar{background: rgba(122,215,255,.15); color: var(--cyan); border: 1px solid rgba(122,215,255,.25)}
+    .sp-demis{background: rgba(187,167,255,.15); color: var(--violet); border: 1px solid rgba(187,167,255,.25)}
+    .sp-james{background: rgba(255,179,138,.15); color: var(--orange); border: 1px solid rgba(255,179,138,.25)}
+
+    /* Timeline node */
+    .timeline{position:relative;padding-left:24px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet),var(--orange))}
+    .tNode{position:relative;margin-bottom:14px}
+    .tNode::before{content:"";position:absolute;left:-20px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--stroke);background:var(--bg)}
+    .tNode h4{margin:0 0 4px;font-size:13px}
+    .tNode p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <!-- Neural network / constellation pattern -->
+            <circle cx="80" cy="110" r="6" fill="rgba(122,215,255,.7)"/>
+            <circle cx="160" cy="60" r="5" fill="rgba(187,167,255,.7)"/>
+            <circle cx="160" cy="160" r="5" fill="rgba(255,179,138,.6)"/>
+            <circle cx="260" cy="90" r="7" fill="rgba(117,240,182,.6)"/>
+            <circle cx="260" cy="140" r="5" fill="rgba(122,215,255,.5)"/>
+            <circle cx="340" cy="70" r="5" fill="rgba(255,210,122,.6)"/>
+            <circle cx="340" cy="150" r="6" fill="rgba(187,167,255,.6)"/>
+            <circle cx="420" cy="110" r="7" fill="rgba(122,215,255,.7)"/>
+            <circle cx="480" cy="60" r="4" fill="rgba(255,179,138,.5)"/>
+            <circle cx="480" cy="170" r="4" fill="rgba(117,240,182,.5)"/>
+            <!-- connections -->
+            <line x1="80" y1="110" x2="160" y2="60" stroke="url(#g1)" stroke-width="2" opacity=".5"/>
+            <line x1="80" y1="110" x2="160" y2="160" stroke="url(#g2)" stroke-width="2" opacity=".5"/>
+            <line x1="160" y1="60" x2="260" y2="90" stroke="url(#g1)" stroke-width="2" opacity=".4"/>
+            <line x1="160" y1="160" x2="260" y2="140" stroke="url(#g2)" stroke-width="2" opacity=".4"/>
+            <line x1="160" y1="60" x2="260" y2="140" stroke="url(#g1)" stroke-width="1.5" opacity=".3"/>
+            <line x1="160" y1="160" x2="260" y2="90" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <line x1="260" y1="90" x2="340" y2="70" stroke="url(#g1)" stroke-width="2" opacity=".4"/>
+            <line x1="260" y1="90" x2="340" y2="150" stroke="url(#g2)" stroke-width="1.5" opacity=".3"/>
+            <line x1="260" y1="140" x2="340" y2="150" stroke="url(#g2)" stroke-width="2" opacity=".4"/>
+            <line x1="260" y1="140" x2="340" y2="70" stroke="url(#g1)" stroke-width="1.5" opacity=".3"/>
+            <line x1="340" y1="70" x2="420" y2="110" stroke="url(#g1)" stroke-width="2" opacity=".5"/>
+            <line x1="340" y1="150" x2="420" y2="110" stroke="url(#g2)" stroke-width="2" opacity=".5"/>
+            <line x1="420" y1="110" x2="480" y2="60" stroke="url(#g1)" stroke-width="1.5" opacity=".4"/>
+            <line x1="420" y1="110" x2="480" y2="170" stroke="url(#g2)" stroke-width="1.5" opacity=".4"/>
+            <!-- glow orbs -->
+            <circle cx="260" cy="110" r="28" fill="rgba(122,215,255,.08)" stroke="rgba(122,215,255,.15)" stroke-width="1"/>
+            <circle cx="420" cy="110" r="22" fill="rgba(187,167,255,.06)" stroke="rgba(187,167,255,.12)" stroke-width="1"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> summitul AI India &bull; viitorul muncii &bull; AGI &bull; investitii</div>
+          <h1>Summitul AI India: Pichai, Hassabis si Manyika despre Viitorul Inteligentei Artificiale</h1>
+          <p class="subtitle">
+            Trei dintre cei mai importanti lideri din domeniul AI — <b>Sundar Pichai</b> (CEO Google), <b>Demis Hassabis</b> (CEO DeepMind) si <b>James Manyika</b> (SVP Google) —
+            dezbat viitorul inteligentei artificiale, impactul asupra Indiei, locurile de munca, definitia AGI-ului si cum poate o tara intreaga sa faca saltul tehnologic.
+            Aceasta pagina traduce intreaga lor discutie intr-un format vizual si usor de inteles.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpJobs">Salt la sectiunea Locuri de munca</button>
+            <button class="btn" id="jumpAGI">Salt la AGI</button>
+            <button class="btn" id="toggleNotes">Comutare mod comentarii</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Vorbitori</div>
+            <div class="value">3 lideri Google / DeepMind</div>
+            <div class="note">Pichai, Hassabis, Manyika — la Summitul AI India</div>
+          </div>
+          <div class="stat">
+            <div class="label">Viziunea Indiei</div>
+            <div class="value">Jucator AI "full-stack"</div>
+            <div class="note">Utilizator, constructor si formator de reguli — in toate cele 3 categorii.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Orizontul AGI</div>
+            <div class="value">5-10 ani (Hassabis)</div>
+            <div class="note">Cel putin inca 5-10 ani pana la inteligenta generala completa.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Comenzi cloud Google</div>
+            <div class="value">240 miliarde $</div>
+            <div class="note">Comenzile restante s-au dublat intr-un an — semn al cererii enorme.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- SPEAKERS OVERVIEW -->
+      <section class="card" aria-label="Prezentarea vorbitorilor">
+        <div class="cardHeader">
+          <h2>Cine sunt vorbitorii si de ce conteaza</h2>
+          <div class="chip"><b>Context:</b> Summitul AI India</div>
+        </div>
+        <div class="cardBody">
+          <div class="row3">
+            <div class="flowNode">
+              <h3><span class="speakerPill sp-sundar">Sundar Pichai</span></h3>
+              <p>CEO Google si Alphabet. Nascut in India, conduce una dintre cele mai mari companii de tehnologie din lume. Viziunea sa: AI trebuie sa ajunga la fiecare persoana, inclusiv la fermieri, studenti si doctori.</p>
+              <div class="meta"><span class="badge">CEO Alphabet</span><span class="badge">vizionar tech</span></div>
+            </div>
+            <div class="flowNode">
+              <h3><span class="speakerPill sp-demis">Demis Hassabis</span></h3>
+              <p>CEO DeepMind, creatorul AlphaFold — sistemul AI care a prezis structura a peste 200 de milioane de proteine. Crede ca AI va fi cel mai puternic instrument pentru descoperiri stiintifice.</p>
+              <div class="meta"><span class="badge">CEO DeepMind</span><span class="badge">AlphaFold</span></div>
+            </div>
+            <div class="flowNode">
+              <h3><span class="speakerPill sp-james">James Manyika</span></h3>
+              <p>SVP Google, expert in impactul economic al tehnologiei. Se concentreaza pe cum AI poate imputernici afacerile mici si economiile in curs de dezvoltare.</p>
+              <div class="meta"><span class="badge">SVP Google</span><span class="badge">impact economic</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta nu e o discutie echilibrata — toti trei lucreaza la Google/DeepMind. Perspectiva lor este in mod natural optimista fata de AI. E important sa tinem cont de acest lucru cand evaluam afirmatiile lor. Totusi, informatiile factuale (cifre, proiecte, strategii) sunt valoroase indiferent de sursa.
+          </div>
+        </div>
+      </section>
+
+      <!-- INDIA 5-YEAR VISION -->
+      <section class="row">
+        <div class="card" aria-label="Viziunea Indiei pe 5 ani">
+          <div class="cardHeader">
+            <h2>Cum va arata succesul AI al Indiei peste 5 ani?</h2>
+            <div class="chip"><b>Pichai:</b> jucator complet</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Sundar Pichai spune ca India e <b>pozitionata unic</b> in lumea AI. Nu trebuie sa aleaga intre a fi utilizator, constructor sau formator de reguli — poate face toate trei simultan, exact cum Google e o "companie full-stack."
+            </p>
+
+            <div class="viz" style="padding: 14px" aria-label="Cele 3 roluri ale Indiei">
+              <div class="small" style="margin-bottom:10px">Cele trei roluri pe care India le poate juca simultan:</div>
+              <svg viewBox="0 0 980 280" role="img" aria-label="Diagrama full-stack AI">
+                <defs>
+                  <linearGradient id="gC" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.4)"/>
+                    <stop offset="1" stop-color="rgba(187,167,255,.4)"/>
+                  </linearGradient>
+                  <filter id="softG" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#softG)">
+                  <!-- Three pillars -->
+                  <rect x="40" y="40" width="280" height="200" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(122,215,255,.3)"/>
+                  <text x="180" y="80" font-size="15" fill="var(--cyan)" font-weight="700" text-anchor="middle">UTILIZATOR</text>
+                  <text x="180" y="105" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Adoptarea AI in fiecare sector:</text>
+                  <text x="180" y="125" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">sanatate, educatie, agricultura,</text>
+                  <text x="180" y="145" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">guvern, afaceri mici</text>
+                  <text x="180" y="175" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">"Progresul atinge persoana</text>
+                  <text x="180" y="192" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">obisnuita in viata de zi cu zi"</text>
+                  <rect x="350" y="40" width="280" height="200" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(187,167,255,.3)"/>
+                  <text x="490" y="80" font-size="15" fill="var(--violet)" font-weight="700" text-anchor="middle">CONSTRUCTOR</text>
+                  <text x="490" y="105" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Dezvoltarea de modele si produse:</text>
+                  <text x="490" y="125" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">Sarvam AI (modele locale),</text>
+                  <text x="490" y="145" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">startup-uri, Flipkart, Ola,</text>
+                  <text x="490" y="165" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">ecosistem antreprenorial vibrant</text>
+                  <text x="490" y="192" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">"Energia dezvoltatorilor e fara egal"</text>
+                  <rect x="660" y="40" width="280" height="200" rx="18" fill="rgba(0,0,0,.20)" stroke="rgba(255,179,138,.3)"/>
+                  <text x="800" y="80" font-size="15" fill="var(--orange)" font-weight="700" text-anchor="middle">FORMATOR DE REGULI</text>
+                  <text x="800" y="105" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Crearea cadrului de reglementare:</text>
+                  <text x="800" y="125" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">Summit AI, politici guvernamentale,</text>
+                  <text x="800" y="145" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">investitii in infrastructura,</text>
+                  <text x="800" y="165" font-size="12" fill="rgba(255,255,255,.55)" text-anchor="middle">difuzarea AI in economie</text>
+                  <text x="800" y="192" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="middle">"Guvernul joaca un rol cheie"</text>
+                  <!-- connecting arrows -->
+                  <path d="M320 140 L350 140" stroke="url(#gC)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                  <path d="M630 140 L660 140" stroke="url(#gC)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="quote">
+              <div class="qtext">India are sansa sa joace un rol mare in toate cele trei categorii. India va fi un jucator "full-stack" in AI.</div>
+              <div class="qauthor">— Sundar Pichai</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea de "jucator full-stack" e ambitioasa. In realitate, putine tari reusesc sa fie lidere in toate cele trei categorii simultan. SUA domina constructia, China adoptia la scara larga, UE reglementarea. India are avantaje unice (talent, scala, digitalizare) dar va trebui sa investeasca masiv in cercetare fundamentala pentru a fi cu adevarat competitiva la constructie.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Pariuri strategice">
+          <div class="cardHeader">
+            <h2>Pariurile strategice: pe ce sa mizeze India?</h2>
+            <div class="chip"><b>Hassabis:</b> dublez pe punctele forte</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Demis Hassabis recomanda o strategie simpla: <b>ia domeniile in care esti deja puternic si aplica AI acolo</b>. Nu incerca sa faci totul — fii cel mai bun in cateva lucruri.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color: rgba(117,240,182,.3)">
+                <h3 style="color: var(--good)">1) Agricultura si rezilienta climatica</h3>
+                <p>India e un lider mondial in agricultura. AI poate ajuta la crearea de culturi rezistente la schimbarile climatice, folosind instrumente precum AlphaFold pentru a intelege proteinele plantelor. Peste 200.000 de cercetatori din India folosesc deja AlphaFold.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">AlphaFold</span><span class="badge">culturi rezistente</span><span class="badge">3M+ cercetatori global</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(187,167,255,.3)">
+                <h3 style="color: var(--violet)">2) Industriile creative (Bollywood)</h3>
+                <p>India are una dintre cele mai mari industrii de divertisment din lume. Instrumentele AI pot transforma productia de filme, muzica si arta digitala, facand-o mai rapida si mai accesibila.</p>
+                <div class="meta"><span class="badge" style="color:var(--violet)">Bollywood</span><span class="badge">generare video</span><span class="badge">instrumente creative</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(122,215,255,.3)">
+                <h3 style="color: var(--cyan)">3) Stiinta si medicina</h3>
+                <p>AI poate accelera radical descoperirile stiintifice. Hassabis spune ca AlphaFold e doar inceputul — impactul asupra medicinei si cercetarii va fi mult mai mare in urmatorii ani.</p>
+                <div class="meta"><span class="badge" style="color:var(--cyan)">descoperiri medicale</span><span class="badge">IISC Bangalore</span><span class="badge">cercetare de frontiera</span></div>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="qtext">Dublez pe lucrurile la care esti deja puternic si care sunt importante pentru tara ta. Apoi fii liderul mondial in aplicarea AI in acele domenii.</div>
+              <div class="qauthor">— Demis Hassabis</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Aceasta e o strategie inteleapta si realista. In loc sa incerci sa concurezi cu SUA la constructia de modele de limbaj uriase (unde costul e de miliarde de dolari), te concentrezi pe aplicatii specifice unde ai un avantaj competitiv natural. Agricultura + AI este un domeniu unde India ar putea avea cu adevarat un impact global.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOBS & AI -->
+      <section class="row" id="jobsSection">
+        <div class="card" aria-label="AI si locurile de munca">
+          <div class="cardHeader">
+            <h2>Elefantul din camera: AI si locurile de munca</h2>
+            <div class="chip"><b>Manyika:</b> sarcini, nu slujbe</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              James Manyika face o distinctie cruciala: nu trebuie sa ne gandim la <b>slujbe intregi</b> care dispar, ci la <b>sarcini individuale</b> din cadrul fiecarei slujbe. Majoritatea locurilor de munca sunt formate din mai multe sarcini — unele vor fi automatizate, altele nu.
+            </p>
+
+            <div class="viz" aria-label="Diagrama tranzitiei sarcinilor">
+              <svg viewBox="0 0 980 340" role="img" aria-label="Fluxul tranzitiei locurilor de munca">
+                <defs>
+                  <linearGradient id="jG1" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.4)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,.4)"/>
+                  </linearGradient>
+                  <linearGradient id="jG2" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,210,122,.4)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.4)"/>
+                  </linearGradient>
+                  <filter id="softJ" x="-15%" y="-15%" width="130%" height="130%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#softJ)">
+                  <!-- Three columns -->
+                  <rect x="40" y="30" width="270" height="280" rx="18" fill="rgba(0,0,0,.18)" stroke="rgba(255,122,153,.25)"/>
+                  <text x="175" y="62" font-size="14" fill="var(--bad)" font-weight="700" text-anchor="middle">SLUJBE CARE SCAD</text>
+                  <text x="175" y="85" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Sarcini repetitive, predictibile</text>
+                  <rect x="65" y="100" width="220" height="34" rx="10" fill="rgba(255,122,153,.10)" stroke="rgba(255,122,153,.2)"/>
+                  <text x="175" y="122" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Introducere date manuala</text>
+                  <rect x="65" y="142" width="220" height="34" rx="10" fill="rgba(255,122,153,.10)" stroke="rgba(255,122,153,.2)"/>
+                  <text x="175" y="164" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Traduceri simple de rutina</text>
+                  <rect x="65" y="184" width="220" height="34" rx="10" fill="rgba(255,122,153,.10)" stroke="rgba(255,122,153,.2)"/>
+                  <text x="175" y="206" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Sortare si clasificare de baza</text>
+
+                  <rect x="355" y="30" width="270" height="280" rx="18" fill="rgba(0,0,0,.18)" stroke="rgba(255,210,122,.25)"/>
+                  <text x="490" y="62" font-size="14" fill="var(--warn)" font-weight="700" text-anchor="middle">SLUJBE CARE SE SCHIMBA</text>
+                  <text x="490" y="85" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Augmentare: AI + Om = mai bine</text>
+                  <rect x="380" y="100" width="220" height="34" rx="10" fill="rgba(255,210,122,.10)" stroke="rgba(255,210,122,.2)"/>
+                  <text x="490" y="122" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Doctori (AI asista diagnosticul)</text>
+                  <rect x="380" y="142" width="220" height="34" rx="10" fill="rgba(255,210,122,.10)" stroke="rgba(255,210,122,.2)"/>
+                  <text x="490" y="164" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Profesori (AI personalizeaza)</text>
+                  <rect x="380" y="184" width="220" height="34" rx="10" fill="rgba(255,210,122,.10)" stroke="rgba(255,210,122,.2)"/>
+                  <text x="490" y="206" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Programatori (AI scrie cod)</text>
+
+                  <rect x="670" y="30" width="270" height="280" rx="18" fill="rgba(0,0,0,.18)" stroke="rgba(117,240,182,.25)"/>
+                  <text x="805" y="62" font-size="14" fill="var(--good)" font-weight="700" text-anchor="middle">SLUJBE NOI CREATE</text>
+                  <text x="805" y="85" font-size="11" fill="rgba(255,255,255,.55)" text-anchor="middle">Roluri care nu existau inainte</text>
+                  <rect x="695" y="100" width="220" height="34" rx="10" fill="rgba(117,240,182,.10)" stroke="rgba(117,240,182,.2)"/>
+                  <text x="805" y="122" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Ingineri de prompturi AI</text>
+                  <rect x="695" y="142" width="220" height="34" rx="10" fill="rgba(117,240,182,.10)" stroke="rgba(117,240,182,.2)"/>
+                  <text x="805" y="164" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Specialisti etica AI</text>
+                  <rect x="695" y="184" width="220" height="34" rx="10" fill="rgba(117,240,182,.10)" stroke="rgba(117,240,182,.2)"/>
+                  <text x="805" y="206" font-size="12" fill="rgba(255,255,255,.65)" text-anchor="middle">Antrenori de modele AI</text>
+
+                  <!-- Arrows between columns -->
+                  <path d="M310 170 C332 140, 332 140, 355 170" fill="none" stroke="url(#jG1)" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+                  <path d="M625 170 C647 140, 647 140, 670 170" fill="none" stroke="url(#jG2)" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+
+                  <!-- Warning box -->
+                  <rect x="40" y="240" width="900" height="60" rx="14" fill="rgba(255,210,122,.06)" stroke="rgba(255,210,122,.18)"/>
+                  <text x="490" y="266" font-size="13" fill="rgba(255,210,122,.9)" font-weight="700" text-anchor="middle">PROBLEMA CHEIE: Decalajul temporal</text>
+                  <text x="490" y="286" font-size="12" fill="rgba(255,255,255,.6)" text-anchor="middle">Slujbele vechi dispar inainte ca cele noi sa apara. Acest decalaj trebuie gestionat activ prin formare si investitii.</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="legend">
+              <div class="key"><span class="sw" style="background: var(--bad)"></span> Scad (sarcini automatizabile)</div>
+              <div class="key"><span class="sw" style="background: var(--warn)"></span> Se transforma (augmentare)</div>
+              <div class="key"><span class="sw" style="background: var(--good)"></span> Cresc (roluri noi)</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Distinctia "sarcini vs. slujbe" e poate cel mai important mesaj din intreaga discutie. Un contabil nu va disparea — dar sarcinile de introducere a datelor din slujba lui da. Aceasta nuanta schimba total modul in care ar trebui sa ne pregatim: nu "ce meserie sa aleg", ci "ce competente sa dezvolt in cadrul meseriei mele."
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Ce trebuie sa faca guvernele">
+          <div class="cardHeader">
+            <h2>Ce trebuie sa faca guvernele: retetea Manyika</h2>
+            <div class="chip"><b>Strategie:</b> competente + infrastructura</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Manyika propune doi piloni principali pe care guvernele trebuie sa se concentreze pentru a transforma amenintarea AI in oportunitate.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode" style="border-color: rgba(122,215,255,.3)">
+                <h3 style="color: var(--cyan)">Pilon 1: Investitia in competente</h3>
+                <p>Fie ca oamenii parasesc slujbe care scad, fie ca se adapteaza la slujbe care se schimba, fie ca intra in slujbe noi — toti au nevoie de <b>competente noi</b>. Formarea si alfabetizarea digitala sunt esentiale.</p>
+                <div class="meta"><span class="badge">formare continua</span><span class="badge">alfabetizare AI</span><span class="badge">reconversie</span></div>
+              </div>
+              <div class="flowNode" style="border-color: rgba(187,167,255,.3)">
+                <h3 style="color: var(--violet)">Pilon 2: Investitia in infrastructura si inovatie</h3>
+                <p>Locurile de munca noi vin din <b>afaceri noi</b>, iar afacerile noi vin din <b>infrastructura si inovatie</b>. Cand cresti companii si stimulezi inovatia in economie, acolo apar locurile de munca.</p>
+                <div class="meta"><span class="badge">startup-uri</span><span class="badge">capital de risc</span><span class="badge">centre de date</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quote">
+              <div class="qtext">Nu poti avea o viziune macro asupra locurilor de munca. Trebuie sa intelegi care sarcini vor fi afectate, sa planifici pentru fiecare sector. Avem de lucru serios.</div>
+              <div class="qauthor">— Moderatorul, rezumand mesajul lui Manyika</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Observati ca Manyika nu promite ca totul va fi bine de la sine. Recunoaste explicit ca exista un "decalaj temporal" (lag) intre disparitia slujbelor vechi si aparitia celor noi. Aceasta onestitate e importanta — inseamna ca inactiunea nu e o optiune. Guvernele care asteapta "sa se rezolve de la sine" risca probleme sociale reale.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI BUBBLE / INVESTMENT -->
+      <section class="card" aria-label="Bula AI sau nu">
+        <div class="cardHeader">
+          <h2>Investitiile in AI: bula sau moment transformational?</h2>
+          <div class="chip"><b>Pichai:</b> revolutia industriala x10</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Multi directori generali se intreaba: <b>merita investitiile uriase in AI?</b> Vor putea justifica costurile in fata actionarilor? Pichai raspunde cu o analogie istorica puternica.
+              </p>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Analogia cu caile ferate si autostrazi</h3>
+                  <p>Investitiile in infrastructura feroviara si sistemul de autostrazi din SUA au parut enorme la momentul respectiv, dar au generat <b>crestere si valoare masiva</b> pe deasupra lor. Pichai vede AI la fel — o investitie in infrastructura fundamentala.</p>
+                  <div class="meta"><span class="badge">investitie de leverage</span><span class="badge">valoare pe termen lung</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Contextul lui Hassabis</h3>
+                  <p>"Aceasta este revolutia industriala, dar <b>de 10 ori mai rapida si de 10 ori mai mare</b>." Adica totul — investitiile, transformarile, provocarile — se va intampla intr-un ritm fara precedent.</p>
+                  <div class="meta"><span class="badge" style="color:var(--warn)">10x mai rapid</span><span class="badge" style="color:var(--warn)">10x mai mare</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Indicatori de investitie">
+                <div class="small" style="margin-bottom:10px">Dovezile ca investitia genereaza deja randament:</div>
+                <div class="riskGrid" style="grid-template-columns:1fr">
+                  <div class="risk">
+                    <div class="rTop"><strong>Comenzi cloud Google restante</strong><span class="badge" style="color:var(--good)">in crestere</span></div>
+                    <div class="meter"><i style="width:85%;background:linear-gradient(90deg, var(--cyan), var(--good))"></i></div>
+                    <p>S-au dublat de la an la an, ajungand la <b>240 miliarde dolari</b>. Aceasta inseamna ca cererea e reala, nu speculativa.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>Impactul AI in produsele Google</strong><span class="badge">ecosistem</span></div>
+                    <div class="meter"><i style="width:78%;background:linear-gradient(90deg, var(--violet), var(--cyan))"></i></div>
+                    <p>Search, YouTube, Cloud, Waymo (masini autonome), Isomorphic Labs (medicamente) — toate sunt imbunatatite de aceeasi tehnologie AI.</p>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>Investitii Google in India</strong><span class="badge">anuntate la summit</span></div>
+                    <div class="meter"><i style="width:70%;background:linear-gradient(90deg, var(--orange), var(--warn))"></i></div>
+                    <p>Investitii masive in infrastructura AI anuntate saptamana aceasta, consolidand pozitia Indiei ca hub AI.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="quote">
+                <div class="qtext">Noi investim pentru a raspunde cererii. Doar cloud-ul singur a avut comenzi restante care s-au dublat de la un an la altul, ajungand la 240 de miliarde de dolari.</div>
+                <div class="qauthor">— Sundar Pichai</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Pichai e CEO-ul companiei care face aceste investitii — evident ca le va apara. Analogia cu caile ferate e buna, dar merita amintit ca si <b>bula dot-com</b> din 2000 a implicat investitii in "infrastructura viitorului." Diferenta cheie: acum exista venituri reale (240 miliarde $ in comenzi cloud). Intrebarea nu e daca AI e valoros, ci daca ritmul investitiilor depaseste ritmul adoptiei.
+          </div>
+        </div>
+      </section>
+
+      <!-- AGI SECTION -->
+      <section class="row" id="agiSection">
+        <div class="card" aria-label="Ce este AGI">
+          <div class="cardHeader">
+            <h2>Ce este, de fapt, AGI? (Inteligenta Generala Artificiala)</h2>
+            <div class="chip"><b>Hassabis:</b> standard inalt</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Termenul AGI (Artificial General Intelligence) e folosit mult dar inteles putin. Hassabis ofera o definitie clara si un standard inalt.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Spectrul inteligentei AI">
+              <svg viewBox="0 0 980 300" role="img" aria-label="Spectrul de la AI ingust la AGI">
+                <defs>
+                  <linearGradient id="specG" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(122,215,255,.5)"/>
+                    <stop offset="0.5" stop-color="rgba(187,167,255,.5)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.5)"/>
+                  </linearGradient>
+                  <filter id="softS" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur stdDeviation="4" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <g filter="url(#softS)">
+                  <!-- Spectrum bar -->
+                  <rect x="60" y="40" width="860" height="16" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)"/>
+                  <rect x="60" y="40" width="520" height="16" rx="8" fill="url(#specG)" opacity=".6"/>
+
+                  <!-- Marker: current AI -->
+                  <circle cx="580" cy="48" r="10" fill="rgba(255,210,122,.8)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+                  <text x="580" y="80" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">SUNTEM AICI (2025)</text>
+
+                  <!-- Marker: AGI -->
+                  <circle cx="900" cy="48" r="10" fill="rgba(117,240,182,.6)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+                  <text x="900" y="80" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">AGI</text>
+
+                  <!-- Labels on spectrum -->
+                  <text x="80" y="30" font-size="11" fill="rgba(255,255,255,.5)">AI ingust</text>
+                  <text x="300" y="30" font-size="11" fill="rgba(255,255,255,.5)">AI conversational</text>
+                  <text x="560" y="30" font-size="11" fill="rgba(255,255,255,.5)">AI avansat</text>
+                  <text x="860" y="30" font-size="11" fill="rgba(255,255,255,.5)">AGI complet</text>
+
+                  <!-- Capability boxes -->
+                  <rect x="60" y="105" width="420" height="180" rx="16" fill="rgba(0,0,0,.18)" stroke="rgba(122,215,255,.2)"/>
+                  <text x="80" y="132" font-size="14" fill="var(--cyan)" font-weight="700">Ce pot face sistemele AI azi</text>
+                  <text x="80" y="155" font-size="12" fill="rgba(255,255,255,.6)">- Conversatii si raspunsuri la intrebari</text>
+                  <text x="80" y="175" font-size="12" fill="rgba(255,255,255,.6)">- Generare de text, imagini si cod</text>
+                  <text x="80" y="195" font-size="12" fill="rgba(255,255,255,.6)">- Analiza de date si predictii</text>
+                  <text x="80" y="215" font-size="12" fill="rgba(255,255,255,.6)">- Descoperiri stiintifice (AlphaFold)</text>
+                  <text x="80" y="235" font-size="12" fill="rgba(255,255,255,.55)">- Traducere intre limbi</text>
+                  <text x="80" y="265" font-size="11" fill="rgba(255,255,255,.45)" font-style="italic">Impresionante, dar specializate</text>
+
+                  <rect x="500" y="105" width="440" height="180" rx="16" fill="rgba(0,0,0,.18)" stroke="rgba(117,240,182,.2)"/>
+                  <text x="520" y="132" font-size="14" fill="var(--good)" font-weight="700">Ce inseamna AGI (definitia Hassabis)</text>
+                  <text x="520" y="155" font-size="12" fill="rgba(255,255,255,.6)">- Toate capacitatile cognitive umane</text>
+                  <text x="520" y="175" font-size="12" fill="rgba(255,255,255,.6)">- Creativitate autentica</text>
+                  <text x="520" y="195" font-size="12" fill="rgba(255,255,255,.6)">- Planificare pe termen lung</text>
+                  <text x="520" y="215" font-size="12" fill="rgba(255,255,255,.6)">- Utilizare avansata a memoriei</text>
+                  <text x="520" y="235" font-size="12" fill="rgba(255,255,255,.6)">- Rationament general in orice domeniu</text>
+                  <text x="520" y="265" font-size="11" fill="rgba(255,255,255,.45)" font-style="italic">Estimare: inca 5-10 ani minim</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="quote">
+              <div class="qtext">Creierul este singura dovada ca inteligenta generala e posibila. De aceea referinta umana e atat de importanta. Sistemele de azi sunt impresionante, dar nu au ajuns acolo — inca.</div>
+              <div class="qauthor">— Demis Hassabis</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Hassabis are unul dintre cele mai inalte standarde pentru AGI din industrie. Alte companii (de ex. OpenAI) au definitii mai relaxate. Diferenta conteaza enorm: daca definesti AGI ca "un chatbot foarte bun", deja suntem aproape. Daca o definesti ca "toate capacitatile cognitive umane", mai avem mult de lucru. Aceasta distinctie e importanta cand citesti stiri despre "AGI vine anul viitor."
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Rolul omului">
+          <div class="cardHeader">
+            <h2>Rolul omului devine MAI important, nu mai putin</h2>
+            <div class="chip"><b>Paradox:</b> AI creste valoarea umana</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Contra-intuitiv, Hassabis argumenteaza ca pe masura ce AI devine mai puternic, <b>contributia umana devine mai valoroasa</b>, nu mai putin. Iata de ce:
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>Sistemele AI de azi sunt "pasive"</h3>
+                <p>Chiar si cele mai avansate sisteme AI asteapta ca un <b>om sa puna intrebarea potrivita</b>. AI-ul accelereaza raspunsul, dar nu stie ce intrebare sa puna.</p>
+                <div class="meta"><span class="badge">energia vine de la om</span><span class="badge">intrebarea conteaza</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>In stiinta: omul furnizeaza ipoteza</h3>
+                <p>Un cercetator trebuie sa stie ce intrebare de cercetare sa puna. AI-ul ajuta la gasirea raspunsului <b>mult mai rapid</b>, dar judecata umana ramane esentiala.</p>
+                <div class="meta"><span class="badge">ipoteza = umana</span><span class="badge">raspuns = accelerat de AI</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>Tinerii de azi vor fi "super-puternici"</h3>
+                <p>Generatia care creste cu acces la instrumente AI de ultima generatie — <b>disponibile de oriunde, inclusiv din India</b> — va putea construi afaceri, crea arta si rezolva probleme la un nivel fara precedent.</p>
+                <div class="meta"><span class="badge" style="color:var(--good)">acces global</span><span class="badge" style="color:var(--good)">super-puteri digitale</span></div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quote">
+              <div class="qtext">Tinerii de azi vor avea acces la cele mai avansate instrumente din lume, de oriunde, inclusiv din India. Vor fi aproape super-puternici in ceea ce pot realiza.</div>
+              <div class="qauthor">— Demis Hassabis</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Ideea ca "AI face oamenii mai valorosi" e valabila pe termen mediu (urmatorii 10-20 de ani, dupa Hassabis). Pe termen mai lung, daca AGI-ul chiar reuseste sa formuleze si ipoteze (nu doar raspunsuri), ecuatia se schimba. Dar pentru moment, mesajul e clar: <b>investeste in a invata sa pui intrebari bune</b>, nu doar in a gasi raspunsuri.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MSME & SMALL BUSINESS -->
+      <section class="card" aria-label="Afaceri mici si AI">
+        <div class="cardHeader">
+          <h2>Super-puteri pentru afacerile mici: AI egaleaza sansele</h2>
+          <div class="chip"><b>Manyika:</b> prima tehnologie care schimba regulile</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                James Manyika face o afirmatie puternica: AI este <b>prima tehnologie care da cu adevarat afacerilor mici capabilitati pe care inainte doar companiile mari le aveau</b>. Internetul si telefonul mobil au facut partial asta, dar AI merge mult mai departe.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Imagineaza un mic comerciant din India...</h3>
+                  <p>Un vanzator de artizanat sau un mic retailer poate acum sa-si <b>descrie in cuvinte</b> ce sisteme tehnologice vrea pentru afacerea lui, iar AI-ul le construieste. Nu mai trebuie sa fie programator sau sa angajeze unul.</p>
+                  <div class="meta"><span class="badge">"vibe coding"</span><span class="badge">fara cunostinte tehnice</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Proiectul Vani: AI in limbile Indiei</h3>
+                  <p>Google colaboreaza cu Institutul Indian de Stiinta (IISC) la <b>Proiectul Vani</b> — care face tehnologiile AI utilizabile in toate limbile indiene, inclusiv prin traducere vocala directa, fara tastatura.</p>
+                  <div class="meta"><span class="badge">limbi indice</span><span class="badge">traducere vocala</span><span class="badge">IISC</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Comparatie inainte si dupa AI">
+                <div class="small" style="margin-bottom:10px">Ce se schimba pentru un mic antreprenor:</div>
+                <div class="riskGrid" style="grid-template-columns:1fr">
+                  <div class="risk">
+                    <div class="rTop"><strong>Inainte de AI</strong><span class="badge" style="color:var(--bad)">bariere</span></div>
+                    <p>Nevoia de programatori, consultanti, echipe de marketing, traducatori, contabili — costuri pe care un mic business nu si le permite.</p>
+                    <div class="meter"><i style="width:25%;background:linear-gradient(90deg, var(--bad), var(--warn))"></i></div>
+                  </div>
+                  <div class="risk">
+                    <div class="rTop"><strong>Cu AI</strong><span class="badge" style="color:var(--good)">super-puteri</span></div>
+                    <p>Un singur om poate sa-si faca site-ul, sa scrie materiale de marketing in mai multe limbi, sa-si analizeze vanzarile si sa-si automatizeze contabilitatea — vorbind pur si simplu cu AI-ul.</p>
+                    <div class="meter"><i style="width:80%;background:linear-gradient(90deg, var(--cyan), var(--good))"></i></div>
+                  </div>
+                </div>
+
+                <div class="hr"></div>
+                <div class="small">Sectorul MSME (micro, mici si mijlocii) este cel mai mare din economiile in curs de dezvoltare si atinge cele mai multe vieti.</div>
+              </div>
+
+              <div class="quote">
+                <div class="qtext">Ganditi-va la posibilitatea ca un mic proprietar sa descrie pur si simplu ce sisteme tehnologice vrea, iar aceste sisteme sa se construiasca singure. E ca si cum ai avea "vibe coding" pentru afaceri.</div>
+                <div class="qauthor">— James Manyika</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea de "democratizare prin AI" e seducatoare si partial reala — instrumentele devin mai accesibile. Dar exista riscuri: (1) dependenta de platforme controlate de companii americane, (2) calitatea rezultatelor variaza enorm, (3) antreprenorii care nu inteleg ce face AI-ul pot lua decizii gresite bazate pe rezultate incorecte. Accesul e necesar dar nu suficient — educatia ramane esentiala.
+          </div>
+        </div>
+      </section>
+
+      <!-- LEAPFROG OPPORTUNITY -->
+      <section class="row">
+        <div class="card" aria-label="Saltul tehnologic">
+          <div class="cardHeader">
+            <h2>Saltul tehnologic: de la mobile banking direct la AI</h2>
+            <div class="chip"><b>Pichai:</b> transformare radicala</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              India a mai facut salturi tehnologice inainte — a sarit direct la platile digitale si telefonul mobil, ocolind etape pe care alte tari le-au parcurs in decenii. Pichai crede ca AI reprezinta urmatorul salt, si mai mare.
+            </p>
+
+            <div class="timeline">
+              <div class="tNode">
+                <h4 style="color:var(--cyan)">Precedentul: Revolutia digitala a Indiei</h4>
+                <p>Acum ~10 ani, Pichai vizita India si vedea inceputul tranzitiei "Digital India." Un deceniu mai tarziu, rezultatele sunt fenomenale: UPI (plati digitale), Aadhaar (identitate digitala), miliarde de tranzactii.</p>
+              </div>
+              <div class="tNode">
+                <h4 style="color:var(--violet)">Acum: Inceputul erei AI</h4>
+                <p>Summitul AI India marcheaza inceputul unei transformari similare, dar la o scara si mai mare. Pichai se asteapta ca <b>fiecare sector, fiecare flux de lucru</b> sa fie transformat de AI.</p>
+              </div>
+              <div class="tNode">
+                <h4 style="color:var(--good)">Viitorul: Transformari concrete</h4>
+                <p>Pacienti care descriu simptome unui AI care creaza un raport pentru doctor. Studenti care invata cu tutori AI personalizati. Guverne mai eficiente. Descoperiri stiintifice accelerate.</p>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div class="qtext">Ma astept ca pe baza zilnica, vietile oamenilor sa fie semnificativ imbunatatite de AI in tot ceea ce ating. In fiecare sector, in fiecare context, fiecare flux de lucru va fi transformat.</div>
+              <div class="qauthor">— Sundar Pichai</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Analogia cu saltul digital anterior e puternica si relevanta. India chiar a demonstrat ca poate sari peste etape tehnologice. Dar AI e diferit de platile mobile intr-un mod important: platile sunt o infrastructura neutra, pe cand AI creaza dependente de modelele si platformele celor care le construiesc (in principal companii americane). Suveranitatea tehnologica va fi o provocare.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Riscuri si prudenta">
+          <div class="cardHeader">
+            <h2>Riscuri pe care chiar si optimistii le recunosc</h2>
+            <div class="chip"><b>Hassabis:</b> prudenta necesara</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Chiar si in mijlocul entuziasmului, Hassabis mentioneaza explicit ca <b>exista riscuri reale</b> care trebuie luate in serios. Iata cele trei categorii de risc pe care le identifica.
+            </p>
+
+            <div class="riskGrid">
+              <div class="risk">
+                <div class="rTop"><strong>Riscul locurilor de munca</strong><span class="badge" style="color:var(--bad)">social</span></div>
+                <div class="meter"><i style="width:65%"></i></div>
+                <p>Tranzitia nu va fi lin automata. Decalajul temporal intre slujbele care dispar si cele noi poate crea <b>perturbari sociale reale</b> daca nu e gestionat.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Riscuri tehnice</strong><span class="badge" style="color:var(--warn)">siguranta</span></div>
+                <div class="meter"><i style="width:55%"></i></div>
+                <p>Sistemele AI trebuie sa ramana in <b>limite de siguranta</b> si sa serveasca scopurile noastre ca umanitate. Gardurile de protectie sunt esentiale.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Distributia beneficiilor</strong><span class="badge" style="color:var(--orange)">echitate</span></div>
+                <div class="meter"><i style="width:60%"></i></div>
+                <p>Beneficiile economice ale AI trebuie <b>impartite larg si echitabil</b> in toata lumea, nu concentrate in cateva companii sau tari.</p>
+              </div>
+              <div class="risk">
+                <div class="rTop"><strong>Dependenta de platforme</strong><span class="badge" style="color:var(--violet)">suveranitate</span></div>
+                <div class="meter"><i style="width:50%"></i></div>
+                <p>Daca toate instrumentele AI vin de la cateva companii, tarile devin <b>dependente</b> de deciziile acelor companii. Modele locale (ex. Sarvam AI) sunt cruciale.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="quote">
+              <div class="qtext">Exista si riscuri pe care trebuie sa le luam in calcul. Riscuri tehnice — sa ne asiguram ca sistemele raman in limitele de siguranta. Si intrebarea economica a impartirii beneficiilor larg si echitabil in toata lumea.</div>
+              <div class="qauthor">— Demis Hassabis</div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> E remarcabil ca Hassabis mentioneaza aceste riscuri chiar intr-un context de promovare a AI. Al patrulea risc (dependenta de platforme) nu a fost mentionat explicit in discutie — l-am adaugat pentru completitudine, deoarece e un factor crucial pentru tarile in curs de dezvoltare. Faptul ca India dezvolta modele locale (Sarvam AI) sugereaza ca exista deja constiinta acestui risc.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TALENT & ENTREPRENEURSHIP -->
+      <section class="card" aria-label="Talent si antreprenoriat">
+        <div class="cardHeader">
+          <h2>Talentul indian: de ce urmatorul Pichai ar putea ramane in India</h2>
+          <div class="chip"><b>Pichai:</b> ecosistemul deja s-a schimbat</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Intrebat ce trebuie sa se schimbe ca urmatorul mare lider tech sa ramana in India (in loc sa plece in Silicon Valley), Pichai raspunde surprinzator: <b>s-a schimbat deja</b>.
+              </p>
+
+              <div class="flow">
+                <div class="flowNode" style="border-color: rgba(117,240,182,.3)">
+                  <h3 style="color:var(--good)">Companii de succes construite in India</h3>
+                  <p>Flipkart, Ola si altele sunt companii de miliarde de dolari create si crescute in India, nu in Silicon Valley. Ecosistemul antreprenorial indian e deja vibrant.</p>
+                  <div class="meta"><span class="badge">Flipkart</span><span class="badge">Ola</span><span class="badge">startup-uri unicorn</span></div>
+                </div>
+                <div class="flowNode" style="border-color: rgba(122,215,255,.3)">
+                  <h3 style="color:var(--cyan)">Sarvam AI: modele AI locale</h3>
+                  <p>Compania Sarvam AI dezvolta modele AI special pentru India — un semn ca expertiza de nivel mondial exista deja acolo. Nu mai e nevoie sa pleci in strainatate.</p>
+                  <div class="meta"><span class="badge">modele locale</span><span class="badge">limbi indice</span><span class="badge">inovatie indigena</span></div>
+                </div>
+                <div class="flowNode" style="border-color: rgba(187,167,255,.3)">
+                  <h3 style="color:var(--violet)">Energia dezvoltatorilor</h3>
+                  <p>Hassabis a tinut o prezentare pentru 700 de studenti la IISC Bangalore si a fost uimit de entuziasmul si calitatea lor. Pichai confirma: <b>"energia dezvoltatorilor din India nu are egal."</b></p>
+                  <div class="meta"><span class="badge">IISC Bangalore</span><span class="badge">700 studenti</span><span class="badge">energie fara egal</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px" aria-label="Indicatori ai ecosistemului">
+                <div class="small" style="margin-bottom:10px">Puncte forte ale ecosistemului AI indian:</div>
+                <div class="hallmarks" style="grid-template-columns: 1fr">
+                  <div class="pill"><span>Populatie tanara si educata</span><span class="tag" style="color:var(--good)">avantaj demografic</span></div>
+                  <div class="pill"><span>Infrastructura digitala existenta (UPI, Aadhaar)</span><span class="tag" style="color:var(--cyan)">fundatie solida</span></div>
+                  <div class="pill"><span>Ecosistem startup vibrant</span><span class="tag" style="color:var(--violet)">in crestere</span></div>
+                  <div class="pill"><span>Piata de 1.4 miliarde de utilizatori</span><span class="tag" style="color:var(--warn)">scala unica</span></div>
+                  <div class="pill"><span>Talent tehnic de clasa mondiala</span><span class="tag" style="color:var(--orange)">dovedit</span></div>
+                  <div class="pill"><span>Sprijin guvernamental activ (Summit AI)</span><span class="tag" style="color:var(--good)">politica publica</span></div>
+                  <div class="pill"><span>Modele AI locale (Sarvam AI)</span><span class="tag" style="color:var(--cyan)">suveranitate</span></div>
+                </div>
+              </div>
+
+              <div class="quote">
+                <div class="qtext">Nu vad niciun impediment. India e foarte, foarte bine pozitionata. Ecosistemul antreprenorial e vibrant, energia dezvoltatorilor e fara egal, iar companiile de succes exista deja.</div>
+                <div class="qauthor">— Sundar Pichai</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Raspunsul lui Pichai e optimist dar nu nefondat — India chiar a produs companii tech de succes. Totusi, "niciun impediment" e o exagerare. Provocari reale raman: accesul la capital de risc (inca mai mic decat in SUA), infrastructura de cercetare (centre de GPU puternice), si competitia globala pentru talent. Dar directia e clara si pozitiva.
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE READINESS CHECKLIST -->
+      <section class="card" id="readinessSection" aria-label="Evaluare pregatire AI">
+        <div class="cardHeader">
+          <h2>Lista de verificare: cat de pregatita e tara ta pentru AI?</h2>
+          <div class="chip"><b>Interactiv:</b> evalueaza-te</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe baza discutiei, am extras factorii cheie pe care o tara (sau organizatie) trebuie sa-i aiba pentru a profita de revolutia AI. Bifeaza ce se aplica si calculeaza scorul.
+          </p>
+
+          <div class="checklist" id="checklist">
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Investitie in infrastructura AI</strong><em>centre de date, GPU-uri, cloud</em></div>
+                <div class="d">Investitii in calculul de inalta performanta — fara putere de calcul, nu exista AI.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Programe de formare si competente</strong><em>educatie, reconversie</em></div>
+                <div class="d">Programele de invatare AI la nivel de populatie — de la scoli pana la reconversie profesionala pentru adulti.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Sprijin guvernamental activ</strong><em>politici, finantare, reglementare</em></div>
+                <div class="d">Guvernul joaca un rol activ in difuzarea AI, nu doar in reglementare. Investeste si faciliteaza adoptia.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Ecosistem antreprenorial vibrant</strong><em>startup-uri, capital de risc</em></div>
+                <div class="d">Exista startup-uri AI locale, investitori si incubatoare care sustin inovatia.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Adoptie AI in sectoare cheie</strong><em>sanatate, educatie, agricultura</em></div>
+                <div class="d">AI este implementat activ in sectoare care afecteaza viata de zi cu zi a cetatenilor.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>AI in limbile locale</strong><em>accesibilitate lingvistica</em></div>
+                <div class="d">Instrumentele AI functioneaza in limbile vorbite de populatie, nu doar in engleza.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Modele AI dezvoltate local</strong><em>suveranitate tehnologica</em></div>
+                <div class="d">Exista eforturi de dezvoltare a modelelor AI proprii, nu doar dependenta de cele straine.</div>
+              </div>
+            </div>
+            <div class="item">
+              <input type="checkbox" />
+              <div>
+                <div class="t"><strong>Plan pentru tranzitia fortei de munca</strong><em>gestionarea decalajului temporal</em></div>
+                <div class="d">Exista strategii concrete pentru a ajuta oamenii care isi pierd slujbele din cauza automatizarii.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="btnRow">
+            <button class="btn" id="scoreBtn">Calculeaza scorul de pregatire AI</button>
+            <button class="btn" id="resetBtn">Reseteaza lista</button>
+          </div>
+          <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta lista nu e exhaustiva, dar acopera temele principale din discutia Pichai-Hassabis-Manyika. E un instrument de reflectie, nu o metrica oficiala. Poate fi folosit de oricine — de la un oficial guvernamental care evalueaza strategia tarii, pana la un antreprenor care se gandeste la propria pregatire.
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE TIMELINE SLIDER -->
+      <section class="card" aria-label="Simulator cronologic AI">
+        <div class="cardHeader">
+          <h2>Simulator: Cronologia impactului AI (dupa discutie)</h2>
+          <div class="chip"><b>Interactiv:</b> exploreaza viitorul</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe baza estimarilor mentionate in discutie, iata cum ar putea arata cronologia impactului AI. Foloseste sliderul pentru a explora diferite orizonturi de timp.
+          </p>
+
+          <div class="controls" style="grid-template-columns:1fr">
+            <div class="control">
+              <label>
+                <span>Orizont de timp</span>
+                <span class="readout" id="yearReadout">2030</span>
+              </label>
+              <input id="yearSlider" type="range" min="2025" max="2045" value="2030" step="1" />
+              <div class="small" style="margin-top:8px">Trage sliderul pentru a vedea ce se asteapta sa se intample la fiecare etapa.</div>
+            </div>
+          </div>
+
+          <div id="timelineOutput" style="margin-top:14px">
+            <div class="flow" id="timelineFlow"></div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Aceasta cronologie e speculativa — bazata pe estimarile vorbitorilor si pe tendintele actuale. Tehnologia se misca imprevizibil: uneori mai repede decat ne asteptam (ex. ChatGPT in 2022), alteori mai lent (ex. masinile autonome, promise de un deceniu). Trateaza aceste estimari ca scenarii posibile, nu ca predictii certe.
+          </div>
+        </div>
+      </section>
+
+      <!-- SUMMARY -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Sinteza: ce ne spune aceasta discutie</h2>
+          <div class="chip"><b>Concluzie:</b> moment transformational</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">1) AI nu e doar o tehnologie — e o infrastructura</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Ca si caile ferate sau internetul, AI este un strat fundamental pe care se construiesc toate celelalte. De aceea investitiile par uriase — dar asa arata investitiile in infrastructura transformationala.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">2) Succesul inseamna sa ajunga la oameni obisnuiti</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Toti trei vorbitori sunt de acord: succesul AI nu se masoara in modele mai mari sau benchmark-uri mai bune, ci in <b>impactul asupra fermierului, studentului, micului comerciant, doctorului</b>.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">3) Tranzitia locurilor de munca trebuie gestionata activ</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Nu e suficient sa speri ca "piata se va adapta." Guvernele trebuie sa investeasca in competente, infrastructura si inovatie — <b>simultan</b>, nu secvential.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">4) Rolul omului creste, nu scade</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Pe termen mediu (10-20 ani), AI va fi un <b>amplificator al capacitatilor umane</b>, nu un inlocuitor. Capacitatea de a pune intrebari bune, de a judeca si de a decide ramane valoroasa.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Nota finala despre perspectiva discutiei</strong><span class="hint">clic pentru a extinde</span></summary>
+            <div class="detailBody">
+              <p>
+                Aceasta discutie a avut loc intr-un context promotional — la un summit AI organizat in India, cu vorbitori de la Google/DeepMind. Perspectiva este in mod natural optimista si centrata pe beneficii. Riscurile sunt mentionate dar nu aprofundate. Pentru o imagine completa, ar trebui consultate si voci critice: cercetatori in etica AI, economisti ai muncii, reprezentanti ai comunitatilor afectate. Infograficul de fata prezinta fidel mesajele discutiei, cu comentarii analitice care ofera nuante acolo unde e necesar.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre modul comentariu">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comutare mod comentarii"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Pe tot parcursul acestei pagini, casetele albastre (marcate cu <code>data-commentary</code>) ofera comentarii de nivel meta:
+            cat de puternica e afirmatia? Ce perspective alternative exista? Ce nu a fost spus?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Apasa "Comutare mod comentarii" din partea de sus pentru a ascunde/afisa toate casetele de comentarii simultan.
+            Astfel poti comuta intre "iata ce au spus vorbitorii" si "iata analiza critica a ceea ce au spus."
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Sursa si declinare a responsabilitatii:</b> Acest infografic interactiv a fost generat pentru a traduce discutia completa de la Summitul AI India intre Sundar Pichai, Demis Hassabis si James Manyika.
+        Nu constituie sfat de investitii sau recomandare profesionala. Vizualizarile, simulatoarele si comentariile sunt instrumente conceptuale menite sa te ajute sa gandesti critic despre afirmatii, nu inlocuitori ai cercetarii primare sau consultantei specializate.
+      </p>
+      <p style="margin-top:10px">
+        Pentru aprofundare: urmareste inregistrarea completa a discutiei de la India AI Summit si consulta rapoartele McKinsey Global Institute, Google DeepMind si NASSCOM despre impactul AI in India.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Timeline Simulator
+    // ──────────────────────────────────────────────────────
+    const yearSlider = document.getElementById('yearSlider');
+    const yearReadout = document.getElementById('yearReadout');
+    const timelineFlow = document.getElementById('timelineFlow');
+
+    const milestones = [
+      { year: 2025, title: 'Astazi: Entuziasmul AI e la apogeu', desc: 'Summit-uri AI in toata lumea. Investitii record. ChatGPT, Gemini, Claude — instrumentele sunt disponibile tuturor. India anunta investitii masive in infrastructura AI.', badges: ['summit AI India', 'investitii record', 'acces global'], color: 'var(--cyan)' },
+      { year: 2027, title: 'Adoptie accelerata in sectoare cheie', desc: 'AI devine standard in sanatate (asistenta diagnostica), educatie (tutori personalizati) si agricultura (culturi optimizate). Primele efecte asupra pietei muncii devin vizibile.', badges: ['sanatate AI', 'educatie AI', 'primele perturbari'], color: 'var(--cyan)' },
+      { year: 2030, title: 'Viziunea Pichai: transformare la nivel de sector', desc: 'Fiecare flux de lucru din fiecare sector e transformat de AI. Afacerile mici au acces la capabilitati de "companie mare." Limbile locale sunt pe deplin suportate. Decalajul locurilor de munca atinge varful.', badges: ['transformare completa', 'MSME imputernicite', 'limbi locale', 'varf tranzitie'], color: 'var(--violet)' },
+      { year: 2033, title: 'Stabilizarea pietei muncii', desc: 'Noile categorii de locuri de munca create de AI incep sa absoarba forta de munca. Programele de formare dau roade. Companiile AI indiene sunt competitive global.', badges: ['locuri de munca noi', 'formare reusita', 'companii locale'], color: 'var(--violet)' },
+      { year: 2035, title: 'Orizontul Hassabis: aproape de AGI', desc: 'Sistemele AI incep sa demonstreze creativitate, planificare pe termen lung si utilizare avansata a memoriei. Nu e inca AGI complet, dar e foarte aproape. Descoperirile stiintifice accelereaza dramatic.', badges: ['pre-AGI', 'creativitate AI', 'descoperiri stiintifice'], color: 'var(--orange)' },
+      { year: 2038, title: 'AGI: sistemul care face tot ce face un om', desc: 'Daca estimarea lui Hassabis e corecta, in aceasta perioada am putea vedea primele sisteme cu inteligenta generala completa. Implicatiile economice si sociale sunt profunde si imprevizibile.', badges: ['AGI potential', 'impact profund', 'redistribuire beneficii'], color: 'var(--warn)' },
+      { year: 2040, title: 'Lumea post-AGI: intrebari fara raspuns', desc: 'Daca AGI exista, cine il controleaza? Cum se distribuie beneficiile? Ce inseamna "munca" intr-o lume unde AI poate face orice? Aceste intrebari devin urgente.', badges: ['guvernanta globala', 'etica', 'redistribuire'], color: 'var(--bad)' },
+      { year: 2045, title: 'Orizontul indepartat: transformare civilizationala', desc: 'AI si AGI au transformat fundamental stiinta, medicina, economia si societatea. Hassabis: "instrumentul suprem pentru accelerarea descoperirii stiintifice." Rezultatul depinde de deciziile pe care le luam astazi.', badges: ['medicina revolutionata', 'climat rezolvabil', 'societate transformata'], color: 'var(--good)' }
+    ];
+
+    function renderTimeline() {
+      const year = parseInt(yearSlider.value);
+      yearReadout.textContent = year;
+
+      const relevant = milestones.filter(m => m.year <= year);
+      const upcoming = milestones.filter(m => m.year > year).slice(0, 1);
+
+      let html = '';
+      relevant.forEach(m => {
+        html += `<div class="flowNode" style="border-color: ${m.color}; opacity: 1">
+          <h3 style="color: ${m.color}">${m.year} — ${m.title}</h3>
+          <p>${m.desc}</p>
+          <div class="meta">${m.badges.map(b => `<span class="badge">${b}</span>`).join('')}</div>
+        </div>`;
+      });
+
+      if (upcoming.length > 0) {
+        const m = upcoming[0];
+        html += `<div class="flowNode" style="border-color: ${m.color}; opacity: 0.4">
+          <h3 style="color: ${m.color}">${m.year} — ${m.title}</h3>
+          <p>${m.desc}</p>
+          <div class="meta">${m.badges.map(b => `<span class="badge">${b}</span>`).join('')}</div>
+        </div>`;
+      }
+
+      timelineFlow.innerHTML = html;
+    }
+
+    yearSlider.addEventListener('input', renderTimeline);
+    renderTimeline();
+
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpJobs').addEventListener('click', () => {
+      document.getElementById('jobsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpAGI').addEventListener('click', () => {
+      document.getElementById('agiSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentariile sunt vizibile' : 'Comentariile sunt ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% — Pregatire excelenta! Sunt puse bazele pentru a profita de revolutia AI.`;
+      else if (pct >= 60) msg = `${pct}% — Fundatie buna. Exista inca cateva lacune de adresat.`;
+      else if (pct >= 40) msg = `${pct}% — Pregatire moderata. Prioritizeaza investitiile in competente si infrastructura.`;
+      else msg = `${pct}% — Mult de lucru. Incepe cu formarea oamenilor si investitiile in infrastructura de baza.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tau de pregatire AI:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Lista resetata');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
