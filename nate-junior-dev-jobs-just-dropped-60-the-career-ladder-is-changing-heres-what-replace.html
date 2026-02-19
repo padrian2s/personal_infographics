@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joburile de Junior Dev au scăzut cu 60%+ — Fabrica Întunecată și Viitorul Ingineriei Software</title>
+  <meta name="description" content="Infografic interactiv: cum schimbă AI-ul fabricile de software, de ce developerii devin mai lenți cu AI, cele 5 nivele ale vibe coding-ului și ce înseamnă pentru cariera ta." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position: relative;
+      padding: 26px 18px 22px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      font-size: 12px;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background: linear-gradient(90deg, var(--cyan), var(--violet)); box-shadow: 0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size: clamp(26px, 3.1vw, 44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size: 15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .stat{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background: rgba(0,0,0,.18);
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow2);
+      min-height: 84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size: 18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    .heroArt{
+      position:absolute;inset:-1px -1px auto auto;
+      width:min(520px, 55vw);
+      height: 220px;
+      pointer-events:none;
+      opacity:.9;
+      mask-image: radial-gradient(240px 180px at 65% 40%, rgba(0,0,0,1), rgba(0,0,0,.0) 70%);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 960px){
+      .headerGrid{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .heroArt{height:160px}
+    }
+
+    /* Cards */
+    .card{
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap: 12px;
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(0,0,0,.18), transparent);
+    }
+    .cardHeader h2{margin:0;font-size: 16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 12px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .chip b{color: var(--text)}
+    .cardBody{padding: 14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 740px){
+      .split{grid-template-columns:1fr}
+    }
+
+    /* Levels */
+    .levels{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 980px){
+      .levels{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width: 560px){
+      .levels{grid-template-columns:1fr}
+    }
+
+    .level-card{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,.18);
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s ease, transform .15s ease;
+      cursor: default;
+    }
+    .level-card:hover{
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-2px);
+    }
+    .level-card .lvl-num{
+      font-family: var(--mono);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1;
+      opacity: .15;
+      position: absolute;
+      top: 10px;
+      right: 14px;
+    }
+    .level-card h3{margin:0 0 6px;font-size: 14px}
+    .level-card p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .level-card .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+
+    .pill{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap: 10px;
+      min-height: 44px;
+    }
+    .pill span{font-size: 13px}
+    .tag{
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Diagram area */
+    .viz{
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--radius2);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(255,255,255,.03) 22px, rgba(255,255,255,.03) 23px);
+      padding: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    .legend{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-top: 10px;
+    }
+    .legend .key{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(0,0,0,.16);font-size:12px;color:var(--muted)}
+    .sw{width:10px;height:10px;border-radius:99px}
+
+    /* Flow */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .flowNode{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      position: relative;
+    }
+    .flowNode h3{margin:0 0 6px;font-size: 14px}
+    .flowNode p{margin:0;color:var(--muted);font-size: 13px;line-height:1.5}
+    .flowNode .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--muted);border-radius:999px;padding:5px 9px}
+
+    /* Checklist */
+    .checklist{display:grid;gap: 10px}
+    .item{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .item input{margin-top:3px;accent-color: var(--cyan)}
+    .item .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+    .item .t strong{font-size: 14px}
+    .item .t em{font-style:normal;color:var(--muted);font-size:12px}
+    .item .d{margin-top:6px;color:var(--muted);font-size: 13px;line-height:1.55}
+
+    /* Risk grid */
+    .riskGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+    }
+    @media (max-width: 640px){
+      .riskGrid{grid-template-columns:1fr}
+    }
+
+    .risk{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    .risk .rTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .risk strong{font-size: 13px}
+    .meter{height: 10px;border-radius:99px;background: rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);overflow:hidden;margin-top:10px}
+    .meter > i{display:block;height:100%;border-radius:99px}
+    .risk p{margin:8px 0 0;color:var(--muted);font-size: 12px;line-height:1.45}
+
+    /* Commentary */
+    details{
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary strong{font-size: 14px}
+    summary .hint{font-size:12px;color:var(--muted)}
+    .detailBody{margin-top:10px;color:var(--muted);font-size: 13px;line-height:1.6}
+    .callout{
+      border-left: 3px solid rgba(122,215,255,.7);
+      padding: 10px 12px;
+      background: rgba(122,215,255,.08);
+      border-radius: 14px;
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      background: rgba(0,0,0,.14);
+    }
+
+    /* Utility */
+    .mono{font-family:var(--mono)}
+    .row2{display:grid;grid-template-columns: 1fr 1fr;gap: 12px}
+    @media (max-width: 860px){.row2{grid-template-columns:1fr}}
+
+    /* Tiny glow separators */
+    .hr{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      margin: 12px 0;
+    }
+
+    /* Button */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.26);background: rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(10,14,22,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.5);
+      font-size: 12px;
+      max-width: min(720px, calc(100vw - 24px));
+      display:none;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Bar chart */
+    .bar-chart{display:flex;flex-direction:column;gap:8px}
+    .bar-row{display:flex;align-items:center;gap:10px}
+    .bar-label{font-size:12px;color:var(--muted);width:120px;text-align:right;flex-shrink:0}
+    .bar-track{flex:1;height:28px;background:rgba(255,255,255,.06);border-radius:8px;border:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
+    .bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:700;color:rgba(0,0,0,.8);transition:width .6s ease}
+    .bar-note{font-size:11px;color:var(--faint);width:60px;flex-shrink:0}
+
+    /* J curve */
+    .jcurve-wrap{position:relative}
+
+    /* Level indicator */
+    .level-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.06em;
+    }
+    .li-low{background:rgba(117,240,182,.15);color:var(--good);border:1px solid rgba(117,240,182,.25)}
+    .li-mid{background:rgba(255,210,122,.15);color:var(--warn);border:1px solid rgba(255,210,122,.25)}
+    .li-high{background:rgba(255,122,153,.15);color:var(--bad);border:1px solid rgba(255,122,153,.25)}
+    .li-top{background:rgba(122,215,255,.15);color:var(--cyan);border:1px solid rgba(122,215,255,.25)}
+
+    /* Print-friendly */
+    @media print{
+      body{background:white;color:#111}
+      header,.card,details{box-shadow:none}
+      .toast{display:none !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="heroArt" aria-hidden="true">
+        <svg viewBox="0 0 520 220" role="img">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="rgba(122,215,255,.55)" />
+              <stop offset="1" stop-color="rgba(187,167,255,.55)" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="rgba(255,179,138,.45)" />
+              <stop offset="1" stop-color="rgba(117,240,182,.35)" />
+            </linearGradient>
+            <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="g"/>
+              <feMerge>
+                <feMergeNode in="g"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#blurGlow)">
+            <rect x="60" y="80" width="140" height="100" rx="12" fill="rgba(122,215,255,.12)" stroke="rgba(122,215,255,.3)" stroke-width="1.5"/>
+            <rect x="220" y="50" width="140" height="130" rx="12" fill="rgba(187,167,255,.12)" stroke="rgba(187,167,255,.3)" stroke-width="1.5"/>
+            <rect x="380" y="30" width="120" height="150" rx="12" fill="rgba(255,179,138,.12)" stroke="rgba(255,179,138,.3)" stroke-width="1.5"/>
+            <path d="M130,130 L290,115 L440,105" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+            <circle cx="130" cy="130" r="5" fill="rgba(122,215,255,.8)"/>
+            <circle cx="290" cy="115" r="5" fill="rgba(187,167,255,.8)"/>
+            <circle cx="440" cy="105" r="5" fill="rgba(255,179,138,.8)"/>
+            <text x="90" y="196" font-size="10" fill="rgba(255,255,255,.4)">Nivel 1</text>
+            <text x="255" y="196" font-size="10" fill="rgba(255,255,255,.4)">Nivel 3</text>
+            <text x="410" y="196" font-size="10" fill="rgba(255,255,255,.4)">Nivel 5</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="headerGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> viitorul programării &bull; fabrica întunecată &bull; impactul AI</div>
+          <h1>Joburile de Junior Dev au scăzut cu 60%+. Scara carierei se schimbă. Ce urmează?</h1>
+          <p class="subtitle">
+            90% din codul Claude Code a fost scris de Claude Code însuși. Echipe de 3 oameni livrează software fără ca vreun om să scrie sau să revizuiască cod.
+            Și totuși, majoritatea dezvoltatorilor care folosesc AI devin <b>mai lenți</b>, nu mai rapizi. Distanța dintre aceste două realități definește viitorul software-ului.
+          </p>
+          <div class="btnRow">
+            <button class="btn" id="jumpLevels">Cele 5 nivele de vibe coding</button>
+            <button class="btn" id="jumpSkills">Ce abilități contează acum</button>
+            <button class="btn" id="toggleNotes">Comentarii on/off</button>
+          </div>
+        </div>
+
+        <div class="topStats" aria-label="Statistici cheie">
+          <div class="stat">
+            <div class="label">Joburi junior dev (SUA)</div>
+            <div class="value" style="color:var(--bad)">-67%</div>
+            <div class="note">Scăderea anunțurilor de joburi entry-level în SUA.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Studiu METR 2025</div>
+            <div class="value" style="color:var(--warn)">+19% mai lent</div>
+            <div class="note">Dezvoltatorii experimentați cu AI finalizau taskuri mai lent.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cod AI la Anthropic</div>
+            <div class="value" style="color:var(--cyan)">~100%</div>
+            <div class="note">Practic tot codul de la Anthropic este generat de AI.</div>
+          </div>
+          <div class="stat">
+            <div class="label">Venit/angajat (AI-native)</div>
+            <div class="value" style="color:var(--good)">~3.5M$/an</div>
+            <div class="note">Față de ~600K$ la companiile SaaS tradiționale.</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <!-- The Big Gap -->
+      <section class="card" aria-label="Decalajul enorm">
+        <div class="cardHeader">
+          <h2>Decalajul care definește industria tech acum</h2>
+          <div class="chip"><b>Ideea mare:</b> diferența crește</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <p class="muted" style="margin-top:0">
+                Câteva echipe din lume operează <b>fabrici întunecate</b> (dark factories) &mdash; sisteme în care AI-ul scrie tot codul, îl testează și îl livrează.
+                Oamenii scriu doar specificații și evaluează rezultatele. Restul industriei se luptă cu instrumente AI care, paradoxal, îi <b>încetinesc</b>.
+              </p>
+              <p class="muted">
+                <b>Exemplu real:</b> StrongDM &mdash; o echipă de 3 persoane. Nimeni nu scrie cod. Nimeni nu revizuiește cod.
+                Sistemul constă din agenți AI orchestrați de fișiere de specificații în markdown. Au livrat 16.000 linii Rust + 9.500 Go, în producție.
+              </p>
+            </div>
+            <div>
+              <div class="viz" style="padding: 14px" aria-label="Cele două realități">
+                <div class="small" style="margin-bottom:10px">Două lumi paralele în aceeași industrie:</div>
+                <div class="riskGrid">
+                  <div class="risk" style="border-color:rgba(117,240,182,.25)">
+                    <div class="rTop"><strong>Echipele de frontieră</strong><span class="level-indicator li-top">Nivel 4-5</span></div>
+                    <p>3 ingineri, fără cod manual, software livrat autonom. Investesc ~1000$/inginer/zi în compute AI.</p>
+                    <div class="meter"><i style="width:92%;background:var(--good)"></i></div>
+                  </div>
+                  <div class="risk" style="border-color:rgba(255,122,153,.25)">
+                    <div class="rTop"><strong>Restul industriei</strong><span class="level-indicator li-mid">Nivel 1-3</span></div>
+                    <p>AI ca un "junior developer" mai rapid. Aceeași structură organizațională. Productivitate în scădere.</p>
+                    <div class="meter"><i style="width:35%;background:var(--warn)"></i></div>
+                  </div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Diferența nu e de unelte &mdash; e de oameni, cultură și organizare.</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Cei care au reușit nu au "instalat un tool" &mdash; și-au <b>reconstruit complet</b> modul de lucru. Au rescris procesele, specificațiile, pipeline-urile CI/CD și așteptările de la fiecare rol. Cei care doar au adăugat Copilot la workflow-ul existent sunt blocați în "curba J" a productivității.
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 Levels of Vibe Coding -->
+      <section class="card" id="levelsSection" aria-label="Cele 5 nivele">
+        <div class="cardHeader">
+          <h2>Cele 5 nivele ale "Vibe Coding" (Dan Shapiro)</h2>
+          <div class="chip">de la autocompletare la fabrica întunecată</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Dan Shapiro (CEO Glowforge) a publicat un cadru de referință care arată unde se află industria. Majoritatea dezvoltatorilor se află la nivelele 1-3.
+            Observă cum omul <b>se retrage treptat</b> din procesul de implementare la fiecare nivel.
+          </p>
+
+          <div class="levels" id="levelCards">
+            <div class="level-card" data-level="0">
+              <span class="lvl-num">0</span>
+              <h3>Autocompletare "picantă"</h3>
+              <p>Tu scrii codul, AI-ul sugerează linia următoare. Accepți sau refuzi. E un Tab mai rapid.</p>
+              <div class="meta">
+                <span class="badge">GitHub Copilot original</span>
+                <span class="level-indicator li-low">omul scrie tot</span>
+              </div>
+            </div>
+
+            <div class="level-card" data-level="1">
+              <span class="lvl-num">1</span>
+              <h3>Intern la programare</h3>
+              <p>Dai AI-ului un task clar: "scrie această funcție", "refactorizează modulul". Tu revizuiești tot ce primești înapoi.</p>
+              <div class="meta">
+                <span class="badge">taskuri izolate</span>
+                <span class="level-indicator li-low">omul decide & revizuiește</span>
+              </div>
+            </div>
+
+            <div class="level-card" data-level="2">
+              <span class="lvl-num">2</span>
+              <h3>Junior Developer</h3>
+              <p>AI-ul face schimbări pe mai multe fișiere, înțelege dependențe, construiește funcționalități complexe. Tu citești tot codul.</p>
+              <div class="meta">
+                <span class="badge">90% din devii "AI-native"</span>
+                <span class="level-indicator li-mid">omul citește tot</span>
+              </div>
+            </div>
+
+            <div class="level-card" data-level="3">
+              <span class="lvl-num">3</span>
+              <h3>Developer = Manager</h3>
+              <p>Nu mai scrii cod &mdash; doar direcționezi AI-ul și aprobi/respingi la nivel de funcționalitate sau PR. AI-ul face implementarea.</p>
+              <div class="meta">
+                <span class="badge">plafonul majorității</span>
+                <span class="level-indicator li-mid">omul evaluează output</span>
+              </div>
+            </div>
+
+            <div class="level-card" data-level="4">
+              <span class="lvl-num">4</span>
+              <h3>Developer = Product Manager</h3>
+              <p>Scrii o specificație, pleci, te întorci după ore și verifici dacă testele trec. Codul e o cutie neagră &mdash; contează doar dacă funcționează.</p>
+              <div class="meta">
+                <span class="badge">calitatea spec-ului e totul</span>
+                <span class="level-indicator li-high">omul scrie doar spec</span>
+              </div>
+            </div>
+
+            <div class="level-card" data-level="5">
+              <span class="lvl-num">5</span>
+              <h3>Fabrica Întunecată</h3>
+              <p>Niciun om nu scrie cod. Niciun om nu revizuiește cod. Specificația intră, software-ul funcțional iese. Total autonom.</p>
+              <div class="meta">
+                <span class="badge">StrongDM, ~3 persoane</span>
+                <span class="level-indicator li-top">omul definește doar "ce"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="small">
+            <b>Unde ești tu?</b> Cele mai multe echipe se situează între nivelul 1 și 3 și tratează AI-ul ca pe un "junior developer". Diferența dintre marketing-ul vendorilor și realitatea operațională e enormă.
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Shapiro estimează că 90% dintre dezvoltatorii care se consideră "AI-native" sunt de fapt la nivelul 2. Bariera psihologică de a <b>lăsa codul din mână</b> e cea mai grea de depășit. Nu e o problemă de unelte &mdash; e o problemă de mentalitate.
+          </div>
+        </div>
+      </section>
+
+      <!-- J Curve + METR Study -->
+      <section class="row">
+        <div class="card" aria-label="Curba J">
+          <div class="cardHeader">
+            <h2>Curba J: de ce AI-ul te încetinește (la început)</h2>
+            <div class="chip">productivitate = jos apoi sus</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Un studiu riguros METR (2025, test randomizat controlat) a arătat că dezvoltatorii experimentați cu AI au finalizat taskuri cu <b>19% mai lent</b>.
+              Ei <b>credeau</b> că sunt cu 24% mai rapizi. Erau greșiți și despre direcție, și despre magnitudine.
+            </p>
+
+            <div class="viz" aria-label="Curba J vizualizare">
+              <svg viewBox="0 0 980 340" id="jCurveSvg" role="img" aria-label="Curba J a productivității cu AI">
+                <defs>
+                  <linearGradient id="jGrad" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0" stop-color="rgba(255,122,153,.8)"/>
+                    <stop offset=".4" stop-color="rgba(255,210,122,.8)"/>
+                    <stop offset="1" stop-color="rgba(117,240,182,.8)"/>
+                  </linearGradient>
+                  <linearGradient id="jArea" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="rgba(255,210,122,.15)"/>
+                    <stop offset="1" stop-color="rgba(255,210,122,0)"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="980" height="340" fill="rgba(0,0,0,.04)"/>
+
+                <!-- axes -->
+                <path d="M80 30 L80 280 L940 280" stroke="rgba(255,255,255,.18)" stroke-width="1.2" fill="none"/>
+
+                <!-- baseline -->
+                <line x1="80" y1="160" x2="940" y2="160" stroke="rgba(255,255,255,.10)" stroke-width="1" stroke-dasharray="6 4"/>
+                <text x="60" y="164" font-size="11" fill="rgba(255,255,255,.45)" text-anchor="end">bază</text>
+
+                <!-- J curve path -->
+                <path d="M100,155 C180,155 200,160 260,220 C300,260 340,265 400,250 C460,235 520,200 600,160 C680,120 760,90 900,70"
+                      fill="none" stroke="url(#jGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+                <!-- area under curve (dip) -->
+                <path d="M100,155 C180,155 200,160 260,220 C300,260 340,265 400,250 C460,235 520,200 600,160 L600,280 L100,280 Z"
+                      fill="rgba(255,122,153,.06)"/>
+
+                <!-- annotations -->
+                <g font-size="12" fill="rgba(255,255,255,.70)">
+                  <text x="120" y="145">Instalezi AI tool</text>
+                  <text x="250" y="275" fill="rgba(255,122,153,.8)">Scădere productivitate</text>
+                  <text x="250" y="290" fill="rgba(255,122,153,.6)" font-size="10">(workflow perturbat)</text>
+                  <text x="580" y="148">Productivitate recuperată</text>
+                  <text x="780" y="62" fill="rgba(117,240,182,.8)">Câștig real</text>
+                  <text x="780" y="78" fill="rgba(117,240,182,.6)" font-size="10">(după transformare completă)</text>
+                </g>
+
+                <!-- marker at dip -->
+                <circle cx="320" cy="262" r="6" fill="rgba(255,122,153,.6)" stroke="rgba(255,122,153,.9)" stroke-width="2"/>
+                <text x="330" y="310" font-size="11" fill="rgba(255,255,255,.55)">Majoritatea companiilor sunt aici</text>
+
+                <g font-size="12" fill="rgba(255,255,255,.50)">
+                  <text x="80" y="310">Timp &rarr;</text>
+                  <text x="30" y="160" transform="rotate(-90 30 160)" text-anchor="middle">Productivitate</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> "Curba J" explică de ce 46% din dezvoltatori nu au încredere în codul generat de AI. Nu e vorba că AI-ul nu funcționează &mdash; e vorba că <b>procesul de lucru nu a fost reconstruit</b> în jurul capacităților AI. E ca și cum ai pune un motor nou pe o transmisie veche: roțile se vor bloca.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="De ce mai lent">
+          <div class="cardHeader">
+            <h2>De ce te face AI-ul mai lent (studiul METR)</h2>
+            <div class="chip"><b>-19%</b> productivitate</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Cercetătorii au controlat dificultatea taskului, experiența dezvoltatorului și familiaritatea cu tool-ul. Nimic din astea nu a contat &mdash; AI-ul tot i-a încetinit.
+            </p>
+
+            <div class="flow">
+              <div class="flowNode">
+                <h3>1) Evaluarea sugestiilor AI</h3>
+                <p>Dezvoltatorii petrec timp citind și verificând codul generat, în loc să scrie direct.</p>
+                <div class="meta"><span class="badge">overhead cognitiv</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>2) Corectarea codului "aproape corect"</h3>
+                <p>Codul generat arată bine dar are erori subtile. Debugging-ul e mai greu decât scrierea de la zero.</p>
+                <div class="meta"><span class="badge">erori ascunse</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>3) Comutarea de context</h3>
+                <p>Oscilarea între modelul mental propriu și output-ul AI-ului creează fricțiune cognitivă.</p>
+                <div class="meta"><span class="badge">context switching</span></div>
+              </div>
+              <div class="flowNode">
+                <h3>4) Încredere excesivă</h3>
+                <p>Dezvoltatorii credeau că sunt cu 24% mai rapizi. Erau de fapt cu 19% mai lenți. Auto-evaluarea e complet greșită.</p>
+                <div class="meta"><span class="badge">iluzia vitezei</span><span class="badge">efect Dunning-Kruger</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Un inginer senior a spus-o perfect: <i>"Copilot face scrierea codului mai ieftină, dar deținerea lui mai scumpă."</i> Asta rezumă problema: generarea e rapidă, dar <b>responsabilitatea</b> pentru cod generat e mai costisitoare.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Organizational Impact -->
+      <section class="card" aria-label="Impactul organizațional">
+        <div class="cardHeader">
+          <h2>Cum se schimbă organizațiile software</h2>
+          <div class="chip">structura se aplatizează radical</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Fiecare ritual din organizațiile software (standup, sprint planning, code review, QA) există pentru că <b>oamenii au limitări</b>:
+            trebuie să se sincronizeze, pot ține minte un număr limitat de taskuri, fac greșeli.
+            Când AI-ul scrie codul, aceste structuri nu mai sunt opționale &mdash; devin <b>fricțiune</b>.
+          </p>
+
+          <div class="split">
+            <div>
+              <div class="viz" style="padding:14px">
+                <div class="small" style="margin-bottom:10px;font-weight:700">Organizația tradițională:</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div class="pill"><span>Standup zilnic</span><span class="tag">sincronizare</span></div>
+                  <div class="pill"><span>Sprint planning</span><span class="tag">prioritizare</span></div>
+                  <div class="pill"><span>Code review</span><span class="tag">verificare</span></div>
+                  <div class="pill"><span>QA manual</span><span class="tag">testare</span></div>
+                  <div class="pill"><span>Release manager</span><span class="tag">coordonare</span></div>
+                  <div class="pill"><span>Scrum master</span><span class="tag">proces</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small">Toate aceste roluri și ritualuri răspund la <b>limitări umane</b>.</div>
+              </div>
+            </div>
+            <div>
+              <div class="viz" style="padding:14px">
+                <div class="small" style="margin-bottom:10px;font-weight:700">Echipa StrongDM (Nivel 5):</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div class="pill" style="border-color:rgba(122,215,255,.25)"><span>Scrie specificații</span><span class="tag" style="color:var(--cyan)">input</span></div>
+                  <div class="pill" style="border-color:rgba(117,240,182,.25)"><span>Evaluează rezultate</span><span class="tag" style="color:var(--good)">output</span></div>
+                </div>
+                <div class="hr"></div>
+                <div class="small" style="margin-bottom:8px">Fără sprinturi. Fără standup-uri. Fără Jira. Fără code review.</div>
+                <div class="small">Tot stratul de coordonare care ocupă ~60% din timpul managerilor e <b>șters complet</b>.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Schimbarea rolului de engineering manager</strong><span class="badge">coordonare &rarr; articulare</span></div>
+              <p>De la "coordonează echipa care construiește feature-ul" la "definește specificația suficient de clar încât agenții să construiască feature-ul".</p>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Schimbarea rolului de program manager</strong><span class="badge">tracking &rarr; arhitectură</span></div>
+              <p>De la "urmărește dependențele între echipele umane" la "arhitectează pipeline-ul de specificații care trec prin fabrică".</p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Abilitatea cheie se mută de la <b>coordonare</b> la <b>articulare</b>. Dacă nu ai încercat niciodată să scrii o specificație suficient de detaliată pentru ca un agent AI să o implementeze fără intervenție umană, nu știi cât de greu este. Oamenii de pe cealaltă parte puteau compensa ambiguitatea cu judecată. Mașinile nu pot &mdash; ghicesc.
+          </div>
+        </div>
+      </section>
+
+      <!-- Junior Dev Crisis -->
+      <section class="row">
+        <div class="card" aria-label="Criza junior dev">
+          <div class="cardHeader">
+            <h2>Criza juniorilor: scara carierei se prăbușește</h2>
+            <div class="chip" style="color:var(--bad)"><b>-67%</b> joburi junior SUA</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Modelul clasic de carieră în software funcționează ca un ucenicie: juniorii învață făcând taskuri simple, seniorii revizuiesc și mentorează.
+              AI-ul sparge acest model <b>de la bază</b>.
+            </p>
+
+            <div class="viz" style="padding:14px" aria-label="Statistici joburi junior">
+              <div class="bar-chart">
+                <div class="bar-row">
+                  <span class="bar-label">SUA &mdash; joburi junior</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:67%;background:linear-gradient(90deg, var(--bad), rgba(255,122,153,.6))">-67%</div>
+                  </div>
+                  <span class="bar-note">scădere</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">UK &mdash; roluri grad. 2024</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:46%;background:linear-gradient(90deg, var(--warn), rgba(255,210,122,.6))">-46%</div>
+                  </div>
+                  <span class="bar-note">scădere</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">UK &mdash; proiecție 2026</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" style="width:53%;background:linear-gradient(90deg, var(--bad), rgba(255,122,153,.6))">-53% adițional</div>
+                  </div>
+                  <span class="bar-note">proiectat</span>
+                </div>
+              </div>
+              <div class="hr"></div>
+              <div class="small">Sursa: Studiu Harvard 2025 &mdash; angajarea juniorilor scade cu 9-10% în primele 6 trimestre de la adoptarea AI.</div>
+            </div>
+
+            <div class="flow" style="margin-top:12px">
+              <div class="flowNode">
+                <h3>Modelul clasic al carierei</h3>
+                <p>Juniorii scriu funcționalități simple &rarr; Seniorii revizuiesc și mentorează &rarr; În 5-7 ani, juniorul devine senior prin experiență acumulată.</p>
+                <div class="meta"><span class="badge">ucenicie deghizată</span></div>
+              </div>
+              <div class="flowNode" style="border-color:rgba(255,122,153,.25)">
+                <h3>Ce se întâmplă acum</h3>
+                <p>AI-ul preia taskurile simple (fix ce făceau juniorii). Code review e mai rapid cu AI. Mentorat-ul tradițional dispare. Rămân: seniorii sus, AI-ul jos, și un <b>gol la mijloc</b> unde învățarea obișnuia să se întâmple.</p>
+                <div class="meta"><span class="badge" style="color:var(--bad)">pipeline-ul se rupe</span><span class="badge">scara se golește</span></div>
+              </div>
+            </div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> Paradoxul: avem nevoie de <b>mai mulți</b> ingineri excelenți, nu de mai puțini. Dar definiția de "excelent" s-a schimbat. Juniorul din 2026 are nevoie de competențele de <i>systems design</i> pe care un mid-level le avea în 2020 &mdash; nu pentru că munca e mai grea, ci pentru că munca ușoară a fost automatizată.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="skillsSection" aria-label="Abilitățile care contează">
+          <div class="cardHeader">
+            <h2>Ce abilități contează acum?</h2>
+            <div class="chip">de la specialist &rarr; generalist</div>
+          </div>
+          <div class="cardBody">
+            <p class="muted" style="margin-top:0">
+              Industria se mută de la <b>specialiști</b> (expert într-un tech stack îngust) la <b>generaliști</b> (gândire transversală pe mai multe domenii).
+              Logica e simplă: când AI-ul face implementarea, valoarea omului e în înțelegerea <b>completă</b> a problemei.
+            </p>
+
+            <div class="checklist" id="skillChecklist">
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Gândire sistemică</strong><em>obligatoriu</em></div>
+                  <div class="d">Capacitatea de a ține un produs întreg în minte și de a raționa despre cum interacționează piesele. Unde se va rupe sub sarcină? Unde sunt breșele de securitate?</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Scrierea de specificații clare</strong><em>skill #1 nou</em></div>
+                  <div class="d">Dacă nu poți descrie problema suficient de precis pentru un agent AI, acel agent va ghici. Și ghicitul produce software care completează golurile cu presupuneri, nu cu înțelegerea clientului.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Înțelegerea profundă a clientului</strong><em>diferențiator</em></div>
+                  <div class="d">Singurii oameni care rămân sunt cei care știu <b>ce</b> să construiască și <b>pentru cine</b>. "Ar trebui să construim asta?" a fost mereu întrebarea mai grea &mdash; acum e singura care contează.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Evaluarea output-ului AI</strong><em>calitate, nu cantitate</em></div>
+                  <div class="d">Capacitatea de a identifica ce e corect și ce e "subtil greșit" în codul generat. Similar cu un medic care evaluează un rezident &mdash; nu faci tu operația, dar judeci rezultatul.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>"AI sense" (simțul AI)</strong><em>skill emergent</em></div>
+                  <div class="d">Ca "horse sense" la călărie &mdash; un simț intuitiv pentru cum să direcționezi AI-ul unde vrei să ajungi. E o abilitate care se învață prin practică.</div>
+                </div>
+              </div>
+
+              <div class="item">
+                <input type="checkbox" />
+                <div>
+                  <div class="t"><strong>Adaptabilitate continuă</strong><em>supraviețuire</em></div>
+                  <div class="d">Dacă ultimul model pe care l-ai folosit a fost lansat luna trecută, ești deja depășit. Ritmul schimbării este lunar, nu anual.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="btnRow">
+              <button class="btn" id="scoreBtn">Calculează-ți scorul de pregătire</button>
+              <button class="btn" id="resetBtn">Resetează</button>
+            </div>
+            <div class="small" id="scoreOut" style="margin-top:10px"></div>
+
+            <div class="callout" data-commentary>
+              <b>Comentariu:</b> "Adecvat" nu mai e o poziție viabilă de carieră &mdash; asta fac modelele deja. Ce separă inginerii excelenți de cei mediocri a fost mereu aceste abilități. Diferența e că acum ele sunt <b>singurele</b> care contează.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI-Native Startups -->
+      <section class="card" aria-label="Startup-uri AI-native">
+        <div class="cardHeader">
+          <h2>Companii AI-native: modelul organizațional nou</h2>
+          <div class="chip">3.5M$/angajat vs 600K$ tradițional</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Startup-urile AI-native demonstrează un model organizațional complet diferit: echipe minuscule care generează venituri masive.
+            Nu au echipe tradiționale de engineering, product, QA sau DevOps.
+          </p>
+
+          <div class="riskGrid">
+            <div class="risk">
+              <div class="rTop"><strong>Cursor</strong><span class="badge">editor AI</span></div>
+              <p>Peste 500M$ ARR, câteva zeci de angajați. ~3.5M$ venit per angajat.</p>
+              <div class="meter"><i style="width:88%;background:linear-gradient(90deg, var(--cyan), var(--good))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Midjourney</strong><span class="badge">imagini AI</span></div>
+              <p>~500M$ venituri, ~100 angajați. Venituri masive cu echipă mică.</p>
+              <div class="meter"><i style="width:82%;background:linear-gradient(90deg, var(--violet), var(--cyan))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Lovable</strong><span class="badge">app builder</span></div>
+              <p>Sute de milioane $ ARR în câteva luni. Echipă mică, scalare prin AI.</p>
+              <div class="meter"><i style="width:78%;background:linear-gradient(90deg, var(--orange), var(--warn))"></i></div>
+            </div>
+            <div class="risk">
+              <div class="rTop"><strong>Media top 10 AI-native</strong><span class="badge">medie industrie</span></div>
+              <p>~3M$+ venit/angajat &mdash; de 5-6x mai mult decât media SaaS (600K$).</p>
+              <div class="meter"><i style="width:85%;background:linear-gradient(90deg, var(--good), var(--cyan))"></i></div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+          <div class="small">
+            Aceste companii arată ca un grup mic de oameni excepționali la înțelegerea nevoilor utilizatorilor, traducerea lor în specificații clare și direcționarea sistemelor AI care fac implementarea.
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Organigrama se aplatizează radical. Straturile de coordonare care gestionau sute de ingineri pot fi șterse când implementarea e făcută de agenți. Managementul de mijloc fie evoluează în ceva fundamental diferit, fie dispare.
+          </div>
+        </div>
+      </section>
+
+      <!-- The Dark Factory Architecture -->
+      <section class="card" aria-label="Arhitectura fabricii">
+        <div class="cardHeader">
+          <h2>Cum funcționează o "fabrică întunecată" (StrongDM)</h2>
+          <div class="chip">scenarii externe + digital twins</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <div class="flow">
+                <div class="flowNode">
+                  <h3>Specificații Markdown</h3>
+                  <p>Întregul "agent" constă din 3 fișiere markdown care descriu ce ar trebui să facă software-ul.</p>
+                  <div class="meta"><span class="badge">input uman</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Agent AI (Attractor)</h3>
+                  <p>Citește specificațiile, scrie codul și îl testează. Open-source, bazat pe Claude 3.5 Sonnet (punctul de inflexiune: toamna 2024).</p>
+                  <div class="meta"><span class="badge">implementare autonomă</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Scenarii (nu teste clasice)</h3>
+                  <p>Evaluări comportamentale <b>externe</b> codului. Agentul nu le vede în timpul dezvoltării &mdash; nu poate "învăța pentru test".</p>
+                  <div class="meta"><span class="badge">holdout set</span><span class="badge">anti-overfitting</span></div>
+                </div>
+                <div class="flowNode">
+                  <h3>Software livrat</h3>
+                  <p>CXDB: 16.000 linii Rust, 9.500 Go, 700 TypeScript. În producție, funcțional, construit end-to-end de agenți.</p>
+                  <div class="meta"><span class="badge">producție reală</span></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="flowNode" style="border-color:rgba(122,215,255,.25)">
+                <h3>Inovația cheie: Scenarii vs. Teste</h3>
+                <p>
+                  Testele tradiționale trăiesc <b>în</b> codul sursă. Agentul AI le poate citi, deci poate optimiza pentru a le trece &mdash; nu pentru a construi software corect.
+                  E aceeași problemă ca "teaching to the test" în educație.
+                </p>
+                <p style="margin-top:8px">
+                  Scenariile trăiesc <b>în afara</b> codului. Descriu ce ar trebui să facă software-ul din perspectivă externă. Funcționează ca un "holdout set" din machine learning.
+                </p>
+              </div>
+              <div style="height:10px"></div>
+              <div class="flowNode" style="border-color:rgba(187,167,255,.25)">
+                <h3>"Universul digital twin"</h3>
+                <p>
+                  Clone comportamentale ale fiecărui serviciu extern: Okta simulat, Jira simulat, Slack, Google Docs simulat.
+                  Agenții dezvoltă contra acestor clone &mdash; testare completă de integrare fără a atinge sisteme reale.
+                </p>
+                <div class="meta"><span class="badge">mediu simulat complet</span><span class="badge">zero risc producție</span></div>
+              </div>
+              <div style="height:10px"></div>
+              <div class="flowNode" style="border-color:rgba(255,210,122,.25)">
+                <h3>Metrica: 1000$/inginer/zi</h3>
+                <p>
+                  "Dacă nu ai cheltuit 1000$ pe inginer uman, fabrica ta are loc de îmbunătățire." E mai ieftin decât oamenii pe care îi înlocuiește.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Ideea de scenarii externe este revoluționară. Când oamenii scriau cod, nu ne îngrijora "gaming-ul" testelor. Când AI-ul scrie cod, optimizarea pentru trecerea testelor (nu pentru corectitudine) este <b>comportamentul implicit</b> dacă nu proiectezi explicit contra lui.
+          </div>
+        </div>
+      </section>
+
+      <!-- The Optimistic View -->
+      <section class="card" aria-label="Perspectiva optimistă">
+        <div class="cardHeader">
+          <h2>Vestea bună: cererea de software explodează</h2>
+          <div class="chip"><b>Teza:</b> nu mai puțini ingineri, ci diferiți</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Lecția din istorie: costul mai mic = mai multă cerere</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                De fiecare dată când costul computației a scăzut (mainframe &rarr; PC, PC &rarr; cloud, cloud &rarr; serverless),
+                cantitatea totală de software <b>nu a stagnat &mdash; a explodat</b>. Cloud-ul nu a făcut doar software-ul existent mai ieftin.
+                A creat SaaS, aplicații mobile, streaming, analytics în timp real &mdash; categorii imposibile la costul anterior.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Acum: piața adresabilă se extinde masiv</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Un spital regional, un producător mid-market, o firmă de logistică familială &mdash; toți au nevoie de software dar nu-și pot permite
+                să construiască la costurile actuale. Un sistem de inventar custom costă ~500K$+. Un portal de pacienți ~300K$+.
+                <b>Acum costul producției software scade cu un ordin de mărime.</b> Nevoia neadresată devine adresabilă.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Oamenii care prosperă</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Cei care au fost mereu cei mai greu de înlocuit: oamenii care înțeleg clienții profund, gândesc în sisteme,
+                pot gestiona ambiguitatea și pot articula ce trebuie să existe <b>înainte</b> să existe.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Formula fabricii întunecate</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fabrica întunecată nu înlocuiește acești oameni &mdash; îi <b>amplifică</b>.
+                Transformă un gânditor de produs excelent cu 5 ingineri într-un gânditor de produs excelent cu <b>capacitate nelimitată de implementare</b>.
+              </p>
+              <p class="muted" style="margin-top:8px;line-height:1.6">
+                Constrângerea se mută de la "putem construi asta?" la <b>"ar trebui să construim asta?"</b> &mdash; și asta a fost mereu întrebarea mai grea și mai interesantă.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Nu am găsit niciodată un plafon al cererii de software sau de inteligență. De fiecare dată când resursele au devenit dramatic mai ieftine, cererea a explodat. Aceeași dinamică se aplică acum, la o scară care face fiecare tranziție anterioară să pară mică.
+          </div>
+        </div>
+      </section>
+
+      <!-- Migration Path -->
+      <section class="card" aria-label="Calea de migrare">
+        <div class="cardHeader">
+          <h2>Calea realistă de migrare (pentru companii existente)</h2>
+          <div class="chip">brownfield &ne; greenfield</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Majoritatea software-ului din economie nu e construit de la zero. E <b>brownfield</b>: sisteme existente, acumulate în ani sau decenii,
+            care rulează în producție. Nu poți pune "fabrica întunecată" pe un sistem legacy &mdash; specificația pentru asta <b>nu există</b>.
+          </p>
+
+          <div class="flow">
+            <div class="flowNode">
+              <h3>Pasul 1: Accelerează cu AI la nivel 2-3</h3>
+              <p>Folosește AI-ul pentru ce fac deja dezvoltatorii: funcționalități noi, bugfix-uri, refactorizare. Așteaptă-te la scăderea de productivitate ("curba J").</p>
+              <div class="meta"><span class="level-indicator li-low">majoritatea sunt aici</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>Pasul 2: Documentează ce face sistemul real</h3>
+              <p>Folosește AI-ul să genereze specificații din cod, construiește suite de scenarii care captează comportamentul real, creează holdout sets pentru viitoare fabrici.</p>
+              <div class="meta"><span class="badge">munca grea</span><span class="badge">profund umană</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>Pasul 3: Redesign CI/CD pentru volum AI</h3>
+              <p>Strategii diferite de testare, procese diferite de review, porți diferite de deployment. Pipeline-ul vechi nu e construit pentru volume de cod AI.</p>
+              <div class="meta"><span class="badge">infrastructură nouă</span></div>
+            </div>
+            <div class="flowNode">
+              <h3>Pasul 4: Mutare treptată la nivel 4-5</h3>
+              <p>Dezvoltarea nouă trece la pattern-uri de agenți autonomi, sistemul legacy se menține în paralel. Asta ia <b>timp</b> &mdash; luni sau ani.</p>
+              <div class="meta"><span class="level-indicator li-top">destinația</span></div>
+            </div>
+          </div>
+
+          <div class="callout" data-commentary>
+            <b>Comentariu:</b> Oricine îți spune altceva îți vinde ceva. Companiile care ajung cel mai repede nu sunt cele cu cele mai scumpe unelte &mdash; sunt cele care pot scrie cele mai oneste specificații despre codul lor și care au cea mai profundă înțelegere a domeniului.
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary -->
+      <section class="card" aria-label="Concluzii">
+        <div class="cardHeader">
+          <h2>Rezumat: ce înseamnă toate astea?</h2>
+          <div class="chip"><b>Teză:</b> problema e umană, nu tehnică</div>
+        </div>
+        <div class="cardBody">
+          <div class="split">
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce e adevărat acum (februarie 2026)</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fabrica întunecată e reală &mdash; nu e hype. Echipe mici produc software fără ca vreun om să scrie sau să revizuieze cod.
+                Uneltele se construiesc singure. Bucla de feedback s-a închis.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Dar și ce e adevărat simultan</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Majoritatea companiilor sunt la nivel 2. Devin <b>măsurabil mai lente</b> cu AI.
+                Rulează structuri organizaționale proiectate pentru lumea în care oamenii fac toată implementarea.
+              </p>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px;font-size:14px">Distanța nu e tehnologică</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                E o distanță de <b>oameni</b>, de <b>cultură</b>, de <b>organizare</b>, de <b>disponibilitate de schimbare</b>.
+                Nicio unealtă și niciun vendor nu o poate acoperi.
+              </p>
+              <div class="hr"></div>
+              <h3 style="margin:0 0 8px;font-size:14px">Ce contează</h3>
+              <p class="muted" style="margin:0;line-height:1.6">
+                Fabrica întunecată nu are nevoie de mai mulți ingineri, dar are nevoie disperată de <b>ingineri mai buni</b>.
+                Și "mai bun" înseamnă altceva decât acum câțiva ani: oameni care pot gândi clar despre ce ar trebui să existe,
+                pot descrie suficient de precis pentru ca mașinile să construiască, și pot evalua dacă ce s-a construit servește oamenii reali.
+              </p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <details data-commentary>
+            <summary><strong>Notă finală: pentru juniori</strong><span class="hint">click pentru detalii</span></summary>
+            <div class="detailBody">
+              <p>
+                Dacă ești la început de carieră: <b>adoptă AI-ul complet</b>. Valorifică-ți capabilitățile de generalist.
+                Arată că poți prelua o problemă și o poți rezolva în câteva minute cu AI, pe o gamă largă de cazuri de utilizare.
+                Unele organizații angajează preferențial juniori tocmai pentru că sunt "AI-native" din start &mdash;
+                o injecție de sânge proaspăt într-un org unde majoritatea au început cariera cu mult înainte de ChatGPT (2022).
+              </p>
+              <p style="margin-top:8px">
+                Nu mai ai nevoie să scrii un endpoint CRUD &mdash; AI-ul face asta în câteva minute. Ai nevoie să poți privi o arhitectură de sistem
+                și să identifici unde se va rupe sub sarcină, unde sunt breșele de securitate, unde experiența utilizatorului cedează la edge cases,
+                și unde logica de business codifică presupuneri care urmează să devină greșite.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Commentary toggle explainer -->
+      <section class="card" aria-label="Despre comentarii">
+        <div class="cardHeader">
+          <h2>Despre butonul "Comentarii on/off"</h2>
+          <div class="chip">interpretare vs. date</div>
+        </div>
+        <div class="cardBody">
+          <p class="muted" style="margin-top:0">
+            Casetele albastre (marcate cu <code>data-commentary</code>) oferă perspective suplimentare:
+            cât de puternică e afirmația? Ce alternative există? Ce calitate au dovezile?
+          </p>
+          <p class="muted">
+            Implicit, comentariile sunt <b>vizibile</b>. Click pe "Comentarii on/off" în header pentru a le ascunde/afișa toate deodată.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>
+        <b>Credite și disclaimere:</b> Acest infografic interactiv a fost generat pentru a traduce și vizualiza conținutul unei prezentări video despre impactul AI asupra industriei software.
+        Nu este sfat profesional de carieră. Vizualizările și comentariile sunt instrumente conceptuale pentru a te ajuta să gândești despre aceste teme, nu înlocuitoare pentru cercetare primară sau consultanță profesională.
+      </p>
+      <p style="margin-top:10px">
+        Sursă originală: "Junior Dev Jobs Just Dropped 60%+" &mdash; prezentare video, februarie 2026.
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ──────────────────────────────────────────────────────
+    // Navigation buttons
+    // ──────────────────────────────────────────────────────
+    document.getElementById('jumpLevels').addEventListener('click', () => {
+      document.getElementById('levelsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('jumpSkills').addEventListener('click', () => {
+      document.getElementById('skillsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Commentary toggle
+    // ──────────────────────────────────────────────────────
+    let commentaryVisible = true;
+    document.getElementById('toggleNotes').addEventListener('click', () => {
+      commentaryVisible = !commentaryVisible;
+      const items = document.querySelectorAll('[data-commentary]');
+      items.forEach(el => {
+        el.style.display = commentaryVisible ? '' : 'none';
+      });
+      showToast(commentaryVisible ? 'Comentarii vizibile' : 'Comentarii ascunse');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Skills checklist scoring
+    // ──────────────────────────────────────────────────────
+    document.getElementById('scoreBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#skillChecklist input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+      const total = checkboxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      let msg = '';
+      if (pct >= 85) msg = `${pct}% – Excelent! Ai competențele cheie pentru era fabricii întunecate.`;
+      else if (pct >= 60) msg = `${pct}% – Bun fundament. Concentrează-te pe abilitățile lipsă.`;
+      else if (pct >= 40) msg = `${pct}% – Moderat. Alege 1-2 abilități și investește în ele consistent.`;
+      else msg = `${pct}% – Mult loc de creștere. Începe cu gândirea sistemică și scrierea de specificații clare.`;
+
+      document.getElementById('scoreOut').innerHTML = `<b>Scorul tău de pregătire:</b> ${msg}`;
+      showToast('Scor calculat');
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#skillChecklist input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = false);
+      document.getElementById('scoreOut').innerHTML = '';
+      showToast('Checklist resetat');
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Level card interaction
+    // ──────────────────────────────────────────────────────
+    const levelDescriptions = {
+      0: 'Autocompletare – tu scrii, AI-ul sugerează. GitHub Copilot original.',
+      1: 'Intern – dai taskuri clare, revizuiești tot. AI = ajutor pe task.',
+      2: 'Junior Dev – AI face schimbări complexe, tu citești tot codul. 90% din devii "AI-native" sunt aici.',
+      3: 'Manager – direcționezi AI-ul, aprobi/respingi la nivel de feature. Plafonul majorității.',
+      4: 'Product Manager – scrii spec, verifici doar dacă testele trec. Codul = cutie neagră.',
+      5: 'Fabrica Întunecată – total autonom. Spec intră, software funcțional iese. StrongDM operează aici.'
+    };
+
+    document.querySelectorAll('.level-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const level = card.getAttribute('data-level');
+        showToast(`Nivel ${level}: ${levelDescriptions[level]}`);
+      });
+    });
+
+    // ──────────────────────────────────────────────────────
+    // Toast notification
+    // ──────────────────────────────────────────────────────
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

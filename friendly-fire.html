@@ -1,0 +1,1896 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Friendly Fire — Economie pe Intelesul Tuturor (Moise Guran & Vlad Petreanu)</title>
+  <meta name="description" content="Infografic interactiv cu simulatoare economice bazat pe podcastul Friendly Fire. PIB, recesiune, inflatie, datorie publica — explicate simplu, in romana." />
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --good: #75f0b6;
+      --warn: #ffd27a;
+      --bad: #ff7a99;
+      --cyan: #7ad7ff;
+      --violet: #bba7ff;
+      --orange: #ffb38a;
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --shadow2: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --grid: rgba(255,255,255,.07);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(122,215,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(187,167,255,.10), transparent 55%),
+        radial-gradient(800px 500px at 55% 85%, rgba(255,179,138,.08), transparent 60%),
+        linear-gradient(180deg, #070a10, var(--bg));
+      overflow-x:hidden;
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:1220px;margin:0 auto;padding:34px 18px 70px}
+
+    /* Header */
+    header{
+      position:relative;
+      padding:26px 18px 22px;
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .headerGrid{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:18px;
+      align-items:start;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,.25);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--violet));box-shadow:0 0 22px rgba(122,215,255,.25)}
+
+    h1{margin:14px 0 10px;font-size:clamp(26px,3.1vw,44px);line-height:1.04;letter-spacing:-0.02em}
+    .subtitle{margin:0 0 14px;color:var(--muted);font-size:15px;line-height:1.55;max-width:72ch}
+
+    .topStats{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      align-content:start;
+    }
+    .stat{
+      border:1px solid var(--stroke);
+      border-radius:var(--radius2);
+      background:rgba(0,0,0,.18);
+      padding:12px 12px 10px;
+      box-shadow:var(--shadow2);
+      min-height:84px;
+    }
+    .stat .label{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+    .stat .value{margin-top:7px;font-weight:700;font-size:18px}
+    .stat .note{margin-top:4px;font-size:12px;color:var(--muted)}
+
+    /* Grid Layout */
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:14px;
+    }
+    @media(max-width:960px){
+      .headerGrid{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+    }
+
+    /* Cards */
+    .card{
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.05);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:14px 16px 10px;
+      border-bottom:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg,rgba(0,0,0,.18),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-0.01em}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(0,0,0,.22);
+      color:var(--muted);
+      font-size:12px;
+      user-select:none;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .chip b{color:var(--text)}
+    .cardBody{padding:14px 16px 16px}
+
+    .muted{color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:740px){.split{grid-template-columns:1fr}}
+
+    /* Diagram area */
+    .viz{
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:var(--radius2);
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.08)),
+        repeating-linear-gradient(90deg,transparent,transparent 22px,rgba(255,255,255,.03) 22px,rgba(255,255,255,.03) 23px),
+        repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(255,255,255,.03) 22px,rgba(255,255,255,.03) 23px);
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    svg{display:block;width:100%;height:auto}
+
+    /* Callout */
+    .callout{
+      border-left:3px solid rgba(122,215,255,.7);
+      padding:10px 12px;
+      background:rgba(122,215,255,.08);
+      border-radius:14px;
+      margin-top:10px;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .callout.warn{
+      border-left-color:rgba(255,210,122,.7);
+      background:rgba(255,210,122,.08);
+    }
+    .callout.bad{
+      border-left-color:rgba(255,122,153,.7);
+      background:rgba(255,122,153,.08);
+    }
+
+    /* Sliders */
+    .simControl{
+      display:grid;gap:8px;
+      margin-top:10px;
+    }
+    .simRow{
+      display:grid;
+      grid-template-columns:140px 1fr 70px;
+      gap:10px;
+      align-items:center;
+      font-size:13px;
+    }
+    @media(max-width:600px){
+      .simRow{grid-template-columns:100px 1fr 55px}
+    }
+    .simRow label{color:var(--muted);text-align:right;font-size:12px}
+    .simRow .val{font-family:var(--mono);font-weight:700;font-size:13px;text-align:center}
+
+    input[type=range]{
+      -webkit-appearance:none;
+      appearance:none;
+      width:100%;
+      height:8px;
+      border-radius:99px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      outline:none;
+      cursor:pointer;
+    }
+    input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      appearance:none;
+      width:18px;height:18px;
+      border-radius:99px;
+      background:linear-gradient(135deg,var(--cyan),var(--violet));
+      border:2px solid rgba(255,255,255,.3);
+      box-shadow:0 0 14px rgba(122,215,255,.35);
+      cursor:pointer;
+    }
+    input[type=range]::-moz-range-thumb{
+      width:18px;height:18px;
+      border-radius:99px;
+      background:linear-gradient(135deg,var(--cyan),var(--violet));
+      border:2px solid rgba(255,255,255,.3);
+      box-shadow:0 0 14px rgba(122,215,255,.35);
+      cursor:pointer;
+    }
+
+    /* Result boxes */
+    .resultGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+    .resultBox{
+      border:1px solid var(--stroke);
+      border-radius:var(--radius2);
+      background:rgba(0,0,0,.18);
+      padding:10px 12px;
+      text-align:center;
+    }
+    .resultBox .rLabel{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em}
+    .resultBox .rVal{margin-top:6px;font-family:var(--mono);font-weight:700;font-size:20px}
+    .resultBox .rNote{margin-top:3px;font-size:11px;color:var(--muted)}
+
+    /* Bar chart */
+    .barChart{display:grid;gap:8px;margin-top:10px}
+    .barRow{display:grid;grid-template-columns:90px 1fr 60px;gap:8px;align-items:center;font-size:12px}
+    @media(max-width:640px){.barRow{grid-template-columns:70px 1fr 45px}}
+    .barLabel{color:var(--muted);text-align:right;font-size:11px}
+    .barTrack{height:22px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
+    .barFill{height:100%;border-radius:12px;transition:width .8s cubic-bezier(.23,1,.32,1)}
+    .barVal{font-family:var(--mono);font-weight:700;font-size:12px}
+
+    /* Cycle wheel */
+    .cycleGrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    @media(max-width:700px){
+      .cycleGrid{grid-template-columns:repeat(2,1fr)}
+    }
+    .cyclePhase{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:12px;
+      cursor:pointer;
+      transition:transform .15s ease,border-color .15s ease,background .15s ease;
+      position:relative;
+    }
+    .cyclePhase:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.25);
+      background:rgba(255,255,255,.06);
+    }
+    .cyclePhase.active{
+      border-color:rgba(122,215,255,.5);
+      background:rgba(122,215,255,.08);
+      box-shadow:0 0 30px rgba(122,215,255,.12);
+    }
+    .cyclePhase .phNum{
+      width:28px;height:28px;
+      border-radius:99px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:700;
+      margin-bottom:8px;
+    }
+    .cyclePhase h4{margin:0 0 4px;font-size:13px}
+    .cyclePhase p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;display:none}
+    .cyclePhase.active p{display:block}
+    .cyclePhase .phTag{
+      display:inline-block;
+      margin-top:6px;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      padding:3px 7px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+
+    /* Compare side by side */
+    .compareGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media(max-width:640px){.compareGrid{grid-template-columns:1fr}}
+    .compareBox{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px;
+      position:relative;
+    }
+    .compareBox h4{margin:0 0 8px;font-size:14px}
+    .compareBox.good{background:rgba(117,240,182,.05);border-color:rgba(117,240,182,.2)}
+    .compareBox.bad{background:rgba(255,122,153,.05);border-color:rgba(255,122,153,.2)}
+    .compareBox ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.6}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:24px;margin-top:10px}
+    .timeline::before{
+      content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+      background:linear-gradient(180deg,rgba(122,215,255,.4),rgba(187,167,255,.4),rgba(255,179,138,.2));
+      border-radius:99px;
+    }
+    .tlItem{position:relative;padding:8px 0 16px;cursor:pointer}
+    .tlItem::before{
+      content:'';position:absolute;left:-20px;top:12px;
+      width:10px;height:10px;border-radius:99px;
+      background:var(--cyan);
+      border:2px solid var(--bg);
+      box-shadow:0 0 10px rgba(122,215,255,.3);
+    }
+    .tlItem .tlYear{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--cyan)}
+    .tlItem .tlTitle{font-size:13px;margin-top:2px}
+    .tlItem .tlDesc{
+      font-size:12px;color:var(--muted);line-height:1.5;
+      max-height:0;overflow:hidden;
+      transition:max-height .4s ease,margin .3s ease;
+      margin-top:0;
+    }
+    .tlItem.open .tlDesc{max-height:200px;margin-top:6px}
+
+    /* Explanation text */
+    .explText{
+      color:var(--muted);
+      font-size:13.5px;
+      line-height:1.65;
+      margin-bottom:12px;
+    }
+    .explText strong{color:var(--text)}
+
+    /* Pill */
+    .pill{
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:999px;
+      padding:10px 12px;
+      background:rgba(0,0,0,.18);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      min-height:44px;
+    }
+    .pill span{font-size:13px}
+    .tag{
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .tag-good{border-color:rgba(117,240,182,.3);background:rgba(117,240,182,.1);color:var(--good)}
+    .tag-bad{border-color:rgba(255,122,153,.3);background:rgba(255,122,153,.1);color:var(--bad)}
+    .tag-warn{border-color:rgba(255,210,122,.3);background:rgba(255,210,122,.1);color:var(--warn)}
+    .tag-cyan{border-color:rgba(122,215,255,.3);background:rgba(122,215,255,.1);color:var(--cyan)}
+
+    /* Buttons */
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      transition:transform .12s ease,border-color .12s ease,background .12s ease;
+      font-size:13px;
+      font-family:var(--sans);
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.26);background:rgba(255,255,255,.07)}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      left:50%;bottom:18px;
+      transform:translateX(-50%) translateY(60px);
+      background:rgba(10,14,22,.88);
+      border:1px solid rgba(255,255,255,.14);
+      color:rgba(255,255,255,.86);
+      padding:10px 16px;
+      border-radius:14px;
+      box-shadow:0 20px 70px rgba(0,0,0,.5);
+      font-size:12px;
+      max-width:min(720px,calc(100vw - 24px));
+      backdrop-filter:blur(10px);
+      opacity:0;
+      transition:opacity .3s ease,transform .3s ease;
+      z-index:999;
+      pointer-events:none;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
+    /* Separator */
+    .hr{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+      margin:12px 0;
+    }
+
+    /* Flow diagram for money */
+    .flowDiag{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+    .flowNode{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      padding:10px 12px;
+      font-size:12px;
+      text-align:center;
+    }
+    .flowArrow{
+      text-align:center;
+      color:var(--faint);
+      font-size:16px;
+      line-height:1;
+    }
+
+    /* Quote style */
+    .quote{
+      font-style:italic;
+      color:var(--orange);
+      border-left:3px solid var(--orange);
+      padding:8px 12px;
+      margin:10px 0;
+      background:rgba(255,179,138,.06);
+      border-radius:0 14px 14px 0;
+      font-size:13px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top:16px;
+      padding:14px 16px;
+      border:1px dashed rgba(255,255,255,.16);
+      border-radius:var(--radius);
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+      background:rgba(0,0,0,.14);
+    }
+
+    .mono{font-family:var(--mono)}
+
+    /* Generation blocks for debt */
+    .genBlocks{
+      display:flex;
+      align-items:flex-end;
+      gap:6px;
+      height:180px;
+      padding:10px;
+      margin-top:10px;
+    }
+    .genBlock{
+      flex:1;
+      border-radius:8px 8px 0 0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:center;
+      padding:6px;
+      transition:height .8s cubic-bezier(.23,1,.32,1);
+      position:relative;
+      min-height:20px;
+    }
+    .genBlock .genLabel{
+      font-size:10px;
+      color:var(--text);
+      font-weight:700;
+      writing-mode:vertical-rl;
+      text-orientation:mixed;
+      position:absolute;
+      bottom:4px;
+    }
+    .genBlock .genVal{
+      font-family:var(--mono);
+      font-size:11px;
+      font-weight:700;
+      position:absolute;
+      top:-18px;
+      white-space:nowrap;
+    }
+
+    /* Toggle button for commentary */
+    .toggleCommentary{
+      position:fixed;
+      top:14px;right:14px;
+      z-index:100;
+    }
+    body.hideCallouts .callout{display:none}
+    body.hideCallouts .quote{display:none}
+
+    /* Number input style */
+    input[type=number]{
+      background:rgba(0,0,0,.3);
+      border:1px solid var(--stroke);
+      border-radius:8px;
+      color:var(--text);
+      padding:6px 8px;
+      font-family:var(--mono);
+      font-size:13px;
+      width:70px;
+      outline:none;
+    }
+    input[type=number]:focus{border-color:rgba(122,215,255,.5)}
+
+    /* Stacked bars for section 8 */
+    .stackBar{
+      display:flex;
+      border-radius:8px;
+      overflow:hidden;
+      height:28px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .stackBar > div{
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;font-weight:700;
+      transition:width .6s ease;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Toggle Commentary -->
+  <button class="btn toggleCommentary" onclick="toggleCallouts()">Comentarii ON/OFF</button>
+
+  <!-- HEADER -->
+  <header>
+    <div class="headerGrid">
+      <div>
+        <div class="kicker"><span class="dot"></span> Podcast Friendly Fire</div>
+        <h1>Economie pe Intelesul Tuturor</h1>
+        <p class="subtitle">
+          Concepte economice cheie explicate simplu, cu simulatoare interactive.
+          Bazat pe discutiile dintre <strong>Moise Guran</strong> si <strong>Vlad Petreanu</strong>
+          din podcastul <em>Friendly Fire</em>.
+        </p>
+      </div>
+      <div class="topStats">
+        <div class="stat">
+          <div class="label">Deficit bugetar</div>
+          <div class="value" style="color:var(--bad)">~7% din PIB</div>
+          <div class="note">Printre cele mai mari din UE</div>
+        </div>
+        <div class="stat">
+          <div class="label">Datorie publica</div>
+          <div class="value" style="color:var(--warn)">&gt;50% din PIB</div>
+          <div class="note">In crestere rapida</div>
+        </div>
+        <div class="stat">
+          <div class="label">Inflatie reala</div>
+          <div class="value" style="color:var(--orange)">Preturi x2</div>
+          <div class="note">Preturile s-au dublat in ~3 ani</div>
+        </div>
+        <div class="stat">
+          <div class="label">Bugetari</div>
+          <div class="value" style="color:var(--violet)">~1.2 mil.</div>
+          <div class="note">Angajati in sistemul public</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- ===================== 1. PIB ===================== -->
+    <div class="card" id="s1">
+      <div class="cardHeader">
+        <h2>1. Ce este PIB-ul?</h2>
+        <span class="chip"><b>Produs Intern Brut</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          <strong>PIB = suma muncii noastre.</strong> Se calculeaza asa:
+          Salarii + Profituri + TVA + Accize + Exporturi - Importuri.
+          Totul se "deflateaza" (se ajusteaza pentru inflatie) ca sa comparam mere cu mere.
+          <strong>Valoarea adaugata</strong> (salarii + profituri) reprezinta <strong>~80%</strong> din PIB.
+          Cand auzi "PIB a crescut", inseamna ca tara a produs mai mult.
+        </p>
+        <div class="callout">
+          Gandeste-te la PIB ca la cifra de afaceri a unei tari intregi.
+          Daca tu castigi un salariu si patronul face profit, amandoi contribuiti la PIB.
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Simulator PIB</strong> — Misca cursoarele si vezi cum se schimba PIB-ul</p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>Salarii (mld lei)</label>
+            <input type="range" min="100" max="800" value="400" id="pib_sal" oninput="calcPIB()">
+            <span class="val" id="pib_sal_v">400</span>
+          </div>
+          <div class="simRow">
+            <label>Profituri (mld lei)</label>
+            <input type="range" min="50" max="400" value="150" id="pib_prof" oninput="calcPIB()">
+            <span class="val" id="pib_prof_v">150</span>
+          </div>
+          <div class="simRow">
+            <label>TVA + Accize (mld)</label>
+            <input type="range" min="20" max="200" value="80" id="pib_tva" oninput="calcPIB()">
+            <span class="val" id="pib_tva_v">80</span>
+          </div>
+          <div class="simRow">
+            <label>Exporturi (mld)</label>
+            <input type="range" min="50" max="400" value="200" id="pib_exp" oninput="calcPIB()">
+            <span class="val" id="pib_exp_v">200</span>
+          </div>
+          <div class="simRow">
+            <label>Importuri (mld)</label>
+            <input type="range" min="50" max="500" value="250" id="pib_imp" oninput="calcPIB()">
+            <span class="val" id="pib_imp_v">250</span>
+          </div>
+          <div class="simRow">
+            <label>Inflatie (%)</label>
+            <input type="range" min="0" max="25" value="6" step="0.5" id="pib_infl" oninput="calcPIB()">
+            <span class="val" id="pib_infl_v">6%</span>
+          </div>
+        </div>
+
+        <div class="resultGrid" id="pib_results">
+          <div class="resultBox">
+            <div class="rLabel">PIB Nominal</div>
+            <div class="rVal" id="pib_nom" style="color:var(--cyan)">580</div>
+            <div class="rNote">miliarde lei</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">PIB Real</div>
+            <div class="rVal" id="pib_real" style="color:var(--good)">547</div>
+            <div class="rNote">ajustat inflatie</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Valoare Adaugata</div>
+            <div class="rVal" id="pib_va" style="color:var(--violet)">550</div>
+            <div class="rNote">sal + profit</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">% VA din PIB</div>
+            <div class="rVal" id="pib_vap" style="color:var(--orange)">94%</div>
+            <div class="rNote">tinta: ~80%</div>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <svg id="pibChart" viewBox="0 0 500 160" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 2. RECESIUNE ===================== -->
+    <div class="card" id="s2">
+      <div class="cardHeader">
+        <h2>2. Ce este Recesiunea?</h2>
+        <span class="chip"><b>2 trimestre de scadere</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          <strong>Recesiune = 2 trimestre consecutive de scadere a PIB-ului.</strong>
+          Nu exista "recesiune tehnica" — e pur si simplu recesiune.
+          Intri in ea dupa 2 trimestre de scadere, iesi dupa 2 trimestre de crestere.
+        </p>
+        <div class="quote">
+          "E ca la razboi: stii cand incepe, dar nu stii cand se termina."
+          — Moise Guran
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Simulator Recesiune</strong> — Introdu cresterea/scaderea PIB pentru fiecare trimestru</p>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px">
+          <div style="text-align:center">
+            <div class="small">T1</div>
+            <input type="number" id="rec_q1" value="1.2" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T2</div>
+            <input type="number" id="rec_q2" value="-0.3" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T3</div>
+            <input type="number" id="rec_q3" value="-0.8" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T4</div>
+            <input type="number" id="rec_q4" value="0.5" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px">
+          <div style="text-align:center">
+            <div class="small">T5</div>
+            <input type="number" id="rec_q5" value="-0.2" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T6</div>
+            <input type="number" id="rec_q6" value="-1.1" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T7</div>
+            <input type="number" id="rec_q7" value="0.4" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+          <div style="text-align:center">
+            <div class="small">T8</div>
+            <input type="number" id="rec_q8" value="0.9" step="0.1" style="width:100%;margin-top:4px" oninput="calcRecession()">
+            <div class="small">%</div>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <svg id="recChart" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+        <div id="recVerdict" style="margin-top:8px;font-size:13px;font-weight:700;text-align:center"></div>
+      </div>
+    </div>
+
+    <!-- ===================== 3. BUGET vs PIB ===================== -->
+    <div class="card" id="s3">
+      <div class="cardHeader">
+        <h2>3. Bugetul Statului vs PIB</h2>
+        <span class="chip"><b>Deficit &amp; Imprumuturi</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          <strong>PIB = munca noastra. Bugetul = planul statului de venituri si cheltuieli.</strong>
+          Deficitul apare cand statul cheltuie mai mult decat incaseaza.
+          Se masoara ca procent din PIB.
+          Guvernul se imprumuta pe baza proiectiei de crestere a PIB-ului.
+          Daca exagereaza cresterea, se imprumuta prea mult.
+        </p>
+        <div class="callout warn">
+          Un guvern care prognoza crestere de 5% ca sa justifice imprumuturi mari,
+          dar economia creste doar 2%, va avea o gaura imensa in buget.
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Simulator Buget</strong> — Construieste bugetul statului</p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>PIB (mld lei)</label>
+            <input type="range" min="500" max="2000" value="1400" id="bud_pib" oninput="calcBudget()">
+            <span class="val" id="bud_pib_v">1400</span>
+          </div>
+          <div class="simRow">
+            <label>Venituri (% PIB)</label>
+            <input type="range" min="20" max="45" value="28" step="0.5" id="bud_ven" oninput="calcBudget()">
+            <span class="val" id="bud_ven_v">28%</span>
+          </div>
+          <div class="simRow">
+            <label>Cheltuieli (% PIB)</label>
+            <input type="range" min="20" max="50" value="35" step="0.5" id="bud_chelt" oninput="calcBudget()">
+            <span class="val" id="bud_chelt_v">35%</span>
+          </div>
+          <div class="simRow">
+            <label>PIB prognozat (%)</label>
+            <input type="range" min="-2" max="10" value="5" step="0.5" id="bud_prog" oninput="calcBudget()">
+            <span class="val" id="bud_prog_v">5%</span>
+          </div>
+          <div class="simRow">
+            <label>PIB real (%)</label>
+            <input type="range" min="-3" max="8" value="2" step="0.5" id="bud_real" oninput="calcBudget()">
+            <span class="val" id="bud_real_v">2%</span>
+          </div>
+        </div>
+
+        <div class="resultGrid">
+          <div class="resultBox">
+            <div class="rLabel">Venituri</div>
+            <div class="rVal" id="bud_ven_abs" style="color:var(--good)">392</div>
+            <div class="rNote">mld lei</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Cheltuieli</div>
+            <div class="rVal" id="bud_chelt_abs" style="color:var(--bad)">490</div>
+            <div class="rNote">mld lei</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Deficit</div>
+            <div class="rVal" id="bud_def" style="color:var(--warn)">-98</div>
+            <div class="rNote">mld lei</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Deficit % PIB</div>
+            <div class="rVal" id="bud_def_p" style="color:var(--bad)">-7.0%</div>
+            <div class="rNote">limita UE: 3%</div>
+          </div>
+        </div>
+
+        <div class="resultGrid" style="margin-top:8px">
+          <div class="resultBox">
+            <div class="rLabel">Imprumut planificat</div>
+            <div class="rVal" id="bud_loan_plan" style="color:var(--cyan)">70</div>
+            <div class="rNote">pe baza prognoza PIB</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">PIB real vs prognoza</div>
+            <div class="rVal" id="bud_gap" style="color:var(--bad)">-42</div>
+            <div class="rNote">gaura in buget (mld)</div>
+          </div>
+        </div>
+
+        <div class="callout bad" style="margin-top:10px" id="bud_warn"></div>
+      </div>
+    </div>
+
+    <!-- ===================== 4. INFLATIE ===================== -->
+    <div class="card" id="s4">
+      <div class="cardHeader">
+        <h2>4. Inflatia si Puterea de Cumparare</h2>
+        <span class="chip"><b>Pretul Vietii</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          <strong>Inflatia = cresterea generala a preturilor.</strong>
+          Oficial poate fi 5%, dar la raft preturile s-au dublat in 3 ani.
+          Daca salariul tau nu creste la fel de repede, esti mai sarac chiar daca castigi la fel.
+        </p>
+        <div class="quote">
+          "Economia nu este aritmetica — economia este psihologie."
+          — Moise Guran
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Calculator Putere de Cumparare</strong></p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>Salariu net (lei)</label>
+            <input type="range" min="2000" max="15000" value="5000" step="100" id="inf_sal" oninput="calcInflation()">
+            <span class="val" id="inf_sal_v">5,000</span>
+          </div>
+          <div class="simRow">
+            <label>Inflatie anuala (%)</label>
+            <input type="range" min="1" max="30" value="10" step="0.5" id="inf_rate" oninput="calcInflation()">
+            <span class="val" id="inf_rate_v">10%</span>
+          </div>
+          <div class="simRow">
+            <label>Numar de ani</label>
+            <input type="range" min="1" max="10" value="3" id="inf_years" oninput="calcInflation()">
+            <span class="val" id="inf_years_v">3</span>
+          </div>
+          <div class="simRow">
+            <label>Crestere salariu (%/an)</label>
+            <input type="range" min="0" max="25" value="5" step="0.5" id="inf_raise" oninput="calcInflation()">
+            <span class="val" id="inf_raise_v">5%</span>
+          </div>
+        </div>
+
+        <div class="resultGrid">
+          <div class="resultBox">
+            <div class="rLabel">Salariu dupa N ani</div>
+            <div class="rVal" id="inf_sal_fut" style="color:var(--cyan)">5,788</div>
+            <div class="rNote">lei nominal</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Putere reala</div>
+            <div class="rVal" id="inf_power" style="color:var(--bad)">4,348</div>
+            <div class="rNote">in lei de azi</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Ai pierdut</div>
+            <div class="rVal" id="inf_loss" style="color:var(--bad)">-13%</div>
+            <div class="rNote">putere de cumparare</div>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <p class="small" style="margin:0 0 8px;text-align:center"><strong>Cosul de cumparaturi:</strong> Ce cumperi cu aceiasi bani</p>
+          <div id="basketCompare" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+        </div>
+
+        <div class="viz" style="margin-top:10px">
+          <svg id="infChart" viewBox="0 0 500 140" preserveAspectRatio="xMidYMid meet"></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 5. DATORIE PUBLICA ===================== -->
+    <div class="card" id="s5">
+      <div class="cardHeader">
+        <h2>5. Datoria Publica si Transferul Intergenerational</h2>
+        <span class="chip"><b>Cine plateste?</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          <strong>Romania se imprumuta ca sa plateasca salarii si pensii — nu pentru investitii.</strong>
+          Datoria publica a depasit 50% din PIB.
+          Cine plateste? Copiii si nepotii nostri.
+          E imorala: generatia actuala consuma, generatiile viitoare platesc.
+        </p>
+        <div class="callout bad">
+          Daca te imprumuti sa construiesti o fabrica, ai de unde inapoia banii.
+          Daca te imprumuti sa mananci, ai doar datorie fara nimic in schimb.
+          Romania face al doilea lucru.
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Simulator Bulgare de Zapada</strong> — Cum creste datoria</p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>Datorie actuala (%PIB)</label>
+            <input type="range" min="20" max="80" value="52" step="1" id="debt_start" oninput="calcDebt()">
+            <span class="val" id="debt_start_v">52%</span>
+          </div>
+          <div class="simRow">
+            <label>Deficit anual (%PIB)</label>
+            <input type="range" min="0" max="12" value="7" step="0.5" id="debt_def" oninput="calcDebt()">
+            <span class="val" id="debt_def_v">7%</span>
+          </div>
+          <div class="simRow">
+            <label>Dobanda (% pe datorie)</label>
+            <input type="range" min="1" max="10" value="4.5" step="0.5" id="debt_int" oninput="calcDebt()">
+            <span class="val" id="debt_int_v">4.5%</span>
+          </div>
+          <div class="simRow">
+            <label>Crestere PIB (%)</label>
+            <input type="range" min="-2" max="8" value="2" step="0.5" id="debt_gdp" oninput="calcDebt()">
+            <span class="val" id="debt_gdp_v">2%</span>
+          </div>
+        </div>
+
+        <div class="resultGrid">
+          <div class="resultBox">
+            <div class="rLabel">Dupa 10 ani</div>
+            <div class="rVal" id="debt_10" style="color:var(--warn)">--</div>
+            <div class="rNote">% din PIB</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Dupa 20 ani</div>
+            <div class="rVal" id="debt_20" style="color:var(--orange)">--</div>
+            <div class="rNote">% din PIB</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Dupa 30 ani</div>
+            <div class="rVal" id="debt_30" style="color:var(--bad)">--</div>
+            <div class="rNote">% din PIB</div>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <p class="small" style="margin:0 0 4px;text-align:center"><strong>Cine plateste datoria?</strong></p>
+          <div class="genBlocks" id="debtBlocks">
+            <div class="genBlock" style="background:linear-gradient(180deg,rgba(122,215,255,.4),rgba(122,215,255,.15))">
+              <span class="genVal" id="gen0v">52%</span>
+              <span class="genLabel">Acum</span>
+            </div>
+            <div class="genBlock" style="background:linear-gradient(180deg,rgba(255,210,122,.4),rgba(255,210,122,.15))">
+              <span class="genVal" id="gen1v">--</span>
+              <span class="genLabel">10 ani</span>
+            </div>
+            <div class="genBlock" style="background:linear-gradient(180deg,rgba(255,179,138,.4),rgba(255,179,138,.15))">
+              <span class="genVal" id="gen2v">--</span>
+              <span class="genLabel">20 ani</span>
+            </div>
+            <div class="genBlock" style="background:linear-gradient(180deg,rgba(255,122,153,.4),rgba(255,122,153,.15))">
+              <span class="genVal" id="gen3v">--</span>
+              <span class="genLabel">30 ani</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 6. CICLUL ECONOMIC ===================== -->
+    <div class="card" id="s6">
+      <div class="cardHeader">
+        <h2>6. Ciclul Economic: De la Crestere la Criza</h2>
+        <span class="chip"><b>Fazele Economiei</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          Economia trece prin cicluri repetitive.
+          <strong>Crestere</strong> duce la <strong>supraincalzire</strong>,
+          apoi vine <strong>criza financiara</strong> (lipsesc banii),
+          urmata de <strong>criza economica</strong> (companii concediaza),
+          apoi <strong>recesiune</strong> (consumul scade),
+          si in final <strong>recuperare</strong>.
+        </p>
+        <div class="callout">
+          2008 a inceput cu o criza financiara (bancile).
+          2024 Romania: aproape criza financiara, prevenita prin cresterea TVA si taierea sporurilor.
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Click pe fiecare faza</strong> pentru a vedea detalii</p>
+
+        <div class="cycleGrid" id="cycleGrid">
+          <div class="cyclePhase active" onclick="activatePhase(this,0)">
+            <div class="phNum" style="background:rgba(117,240,182,.2);color:var(--good)">1</div>
+            <h4 style="color:var(--good)">Crestere Economica</h4>
+            <span class="phTag tag-good">Expansiune</span>
+            <p>Economia produce mai mult, firmele angajeaza, salariile cresc, oamenii consuma.
+            PIB-ul creste trimestru de trimestru. Increderea e mare. Bancile dau credite usor.</p>
+          </div>
+          <div class="cyclePhase" onclick="activatePhase(this,1)">
+            <div class="phNum" style="background:rgba(255,210,122,.2);color:var(--warn)">2</div>
+            <h4 style="color:var(--warn)">Supraincalzire</h4>
+            <span class="phTag tag-warn">Risc</span>
+            <p>Cererea depaseste oferta. Preturile cresc rapid (inflatie). Speculatii imobiliare.
+            Banii se duc in consum, nu in investitii productive. Bula creste.</p>
+          </div>
+          <div class="cyclePhase" onclick="activatePhase(this,2)">
+            <div class="phNum" style="background:rgba(255,179,138,.2);color:var(--orange)">3</div>
+            <h4 style="color:var(--orange)">Criza Financiara</h4>
+            <span class="phTag" style="border-color:rgba(255,179,138,.3);background:rgba(255,179,138,.1);color:var(--orange)">Lipsa banilor</span>
+            <p>Bancile nu mai au bani sau nu mai dau credite. Companiile nu se mai pot finanta.
+            Bugetul statului e sub presiune. In 2008, bancile americane au cazut prima data.</p>
+          </div>
+          <div class="cyclePhase" onclick="activatePhase(this,3)">
+            <div class="phNum" style="background:rgba(255,122,153,.2);color:var(--bad)">4</div>
+            <h4 style="color:var(--bad)">Criza Economica</h4>
+            <span class="phTag tag-bad">Concedieri</span>
+            <p>Companiile se restructureaza: concediaza angajati, inchid fabrici, reduc productia.
+            Somajul creste. Salariile stagneaza sau scad. Investitiile se opresc.</p>
+          </div>
+          <div class="cyclePhase" onclick="activatePhase(this,4)">
+            <div class="phNum" style="background:rgba(187,167,255,.2);color:var(--violet)">5</div>
+            <h4 style="color:var(--violet)">Recesiune</h4>
+            <span class="phTag" style="border-color:rgba(187,167,255,.3);background:rgba(187,167,255,.1);color:var(--violet)">2 trimestre</span>
+            <p>PIB-ul scade oficial 2 trimestre consecutiv. Consumul se prabuseste.
+            Oamenii economisesc din frica, ceea ce adanceste si mai mult criza.</p>
+          </div>
+          <div class="cyclePhase" onclick="activatePhase(this,5)">
+            <div class="phNum" style="background:rgba(122,215,255,.2);color:var(--cyan)">6</div>
+            <h4 style="color:var(--cyan)">Recuperare</h4>
+            <span class="phTag tag-cyan">Revenire</span>
+            <p>Preturile s-au ajustat. Companiile incep sa angajeze din nou.
+            Consumul revine treptat. PIB-ul incepe sa creasca. Ciclul se reia.</p>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:12px">
+          <strong>Unde e Romania acum? (2024-2025)</strong><br>
+          Intre faza 2 (supraincalzire, prin inflatie) si faza 3 (aproape criza financiara).
+          Guvernul a prevenit temporar criza prin masuri fiscale (crestere TVA, taierea sporurilor),
+          dar problemele structurale raman.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 7. EFECT FISCAL MICRO ===================== -->
+    <div class="card" id="s7">
+      <div class="cardHeader">
+        <h2>7. Efectul Fiscal: Micro-intreprinderi</h2>
+        <span class="chip"><b>Impozit x5</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          Cand guvernul Ciolacu a schimbat pragurile pentru micro-intreprinderi,
+          <strong>impozitul pe profit a crescut de 4-5 ori</strong> pentru multe firme.
+          O firma a trebuit sa concedieze <strong>10% din angajati</strong> (1 din 10)
+          doar ca sa acopere cresterea de impozit.
+          Statul a mutat bani din "valoare adaugata" (PIB) in "buget" (venituri stat).
+        </p>
+        <div class="callout bad">
+          Cand statul ia mai multi bani de la firme, firmele au mai putini bani pentru salarii.
+          PIB-ul poate arata mai mare, dar oamenii sunt mai saraci.
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Calculator Inainte/Dupa</strong></p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>Cifra de afaceri (lei)</label>
+            <input type="range" min="100000" max="2000000" value="500000" step="10000" id="tax_rev" oninput="calcTax()">
+            <span class="val" id="tax_rev_v">500,000</span>
+          </div>
+          <div class="simRow">
+            <label>Nr. angajati</label>
+            <input type="range" min="2" max="50" value="10" id="tax_emp" oninput="calcTax()">
+            <span class="val" id="tax_emp_v">10</span>
+          </div>
+          <div class="simRow">
+            <label>Impozit vechi (%)</label>
+            <input type="range" min="1" max="5" value="1" step="0.5" id="tax_old" oninput="calcTax()">
+            <span class="val" id="tax_old_v">1%</span>
+          </div>
+          <div class="simRow">
+            <label>Impozit nou (%)</label>
+            <input type="range" min="1" max="16" value="3" step="0.5" id="tax_new" oninput="calcTax()">
+            <span class="val" id="tax_new_v">3%</span>
+          </div>
+          <div class="simRow">
+            <label>Cost mediu/angajat</label>
+            <input type="range" min="3000" max="15000" value="5000" step="500" id="tax_cost" oninput="calcTax()">
+            <span class="val" id="tax_cost_v">5,000</span>
+          </div>
+        </div>
+
+        <div class="split" style="margin-top:12px">
+          <div class="compareBox good">
+            <h4 style="color:var(--good)">INAINTE</h4>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">
+              <div>Impozit: <strong id="tax_old_abs" style="color:var(--text)">5,000 lei</strong></div>
+              <div>Raman pentru salarii: <strong id="tax_old_left" style="color:var(--good)">495,000 lei</strong></div>
+              <div>Angajati sustinuti: <strong id="tax_old_emp" style="color:var(--good)">10</strong></div>
+            </div>
+          </div>
+          <div class="compareBox bad">
+            <h4 style="color:var(--bad)">DUPA</h4>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">
+              <div>Impozit: <strong id="tax_new_abs" style="color:var(--text)">15,000 lei</strong></div>
+              <div>Raman pentru salarii: <strong id="tax_new_left" style="color:var(--bad)">485,000 lei</strong></div>
+              <div>Angajati sustinuti: <strong id="tax_new_emp" style="color:var(--bad)">9</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="taxVerdict" style="margin-top:10px;text-align:center;font-size:13px;font-weight:700"></div>
+      </div>
+    </div>
+
+    <!-- ===================== 8. SALARII BUGETARE ===================== -->
+    <div class="card" id="s8">
+      <div class="cardHeader">
+        <h2>8. Salarii Bugetare si Inflatie</h2>
+        <span class="chip"><b>Cine plateste?</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          Cand cresti salariile bugetarilor <strong>fara ca economia sa produca mai mult</strong>,
+          banii extra se duc in preturi. PIB-ul se umfla nominal dar "ca o gogoasa, cu aer" — inflatie.
+          <strong>15-20% din populatie</strong> (bugetari + familii) beneficiaza,
+          restul de <strong>80%</strong> plateste prin preturi mai mari.
+        </p>
+        <div class="quote">
+          "PIB-ul se umfla ca o gogoasa — cu aer, nu cu continut."
+          — Moise Guran
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Simulator Flux Bani</strong></p>
+
+        <div class="simControl">
+          <div class="simRow">
+            <label>Crestere salarii (%)</label>
+            <input type="range" min="0" max="30" value="15" step="1" id="wage_inc" oninput="calcWage()">
+            <span class="val" id="wage_inc_v">15%</span>
+          </div>
+          <div class="simRow">
+            <label>Crestere PIB real (%)</label>
+            <input type="range" min="-2" max="10" value="2" step="0.5" id="wage_gdp" oninput="calcWage()">
+            <span class="val" id="wage_gdp_v">2%</span>
+          </div>
+        </div>
+
+        <div class="resultGrid" style="margin-top:12px">
+          <div class="resultBox">
+            <div class="rLabel">Gap inflationist</div>
+            <div class="rVal" id="wage_gap" style="color:var(--bad)">+13%</div>
+            <div class="rNote">salarii > productie</div>
+          </div>
+          <div class="resultBox">
+            <div class="rLabel">Inflatie generata</div>
+            <div class="rVal" id="wage_infl" style="color:var(--warn)">~4%</div>
+            <div class="rNote">impact estimat</div>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <p class="small" style="margin:0 0 8px;text-align:center"><strong>Cine castiga si cine pierde?</strong></p>
+
+          <div style="display:grid;grid-template-columns:1fr;gap:6px">
+            <div class="small" style="text-align:center">Populatia Romaniei</div>
+            <div class="stackBar" id="wageStack">
+              <div style="background:linear-gradient(90deg,rgba(117,240,182,.5),rgba(117,240,182,.3));width:20%">
+                <span>20% Castiga</span>
+              </div>
+              <div style="background:linear-gradient(90deg,rgba(255,122,153,.3),rgba(255,122,153,.15));width:80%">
+                <span>80% Pierde</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flowDiag" style="margin-top:12px">
+            <div class="flowNode" style="border-color:rgba(122,215,255,.3);background:rgba(122,215,255,.06)">
+              Stat mareste salariile bugetarilor cu <strong id="wage_flow_pct">15%</strong>
+            </div>
+            <div class="flowArrow">&#8595;</div>
+            <div class="flowNode">Bugetarii cheltuie mai mult in economie</div>
+            <div class="flowArrow">&#8595;</div>
+            <div class="flowNode" id="wage_flow_result" style="border-color:rgba(255,122,153,.3);background:rgba(255,122,153,.06)">
+              Dar economia produce doar cu 2% mai mult &#8594; Preturile cresc pentru TOTI
+            </div>
+            <div class="flowArrow">&#8595;</div>
+            <div class="flowNode" style="border-color:rgba(255,210,122,.3);background:rgba(255,210,122,.06)">
+              <strong>80% din populatie</strong> plateste prin preturi mai mari
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 9. INFRASTRUCTURA ===================== -->
+    <div class="card" id="s9">
+      <div class="cardHeader">
+        <h2>9. Infrastructura Duplicata</h2>
+        <span class="chip"><b>Lipsa Strategie</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          Exemplul din podcast: <strong>Trenul aeroport-Gara de Nord SI metroul aeroport-Gara de Nord</strong>.
+          Aceeasi ruta, doua proiecte scumpe, fara parcari la statii.
+          Lipsa de strategie si viziune pe termen lung.
+        </p>
+        <div class="callout">
+          In orasele europene mici: gari cochete, parcari, biciclete, tren rapid.
+          In Bucuresti: proiecte duplicate, fara parcari, fara integrare.
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="compareGrid" style="margin-top:10px">
+          <div class="compareBox good">
+            <h4 style="color:var(--good)">Oras European Modern</h4>
+            <ul>
+              <li>O singura linie rapida aeroport — centru</li>
+              <li>Parcari mari la statii (Park & Ride)</li>
+              <li>Piste de biciclete conectate la statii</li>
+              <li>Bilet unic (metrou + tren + bus)</li>
+              <li>Strategie pe 20+ ani, respectata</li>
+              <li>Prioritate: eficienta si pasagerul</li>
+            </ul>
+          </div>
+          <div class="compareBox bad">
+            <h4 style="color:var(--bad)">Realitatea Romaneasca</h4>
+            <ul>
+              <li>Doua linii paralele pe aceeasi ruta</li>
+              <li>Zero parcari la statii noi</li>
+              <li>Zero infrastructura de biciclete</li>
+              <li>Bilete separate (STB, Metrorex, CFR)</li>
+              <li>Proiecte ad-hoc, fara viziune</li>
+              <li>Prioritate: contracte si absorbtie fonduri</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="viz" style="margin-top:12px">
+          <svg viewBox="0 0 500 200" preserveAspectRatio="xMidYMid meet">
+            <!-- Diagram: Ruta duplicata -->
+            <defs>
+              <linearGradient id="gGood" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(117,240,182,.6)"/>
+                <stop offset="100%" stop-color="rgba(117,240,182,.2)"/>
+              </linearGradient>
+              <linearGradient id="gBad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(255,122,153,.6)"/>
+                <stop offset="100%" stop-color="rgba(255,122,153,.2)"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Aeroport -->
+            <rect x="20" y="30" width="90" height="40" rx="10" fill="rgba(122,215,255,.15)" stroke="rgba(122,215,255,.4)" stroke-width="1"/>
+            <text x="65" y="54" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="11" font-weight="700">Aeroport</text>
+
+            <!-- Gara de Nord -->
+            <rect x="390" y="30" width="90" height="40" rx="10" fill="rgba(187,167,255,.15)" stroke="rgba(187,167,255,.4)" stroke-width="1"/>
+            <text x="435" y="54" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="11" font-weight="700">Gara de Nord</text>
+
+            <!-- Tren -->
+            <line x1="110" y1="42" x2="390" y2="42" stroke="url(#gBad)" stroke-width="3" stroke-dasharray="8,4"/>
+            <text x="250" y="36" text-anchor="middle" fill="var(--bad)" font-size="10" font-weight="600">TREN (proiect 1) &#8594;</text>
+
+            <!-- Metrou -->
+            <line x1="110" y1="58" x2="390" y2="58" stroke="url(#gBad)" stroke-width="3" stroke-dasharray="8,4"/>
+            <text x="250" y="75" text-anchor="middle" fill="var(--bad)" font-size="10" font-weight="600">METROU (proiect 2) &#8594;</text>
+
+            <!-- Cost labels -->
+            <rect x="160" y="90" width="180" height="30" rx="8" fill="rgba(255,122,153,.1)" stroke="rgba(255,122,153,.3)" stroke-width="1"/>
+            <text x="250" y="110" text-anchor="middle" fill="var(--bad)" font-size="11" font-weight="700">Aceeasi ruta = cost dublu</text>
+
+            <!-- Missing -->
+            <text x="20" y="150" fill="var(--faint)" font-size="10">Lipsesc:</text>
+            <rect x="20" y="158" width="120" height="24" rx="6" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+            <text x="80" y="174" text-anchor="middle" fill="var(--warn)" font-size="10">Parcari (Park&Ride)</text>
+
+            <rect x="150" y="158" width="120" height="24" rx="6" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+            <text x="210" y="174" text-anchor="middle" fill="var(--warn)" font-size="10">Piste biciclete</text>
+
+            <rect x="280" y="158" width="120" height="24" rx="6" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+            <text x="340" y="174" text-anchor="middle" fill="var(--warn)" font-size="10">Bilet integrat</text>
+
+            <rect x="410" y="158" width="70" height="24" rx="6" fill="rgba(255,210,122,.08)" stroke="rgba(255,210,122,.2)" stroke-width="1"/>
+            <text x="445" y="174" text-anchor="middle" fill="var(--warn)" font-size="10">Strategie</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 10. VIZIUNE STRATEGICA ===================== -->
+    <div class="card" id="s10">
+      <div class="cardHeader">
+        <h2>10. "Ne-am Sapat Singuri Groapa"</h2>
+        <span class="chip"><b>Lipsa Viziunii</b></span>
+      </div>
+      <div class="cardBody">
+        <p class="explText">
+          Singurul proiect de tara acceptat de <strong>toata clasa politica</strong>:
+          integrarea europeana (Consensul de la Snagov, ~1994).
+          De atunci, <strong>niciun alt proiect comun</strong>.
+          Singurul "proiect" al clasei politice: extragerea de bogatie in interes propriu.
+          Consecinta: dezbinare politica, radicalizare, vulnerabilitate la manipulare.
+        </p>
+        <div class="quote">
+          "Ne-am sapat singuri groapa."
+          — Moise Guran
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin-bottom:6px"><strong>Click pe fiecare eveniment</strong> pentru detalii</p>
+
+        <div class="timeline" id="timeline">
+          <div class="tlItem open" onclick="toggleTl(this)">
+            <div class="tlYear">1994 — Consensul de la Snagov</div>
+            <div class="tlTitle">Singurul proiect de tara</div>
+            <div class="tlDesc">Toate partidele politice au fost de acord: Romania trebuie sa intre in UE si NATO.
+            A fost singurul moment in care intreaga clasa politica a avut un obiectiv comun.
+            Proiectul a functionat: Romania a intrat in NATO (2004) si UE (2007).</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2004 — Aderare NATO</div>
+            <div class="tlTitle">Primul obiectiv indeplinit</div>
+            <div class="tlDesc">Romania devine membra NATO. Garantie de securitate militara.
+            Dar dupa aderare, nu a existat niciun nou proiect national pe care sa-l urmareasca toata clasa politica.</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2007 — Aderare UE</div>
+            <div class="tlTitle">Al doilea obiectiv indeplinit</div>
+            <div class="tlDesc">Romania intra in Uniunea Europeana. Acces la fonduri europene, piata unica, libera circulatie.
+            Din acest moment, clasa politica nu a mai avut niciun obiectiv comun. A inceput "fiecare pentru sine".</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2008-2010 — Criza Financiara</div>
+            <div class="tlTitle">Lipsa bufferului economic</div>
+            <div class="tlDesc">Romania a fost lovita dur de criza. Taieri de salarii cu 25%, TVA crescut de la 19% la 24%.
+            Lipsa investitiilor din perioada de crestere a insemnat ca nu exista "perna" economica.</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2010-2019 — Ciclul Populist</div>
+            <div class="tlTitle">Crestere salarii fara acoperire</div>
+            <div class="tlDesc">Guvernele succesive au crescut salariile bugetarilor si pensiile fara sa investeasca in infrastructura sau economie productiva.
+            PIB-ul a crescut, dar "umflat" — prin consum, nu prin productie.
+            Fiecare guvern a impartit bani pentru voturi, amplificand deficitul.</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2020-2023 — Crize Multiple</div>
+            <div class="tlTitle">Pandemia, energia, inflatia</div>
+            <div class="tlDesc">COVID-19, criza energetica, inflatia galopanta. Guvernul a cheltuit masiv dar fara strategie.
+            Preturile s-au dublat in 3 ani. Deficitul a explodat. Datoria publica a depasit 50% din PIB.</div>
+          </div>
+          <div class="tlItem" onclick="toggleTl(this)">
+            <div class="tlYear">2024-2025 — Punctul de Cotitura?</div>
+            <div class="tlTitle">Aproape criza financiara</div>
+            <div class="tlDesc">Romania se afla la limita: deficit ~7% PIB, inflatie persistenta, radicalizare politica.
+            Masuri de austeritate (TVA crescut, sporuri taiate) au prevenit temporar criza.
+            Dar fara un proiect national real, ciclul se va repeta.
+            Consecinta: societate dezbinata, vulnerabila la manipulare si extremism.</div>
+          </div>
+        </div>
+
+        <div class="callout bad" style="margin-top:12px">
+          <strong>Concluzie:</strong> Fara un proiect national comun — educatie, infrastructura, economie productiva —
+          Romania risca sa ramana blocata intr-un ciclu vicios: imprumuturi pentru consum,
+          inflatie, austeritate, radicalizare.
+          Nu este o problema de dreapta sau stanga — este o problema de <strong>viziune</strong>.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .grid -->
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Friendly Fire</strong> — Podcast de Moise Guran si Vlad Petreanu.
+    Infografic educational cu simulatoare interactive.
+    Toate conceptele sunt simplificate pentru a fi accesibile. Nu reprezinta consiliere financiara.
+    Datele sunt aproximative si bazate pe discutiile din podcast si surse publice (2024-2025).
+  </footer>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ======================== UTILITY ========================
+function fmt(n){return Math.round(n).toLocaleString('ro-RO')}
+function fmtDec(n,d){return n.toFixed(d)}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function toggleCallouts(){
+  document.body.classList.toggle('hideCallouts');
+  const on=!document.body.classList.contains('hideCallouts');
+  showToast(on?'Comentarii si citate afisate':'Comentarii si citate ascunse');
+}
+
+// ======================== 1. PIB SIMULATOR ========================
+function calcPIB(){
+  const sal=+document.getElementById('pib_sal').value;
+  const prof=+document.getElementById('pib_prof').value;
+  const tva=+document.getElementById('pib_tva').value;
+  const exp=+document.getElementById('pib_exp').value;
+  const imp=+document.getElementById('pib_imp').value;
+  const infl=+document.getElementById('pib_infl').value;
+
+  document.getElementById('pib_sal_v').textContent=sal;
+  document.getElementById('pib_prof_v').textContent=prof;
+  document.getElementById('pib_tva_v').textContent=tva;
+  document.getElementById('pib_exp_v').textContent=exp;
+  document.getElementById('pib_imp_v').textContent=imp;
+  document.getElementById('pib_infl_v').textContent=infl+'%';
+
+  const pibNom=sal+prof+tva+exp-imp;
+  const pibReal=pibNom/(1+infl/100);
+  const va=sal+prof;
+  const vaPct=pibNom>0?(va/pibNom*100):0;
+
+  document.getElementById('pib_nom').textContent=fmt(pibNom);
+  document.getElementById('pib_real').textContent=fmt(pibReal);
+  document.getElementById('pib_va').textContent=fmt(va);
+  document.getElementById('pib_vap').textContent=fmtDec(vaPct,0)+'%';
+
+  // Bar chart
+  const svg=document.getElementById('pibChart');
+  const maxVal=Math.max(sal,prof,tva,exp,imp,1);
+  const items=[
+    {label:'Salarii',val:sal,color:'rgba(122,215,255,.6)'},
+    {label:'Profituri',val:prof,color:'rgba(187,167,255,.6)'},
+    {label:'TVA+Accize',val:tva,color:'rgba(255,210,122,.6)'},
+    {label:'Exporturi',val:exp,color:'rgba(117,240,182,.6)'},
+    {label:'Importuri',val:imp,color:'rgba(255,122,153,.6)'},
+  ];
+  let html='';
+  const bh=22,gap=8,startY=10;
+  items.forEach((it,i)=>{
+    const y=startY+i*(bh+gap);
+    const w=Math.max((it.val/maxVal)*350,2);
+    html+=`<text x="70" y="${y+15}" text-anchor="end" fill="rgba(255,255,255,.6)" font-size="10">${it.label}</text>`;
+    html+=`<rect x="80" y="${y}" width="${w}" height="${bh}" rx="6" fill="${it.color}" opacity=".8"/>`;
+    html+=`<text x="${85+w}" y="${y+15}" fill="rgba(255,255,255,.85)" font-size="10" font-weight="700">${fmt(it.val)}</text>`;
+  });
+  svg.innerHTML=html;
+}
+calcPIB();
+
+// ======================== 2. RECESIUNE SIMULATOR ========================
+function calcRecession(){
+  const qs=[];
+  for(let i=1;i<=8;i++){
+    qs.push(parseFloat(document.getElementById('rec_q'+i).value)||0);
+  }
+
+  // Determine recession zones
+  const inRecession=[];
+  let recStarted=false;
+  let consecNeg=0;
+  let consecPos=0;
+
+  for(let i=0;i<qs.length;i++){
+    if(qs[i]<0){
+      consecNeg++;
+      consecPos=0;
+      if(consecNeg>=2)recStarted=true;
+    }else{
+      consecPos++;
+      if(consecPos>=2&&recStarted)recStarted=false;
+      consecNeg=0;
+    }
+    inRecession.push(recStarted);
+  }
+
+  // Build chart
+  const svg=document.getElementById('recChart');
+  const W=500,H=180,pad=50,right=20,top=20,bot=30;
+  const chartW=W-pad-right;
+  const chartH=H-top-bot;
+  const minV=Math.min(...qs,-1.5);
+  const maxV=Math.max(...qs,1.5);
+  const range=maxV-minV||1;
+
+  function yPos(v){return top+chartH-(v-minV)/range*chartH}
+  function xPos(i){return pad+i*(chartW/(qs.length-1))}
+
+  let html='';
+  // Zero line
+  const zeroY=yPos(0);
+  html+=`<line x1="${pad}" y1="${zeroY}" x2="${W-right}" y2="${zeroY}" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="4,3"/>`;
+  html+=`<text x="${pad-5}" y="${zeroY+4}" text-anchor="end" fill="rgba(255,255,255,.4)" font-size="10">0%</text>`;
+
+  // Recession zones (background)
+  for(let i=0;i<qs.length;i++){
+    if(inRecession[i]){
+      const x1=i===0?pad:xPos(i)-chartW/(qs.length-1)/2;
+      const x2=i===qs.length-1?W-right:xPos(i)+chartW/(qs.length-1)/2;
+      html+=`<rect x="${x1}" y="${top}" width="${x2-x1}" height="${chartH}" fill="rgba(255,122,153,.08)"/>`;
+    }
+  }
+
+  // Bars
+  for(let i=0;i<qs.length;i++){
+    const x=xPos(i);
+    const barW=chartW/(qs.length*2);
+    const cy=yPos(qs[i]);
+    const h=Math.abs(cy-zeroY);
+    const yTop=qs[i]>=0?cy:zeroY;
+    const color=qs[i]>=0?'rgba(117,240,182,.6)':'rgba(255,122,153,.6)';
+    const borderColor=inRecession[i]?'rgba(255,122,153,.8)':'rgba(255,255,255,.15)';
+    html+=`<rect x="${x-barW/2}" y="${yTop}" width="${barW}" height="${h}" rx="4" fill="${color}" stroke="${borderColor}" stroke-width="1"/>`;
+    html+=`<text x="${x}" y="${H-8}" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="10">T${i+1}</text>`;
+    html+=`<text x="${x}" y="${yTop-5}" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="10" font-weight="700">${qs[i]>0?'+':''}${fmtDec(qs[i],1)}%</text>`;
+  }
+
+  // Legend
+  html+=`<rect x="${pad}" y="${H-14}" width="8" height="8" rx="2" fill="rgba(255,122,153,.3)"/>`;
+  html+=`<text x="${pad+12}" y="${H-7}" fill="rgba(255,255,255,.5)" font-size="9">= Zona recesiune</text>`;
+
+  svg.innerHTML=html;
+
+  // Verdict
+  const hasRecession=inRecession.some(r=>r);
+  const recDiv=document.getElementById('recVerdict');
+  if(hasRecession){
+    const startQ=inRecession.indexOf(true)+1;
+    recDiv.innerHTML=`<span style="color:var(--bad)">RECESIUNE detectata incepand cu T${startQ}</span>`;
+  }else{
+    recDiv.innerHTML=`<span style="color:var(--good)">Fara recesiune in aceasta perioada</span>`;
+  }
+}
+calcRecession();
+
+// ======================== 3. BUGET SIMULATOR ========================
+function calcBudget(){
+  const pib=+document.getElementById('bud_pib').value;
+  const venP=+document.getElementById('bud_ven').value;
+  const cheltP=+document.getElementById('bud_chelt').value;
+  const prog=+document.getElementById('bud_prog').value;
+  const real=+document.getElementById('bud_real').value;
+
+  document.getElementById('bud_pib_v').textContent=pib;
+  document.getElementById('bud_ven_v').textContent=venP+'%';
+  document.getElementById('bud_chelt_v').textContent=cheltP+'%';
+  document.getElementById('bud_prog_v').textContent=prog+'%';
+  document.getElementById('bud_real_v').textContent=real+'%';
+
+  const ven=pib*venP/100;
+  const chelt=pib*cheltP/100;
+  const def=ven-chelt;
+  const defP=(def/pib)*100;
+
+  // Loan based on projected GDP
+  const pibProj=pib*(1+prog/100);
+  const pibReal=pib*(1+real/100);
+  const loanPlanned=(pibProj-pib)*cheltP/100;
+  const gap=(pibReal-pibProj)*cheltP/100;
+
+  document.getElementById('bud_ven_abs').textContent=fmt(ven);
+  document.getElementById('bud_chelt_abs').textContent=fmt(chelt);
+  document.getElementById('bud_def').textContent=(def>0?'+':'')+fmt(def);
+  document.getElementById('bud_def_p').textContent=fmtDec(defP,1)+'%';
+  document.getElementById('bud_loan_plan').textContent=fmt(Math.abs(loanPlanned));
+  document.getElementById('bud_gap').textContent=fmt(gap);
+
+  // Color the deficit
+  const defEl=document.getElementById('bud_def_p');
+  defEl.style.color=defP<-3?'var(--bad)':defP<0?'var(--warn)':'var(--good)';
+  document.getElementById('bud_def').style.color=def<0?'var(--bad)':'var(--good)';
+  document.getElementById('bud_gap').style.color=gap<0?'var(--bad)':'var(--good)';
+
+  // Warning
+  const warnDiv=document.getElementById('bud_warn');
+  if(prog>real+1){
+    warnDiv.style.display='block';
+    warnDiv.innerHTML=`Atentie: Prognoza de crestere (<strong>${prog}%</strong>) este cu <strong>${fmtDec(prog-real,1)}pp</strong> peste realitate (<strong>${real}%</strong>). `+
+      `Asta inseamna ca statul se imprumuta pe baza unor venituri care nu vor veni. Gaura in buget: <strong>${fmt(Math.abs(gap))} mld lei</strong>.`;
+  }else{
+    warnDiv.style.display='none';
+  }
+}
+calcBudget();
+
+// ======================== 4. INFLATIE SIMULATOR ========================
+function calcInflation(){
+  const sal=+document.getElementById('inf_sal').value;
+  const rate=+document.getElementById('inf_rate').value;
+  const years=+document.getElementById('inf_years').value;
+  const raise=+document.getElementById('inf_raise').value;
+
+  document.getElementById('inf_sal_v').textContent=fmt(sal);
+  document.getElementById('inf_rate_v').textContent=rate+'%';
+  document.getElementById('inf_years_v').textContent=years;
+  document.getElementById('inf_raise_v').textContent=raise+'%';
+
+  const salFuture=sal*Math.pow(1+raise/100,years);
+  const purchPower=salFuture/Math.pow(1+rate/100,years);
+  const lossP=((purchPower-sal)/sal)*100;
+
+  document.getElementById('inf_sal_fut').textContent=fmt(salFuture);
+  document.getElementById('inf_power').textContent=fmt(purchPower);
+  document.getElementById('inf_loss').textContent=(lossP>0?'+':'')+fmtDec(lossP,0)+'%';
+  document.getElementById('inf_loss').style.color=lossP<0?'var(--bad)':'var(--good)';
+  document.getElementById('inf_power').style.color=lossP<0?'var(--bad)':'var(--good)';
+
+  // Basket comparison
+  const basketItems=[
+    {name:'Paine (franzela)',price2022:2.5},
+    {name:'Lapte (1L)',price2022:6},
+    {name:'Oua (10 buc)',price2022:10},
+    {name:'Carne pui (kg)',price2022:18},
+    {name:'Benzina (1L)',price2022:7},
+    {name:'Factura curent',price2022:200},
+  ];
+
+  const total2022=basketItems.reduce((s,i)=>s+i.price2022,0);
+  const inflMultiplier=Math.pow(1+rate/100,years);
+  const totalFuture=total2022*inflMultiplier;
+
+  const bDiv=document.getElementById('basketCompare');
+  bDiv.innerHTML=`
+    <div style="border:1px solid rgba(117,240,182,.2);border-radius:12px;padding:10px;background:rgba(117,240,182,.04)">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--good);margin-bottom:6px">Acum (${fmt(sal)} lei)</div>
+      ${basketItems.map(i=>`<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);padding:2px 0">
+        <span>${i.name}</span><span style="color:var(--text)">${fmtDec(i.price2022,1)} lei</span>
+      </div>`).join('')}
+      <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:4px;padding-top:4px;display:flex;justify-content:space-between;font-size:12px;font-weight:700">
+        <span>Total</span><span>${fmtDec(total2022,0)} lei</span>
+      </div>
+    </div>
+    <div style="border:1px solid rgba(255,122,153,.2);border-radius:12px;padding:10px;background:rgba(255,122,153,.04)">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--bad);margin-bottom:6px">Dupa ${years} ani (+${rate}%/an)</div>
+      ${basketItems.map(i=>{
+        const newP=i.price2022*inflMultiplier;
+        return `<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);padding:2px 0">
+          <span>${i.name}</span><span style="color:var(--bad)">${fmtDec(newP,1)} lei</span>
+        </div>`;
+      }).join('')}
+      <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:4px;padding-top:4px;display:flex;justify-content:space-between;font-size:12px;font-weight:700">
+        <span>Total</span><span style="color:var(--bad)">${fmtDec(totalFuture,0)} lei</span>
+      </div>
+    </div>
+  `;
+
+  // Shrinking bar chart
+  const svg=document.getElementById('infChart');
+  const barData=[];
+  for(let y=0;y<=years;y++){
+    const nomSal=sal*Math.pow(1+raise/100,y);
+    const realPow=nomSal/Math.pow(1+rate/100,y);
+    barData.push({year:y,nominal:nomSal,real:realPow});
+  }
+
+  const maxSal=Math.max(...barData.map(d=>d.nominal));
+  let sHtml='';
+  const bW=Math.min(40,400/(barData.length*2));
+  barData.forEach((d,i)=>{
+    const x=40+i*(440/barData.length);
+    const hNom=(d.nominal/maxSal)*100;
+    const hReal=(d.real/maxSal)*100;
+    const yNom=120-hNom;
+    const yReal=120-hReal;
+    sHtml+=`<rect x="${x}" y="${yNom}" width="${bW*.45}" height="${hNom}" rx="3" fill="rgba(122,215,255,.4)" stroke="rgba(122,215,255,.3)" stroke-width=".5"/>`;
+    sHtml+=`<rect x="${x+bW*.5}" y="${yReal}" width="${bW*.45}" height="${hReal}" rx="3" fill="rgba(255,122,153,.4)" stroke="rgba(255,122,153,.3)" stroke-width=".5"/>`;
+    sHtml+=`<text x="${x+bW*.45}" y="134" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">An ${d.year}</text>`;
+  });
+  // Legend
+  sHtml+=`<rect x="40" y="4" width="8" height="8" rx="2" fill="rgba(122,215,255,.5)"/>`;
+  sHtml+=`<text x="52" y="12" fill="rgba(255,255,255,.5)" font-size="9">Salariu nominal</text>`;
+  sHtml+=`<rect x="150" y="4" width="8" height="8" rx="2" fill="rgba(255,122,153,.5)"/>`;
+  sHtml+=`<text x="162" y="12" fill="rgba(255,255,255,.5)" font-size="9">Putere reala de cumparare</text>`;
+  svg.innerHTML=sHtml;
+}
+calcInflation();
+
+// ======================== 5. DATORIE SIMULATOR ========================
+function calcDebt(){
+  const start=+document.getElementById('debt_start').value;
+  const deficit=+document.getElementById('debt_def').value;
+  const interest=+document.getElementById('debt_int').value;
+  const gdpGr=+document.getElementById('debt_gdp').value;
+
+  document.getElementById('debt_start_v').textContent=start+'%';
+  document.getElementById('debt_def_v').textContent=deficit+'%';
+  document.getElementById('debt_int_v').textContent=interest+'%';
+  document.getElementById('debt_gdp_v').textContent=gdpGr+'%';
+
+  // Simplified debt dynamics: d(t+1) = (d(t) + deficit) * (1 + interest) / (1 + gdpGrowth)
+  let d=start;
+  const snapshots=[d];
+  for(let y=1;y<=30;y++){
+    d=(d+deficit)*(1+interest/100)/(1+gdpGr/100);
+    if(y===10||y===20||y===30)snapshots.push(d);
+  }
+
+  const d10=snapshots[1];
+  const d20=snapshots[2];
+  const d30=snapshots[3];
+
+  document.getElementById('debt_10').textContent=fmtDec(Math.min(d10,999),0)+'%';
+  document.getElementById('debt_20').textContent=fmtDec(Math.min(d20,999),0)+'%';
+  document.getElementById('debt_30').textContent=fmtDec(Math.min(d30,999),0)+'%';
+
+  // Color code
+  document.getElementById('debt_10').style.color=d10>80?'var(--bad)':d10>60?'var(--warn)':'var(--good)';
+  document.getElementById('debt_20').style.color=d20>80?'var(--bad)':d20>60?'var(--warn)':'var(--good)';
+  document.getElementById('debt_30').style.color=d30>100?'var(--bad)':d30>80?'var(--warn)':'var(--good)';
+
+  // Generation blocks
+  const maxD=Math.max(start,d10,d20,d30,60);
+  const blocks=document.querySelectorAll('#debtBlocks .genBlock');
+  const vals=[start,d10,d20,d30];
+  const valEls=[document.getElementById('gen0v'),document.getElementById('gen1v'),document.getElementById('gen2v'),document.getElementById('gen3v')];
+
+  vals.forEach((v,i)=>{
+    const h=Math.min(Math.max((v/maxD)*140,15),170);
+    blocks[i].style.height=h+'px';
+    valEls[i].textContent=fmtDec(Math.min(v,999),0)+'%';
+  });
+
+  if(d30>150){
+    showToast('Datoria devine nesustenabila dupa 30 de ani! Copiii si nepotii vor plati enorm.');
+  }
+}
+calcDebt();
+
+// ======================== 6. BUSINESS CYCLE ========================
+function activatePhase(el,idx){
+  document.querySelectorAll('.cyclePhase').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  const phases=['Crestere economica','Supraincalzire','Criza financiara','Criza economica','Recesiune','Recuperare'];
+  showToast('Faza '+phases[idx]+' — click pe alte faze pentru detalii');
+}
+
+// ======================== 7. TAX SIMULATOR ========================
+function calcTax(){
+  const rev=+document.getElementById('tax_rev').value;
+  const emp=+document.getElementById('tax_emp').value;
+  const oldRate=+document.getElementById('tax_old').value;
+  const newRate=+document.getElementById('tax_new').value;
+  const costEmp=+document.getElementById('tax_cost').value;
+
+  document.getElementById('tax_rev_v').textContent=fmt(rev);
+  document.getElementById('tax_emp_v').textContent=emp;
+  document.getElementById('tax_old_v').textContent=oldRate+'%';
+  document.getElementById('tax_new_v').textContent=newRate+'%';
+  document.getElementById('tax_cost_v').textContent=fmt(costEmp);
+
+  const taxOld=rev*oldRate/100;
+  const taxNew=rev*newRate/100;
+  const leftOld=rev-taxOld;
+  const leftNew=rev-taxNew;
+  const empOld=Math.floor(leftOld/(costEmp*12));
+  const empNew=Math.floor(leftNew/(costEmp*12));
+  const lost=Math.max(0,emp-empNew);
+
+  document.getElementById('tax_old_abs').textContent=fmt(taxOld)+' lei';
+  document.getElementById('tax_new_abs').textContent=fmt(taxNew)+' lei';
+  document.getElementById('tax_old_left').textContent=fmt(leftOld)+' lei';
+  document.getElementById('tax_new_left').textContent=fmt(leftNew)+' lei';
+  document.getElementById('tax_old_emp').textContent=emp;
+  document.getElementById('tax_new_emp').textContent=Math.max(0,emp-lost);
+
+  const verdict=document.getElementById('taxVerdict');
+  if(lost>0){
+    verdict.innerHTML=`<span style="color:var(--bad)">Impozitul a crescut de ${fmtDec(newRate/oldRate,1)}x. Firma trebuie sa concedieze ${lost} angajat${lost>1?'i':''} (din ${emp}).</span>`;
+  }else{
+    const extra=taxNew-taxOld;
+    verdict.innerHTML=`<span style="color:var(--warn)">Impozitul a crescut de ${fmtDec(newRate/oldRate,1)}x (+${fmt(extra)} lei/an). Firma suporta costul fara concedieri, dar profitul scade.</span>`;
+  }
+}
+calcTax();
+
+// ======================== 8. WAGE/INFLATION SIMULATOR ========================
+function calcWage(){
+  const wageInc=+document.getElementById('wage_inc').value;
+  const gdpGr=+document.getElementById('wage_gdp').value;
+
+  document.getElementById('wage_inc_v').textContent=wageInc+'%';
+  document.getElementById('wage_gdp_v').textContent=gdpGr+'%';
+
+  const gap=wageInc-gdpGr;
+  // Rough model: inflation impact = gap * share of public sector in economy (~18%)
+  const inflImpact=Math.max(0,gap*0.18);
+
+  document.getElementById('wage_gap').textContent=(gap>0?'+':'')+fmtDec(gap,0)+'%';
+  document.getElementById('wage_gap').style.color=gap>3?'var(--bad)':gap>0?'var(--warn)':'var(--good)';
+  document.getElementById('wage_infl').textContent='~'+fmtDec(inflImpact,1)+'%';
+  document.getElementById('wage_infl').style.color=inflImpact>3?'var(--bad)':inflImpact>1?'var(--warn)':'var(--good)';
+
+  document.getElementById('wage_flow_pct').textContent=wageInc+'%';
+
+  const resEl=document.getElementById('wage_flow_result');
+  if(gap>0){
+    resEl.innerHTML=`Dar economia produce doar cu ${gdpGr}% mai mult &#8594; Preturile cresc cu ~${fmtDec(inflImpact,1)}% pentru TOTI`;
+    resEl.style.borderColor='rgba(255,122,153,.3)';
+    resEl.style.background='rgba(255,122,153,.06)';
+  }else{
+    resEl.innerHTML=`Economia creste suficient (${gdpGr}%) &#8594; Fara presiune inflationista suplimentara`;
+    resEl.style.borderColor='rgba(117,240,182,.3)';
+    resEl.style.background='rgba(117,240,182,.06)';
+  }
+
+  // Update stacked bar
+  const winPct=Math.min(25,15+gap*0.3);
+  const losePct=100-winPct;
+  const stack=document.getElementById('wageStack');
+  stack.children[0].style.width=winPct+'%';
+  stack.children[0].innerHTML=`<span>${fmtDec(winPct,0)}% Castiga</span>`;
+  stack.children[1].style.width=losePct+'%';
+  stack.children[1].innerHTML=`<span>${fmtDec(losePct,0)}% Pierde</span>`;
+}
+calcWage();
+
+// ======================== 10. TIMELINE ========================
+function toggleTl(el){
+  // Close all others
+  document.querySelectorAll('.tlItem').forEach(t=>{if(t!==el)t.classList.remove('open')});
+  el.classList.toggle('open');
+}
+
+// ======================== INIT ANIMATIONS ========================
+// Observe cards for scroll-triggered animations
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.1});
+
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.opacity='0';
+    c.style.transform='translateY(20px)';
+    c.style.transition='opacity .6s ease, transform .6s ease';
+    obs.observe(c);
+  });
+}
+</script>
+</body>
+</html>
