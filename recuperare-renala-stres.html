@@ -187,6 +187,43 @@
     .studyBar .sFill{height:100%;border-radius:99px;transition:width .6s ease}
     .studyBar .sVal{font-size:11px;color:var(--faint);min-width:40px;text-align:right;font-family:var(--mono)}
 
+    /* Tooltips for medical terms */
+    .tip{
+      position:relative;
+      border-bottom:1px dotted rgba(122,215,255,.45);
+      cursor:help;
+      color:rgba(122,215,255,.95);
+      font-style:normal;
+    }
+    .tip::after{
+      content:attr(data-tip);
+      position:absolute;
+      bottom:calc(100% + 8px);
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(10,14,22,.96);
+      border:1px solid rgba(122,215,255,.3);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:10px;
+      font-size:12px;
+      line-height:1.5;
+      white-space:normal;
+      width:max-content;
+      max-width:260px;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .15s;
+      z-index:50;
+      box-shadow:0 8px 30px rgba(0,0,0,.6);
+      font-weight:normal;
+      text-transform:none;
+      letter-spacing:normal;
+    }
+    .tip:hover::after,.tip:focus::after,.tip.tapped::after{opacity:1}
+    /* Flip tooltip below if near top */
+    .tip.flip::after{bottom:auto;top:calc(100% + 8px)}
+
     @media print{body{background:white;color:#111}header,.card,details{box-shadow:none}.toast{display:none!important}}
   </style>
 </head>
@@ -213,18 +250,18 @@
       <div class="topStats">
         <div class="stat">
           <div class="label">Mecanism principal</div>
-          <div class="value" style="color:var(--bad)">Stres → Cortizol → Rinichi</div>
-          <div class="note">Axa HPA activată cronic crește cortizolul, care deteriorează funcția renală.</div>
+          <div class="value" style="color:var(--bad)">Stres → <span class="tip" data-tip="Hormonul stresului, produs de glandele suprarenale. Nivelul lui crește în situații de stres.">Cortizol</span> → Rinichi</div>
+          <div class="note"><span class="tip" data-tip="Axa hipotalamo-hipofizo-suprarenală: lanțul de comandă prin care creierul declanșează producția de cortizol.">Axa HPA</span> activată cronic crește cortizolul, care deteriorează funcția renală.</div>
         </div>
         <div class="stat">
           <div class="label">Intervenție dovedită</div>
-          <div class="value" style="color:var(--good)">Mindfulness 14 min</div>
-          <div class="note">Reduce acut activitatea simpatică și tensiunea arterială (măsurare directă).</div>
+          <div class="value" style="color:var(--good)"><span class="tip" data-tip="Practică de atenție conștientă la momentul prezent — observi gânduri, senzații și emoții fără să le judeci.">Mindfulness</span> 14 min</div>
+          <div class="note">Reduce acut <span class="tip" data-tip="Activitatea părții din sistemul nervos care pregătește corpul pentru „luptă sau fugi" — crește pulsul, tensiunea, adrenalina.">activitatea simpatică</span> și <span class="tip" data-tip="Forța cu care sângele apasă pe pereții vaselor. Valorile normale: sub 120/80 mmHg.">tensiunea arterială</span> (măsurare directă).</div>
         </div>
         <div class="stat">
           <div class="label">Studiu cheie</div>
           <div class="value" style="color:var(--cyan)">31.000 pacienți</div>
-          <div class="note">Tulburări de stres asociate cu risc crescut de leziune renală acută (Suedia).</div>
+          <div class="note">Tulburări de stres asociate cu risc crescut de <span class="tip" data-tip="Pierderea bruscă a funcției renale, care apare în ore sau zile — diferită de boala cronică, care evoluează lent.">leziune renală acută</span> (Suedia).</div>
         </div>
         <div class="stat">
           <div class="label">Protocol</div>
@@ -339,7 +376,7 @@
         </div>
 
         <div class="callout info" data-commentary>
-          <b>Știința pe scurt:</b> Mecanismul nu e mistic — e fiziologic. Gândurile și emoțiile cronice negative activează axa HPA → cortizol crescut → activare simpatică → hipertensiune + inflamație + stres oxidativ → deteriorare renală. Mindfulness-ul acționează în direcția opusă.
+          <b>Știința pe scurt:</b> Mecanismul nu e mistic — e <span class="tip" data-tip="Legat de procesele fizice ale corpului — hormoni, nervi, inflamație — nu de procese mistice sau pur psihologice.">fiziologic</span>. Gândurile și emoțiile cronice negative activează <span class="tip" data-tip="Axa hipotalamo-hipofizo-suprarenală: lanțul de comandă prin care creierul declanșează producția de cortizol.">axa HPA</span> → <span class="tip" data-tip="Hormonul stresului, produs de glandele suprarenale.">cortizol</span> crescut → activare simpatică → <span class="tip" data-tip="Tensiune arterială ridicată cronic — forțează inima și vasele, inclusiv vasele din rinichi.">hipertensiune</span> + inflamație + <span class="tip" data-tip="Dezechilibru între radicalii liberi (molecule agresive) și antioxidanți. Excesul de radicali liberi deteriorează celulele.">stres oxidativ</span> → deteriorare renală. <span class="tip" data-tip="Practică de atenție conștientă la momentul prezent.">Mindfulness</span>-ul acționează în direcția opusă.
         </div>
       </div>
     </section>
@@ -356,27 +393,27 @@
         <div class="cardBody">
           <div class="flow">
             <div class="flowNode" style="border-color:rgba(255,122,153,.25)">
-              <h3 style="color:var(--bad)">1. Axa HPA și cortizolul</h3>
+              <h3 style="color:var(--bad)">1. <span class="tip" data-tip="Axa hipotalamo-hipofizo-suprarenală: lanțul de comandă prin care creierul declanșează producția de cortizol.">Axa HPA</span> și <span class="tip" data-tip="Hormonul stresului. Nivelul lui crește la stres și scade în repaus.">cortizolul</span></h3>
               <p>
-                Hipotalamusul eliberează <b>CRH</b> → glanda pituitară secretă <b>ACTH</b> → glandele suprarenale produc <b>cortizol</b>.
-                Normal, cortizolul se auto-reglează prin feedback negativ. La stres cronic, acest mecanism se defectează.
+                <span class="tip" data-tip="Zonă mică din creier care controlează temperatura corpului, foamea, setea și declanșarea hormonilor.">Hipotalamusul</span> eliberează <b><span class="tip" data-tip="Hormonul eliberator de corticotropină — primul semnal din lanțul stresului care pornește din creier.">CRH</span></b> → <span class="tip" data-tip="Glandă mică la baza creierului (cât un bob de mazăre) care controlează majoritatea celorlalte glande hormonale.">glanda pituitară</span> secretă <b><span class="tip" data-tip="Hormonul adrenocorticotrop — mesagerul care comandă glandelor suprarenale să producă cortizol.">ACTH</span></b> → <span class="tip" data-tip="Două glande mici situate deasupra fiecărui rinichi. Produc cortizol, adrenalină și alți hormoni.">glandele suprarenale</span> produc <b>cortizol</b>.
+                Normal, cortizolul se auto-reglează prin <span class="tip" data-tip="Mecanism prin care corpul „simte" că e suficient cortizol și oprește producția. Ca un termostat care oprește căldura când e destul de cald.">feedback negativ</span>. La stres cronic, acest mecanism se defectează.
               </p>
               <p style="margin-top:8px">
-                La pacienții cu BCR: <b>hipercortizolism subclinic</b> — cortizol seara prea mare, feedback negativ afectat, clearance redus.
+                La pacienții cu <span class="tip" data-tip="Boală Cronică de Rinichi — pierderea treptată și ireversibilă a funcției renale, măsurată prin rata de filtrare glomerulară (GFR).">BCR</span>: <b><span class="tip" data-tip="Nivel de cortizol crescut permanent, dar nu suficient de mare pentru a fi diagnosticat ca boala Cushing. Un „stres hormonal de fond" continuu.">hipercortizolism subclinic</span></b> — cortizol seara prea mare, feedback negativ afectat, <span class="tip" data-tip="Capacitatea rinichilor de a filtra și elimina o substanță din sânge. Clearance redus = rinichii nu mai elimină eficient.">clearance</span> redus.
                 Rinichii afectați metabolizează mai prost cortizolul → și mai mult cortizol în organism.
               </p>
               <div class="meta">
                 <span class="badge" style="border-color:var(--bad)">cerc vicios</span>
-                <span class="badge">hipercortizolism</span>
+                <span class="badge"><span class="tip" data-tip="Nivel cronic ridicat de cortizol în sânge.">hipercortizolism</span></span>
                 <span class="badge">feedback perturbat</span>
               </div>
             </div>
 
             <div class="flowNode" style="border-color:rgba(255,210,122,.25)">
-              <h3 style="color:var(--warn)">2. Sistemul nervos simpatic</h3>
+              <h3 style="color:var(--warn)">2. <span class="tip" data-tip="Partea din sistemul nervos care activează răspunsul „luptă sau fugi" — crește pulsul, tensiunea, pupilele, pregătind corpul pentru pericol.">Sistemul nervos simpatic</span></h3>
               <p>
-                Stresul repetitiv <b>amplifică activitatea simpatică</b> → crește secreția de glucocorticoizi + citokine inflamatorii.
-                Contribuie la: hipertensiune, diabet, boli vasculare — toți factori de risc majori pentru BCR.
+                Stresul repetitiv <b>amplifică activitatea simpatică</b> → crește secreția de <span class="tip" data-tip="Familie de hormoni de stres din care face parte cortizolul. Controlează metabolismul, inflamația și răspunsul imun.">glucocorticoizi</span> + <span class="tip" data-tip="Molecule-mesager ale sistemului imunitar care declanșează și amplifică inflamația. Exemple: TNF-α, IL-6.">citokine inflamatorii</span>.
+                Contribuie la: <span class="tip" data-tip="Tensiune arterială crescută cronic (peste 140/90 mmHg). Forțează inima și deteriorează vasele, inclusiv cele din rinichi.">hipertensiune</span>, diabet, <span class="tip" data-tip="Boli ale vaselor de sânge — ateroscleroză, îngustarea arterelor — care reduc fluxul sanguin către organe, inclusiv rinichi.">boli vasculare</span> — toți factori de risc majori pentru <span class="tip" data-tip="Boală Cronică de Rinichi.">BCR</span>.
               </p>
               <div class="meta">
                 <span class="badge">hipertensiune</span>
@@ -386,21 +423,21 @@
             </div>
 
             <div class="flowNode" style="border-color:rgba(187,167,255,.25)">
-              <h3 style="color:var(--violet)">3. Inflamația cronică</h3>
+              <h3 style="color:var(--violet)">3. <span class="tip" data-tip="Inflamație persistentă de intensitate scăzută care nu se vindecă — spre deosebire de inflamația acută (roșeață, umflătură) care trece.">Inflamația cronică</span></h3>
               <p>
-                Mediatorii pro-inflamatori — <b>TNF-α, IL-1β, IL-6</b> — împreună cu stresul oxidativ,
-                sunt puternic asociați cu progresia BCR. Stresul psihologic alimentează direct această inflamație.
+                <span class="tip" data-tip="Substanțe chimice din corp care provoacă și amplifică inflamația — sunt ca „alarme" ale sistemului imunitar.">Mediatorii pro-inflamatori</span> — <b><span class="tip" data-tip="Factor de Necroză Tumorală alfa — una din cele mai importante proteine inflamatorii. Nivelul ei crește la stres cronic.">TNF-α</span>, <span class="tip" data-tip="Interleukina 1-beta — proteină inflamatorie care amplifică răspunsul imun și febra.">IL-1β</span>, <span class="tip" data-tip="Interleukina 6 — proteină inflamatorie produsă la stres, infecții și obezitate. Nivel crescut = inflamație activă.">IL-6</span></b> — împreună cu <span class="tip" data-tip="Dezechilibru între radicalii liberi (molecule agresive) și antioxidanți. Deteriorează celulele, inclusiv cele renale.">stresul oxidativ</span>,
+                sunt puternic asociați cu progresia <span class="tip" data-tip="Boală Cronică de Rinichi.">BCR</span>. Stresul psihologic alimentează direct această inflamație.
               </p>
               <div class="meta">
-                <span class="badge">TNF-α ↑</span>
-                <span class="badge">IL-6 ↑</span>
-                <span class="badge">stres oxidativ ↑</span>
+                <span class="badge"><span class="tip" data-tip="Factor de Necroză Tumorală alfa — marker inflamator.">TNF-α</span> ↑</span>
+                <span class="badge"><span class="tip" data-tip="Interleukina 6 — marker inflamator.">IL-6</span> ↑</span>
+                <span class="badge"><span class="tip" data-tip="Exces de radicali liberi care deteriorează celulele.">stres oxidativ</span> ↑</span>
               </div>
             </div>
           </div>
 
           <div class="callout warn" data-commentary>
-            <b>Important:</b> Aceste trei mecanisme se potențează reciproc. Cortizolul crescut → activare simpatică → inflamație → deteriorare renală → clearance redus de cortizol → și mai mult cortizol. Întreruperea ciclului la orice punct ajută.
+            <b>Important:</b> Aceste trei mecanisme se potențează reciproc. <span class="tip" data-tip="Hormonul stresului.">Cortizolul</span> crescut → activare simpatică → inflamație → deteriorare renală → <span class="tip" data-tip="Capacitatea rinichilor de a elimina substanțe din sânge.">clearance</span> redus de cortizol → și mai mult cortizol. Întreruperea ciclului la orice punct ajută.
           </div>
         </div>
       </div>
@@ -416,30 +453,30 @@
           <div class="flowNode" style="margin-bottom:10px;border-color:rgba(255,122,153,.2)">
             <h3>Studii populaționale</h3>
             <div class="studyBar"><span class="sLabel">Suedia: risc renal</span><div class="sTrack"><div class="sFill" style="width:78%;background:linear-gradient(90deg,var(--warn),var(--bad))"></div></div><span class="sVal">31K</span></div>
-            <p style="font-size:12px;color:var(--muted)">31.000 pacienți cu tulburări de stres vs 116.000 control → risc crescut de leziune renală acută și progresie BCR.</p>
+            <p style="font-size:12px;color:var(--muted)">31.000 pacienți cu tulburări de stres vs 116.000 control → risc crescut de <span class="tip" data-tip="Pierderea bruscă a funcției renale în ore/zile — o urgență medicală.">leziune renală acută</span> și progresie <span class="tip" data-tip="Boală Cronică de Rinichi.">BCR</span>.</p>
 
-            <div class="studyBar" style="margin-top:10px"><span class="sLabel">Japonia: GFR ↓</span><div class="sTrack"><div class="sFill" style="width:70%;background:linear-gradient(90deg,var(--warn),var(--bad))"></div></div><span class="sVal">70K</span></div>
-            <p style="font-size:12px;color:var(--muted)">70.000+ japonezi — asociere inversă semnificativă între stresul perceput și rata de filtrare glomerulară la bărbați.</p>
+            <div class="studyBar" style="margin-top:10px"><span class="sLabel">Japonia: <span class="tip" data-tip="Rata de Filtrare Glomerulară — principala măsură a funcției renale. Cu cât e mai mică, cu atât rinichii funcționează mai prost. Normal: peste 90.">GFR</span> ↓</span><div class="sTrack"><div class="sFill" style="width:70%;background:linear-gradient(90deg,var(--warn),var(--bad))"></div></div><span class="sVal">70K</span></div>
+            <p style="font-size:12px;color:var(--muted)">70.000+ japonezi — asociere inversă semnificativă între stresul perceput și <span class="tip" data-tip="GFR: câți mililitri de sânge filtrează rinichii pe minut. Normal: >90 ml/min. Sub 60 = boală cronică.">rata de filtrare glomerulară</span> la bărbați.</p>
           </div>
 
           <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
             <h3 style="color:var(--good)">Studii mindfulness — intervenție</h3>
 
             <div class="studyBar"><span class="sLabel">Activitate simpatică ↓</span><div class="sTrack"><div class="sFill" style="width:85%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal">14 min</span></div>
-            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Trial randomizat crossover — 14 minute mindfulness → reducere acută activitate nervoasă simpatică musculară + TA. Gold standard (microneurografie).</p>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px"><span class="tip" data-tip="Studiu clinic în care participanții sunt repartizați aleatoriu și trec prin ambele tratamente (activ și placebo), în ordine diferită.">Trial randomizat crossover</span> — 14 minute mindfulness → reducere acută activitate nervoasă simpatică musculară + <span class="tip" data-tip="Tensiune Arterială.">TA</span>. <span class="tip" data-tip="Cea mai fiabilă metodă de măsurare acceptată în domeniu — „standardul de aur".">Gold standard</span> (<span class="tip" data-tip="Tehnică în care un ac foarte fin este introdus într-un nerv pentru a măsura direct activitatea electrică a nervilor simpatici. Cea mai precisă metodă existentă.">microneurografie</span>).</p>
 
-            <div class="studyBar"><span class="sLabel">CRP + TNF-α ↓</span><div class="sTrack"><div class="sFill" style="width:80%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal">RCT</span></div>
-            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Meditație mindfulness reduce semnificativ CRP și TNF-α la pacienți BCR stadiu terminal.</p>
+            <div class="studyBar"><span class="sLabel"><span class="tip" data-tip="Proteina C Reactivă — marker de inflamație produs de ficat. Nivel ridicat = inflamație activă în corp.">CRP</span> + <span class="tip" data-tip="Factor de Necroză Tumorală alfa — proteină inflamatorie.">TNF-α</span> ↓</span><div class="sTrack"><div class="sFill" style="width:80%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal"><span class="tip" data-tip="Randomized Controlled Trial — studiu clinic randomizat controlat, cel mai fiabil tip de studiu medical.">RCT</span></span></div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Meditație mindfulness reduce semnificativ <span class="tip" data-tip="Proteina C Reactivă — marker de inflamație.">CRP</span> și <span class="tip" data-tip="Factor de Necroză Tumorală alfa — marker inflamator.">TNF-α</span> la pacienți <span class="tip" data-tip="Boală Cronică de Rinichi.">BCR</span> stadiu terminal.</p>
 
-            <div class="studyBar"><span class="sLabel">TA + calitate viață ↑</span><div class="sTrack"><div class="sFill" style="width:88%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal">12 săpt</span></div>
-            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Trial 2024, 69 pacienți — 12 săptămâni mindfulness → TA sistolică/diastolică/medie semnificativ mai mici.</p>
+            <div class="studyBar"><span class="sLabel"><span class="tip" data-tip="Tensiune Arterială.">TA</span> + calitate viață ↑</span><div class="sTrack"><div class="sFill" style="width:88%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal">12 săpt</span></div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Trial 2024, 69 pacienți — 12 săptămâni mindfulness → <span class="tip" data-tip="Sistolică = valoarea superioară (când inima pompează). Diastolică = valoarea inferioară (când inima se relaxează). Medie = media aritmetică.">TA sistolică/diastolică/medie</span> semnificativ mai mici.</p>
 
             <div class="studyBar"><span class="sLabel">Stres ↓ + emoții ↑</span><div class="sTrack"><div class="sFill" style="width:76%;background:linear-gradient(90deg,var(--good),var(--cyan))"></div></div><span class="sVal">5 săpt</span></div>
-            <p style="font-size:12px;color:var(--muted)">30 min × 3/săpt × 5 săptămâni → stres perceput ↓, reglare emoțională ↑, calitate viață ↑ la dializați.</p>
+            <p style="font-size:12px;color:var(--muted)">30 min × 3/săpt × 5 săptămâni → stres perceput ↓, reglare emoțională ↑, calitate viață ↑ la <span class="tip" data-tip="Pacienți care fac dializă — procedura prin care o mașină filtrează sângele în locul rinichilor când aceștia nu mai funcționează suficient.">dializați</span>.</p>
           </div>
 
           <div class="callout info" data-commentary>
-            <b>Notă:</b> Acestea sunt intervenții adjuvante — completează, nu înlocuiesc tratamentul medical. Dar efectele sunt reale, măsurabile și reproductibile.
+            <b>Notă:</b> Acestea sunt intervenții <span class="tip" data-tip="Tratamente complementare care se adaugă pe lângă tratamentul principal. Nu îl înlocuiesc, ci îl completează.">adjuvante</span> — completează, nu înlocuiesc tratamentul medical. Dar efectele sunt reale, măsurabile și reproductibile.
           </div>
         </div>
       </div>
@@ -455,7 +492,7 @@
       </div>
       <div class="cardBody">
         <p class="muted" style="margin-top:0">
-          Respirația controlată dezactivează direct sistemul nervos simpatic și reduce cortizolul.
+          Respirația controlată dezactivează direct <span class="tip" data-tip="Partea din sistemul nervos care activează răspunsul „luptă sau fugi" — crește pulsul, tensiunea, adrenalina.">sistemul nervos simpatic</span> și reduce <span class="tip" data-tip="Hormonul stresului.">cortizolul</span>.
           Alege un pattern și urmărește cercul — se extinde la inspirație și se contractă la expirație.
         </p>
 
@@ -485,14 +522,14 @@
           <summary><strong>Cum funcționează fiecare pattern</strong><span class="hint">click pentru detalii</span></summary>
           <div class="detailBody">
             <p><b>Box Breathing (4-4-4-4):</b> Inspiră 4s → Ține 4s → Expiră 4s → Ține 4s. Folosit de Navy SEALs pentru calmare sub presiune. Echilibrează sistemul nervos autonom.</p>
-            <p style="margin-top:8px"><b>Relaxare 4-7-8:</b> Inspiră 4s → Ține 7s → Expiră 8s. Activează puternic parasimpaticul. Excelent înainte de somn.</p>
-            <p style="margin-top:8px"><b>Coherent Breathing (6-6):</b> Inspiră 6s → Expiră 6s. ~5 respirații/minut = zona de maximă variabilitate a ritmului cardiac. Cel mai simplu și eficient pentru uz zilnic.</p>
+            <p style="margin-top:8px"><b>Relaxare 4-7-8:</b> Inspiră 4s → Ține 7s → Expiră 8s. Activează puternic <span class="tip" data-tip="Partea din sistemul nervos care calmează corpul — scade pulsul, relaxează mușchii, stimulează digestia. Opusul simpaticului.">parasimpaticul</span>. Excelent înainte de somn.</p>
+            <p style="margin-top:8px"><b>Coherent Breathing (6-6):</b> Inspiră 6s → Expiră 6s. ~5 respirații/minut = zona de maximă <span class="tip" data-tip="Variația naturală a intervalului dintre bătăile inimii. Variabilitate MARE = sănătate bună, sistem nervos flexibil. Variabilitate MICĂ = stres cronic.">variabilitate a ritmului cardiac</span>. Cel mai simplu și eficient pentru uz zilnic.</p>
             <p style="margin-top:8px"><b>Deep (5-5-5-5):</b> Inspiră 5s → Ține 5s → Expiră 5s → Ține 5s. Versiune mai profundă a box breathing.</p>
           </div>
         </details>
 
         <div class="callout" data-commentary>
-          <b>De ce funcționează:</b> Expirația prelungită activează nervul vag → parasimpaticul → scade ritmul cardiac, scade tensiunea, scade cortizolul. Efectul e imediat și cumulativ — cu cât practici mai regulat, cu atât tonusul vagal crește permanent.
+          <b>De ce funcționează:</b> Expirația prelungită activează <span class="tip" data-tip="Cel mai lung nerv din corp — merge de la creier la abdomen. Când e activ, calmează inima, scade tensiunea, îmbunătățește digestia. E „frâna" corpului.">nervul vag</span> → <span class="tip" data-tip="Sistemul nervos parasimpatic: „frâna" care calmează corpul după stres.">parasimpaticul</span> → scade ritmul cardiac, scade tensiunea, scade cortizolul. Efectul e imediat și cumulativ — cu cât practici mai regulat, cu atât <span class="tip" data-tip="Nivelul de activitate de bază al nervului vag. Tonus vagal mare = corpul se relaxează ușor. Tonus vagal mic = stres cronic, recuperare lentă.">tonusul vagal</span> crește permanent.
         </div>
       </div>
     </section>
@@ -524,7 +561,7 @@
             <input type="checkbox" data-habit="meditate" />
             <div>
               <div class="t"><strong>Meditație mindfulness</strong><em>min. 10 minute</em></div>
-              <div class="d">Atenție focusată pe respirație, bodyscan, sau meditație ghidată. Studiile arată efecte la doar 14 minute.</div>
+              <div class="d">Atenție focusată pe respirație, <span class="tip" data-tip="Scanare corporală: parcurgi mental fiecare parte a corpului, de la picioare la cap, observând senzațiile fără să le judeci.">bodyscan</span>, sau meditație ghidată. Studiile arată efecte la doar 14 minute.</div>
             </div>
           </div>
 
@@ -548,7 +585,7 @@
             <input type="checkbox" data-habit="sleep" />
             <div>
               <div class="t"><strong>Somn calitativ</strong><em>7-8 ore</em></div>
-              <div class="d">Somnul e momentul în care cortizolul scade natural și rinichii se regenerează. Regularitatea programului contează.</div>
+              <div class="d">Somnul e momentul în care <span class="tip" data-tip="Hormonul stresului.">cortizolul</span> scade natural și rinichii se regenerează. Regularitatea programului contează.</div>
             </div>
           </div>
 
@@ -556,7 +593,7 @@
             <input type="checkbox" data-habit="nogratify" />
             <div>
               <div class="t"><strong>Evitat rumination/furie</strong><em>conștientizare</em></div>
-              <div class="d">Ai observat și redirecționat gândurile negative repetitive? Rumination-ul e „stres auto-generat" care ține cortizolul ridicat.</div>
+              <div class="d">Ai observat și redirecționat gândurile negative repetitive? <span class="tip" data-tip="Gândire repetitivă negativă — reluarea mentală obsesivă a conflictelor, eșecurilor sau scenariilor negative. Produce cortizol la fel ca stresul real.">Rumination</span>-ul e „stres auto-generat" care ține cortizolul ridicat.</div>
             </div>
           </div>
 
@@ -564,7 +601,7 @@
             <input type="checkbox" data-habit="grateful" />
             <div>
               <div class="t"><strong>Moment de recunoștință</strong><em>1-3 lucruri</em></div>
-              <div class="d">Recunoștința activează cortexul prefrontal și reduce amigdala — literalmente „reprogramează" răspunsul la stres.</div>
+              <div class="d">Recunoștința activează <span class="tip" data-tip="Partea din față a creierului, responsabilă de gândire rațională, planificare și controlul emoțiilor. Când e activ, „frânează" amigdala.">cortexul prefrontal</span> și reduce <span class="tip" data-tip="Centrul emoțiilor și al fricii din creier — o structură mică în formă de migdală. Când e hiperactivă, simți anxietate și frică excesivă.">amigdala</span> — literalmente „reprogramează" răspunsul la stres.</div>
             </div>
           </div>
         </div>
@@ -610,7 +647,7 @@
     <!-- ═══════════════════════════════════════ -->
     <section class="card" aria-label="Protocol mindfulness">
       <div class="cardHeader">
-        <h2>Protocolul de mindfulness bazat pe dovezi</h2>
+        <h2>Protocolul de <span class="tip" data-tip="Practică de atenție conștientă la momentul prezent. MBSR = Mindfulness-Based Stress Reduction, programul original creat de Jon Kabat-Zinn.">mindfulness</span> bazat pe dovezi</h2>
         <div class="chip"><b>12 săptămâni:</b> plan structurat</div>
       </div>
       <div class="cardBody">
@@ -627,7 +664,7 @@
           </div>
           <div class="risk" style="border-color:rgba(117,240,182,.25)">
             <div class="rTop"><strong>Săptămânile 3–4</strong><span class="badge" style="border-color:var(--good)">creștere</span></div>
-            <p><b>10 minute/zi</b> — adaugă bodyscan (scanare corporală). Observă unde ții tensiunea. Nu judeca, doar observă.</p>
+            <p><b>10 minute/zi</b> — adaugă <span class="tip" data-tip="Scanare corporală: parcurgi mental fiecare parte a corpului observând senzațiile fizice fără să le judeci.">bodyscan</span> (scanare corporală). Observă unde ții tensiunea. Nu judeca, doar observă.</p>
             <div class="meter"><i style="width:30%;background:var(--good)"></i></div>
           </div>
           <div class="risk" style="border-color:rgba(122,215,255,.25)">
@@ -658,18 +695,18 @@
           <div class="chip">1-5 minute</div>
         </div>
         <div class="cardBody">
-          <p class="muted" style="margin-top:0">Când simți stres acut — furie, anxietate, panică — aceste tehnici dezactivează rapid răspunsul simpatic:</p>
+          <p class="muted" style="margin-top:0">Când simți stres acut — furie, anxietate, panică — aceste tehnici dezactivează rapid <span class="tip" data-tip="Răspunsul „luptă sau fugi" al sistemului nervos simpatic: puls crescut, tensiune crescută, mușchi încordați.">răspunsul simpatic</span>:</p>
 
           <div class="flow">
             <div class="flowNode" style="border-color:rgba(117,240,182,.2)">
               <h3>Expirația prelungită (30 secunde)</h3>
-              <p>Inspiră pe 4 secunde → Expiră pe 8 secunde. Repetă de 3 ori. Cea mai rapidă cale de activare vagală.</p>
-              <div class="meta"><span class="badge" style="border-color:var(--good)">30s</span><span class="badge">activare vagală</span></div>
+              <p>Inspiră pe 4 secunde → Expiră pe 8 secunde. Repetă de 3 ori. Cea mai rapidă cale de <span class="tip" data-tip="Stimularea nervului vag — cel mai lung nerv din corp — care activează sistemul de calmare (parasimpatic).">activare vagală</span>.</p>
+              <div class="meta"><span class="badge" style="border-color:var(--good)">30s</span><span class="badge"><span class="tip" data-tip="Activarea nervului vag care calmează corpul.">activare vagală</span></span></div>
             </div>
 
             <div class="flowNode" style="border-color:rgba(122,215,255,.2)">
               <h3>Diving reflex (apă rece pe față)</h3>
-              <p>Ține-ți respirația și pune apă rece pe obraji + frunte timp de 15-30s. Declanșează reflexul de scufundare al mamiferelor → bradicardie imediată.</p>
+              <p>Ține-ți respirația și pune apă rece pe obraji + frunte timp de 15-30s. Declanșează <span class="tip" data-tip="Reflex automat al corpului când fața intră în contact cu apa rece: pulsul scade, vasele se contractă, corpul se calmează. Moștenit de la mamifere marine.">reflexul de scufundare al mamiferelor</span> → <span class="tip" data-tip="Scăderea ritmului cardiac sub normal. În context, e un efect benefic — inima încetinește și corpul se calmează.">bradicardie</span> imediată.</p>
               <div class="meta"><span class="badge" style="border-color:var(--cyan)">15-30s</span><span class="badge">reflex mamiferial</span></div>
             </div>
 
@@ -698,14 +735,14 @@
 
           <div class="flow">
             <div class="flowNode" style="border-color:rgba(255,122,153,.2)">
-              <h3 style="color:var(--bad)">Rumination (gânduri repetitive negative)</h3>
+              <h3 style="color:var(--bad)"><span class="tip" data-tip="Gândire repetitivă obsesivă — reluarea mentală a conflictelor, eșecurilor sau scenariilor negative, fără a găsi o soluție.">Rumination</span> (gânduri repetitive negative)</h3>
               <p>Replai mental al conflictelor, furia reciclată, scenarii „ce-ar fi dacă." Fiecare ciclu mental = un nou val de cortizol. E stres <b>auto-generat</b> — corpul nu distinge între stres real și stres imaginat.</p>
               <div class="meta"><span class="badge" style="border-color:var(--bad)">cortizol ↑</span><span class="badge">cel mai toxic</span></div>
             </div>
 
             <div class="flowNode" style="border-color:rgba(255,122,153,.2)">
               <h3 style="color:var(--bad)">Deficit de somn</h3>
-              <p>Somnul insuficient crește cortizolul bazal cu 37-45%. Rinichii au nevoie de faza de somn profund pentru regenerare. Irregularitatea programului e la fel de dăunătoare ca durata scurtă.</p>
+              <p>Somnul insuficient crește <span class="tip" data-tip="Nivelul de bază al cortizolului (hormonul stresului) — nivelul pe care îl ai chiar și când nu ești stresat activ.">cortizolul bazal</span> cu 37-45%. Rinichii au nevoie de faza de <span class="tip" data-tip="Stadiul 3 al somnului (non-REM profund) — cel mai restaurativ. Corpul repară țesuturi, eliberează hormoni de creștere, consolidează memoria.">somn profund</span> pentru regenerare. Irregularitatea programului e la fel de dăunătoare ca durata scurtă.</p>
               <div class="meta"><span class="badge" style="border-color:var(--bad)">cortizol +37%</span><span class="badge">regenerare blocată</span></div>
             </div>
 
@@ -717,13 +754,13 @@
 
             <div class="flowNode" style="border-color:rgba(255,210,122,.2)">
               <h3 style="color:var(--warn)">Doom scrolling / știri negative</h3>
-              <p>Fiecare titlu alarmist = o micro-activare a amigdalei. Cumulat, e ca un drip continuu de cortizol. Limitează expunerea la 10-15 minute/zi, cu pauze.</p>
+              <p>Fiecare titlu alarmist = o micro-activare a <span class="tip" data-tip="Centrul fricii și emoțiilor din creier. Reacționează la amenințări — reale sau percepute.">amigdalei</span>. Cumulat, e ca un drip continuu de <span class="tip" data-tip="Hormonul stresului.">cortizol</span>. Limitează expunerea la 10-15 minute/zi, cu pauze.</p>
               <div class="meta"><span class="badge">micro-stres cumulat</span><span class="badge">amigdala</span></div>
             </div>
           </div>
 
           <div class="callout warn" data-commentary>
-            <b>Cel mai important lucru de evitat:</b> Rumination. Un studiu a arătat că reactualizarea mentală a unui conflict produce aceeași activare a cortizolului ca evenimentul original. Fiecare „replay" mental = încă o doză de cortizol pe rinichi.
+            <b>Cel mai important lucru de evitat:</b> <span class="tip" data-tip="Gândire repetitivă negativă obsesivă.">Rumination</span>. Un studiu a arătat că reactualizarea mentală a unui conflict produce aceeași activare a <span class="tip" data-tip="Hormonul stresului.">cortizolului</span> ca evenimentul original. Fiecare „replay" mental = încă o doză de cortizol pe rinichi.
           </div>
         </div>
       </div>
@@ -742,8 +779,8 @@
           <div>
             <h3 style="margin:0 0 8px;font-size:14px;color:var(--good)">✦ Prioritatea #1: Respirație zilnică</h3>
             <p class="muted" style="margin:0;line-height:1.6">
-              Minimum 5 minute de respirație controlată pe zi. Cel mai mic efort cu cel mai mare ROI fiziologic.
-              Activează direct parasimpaticul, scade TA, scade cortizolul — efect imediat și cumulativ.
+              Minimum 5 minute de respirație controlată pe zi. Cel mai mic efort cu cel mai mare beneficiu fiziologic.
+              Activează direct <span class="tip" data-tip="Sistemul nervos parasimpatic — „frâna" care calmează corpul.">parasimpaticul</span>, scade <span class="tip" data-tip="Tensiunea Arterială.">TA</span>, scade <span class="tip" data-tip="Hormonul stresului.">cortizolul</span> — efect imediat și cumulativ.
             </p>
             <div class="hr"></div>
             <h3 style="margin:0 0 8px;font-size:14px;color:var(--cyan)">✦ Prioritatea #2: Mindfulness progresiv</h3>
@@ -761,7 +798,7 @@
             <div class="hr"></div>
             <h3 style="margin:0 0 8px;font-size:14px;color:var(--warn)">⚠ Memento important</h3>
             <p class="muted" style="margin:0;line-height:1.6">
-              Aceste intervenții sunt <b>adjuvante</b> — completează, nu înlocuiesc tratamentul medical.
+              Aceste intervenții sunt <b><span class="tip" data-tip="Tratamente complementare — se adaugă pe lângă tratamentul principal, nu îl înlocuiesc.">adjuvante</span></b> — completează, nu înlocuiesc tratamentul medical.
               Efectele sunt reale și măsurabile, dar lucrează împreună cu medicația, dieta și monitorizarea medicală.
             </p>
           </div>
@@ -773,9 +810,9 @@
           <summary><strong>Dovada într-o propoziție</strong><span class="hint">click</span></summary>
           <div class="detailBody">
             <p>
-              14 minute de mindfulness → reducere acută a activității nervoase simpatice musculare (gold standard, microneurografie) și a tensiunii arteriale la pacienți cu BCR și hipertensiune.
-              12 săptămâni → reducere semnificativă a TA și îmbunătățire a calității vieții.
-              Mecanismul: dezactivarea axei HPA, reducerea cortizolului, scăderea inflamației (CRP, TNF-α), reducerea stresului oxidativ.
+              14 minute de mindfulness → reducere acută a activității nervoase simpatice musculare (<span class="tip" data-tip="Cea mai fiabilă metodă de măsurare din domeniu.">gold standard</span>, <span class="tip" data-tip="Măsurare directă a activității nervoase cu un ac fin introdus într-un nerv.">microneurografie</span>) și a tensiunii arteriale la pacienți cu <span class="tip" data-tip="Boală Cronică de Rinichi.">BCR</span> și hipertensiune.
+              12 săptămâni → reducere semnificativă a <span class="tip" data-tip="Tensiunea Arterială.">TA</span> și îmbunătățire a calității vieții.
+              Mecanismul: dezactivarea <span class="tip" data-tip="Axa hipotalamo-hipofizo-suprarenală — lanțul de comandă al stresului.">axei HPA</span>, reducerea cortizolului, scăderea inflamației (<span class="tip" data-tip="Proteina C Reactivă — marker inflamator.">CRP</span>, <span class="tip" data-tip="Factor de Necroză Tumorală alfa — marker inflamator.">TNF-α</span>), reducerea <span class="tip" data-tip="Exces de radicali liberi care deteriorează celulele.">stresului oxidativ</span>.
             </p>
           </div>
         </details>
@@ -794,8 +831,8 @@
           Click pe „Mod comentarii" din header pentru a le ascunde/arăta.
         </p>
         <p class="muted">
-          Sursele includ: PubMed Central, Cleveland Clinic, ScienceDirect, Nature, MDPI, Sage Journals.
-          Toate studiile citate sunt peer-reviewed.
+          Sursele includ: <span class="tip" data-tip="Bază de date gratuită cu articole medicale și științifice din toată lumea, gestionată de National Library of Medicine (SUA).">PubMed Central</span>, Cleveland Clinic, ScienceDirect, Nature, MDPI, Sage Journals.
+          Toate studiile citate sunt <span class="tip" data-tip="Verificate și validate de alți experți din domeniu înainte de publicare.">peer-reviewed</span>.
         </p>
       </div>
     </section>
@@ -804,8 +841,8 @@
 
   <footer>
     <p>
-      <b>Precizări:</b> Acest ghid interactiv a fost creat pe baza literaturii științifice peer-reviewed despre conexiunea stres psihologic — funcție renală.
-      <b>Nu înlocuiește sfatul medical.</b> Toate intervențiile descrise sunt adjuvante. Consultă medicul nefrolog pentru orice modificare a planului de tratament.
+      <b>Precizări:</b> Acest ghid interactiv a fost creat pe baza literaturii științifice <span class="tip" data-tip="Verificat și validat de alți experți din domeniu înainte de publicare — standardul de calitate în cercetarea științifică.">peer-reviewed</span> despre conexiunea stres psihologic — funcție renală.
+      <b>Nu înlocuiește sfatul medical.</b> Toate intervențiile descrise sunt <span class="tip" data-tip="Tratamente complementare — se adaugă pe lângă tratamentul principal.">adjuvante</span>. Consultă medicul <span class="tip" data-tip="Medic specialist în boli de rinichi — diagnosticarea și tratamentul afecțiunilor renale.">nefrolog</span> pentru orice modificare a planului de tratament.
     </p>
     <p style="margin-top:10px">
       Surse: Cleveland Clinic, PubMed Central, ScienceDirect, Nature, MDPI, Sage Journals. Studii: Suedia (n=31.000), Japonia (n=70.000+), RCT-uri mindfulness multiple.
@@ -1067,6 +1104,30 @@
   // Init
   loadTodayCheckboxes();
   renderStreak();
+
+  // ══════════════════════════════════════════
+  // TOOLTIPS (mobile tap support + flip)
+  // ══════════════════════════════════════════
+  document.querySelectorAll('.tip').forEach(el => {
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('click', e => {
+      document.querySelectorAll('.tip.tapped').forEach(t => { if (t !== el) t.classList.remove('tapped'); });
+      el.classList.toggle('tapped');
+      e.stopPropagation();
+    });
+    // Flip tooltip if too close to top of viewport
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const rect = entry.target.getBoundingClientRect();
+        if (rect.top < 120) entry.target.classList.add('flip');
+        else entry.target.classList.remove('flip');
+      });
+    }, { threshold: 1 });
+    obs.observe(el);
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.tip.tapped').forEach(t => t.classList.remove('tapped'));
+  });
 
   // ══════════════════════════════════════════
   // TOAST
