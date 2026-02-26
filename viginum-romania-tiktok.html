@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Raport VIGINUM — Manipularea algoritmilor TikTok in alegerile din Romania 2024</title>
+  <meta name="description" content="Infografic explicativ: raportul VIGINUM despre manipularea algoritmului TikTok si instrumentalizarea influencerilor in alegerile prezidentiale din Romania 2024. Riscuri pentru Franta." />
+  <style>
+    :root{
+      --bg0:#060810;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#FF4D6A;
+      --glow2:#3B82F6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(255,77,106,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(59,130,246,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(255,77,106,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(255,77,106,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(59,130,246,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(255,77,106,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(59,130,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(255,77,106,.22),rgba(255,77,106,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(255,77,106,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(59,130,246,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(255,77,106,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(255,77,106,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(255,77,106,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(255,77,106,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(255,77,106,.25);background:rgba(255,77,106,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Manipularea algoritmilor si instrumentalizarea influencerilor
+          <small>Raport VIGINUM — Concluzii din alegerile prezidentiale din Romania 2024 & riscuri pentru Franta</small>
+        </h1>
+        <p class="sub">In noiembrie 2024, un candidat aproape necunoscut a castigat primul tur al prezidentialelor din Romania, facand campanie exclusiv pe TikTok, fara buget declarat. Curtea Constitutionala a anulat alegerile pe 6 decembrie. Raportul VIGINUM (serviciul francez contra ingerintelor digitale straine) explica <b>cum</b> s-a intamplat si de ce <b>Franta e urmatoarea tinta posibila</b>.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Astroturfing</b> — conturi false coordonate</span>
+          <span class="chip"><i class="i2"></i> <b>Influenceri</b> — recrutati fara sa stie</span>
+          <span class="chip"><i class="i3"></i> <b>Firme-paravan</b> — retea internationala</span>
+          <span class="chip"><i class="i4"></i> <b>Risc Franta</b> — metode reproductibile</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Context -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Contextul: un soc electoral</h2>
+          <p>Un candidat de la 1% in sondaje la 23% din voturi — exclusiv prin TikTok, fara buget oficial de campanie</p>
+        </div>
+        <span class="badge">CONTEXT</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1%</div>
+            <span class="u">intentii de vot cu 4 saptamani inainte</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">10.6%</div>
+            <span class="u">intentii de vot pe 20-21 nov</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">23%</div>
+            <span class="u">rezultat la primul tur (24 nov)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">ANULAT</div>
+            <span class="u">de Curtea Constitutionala (6 dec)</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Candidatura-surpriza</h3>
+            <p>Calin Georgescu s-a inscris in cursa prezidentiala in <b>luna octombrie</b>, fara sa declare buget de campanie, fara partid care sa-l sustina oficial. Campania s-a desfasurat <b>aproape exclusiv pe TikTok</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>TikTok in Romania</h3>
+            <p><b>~9 milioane de utilizatori</b> pentru o populatie de 19 milioane. Mai raspandit decat in Franta. TikTok ocupa un loc central in informatia politica, concurand cu Facebook.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>A treia tara europeana afectata</h4>
+          <p>Dupa <b>Georgia</b> si <b>Republica Moldova</b>, Romania este a treia tara europeana afectata in 2024 de manipulare pe scara larga a procesului electoral, cu implicare suspecta de actori straini.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Astroturfing -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Campania de astroturfing pe TikTok</h2>
+          <p>Retele de conturi coordonate au manipulat algoritmul de recomandare pentru a crea impresia unui sprijin popular masiv</p>
+        </div>
+        <span class="badge" style="border-color:rgba(255,77,106,.3);color:var(--glow);">MANIPULARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">25.000</div>
+            <span class="u">conturi TikTok coordonate pro-Georgescu</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">797</div>
+            <span class="u">conturi existente din 2016, activate pe 11 nov</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">73.2M</div>
+            <span class="u">vizualizari #calingeorgescu in 7 zile</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">27.199</div>
+            <span class="u">conturi fictive confirmate de TikTok</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Pregatirea (din sept. 2022)</h4>
+              <p>Canale <b>Discord</b> si <b>Telegram</b> au fost create cu ani inainte, cu rolul de a distribui instructiuni despre continutul care trebuia postat si cum sa eludeze instrumentele de moderare ale TikTok.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>2. Activarea retelei (11 nov. 2024)</h4>
+              <p>~25.000 de conturi au fost activate coordonat. Cele 797 de conturi vechi (din 2016) au fost "trezite" simultan. Foloseau <b>adrese IP unice</b> pentru a nu fi detectate ca retea.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Astroturfing coordonat</h4>
+              <p>Mii de videoclipuri si comentarii cu <b>hashtag-uri specifice</b> si <b>cuvinte-cheie</b> au fost publicate masiv. Scopul: sa para o tendinta organica, nu o campanie coordonata. Conturile editau clipurile cu instrumentele TikTok pentru a parea <b>continut original</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Algoritmul "pacalit"</h4>
+              <p>Volumul masiv de postari si comentarii cu aceleasi cuvinte-cheie a generat in mod artificial o <b>tendinta emergenta</b>. Algoritmul TikTok a inceput sa recomande continut pro-Georgescu <b>tuturor utilizatorilor</b>, nu doar celor care-l cautau. Hashtag-urile asociate au ajuns pe <b>locul 9 mondial</b> in trending TikTok.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;TikTok a recunoscut in fata autoritatilor romane ca a fost vorba de "voluntari coordonati", echivalentul unei campanii masive de gherila politica.&raquo;
+          <cite>— Raport VIGINUM, februarie 2025</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Influencer Recruitment -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Influencerii — recrutati fara sa stie scopul real</h2>
+          <p>Peste 100 de influenceri fara afinitati politice au fost platiti sa posteze mesaje aparent inofensive care au alimentat masina de propaganda</p>
+        </div>
+        <span class="badge" style="border-color:rgba(59,130,246,.3);color:var(--glow2);">INFLUENCERI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Mecanismul</h3>
+            <p>Influenceri din zone apolitice (lifestyle, moda, divertisment) au fost contactati prin platforma <b>FameUp</b> si rugati sa posteze clipuri cu mesajul "mergeti la vot!" folosind hashtag-urile <b>#EchilibruSiVerticalitate</b> si <b>#Prezidentiale2024</b>.</p>
+            <p style="margin-top:6px;">Acestia <b>nu stiau</b> ca participau la o campanie politica coordonata.</p>
+          </div>
+          <div class="mini">
+            <h3>Cascada manipularii</h3>
+            <p>Dupa postarea clipurilor "mergeti la vot", <b>conturile coordonate</b> au invadat comentariile cu mesaje pro-Georgescu, prezentandu-l drept "candidatul ideal". Astfel, comentariile au creat o legatura artificiala intre influenceri si candidat, inganand algoritmul.</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">130</div>
+            <span class="u">influenceri implicati</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">8M+</div>
+            <span class="u">abonati total ai influencerilor</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">~78&euro;</div>
+            <span class="u">plata per 20.000 abonati</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">0%</div>
+            <span class="u">din mesaje marcate ca publicitate</span>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Incalcari multiple ale legii</h4>
+          <p>Mesajele platite nu erau marcate ca publicitate — incalcand normele europene (DSA), regulile TikTok si legislatia electorala romaneasca care interzice <b>orice forma de publicitate politica pe platforma</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Money Trail -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Urma banilor: de la TikTok la o retea internationala</h2>
+          <p>Donatii nontransparente pe TikTok, o firma sud-africana paravan, o agentie poloneza de jocuri de noroc si o firma ucraineana — toate conectate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">FINANTARE</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- Network diagram as SVG -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Connections -->
+            <line x1="350" y1="50" x2="170" y2="140" stroke="rgba(255,77,106,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="350" y1="50" x2="530" y2="140" stroke="rgba(255,77,106,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="170" y1="140" x2="170" y2="230" stroke="rgba(59,130,246,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="530" y1="140" x2="530" y2="230" stroke="rgba(167,139,250,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="170" y1="230" x2="350" y2="300" stroke="rgba(251,191,36,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="530" y1="230" x2="350" y2="300" stroke="rgba(251,191,36,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="350" y1="140" x2="170" y2="230" stroke="rgba(167,139,250,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <line x1="350" y1="140" x2="530" y2="230" stroke="rgba(167,139,250,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+            <!-- BOGPR (Top) -->
+            <rect x="270" y="25" width="160" height="50" rx="12" fill="rgba(255,77,106,.12)" stroke="rgba(255,77,106,.35)" stroke-width="1.5"/>
+            <text x="350" y="46" fill="#FF4D6A" font-size="11" font-weight="700" text-anchor="middle">Bogdan PESCHIR</text>
+            <text x="350" y="62" fill="#A0ACC8" font-size="9.5" text-anchor="middle">(alias BOGPR) — donatii TikTok</text>
+
+            <!-- FameUp (Left) -->
+            <rect x="95" y="115" width="150" height="50" rx="12" fill="rgba(59,130,246,.10)" stroke="rgba(59,130,246,.30)" stroke-width="1.5"/>
+            <text x="170" y="137" fill="#3B82F6" font-size="11" font-weight="700" text-anchor="middle">Platforma FameUp</text>
+            <text x="170" y="152" fill="#A0ACC8" font-size="9.5" text-anchor="middle">recrutare influenceri</text>
+
+            <!-- FA Agency (Right) -->
+            <rect x="455" y="115" width="150" height="50" rx="12" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.30)" stroke-width="1.5"/>
+            <text x="530" y="137" fill="#A78BFA" font-size="11" font-weight="700" text-anchor="middle">FA Agency</text>
+            <text x="530" y="152" fill="#A0ACC8" font-size="9.5" text-anchor="middle">firma paravan, Africa de Sud</text>
+
+            <!-- Progresia & Fundament (Left bottom) -->
+            <rect x="80" y="205" width="180" height="50" rx="12" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.20)" stroke-width="1.5"/>
+            <text x="170" y="227" fill="#3B82F6" font-size="10.5" font-weight="600" text-anchor="middle">Progresia & Fundament</text>
+            <text x="170" y="242" fill="#A0ACC8" font-size="9.5" text-anchor="middle">organizatiile-client</text>
+
+            <!-- GMG (Center) -->
+            <rect x="275" y="115" width="150" height="50" rx="12" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.30)" stroke-width="1.5"/>
+            <text x="350" y="137" fill="#FBBF24" font-size="11" font-weight="700" text-anchor="middle">Gambling Media Group</text>
+            <text x="350" y="152" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Polonia — marketing cazinouri</text>
+
+            <!-- Zlodei (Right bottom) -->
+            <rect x="445" y="205" width="170" height="50" rx="12" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.20)" stroke-width="1.5"/>
+            <text x="530" y="227" fill="#A78BFA" font-size="10.5" font-weight="600" text-anchor="middle">Zlodei</text>
+            <text x="530" y="242" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Ucraina — Dmitriy Makarov</text>
+
+            <!-- Unknown (Bottom) -->
+            <rect x="270" y="275" width="160" height="50" rx="12" fill="rgba(255,77,106,.06)" stroke="rgba(255,77,106,.18)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="350" y="296" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Comanditari necunoscuti</text>
+            <text x="350" y="311" fill="#6E7A9A" font-size="9.5" text-anchor="middle">cine a orchestrat totul?</text>
+
+            <!-- Labels on connections -->
+            <text x="248" y="100" fill="#6E7A9A" font-size="8.5" text-anchor="middle">$381.000+</text>
+            <text x="452" y="100" fill="#6E7A9A" font-size="8.5" text-anchor="middle">1.000€/clip</text>
+            <text x="100" y="188" fill="#6E7A9A" font-size="8.5" text-anchor="middle">comanda</text>
+            <text x="600" y="188" fill="#6E7A9A" font-size="8.5" text-anchor="middle">aceeasi IP</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Donatii TikTok: $381.000+</h3>
+            <p>Bogdan Peschir (alias <b>BOGPR</b>) a donat pe TikTok peste <b>381.000 de dolari</b> intre 24 oct - 24 nov 2024 catre influencerii care-l sustineau pe Georgescu. Aceste donatii echivaleaza cu finantare ilegala de campanie.</p>
+          </div>
+          <div class="mini">
+            <h3>Reteaua de firme</h3>
+            <p><b>FA Agency</b> (Africa de Sud) = paravan al <b>Gambling Media Group</b> (Polonia) = legat tehnic de <b>Zlodei</b> (Ucraina, Kiev). Acelasi IP, aceleasi domenii web, aceleasi descrieri de companie. Zlodei era implicata in anchete privind jocuri de noroc ilegale inca din 2020.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: How it works technically -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum functioneaza manipularea algoritmului</h2>
+          <p>Explicatie simplificata a mecanismului tehnic prin care cateva mii de conturi pot influenta ce vad milioane de oameni</p>
+        </div>
+        <span class="badge">TEHNIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Algoritmul de recomandare</h4>
+              <p>TikTok-ul nu iti arata doar ce urmaresti. <b>Feed-ul "For You"</b> sugereaza continut bazat pe ce e popular in momentul respectiv. Daca un subiect primeste brusc mii de interactiuni, algoritmul il considera "trending" si il arata la toata lumea.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Coordonarea masiva</h4>
+              <p>Mii de conturi posteaza simultan clipuri si comentarii cu <b>aceleasi cuvinte-cheie</b> si <b>hashtag-uri</b>. Algoritmul interpreteaza acest val ca pe un interes organic — cand de fapt e orchestrat.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Evitarea detectiei</h4>
+              <p>Conturile editeaza clipurile cu instrumentele <b>native ale TikTok</b> — asa par continut original, nu copiat. Comentariile sunt redactate sa para <b>spontane</b>. Instructiunile vin pe canale <b>externe</b> (Discord, Telegram), invizibile pentru TikTok.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Efectul de bulgare de zapada</h4>
+              <p>Odata ce algoritmul incepe sa recomande continutul, utilizatorii reali interactioneaza si ei — fara sa stie ca tendinta e fabricata. Cercul se amplifica: <b>popularitatea artificiala devine reala</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote blue" style="margin-top:14px;">
+          &laquo;Aceasta manipulare evidentiaza usurinta cu care, in prezent, se poate impune vizibilitatea unui subiect pe TikTok, fara ca platforma sa modereze continutul prezentat sau sa-l considere fals.&raquo;
+          <cite>— Concluzia raportului VIGINUM</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Reactions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Reactii: autoritati vs. TikTok</h2>
+          <p>Ce au facut autoritatile romane si europene — si cum a reactionat TikTok</p>
+        </div>
+        <span class="badge">REACTII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Ce au facut autoritatile</h3>
+            <p><b>SRI</b>: a declasificat note despre manipularea TikTok si implicarea unui actor strain. <b>Curtea Constitutionala</b>: a anulat alegerile pe 6 dec. <b>Comisia Europeana</b>: a initiat o procedura formala contra TikTok sub legea DSA.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Ce a spus TikTok</h3>
+            <p>A afirmat ca a aplicat <b>"riguros regulile"</b>. A negat ca Georgescu ar fi fost tratat diferit. S-a absolvit de responsabilitatea de a eticheta continut politic. A demontat doua retele de influenta "foarte mici" pe 29 nov. A confirmat 27.199 conturi fictive.</p>
+          </div>
+        </div>
+        <div class="alert" style="margin-top:12px;">
+          <h4>Contradictie flagranta</h4>
+          <p>Desi TikTok a sustinut ca a blocat continutul electoral, serviciile romane de informatii au demonstrat ca <b>acesta era in continuare accesibil</b> pe platforma. Biroul Electoral Central avertizase TikTok inca din <b>20 noiembrie</b>, cu 4 zile inainte de vot.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Risk for France -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>De ce Franta e urmatoarea tinta posibila</h2>
+          <p>Aceleasi metode pot fi aplicate in Franta — si unele deja sunt active</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">RISC FRANTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3>21M utilizatori TikTok</h3>
+            <p>La sfarsitul lui 2023, TikTok avea <b>21 de milioane de utilizatori</b> lunar in Franta (1 din 3 francezi). E reteaua pe care francezii petrec <b>cel mai mult timp</b>: 38h si 38min pe luna.</p>
+          </div>
+          <div class="mini">
+            <h3>Sursa de stiri</h3>
+            <p><b>8% din francezi</b> cauta saptamanal stirile pe TikTok. Tot mai multi tineri (18-24 ani) il folosesc ca <b>sursa primara de informare</b>. Opinia politica se exprima tot mai mult pe platforma.</p>
+          </div>
+          <div class="mini">
+            <h3>Deja activ</h3>
+            <p>VIGINUM a identificat deja <b>clustere de conturi francofone</b> care disemineaza dezinformare politica, folosind <b>continut generat de AI</b>. Unele au fost sterse, altele cu caracteristici similare sunt inca active.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Manipulare usor reproductibila</h3>
+            <p>Platforma romaneasca <b>Recorder</b> a demonstrat ca un cont TikTok cu <b>1 milion de vizualizari</b> si mii de comentarii poate fi creat artificial, rapid, cu doar cateva mii de conturi false. Cu mai multe resurse si influenceri, impactul creste exponential.</p>
+          </div>
+          <div class="mini">
+            <h3>Conturi "adormite" reactivabile</h3>
+            <p>Pe TikTok exista <b>conturi inactive</b> care pot fi activate oricand. In Romania, conturi din 2016 au fost reactivate in 2024. Nu se poate exclude ca <b>conturi similare exista deja in Franta</b>, pregatite pentru urmatorul eveniment electoral.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Conclusions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si lectii de invatat</h2>
+          <p>Ce ar trebui sa inteleaga fiecare utilizator de social media din aceasta poveste</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(255,77,106,.2);">
+            <h3 style="color:var(--glow)">Algoritmul poate fi "pacalit"</h3>
+            <p>Cu suficiente conturi coordonate, poti face ca <b>orice subiect sa para popular</b> pe TikTok. Platforma nu modereaza asta si nici nu iti spune ca e fabricat. Ce apare in feed-ul tau <b>nu reflecta neaparat realitatea</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Influencerii sunt vulnerabili</h3>
+            <p>Creatorii de continut cu comunitati mari sunt <b>tinte valoroase</b> pentru actori rai intentionati. Pot fi folositi ca vehicule de propaganda <b>fara sa stie</b>, prin campanii deghizate in parteneriate comerciale.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Platformele nu isi indeplinesc responsabilitatile</h3>
+            <p>Desi supuse regulilor europene (DSA), platformele ca TikTok <b>nu modereaza eficient</b> continutul politic coordonat, nu eticheteaza propaganda platita si reactioneaza prea tarziu.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Metodele sunt transferabile</h3>
+            <p>Ce s-a intamplat in Romania nu e un caz izolat. Aceleasi tehnici — astroturfing, influenceri platiti mascat, firme-paravan — pot fi aplicate <b>in orice tara</b>, <b>pe orice platforma</b>, <b>pentru orice cauza</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Aceasta manipulare demonstreaza ca, desi platformele sunt supuse unor numeroase obligatii de reglementare in ceea ce priveste moderarea si etichetarea continutului, operatorii de platforme online nu isi respecta responsabilitatile in acest domeniu.&raquo;
+          <cite>— Concluzia finala a raportului VIGINUM</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">sept 2022</span><span class="tDesc">Canale Discord si Telegram <b>pregatite</b> pentru campanie</span></div>
+        <div class="tEvent"><span class="tDate">oct 2024</span><span class="tDesc">Georgescu isi anunta <b>candidatura</b> — 1% in sondaje</span></div>
+        <div class="tEvent"><span class="tDate">11 nov</span><span class="tDesc">Retea de <b>25.000 conturi</b> activate coordonat</span></div>
+        <div class="tEvent"><span class="tDate">10-24 nov</span><span class="tDesc">Abonati si vizualizari <b>triplate</b> in 2 saptamani</span></div>
+        <div class="tEvent"><span class="tDate">20 nov</span><span class="tDesc">Biroul Electoral <b>avertizeaza</b> TikTok</span></div>
+        <div class="tEvent"><span class="tDate">24 nov</span><span class="tDesc"><b>Primul tur</b>: Georgescu obtine 23%</span></div>
+        <div class="tEvent"><span class="tDate">29 nov</span><span class="tDesc">TikTok demonteaza 2 retele "foarte mici"</span></div>
+        <div class="tEvent"><span class="tDate">4 dec</span><span class="tDesc">SRI <b>declasifica</b> notele despre manipulare</span></div>
+        <div class="tEvent"><span class="tDate">6 dec</span><span class="tDesc">Curtea Constitutionala <b>anuleaza</b> alegerile</span></div>
+        <div class="tEvent"><span class="tDate">17 dec</span><span class="tDesc">Comisia Europeana deschide <b>procedura contra TikTok</b> (DSA)</span></div>
+        <div class="tEvent"><span class="tDate">feb 2025</span><span class="tDesc">VIGINUM publica <b>raportul</b> cu lectii pentru Franta</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce TikTok?</h4>
+          <p>Algoritmul TikTok e unic: nu depinde de cine urmaresti, ci de ce e popular. Asta il face <b>mult mai usor de manipulat</b> decat Facebook sau Instagram, unde continutul ajunge mai ales la prieteni si urmaritori.</p>
+        </div>
+        <div class="comNote">
+          <h4>Nu doar TikTok</h4>
+          <p>Raportul subliniaza ca fenomenele nu s-au limitat la TikTok. Au fost identificate operatiuni si pe <b>Meta (Facebook, Instagram)</b>, insotite de atacuri cibernetice asupra sistemelor electorale.</p>
+        </div>
+        <div class="comNote">
+          <h4>"Voluntari coordonati"</h4>
+          <p>TikTok a folosit acest termen in fata autoritatilor romane. In realitate, VIGINUM demonstreaza ca multi erau <b>conturi fictive</b> sau <b>persoane platite</b>, nu voluntari autentici.</p>
+        </div>
+        <div class="comNote">
+          <h4>Georgescu a negat totul</h4>
+          <p>Candidatul a declarat ca nu a avut buget de campanie, a negat folosirea fermelor de troli si a afirmat ca popularitatea sa digitala se datora <b>exclusiv voluntarilor</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Ce e VIGINUM?</h4>
+          <p>Serviciu francez creat in 2021, subordonat Secretariatului General pentru Aparare si Securitate Nationala. Rol: <b>detectarea campaniilor de manipulare digitala</b> ale actorilor straini care vizeaza Franta.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Astroturfing</dt>
+          <dd>Campanie coordonata care simuleaza un sprijin popular spontan. Numele vine de la "AstroTurf" (gazon artificial) — opusul "grassroots" (miscare reala de la baza).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Algoritm de recomandare</dt>
+          <dd>Sistemul care decide ce clipuri apar in feed-ul tau "For You". Prioritizeaza continutul cu interactiuni crescute rapid — exact ce poate fi fabricat.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>DSA (Digital Services Act)</dt>
+          <dd>Regulament european din 2024 care obliga platformele mari sa combata dezinformarea, sa eticheteze publicitatea politica si sa ofere transparenta algoritmica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>OINE</dt>
+          <dd>Operatiune de Interferenta Digitala din Strainatate — termen oficial francez pentru campanii de manipulare conduse de actori straini pe platforme digitale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Firma-paravan</dt>
+          <dd>Companie fara activitate reala proprie, folosita pentru a ascunde identitatea adevaratilor beneficiari sau a tranzactiilor financiare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Feed "For You"</dt>
+          <dd>Pagina principala a TikTok. Spre deosebire de alte retele, nu necesita sa urmaresti pe cineva — algoritmul decide singur ce iti arata, bazat pe tendinte si interactiuni.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>FameUp</dt>
+          <dd>Platforma de marketing de influenta care conecteaza advertiseri cu creatori de continut. A fost folosita ca intermediar pentru recrutarea influencerilor in campanie.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.sgdsn.gouv.fr/publications/manipulation-dalgorithmes-et-instrumentalisation-dinfluenceurs-enseignements-de" target="_blank">Raport VIGINUM — SGDSN, Februarie 2025</a> &middot;
+    PDF original: <a href="https://www.sgdsn.gouv.fr/files/2025-02/20250204_VIGINUM_Rapport%20public_Elections_Roumanie_risques_France_ROU.pdf" target="_blank">versiune romaneasca</a> &middot;
+    Infografic explicativ bazat pe raportul oficial
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: network manipulation visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Nodes representing the network
+  const nodes = [];
+  const nodeCount = 40;
+  for(let i = 0; i < nodeCount; i++){
+    const angle = (i / nodeCount) * Math.PI * 2 + Math.random() * 0.3;
+    const radius = 0.15 + Math.random() * 0.32;
+    nodes.push({
+      x: 0.5 + Math.cos(angle) * radius,
+      y: 0.5 + Math.sin(angle) * radius,
+      r: 2 + Math.random() * 3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.001 + Math.random() * 0.002,
+      type: Math.random() < 0.3 ? 'bot' : Math.random() < 0.5 ? 'influencer' : 'user',
+      connections: []
+    });
+  }
+  // Central node (algorithm)
+  nodes.push({x:0.5, y:0.5, r:6, phase:0, speed:0, type:'algo', connections:[]});
+
+  // Create connections
+  for(let i = 0; i < nodes.length - 1; i++){
+    const n = nodes[i];
+    // Connect to algo
+    n.connections.push(nodes.length - 1);
+    // Connect to 1-2 nearby nodes
+    for(let j = i+1; j < Math.min(i+3, nodes.length-1); j++){
+      n.connections.push(j);
+    }
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.008;
+
+    // Draw connections
+    nodes.forEach((n, i) => {
+      n.connections.forEach(ci => {
+        const target = nodes[ci];
+        const px1 = n.x * w + Math.sin(t + n.phase) * 3;
+        const py1 = n.y * h + Math.cos(t * 1.3 + n.phase) * 3;
+        const px2 = target.x * w + Math.sin(t + target.phase) * 3;
+        const py2 = target.y * h + Math.cos(t * 1.3 + target.phase) * 3;
+        const alpha = 0.04 + Math.sin(t * 2 + i) * 0.02;
+        ctx.beginPath();
+        ctx.moveTo(px1, py1);
+        ctx.lineTo(px2, py2);
+        ctx.strokeStyle = n.type === 'bot' ? `rgba(255,77,106,${alpha})` :
+                          n.type === 'influencer' ? `rgba(59,130,246,${alpha})` :
+                          `rgba(167,139,250,${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+    });
+
+    // Pulse waves from center
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 40 + p * 60) % 180);
+      const pulseAlpha = Math.max(0, 0.12 - pulseR / 1800);
+      ctx.beginPath();
+      ctx.arc(w/2, h/2, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255,77,106,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      const px = n.x * w + Math.sin(t + n.phase) * 3;
+      const py = n.y * h + Math.cos(t * 1.3 + n.phase) * 3;
+      const glow = 0.3 + Math.sin(t * 2 + n.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, n.r, 0, Math.PI * 2);
+
+      if(n.type === 'algo'){
+        ctx.fillStyle = `rgba(255,77,106,${glow + 0.3})`;
+        ctx.shadowColor = 'rgba(255,77,106,0.5)';
+        ctx.shadowBlur = 15;
+      } else if(n.type === 'bot'){
+        ctx.fillStyle = `rgba(255,77,106,${glow})`;
+        ctx.shadowColor = 'rgba(255,77,106,0.3)';
+        ctx.shadowBlur = 8;
+      } else if(n.type === 'influencer'){
+        ctx.fillStyle = `rgba(59,130,246,${glow + 0.1})`;
+        ctx.shadowColor = 'rgba(59,130,246,0.3)';
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.fillStyle = `rgba(167,139,250,${glow})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.4)';
+    ctx.fillText('ALGORITM', w/2 - 24, h/2 + 16);
+
+    // Legend dots
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(255,77,106,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('boturi', 15, ly+3);
+    ctx.fillStyle = 'rgba(59,130,246,0.7)'; ctx.beginPath(); ctx.arc(60, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('influenceri', 67, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(130, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('utilizatori', 137, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
