@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scade-ti tensiunea arteriala! — Cercetari japoneze despre hipertensiune</title>
+  <meta name="description" content="Infografic interactiv: Studiul Ohasama, monitorizarea tensiunii acasa, fluctuatii ale tensiunii, apneea in somn, exercitii fizice si impactul asupra creierului. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#060810;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#EF4444;
+      --glow2:#3B82F6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(239,68,68,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(59,130,246,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(239,68,68,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(239,68,68,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(59,130,246,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(239,68,68,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(59,130,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(239,68,68,.22),rgba(239,68,68,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(239,68,68,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(59,130,246,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(239,68,68,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(239,68,68,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.blue{border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.06);}
+    .alert.blue h4{color:var(--glow2);}
+
+    /* BP Diagram */
+    .bpDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .bpDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(239,68,68,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(239,68,68,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(239,68,68,.25);background:rgba(239,68,68,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Exercise list */
+    .exList{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px;}
+    .exList li{
+      border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:10px 12px;
+      background:rgba(6,8,16,.25);font-size:12.5px;color:var(--muted);line-height:1.4;
+      display:grid;grid-template-columns:32px 1fr;gap:8px;align-items:start;
+    }
+    .exNum{
+      width:28px;height:28px;border-radius:999px;display:flex;align-items:center;justify-content:center;
+      font-family:var(--mono);font-size:12px;font-weight:700;
+      border:1px solid rgba(59,130,246,.3);background:rgba(59,130,246,.10);color:var(--glow2);
+      flex-shrink:0;
+    }
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Scade-ti tensiunea arteriala!
+          <small>Cercetari japoneze de pionierat: studiul Ohasama, monitorizarea acasa, exercitii fizice si legatura creier-tensiune</small>
+        </h1>
+        <p class="sub">Hipertensiunea arteriala este numita <b>"ucigasul tacut"</b> — progreseaza fara simptome vizibile, dar creste riscul de AVC, infarct si boli renale. OMS estimeaza ca detectia precoce si tratamentul proactiv ar putea preveni <b>76 de milioane de morti</b> la nivel mondial. Indicii cruciale vin dintr-un mic oras japonez unde locuitorii isi masoara tensiunea de peste 30 de ani.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Cardiologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Hipertensiune</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este tensiunea arteriala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este tensiunea arteriala?</h2>
+          <p>Forta sangelui asupra peretilor arterelor — si de ce conteaza fiecare milimetru de mercur</p>
+        </div>
+        <span class="badge">BAZA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Presiunea sistolica</h3>
+            <p>Apare cand inima se <b>contracta</b> si pompeaza sangele in artere. Reprezinta valoarea <b>mai mare</b> din cele doua cifre ale tensiunii.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">&lt;135</span>
+              <span class="l">mmHg — valoare normala (masurata acasa)</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Presiunea diastolica</h3>
+            <p>Apare cand inima se <b>relaxeaza</b> si se reumple cu sange. Reprezinta valoarea <b>mai mica</b>. Ambele sunt importante pentru sanatatea cardiovasculara.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">&lt;85</span>
+              <span class="l">mmHg — valoare normala (masurata acasa)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bpDiag">
+          <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Heart pump cycle -->
+            <rect x="20" y="20" width="140" height="140" rx="20" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.25)" stroke-width="1.5"/>
+            <text x="90" y="55" fill="#EF4444" font-size="13" font-weight="700" text-anchor="middle">INIMA</text>
+            <text x="90" y="75" fill="#A0ACC8" font-size="10" text-anchor="middle">se contracta</text>
+            <text x="90" y="92" fill="#A0ACC8" font-size="22" text-anchor="middle">&#9829;</text>
+            <text x="90" y="115" fill="#EF4444" font-size="11" font-weight="600" text-anchor="middle">SISTOLICA</text>
+            <text x="90" y="132" fill="#A0ACC8" font-size="10" text-anchor="middle">&ge;135 = hipertensiune</text>
+            <text x="90" y="148" fill="#6E7A9A" font-size="9" text-anchor="middle">(masurare acasa, ISH 2020)</text>
+
+            <!-- Arrow -->
+            <line x1="170" y1="90" x2="240" y2="90" stroke="rgba(239,68,68,.4)" stroke-width="2" marker-end="url(#arrowR)"/>
+            <defs><marker id="arrowR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(239,68,68,.5)"/></marker></defs>
+
+            <!-- Arteries -->
+            <rect x="250" y="20" width="200" height="140" rx="20" fill="rgba(167,139,250,.06)" stroke="rgba(167,139,250,.20)" stroke-width="1.5"/>
+            <text x="350" y="50" fill="#A78BFA" font-size="13" font-weight="700" text-anchor="middle">ARTERE</text>
+            <text x="350" y="72" fill="#A0ACC8" font-size="10" text-anchor="middle">Tensiunea ridicata:</text>
+            <text x="350" y="90" fill="#A0ACC8" font-size="10" text-anchor="middle">&#8226; solicita inima excesiv</text>
+            <text x="350" y="106" fill="#A0ACC8" font-size="10" text-anchor="middle">&#8226; dilata vasele de sange</text>
+            <text x="350" y="122" fill="#A0ACC8" font-size="10" text-anchor="middle">&#8226; poate duce la ruperea lor</text>
+            <text x="350" y="148" fill="#F87171" font-size="10" font-weight="600" text-anchor="middle">&#8594; AVC, infarct, boli renale</text>
+
+            <!-- Arrow -->
+            <line x1="460" y1="90" x2="510" y2="55" stroke="rgba(59,130,246,.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <line x1="460" y1="90" x2="510" y2="125" stroke="rgba(59,130,246,.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- Relaxation -->
+            <rect x="520" y="15" width="160" height="65" rx="14" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.20)" stroke-width="1.5"/>
+            <text x="600" y="38" fill="#3B82F6" font-size="11" font-weight="700" text-anchor="middle">DIASTOLICA</text>
+            <text x="600" y="55" fill="#A0ACC8" font-size="10" text-anchor="middle">inima se relaxeaza</text>
+            <text x="600" y="70" fill="#A0ACC8" font-size="10" text-anchor="middle">&ge;85 = hipertensiune</text>
+
+            <!-- Risk -->
+            <rect x="520" y="100" width="160" height="60" rx="14" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.15)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="600" y="122" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">76 MIL. MORTI</text>
+            <text x="600" y="140" fill="#6E7A9A" font-size="9.5" text-anchor="middle">prevenibile prin detectie</text>
+            <text x="600" y="152" fill="#6E7A9A" font-size="9.5" text-anchor="middle">precoce (estimare OMS)</text>
+          </svg>
+        </div>
+
+        <div class="alert">
+          <h4>De ce "ucigasul tacut"?</h4>
+          <p>Hipertensiunea progreseaza <b>fara simptome vizibile</b>. Multe persoane nu stiu ca au tensiune ridicata pana cand sufera un AVC sau un infarct. In Japonia, din cele <b>43 de milioane</b> de persoane cu hipertensiune, aproximativ <b>40% nu se trateaza</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Studiul Ohasama -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul Ohasama — 30 de ani de date unice</h2>
+          <p>Cel mai important studiu longitudinal din lume privind masurarea tensiunii acasa, din micul oras Ohasama, prefectura Iwate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(59,130,246,.3);color:var(--glow2);">STUDIU</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">30+</div>
+            <span class="u">ani de monitorizare continua</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">15.000</div>
+            <span class="u">seturi de date colectate</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">166</div>
+            <span class="u">articole stiintifice publicate</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">4.000</div>
+            <span class="u">locuitori in Ohasama</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Metoda</h3>
+            <p>Fiecarei gospodarii i s-a dat un <b>tensiometru</b>. Locuitorii si-au masurat tensiunea <b>dimineata si seara</b>, zilnic, timp de decenii. Datele au fost colectate sistematic de echipa condusa de prof. <b>Okubo Takayoshi</b> (Universitatea Teikyo).</p>
+          </div>
+          <div class="mini">
+            <h3>Impact mondial</h3>
+            <p>Datele din Ohasama au stat la baza <b>standardelor internationale</b> de hipertensiune (ISH 2020). George Stergiou, viitorul presedinte ISH, a numit studiul <b>"o sursa uimitoare de informatii"</b> si un studiu de referinta.</p>
+          </div>
+        </div>
+
+        <div class="quote blue">
+          &laquo;Acest studiu a fost un studiu de referinta, practic, pentru monitorizarea acasa... o sursa uimitoare de informatii despre masurarea tensiunii arteriale.&raquo;
+          <cite>— George Stergiou, viitor presedinte al Societatii Internationale de Hipertensiune</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Fluctuatiile tensiunii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Fluctuatiile zilnice ale tensiunii — riscul ascuns</h2>
+          <p>Studiul Ohasama a dezvaluit ca variatiile mari ale tensiunii cresc semnificativ riscul de deces cardiovascular si declin cognitiv</p>
+        </div>
+        <span class="badge" style="border-color:rgba(239,68,68,.3);color:var(--glow);">RISC</span>
+      </div>
+      <div class="cardBody">
+        <!-- BP fluctuation risk chart -->
+        <div class="bpDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="22" fill="#EAF0FF" font-size="12" font-weight="700" text-anchor="middle">Risc de deces cardiovascular la 10 ani (~2.400 participanti)</text>
+
+            <!-- Group 1: BP 120 -->
+            <rect x="30" y="45" width="300" height="90" rx="14" fill="rgba(59,130,246,.06)" stroke="rgba(59,130,246,.15)" stroke-width="1"/>
+            <text x="180" y="65" fill="#3B82F6" font-size="11" font-weight="700" text-anchor="middle">Tensiune sistolica: 120 mmHg</text>
+
+            <!-- Low fluctuation -->
+            <rect x="50" y="78" width="120" height="44" rx="10" fill="rgba(52,211,153,.08)" stroke="rgba(52,211,153,.20)" stroke-width="1"/>
+            <text x="110" y="96" fill="#34D399" font-size="20" font-weight="760" text-anchor="middle">0.7%</text>
+            <text x="110" y="114" fill="#6E7A9A" font-size="9" text-anchor="middle">variatii mici</text>
+
+            <!-- High fluctuation -->
+            <rect x="190" y="78" width="120" height="44" rx="10" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.20)" stroke-width="1"/>
+            <text x="250" y="96" fill="#EF4444" font-size="20" font-weight="760" text-anchor="middle">1.5%</text>
+            <text x="250" y="114" fill="#6E7A9A" font-size="9" text-anchor="middle">variatii mari (2x)</text>
+
+            <!-- Group 2: BP 150 -->
+            <rect x="370" y="45" width="300" height="90" rx="14" fill="rgba(239,68,68,.06)" stroke="rgba(239,68,68,.15)" stroke-width="1"/>
+            <text x="520" y="65" fill="#EF4444" font-size="11" font-weight="700" text-anchor="middle">Tensiune sistolica: 150 mmHg</text>
+
+            <!-- Low fluctuation -->
+            <rect x="390" y="78" width="120" height="44" rx="10" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.20)" stroke-width="1"/>
+            <text x="450" y="96" fill="#FBBF24" font-size="20" font-weight="760" text-anchor="middle">1.3%</text>
+            <text x="450" y="114" fill="#6E7A9A" font-size="9" text-anchor="middle">variatii mici</text>
+
+            <!-- High fluctuation -->
+            <rect x="530" y="78" width="120" height="44" rx="10" fill="rgba(239,68,68,.10)" stroke="rgba(239,68,68,.25)" stroke-width="1"/>
+            <text x="590" y="96" fill="#EF4444" font-size="20" font-weight="760" text-anchor="middle">3.0%</text>
+            <text x="590" y="114" fill="#6E7A9A" font-size="9" text-anchor="middle">variatii mari (2.3x)</text>
+
+            <!-- Cognitive decline section -->
+            <rect x="30" y="155" width="640" height="85" rx="14" fill="rgba(167,139,250,.05)" stroke="rgba(167,139,250,.15)" stroke-width="1"/>
+            <text x="350" y="178" fill="#A78BFA" font-size="11" font-weight="700" text-anchor="middle">Declin cognitiv (~500 participanti)</text>
+
+            <rect x="160" y="192" width="380" height="36" rx="10" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.20)" stroke-width="1"/>
+            <text x="350" y="210" fill="#A78BFA" font-size="14" font-weight="760" text-anchor="middle">2.72x</text>
+            <text x="350" y="222" fill="#6E7A9A" font-size="9.5" text-anchor="middle">risc crescut de declin cognitiv la persoanele cu fluctuatii mari ale tensiunii</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Caz real: detectia precoce</h3>
+            <p>Un barbat de <b>70 de ani</b> din studiu si-a masurat tensiunea zilnic din 2012. Dupa 4 ani, a observat fluctuatii rapide: sistolica varia de la <b>80 la 160 mmHg</b>. Examinarea la spital a relevat <b>aritmie usoara</b>. Detectia precoce i-a permis sa duca o viata normala.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce conteaza fluctuatiile</h3>
+            <p>Nu doar valoarea absoluta conteaza — ci si cat de mult <b>oscileaza tensiunea</b> de la o zi la alta. Persoanele cu fluctuatii mari au risc <b>aproape dublu</b> de deces cardiovascular, chiar daca tensiunea medie pare normala.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: White coat hypertension & 24h monitoring -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Hipertensiunea de halat alb si monitorizarea 24h</h2>
+          <p>Diferenta dintre tensiunea masurata la spital si acasa — si ce se intampla noaptea</p>
+        </div>
+        <span class="badge">DIAGNOSTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(239,68,68,.2);">
+            <h3 style="color:var(--glow)">Hipertensiunea de halat alb</h3>
+            <p>Mediul nefamiliar al spitalului cauzeaza <b>stres</b>, ducand la citiri mai mari ale tensiunii. Insa nu e vorba doar de nervozitate — studiul Ohasama a aratat ca acesti pacienti sunt expusi unui risc real.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">1.8x</span>
+              <span class="l">risc crescut de a dezvolta hipertensiune pe termen lung</span>
+            </div>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Risc de AVC</h3>
+            <p>Persoanele cu hipertensiune sustinuta au un risc semnificativ mai mare de AVC pe o perioada de 10 ani, comparat cu persoanele cu tensiune normala.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">2.83x</span>
+              <span class="l">risc de AVC la 10 ani la persoanele cu hipertensiune sustinuta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Monitorizarea 24 de ore</h4>
+              <p>La inceputul studiului, locuitorii din Ohasama au purtat un dispozitiv de <b>~1 kg</b> timp de 24 de ore — inclusiv la munca de camp si in somn. Circa <b>1.500 de persoane</b> au participat.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Descoperire: "Non-dippers" — tensiune care nu scade noaptea</h4>
+              <p>In mod normal, tensiunea <b>scade in timpul somnului</b>. Studiul a urmarit riscul de deces cardiovascular pe parcursul a ~9 ani si a descoperit ca absenta scaderii nocturne creste dramatic riscul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Riscuri comparative</h4>
+              <p>Fata de persoanele cu scadere normala nocturna: tensiune <b>normala + fara scadere nocturna</b> = <b style="color:var(--warn)">2.35x</b> risc de deces. <b>Hipertensiune + fara scadere nocturna</b> = <b style="color:var(--glow)">5.37x</b> risc de deces.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Consultatii medicale online in Japonia</h4>
+          <p>Datele din Ohasama au condus la introducerea <b>consultatiilor medicale online</b> pentru pacientii hipertensivi. Dr. Yatabe Junichi verifica intotdeauna <b>masuratorile matinale</b> — cele mai relevante pentru diagnostic. Acest model face tratamentul accesibil celor <b>40% din hipertensivi</b> care nu se trateaza.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Sleep Apnea -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Apneea in somn si tensiunea arteriala</h2>
+          <p>Cand respiratia se opreste in somn, tensiunea fluctueaza periculos — si poate deveni rezistenta la medicamente</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">SAS</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Ce este SAS?</h3>
+            <p><b>Sindromul de apnee in somn</b> (SAS) = respiratia se opreste cel putin <b>10 secunde</b>, de minimum <b>5 ori pe ora</b>, in timpul somnului. Oprirea si reluarea repetata a respiratiei cauzeaza <b>fluctuatii rapide ale tensiunii</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Caz real: pacient de 64 ani</h3>
+            <p>Un barbat si-a masurat tensiunea acasa timp de <b>8 luni</b>. Dimineata: sistolica ~<b style="color:var(--glow)">150 mmHg</b>. Seara: ~<b style="color:var(--glow2)">130 mmHg</b>. Tensiunea matinala era <b>constant mai mare</b> — un indicator clasic al apneei in somn.</p>
+          </div>
+        </div>
+
+        <div class="alert" style="border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.06);">
+          <h4 style="color:var(--purple)">Hipertensiune rezistenta la tratament</h4>
+          <p>Daca apneea in somn nu este tratata, hipertensiunea poate deveni <b>rezistenta la medicatie</b>. Dr. Yatabe i-a prescris pacientului atat <b>antihipertensive</b>, cat si tratament pentru SAS. Abordarea duala a imbunatatit semnificativ tensiunea.</p>
+        </div>
+
+        <div class="quote">
+          &laquo;Multi oameni sunt reticenti sa inceapa sa ia medicamente pentru ca se tem ca nu vor mai putea sa se opreasca. Insa tratamentul combinat — medicatie plus gestionarea apneei — ofera rezultate clare.&raquo;
+          <cite>— Dr. Yatabe Junichi, specialist hipertensiune</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Exercise & Brain -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Exercitiul fizic, creierul si tensiunea</h2>
+          <p>O descoperire surprinzatoare: miscarea capului cu forta de 1G reduce hipertensiunea prin modificarea proteinelor din creier</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Descoperirea: jogging-ul usor afecteaza creierul</h4>
+              <p>Echipa condusa de <b>Sarada Yasahiro</b> (Centrul National de Reabilitare, Japonia) a descoperit ca alergatul usor aplica o forta de <b>1G asupra creierului</b>. Aceasta forta modifica celulele care regleaza tensiunea.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Experimentul cu sobolani</h4>
+              <p>Sobolanii hipertensivi au alergat cu <b>20 m/min</b> timp de <b>30 de minute</b>. Surpriza: pur si simplu <b>miscarea capului sus-jos</b> a sobolanilor adormiti (simuland forta de 1G) a imbunatatit hipertensiunea <b>la fel ca alergatul</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Mecanismul: astrocitele si receptorul AT1R</h4>
+              <p>In creier, celulele numite <b>astrocite</b> regleaza tensiunea arteriala. Cand tensiunea creste, ele exprima proteina <b>AT1R</b> (receptor de angiotensina 2 tip 1). Expresia mai puternica a AT1R creste probabilitatea de hipertensiune.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Rezultat: 55% mai putine astrocite cu AT1R</h4>
+              <p>Dupa <b>4 saptamani</b> de miscare a capului, numarul de astrocite care exprimau AT1R a <b>scazut cu 55%</b> comparativ cu sobolanii din grupul de control.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Experimentul pe oameni</h4>
+              <p>Sarada a creat un <b>scaun special</b> care aplica forta de 1G asupra capului. Persoane hipertensive l-au folosit <b>30 min/zi, 3 zile/saptamana, timp de 1 luna</b>. Rezultat: tensiunea sistolica medie a <b>scazut cu 9 mmHg</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert blue">
+          <h4>Aplicabilitate practica</h4>
+          <p>Sarada crede ca efecte similare pot fi obtinute acasa cu o simpla <b>minge de echilibru (balance ball)</b>, miscand capul sus-jos. Echipa cerceteaza si aplicarea la <b>persoane imobilizate la pat</b> sau cu dizabilitati.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Practical Exercises -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Exercitii practice cu minge moale (otedama)</h2>
+          <p>Program de exercitii validate stiintific — 53 de pacienti hipertensivi au prezentat imbunatatiri dupa 8 saptamani</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">EXERCITII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2" style="margin-bottom:14px;">
+          <div class="mini">
+            <h3>Ce sunt otedama?</h3>
+            <p><b>Otedama</b> sunt jucarii traditionale japoneze — saculeti moi umpluti cu fasole azuki sau orez. Alternativ, puteti folosi un <b>prosop impaturit in trei si rulat</b> pentru a forma o minge moale.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce functioneaza?</h3>
+            <p>Cheia este <b>prizarea ferma</b> a mingii moi — activeaza creierul, sistemul nervos si <b>intregul corp</b>. Nu doar contracta si relaxeaza vasele, ci activeaza <b>multiple zone cerebrale</b>, imbunatatind circulatia.</p>
+          </div>
+        </div>
+
+        <ol class="exList">
+          <li>
+            <span class="exNum">1</span>
+            <div><b>Aruncati mingea intre maini</b> — in fata pieptului, de 10 ori. Activeaza creierul, sistemul nervos si circulatia generala.</div>
+          </li>
+          <li>
+            <span class="exNum">2</span>
+            <div><b>Aruncati mingea deasupra capului</b> — de 10 ori, cu bratele complet intinse. Nu va uitati la minge. Imbunatateste circulatia in partea superioara a corpului.</div>
+          </li>
+          <li>
+            <span class="exNum">3</span>
+            <div><b>Aruncati mingea pe la spate</b> — de 10 ori. Intinde muschii pieptului si din jurul coastelor, reducand rigiditatea. Necesita concentrare maxima.</div>
+          </li>
+          <li>
+            <span class="exNum">4</span>
+            <div><b>Aplecati-va usor inainte</b> — cu picioarele drepte, aruncati si prindeai mingea. Stimuleaza muschii fesierilor si ai gambelor, imbunatatind fluxul sangvin.</div>
+          </li>
+          <li>
+            <span class="exNum">5</span>
+            <div><b>Aruncati pe dupa genunchi</b> — cu picioarele la latimea umerilor, de 5 ori pe fiecare parte. Imbunatateste circulatia in partea inferioara a corpului.</div>
+          </li>
+          <li>
+            <span class="exNum">6</span>
+            <div><b>Genuflexiuni cu otedama</b> — tineti cate o minge usor in fiecare mana, bratele intinse in fata. Coborati in <b>5 secunde</b>, ridicati-va in <b>5 secunde</b>. Nu strangeti prea tare mingea! Activeaza grupuri musculare multiple.</div>
+          </li>
+        </ol>
+
+        <div class="quote blue" style="margin-top:14px;">
+          &laquo;Cand tineti mingea usor in mana si faceti aceste exercitii, activati atat de multe grupuri musculare diferite. Focusul trebuie sa fie pe prizarea usoara, nu pe forta.&raquo;
+          <cite>— Profesor de stiinta sportului, Universitatea Gunma (antrenor in MLB)</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Conclusions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si recomandari</h2>
+          <p>Ce ar trebui sa retinem din peste 30 de ani de cercetari japoneze privind hipertensiunea</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(239,68,68,.2);">
+            <h3 style="color:var(--glow)">Masoara-ti tensiunea acasa</h3>
+            <p>Masuratorile la spital nu sunt suficiente. <b>Monitorizarea zilnica acasa</b>, dimineata si seara, poate detecta fluctuatii periculoase, aritmii si probleme ascunse pe care o singura vizita la medic nu le poate releva.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Fluctuatiile conteaza la fel de mult</h3>
+            <p>Nu doar valoarea medie a tensiunii e importanta — ci si cat de mult <b>variaza</b>. Oscilatiile mari cresc riscul de deces cardiovascular si de <b>declin cognitiv</b>, chiar daca media pare normala.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Atentie la tensiunea nocturna</h3>
+            <p>Daca tensiunea <b>nu scade noaptea</b> ("non-dipper"), riscul de deces creste dramatic — pana la <b>5.37x</b>. Monitorizarea pe 24h poate detecta aceasta problema ascunsa.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Misca-te — chiar si usor</h3>
+            <p>Jogging-ul usor, exercitiile cu minge si chiar <b>miscarea capului sus-jos</b> pe un balance ball pot reduce tensiunea prin mecanisme cerebrale. Nu trebuie sa fie intens — trebuie sa fie <b>regulat</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Mersul pe jos si jogging-ul sunt considerate eficiente in prevenirea hipertensiunii, deoarece stimuleaza functia cardiopulmonara si imbunatatesc fluxul sangvin. Cercetarile japoneze au descoperit ca si un jogging usor are un impact semnificativ asupra creierului.&raquo;
+          <cite>— NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key Numbers -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre cheie</h2></div>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow)">Hipertensiune in lume</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow)">76M</span>
+            <span class="l">morti prevenibile prin detectie precoce (OMS)</span>
+          </div>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--warn)">Japonia</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--warn)">43M</span>
+            <span class="l">de persoane cu hipertensiune</span>
+          </div>
+          <p style="margin-top:6px;font-size:12px;color:var(--muted)"><b style="color:var(--glow)">~40%</b> nu primesc tratament</p>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow2)">Prag hipertensiune (acasa)</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow2)">135/85</span>
+            <span class="l">mmHg — standardul ISH 2020</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--ok)">Reducere prin exercitiu</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--ok)">-9</span>
+            <span class="l">mmHg sistolica dupa 1 luna de exercitiu (30 min/zi, 3 zile/sapt.)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Descoperiri din studiul Ohasama</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">~1990</span><span class="tDesc">Incepe <b>monitorizarea acasa</b> in Ohasama — tensiometre distribuite fiecarei familii</span></div>
+        <div class="tEvent"><span class="tDate">continuu</span><span class="tDesc">Se acumuleaza <b>15.000+ seturi de date</b> de la 4.000 de locuitori</span></div>
+        <div class="tEvent"><span class="tDate">cheie</span><span class="tDesc">Se descopera ca <b>fluctuatiile zilnice</b> dubleaza riscul cardiovascular</span></div>
+        <div class="tEvent"><span class="tDate">cheie</span><span class="tDesc">Se identifica fenomenul <b>"non-dipper"</b> si riscul de 5.37x</span></div>
+        <div class="tEvent"><span class="tDate">cheie</span><span class="tDesc"><b>Hipertensiunea de halat alb</b>: 1.8x risc de hipertensiune cronica</span></div>
+        <div class="tEvent"><span class="tDate">2020</span><span class="tDesc">ISH stabileste <b>standardele internationale</b> bazate partial pe date Ohasama</span></div>
+        <div class="tEvent"><span class="tDate">recent</span><span class="tDesc"><b>Consultatii online</b> introduse in Japonia pentru pacienti hipertensivi</span></div>
+        <div class="tEvent"><span class="tDate">recent</span><span class="tDesc">Cercetari privind <b>forta 1G</b> si efectul asupra astrocitelor din creier</span></div>
+        <div class="tEvent"><span class="tDate">166</span><span class="tDesc"><b>Articole stiintifice</b> publicate pe baza datelor din Ohasama</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Informatii suplimentare</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce masurarea dimineata?</h4>
+          <p>Tensiunea matinala, imediat dupa trezire, este considerata cea mai relevanta pentru diagnostic. Dr. Yatabe verifica intotdeauna aceste valori primele, deoarece <b>fluctuatiile matinale</b> coreleaza cel mai puternic cu riscul cardiovascular.</p>
+        </div>
+        <div class="comNote">
+          <h4>Despre "non-dippers"</h4>
+          <p>In mod normal, tensiunea <b>scade cu 10-20%</b> in timpul somnului. Persoanele la care nu scade ("non-dippers") au un risc dramatic crescut. Studiul Ohasama a fost printre primele care au cuantificat acest risc prin monitorizare pe 24h.</p>
+        </div>
+        <div class="comNote">
+          <h4>Apneea in somn: subestimata</h4>
+          <p>Multe persoane cu tensiune matinala ridicata nu stiu ca au apnee in somn. Oprirea respiratiei de <b>5+ ori pe ora</b> cauzeaza fluctuatii de tensiune care, in timp, duc la hipertensiune <b>rezistenta la medicatie</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Balance ball acasa</h4>
+          <p>Cercetarea prof. Sarada sugereaza ca simpla miscare a capului sus-jos pe un <b>balance ball</b> ar putea reproduce efectul scaunului special (forta 1G). O metoda accesibila si pentru persoane cu mobilitate redusa.</p>
+        </div>
+        <div class="comNote">
+          <h4>Exercitiile de prindere</h4>
+          <p>Un studiu japonez pe <b>53 de pacienti hipertensivi</b> a demonstrat ca antrenamentul fortei de prindere (grip strength) timp de 8 saptamani a imbunatatit tensiunea atat dimineata, cat si seara. Cheia: <b>prizarea usoara</b>, nu forta maxima.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Presiune sistolica</dt>
+          <dd>Valoarea mai mare a tensiunii — forta din artere cand inima se contracta si pompeaza sangele. Normal acasa: sub 135 mmHg.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Presiune diastolica</dt>
+          <dd>Valoarea mai mica — forta din artere cand inima se relaxeaza intre batai. Normal acasa: sub 85 mmHg.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hipertensiune de halat alb</dt>
+          <dd>Tensiune ridicata doar la cabinet medical, din cauza stresului. Poate fi precursor al hipertensiunii cronice (risc 1.8x).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Non-dipper</dt>
+          <dd>Persoana a carei tensiune nu scade normal (10-20%) in timpul somnului. Asociat cu risc crescut de deces cardiovascular (pana la 5.37x).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>AT1R (receptor angiotensina 2 tip 1)</dt>
+          <dd>Proteina exprimata de astrocite in creier. Expresia crescuta e asociata cu hipertensiune. Exercitiul fizic reduce expresia cu pana la 55%.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Astrocite</dt>
+          <dd>Celule in forma de stea din creier care au multiple functii, inclusiv reglarea tensiunii arteriale prin expresia receptorilor AT1R.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>SAS (Sindromul de apnee in somn)</dt>
+          <dd>Afectiune in care respiratia se opreste repetat in somn (&ge;10 sec, &ge;5 ori/ora). Cauzeaza fluctuatii rapide ale tensiunii si poate duce la hipertensiune rezistenta la medicamente.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ISH (International Society of Hypertension)</dt>
+          <dd>Societatea Internationala de Hipertensiune — organism care stabileste standardele globale de diagnostic si tratament al hipertensiunii arteriale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Otedama</dt>
+          <dd>Jucarii traditionale japoneze — saculeti moi umpluti cu fasole azuki sau orez, folosite in exercitii de prindere care imbunatatesc tensiunea arteriala.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=JWskwcMeOts" target="_blank">NHK Medical Frontiers — "Bring Your Blood Pressure Down!"</a> &middot;
+    Studiul Ohasama, prefectura Iwate, Japonia &middot;
+    Infografic explicativ bazat pe emisiunea NHK Medical Frontiers
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: heart with blood pressure pulse wave ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.015;
+
+    const cx = w * 0.28, cy = h * 0.48;
+
+    // Pulse rings from heart
+    for(let p = 0; p < 4; p++){
+      const pulseR = ((t * 30 + p * 50) % 200);
+      const pulseAlpha = Math.max(0, 0.15 - pulseR / 1500);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR * 0.6, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(239,68,68,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Draw abstract heart shape
+    const heartScale = 22 + Math.sin(t * 3) * 3;
+    ctx.save();
+    ctx.translate(cx, cy);
+
+    // Heart glow
+    const grd = ctx.createRadialGradient(0, 0, 0, 0, 0, heartScale * 2);
+    grd.addColorStop(0, `rgba(239,68,68,${0.15 + Math.sin(t * 3) * 0.05})`);
+    grd.addColorStop(1, 'rgba(239,68,68,0)');
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(0, 0, heartScale * 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Heart shape using bezier curves
+    ctx.beginPath();
+    const s = heartScale;
+    ctx.moveTo(0, s * 0.4);
+    ctx.bezierCurveTo(-s * 0.1, s * 0.2, -s * 0.7, -s * 0.1, -s * 0.7, -s * 0.4);
+    ctx.bezierCurveTo(-s * 0.7, -s * 0.75, -s * 0.35, -s * 0.9, 0, -s * 0.5);
+    ctx.bezierCurveTo(s * 0.35, -s * 0.9, s * 0.7, -s * 0.75, s * 0.7, -s * 0.4);
+    ctx.bezierCurveTo(s * 0.7, -s * 0.1, s * 0.1, s * 0.2, 0, s * 0.4);
+    ctx.closePath();
+
+    const heartAlpha = 0.5 + Math.sin(t * 3) * 0.2;
+    ctx.fillStyle = `rgba(239,68,68,${heartAlpha * 0.3})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(239,68,68,${heartAlpha})`;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.restore();
+
+    // Blood pressure wave (ECG-like)
+    const waveStartX = w * 0.48;
+    const waveW = w * 0.48;
+    const waveY = h * 0.48;
+    const waveAmp = h * 0.25;
+
+    ctx.beginPath();
+    ctx.moveTo(waveStartX, waveY);
+
+    for(let i = 0; i <= waveW; i++){
+      const x = waveStartX + i;
+      const progress = i / waveW;
+      const phase = progress * Math.PI * 4 + t * 3;
+
+      let y = waveY;
+
+      // Create ECG-like pattern
+      const cyclePos = (phase % (Math.PI * 2)) / (Math.PI * 2);
+
+      if(cyclePos > 0.15 && cyclePos < 0.2){
+        // P wave (small bump)
+        const localT = (cyclePos - 0.15) / 0.05;
+        y -= Math.sin(localT * Math.PI) * waveAmp * 0.15;
+      } else if(cyclePos > 0.28 && cyclePos < 0.32){
+        // Q dip
+        const localT = (cyclePos - 0.28) / 0.04;
+        y += Math.sin(localT * Math.PI) * waveAmp * 0.1;
+      } else if(cyclePos > 0.32 && cyclePos < 0.40){
+        // R spike (main peak)
+        const localT = (cyclePos - 0.32) / 0.08;
+        y -= Math.sin(localT * Math.PI) * waveAmp * 0.85;
+      } else if(cyclePos > 0.40 && cyclePos < 0.45){
+        // S dip
+        const localT = (cyclePos - 0.40) / 0.05;
+        y += Math.sin(localT * Math.PI) * waveAmp * 0.15;
+      } else if(cyclePos > 0.55 && cyclePos < 0.65){
+        // T wave (medium bump)
+        const localT = (cyclePos - 0.55) / 0.10;
+        y -= Math.sin(localT * Math.PI) * waveAmp * 0.25;
+      }
+
+      // Fade at edges
+      const edgeFade = Math.min(progress * 8, (1 - progress) * 8, 1);
+      y = waveY + (y - waveY) * edgeFade;
+
+      if(i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    const waveGrd = ctx.createLinearGradient(waveStartX, 0, waveStartX + waveW, 0);
+    waveGrd.addColorStop(0, 'rgba(239,68,68,0.1)');
+    waveGrd.addColorStop(0.3, 'rgba(239,68,68,0.7)');
+    waveGrd.addColorStop(0.7, 'rgba(59,130,246,0.7)');
+    waveGrd.addColorStop(1, 'rgba(59,130,246,0.1)');
+    ctx.strokeStyle = waveGrd;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Fill under wave with gradient
+    ctx.lineTo(waveStartX + waveW, h);
+    ctx.lineTo(waveStartX, h);
+    ctx.closePath();
+    const fillGrd = ctx.createLinearGradient(waveStartX, 0, waveStartX + waveW, 0);
+    fillGrd.addColorStop(0, 'rgba(239,68,68,0)');
+    fillGrd.addColorStop(0.3, 'rgba(239,68,68,0.04)');
+    fillGrd.addColorStop(0.7, 'rgba(59,130,246,0.04)');
+    fillGrd.addColorStop(1, 'rgba(59,130,246,0)');
+    ctx.fillStyle = fillGrd;
+    ctx.fill();
+
+    // BP reading labels
+    ctx.font = '600 11px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    const labelAlpha = 0.4 + Math.sin(t * 2) * 0.1;
+    ctx.fillStyle = `rgba(239,68,68,${labelAlpha})`;
+    ctx.fillText('SISTOLICA', waveStartX + waveW * 0.15, h * 0.18);
+    ctx.fillStyle = `rgba(59,130,246,${labelAlpha})`;
+    ctx.fillText('DIASTOLICA', waveStartX + waveW * 0.60, h * 0.82);
+
+    // Systolic/diastolic reference lines
+    ctx.setLineDash([3, 5]);
+    ctx.beginPath();
+    ctx.moveTo(waveStartX, waveY - waveAmp * 0.85);
+    ctx.lineTo(waveStartX + waveW, waveY - waveAmp * 0.85);
+    ctx.strokeStyle = 'rgba(239,68,68,0.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(waveStartX, waveY + waveAmp * 0.05);
+    ctx.lineTo(waveStartX + waveW, waveY + waveAmp * 0.05);
+    ctx.strokeStyle = 'rgba(59,130,246,0.12)';
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Numbers
+    ctx.font = '760 18px ' + getComputedStyle(document.body).getPropertyValue('--sans');
+    const numAlpha = 0.35 + Math.sin(t * 3) * 0.15;
+    ctx.fillStyle = `rgba(239,68,68,${numAlpha})`;
+    ctx.fillText('135', waveStartX + 2, waveY - waveAmp * 0.85 - 5);
+    ctx.fillStyle = `rgba(59,130,246,${numAlpha})`;
+    ctx.fillText('85', waveStartX + 2, waveY + waveAmp * 0.05 + 16);
+
+    // Small floating particles (blood cells)
+    for(let i = 0; i < 15; i++){
+      const px = (Math.sin(t * 0.7 + i * 2.3) * 0.5 + 0.5) * w;
+      const py = (Math.cos(t * 0.5 + i * 1.7) * 0.5 + 0.5) * h;
+      const pr = 1 + Math.sin(t + i) * 0.5;
+      const pa = 0.08 + Math.sin(t * 1.5 + i) * 0.04;
+      ctx.beginPath();
+      ctx.arc(px, py, pr, 0, Math.PI * 2);
+      ctx.fillStyle = i % 3 === 0 ? `rgba(239,68,68,${pa})` :
+                      i % 3 === 1 ? `rgba(59,130,246,${pa})` :
+                      `rgba(167,139,250,${pa * 0.7})`;
+      ctx.fill();
+    }
+
+    // Legend
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    const ly = h - 10;
+    ctx.fillStyle = 'rgba(239,68,68,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('tensiune ridicata', 15, ly+3);
+    ctx.fillStyle = 'rgba(59,130,246,0.7)'; ctx.beginPath(); ctx.arc(110, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('tensiune normala', 117, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

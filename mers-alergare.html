@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mersul si alergarea lenta — Descoperiri noi din cercetarea japoneza | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: antrenamentul cu mers in intervale (IWT) si alergarea lenta activeaza hipocampusul, reduc tensiunea arteriala si cheltuielile medicale. Cercetare de la Universitatea Shinshu, Japonia." />
+  <style>
+    :root{
+      --bg0:#060D08;
+      --bg1:#0A1410;
+      --panel:#10241Acc;
+      --card:#0E1F14;
+      --card2:#0B1A10;
+      --ink:#EAF5EE;
+      --muted:#A0C8AE;
+      --muted2:#6E9A7A;
+      --line:#1A3A28;
+      --glow:#22C55E;
+      --glow2:#F97316;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(34,197,94,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(249,115,22,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(34,211,153,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(34,197,94,.20);
+      background: linear-gradient(180deg, rgba(14,31,20,.75), rgba(10,20,16,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(34,197,94,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(249,115,22,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(34,211,153,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,245,238,.12);background:rgba(6,13,8,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,245,238,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,13,8,.30),rgba(6,13,8,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,245,238,.12);
+      background:linear-gradient(180deg,rgba(14,31,20,.75),rgba(11,26,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,245,238,.07);
+      background:linear-gradient(180deg,rgba(6,13,8,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,245,238,.10);
+      background:linear-gradient(180deg,rgba(6,13,8,.28),rgba(6,13,8,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,245,238,.12);color:rgba(234,245,238,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,245,238,.10);background:rgba(6,13,8,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(34,197,94,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.orange{border-color:var(--glow2);background:rgba(249,115,22,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(34,197,94,.22),rgba(34,197,94,.04));}
+    .stepBar.orange{background:linear-gradient(180deg,rgba(249,115,22,.22),rgba(249,115,22,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(34,197,94,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.orange{border-color:var(--glow2);background:rgba(249,115,22,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(34,197,94,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(34,197,94,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.orange{border-color:rgba(249,115,22,.25);background:rgba(249,115,22,.06);}
+    .alert.orange h4{color:var(--glow2);}
+
+    /* Comparison bars */
+    .compBar{margin-top:10px;}
+    .compRow{display:flex;align-items:center;gap:10px;margin-top:8px;}
+    .compLabel{font-size:11.5px;color:var(--muted);width:120px;flex:0 0 120px;text-align:right;}
+    .compTrack{flex:1;height:22px;background:rgba(6,13,8,.4);border-radius:11px;overflow:hidden;position:relative;}
+    .compFill{height:100%;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10.5px;font-weight:700;color:var(--ink);transition:width .8s ease;}
+    .compVal{font-family:var(--mono);font-size:10.5px;color:var(--muted2);width:48px;flex:0 0 48px;}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,245,238,.10);border-radius:16px;
+      background:rgba(6,13,8,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(34,197,94,.18);
+      background:linear-gradient(180deg,rgba(14,31,20,.80),rgba(10,20,16,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(34,197,94,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,245,238,.08);border-radius:12px;padding:9px 11px;background:rgba(6,13,8,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,245,238,.12);
+      background:linear-gradient(180deg,rgba(14,31,20,.75),rgba(11,26,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,245,238,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,245,238,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,245,238,.12);
+      background:linear-gradient(180deg,rgba(14,31,20,.75),rgba(11,26,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,245,238,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,245,238,.08);border-radius:11px;padding:7px 10px;background:rgba(6,13,8,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Interactive slider */
+    .sliderBox{
+      border:1px solid rgba(234,245,238,.10);border-radius:16px;padding:14px;
+      background:linear-gradient(180deg,rgba(6,13,8,.28),rgba(6,13,8,.55));margin-top:12px;
+    }
+    .sliderBox label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:8px;}
+    .sliderBox input[type=range]{
+      width:100%;accent-color:var(--glow);height:6px;cursor:pointer;
+    }
+    .sliderBox .sliderOut{
+      display:flex;justify-content:space-between;margin-top:6px;
+      font-family:var(--mono);font-size:12px;color:var(--glow);
+    }
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .grid2{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Mersul si alergarea lenta — descoperiri noi din Japonia
+          <small>NHK Medical Frontiers — Cum antrenamentul in intervale si jogging-ul usor iti protejeaza creierul, inima si longevitatea</small>
+        </h1>
+        <p class="sub">Cercetatorii de la <b>Universitatea Shinshu</b> din Japonia au studiat aproape <b>10.000 de participanti</b> si au demonstrat ca alternarea mersului lent cu mersul rapid (<b>Interval Walking Training</b>) reduce tensiunea arteriala, previne bolile cronice si scade cheltuielile medicale cu <b>20%</b>. In plus, <b>alergarea lenta</b> activeaza hipocampusul si genereaza neuroni noi de <b>1,7 ori</b> mai multi decat alergarea intensa.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Sport</b></span>
+          <span class="chip"><i class="i4"></i> <b>Fitness</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Context -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>De ce mersul pe jos e atat de important?</h2>
+          <p>Bolile netransmisibile (diabet, hipertensiune, boli cardiovasculare) ucid milioane de oameni anual. Solutia poate fi surprinzator de simpla.</p>
+        </div>
+        <span class="badge">CONTEXT</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~10.000</div>
+            <span class="u">participanti studiati la Univ. Shinshu</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">60 min</div>
+            <span class="u">mers rapid pe saptamana — doza minima</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">20%</div>
+            <span class="u">reducere cheltuieli medicale dupa 5 luni</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">+10%</div>
+            <span class="u">capacitate aeroba (VO2 peak) cu IWT</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Problema globala</h3>
+            <p>Stilul de viata sedentar contribuie la <b>diabet</b>, <b>hipertensiune</b> si <b>boli cardiovasculare</b> — principalele cauze de deces la nivel mondial. Organizatia Mondiala a Sanatatii recomanda cel putin <b>150 de minute</b> de activitate fizica moderata pe saptamana.</p>
+          </div>
+          <div class="mini">
+            <h3>Solutia japoneza</h3>
+            <p>Cercetatorii japonezi de la <b>Universitatea Shinshu</b> au dezvoltat metoda <b>Interval Walking Training (IWT)</b> — un program simplu care alterneaza mersul lent cu cel rapid, accesibil <b>tuturor varstelor</b>, inclusiv persoanelor de 80+ ani.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Concluzia cheie a cercetarii</h4>
+          <p>Imbunatatirea <b>conditiei fizice</b> (fitness aerob) este suficienta pentru a imbunatati o gama larga de <b>boli cronice legate de varsta</b>. Nu e nevoie de nimic special — doar de o <b>intensitate</b> si o <b>cantitate</b> corecta de exercitiu fizic.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: IWT Method -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Interval Walking Training (IWT) — metoda pas cu pas</h2>
+          <p>Antrenamentul cu mers in intervale: alternezi 3 minute de mers lent cu 3 minute de mers rapid, de 5 ori — total 30 de minute</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,197,94,.3);color:var(--glow);">METODA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Mers lent — 3 minute</h4>
+              <p>Incepi cu un <b>mers relaxat</b>, la un pas mic si confortabil. E momentul in care iti recapeti respiratia si te bucuri de peisaj. Mergi ca si cum te-ai plimba lejer.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot orange"></div><div class="stepBar orange"></div></div>
+            <div class="stepContent">
+              <h4>2. Mers rapid — 3 minute</h4>
+              <p>Cresti <b>viteza</b> semnificativ: pasul devine lung (<b>stride mare</b>), bratele se misca energic, iar respiratia se accelereaza. Trebuie sa simti ca <b>inima bate mai repede</b> si ca esti usor gafait. Calcaiul atinge primul pamantul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>3. Repetare = 1 set complet</h4>
+              <p>3 min lent + 3 min rapid = <b>1 set</b>. Se repeta de <b>5 ori</b> pentru un antrenament complet de <b>30 de minute</b>. Obiectivul saptamanal: minimum <b>60 de minute de mers rapid</b> in total.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot orange"></div><div class="stepBar orange"></div></div>
+            <div class="stepContent">
+              <h4>4. Monitorizare si date</h4>
+              <p>Echipa de la Shinshu a dezvoltat un sistem de <b>monitorizare continua</b>: fiecare participant poarta un pedometru special care masoara intensitatea, durata si frecventa antrenamentelor. Datele sunt <b>analizate de farmacisti si medici</b> pentru a ajusta programul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--ok);background:rgba(52,211,153,.15)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>5. Rezultate dupa 5 luni</h4>
+              <p>Dupa <b>5 luni</b> de antrenament IWT, participantii au inregistrat o <b>scadere a tensiunii diastolice</b>, cresterea fortei musculare, imbunatatirea rezistentei aerobe cu <b>10%</b> si o reducere a cheltuielilor medicale cu <b>20%</b> fata de grupul de control.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Slider -->
+        <div class="sliderBox">
+          <label>Simuleaza antrenamentul tau saptamanal (minute de mers rapid):</label>
+          <input type="range" id="iwtSlider" min="0" max="180" value="60" step="10">
+          <div class="sliderOut">
+            <span id="iwtMin">60 min/sapt.</span>
+            <span id="iwtEffect">Doza optima recomandata</span>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Fortul nostru este ca stim exact ce intensitate si ce cantitate de exercitiu produce un anumit efect. Am acumulat date de la aproape 10.000 de participanti.&raquo;
+          <cite>— Cercetator principal, Universitatea Shinshu</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: IWT Results -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Rezultatele IWT — beneficii demonstrate stiintific</h2>
+          <p>Imbunatatirea conditiei fizice duce la ameliorarea unui spectru larg de boli cronice</p>
+        </div>
+        <span class="badge" style="border-color:rgba(249,115,22,.3);color:var(--glow2);">REZULTATE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3>Tensiune arteriala</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">&#8595;</span>
+              <span class="l">Tensiunea diastolica a scazut semnificativ la grupul IWT. Riscul de AVC s-a redus substantial.</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3>Capacitate aeroba</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">+10%</span>
+              <span class="l">VO2 peak (consumul maxim de oxigen) — indicator cheie al rezistentei cardiorespiratorii</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3>Forta musculara</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--warn)">&#8593;</span>
+              <span class="l">Mersul rapid a crescut forta musculaturii picioarelor, facilitand activitatile zilnice</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison: IWT vs Normal Walking vs Sedentary -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="20" y="20" fill="#A0C8AE" font-size="11" font-weight="600">Comparatie intre cele 3 grupuri studiate</text>
+
+            <!-- Labels -->
+            <text x="20" y="55" fill="#EAF5EE" font-size="11" font-weight="600">IWT (intervale)</text>
+            <text x="20" y="105" fill="#EAF5EE" font-size="11" font-weight="600">Mers normal</text>
+            <text x="20" y="155" fill="#EAF5EE" font-size="11" font-weight="600">Sedentar</text>
+
+            <!-- IWT bar -->
+            <rect x="140" y="40" width="480" height="24" rx="12" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.2)" stroke-width="1"/>
+            <rect x="140" y="40" width="480" height="24" rx="12" fill="rgba(34,197,94,.25)"/>
+            <text x="630" y="57" fill="#22C55E" font-size="11" font-weight="700" text-anchor="end">100% beneficii</text>
+
+            <!-- Walking bar -->
+            <rect x="140" y="90" width="480" height="24" rx="12" fill="rgba(249,115,22,.08)" stroke="rgba(249,115,22,.2)" stroke-width="1"/>
+            <rect x="140" y="90" width="260" height="24" rx="12" fill="rgba(249,115,22,.25)"/>
+            <text x="410" y="107" fill="#F97316" font-size="11" font-weight="700" text-anchor="end">~54% beneficii</text>
+
+            <!-- Sedentary bar -->
+            <rect x="140" y="140" width="480" height="24" rx="12" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.2)" stroke-width="1"/>
+            <rect x="140" y="140" width="40" height="24" rx="12" fill="rgba(248,113,113,.25)"/>
+            <text x="192" y="157" fill="#F87171" font-size="11" font-weight="700">referinta</text>
+
+            <!-- Legend -->
+            <text x="20" y="195" fill="#6E9A7A" font-size="10">Studiu pe ~10.000 participanti | Universitatea Shinshu, Japonia | Durata: 5 luni</text>
+            <text x="20" y="212" fill="#6E9A7A" font-size="10">Beneficii = scor compozit: tensiune, VO2 peak, forta musculara, cheltuieli medicale</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Costuri medicale</h3>
+            <p>Dupa <b>5 luni</b> de IWT, cheltuielile medicale ale participantilor au scazut cu <b>20%</b> comparativ cu grupul de control. Imbunatatirea conditiei fizice reduce necesitatea tratamentelor pentru boli cronice.</p>
+          </div>
+          <div class="mini">
+            <h3>Boli cronice multiple</h3>
+            <p>Cresterea conditiei fizice (fitness aerob) a dus la ameliorarea simultana a mai multor <b>boli legate de varsta</b>: diabet, hipertensiune, colesterol ridicat — fara nicio interventie speciala suplimentara.</p>
+          </div>
+        </div>
+
+        <div class="quote orange">
+          &laquo;Daca iti cresti conditia fizica, o serie intreaga de boli cronice aparent diferite se imbunatatesc simultan. Asta e puterea exercitiului fizic.&raquo;
+          <cite>— Cercetator, Universitatea Shinshu</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Slow Running & Brain -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Alergarea lenta — cum iti protejeaza creierul</h2>
+          <p>Descoperire: alergarea usoara genereaza de 1,7 ori mai multi neuroni noi in hipocamp decat alergarea intensa</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">CREIER</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Ce e alergarea lenta?</h3>
+            <p>Alergarea lenta (<b>slow running</b>) se face la o viteza apropiata de mersul rapid, dar cu pasi de alergare. Diferenta: la mers, <b>un picior e mereu pe pamant</b>; la alergare, ambele picioare parasesc solul pe scurt. Cheia: sa alergi destul de incet incat sa poti <b>zambi</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce conteaza hipocampusul?</h3>
+            <p><b>Hipocampusul</b> este regiunea creierului responsabila de <b>memorie</b>, <b>invatare</b> si <b>orientare spatiala</b>. Se atrofiaza odata cu varsta, dar poate fi regenerat prin <b>neurogeneaza</b> — formarea de neuroni noi — stimulata de exercitiu fizic.</p>
+          </div>
+        </div>
+
+        <!-- Neuron comparison -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="25" fill="#A0C8AE" font-size="12" font-weight="600" text-anchor="middle">Neuroni noi in hipocamp (studiu pe sobolani, 30 min/zi)</text>
+
+            <!-- Sedentary -->
+            <rect x="50" y="60" width="120" height="140" rx="16" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.2)" stroke-width="1.5"/>
+            <text x="110" y="85" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Sedentar</text>
+            <text x="110" y="170" fill="#F87171" font-size="36" font-weight="800" text-anchor="middle">1.0x</text>
+            <text x="110" y="188" fill="#A0C8AE" font-size="10" text-anchor="middle">referinta</text>
+
+            <!-- Vigorous -->
+            <rect x="210" y="60" width="120" height="140" rx="16" fill="rgba(249,115,22,.06)" stroke="rgba(249,115,22,.2)" stroke-width="1.5"/>
+            <text x="270" y="85" fill="#F97316" font-size="11" font-weight="700" text-anchor="middle">Intens</text>
+            <text x="270" y="170" fill="#F97316" font-size="36" font-weight="800" text-anchor="middle">1.0x</text>
+            <text x="270" y="188" fill="#A0C8AE" font-size="10" text-anchor="middle">cortizol crescut</text>
+
+            <!-- Moderate -->
+            <rect x="370" y="60" width="120" height="140" rx="16" fill="rgba(251,191,36,.06)" stroke="rgba(251,191,36,.2)" stroke-width="1.5"/>
+            <text x="430" y="85" fill="#FBBF24" font-size="11" font-weight="700" text-anchor="middle">Moderat</text>
+            <text x="430" y="170" fill="#FBBF24" font-size="36" font-weight="800" text-anchor="middle">1.4x</text>
+            <text x="430" y="188" fill="#A0C8AE" font-size="10" text-anchor="middle">bun</text>
+
+            <!-- Light (slow running) -->
+            <rect x="530" y="50" width="130" height="155" rx="16" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.35)" stroke-width="2"/>
+            <text x="595" y="80" fill="#22C55E" font-size="11.5" font-weight="700" text-anchor="middle">Alergare lenta</text>
+            <text x="595" y="168" fill="#22C55E" font-size="42" font-weight="800" text-anchor="middle">1.7x</text>
+            <text x="595" y="192" fill="#22C55E" font-size="10" font-weight="600" text-anchor="middle">cel mai eficient!</text>
+
+            <!-- Arrow -->
+            <text x="350" y="235" fill="#6E9A7A" font-size="10" text-anchor="middle">Intensitatea creste &#8594; dar eficienta neurogenezei NU creste liniar</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Experiment pe oameni — RMN functional</h3>
+            <p>Participantii sanatosi au facut exercitii de <b>pedalare usoara</b> urmate de teste de memorie. <b>RMN-ul functional</b> a aratat activitate crescuta in hipocamp. Dupa alergare lenta, participantii au raspuns <b>mai rapid</b> la teste de decizie.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce excesul e contraproductiv?</h3>
+            <p>Exercitiul <b>intens</b> creste nivelul de <b>cortizol</b> (hormonul stresului), care are efecte <b>negative</b> asupra hipocampusului. Alergarea lenta mentine niveluri scazute de stres, permitand <b>neurogeneza optima</b> si stare de bine.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Exercitiul fizic activeaza simultan creierul si muschii — si chiar schimba starea de spirit. Exercitiul e un "mood changer" — activeaza circuitul neural al cortexului prefrontal si al hipocampusului.&raquo;
+          <cite>— Cercetator in neurofiziologia exercitiului</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cardiac Rehabilitation & Diabetes -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Reabilitare cardiaca si diabet — mersul ca medicina</h2>
+          <p>IWT revolutioneaza reabilitarea dupa boli de inima si imbunatateste controlul glicemiei la pacientii cu diabet de tip 2</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">MEDICAL</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Reabilitare cardiaca</h3>
+            <p>Multi pacienti cu boli de inima <b>reduc activitatea fizica</b> din teama. Dar cercetarea arata ca tocmai dupa o boala cardiaca, <b>exercitiul este esential</b>. Pacientii fara conditie fizica au un <b>prognostic mai prost</b>, chiar daca boala e tratata.</p>
+            <p style="margin-top:6px;">S-a masurat nivelul de <b>BNP</b> (peptida natriuretica de tip B) — un biomarker al insuficientei cardiace — care a scazut dupa programul IWT.</p>
+          </div>
+          <div class="mini">
+            <h3>Diabet de tip 2</h3>
+            <p>Studiul din <b>Danemarca</b> confirma: exercitiul fizic de <b>intensitate joasa</b> este ideal pentru pacientii cu diabet de tip 2, care de obicei <b>nu sunt obisnuiti cu sportul</b>. Glicemia a jeun a <b>scazut semnificativ</b>.</p>
+            <p style="margin-top:6px;">IWT este recomandat de <b>farmacisti</b> ca parte din prescriptia de sanatate — nu doar medicamente, ci si <b>exercitiu fizic structurat</b>.</p>
+          </div>
+        </div>
+
+        <div class="alert orange">
+          <h4>Farmacia ca centru de sanatate</h4>
+          <p>In Japonia, farmacistii au inceput sa <b>prescrie mersul in intervale</b> impreuna cu medicamentele. Datele pacientilor sunt monitorizate si folosite de medici la urmatoarea consultatie. Farmacia devine un <b>hub de sanatate</b>, nu doar un punct de distributie a pastilelor.</p>
+        </div>
+
+        <div class="quote orange">
+          &laquo;Mersul a inceput si m-am surprins — muschii s-au intarit si miscarea a devenit mult mai usoara. Sa te ridici de pe scaun, sa te deplasezi — totul e mai usor acum. Vreau sa traiesc sanatos cat mai mult.&raquo;
+          <cite>— Participant la programul IWT</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Commentary Panel -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comB').classList.toggle('hidden');this.querySelector('.comToggle').textContent=document.getElementById('comB').classList.contains('hidden')?'Arata':'Ascunde'">
+        <h2>Comentariu si interpretare</h2>
+        <span class="comToggle">Ascunde</span>
+      </div>
+      <div class="comBody" id="comB">
+        <div class="comNote">
+          <h4>De ce e revolutionara aceasta cercetare?</h4>
+          <p>IWT demonstreaza ca <b>nu tipul</b> de exercitiu conteaza, ci <b>intensitatea si cantitatea</b>. Nu e nevoie de sala, echipament sau antrenor — doar de o pereche de pantofi de sport si <b>30 de minute pe zi</b>. Programul e accesibil chiar si persoanelor de peste 80 de ani.</p>
+        </div>
+        <div class="comNote">
+          <h4>Alergarea lenta vs. mersul rapid</h4>
+          <p>Alergarea lenta (<b>slow running</b>) difera de mersul rapid prin faptul ca ambele picioare parasesc solul simultan. E <b>putin mai solicitanta</b> decat mersul, dar genereaza beneficii superioare pentru creier — inclusiv <b>neurogeneza in hipocamp</b> de 1,7x fata de exercitiul intens.</p>
+        </div>
+        <div class="comNote">
+          <h4>Exercitiul ca joaca — nu ca pedeapsa</h4>
+          <p>Cercetatorii subliniaza: <b>exercitiul fizic este, in esenta, joaca</b>. Cu cat abordam miscarea ca pe o activitate placuta, cu atat efectele sunt mai puternice. Exercitiul schimba starea emotionala — e un <b>"schimbator de dispozitie"</b> natural.</p>
+        </div>
+        <div class="comNote">
+          <h4>Viziunea pe termen lung</h4>
+          <p>Profesorul de la Shinshu doreste ca IWT sa devina <b>la fel de natural ca a bea apa sau a manca</b> — un obicei zilnic integrat in viata. Echipa studiaza si <b>comparatii interetnice</b> pentru a adapta programul la populatii din intreaga lume.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Protocol rapid -->
+    <div class="timeline">
+      <div class="tHead"><h2>Protocolul IWT — pe scurt</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow)">Pasul 1</div>
+          <div class="tDesc"><b>Mers lent</b> — 3 minute. Pas mic, relaxat, respiratie normala. Bucura-te de peisaj.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow2)">Pasul 2</div>
+          <div class="tDesc"><b>Mers rapid</b> — 3 minute. Stride lung, brate energice, inima bate repede. Usor gafait.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow)">Pasul 3</div>
+          <div class="tDesc"><b>Repeta</b> de 5 ori = 30 min total. Obiectiv: 60 min mers rapid pe saptamana.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--warn)">Cheia</div>
+          <div class="tDesc">Nu viteza absoluta conteaza, ci <b>diferenta de intensitate</b> intre faza lenta si cea rapida.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--teal)">Varsta</div>
+          <div class="tDesc">Programul a fost testat cu succes pe participanti de la <b>40 la 82 de ani</b>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slow Running Protocol -->
+    <div class="timeline">
+      <div class="tHead"><h2>Alergarea lenta — reguli</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--purple)">Viteza</div>
+          <div class="tDesc">Aproape egala cu <b>mersul rapid</b>. Daca nu poti zambi, incetineste.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--purple)">Forma</div>
+          <div class="tDesc"><b>Ambele picioare</b> parasesc solul (vs. mers = un picior mereu pe pamant).</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--purple)">Durata</div>
+          <div class="tDesc"><b>30 min/zi</b> suficiente pentru activarea hipocampusului si neurogeneza.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--ok)">Testul</div>
+          <div class="tDesc"><b>Testul zambetului:</b> daca poti zambi in timp ce alergi, intensitatea e corecta.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Sidebar Card -->
+    <article class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre cheie</h2></div>
+        <span class="badge">DATE</span>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow)">1,7x</h3>
+          <p>Mai multi <b>neuroni noi</b> in hipocamp prin alergare lenta vs. exercitiu intens (studiu pe sobolani)</p>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow2)">20%</h3>
+          <p>Reducerea <b>cheltuielilor medicale</b> dupa 5 luni de IWT vs. grup de control</p>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--warn)">+10%</h3>
+          <p>Crestere <b>VO2 peak</b> (capacitate aeroba maxima) in grupul IWT</p>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--teal)">82 ani</h3>
+          <p>Varsta celui mai in varsta participant activ care a raportat <b>transformari majore</b></p>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--purple)">60 min</h3>
+          <p>Minutele de <b>mers rapid pe saptamana</b> — doza minima pentru beneficii complete</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>IWT (Interval Walking Training)</dt>
+          <dd>Antrenament cu mers in intervale: alternare intre mers lent si mers rapid, in cicluri de 3+3 minute.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hipocamp</dt>
+          <dd>Regiune a creierului cruciala pentru memorie, invatare si orientare spatiala. Se poate regenera prin exercitiu fizic.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Neurogeneza</dt>
+          <dd>Formarea de neuroni noi in creier. Exercitiul fizic de intensitate joasa o stimuleaza mai eficient decat cel intens.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>VO2 peak</dt>
+          <dd>Consumul maxim de oxigen — indicator al capacitatii aerobe si al sanatatii cardiovasculare. Cu cat e mai mare, cu atat esti mai fit.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>BNP (Peptida natriuretica de tip B)</dt>
+          <dd>Hormon produs de inima in conditii de stres cardiac. Niveluri ridicate indica insuficienta cardiaca.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cortizol</dt>
+          <dd>Hormonul stresului. Nivele ridicate (produse de exercitiu intens) pot inhiba neurogeneza si dauna hipocampusul.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Tensiune diastolica</dt>
+          <dd>Presiunea din artere cand inima se relaxeaza intre batai. Valori mai mici = risc cardiovascular redus.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Slow Running</dt>
+          <dd>Alergare la viteza foarte mica, apropiata de mersul rapid, dar cu faza de zbor (ambele picioare in aer). Testul: trebuie sa poti zambi.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=z71aHZ4scMs" target="_blank">NHK Medical Frontiers — New Findings on Walking and Running</a> &middot; Infografic generat cu ajutorul AI
+  </footer>
+
+</div>
+
+<script>
+// ── IWT Slider ──
+(function(){
+  const sl = document.getElementById('iwtSlider');
+  const mn = document.getElementById('iwtMin');
+  const ef = document.getElementById('iwtEffect');
+  function upd(){
+    const v = +sl.value;
+    mn.textContent = v + ' min/sapt.';
+    if(v === 0) ef.textContent = 'Sedentar — risc crescut de boli cronice';
+    else if(v < 30) ef.textContent = 'Insuficient — beneficii minime';
+    else if(v < 60) ef.textContent = 'Bun — beneficii partiale';
+    else if(v <= 90) ef.textContent = 'Doza optima recomandata';
+    else if(v <= 120) ef.textContent = 'Excelent — beneficii maxime';
+    else ef.textContent = 'Foarte activ — mentenanta pe termen lung';
+    ef.style.color = v < 30 ? 'var(--bad)' : v < 60 ? 'var(--warn)' : 'var(--glow)';
+  }
+  sl.addEventListener('input', upd);
+  upd();
+})();
+
+// ── Hero Canvas: Running Figure with Motion Trails & Step Counter ──
+(function(){
+  const c = document.getElementById('heroCanvas');
+  const ctx = c.getContext('2d');
+  let W, H, dpr, frame = 0, steps = 0;
+
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    const r = c.getBoundingClientRect();
+    W = r.width; H = r.height;
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Trail particles
+  const trails = [];
+  class Trail {
+    constructor(x, y){
+      this.x = x; this.y = y;
+      this.vx = -Math.random() * 2 - 1;
+      this.vy = (Math.random() - 0.5) * 0.8;
+      this.life = 1;
+      this.r = Math.random() * 3 + 1.5;
+      this.green = Math.random() > 0.4;
+    }
+    update(){
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life -= 0.015;
+    }
+    draw(){
+      ctx.globalAlpha = this.life * 0.6;
+      ctx.fillStyle = this.green ? '#22C55E' : '#F97316';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r * this.life, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Ground line particles
+  const grounds = [];
+  for(let i = 0; i < 30; i++){
+    grounds.push({
+      x: Math.random() * 800,
+      y: 0,
+      w: Math.random() * 20 + 5,
+      speed: Math.random() * 1.5 + 0.5
+    });
+  }
+
+  function drawRunner(t){
+    const cx = W * 0.55;
+    const cy = H * 0.48;
+    const bounce = Math.sin(t * 0.12) * 4;
+    const armSwing = Math.sin(t * 0.12) * 25;
+    const legSwing = Math.sin(t * 0.12) * 30;
+
+    ctx.save();
+    ctx.translate(cx, cy + bounce);
+
+    // Body glow
+    ctx.shadowColor = '#22C55E';
+    ctx.shadowBlur = 20;
+
+    // Head
+    ctx.fillStyle = '#22C55E';
+    ctx.beginPath();
+    ctx.arc(0, -38, 10, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Body
+    ctx.strokeStyle = '#22C55E';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(0, -28);
+    ctx.lineTo(0, 5);
+    ctx.stroke();
+
+    // Arms
+    ctx.beginPath();
+    ctx.moveTo(0, -20);
+    const armRad = armSwing * Math.PI / 180;
+    ctx.lineTo(Math.cos(-Math.PI/2 + armRad) * 22, -20 + Math.sin(-Math.PI/2 + armRad) * 22);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, -20);
+    ctx.lineTo(Math.cos(-Math.PI/2 - armRad) * 22, -20 + Math.sin(-Math.PI/2 - armRad) * 22);
+    ctx.stroke();
+
+    // Legs
+    const legRad = legSwing * Math.PI / 180;
+    ctx.strokeStyle = '#F97316';
+    ctx.shadowColor = '#F97316';
+    ctx.beginPath();
+    ctx.moveTo(0, 5);
+    ctx.lineTo(Math.sin(legRad) * 26, 5 + Math.cos(legRad) * 26);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0, 5);
+    ctx.lineTo(Math.sin(-legRad) * 26, 5 + Math.cos(-legRad) * 26);
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    ctx.restore();
+
+    // Emit trail from feet
+    if(frame % 3 === 0){
+      trails.push(new Trail(cx - 10, cy + 30 + bounce));
+    }
+  }
+
+  function drawGround(){
+    const groundY = H * 0.78;
+    ctx.strokeStyle = 'rgba(34,197,94,0.15)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, groundY);
+    ctx.lineTo(W, groundY);
+    ctx.stroke();
+
+    // Ground dash particles
+    ctx.fillStyle = 'rgba(34,197,94,0.12)';
+    grounds.forEach(g => {
+      g.x -= g.speed;
+      if(g.x < -30) g.x = W + 10;
+      ctx.fillRect(g.x, groundY + 2 + g.y, g.w, 1.5);
+    });
+  }
+
+  function drawStepCounter(){
+    steps = Math.floor(frame / 6);
+    const display = String(steps).padStart(5, '0');
+
+    ctx.font = '700 11px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,200,174,0.5)';
+    ctx.fillText('PASI', 14, 22);
+
+    ctx.font = '700 28px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = '#22C55E';
+    ctx.shadowColor = '#22C55E';
+    ctx.shadowBlur = 12;
+    ctx.fillText(display, 14, 52);
+    ctx.shadowBlur = 0;
+
+    // BPM indicator
+    const bpm = 110 + Math.floor(Math.sin(frame * 0.02) * 15);
+    ctx.font = '700 11px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(249,115,22,0.5)';
+    ctx.fillText('BPM', 14, 78);
+    ctx.font = '700 20px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = '#F97316';
+    ctx.shadowColor = '#F97316';
+    ctx.shadowBlur = 8;
+    ctx.fillText(String(bpm), 14, 98);
+    ctx.shadowBlur = 0;
+
+    // Interval indicator
+    const phase = Math.floor(frame / 180) % 2;
+    const phaseName = phase === 0 ? 'MERS LENT' : 'MERS RAPID';
+    const phaseColor = phase === 0 ? '#22C55E' : '#F97316';
+    ctx.font = '700 10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = phaseColor;
+    ctx.shadowColor = phaseColor;
+    ctx.shadowBlur = 6;
+    const tw = ctx.measureText(phaseName).width;
+    ctx.fillText(phaseName, W - tw - 14, 24);
+    ctx.shadowBlur = 0;
+
+    // Phase progress bar
+    const phaseProgress = (frame % 180) / 180;
+    const barW = 80;
+    ctx.fillStyle = 'rgba(6,13,8,0.5)';
+    ctx.fillRect(W - barW - 14, 30, barW, 5);
+    ctx.fillStyle = phaseColor;
+    ctx.fillRect(W - barW - 14, 30, barW * phaseProgress, 5);
+  }
+
+  // Heartbeat line at bottom-right
+  function drawHeartbeat(){
+    const startX = W * 0.12;
+    const endX = W * 0.45;
+    const y = H * 0.9;
+    const offset = (frame * 2) % (endX - startX);
+
+    ctx.strokeStyle = 'rgba(34,197,94,0.2)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    for(let x = startX; x < endX; x += 1){
+      const px = x + offset;
+      const nx = (px - startX) % 60;
+      let dy = 0;
+      if(nx > 20 && nx < 24) dy = -12;
+      else if(nx > 24 && nx < 28) dy = 18;
+      else if(nx > 28 && nx < 32) dy = -8;
+      ctx.lineTo(x, y + dy);
+    }
+    ctx.stroke();
+  }
+
+  function animate(){
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+
+    drawGround();
+    drawHeartbeat();
+
+    // Update and draw trails
+    for(let i = trails.length - 1; i >= 0; i--){
+      trails[i].update();
+      trails[i].draw();
+      if(trails[i].life <= 0) trails.splice(i, 1);
+    }
+
+    ctx.globalAlpha = 1;
+    drawRunner(frame);
+    drawStepCounter();
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+</body>
+</html>

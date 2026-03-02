@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dementa: Descoperiri din studiul pe termen lung din Hisayama, Japonia — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: descoperiri revolutionare despre dementa din studiul de peste 60 de ani din Hisayama, Japonia. Factori de risc, biomarkeri, preventie si stil de viata." />
+  <style>
+    :root{
+      --bg0:#0A0714;
+      --bg1:#0E0B1A;
+      --panel:#181230cc;
+      --card:#140E28;
+      --card2:#110A22;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#2A1E48;
+      --glow:#A78BFA;
+      --glow2:#FBBF24;
+      --ok:#34D399;
+      --warn:#FB923C;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#C084FC;
+      --rose:#FDA4AF;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(167,139,250,.10), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(251,191,36,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(192,132,252,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(167,139,250,.20);
+      background: linear-gradient(180deg, rgba(20,14,40,.75), rgba(14,11,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(167,139,250,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(251,191,36,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(192,132,252,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,7,20,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--teal)} .i4{background:var(--ok)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,7,20,.30),rgba(10,7,20,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,7,20,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,7,20,.28),rgba(10,7,20,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,7,20,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(167,139,250,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.amber{border-color:var(--glow2);background:rgba(251,191,36,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(192,132,252,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,146,60,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.amber{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(192,132,252,.22),rgba(192,132,252,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,146,60,.22),rgba(251,146,60,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(167,139,250,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.amber{border-color:var(--glow2);background:rgba(251,191,36,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(167,139,250,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(167,139,250,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.amber{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.amber h4{color:var(--glow2);}
+
+    /* Brain diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,7,20,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(167,139,250,.18);
+      background:linear-gradient(180deg,rgba(20,14,40,.80),rgba(14,11,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(167,139,250,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(167,139,250,.25);background:rgba(167,139,250,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,7,20,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,7,20,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Risk slider */
+    .riskCalc{margin-top:14px;border:1px solid rgba(234,240,255,.10);border-radius:16px;padding:14px;background:rgba(10,7,20,.35);}
+    .riskCalc h4{margin:0 0 10px;font-size:13px;color:var(--glow2);}
+    .riskRow{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;color:var(--muted);}
+    .riskRow label{min-width:130px;font-size:11.5px;}
+    .riskRow input[type=checkbox]{accent-color:var(--glow);width:16px;height:16px;cursor:pointer;}
+    .riskRow select{
+      background:rgba(10,7,20,.6);border:1px solid rgba(234,240,255,.15);color:var(--ink);
+      padding:4px 8px;border-radius:8px;font-size:11px;cursor:pointer;
+    }
+    .riskResult{
+      margin-top:12px;padding:10px 14px;border-radius:12px;
+      border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.06);
+      font-size:13px;text-align:center;transition:all .3s ease;
+    }
+    .riskResult .rScore{font-size:32px;font-weight:760;display:block;margin:4px 0;letter-spacing:-.02em;}
+    .riskResult .rLabel{font-size:11px;color:var(--muted);display:block;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Dementa: Descoperiri noi dintr-un studiu de peste 60 de ani
+          <small>Studiul Hisayama, Japonia — Cel mai lung studiu epidemiologic din lume despre dementa, cu participarea a 9.000 de locuitori</small>
+        </h1>
+        <p class="sub">Din 1961, cercetatorii de la Universitatea Kyushu urmaresc sanatatea tuturor locuitorilor din Hisayama, un oras cu ~9.000 de locuitori din sudul Japoniei. Aceasta baza de date unica a generat un <b>model de predictie a riscului de dementa</b>, descoperiri despre <b>biomarkeri din sange</b> si dovezi ca <b>stilul de viata conteaza decisiv</b> in prevenire.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b> — Studiul Hisayama</span>
+          <span class="chip"><i class="i3"></i> <b>Neurologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Dementa</b> — preventie & predictie</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Studiul Hisayama -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul Hisayama: 60+ ani de date medicale</h2>
+          <p>Cel mai lung studiu epidemiologic continuu din lume — fiecare locuitor participa la controale anuale, oferind date cercetatorilor</p>
+        </div>
+        <span class="badge">STUDIU</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1961</div>
+            <span class="u">anul inceperii studiului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">9.000</div>
+            <span class="u">locuitori monitorizati</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">99%</div>
+            <span class="u">rata de participare la controale</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">14</div>
+            <span class="u">teste incluse in fiecare control</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>De ce Hisayama?</h3>
+            <p>Acest orasel din prefectura Fukuoka, sudul Japoniei, a fost ales pentru ca populatia sa este <b>reprezentativa demografic</b> pentru intreaga Japonie. Studiul a fost lansat initial pentru a cerceta <b>accidentul vascular cerebral (AVC)</b> — principala cauza de deces in Japonia la acea vreme.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce masoara controalele</h3>
+            <p>Fiecare rezident primeste anual: <b>analize de sange</b>, masurarea <b>tensiunii arteriale</b>, <b>electrocardiograme</b>, teste de <b>glicemie</b>, evaluari neurologice si urinare. Datele sunt predate voluntar cercetatorilor de la <b>Universitatea Kyushu</b>.</p>
+          </div>
+        </div>
+        <div class="quote amber">
+          &laquo;Bolile apar cand imbatranim, dar asta se intampla din cauza acumularii riscurilor si obiceiurilor din tinerete. Intr-un studiu scurt nu poti vedea asta. Doar pe termen lung intelegi cat de valoroase sunt datele cumulate.&raquo;
+          <cite>— Cercetator, Universitatea Kyushu</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Modelul de predictie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Modelul de predictie a riscului de dementa</h2>
+          <p>In 2021, echipa a creat un instrument bazat pe 9 intrebari simple care estimeaza riscul de dementa in urmatorii 10 ani</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--glow2);">PREDICTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Varsta si sexul</h4>
+              <p>Femeile au un risc de baza mai ridicat. Varsta avansata creste semnificativ scorul de risc.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>Hipertensiune arteriala</h4>
+              <p>Tensiunea crescuta cronica deterioreaza vasele de sange din creier, accelerand declinul cognitiv.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Diabet</h4>
+              <p>Diabetul de tip 2 afecteaza metabolismul cerebral si creste riscul de dementa de tip Alzheimer.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Indicele de masa corporala (IMC)</h4>
+              <p>Obezitatea, mai ales la varste tinere, se acumuleaza ca factor de risc. Studiul demonstreaza ca <b>supraponderalitatea la tinerete</b> are efecte negative pe termen lung, chiar daca greutatea scade odata cu imbatranirea.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>AVC, fumat si sedentarism</h4>
+              <p>Istoric de AVC, fumatul si perioadele lungi de stat pe scaun cresc scorul. <b>Dementa apare cand mai multi factori de risc se acumuleaza simultan.</b></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive risk calculator -->
+        <div class="riskCalc">
+          <h4>Calculator simplificat de risc (bazat pe modelul Hisayama)</h4>
+          <div class="riskRow">
+            <label for="rAge">Varsta:</label>
+            <select id="rAge" onchange="calcRisk()">
+              <option value="0">Sub 65</option>
+              <option value="1">65-74</option>
+              <option value="2">75-84</option>
+              <option value="3">85+</option>
+            </select>
+          </div>
+          <div class="riskRow">
+            <label for="rSex">Sex feminin:</label>
+            <input type="checkbox" id="rSex" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rBP">Hipertensiune:</label>
+            <input type="checkbox" id="rBP" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rDiab">Diabet:</label>
+            <input type="checkbox" id="rDiab" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rBMI">IMC crescut (obezitate):</label>
+            <input type="checkbox" id="rBMI" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rStroke">Istoric AVC:</label>
+            <input type="checkbox" id="rStroke" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rSmoke">Fumat:</label>
+            <input type="checkbox" id="rSmoke" onchange="calcRisk()">
+          </div>
+          <div class="riskRow">
+            <label for="rSed">Sedentarism:</label>
+            <input type="checkbox" id="rSed" onchange="calcRisk()">
+          </div>
+          <div class="riskResult" id="riskResult">
+            <span class="rLabel">Scor estimat de risc</span>
+            <span class="rScore" id="riskScore" style="color:var(--ok)">Scazut</span>
+            <span class="rLabel" id="riskMsg">Bifati factorii de risc pentru a vedea estimarea</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Indicii de avertizare -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Indicii timpurii: mersul, dintii si creierul</h2>
+          <p>Studiul Hisayama a descoperit semnale de avertizare care apar cu ani inainte de diagnosticul de dementa</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">DIAGNOSTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">Viteza de mers</h3>
+            <p>Cercetatorii au masurat viteza de mers a ~<b>100 de varstnici</b> fara dementa si i-au impartit in 4 grupuri. Cei cu mersul incetinit au incetat treptat sa iasa din casa, sa faca cumparaturi — iar <b>declinul cognitiv a progresat semnificativ</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--glow2)">Sanatatea dentara — 8020</h3>
+            <p>Ministerul Sanatatii din Japonia promoveaza campania <b>"8020"</b>: sa ai cel putin <b>20 de dinti la 80 de ani</b>. Studiul arata ca persoanele cu mai putini dinti au risc mai mare de dementa — nu pot manca alimente tari, scade aportul de proteine si capacitatea fizica.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">RMN cerebral</h3>
+            <p>Din scanarile RMN ale <b>113 persoane</b> care au dezvoltat dementa in urmatorii 5 ani, echipa a descoperit ca <b>atrofia cerebrala in zone specifice incepuse deja</b> inainte de aparitia simptomelor. Hipocampul (memorie) si zonele de limbaj au fost cele mai afectate.</p>
+          </div>
+        </div>
+
+        <!-- Brain SVG diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Brain outline -->
+            <ellipse cx="350" cy="130" rx="200" ry="110" fill="none" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
+            <ellipse cx="350" cy="130" rx="190" ry="100" fill="rgba(167,139,250,.03)" stroke="none"/>
+            <!-- Brain midline -->
+            <path d="M350,20 Q350,130 350,240" fill="none" stroke="rgba(167,139,250,.12)" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- Hippocampus region (highlighted) -->
+            <ellipse cx="310" cy="155" rx="40" ry="22" fill="rgba(248,113,113,.12)" stroke="rgba(248,113,113,.4)" stroke-width="1.5"/>
+            <text x="310" y="159" fill="#F87171" font-size="9" font-weight="600" text-anchor="middle">Hipocamp</text>
+            <!-- Language region -->
+            <ellipse cx="240" cy="100" rx="45" ry="25" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.35)" stroke-width="1.5"/>
+            <text x="240" y="104" fill="#FBBF24" font-size="9" font-weight="600" text-anchor="middle">Zona limbaj</text>
+            <!-- Frontal cortex -->
+            <ellipse cx="430" cy="90" rx="50" ry="28" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.25)" stroke-width="1.5"/>
+            <text x="430" y="94" fill="#A78BFA" font-size="9" font-weight="600" text-anchor="middle">Cortex frontal</text>
+            <!-- Temporal region -->
+            <ellipse cx="420" cy="155" rx="42" ry="22" fill="rgba(34,211,238,.08)" stroke="rgba(34,211,238,.25)" stroke-width="1.5"/>
+            <text x="420" y="159" fill="#22D3EE" font-size="9" font-weight="600" text-anchor="middle">Zona temporala</text>
+
+            <!-- Arrows showing shrinkage -->
+            <line x1="310" y1="178" x2="310" y2="210" stroke="rgba(248,113,113,.4)" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+            <text x="310" y="225" fill="#F87171" font-size="8.5" text-anchor="middle">Atrofie = pierdere memorie</text>
+            <line x1="240" y1="126" x2="240" y2="210" stroke="rgba(251,191,36,.4)" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+            <text x="240" y="225" fill="#FBBF24" font-size="8.5" text-anchor="middle">Atrofie = dificultati limbaj</text>
+
+            <!-- Legend -->
+            <rect x="490" y="195" width="180" height="70" rx="10" fill="rgba(10,7,20,.5)" stroke="rgba(234,240,255,.08)" stroke-width="1"/>
+            <text x="500" y="213" fill="#A0ACC8" font-size="9" font-weight="600">Scanari RMN — 113 pacienti</text>
+            <circle cx="505" cy="228" r="4" fill="rgba(248,113,113,.5)"/>
+            <text x="515" y="231" fill="#A0ACC8" font-size="8.5">Atrofie severa (rosu)</text>
+            <circle cx="505" cy="246" r="4" fill="rgba(251,191,36,.5)"/>
+            <text x="515" y="249" fill="#A0ACC8" font-size="8.5">Atrofie moderata (galben)</text>
+
+            <defs>
+              <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(248,113,113,.5)"/></marker>
+              <marker id="arrowAmber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(251,191,36,.5)"/></marker>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="alert">
+          <h4>Detectie inainte de simptome</h4>
+          <p>Datele arata ca persoanele care vor dezvolta dementa au deja <b>atrofie cerebrala vizibila la RMN</b> cu ani inainte de aparitia simptomelor clinice. Aceasta deschide posibilitatea <b>interventiei timpurii</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Biomarkeri sanguini -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Biomarkeri sanguini: viitorul diagnosticului</h2>
+          <p>De la punctia lombara dureroasa la un simplu test de sange — descoperiri revolutionare despre proteina GFAP</p>
+        </div>
+        <span class="badge" style="border-color:rgba(192,132,252,.3);color:var(--purple);">BIOMARKERI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Beta-amiloid</h3>
+            <p>Aceasta substanta se acumuleaza in creier de-a lungul <b>multor ani</b>, distruge celulele nervoase si <b>declanseaza boala Alzheimer</b>. Metoda clasica de detectie: <b>punctie lombara</b> (ac in zona lombara pentru a extrage lichid cefalorahidian) — procedura dureroasa si impracticabila pentru controale de rutina.</p>
+          </div>
+          <div class="mini">
+            <h3>Noua descoperire: GFAP</h3>
+            <p>Echipa a descoperit ca proteina <b>GFAP</b> (proteina acida fibrilara gliali) creste in sange cand celulele nervoase din creier sunt deteriorate. Spre deosebire de beta-amiloid, GFAP este legata <b>atat de Alzheimer cat si de dementa non-Alzheimer</b> — un marker universal mai util.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>Metoda veche: punctie lombara</h4>
+              <p>Ac introdus in zona lombara pentru a colecta lichid cefalorahidian. <b>Dureroasa</b>, nu se poate face in consultatii de rutina, si nu este acceptata de majoritatea pacientilor.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Metoda noua: test de sange (GFAP)</h4>
+              <p>Un simplu <b>test de sange</b> ar putea inlocui punctia lombara. Proteina GFAP detectabila in sange indica leziuni neuronale. <b>Rapid, nedureros, accesibil pentru controale de masa.</b></p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Viitorul: predictie combinata</h4>
+              <p>Cercetatorii vor combina <b>biomarkeri din sange</b> + <b>RMN cerebral</b> + <b>datele despre stilul de viata</b> pentru a crea un sistem complet de evaluare a riscului de dementa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Am gasit candidati promitatori. In viitor, cred ca vom putea combina biomarkerii din sange, RMN-ul cerebral si obiceiurile de viata pentru a evalua riscul de dementa si a ajuta la predictie.&raquo;
+          <cite>— Cercetator principal, Studiul Hisayama</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Stil de viata si preventie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Stilul de viata: cum previn dementa locuitorii din Hisayama</h2>
+          <p>Lectii practice din obiceiurile zilnice ale celor mai sanatosi varstnici din Japonia</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">PREVENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">400g</div>
+            <span class="u">legume zilnic — media in Hisayama</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">8020</div>
+            <span class="u">campania: 20 de dinti la 80 de ani</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1x/sapt</div>
+            <span class="u">gimnastica de grup — minim</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">60+ ani</div>
+            <span class="u">comunitate de "Genki Salon"</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Alimentatia</h3>
+            <p>Locuitorii consuma zilnic <b>~400g de legume</b>. Supa miso cu legume din abundenta este baza dietei. Alimente bogate in <b>vitamina A</b> (spanac, dovleac), <b>magneziu</b> (legume verzi) si <b>potasiu</b>. Se evita excesul de <b>prajeli</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--glow2)">Miscarea fizica</h3>
+            <p>Gimnastica de grup <b>cel putin o data pe saptamana</b>. Mersul pe jos ca activitate zilnica. Exemplu: o rezidenta de 89 de ani s-a reapucat de <b>bowling</b> dupa decesul sotului — exercitiu fizic placut care mentine sanatatea cognitiva si scade colesterolul.</p>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">Conexiunile sociale</h3>
+            <p>Interactiunea sociala este un factor protector puternic. Locuitorii participa la <b>"Genki Salon"</b> (intalniri de comunitate) de decenii. Cei care ajuta altii, poarta conversatii si mentin prietenii au un risc semnificativ mai mic de dementa.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Atitudinea pozitiva</h3>
+            <p><b>"Nimeni nu traieste cu scopul declarat de a preveni dementa"</b>, spun cercetatorii. Cheia este sa <b>traiesti o viata activa si plina de sens</b>. Pozitivitatea, generozitatea si mandria comunitara sunt elemente definitorii ale locuitorilor din Hisayama.</p>
+          </div>
+        </div>
+
+        <div class="alert amber">
+          <h4>Mesajul cercetatorilor</h4>
+          <p>&laquo;Cel mai important lucru este sa traiesti o viata activa zi de zi. De fapt, a trai sanatos este cea mai scurta cale catre prevenirea dementei.&raquo; Prevenirea dementei reduce si <b>povara asupra generatiilor tinere</b> in Japonia, unde ingrijirea varstnicilor este o provocare nationala.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii: ce putem face astazi</h2>
+          <p>Lectiile practice din 60 de ani de cercetare — aplicabile oricui, oriunde in lume</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">Dementa nu e inevitabila</h3>
+            <p>Factori ca hipertensiunea, diabetul, fumatul si sedentarismul sunt <b>modificabili</b>. Studiul Hisayama demonstreaza ca reducerea acestor factori scade semnificativ riscul de dementa pe termen lung.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--glow2)">Detectia timpurie devine posibila</h3>
+            <p>Combinatia de <b>RMN cerebral</b>, <b>biomarkeri sanguini (GFAP)</b> si <b>evaluarea stilului de viata</b> poate identifica riscul cu <b>ani inainte de aparitia simptomelor</b>, permitand interventii timpurii.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Stilul de viata conteaza cel mai mult</h3>
+            <p>Legume, miscare, conexiuni sociale, mentenanta dentara, atitudine pozitiva — <b>obiceiuri simple, consistente</b>, fara tratamente scumpe, aplicate de-a lungul intregii vieti.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Comunitatea protejeaza</h3>
+            <p>Legatura profunda dintre rezidenti si cercetatori, spiritul comunitar si mandria de a contribui la stiinta sunt ele insele <b>factori protectori</b>. Izolarea sociala este un risc major.</p>
+          </div>
+        </div>
+
+        <div class="quote amber" style="margin-top:14px;">
+          &laquo;Nimeni nu traieste spunandu-si ca o face pentru prevenirea dementei sau pentru sanatate. Dar, la final, daca reusim sa prevenim dementa, e suficient. Cel mai important este sa traiesti o viata activa — si a trai sanatos este calea cea mai scurta.&raquo;
+          <cite>— Cercetator principal, Studiul Hisayama</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia studiului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">1961</span><span class="tDesc">Lansarea studiului — <b>AVC-ul</b> era principala cauza de deces</span></div>
+        <div class="tEvent"><span class="tDate">ani '60</span><span class="tDesc">Primele controale: <b>fara facilitati</b>, setup temporar</span></div>
+        <div class="tEvent"><span class="tDate">decenii</span><span class="tDesc">Studiul se extinde: diabet, <b>dementa</b>, boli cronice</span></div>
+        <div class="tEvent"><span class="tDate">continuu</span><span class="tDesc">Se adauga <b>14 teste</b> pe persoana, rata de participare <b>99%</b></span></div>
+        <div class="tEvent"><span class="tDate">recent</span><span class="tDesc"><b>RMN cerebral</b> adaugat la controalele de rutina</span></div>
+        <div class="tEvent"><span class="tDate">recent</span><span class="tDesc">Descoperirea proteinei <b>GFAP</b> ca biomarker sanguin</span></div>
+        <div class="tEvent"><span class="tDate">2021</span><span class="tDesc"><b>Model de predictie</b> a riscului de dementa (9 intrebari)</span></div>
+        <div class="tEvent"><span class="tDate">viitor</span><span class="tDesc">Combinare: <b>sange + RMN + stil de viata</b> = predictie completa</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce e unic studiul?</h4>
+          <p>Cu <b>99% participare</b> si date de peste 60 de ani, Hisayama este cel mai complet studiu epidemiologic longitudinal. Majoritatea studiilor pe dementa dureaza 5-10 ani — aici datele acopera <b>generatii intregi</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Dementa in cifre globale</h4>
+          <p>Organizatia Mondiala a Sanatatii estimeaza ca peste <b>55 de milioane de persoane</b> traiesc cu dementa la nivel global, cu aproape <b>10 milioane de cazuri noi anual</b>. Alzheimer-ul reprezinta 60-70% din cazuri.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce Japonia?</h4>
+          <p>Japonia are cea mai <b>imbatranita populatie</b> din lume. Peste 28% din populatie are peste 65 de ani. Costul ingrijirii dementei este o provocare nationala — motiv pentru care cercetarea preventiei e prioritara.</p>
+        </div>
+        <div class="comNote">
+          <h4>GFAP vs. beta-amiloid</h4>
+          <p>Beta-amiloidul din sange nu s-a corelat cu dementa non-Alzheimer. GFAP insa <b>creste in ambele tipuri</b>, facandu-l un <b>biomarker universal</b> mai util pentru screening de masa.</p>
+        </div>
+        <div class="comNote">
+          <h4>Relatia dinti-dementa</h4>
+          <p>Nu e doar masticatia. Pierderea dintilor reduce <b>stimularea senzoriala cerebrala</b>, scade aportul de proteine (alimente moi vs. tari) si reduce activitatea sociala (jenare din cauza aspectului). Efectul este cumulativ.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Dementa</dt>
+          <dd>Sindrom caracterizat de deteriorarea progresiva a memoriei, gandirii si comportamentului. Nu e o boala specifica, ci un termen general pentru mai multe afectiuni (Alzheimer, dementa vasculara etc.).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Boala Alzheimer</dt>
+          <dd>Cea mai frecventa forma de dementa (60-70% din cazuri). Cauzata de acumularea proteinelor beta-amiloid si tau in creier, care distrug treptat celulele nervoase.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Beta-amiloid</dt>
+          <dd>Proteina care se acumuleaza in creier de-a lungul anilor, formand placi care distrug neuronii. Markerul principal al bolii Alzheimer.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>GFAP</dt>
+          <dd>Proteina acida fibrilara gliala — biomarker detectabil in sange care creste cand celulele nervoase din creier sunt deteriorate. Util pentru ambele tipuri de dementa.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hipocamp</dt>
+          <dd>Structura cerebrala esentiala pentru formarea si stocarea amintirilor. Prima zona afectata in boala Alzheimer — de aceea pierderea memoriei recente e primul simptom.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>RMN (IRM)</dt>
+          <dd>Imagistica prin rezonanta magnetica — tehnica care produce imagini detaliate ale creierului fara radiatii. Poate detecta atrofia cerebrala inainte de aparitia simptomelor.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Studiu epidemiologic longitudinal</dt>
+          <dd>Cercetare care urmareste aceeasi populatie pe o perioada indelungata (ani, decenii), colectand date periodic. Permite identificarea cauzelor si factorilor de risc pe termen lung.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Campania 8020</dt>
+          <dd>Initiativa japoneza de sanatate dentara: obiectivul ca fiecare persoana sa pastreze cel putin 20 de dinti naturali la varsta de 80 de ani, pentru o masticatie eficienta si sanatate generala.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=aHIkxroDc4g" target="_blank">NHK Medical Frontiers — Dementia: Long-Term Study Reveals New Findings</a> &middot;
+    Studiul Hisayama, Universitatea Kyushu, Japonia &middot;
+    Infografic explicativ in limba romana
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract brain with neural connections and fading pathways ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Create neuron nodes
+  const neurons = [];
+  const neuronCount = 55;
+  // Central brain shape — elliptical distribution
+  for(let i = 0; i < neuronCount; i++){
+    const angle = (i / neuronCount) * Math.PI * 2 + Math.random() * 0.5;
+    const rx = 0.28 + Math.random() * 0.15;
+    const ry = 0.25 + Math.random() * 0.18;
+    neurons.push({
+      x: 0.5 + Math.cos(angle) * rx,
+      y: 0.5 + Math.sin(angle) * ry,
+      r: 1.5 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.0008 + Math.random() * 0.0015,
+      type: i < 15 ? 'healthy' : i < 35 ? 'active' : 'fading',
+      connections: [],
+      dendrites: Math.floor(2 + Math.random() * 3)
+    });
+  }
+
+  // Create connections (synapses)
+  for(let i = 0; i < neurons.length; i++){
+    const n = neurons[i];
+    for(let j = i+1; j < neurons.length; j++){
+      const m = neurons[j];
+      const dx = n.x - m.x;
+      const dy = n.y - m.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 0.18 && n.connections.length < n.dendrites){
+        n.connections.push(j);
+      }
+    }
+  }
+
+  // Particles traveling along connections (neurotransmitters)
+  const particles = [];
+  for(let i = 0; i < 20; i++){
+    const nIdx = Math.floor(Math.random() * neurons.length);
+    const n = neurons[nIdx];
+    if(n.connections.length > 0){
+      particles.push({
+        from: nIdx,
+        to: n.connections[Math.floor(Math.random() * n.connections.length)],
+        progress: Math.random(),
+        speed: 0.003 + Math.random() * 0.005,
+        type: n.type
+      });
+    }
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Soft brain glow in background
+    const grd = ctx.createRadialGradient(w*0.5, h*0.5, 0, w*0.5, h*0.5, w*0.4);
+    grd.addColorStop(0, 'rgba(167,139,250,0.04)');
+    grd.addColorStop(0.6, 'rgba(167,139,250,0.02)');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,w,h);
+
+    // Draw connections (axons)
+    neurons.forEach((n, i) => {
+      n.connections.forEach(ci => {
+        const target = neurons[ci];
+        const px1 = n.x * w + Math.sin(t + n.phase) * 2;
+        const py1 = n.y * h + Math.cos(t * 1.2 + n.phase) * 2;
+        const px2 = target.x * w + Math.sin(t + target.phase) * 2;
+        const py2 = target.y * h + Math.cos(t * 1.2 + target.phase) * 2;
+
+        let alpha;
+        if(n.type === 'fading' || target.type === 'fading'){
+          alpha = 0.03 + Math.sin(t * 0.5 + i) * 0.015;
+        } else {
+          alpha = 0.06 + Math.sin(t * 2 + i) * 0.025;
+        }
+
+        ctx.beginPath();
+        // Curved connections for organic look
+        const mx = (px1 + px2) / 2 + Math.sin(t + i) * 8;
+        const my = (py1 + py2) / 2 + Math.cos(t * 0.7 + i) * 8;
+        ctx.moveTo(px1, py1);
+        ctx.quadraticCurveTo(mx, my, px2, py2);
+
+        if(n.type === 'healthy'){
+          ctx.strokeStyle = `rgba(167,139,250,${alpha})`;
+        } else if(n.type === 'active'){
+          ctx.strokeStyle = `rgba(251,191,36,${alpha})`;
+        } else {
+          ctx.strokeStyle = `rgba(110,122,154,${alpha * 0.5})`;
+        }
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      });
+    });
+
+    // Draw traveling particles (neurotransmitters)
+    particles.forEach(p => {
+      p.progress += p.speed;
+      if(p.progress > 1){
+        p.progress = 0;
+        const n = neurons[p.to];
+        if(n.connections.length > 0){
+          p.from = p.to;
+          p.to = n.connections[Math.floor(Math.random() * n.connections.length)];
+        }
+      }
+      const from = neurons[p.from];
+      const to = neurons[p.to];
+      const px = (from.x + (to.x - from.x) * p.progress) * w;
+      const py = (from.y + (to.y - from.y) * p.progress) * h;
+      const pr = 1.2;
+      ctx.beginPath();
+      ctx.arc(px, py, pr, 0, Math.PI * 2);
+      if(p.type === 'fading'){
+        ctx.fillStyle = `rgba(110,122,154,${0.15 + Math.sin(t * 3) * 0.05})`;
+      } else {
+        ctx.fillStyle = `rgba(251,191,36,${0.3 + Math.sin(t * 3 + p.progress * 6) * 0.15})`;
+      }
+      ctx.fill();
+    });
+
+    // Draw neurons (cell bodies)
+    neurons.forEach((n, i) => {
+      const px = n.x * w + Math.sin(t + n.phase) * 2;
+      const py = n.y * h + Math.cos(t * 1.2 + n.phase) * 2;
+      const pulse = 0.3 + Math.sin(t * 2 + n.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, n.r, 0, Math.PI * 2);
+
+      if(n.type === 'healthy'){
+        ctx.fillStyle = `rgba(167,139,250,${pulse + 0.2})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.4)';
+        ctx.shadowBlur = 10;
+      } else if(n.type === 'active'){
+        ctx.fillStyle = `rgba(251,191,36,${pulse + 0.1})`;
+        ctx.shadowColor = 'rgba(251,191,36,0.3)';
+        ctx.shadowBlur = 8;
+      } else {
+        // Fading neurons — dimmer, representing degeneration
+        const fade = 0.1 + Math.sin(t * 0.3 + n.phase) * 0.05;
+        ctx.fillStyle = `rgba(110,122,154,${fade})`;
+        ctx.shadowColor = 'rgba(110,122,154,0.1)';
+        ctx.shadowBlur = 4;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Brain outline — soft ellipse
+    ctx.beginPath();
+    ctx.ellipse(w * 0.5, h * 0.5, w * 0.38, h * 0.42, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(167,139,250,${0.06 + Math.sin(t) * 0.02})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.35)';
+    ctx.fillText('RETEA NEURALA', w * 0.5 - 36, h - 14);
+
+    // Legend dots
+    const ly = h - 30;
+    ctx.fillStyle = 'rgba(167,139,250,0.6)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.35)'; ctx.fillText('sanatos', 15, ly+3);
+    ctx.fillStyle = 'rgba(251,191,36,0.6)'; ctx.beginPath(); ctx.arc(65, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.35)'; ctx.fillText('activ', 72, ly+3);
+    ctx.fillStyle = 'rgba(110,122,154,0.4)'; ctx.beginPath(); ctx.arc(105, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.35)'; ctx.fillText('degradare', 112, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Risk calculator ── */
+function calcRisk(){
+  let score = 0;
+  const age = parseInt(document.getElementById('rAge').value);
+  score += age * 3;
+  if(document.getElementById('rSex').checked) score += 2;
+  if(document.getElementById('rBP').checked) score += 2;
+  if(document.getElementById('rDiab').checked) score += 3;
+  if(document.getElementById('rBMI').checked) score += 1;
+  if(document.getElementById('rStroke').checked) score += 4;
+  if(document.getElementById('rSmoke').checked) score += 2;
+  if(document.getElementById('rSed').checked) score += 2;
+
+  const el = document.getElementById('riskScore');
+  const msg = document.getElementById('riskMsg');
+  const box = document.getElementById('riskResult');
+
+  if(score <= 3){
+    el.textContent = 'Scazut';
+    el.style.color = 'var(--ok)';
+    box.style.borderColor = 'rgba(52,211,153,.3)';
+    box.style.background = 'rgba(52,211,153,.06)';
+    msg.textContent = 'Risc scazut — continuati cu obiceiurile sanatoase!';
+  } else if(score <= 7){
+    el.textContent = 'Moderat';
+    el.style.color = 'var(--glow2)';
+    box.style.borderColor = 'rgba(251,191,36,.3)';
+    box.style.background = 'rgba(251,191,36,.06)';
+    msg.textContent = 'Risc moderat — atentie la factorii modificabili (tensiune, miscare, dieta)';
+  } else if(score <= 12){
+    el.textContent = 'Ridicat';
+    el.style.color = 'var(--warn)';
+    box.style.borderColor = 'rgba(251,146,60,.3)';
+    box.style.background = 'rgba(251,146,60,.06)';
+    msg.textContent = 'Risc ridicat — discutati cu medicul despre monitorizare activa';
+  } else {
+    el.textContent = 'Foarte ridicat';
+    el.style.color = 'var(--bad)';
+    box.style.borderColor = 'rgba(248,113,113,.3)';
+    box.style.background = 'rgba(248,113,113,.06)';
+    msg.textContent = 'Risc foarte ridicat — evaluare medicala recomandata urgent';
+  }
+}
+</script>
+</body>
+</html>

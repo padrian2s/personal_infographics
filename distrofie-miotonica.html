@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Distrofia Miotonica — Speranta unui nou medicament descoperit in Japonia</title>
+  <meta name="description" content="Infografic interactiv: distrofia miotonica, mecanismul genetic CTG/CUG, descoperirea eritromicinei ca tratament si proteinele PPR din plante. Cercetarile Prof. Masayuki Nakamori, Universitatea Yamaguchi." />
+  <style>
+    :root{
+      --bg0:#060A14;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#6366F1;
+      --glow2:#FBBF24;
+      --ok:#34D399;
+      --warn:#F59E0B;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(99,102,241,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(251,191,36,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(99,102,241,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(99,102,241,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(251,191,36,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--ok)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(99,102,241,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.gold{border-color:var(--glow2);background:rgba(251,191,36,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(245,158,11,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(99,102,241,.22),rgba(99,102,241,.04));}
+    .stepBar.gold{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(99,102,241,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.gold{border-color:var(--glow2);background:rgba(251,191,36,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(99,102,241,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(99,102,241,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.hope{
+      border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);
+    }
+    .alert.hope h4{color:var(--glow2);}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(99,102,241,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(99,102,241,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(99,102,241,.25);background:rgba(99,102,241,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Funnel diagram */
+    .funnel{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:14px;}
+    .funnelStep{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 18px;text-align:center;position:relative;
+      border:1px solid rgba(234,240,255,.10);
+      background:rgba(6,8,16,.35);
+      font-size:12.5px;color:var(--muted);line-height:1.35;
+    }
+    .funnelStep:first-child{border-radius:14px 14px 0 0;}
+    .funnelStep:last-child{border-radius:0 0 14px 14px;}
+    .funnelStep .fNum{font-size:22px;font-weight:760;letter-spacing:-.02em;min-width:60px;text-align:right;}
+    .funnelArrow{
+      width:2px;height:14px;background:linear-gradient(180deg,rgba(99,102,241,.3),rgba(251,191,36,.3));
+      margin:0 auto;
+    }
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    /* Tooltip for medical terms */
+    .tt{
+      position:relative;border-bottom:1px dotted var(--glow);cursor:help;color:var(--ink);
+    }
+    .tt:hover::after{
+      content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+      background:var(--card);border:1px solid rgba(99,102,241,.3);border-radius:10px;padding:6px 10px;
+      font-size:11px;color:var(--muted);line-height:1.35;white-space:normal;width:max-content;max-width:260px;
+      z-index:100;box-shadow:var(--shadow);font-style:normal;
+    }
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Distrofia Miotonica — Speranta unui nou tratament
+          <small>Cum a descoperit un cercetator japonez ca un antibiotic comun poate combate o boala genetica incurabila</small>
+        </h1>
+        <p class="sub">Distrofia miotonica este o boala ereditara care slabeste progresiv muschii corpului si afecteaza inima, creierul si ochii. Nu exista tratament. Profesorul <b>Masayuki Nakamori</b> de la Universitatea Yamaguchi a descoperit ca <b>eritromicina</b>, un antibiotic deja folosit de decenii, poate bloca ARN-ul anormal care cauzeaza boala. Trialurile clinice confirma eficacitatea, iar o noua tehnologie cu <b>proteine PPR din plante</b> promite un tratament si mai precis.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Science View</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b> — Universitatea Yamaguchi</span>
+          <span class="chip"><i class="i3"></i> <b>Genetica</b> — mutatia CTG/CUG</span>
+          <span class="chip"><i class="i4"></i> <b>Distrofie</b> — boala neuromusculara</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este distrofia miotonica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este distrofia miotonica?</h2>
+          <p>O boala genetica ereditara care slabeste progresiv muschii si nu are, deocamdata, niciun tratament aprobat</p>
+        </div>
+        <span class="badge">BOALA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">10.000+</div>
+            <span class="u">pacienti estimati in Japonia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">1M+</div>
+            <span class="u">pacienti estimati la nivel mondial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">0</div>
+            <span class="u">tratamente aprobate pana acum</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">25 ani</div>
+            <span class="u">de la primele simptome la diagnostic (cazul Sato)</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Simptomele principale</h3>
+            <p>Boala <b>slabeste progresiv muschii</b> membrelor si fetei. Pacientii pierd treptat capacitatea de a se misca. Afecteaza de asemenea <b>inima</b> (risc cardiac), <b>creierul</b> (tulburari cognitive) si <b>ochii</b> (cataracta). Progresia nu poate fi oprita.</p>
+          </div>
+          <div class="mini">
+            <h3>Povestea lui Sato Mino</h3>
+            <p>Sato a observat primele schimbari acum <b>25 de ani</b>. A fost diagnosticata dupa inca 8 ani. A pierdut locul de munca dupa cutremurul din 2011. Fiul sau are aceeasi boala. Foloseste un <b>costum-robot HAL</b> care detecteaza semnale cerebrale si ajuta la mers.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Boala afecteaza intreaga familie</h4>
+          <p>Distrofia miotonica este <b>ereditara</b> — se transmite de la parinte la copil. Sato Mino si fiul sau sunt amandoi diagnosticati. Pacienta Nishino si fiica sa participa impreuna la trialuri clinice. Familii intregi traiesc cu aceasta boala fara speranta unui tratament.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Mecanismul genetic -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mecanismul genetic — cum apare boala</h2>
+          <p>O repetitie anormala a secventei CTG in ADN produce ARN toxic care blocheaza factorii de reglare ai organismului</p>
+        </div>
+        <span class="badge" style="border-color:rgba(99,102,241,.3);color:var(--glow);">GENETICA</span>
+      </div>
+      <div class="cardBody">
+
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. ADN-ul normal</h4>
+              <p>Genele sunt construite din secvente a <b>4 baze</b> (A, T, G, C) care impreuna formeaza corpul uman si toate functiile sale. Secventa <span class="tt" data-tip="Citozina-Timina-Guanina: cele 3 baze care se repeta anormal in distrofia miotonica">CTG</span> este prezenta si in ADN-ul persoanelor sanatoase, dar in numar limitat.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot gold"></div><div class="stepBar gold"></div></div>
+            <div class="stepContent">
+              <h4>2. Repetitia anormala CTG</h4>
+              <p>La pacientii cu distrofie miotonica, secventa <b>CTG se repeta de zeci sau sute de ori</b> mai mult decat in mod normal. Aceasta expansiune genetica este cauza bolii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Transcriptia in ARN anormal</h4>
+              <p>Cand ADN-ul este transcris in <span class="tt" data-tip="Acid ribonucleic: molecula care copiaza informatia genetica din ADN pentru a produce proteine">ARN</span>, secventa CTG devine <b>CUG</b>. Acest ARN cu repetitii CUG se <b>indoaie intr-o forma anormala</b>, ca un ac de par (<em>hairpin</em>).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--bad);background:rgba(248,113,113,.15)"></div><div class="stepBar" style="background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04))"></div></div>
+            <div class="stepContent">
+              <h4>4. Blocarea factorilor de reglare</h4>
+              <p>ARN-ul anormal <b>capteaza si blocheaza factorii de reglare</b> care sunt esentiali pentru functionarea normala a corpului. Acestia raman prinsi si nu-si mai pot indeplini rolul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--bad);background:rgba(248,113,113,.15)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>5. Declinul muscular si multi-organic</h4>
+              <p>Fara factorii de reglare, functia <b>musculara se deterioreaza progresiv</b>. Sunt afectate si inima, creierul si ochii. Cu stiinta actuala, parea imposibil de reparat o problema la nivel genetic.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG: DNA mechanism diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- ADN normal -->
+            <rect x="15" y="30" width="140" height="55" rx="12" fill="rgba(99,102,241,.10)" stroke="rgba(99,102,241,.30)" stroke-width="1.5"/>
+            <text x="85" y="52" fill="#6366F1" font-size="11" font-weight="700" text-anchor="middle">ADN Normal</text>
+            <text x="85" y="72" fill="#A0ACC8" font-size="9.5" text-anchor="middle">...CTG CTG CTG...</text>
+
+            <!-- Arrow 1 -->
+            <line x1="155" y1="57" x2="195" y2="57" stroke="rgba(99,102,241,.3)" stroke-width="2" marker-end="url(#arrowGlow)"/>
+
+            <!-- ADN mutat -->
+            <rect x="195" y="30" width="160" height="55" rx="12" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.30)" stroke-width="1.5"/>
+            <text x="275" y="52" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">ADN Mutat</text>
+            <text x="275" y="72" fill="#A0ACC8" font-size="9.5" text-anchor="middle">CTG CTG CTG CTG CTG...</text>
+
+            <!-- Arrow 2 (down) -->
+            <line x1="275" y1="85" x2="275" y2="120" stroke="rgba(167,139,250,.3)" stroke-width="2" marker-end="url(#arrowPurple)"/>
+            <text x="290" y="108" fill="#A78BFA" font-size="8.5">transcriptie</text>
+
+            <!-- ARN anormal -->
+            <rect x="195" y="120" width="160" height="55" rx="12" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.30)" stroke-width="1.5"/>
+            <text x="275" y="142" fill="#FBBF24" font-size="11" font-weight="700" text-anchor="middle">ARN Anormal</text>
+            <text x="275" y="160" fill="#A0ACC8" font-size="9.5" text-anchor="middle">CUG CUG CUG (hairpin)</text>
+
+            <!-- Arrow 3 -->
+            <line x1="355" y1="147" x2="395" y2="147" stroke="rgba(248,113,113,.3)" stroke-width="2" marker-end="url(#arrowRed)"/>
+            <text x="375" y="140" fill="#F87171" font-size="8.5" text-anchor="middle">blocaj</text>
+
+            <!-- Factori blocati -->
+            <rect x="395" y="120" width="155" height="55" rx="12" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.20)" stroke-width="1.5"/>
+            <text x="472" y="142" fill="#F87171" font-size="10.5" font-weight="600" text-anchor="middle">Factori de reglare</text>
+            <text x="472" y="158" fill="#A0ACC8" font-size="9.5" text-anchor="middle">BLOCATI - nu functioneaza</text>
+
+            <!-- Rezultat -->
+            <rect x="560" y="120" width="125" height="55" rx="12" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.15)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="622" y="142" fill="#F87171" font-size="10" font-weight="600" text-anchor="middle">Declin muscular</text>
+            <text x="622" y="158" fill="#A0ACC8" font-size="9" text-anchor="middle">inima, creier, ochi</text>
+            <line x1="550" y1="147" x2="560" y2="147" stroke="rgba(248,113,113,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- Eritromicina (treatment) -->
+            <rect x="430" y="30" width="150" height="55" rx="12" fill="rgba(52,211,153,.10)" stroke="rgba(52,211,153,.30)" stroke-width="1.5"/>
+            <text x="505" y="50" fill="#34D399" font-size="11" font-weight="700" text-anchor="middle">Eritromicina</text>
+            <text x="505" y="68" fill="#A0ACC8" font-size="9.5" text-anchor="middle">blocheaza ARN anormal</text>
+
+            <!-- Arrow from Eritromicina to ARN -->
+            <line x1="480" y1="85" x2="340" y2="125" stroke="rgba(52,211,153,.35)" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowGreen)"/>
+            <text x="420" y="100" fill="#34D399" font-size="8.5">neutralizeaza</text>
+
+            <!-- PPR protein -->
+            <rect x="590" y="30" width="100" height="55" rx="12" fill="rgba(34,211,238,.10)" stroke="rgba(34,211,238,.30)" stroke-width="1.5"/>
+            <text x="640" y="50" fill="#22D3EE" font-size="10.5" font-weight="700" text-anchor="middle">Proteine PPR</text>
+            <text x="640" y="68" fill="#A0ACC8" font-size="9" text-anchor="middle">legare puternica</text>
+
+            <!-- Arrow defs -->
+            <defs>
+              <marker id="arrowGlow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(99,102,241,.5)"/></marker>
+              <marker id="arrowPurple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(167,139,250,.5)"/></marker>
+              <marker id="arrowRed" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(248,113,113,.5)"/></marker>
+              <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(52,211,153,.5)"/></marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Descoperirea eritromicinei -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Descoperirea: eritromicina ca tratament</h2>
+          <p>Prof. Nakamori a investigat zeci de mii de medicamente existente si a descoperit ca un antibiotic comun poate bloca ARN-ul anormal</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--glow2);">DESCOPERIRE</span>
+      </div>
+      <div class="cardBody">
+
+        <div class="grid2">
+          <div class="mini">
+            <h3>Strategia: drug repurposing</h3>
+            <p>Dezvoltarea unui medicament nou dureaza <b>decenii</b>. Prof. Nakamori a ales o abordare diferita: a cautat <b>printre medicamentele existente</b>, deja testate pentru siguranta, un candidat care ar putea actiona asupra ARN-ului anormal.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce eritromicina?</h3>
+            <p><span class="tt" data-tip="Antibiotic macrolid folosit de decenii impotriva infectiilor bacteriene, in special pneumonia">Eritromicina</span> este un antibiotic care actioneaza <b>direct asupra ARN-ului</b> pentru a opri cresterea bacteriana. Aceasta proprietate unica o face candidatul ideal pentru a bloca ARN-ul anormal CUG din distrofia miotonica.</p>
+          </div>
+        </div>
+
+        <!-- Funnel: drug selection process -->
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Pas 1: Zeci de mii de substante investigate</h4>
+              <p>Nakamori a pornit de la intreaga baza de date de medicamente si compusi existenti.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot gold"></div><div class="stepBar gold"></div></div>
+            <div class="stepContent">
+              <h4>Pas 2: ~1.000 care se leaga de ARN</h4>
+              <p>A selectat doar substante cu capacitatea de a se lega de <span class="tt" data-tip="Acid ribonucleic: molecula care copiaza informatia genetica din ADN">ARN</span>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Pas 3: ~200 cu siguranta verificata</h4>
+              <p>A pastrat doar pe cele a caror siguranta fusese deja verificata intr-o oarecare masura.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Pas 4: 20 de compusi fara efecte secundare grave</h4>
+              <p>Filtrare finala: doar substantele <b>potrivite pentru uz indelungat</b>, fara efecte secundare semnificative.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--glow2);background:rgba(251,191,36,.25)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Rezultat: Eritromicina</h4>
+              <p>Fiecare din cei 20 de candidati a fost testat pe celule cu distrofie miotonica, cultivate <b>2 zile</b>. Un reactiv special care detecteaza ARN-ul anormal a fost aplicat. La microscop, <b>eritromicina a eliminat complet punctele rosii</b> (ARN anormal).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">10.000+</div>
+            <span class="u">substante analizate initial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">1.000</div>
+            <span class="u">se leaga de ARN</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">200</div>
+            <span class="u">cu siguranta verificata</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">20</div>
+            <span class="u">candidati finali testati</span>
+          </div>
+        </div>
+
+        <div class="quote gold">
+          &laquo;Incerc din rasputeri sa fac cercetare care sa ajute pacientii. Imi voi dedica viata pentru a pune capat suferintei lor.&raquo;
+          <cite>— Prof. Masayuki Nakamori, Universitatea Yamaguchi</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Experimente pe soareci si trialuri clinice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Trialurile clinice: de la soareci la pacienti</h2>
+          <p>Experimentele pe animale si apoi pe 30 de pacienti in 3 spitale au confirmat eficacitatea eritromicinei</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">STUDII CLINICE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Experimente pe soareci</h3>
+            <p>Soarecii cu distrofie miotonica aveau un procent semnificativ mai mic de <b>ARN normal</b> fata de cei sanatosi. Cand li s-a administrat eritromicina, <b>cu cat doza era mai mare, cu atat procentul de ARN normal crestea</b>. Efectul terapeutic a fost confirmat.</p>
+          </div>
+          <div class="mini">
+            <h3>Design-ul trialului</h3>
+            <p>Trial clinic in <b>3 spitale</b>, condus de <b>Dr. Hiroto Takada</b> (Spitalul National Arai). <b>30 de pacienti</b> impartiti in 3 grupuri: unii au primit eritromicina, altii <span class="tt" data-tip="Substanta inactiva, fara efect terapeutic, folosita ca referinta in studii clinice">placebo</span>. <b>Nici pacientii, nici medicii</b> nu stiau cine primeste ce (studiu dublu-orb).</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">30</div>
+            <span class="u">pacienti in trial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">3</div>
+            <span class="u">spitale implicate</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">3</div>
+            <span class="u">grupuri de testare</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">dublu-orb</div>
+            <span class="u">design randomizat</span>
+          </div>
+        </div>
+
+        <div class="alert hope">
+          <h4>Rezultate promitatoare</h4>
+          <p>Pacientii care au primit eritromicina au aratat o <b>crestere clara a ARN-ului normal</b>. S-au observat imbunatatiri semnificative si in <b>alti indicatori clinici</b>. Este prima data cand un medicament demonstreaza eficacitate impotriva distrofiei miotonice.</p>
+        </div>
+
+        <div class="quote">
+          &laquo;Aceasta cercetare straluceste cu adevarat ca o raza de speranta pentru pacientii care renuntasera la ideea de a gasi vreodata un tratament.&raquo;
+          <cite>— NHK Science View</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Proteinele PPR - viitorul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Proteinele PPR — viitorul tratamentului</h2>
+          <p>O tehnologie inovatoare bazata pe proteine din plante promite un tratament mult mai precis, care poate fi proiectat sa tinteasca orice ARN</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Limitarile eritromicinei</h3>
+            <p>Eritromicina se leaga de ARN-ul anormal <b>relativ slab</b> — ca doua maini impletite care se pot desface. Nakamori a cautat o molecula care sa se lege <b>mult mai puternic</b> de tinta, ca o mana care se inchide strans in jurul celeilalte.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce sunt proteinele PPR?</h3>
+            <p>Planta <span class="tt" data-tip="Arabidopsis thaliana — planta model in biologie, raspandita pe continentul eurasiatic">Thale cress</span> (Arabidopsis) contine peste <b>400 tipuri de proteine PPR</b>. Acestea joaca un rol esential in <b>fotosinteza</b> si se leaga puternic de ARN, reglandu-i activitatea.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Universitatea Kyushu decodeaza PPR</h4>
+              <p>Cercetatorii au descoperit cum <b>secventa de aminoacizi</b> a proteinelor PPR determina la care baza de ARN se leaga. Un veritabil <b>cod secret</b> al legarii proteinelor de ARN.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Yusuke Yagi: de la cercetare la startup</h4>
+              <p><b>Yusuke Yagi</b>, cercetator-cheie, dezvolta acum aplicatii practice ale PPR. Echipa sa a creat variante modificate ale plantei Thale cress si a extras ARN pentru a studia relatia PPR-ARN.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot gold"></div><div class="stepBar gold"></div></div>
+            <div class="stepContent">
+              <h4>PPR proiectat impotriva CUG</h4>
+              <p>La cererea Prof. Nakamori, echipa lui Yagi a creat o <b>gena PPR care tinteste specific secventa CUG</b> a ARN-ului anormal. A fost administrata soarecilor cu distrofie miotonica.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--glow2);background:rgba(251,191,36,.25)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Rezultat: crestere semnificativa a ARN-ului normal</h4>
+              <p>Soarecii tratati cu PPR au aratat o <b>crestere semnificativa a procentajului de ARN normal</b>. Tehnologia PPR poate fi <b>proiectata sa tinteasca ORICE ARN</b>, deschizand usa tratarii si altor boli incurabile, inclusiv <b>SLA (scleroza laterala amiotrofica)</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert hope">
+          <h4>Potential revolutionar</h4>
+          <p>Proteinele PPR pot fi proiectate sa se lege de <b>orice secventa de ARN tinta</b>. Aceasta inseamna ca tehnologia ar putea fi aplicata la <b>multe alte boli incurabile</b> mediate de ARN anormal, inclusiv boli neurologice precum SLA. O tehnologie <b>descoperita si dezvoltata in Japonia</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Commentary panel -->
+    <div class="comPanel" style="grid-column:1;">
+      <div class="comHeader" onclick="this.nextElementSibling.classList.toggle('hidden')">
+        <h2>Analiza si perspectiva</h2>
+        <button class="comToggle">afiseaza / ascunde</button>
+      </div>
+      <div class="comBody">
+        <div class="comNote">
+          <h4>Drug repurposing: o strategie inteligenta</h4>
+          <p>Prof. Nakamori a ales sa caute printre medicamentele existente in loc sa dezvolte un compus nou. Aceasta abordare poate economisi <b>10-15 ani de dezvoltare</b> si milioane de dolari, deoarece siguranta substantelor este deja verificata. Un model care ar putea fi aplicat si altor boli rare.</p>
+        </div>
+        <div class="comNote">
+          <h4>De la antibiotic la tratament genetic</h4>
+          <p>Eritromicina, folosita de decenii pentru infectii precum pneumonia, ar putea primi o a doua viata ca tratament pentru o boala genetica. Este un exemplu remarcabil de <b>serendipitate stiintifica</b> — un medicament comun cu un potential neasteptat.</p>
+        </div>
+        <div class="comNote">
+          <h4>Strategia duala: eritromicina + PPR</h4>
+          <p>Planul este de a trata pacientii cu eritromicina <b>cat mai curand posibil</b> (obiectiv: 3 ani) in timp ce tehnologia PPR, mult mai precisa dar inca in stadiul animal, este perfectionata. O abordare pragmatica: <b>ajutor imediat + solutie pe termen lung</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Impactul pentru bolile rare</h4>
+          <p>Peste <b>7.000 de boli rare</b> nu au tratament. Daca tehnologia PPR se confirma, principiul de a <b>proiecta proteine care tintesc orice ARN</b> ar putea revolutiona tratarea bolilor genetice, nu doar a distrofiei miotonice.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- KPIs -->
+    <article class="card">
+      <div class="cardHeader">
+        <div><h2>Cifrele cheie</h2></div>
+        <span class="badge">SINTEZA</span>
+      </div>
+      <div class="cardBody" style="display:flex;flex-direction:column;gap:12px;">
+        <div class="mini">
+          <h3 style="color:var(--glow2)">Obiectiv: 3 ani</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow2)">~3</span>
+            <span class="l">ani pana la disponibilitatea eritromicinei pentru pacienti</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--glow)">Rata de filtrare</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow)">99.8%</span>
+            <span class="l">din substante eliminate in procesul de selectie</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--ok)">Proteine PPR</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--ok)">400+</span>
+            <span class="l">tipuri de proteine PPR in planta Thale cress</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--teal)">Design programabil</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--teal)">&infin;</span>
+            <span class="l">PPR poate fi proiectat sa tinteasca orice secventa ARN</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie cercetare</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--muted2)">~2000</div>
+          <div class="tDesc"><b>Sato Mino</b> observa primele simptome ale bolii</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--muted2)">~2008</div>
+          <div class="tDesc"><b>Diagnostic confirmat</b> pentru Sato (dupa 8 ani de simptome)</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">2011</div>
+          <div class="tDesc"><b>Cutremurul din estul Japoniei</b> — Sato pierde locul de munca, paraseste trupa de teatru</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow)">cercetare</div>
+          <div class="tDesc">Nakamori <b>investigheaza zeci de mii</b> de substante, identifica 20 de candidati</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow2)">descop.</div>
+          <div class="tDesc"><b>Eritromicina</b> elimina ARN-ul anormal in experimente pe celule</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--ok)">animale</div>
+          <div class="tDesc">Confirmare pe <b>soareci</b>: doza mai mare = mai mult ARN normal</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--ok)">trial</div>
+          <div class="tDesc"><b>30 pacienti</b> in 3 spitale — rezultate promitatoare dublu-orb</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--teal)">PPR</div>
+          <div class="tDesc">Univ. Kyushu decodeaza <b>proteinele PPR</b>; colaborare cu Nakamori</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow2)">obiectiv</div>
+          <div class="tDesc">Eritromicina disponibila pacientilor in <b>~3 ani</b>; PPR in stadiu animal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Distrofie miotonica</dt>
+          <dd>Boala genetica ereditara care cauzeaza slabiciune musculara progresiva si afecteaza multiple organe (inima, creier, ochi).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>CTG / CUG</dt>
+          <dd>Secvente de baze (Citozina-Timina-Guanina / Citozina-Uracil-Guanina) care se repeta anormal in ADN-ul / ARN-ul pacientilor.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ARN (Acid Ribonucleic)</dt>
+          <dd>Molecula care copiaza informatia genetica din ADN si o transporta pentru a produce proteine. In distrofia miotonica, ARN-ul capata o forma anormala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Eritromicina</dt>
+          <dd>Antibiotic macrolid folosit de decenii pentru infectii bacteriene. Actioneaza asupra ARN-ului, ceea ce il face candidat pentru tratarea distrofiei miotonice.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Drug repurposing</dt>
+          <dd>Strategia de a gasi noi utilizari terapeutice pentru medicamente deja aprobate, economisind timp si costuri de dezvoltare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Proteine PPR</dt>
+          <dd>Proteine din plante (Pentatricopeptide Repeat) care se leaga puternic de ARN. Pot fi proiectate sa tinteasca secvente specifice de ARN.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Studiu dublu-orb</dt>
+          <dd>Design de trial clinic in care nici pacientii, nici medicii nu stiu cine primeste medicamentul activ si cine primeste placebo, pentru a elimina prejudecatile.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Placebo</dt>
+          <dd>Substanta inactiva administrata in studii clinice pentru comparatie cu medicamentul testat.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hairpin (ac de par)</dt>
+          <dd>Structura anormala pe care o capata ARN-ul cu repetitii CUG, care apoi capteaza si blocheaza factorii de reglare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>SLA (Scleroza Laterala Amiotrofica)</dt>
+          <dd>Boala neurodegenerativa progresiva care afecteaza neuronii motori. Mentionata ca potentiala tinta pentru tehnologia PPR.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    Infografic generat din <a href="https://www.youtube.com/watch?v=5Xc7bMvMfh4" target="_blank" rel="noopener">NHK Science View — Shining Hope for Myotonic Dystrophy</a>.
+    Cercetare: Prof. Masayuki Nakamori, Universitatea Yamaguchi, Japonia. Nu inlocuieste sfatul medical profesionist.
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── DNA Double Helix with Gene Markers ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  const dpr = window.devicePixelRatio || 1;
+
+  function resize(){
+    const r = c.getBoundingClientRect();
+    W = r.width; H = r.height;
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // CTG marker positions (normalized 0-1 along the helix)
+  const markers = [0.15, 0.28, 0.35, 0.42, 0.55, 0.62, 0.72, 0.85];
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W / 2;
+    const cy = H / 2;
+    const amplitude = Math.min(W * 0.28, 90);
+    const helixLen = H * 0.85;
+    const startY = (H - helixLen) / 2;
+    const basePairs = 28;
+    const speed = 0.012;
+
+    // Draw connecting rungs first (behind strands)
+    for(let i = 0; i < basePairs; i++){
+      const frac = i / basePairs;
+      const y = startY + frac * helixLen;
+      const phase = frac * Math.PI * 4 + t;
+      const x1 = cx + Math.sin(phase) * amplitude;
+      const x2 = cx + Math.sin(phase + Math.PI) * amplitude;
+      const depth = Math.cos(phase);
+
+      // Only draw when rung is roughly visible (not edge-on)
+      if(Math.abs(depth) < 0.85){
+        const alpha = 0.06 + Math.abs(depth) * 0.08;
+
+        // Check if this is a CTG marker position
+        const isMarker = markers.some(m => Math.abs(frac - m) < 0.025);
+
+        if(isMarker){
+          // CTG repeat markers — gold glow
+          ctx.strokeStyle = `rgba(251,191,36,${alpha * 3.5})`;
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.moveTo(x1, y);
+          ctx.lineTo(x2, y);
+          ctx.stroke();
+
+          // Glow dot at center
+          const mx = (x1 + x2) / 2;
+          const grad = ctx.createRadialGradient(mx, y, 0, mx, y, 8);
+          grad.addColorStop(0, `rgba(251,191,36,${0.4 + Math.sin(t * 2 + i) * 0.15})`);
+          grad.addColorStop(1, 'rgba(251,191,36,0)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(mx, y, 8, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Label
+          ctx.font = '8px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+          ctx.fillStyle = `rgba(251,191,36,${0.5 + Math.sin(t * 2 + i) * 0.2})`;
+          ctx.textAlign = 'center';
+          ctx.fillText('CTG', mx, y - 8);
+        } else {
+          ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(x1, y);
+          ctx.lineTo(x2, y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw the two helix strands
+    for(let strand = 0; strand < 2; strand++){
+      const phaseOffset = strand * Math.PI;
+      ctx.beginPath();
+      for(let i = 0; i <= 200; i++){
+        const frac = i / 200;
+        const y = startY + frac * helixLen;
+        const phase = frac * Math.PI * 4 + t + phaseOffset;
+        const x = cx + Math.sin(phase) * amplitude;
+        const depth = Math.cos(phase);
+
+        if(i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      const strandColor = strand === 0
+        ? 'rgba(99,102,241,0.55)'
+        : 'rgba(167,139,250,0.45)';
+      ctx.strokeStyle = strandColor;
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Glow effect
+      ctx.strokeStyle = strand === 0
+        ? 'rgba(99,102,241,0.12)'
+        : 'rgba(167,139,250,0.10)';
+      ctx.lineWidth = 8;
+      ctx.stroke();
+    }
+
+    // Floating particles (nucleotide bases)
+    for(let i = 0; i < 18; i++){
+      const px = cx + Math.sin(t * 0.5 + i * 1.7) * (amplitude + 30 + i * 3);
+      const py = startY + ((i * 137.5 + t * 20) % helixLen);
+      const size = 1.5 + Math.sin(t + i) * 0.5;
+      const alpha = 0.15 + Math.sin(t * 0.8 + i * 0.5) * 0.1;
+      const colors = ['99,102,241', '251,191,36', '167,139,250', '34,211,238'];
+      const col = colors[i % 4];
+      ctx.fillStyle = `rgba(${col},${alpha})`;
+      ctx.beginPath();
+      ctx.arc(px, py, size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Title label
+    ctx.font = 'bold 10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(99,102,241,0.35)';
+    ctx.textAlign = 'center';
+    ctx.fillText('ADN — DUBLU HELIX', cx, startY - 8);
+
+    // CUG label at bottom
+    ctx.fillStyle = 'rgba(251,191,36,0.35)';
+    ctx.fillText('REPETITII CTG ANORMALE', cx, startY + helixLen + 16);
+
+    t += speed;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+</body>
+</html>

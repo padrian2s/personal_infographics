@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tehnologia care combate escarele — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: tehnologiile japoneze inovatoare pentru prevenirea si tratarea escarelor (leziunilor de presiune). Saltele inteligente, vibratii de joasa frecventa si senzori de presiune." />
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#F87171;
+      --glow2:#2DD4BF;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#2DD4BF;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(248,113,113,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(45,212,191,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(248,113,113,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(248,113,113,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(45,212,191,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(248,113,113,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.teal{border-color:var(--glow2);background:rgba(45,212,191,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(45,212,191,.22),rgba(45,212,191,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(248,113,113,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.teal{border-color:var(--glow2);background:rgba(45,212,191,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.teal{border-color:rgba(45,212,191,.25);background:rgba(45,212,191,.06);}
+    .alert.teal h4{color:var(--glow2);}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(248,113,113,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(248,113,113,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow2);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Interactive pressure demo */
+    .pressureDemo{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .pressureDemo canvas{width:100%;height:180px;display:block;border-radius:12px;cursor:pointer;}
+
+    /* Bar chart */
+    .barChart{display:flex;align-items:flex-end;gap:14px;justify-content:center;margin-top:14px;height:140px;padding:0 10px;}
+    .barCol{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+    .barVal{font-family:var(--mono);font-size:11px;font-weight:700;}
+    .barFill{width:100%;max-width:60px;border-radius:8px 8px 4px 4px;min-height:4px;transition:height .6s ease;}
+    .barLabel{font-size:10px;color:var(--muted2);text-align:center;line-height:1.2;max-width:80px;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Tehnologia care combate escarele
+          <small>NHK Medical Frontiers — Inovatii japoneze in prevenirea si tratarea leziunilor de presiune</small>
+        </h1>
+        <p class="sub">In Japonia, o societate cu populatie imbatranita rapida, cercetatorii au dezvoltat tehnologii revolutionare pentru combaterea escarelor: <b>saltele cu dublu strat de celule de aer</b>, <b>senzori inteligenti de presiune</b> si <b>terapie cu vibratii de joasa frecventa</b>. Profesoara Hiromi Sanada, listata in 2024 printre cei mai importanti oameni de stiinta din domeniul nursing-ului, a dedicat <b>30 de ani</b> acestei misiuni.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Dermatologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Escare</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce sunt escarele -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce sunt escarele (leziunile de presiune)?</h2>
+          <p>Rani deschise care se formeaza cand pielea este supusa presiunii prelungite, intrerupand circulatia sangelui</p>
+        </div>
+        <span class="badge">PROBLEMA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1-2M</div>
+            <span class="u">persoane afectate anual doar in SUA</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">~30%</div>
+            <span class="u">din pacientii ATI dezvolta escare</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">90</div>
+            <span class="u">tari incluse in studiul international (1.000+ ATI)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">2h</div>
+            <span class="u">frecventa recomandata de repozitionare</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Presiune prelungita</h4>
+              <p>Cand o persoana nu se poate misca, zonele corpului in contact cu salteaua (in special <b>fesele si calcaiele</b>) sufera presiune constanta. Oasele proeminente amplifica presiunea asupra pielii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>2. Oprirea circulatiei</h4>
+              <p>Persoanele imobilizate la pat pierd <b>masa musculara si grasimea</b>. Pielea se preseaza direct pe oase. Sangele nu mai ajunge in zonele afectate, iar celulele pielii sunt <b>lipsite de oxigen si nutrienti</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>3. Distrugerea pielii (ore)</h4>
+              <p>Fara interventie, pielea incepe sa se deterioreze in doar cateva ore. Se formeaza un <b>crater</b> in piele. Rana deschisa devine vulnerabila la infectii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--bad);background:rgba(248,113,113,.25)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Agravare rapida (1-2 saptamani)</h4>
+              <p>Daca rana se infecteaza cu bacterii, se extinde rapid, expunand <b>grasimea subcutanata si muschii</b>. In cazurile cele mai grave, rana poate ajunge pana la <b>os</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Provocarea escarelor in ATI</h4>
+          <p>Un studiu international pe <b>peste 1.000 de sectii ATI din 90 de tari</b> a aratat ca aproape <b>30% din pacientii din terapie intensiva</b> dezvolta escare. Acesti pacienti au adesea tensiune arteriala scazuta, ceea ce ingreuneaza si mai mult circulatia sangelui.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Salteaua cu dublu strat -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Salteaua cu dublu strat de celule de aer</h2>
+          <p>Prima inovatie majora: un overlay cu doua straturi de celule pneumatice care distribuie presiunea chiar si la pacientii slabi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(45,212,191,.3);color:var(--glow2);">TEHNOLOGIE 1</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Problema originala</h3>
+            <p>Saltelele cu un singur strat de celule de aer se <b>prabusesc sub presiune</b> la pacientii slabi (cu masa musculara si grasime reduse, frecvent intalniti in Japonia). Oasele proeminente strapung efectiv stratul de aer si ajung sa apese direct pe suprafata saltelei.</p>
+          </div>
+          <div class="mini">
+            <h3>Solutia: dublu strat</h3>
+            <p>Al doilea strat de celule de aer actioneaza ca o <b>perna de siguranta</b>. Chiar daca stratul superior se comprima sub greutatea pacientului, <b>stratul inferior ramane functional</b>, mentinand distributia presiunii. Eficient inclusiv cu spatarul ridicat.</p>
+          </div>
+        </div>
+
+        <!-- Clinical trial results -->
+        <div class="netDiag" style="margin-top:14px;">
+          <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="24" fill="#EAF0FF" font-size="13" font-weight="700" text-anchor="middle">Studiu clinic: 105 pacienti in spitale de ingrijire acuta</text>
+            <text x="350" y="42" fill="#A0ACC8" font-size="10" text-anchor="middle">Pacientii au fost impartiti in 3 grupuri pentru a compara eficacitatea saltelelor</text>
+
+            <!-- Group 1: Standard -->
+            <rect x="40" y="65" width="190" height="140" rx="14" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1.5"/>
+            <text x="135" y="90" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Saltea standard</text>
+            <text x="135" y="130" fill="#F87171" font-size="40" font-weight="800" text-anchor="middle">5+</text>
+            <text x="135" y="150" fill="#A0ACC8" font-size="10" text-anchor="middle">pacienti cu escare</text>
+            <rect x="75" y="165" width="120" height="24" rx="8" fill="rgba(248,113,113,.12)"/>
+            <text x="135" y="181" fill="#F87171" font-size="10" font-weight="600" text-anchor="middle">Risc crescut</text>
+
+            <!-- Group 2: Single layer -->
+            <rect x="255" y="65" width="190" height="140" rx="14" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.25)" stroke-width="1.5"/>
+            <text x="350" y="90" fill="#FBBF24" font-size="11" font-weight="700" text-anchor="middle">1 strat celule aer</text>
+            <text x="350" y="130" fill="#FBBF24" font-size="40" font-weight="800" text-anchor="middle">7</text>
+            <text x="350" y="150" fill="#A0ACC8" font-size="10" text-anchor="middle">pacienti cu escare</text>
+            <rect x="290" y="165" width="120" height="24" rx="8" fill="rgba(251,191,36,.12)"/>
+            <text x="350" y="181" fill="#FBBF24" font-size="10" font-weight="600" text-anchor="middle">Risc moderat</text>
+
+            <!-- Group 3: Double layer -->
+            <rect x="470" y="65" width="190" height="140" rx="14" fill="rgba(45,212,191,.08)" stroke="rgba(45,212,191,.35)" stroke-width="1.5"/>
+            <text x="565" y="90" fill="#2DD4BF" font-size="11" font-weight="700" text-anchor="middle">2 straturi celule aer</text>
+            <text x="565" y="130" fill="#2DD4BF" font-size="40" font-weight="800" text-anchor="middle">1</text>
+            <text x="565" y="150" fill="#A0ACC8" font-size="10" text-anchor="middle">pacient cu escara</text>
+            <rect x="505" y="165" width="120" height="24" rx="8" fill="rgba(45,212,191,.12)"/>
+            <text x="565" y="181" fill="#2DD4BF" font-size="10" font-weight="600" text-anchor="middle">Reducere drastica</text>
+
+            <!-- Arrows -->
+            <line x1="235" y1="135" x2="252" y2="135" stroke="rgba(234,240,255,.2)" stroke-width="1.5" marker-end="none"/>
+            <line x1="450" y1="135" x2="467" y2="135" stroke="rgba(234,240,255,.2)" stroke-width="1.5" marker-end="none"/>
+            <text x="243" y="118" fill="#6E7A9A" font-size="18" text-anchor="middle">&rarr;</text>
+            <text x="459" y="118" fill="#6E7A9A" font-size="18" text-anchor="middle">&rarr;</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Auto-reglare presiune</h3>
+            <p>Salteaua de generatie noua include un <b>sistem automat de ajustare a presiunii interne</b>. Miscarea subtila a celulelor de aer nu este observata de pacient, dar ofera <b>acelasi efect ca repozitionarea manuala</b>.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Observatie clinica</h3>
+            <p>Cercetatorii au observat ca pacientii <b>nu stau intinsi pe spate toata ziua</b> — stau si cu spatarul ridicat. Salteaua trebuia sa functioneze in <b>toate pozitiile</b>, nu doar pe orizontala. Dublu strat rezolva aceasta problema.</p>
+          </div>
+        </div>
+
+        <div class="quote teal">
+          &laquo;Era deja dificil de la inceput. O firma a venit si a oferit sa il produca, dar in momentul in care au vazut schita, au spus ca nu se poate. Am dus presedintele firmei la spital sa vada un pacient. A spus: 'Daca parintii mei ar fi in aceasta situatie...' Si a decis sa il faca, chiar cu pierderi.&raquo;
+          <cite>— Prof. Hiromi Sanada, despre dezvoltarea saltelei cu dublu strat</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Salteaua inteligenta ATI -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Salteaua inteligenta cu senzori pentru ATI</h2>
+          <p>O saltea cu senzori multipli care detecteaza presiunea si deschide automat vasele de sange prin deflatie controlata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">TEHNOLOGIE 2</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Problema in ATI</h3>
+            <p>Pacientii din terapie intensiva sunt adesea in stare critica, <b>nu se pot misca</b> si au <b>tensiune arteriala scazuta</b>. Fluxul sanguin redus face escarele aproape inevitabile. Pana acum, aceasta era considerata o <b>conditie invincibila</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Solutia: flotare controlata</h3>
+            <p>Ideea: daca fluxul sanguin e scazut, <b>reducem presiunea saltelei</b> pana pacientul simte ca <b>pluteste</b>. Senzori multipli arata exact unde se exercita presiunea si deflateaza automat aerul din zonele respective.</p>
+          </div>
+        </div>
+
+        <div class="pressureDemo">
+          <canvas id="pressureCanvas"></canvas>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Senzori detecteaza presiunea</h4>
+              <p>Numerosi senzori incorporati in saltea <b>monitorizeaza in timp real</b> distributia presiunii pe intreaga suprafata. Zonele cu presiune crescuta sunt identificate imediat.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Deflatie automata</h4>
+              <p>Aerul din zonele cu presiune crescuta se <b>deflateaza automat</b>. Presiunea asupra corpului scade, iar vasele de sange se deschid, permitand <b>reluarea circulatiei</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Circulatie restabilita</h4>
+              <p>Pacientul simte cum <b>presiunea se elibereaza</b> din corp. Sangele circula din nou prin zonele anterior comprimate. Riscul de escara scade semnificativ, <b>fara interventia personalului</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote teal">
+          &laquo;Siguranta vine de la masini, iar linistea sufleteasca vine de la oameni. In ingrijirea pacientilor, incercam sa folosim cat mai mult dispozitive robotice. Asistentele fac ceea ce robotul nu poate — ofera linistea sufleteasca. La urma urmei, oamenii sunt vindecati de alti oameni.&raquo;
+          <cite>— Prof. Hiromi Sanada</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Vibratii de joasa frecventa -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Terapia cu vibratii de joasa frecventa</h2>
+          <p>O abordare activa: in loc sa reducem doar presiunea, stimulam direct fluxul sanguin prin vibratii controlate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">TEHNOLOGIE 3</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Problema calcaielor</h3>
+            <p>Escarele de pe calcaie sunt <b>extrem de dificil de tratat</b>. Fluxul sanguin nu se recupereaza usor in aceasta zona. Echipa de cercetare a decis sa <b>promoveze activ</b> circulatia, nu doar sa reduca presiunea.</p>
+          </div>
+          <div class="mini">
+            <h3>Mecanismul</h3>
+            <p>Vibratiile de joasa frecventa aplicate pe zona afectata <b>dilata vasele de sange</b> si stimuleaza circulatia. Dupa sesiunea de vibratii, cercetatorii au constatat o <b>imbunatatire semnificativa</b> a fluxului sanguin.</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">40%</div>
+            <span class="u">reducerea timpului de vindecare cu vibratii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">9.5%</div>
+            <span class="u">rata de vindecare fara vibratii (standard)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">25</div>
+            <span class="u">zile pentru vindecare completa (cu vibratii)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">80</div>
+            <span class="u">pacienti in studiul din Indonezia</span>
+          </div>
+        </div>
+
+        <div class="alert teal" style="margin-top:14px;">
+          <h4>Aplicare in ulcerele diabetice — studiu Indonesia</h4>
+          <p>Un specialist in ingrijirea diabetului a descoperit ca dispozitivul poate trata si <b>ulcerele piciorului diabetic</b>, o complicatie care afecteaza <b>peste 19 milioane</b> de indonezieni cu diabet. Studiu pe 80 de pacienti: grupul cu vibratii s-a vindecat in <b>25 de zile</b>, rani profunde fiind complet vindecate.</p>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Diabet in Indonezia</h3>
+            <p>Peste <b>19 milioane</b> de persoane diagnosticate. Cauze: stil de viata, dieta, lipsa constiintizarii si <b>acces limitat la servicii medicale</b>. Diabetul afecteaza vasele de sange, ducand la ulcere ale piciorului care, in cazuri severe, necesita <b>amputare</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Rezultate promitatoare</h3>
+            <p>Un pacient cu <b>rani profunde</b> inainte de experiment a fost <b>complet vindecat</b> dupa terapia cu vibratii. Vindecarea a fost semnificativ <b>mai rapida</b> comparativ cu tratamentul standard. Cercetatorii investigheaza mecanismul pentru dezvoltarea de noi dispozitive.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Am descoperit ca ceea ce am creat pentru escare functioneaza si pentru ulcerele piciorului diabetic. Vom cerceta mecanismul din spatele acestui rezultat. Sper ca va duce la dezvoltarea de noi dispozitive.&raquo;
+          <cite>— Prof. Hiromi Sanada</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cazul sportivului -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tehnologie pentru viata activa: cazul sportivului</h2>
+          <p>Un jucator de tenis in scaun rulant demonstreaza cum tehnologia de masurare a presiunii ofera siguranta si independenta</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">STUDIU DE CAZ</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Provocarea</h3>
+            <p>Un jucator de tenis cu leziune spinala se antreneaza si concureaza zilnic. Persoanele cu leziuni ale coloanei care folosesc scaunul rulant sunt <b>extrem de vulnerabile</b> la escare. Antrenamentele prelungite agraveaza presiunea pe solduri, ducand la <b>escare secundare</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Solutia: masurarea presiunii</h3>
+            <p>Folosind <b>tehnologia de masurare</b> a presiunii pe perna scaunului rulant, sportivul poate <b>vedea cifrele concrete</b> si verifica ca distributia presiunii este corecta. Aceasta a fost prima data cand s-a simtit <b>cu adevarat linistit</b> in legatura cu riscul de escare.</p>
+          </div>
+        </div>
+
+        <div class="quote teal" style="margin-top:14px;">
+          &laquo;Cel mai important lucru este ca poti vedea efectiv cifrele, si cand iti masori corpul, poti confirma ca nu exista nicio problema. Abia recent m-am simtit cu adevarat in siguranta.&raquo;
+          <cite>— Sportiv cu leziune spinala, pacient</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Filozofie si concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Filozofia: om si masina impreuna</h2>
+          <p>Ce ar trebui sa se schimbe si ce nu ar trebui sa se schimbe niciodata in ingrijirea pacientilor</p>
+        </div>
+        <span class="badge">FILOZOFIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--glow)">Problema de acum 30 de ani</h3>
+            <p>Prevenirea escarelor era considerata <b>"esenta nursing-ului"</b> — dar se baza exclusiv pe <b>munca manuala</b>. Asistentele se epuizau repozitionand pacientii la fiecare 2 ore. Cu populatia imbatranita, <b>lipsa de personal</b> a facut situatia nesustenabila.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(45,212,191,.2);">
+            <h3 style="color:var(--glow2)">Schimbarea de paradigma</h3>
+            <p>&laquo;Nu persoana trebuie sa faca treaba, ci <b>salteaua trebuie schimbata</b>.&raquo; Aceasta a fost prima experienta de a folosi tehnologia in locul efortului uman repetat. <b>30 de ani de inovatii</b> au urmat acestei realizari.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Ce nu trebuie sa se schimbe</h3>
+            <p>&laquo;Noi, asistentele, privim omul ca un intreg si il protejam pana la sfarsit. Acest sentiment este <b>filozofia mea</b> fata de nursing. Nu trebuie sa se schimbe niciodata.&raquo;</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Ce trebuie sa se schimbe</h3>
+            <p>&laquo;Daca nu exista, <b>dezvolta-l</b>. Daca nu il ai, <b>fa-l</b>.&raquo; Tehnologia nu inlocuieste compasiunea — o <b>amplifica</b>. Exista o limita a interventiei umane; tehnologia poate impiedica agravarea si poate mentine situatia in directia buna.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Cel mai important lucru este ce trebuie sa se schimbe si ce nu trebuie sa se schimbe niciodata. Noi, asistentele, privim omul ca un intreg si il protejam pana la sfarsit. Daca nu exista ceea ce ai nevoie — fa-l. Dezvolta-l. Breveteza-l repede.&raquo;
+          <cite>— Prof. Hiromi Sanada, filozofia sa de nursing</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key figures -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cifre-cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">1-2 mil.</span><span class="tDesc">Persoane cu escare <b>anual in SUA</b></span></div>
+        <div class="tEvent"><span class="tDate">~30%</span><span class="tDesc">Pacienti ATI care dezvolta <b>leziuni de presiune</b></span></div>
+        <div class="tEvent"><span class="tDate">1.000+</span><span class="tDesc"><b>Unitati ATI</b> din 90 de tari studiate</span></div>
+        <div class="tEvent"><span class="tDate">105</span><span class="tDesc">Pacienti in <b>studiul clinic</b> saltele dublu-strat</span></div>
+        <div class="tEvent"><span class="tDate">1 vs 7</span><span class="tDesc">Escare: dublu-strat vs <b>mono-strat</b></span></div>
+        <div class="tEvent"><span class="tDate">30 ani</span><span class="tDesc">De cercetare dedicata de <b>Prof. Sanada</b></span></div>
+        <div class="tEvent"><span class="tDate">25 zile</span><span class="tDesc">Vindecare cu <b>vibratii joasa frecventa</b></span></div>
+        <div class="tEvent"><span class="tDate">80</span><span class="tDesc">Pacienti in studiul <b>ulcer diabetic</b> (Indonezia)</span></div>
+        <div class="tEvent"><span class="tDate">19 mil.</span><span class="tDesc">Persoane cu <b>diabet in Indonezia</b></span></div>
+        <div class="tEvent"><span class="tDate">2024</span><span class="tDesc">Prof. Sanada listata <b>top scientist</b> nursing</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce Japonia?</h4>
+          <p>Japonia are cea mai rapida imbatranire a populatiei din lume. Numarul de varstnici care necesita ingrijire de lunga durata creste constant, iar <b>lipsa de personal medical</b> face tehnologia esentiala pentru mentinerea calitatii ingrijirii.</p>
+        </div>
+        <div class="comNote">
+          <h4>Prevalenta scazuta in Japonia</h4>
+          <p>Prevalenta escarelor in Japonia este <b>scazuta comparativ cu tarile occidentale</b>. Modelul japonez este adesea studiat de alte tari. Asistentele japoneze cauta constant modalitati de a preveni escarele.</p>
+        </div>
+        <div class="comNote">
+          <h4>Rolul asistentelor</h4>
+          <p>In trecut, prevenirea escarelor era vazuta ca sarcina exclusiva a asistentelor. Prof. Sanada a transformat aceasta viziune: <b>tehnologia preia munca fizica</b>, iar asistentele se concentreaza pe ingrijirea emotionala si relatia cu pacientul.</p>
+        </div>
+        <div class="comNote">
+          <h4>Aplicatii globale</h4>
+          <p>Tehnologiile dezvoltate in Japonia au fost testate si in <b>Indonezia</b> pentru ulcere diabetice, demonstrand potentialul de <b>transfer international</b>. Rezultatele sugereaza aplicabilitate in diverse contexte medicale.</p>
+        </div>
+        <div class="comNote">
+          <h4>Brevetarea rapida</h4>
+          <p>Filozofia Prof. Sanada include <b>"breveteaza repede"</b> — un mesaj pragmatic care subliniaza importanta protejarii inovatiilor medicale pentru a le putea aduce cat mai repede in practica clinica.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Escara (leziune de presiune)</dt>
+          <dd>Rana deschisa care apare cand pielea este supusa presiunii prelungite, blocand circulatia sangelui. Zonele vulnerabile: fese, calcaie, coate, omoplati.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ATI (Terapie Intensiva)</dt>
+          <dd>Sectia de Anestezie si Terapie Intensiva, unde sunt ingrijiti pacientii in stare critica. Risc crescut de escare din cauza imobilizarii si tensiunii arteriale scazute.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Overlay cu celule de aer</dt>
+          <dd>Saltea suplimentara cu celule pneumatice care se aseaza peste salteaua obisnuita. Distribue presiunea uniform si poate fi cu un singur strat sau cu dublu strat.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Vibratii de joasa frecventa</dt>
+          <dd>Terapie care aplica vibratii blande pe zona afectata pentru a stimula dilatarea vaselor de sange si imbunatatirea circulatiei locale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Ulcer diabetic al piciorului</dt>
+          <dd>Rana deschisa pe picior cauzata de afectarea vaselor de sange si nervilor din cauza diabetului. In cazuri severe poate necesita amputare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Repozitionare</dt>
+          <dd>Schimbarea pozitiei pacientului imobilizat la fiecare 2 ore pentru a redistribui presiunea si a preveni escarele. Necesita personal dedicat.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Senzor de presiune</dt>
+          <dd>Dispozitiv incorporat in saltea care masoara si afiseaza in timp real distributia presiunii, permitand ajustarea automata a suportului.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=RPILRi-LYFQ" target="_blank">NHK Medical Frontiers — Technology to Tackle Pressure Injuries</a> &middot;
+    Infografic explicativ bazat pe emisiunea NHK &middot; Prof. Hiromi Sanada, cercetator principal
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: skin layers with pressure points and healing ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Skin layers
+  const layers = [
+    {y: 0.18, color: 'rgba(248,180,160,.', name: 'EPIDERM'},
+    {y: 0.38, color: 'rgba(220,120,100,.', name: 'DERM'},
+    {y: 0.58, color: 'rgba(180,80,70,.', name: 'SUBCUTANAT'},
+    {y: 0.78, color: 'rgba(140,60,60,.', name: 'MUSCHI'}
+  ];
+
+  // Pressure points
+  const pressurePoints = [];
+  for(let i = 0; i < 5; i++){
+    pressurePoints.push({
+      x: 0.15 + i * 0.18,
+      phase: Math.random() * Math.PI * 2,
+      intensity: 0.3 + Math.random() * 0.7,
+      healing: Math.random() < 0.4
+    });
+  }
+
+  // Blood particles
+  const particles = [];
+  for(let i = 0; i < 30; i++){
+    particles.push({
+      x: Math.random(),
+      y: 0.2 + Math.random() * 0.6,
+      vx: 0.0005 + Math.random() * 0.001,
+      r: 1 + Math.random() * 2,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  // Healing indicators
+  const healDots = [];
+  for(let i = 0; i < 15; i++){
+    healDots.push({
+      x: Math.random(),
+      y: Math.random(),
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.005 + Math.random() * 0.01,
+      r: 1 + Math.random() * 2.5
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Draw skin layers
+    layers.forEach((layer, li) => {
+      const y = layer.y * h;
+      const layerH = h * 0.20;
+      const wave = Math.sin(t * 1.5 + li) * 3;
+
+      ctx.fillStyle = layer.color + (0.12 + li * 0.03) + ')';
+      ctx.beginPath();
+      ctx.moveTo(0, y + wave);
+      for(let x = 0; x <= w; x += 4){
+        const wy = y + Math.sin(x * 0.02 + t * 2 + li * 0.5) * (2 + li) + wave;
+        ctx.lineTo(x, wy);
+      }
+      ctx.lineTo(w, y + layerH + wave);
+      ctx.lineTo(0, y + layerH + wave);
+      ctx.closePath();
+      ctx.fill();
+
+      // Layer border line
+      ctx.beginPath();
+      ctx.moveTo(0, y + wave);
+      for(let x = 0; x <= w; x += 4){
+        const wy = y + Math.sin(x * 0.02 + t * 2 + li * 0.5) * (2 + li) + wave;
+        ctx.lineTo(x, wy);
+      }
+      ctx.strokeStyle = layer.color + '0.2)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Draw pressure points (red, pulsing down)
+    pressurePoints.forEach(pp => {
+      const px = pp.x * w;
+      const pulse = Math.sin(t * 3 + pp.phase) * 0.5 + 0.5;
+      const intensity = pp.intensity * pulse;
+
+      if(!pp.healing) {
+        // Pressure arrow (red)
+        const arrowY = 8 + pulse * 6;
+        ctx.beginPath();
+        ctx.moveTo(px, arrowY);
+        ctx.lineTo(px, arrowY + 20 + intensity * 15);
+        ctx.strokeStyle = `rgba(248,113,113,${0.3 + intensity * 0.4})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Arrowhead
+        ctx.beginPath();
+        ctx.moveTo(px - 5, arrowY + 15 + intensity * 15);
+        ctx.lineTo(px, arrowY + 23 + intensity * 15);
+        ctx.lineTo(px + 5, arrowY + 15 + intensity * 15);
+        ctx.fillStyle = `rgba(248,113,113,${0.3 + intensity * 0.4})`;
+        ctx.fill();
+
+        // Damage zone
+        const damageR = 8 + intensity * 12;
+        const grad = ctx.createRadialGradient(px, h * 0.35, 0, px, h * 0.35, damageR);
+        grad.addColorStop(0, `rgba(248,113,113,${0.25 * intensity})`);
+        grad.addColorStop(1, 'rgba(248,113,113,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(px, h * 0.35, damageR, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Healing indicator (teal, pulsing)
+        const healR = 10 + pulse * 8;
+        const grad = ctx.createRadialGradient(px, h * 0.35, 0, px, h * 0.35, healR);
+        grad.addColorStop(0, `rgba(45,212,191,${0.3 * pulse})`);
+        grad.addColorStop(1, 'rgba(45,212,191,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(px, h * 0.35, healR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Healing sparkle
+        ctx.beginPath();
+        ctx.arc(px, h * 0.35, 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(45,212,191,${0.4 + pulse * 0.4})`;
+        ctx.fill();
+      }
+    });
+
+    // Blood flow particles
+    particles.forEach(p => {
+      p.x += p.vx;
+      if(p.x > 1.05) p.x = -0.05;
+      const py = p.y * h + Math.sin(t * 3 + p.phase) * 4;
+      const px = p.x * w;
+
+      // Check if near a non-healing pressure point
+      let blocked = false;
+      pressurePoints.forEach(pp => {
+        if(!pp.healing && Math.abs(p.x - pp.x) < 0.06 && p.y < 0.5){
+          blocked = true;
+        }
+      });
+
+      if(!blocked){
+        ctx.beginPath();
+        ctx.arc(px, py, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(248,113,113,${0.2 + Math.sin(t + p.phase) * 0.1})`;
+        ctx.fill();
+      }
+    });
+
+    // Floating healing dots (teal)
+    healDots.forEach(d => {
+      d.y -= d.speed * 0.3;
+      if(d.y < -0.05) d.y = 1.05;
+      const dx = d.x * w + Math.sin(t * 2 + d.phase) * 8;
+      const dy = d.y * h;
+      const alpha = 0.1 + Math.sin(t * 3 + d.phase) * 0.08;
+      ctx.beginPath();
+      ctx.arc(dx, dy, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(45,212,191,${alpha})`;
+      ctx.fill();
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.35)';
+    layers.forEach((layer, i) => {
+      ctx.fillText(layer.name, 6, layer.y * h + 14);
+    });
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('presiune', 15, ly+3);
+    ctx.fillStyle = 'rgba(45,212,191,0.7)'; ctx.beginPath(); ctx.arc(72, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('vindecare', 79, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.4)'; ctx.beginPath(); ctx.arc(142, ly, 2, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('flux sanguin', 148, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Pressure sensor demo canvas ── */
+(function(){
+  const c = document.getElementById('pressureCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  let mouseX = -1, mouseY = -1;
+
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  c.addEventListener('mousemove', function(e){
+    const r = c.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width;
+    mouseY = (e.clientY - r.top) / r.height;
+  });
+  c.addEventListener('mouseleave', function(){
+    mouseX = -1; mouseY = -1;
+  });
+  c.addEventListener('touchmove', function(e){
+    e.preventDefault();
+    const r = c.getBoundingClientRect();
+    mouseX = (e.touches[0].clientX - r.left) / r.width;
+    mouseY = (e.touches[0].clientY - r.top) / r.height;
+  }, {passive:false});
+  c.addEventListener('touchend', function(){
+    mouseX = -1; mouseY = -1;
+  });
+
+  // Sensor grid
+  const cols = 16, rows = 8;
+  const sensors = [];
+  for(let r = 0; r < rows; r++){
+    for(let cl = 0; cl < cols; cl++){
+      sensors.push({
+        x: (cl + 0.5) / cols,
+        y: (r + 0.5) / rows,
+        pressure: 0,
+        targetPressure: 0
+      });
+    }
+  }
+
+  // Body pressure zones (simulated patient lying)
+  const bodyZones = [
+    {x: 0.25, y: 0.5, rx: 0.08, ry: 0.35, intensity: 0.7},  // shoulder
+    {x: 0.45, y: 0.5, rx: 0.06, ry: 0.25, intensity: 0.5},  // back
+    {x: 0.60, y: 0.5, rx: 0.10, ry: 0.40, intensity: 0.9},  // buttocks (high)
+    {x: 0.85, y: 0.5, rx: 0.05, ry: 0.20, intensity: 0.8},  // heels
+  ];
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.008;
+
+    const cellW = w / cols;
+    const cellH = h / rows;
+
+    // Update sensors
+    sensors.forEach(s => {
+      let basePressure = 0;
+      bodyZones.forEach(z => {
+        const dx = (s.x - z.x) / z.rx;
+        const dy = (s.y - z.y) / z.ry;
+        const d = dx*dx + dy*dy;
+        if(d < 1) basePressure += z.intensity * (1 - d) * (0.8 + Math.sin(t * 2) * 0.2);
+      });
+
+      // Mouse interaction
+      if(mouseX >= 0){
+        const dx = s.x - mouseX;
+        const dy = s.y - mouseY;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if(d < 0.15) basePressure += (1 - d / 0.15) * 0.8;
+      }
+
+      s.targetPressure = Math.min(1, basePressure);
+      s.pressure += (s.targetPressure - s.pressure) * 0.08;
+    });
+
+    // Draw grid
+    sensors.forEach(s => {
+      const sx = s.x * w - cellW/2;
+      const sy = s.y * h - cellH/2;
+      const p = s.pressure;
+
+      // Color: teal(safe) -> yellow(warning) -> red(danger)
+      let r, g, b;
+      if(p < 0.3){
+        r = 45; g = 212; b = 191; // teal
+      } else if(p < 0.6){
+        const t2 = (p - 0.3) / 0.3;
+        r = 45 + (251-45)*t2;
+        g = 212 + (191-212)*t2;
+        b = 191 + (36-191)*t2;
+      } else {
+        const t2 = (p - 0.6) / 0.4;
+        r = 251 + (248-251)*t2;
+        g = 191 + (113-191)*t2;
+        b = 36 + (113-36)*t2;
+      }
+
+      const alpha = 0.15 + p * 0.55;
+      ctx.fillStyle = `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${alpha})`;
+      ctx.beginPath();
+      ctx.roundRect(sx + 1, sy + 1, cellW - 2, cellH - 2, 4);
+      ctx.fill();
+
+      // Border
+      ctx.strokeStyle = `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${alpha * 0.4})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    });
+
+    // Body outline (simplified side view)
+    ctx.strokeStyle = 'rgba(234,240,255,0.15)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(w*0.10, h*0.35);
+    ctx.bezierCurveTo(w*0.15, h*0.20, w*0.20, h*0.18, w*0.25, h*0.25); // head
+    ctx.bezierCurveTo(w*0.30, h*0.32, w*0.35, h*0.28, w*0.45, h*0.30); // shoulders-back
+    ctx.bezierCurveTo(w*0.55, h*0.32, w*0.58, h*0.25, w*0.62, h*0.22); // buttocks curve
+    ctx.bezierCurveTo(w*0.68, h*0.25, w*0.75, h*0.35, w*0.80, h*0.38); // thighs
+    ctx.bezierCurveTo(w*0.85, h*0.40, w*0.88, h*0.38, w*0.92, h*0.35); // calves-heels
+    ctx.stroke();
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.5)';
+    ctx.fillText('UMERI', w*0.22, h*0.92);
+    ctx.fillText('SPATE', w*0.42, h*0.92);
+    ctx.fillText('FESE', w*0.57, h*0.92);
+    ctx.fillText('CALCAIE', w*0.82, h*0.92);
+
+    // Instruction
+    ctx.fillStyle = 'rgba(160,172,200,0.3)';
+    ctx.fillText('Misca mouse-ul pentru a simula presiunea', w*0.02, h*0.08);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

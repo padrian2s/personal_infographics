@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medicina Nucleara in Tratamentul Cancerului — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: cum functioneaza medicina nucleara in tratamentul cancerului — raze beta, raze alfa, teranostica si cazuri reale din Japonia. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#080E1A;
+      --panel:#0C1630cc;
+      --card:#0C1530;
+      --card2:#091228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#22D3EE;
+      --glow2:#A78BFA;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(34,211,238,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(167,139,250,.09), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(34,211,238,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* -- HERO -- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(34,211,238,.20);
+      background: linear-gradient(180deg, rgba(12,21,48,.75), rgba(8,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(34,211,238,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(167,139,250,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(34,211,238,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--ok)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* -- CARDS -- */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(34,211,238,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.purple{border-color:var(--glow2);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(34,211,238,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.purple{border-color:var(--glow2);background:rgba(167,139,250,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(34,211,238,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(34,211,238,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.purple{border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.06);}
+    .alert.purple h4{color:var(--glow2);}
+
+    /* Diagram SVG */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(34,211,238,.18);
+      background:linear-gradient(180deg,rgba(12,21,48,.80),rgba(8,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(34,211,238,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(34,211,238,.25);background:rgba(34,211,238,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Comparison table */
+    .cmpTable{width:100%;border-collapse:collapse;margin-top:12px;font-size:12.5px;}
+    .cmpTable th{
+      text-align:left;padding:8px 10px;font-size:11px;font-weight:700;
+      color:var(--muted2);text-transform:uppercase;letter-spacing:.04em;
+      border-bottom:1px solid rgba(234,240,255,.10);
+    }
+    .cmpTable td{
+      padding:8px 10px;border-bottom:1px solid rgba(234,240,255,.05);color:var(--muted);
+    }
+    .cmpTable td:first-child{color:var(--ink);font-weight:600;}
+    .cmpTable tr:last-child td{border-bottom:0;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Medicina Nucleara in Tratamentul Cancerului
+          <small>NHK Medical Frontiers — Radiatia din interior: cum medicamentele radioactive distrug celulele canceroase tintit</small>
+        </h1>
+        <p class="sub">Medicina nucleara reprezinta o abordare revolutionara in oncologie: in loc sa iradieze tumoarea din exterior, introduce <b>medicamente radioactive</b> direct in corp. Aceste medicamente gasesc celulele canceroase, se ataseaza de ele si le distrug ADN-ul din interior, cu efecte secundare semnificativ mai mici decat chimioterapia. Japonia este lider mondial in cercetarea si aplicarea acestei terapii.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Oncologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Medicina Nucleara</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MAIN ======= -->
+  <div class="main">
+
+    <!-- Card 1: Ce este medicina nucleara -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este medicina nucleara?</h2>
+          <p>Nu radioterapie clasica din exterior — ci medicamente radioactive administrate intern care gasesc si distrug cancerul din interior</p>
+        </div>
+        <span class="badge">PRINCIPIU</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">Interior</div>
+            <span class="u">radiatia actioneaza din interiorul corpului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">~mm</div>
+            <span class="u">raze beta parcurg doar cativa milimetri</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">Tintit</div>
+            <span class="u">ataca selectiv celulele canceroase</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Oral</div>
+            <span class="u">medicamentele pot fi administrate pe cale orala</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Radioterapia clasica</h3>
+            <p>In radioterapia conventionala, fasciculele de radiatii sunt directionate <b>din exterior</b> catre tumoare. Aceasta metoda poate afecta si tesuturile sanatoase din jurul tumorii.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Medicina nucleara</h3>
+            <p>Medicamentele radioactive sunt administrate <b>oral sau intravenos</b>. Ele calatoresc prin corp, se ataseaza de celulele canceroase si emit radiatii care distrug ADN-ul tumoral <b>din interior</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Multi oameni nu stiu ce este medicina nucleara. As vrea sa inteleaga ca nu e doar o ramura a radioterapiei — in loc sa aplicam radiatia din exterior, o introducem in corpul pacientului.&raquo;
+          <cite>— Medic specialist, Societatea Japoneza de Medicina Nucleara</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Cum functioneaza -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum functioneaza: mecanism de actiune</h2>
+          <p>Medicamentul radioactiv combina un marker de cancer cu atomi radioactivi care distrug celulele canceroase din interior</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--glow);">MECANISM</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Compozitia medicamentului</h4>
+              <p>Medicamentul este compus din <b>doua componente</b>: un <b>marker de cancer</b> (proteina prezenta in cantitati mari pe suprafata celulelor canceroase) si <b>atomi radioactivi</b> (care emit raze beta sau alfa).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>2. Administrarea</h4>
+              <p>Medicamentul este administrat pacientului <b>oral</b> (sub forma de pastile) sau <b>intravenos</b>. Odata in corp, acesta calatoreste prin sistemul sanguin, ajungand la toate zonele afectate.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>3. Atasarea de celulele canceroase</h4>
+              <p>Markerii se leaga de <b>proteinele specifice</b> de pe suprafata celulelor canceroase. Fiecare tip de cancer are markeri diferiti — medicamentele sunt personalizate pentru fiecare tip.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Distrugerea ADN-ului canceros</h4>
+              <p>Atomii radioactivi emit <b>raze beta</b> care parcurg doar cativa milimetri, distrugand ADN-ul celulelor canceroase <b>cu precizie</b>, evitand in mare parte celulele sanatoase din jur.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mechanism Diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Blood vessel -->
+            <rect x="0" y="105" width="700" height="50" rx="25" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.15)" stroke-width="1"/>
+            <text x="350" y="136" fill="rgba(248,113,113,.4)" font-size="10" text-anchor="middle" font-style="italic">flux sanguin</text>
+
+            <!-- Drug molecule traveling -->
+            <circle cx="80" cy="130" r="14" fill="rgba(34,211,238,.15)" stroke="rgba(34,211,238,.4)" stroke-width="1.5"/>
+            <circle cx="80" cy="130" r="6" fill="rgba(34,211,238,.6)"/>
+            <text x="80" y="170" fill="#22D3EE" font-size="9" text-anchor="middle" font-weight="700">Medicament</text>
+            <text x="80" y="182" fill="#6E7A9A" font-size="8" text-anchor="middle">radioactiv</text>
+
+            <!-- Arrow -->
+            <line x1="110" y1="130" x2="200" y2="130" stroke="rgba(34,211,238,.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <polygon points="200,125 210,130 200,135" fill="rgba(34,211,238,.5)"/>
+
+            <!-- Cancer cell -->
+            <circle cx="300" cy="130" r="40" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.20)" stroke-width="1.5"/>
+            <!-- Surface markers -->
+            <circle cx="268" cy="108" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <circle cx="332" cy="108" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <circle cx="260" cy="130" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <circle cx="340" cy="130" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <circle cx="268" cy="152" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <circle cx="332" cy="152" r="5" fill="rgba(167,139,250,.4)" stroke="rgba(167,139,250,.6)" stroke-width="1"/>
+            <!-- DNA inside -->
+            <text x="300" y="126" fill="rgba(248,113,113,.5)" font-size="10" text-anchor="middle" font-weight="700">ADN</text>
+            <text x="300" y="140" fill="rgba(248,113,113,.3)" font-size="8" text-anchor="middle">celula canceroasa</text>
+
+            <text x="300" y="80" fill="#A78BFA" font-size="9" text-anchor="middle">markeri pe suprafata celulei</text>
+
+            <!-- Drug attaching -->
+            <circle cx="258" cy="130" r="8" fill="rgba(34,211,238,.3)" stroke="rgba(34,211,238,.6)" stroke-width="1.5"/>
+            <line x1="210" y1="130" x2="250" y2="130" stroke="rgba(34,211,238,.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+            <!-- Arrow to destruction -->
+            <line x1="350" y1="130" x2="440" y2="130" stroke="rgba(251,191,36,.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <polygon points="440,125 450,130 440,135" fill="rgba(251,191,36,.5)"/>
+
+            <!-- Beta rays -->
+            <circle cx="520" cy="130" r="40" fill="rgba(34,211,238,.04)" stroke="rgba(34,211,238,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+            <!-- Radiation symbol -->
+            <circle cx="520" cy="130" r="5" fill="rgba(34,211,238,.6)"/>
+            <line x1="520" y1="130" x2="500" y2="105" stroke="rgba(34,211,238,.5)" stroke-width="1.5"/>
+            <line x1="520" y1="130" x2="540" y2="105" stroke="rgba(34,211,238,.5)" stroke-width="1.5"/>
+            <line x1="520" y1="130" x2="520" y2="160" stroke="rgba(34,211,238,.5)" stroke-width="1.5"/>
+            <text x="520" y="180" fill="#22D3EE" font-size="9" text-anchor="middle" font-weight="700">Raze beta/alfa</text>
+            <text x="520" y="192" fill="#6E7A9A" font-size="8" text-anchor="middle">distrug ADN-ul</text>
+
+            <!-- Result -->
+            <line x1="570" y1="130" x2="620" y2="130" stroke="rgba(52,211,153,.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <polygon points="620,125 630,130 620,135" fill="rgba(52,211,153,.5)"/>
+            <circle cx="660" cy="130" r="22" fill="rgba(52,211,153,.08)" stroke="rgba(52,211,153,.25)" stroke-width="1.5"/>
+            <text x="660" y="127" fill="#34D399" font-size="10" text-anchor="middle" font-weight="700">Moarte</text>
+            <text x="660" y="140" fill="#34D399" font-size="9" text-anchor="middle">celulara</text>
+
+            <!-- Range indicator -->
+            <line x1="480" y1="215" x2="560" y2="215" stroke="rgba(34,211,238,.4)" stroke-width="1"/>
+            <line x1="480" y1="210" x2="480" y2="220" stroke="rgba(34,211,238,.4)" stroke-width="1"/>
+            <line x1="560" y1="210" x2="560" y2="220" stroke="rgba(34,211,238,.4)" stroke-width="1"/>
+            <text x="520" y="232" fill="#6E7A9A" font-size="8.5" text-anchor="middle">raza de actiune: cativa mm</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Teranostica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Teranostica: diagnostic si tratament cu acelasi medicament</h2>
+          <p>Aceeasi molecula poate fi folosita pentru a vizualiza cancerul SI pentru a-l distruge</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--glow2);">TERANOSTICA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Faza de diagnostic</h3>
+            <p>Se administreaza o versiune a medicamentului care contine atomi ce emit <b>raze gamma</b>. Aceste raze sunt detectate de camere speciale, creand o <b>imagine a corpului</b> care arata exact unde s-a raspandit cancerul.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">Gamma</span>
+              <span class="l">raze folosite pentru imagistica — vizualizeaza distributia cancerului</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Faza de tratament</h3>
+            <p>Se administreaza versiunea <b>terapeutica</b> a aceluiasi medicament, de data aceasta cu atomi care emit <b>raze beta sau alfa</b>. Se poate confirma <b>in timp real</b> ca medicamentul ajunge la zonele cu cancer.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">Beta/Alfa</span>
+              <span class="l">raze folosite pentru tratament — distrug celulele canceroase</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <h4>Avantajul unic al teranosticii</h4>
+          <p>Spre deosebire de chimioterapie sau medicamentele moleculare tintite, unde <b>nu se poate sti sigur</b> daca medicamentul ajunge la tumoare, in medicina nucleara se poate <b>vizualiza si calcula</b> exact cat de mult medicament a ajuns la fiecare locatie canceroasa. Aceasta permite <b>predictia eficacitatii</b> tratamentului inainte de a-l continua.</p>
+        </div>
+
+        <div class="quote purple" style="margin-top:14px;">
+          &laquo;Diagnosticul poate fi facut cu acelasi medicament inainte de tratament. Putem calcula cat de multa radiatie a ajuns la fiecare zona si estima efectul pentru fiecare pacient in parte.&raquo;
+          <cite>— Specialist medicina nucleara, Japonia</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Cancer tiroidian -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiu de caz: cancer tiroidian metastatic</h2>
+          <p>Cancerul tiroidian raspandit la plamani — tratat cu succes prin medicina nucleara</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">CAZ CLINIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">47%</div>
+            <span class="u">rata de supravietuire la 10 ani — cancer tiroidian metastatic</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">Ani</div>
+            <span class="u">pacienti fara recidiva dupa tratament nuclear</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">Plamani</div>
+            <span class="u">localizare metastaze in cazul prezentat</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">NCCJ</div>
+            <span class="u">Centrul National de Cancer din Japonia</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Cancerul tiroidian metastatic</h3>
+            <p>Imagistica a aratat cum <b>cancerul tiroidian s-a raspandit la plamani</b> (vizibil ca zone circulare pe scanare). Conform Centrului National de Cancer din Japonia, rata de supravietuire la 10 ani cand tiroidianul metastazeaza la alte organe este de doar <b>47%</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Rezultatul tratamentului</h3>
+            <p>Dupa tratamentul cu medicina nucleara, pacientii au fost <b>fara cancer de ani de zile</b>. Medicamentul radioactiv a ajuns la toate locatiile canceroase, confirmand eficacitatea prin imagistica in timp real.</p>
+          </div>
+        </div>
+
+        <div class="alert purple" style="margin-top:12px;">
+          <h4>Abordare combinata</h4>
+          <p>Daca medicina nucleara nu ajunge la toate zonele afectate, se poate combina cu <b>radioterapie clasica din exterior</b> pentru zonele ramase. Tendinta este de a creste optiunile de tratament, combinand terapii pentru rezultate optime.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Neuroblastom pediatric -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiu de caz: neuroblastom la copii</h2>
+          <p>O tumoare agresiva cu rata mare de recidiva — 11 ani fara cancer dupa medicina nucleara</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">PEDIATRIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">~30%</div>
+            <span class="u">rata de supravietuire pe termen lung</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">&lt;18 ani</div>
+            <span class="u">afecteaza exclusiv copiii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">11 ani</div>
+            <span class="u">fara recidiva dupa tratamentul nuclear</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">Minim</div>
+            <span class="u">efecte secundare pe termen lung</span>
+          </div>
+        </div>
+
+        <div class="mini" style="margin-top:14px;">
+          <h3>Ce este neuroblastomul?</h3>
+          <p>Neuroblastomul se dezvolta in <b>celulele nervoase</b>, de obicei langa <b>maduva spinarii</b> si in <b>glandele suprarenale</b> (situate deasupra rinichilor). Apare exclusiv la copii sub 18 ani. Se raspandeste adesea in jurul organelor si vaselor de sange si are o <b>rata de recidiva extrem de mare</b>.</p>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Chimioterapie si chirurgie</h4>
+              <p>Primele linii de tratament: chimioterapia pentru a micsora tumoarea, urmata de <b>interventie chirurgicala</b>. Efectele secundare sunt severe: caderea parului, slabiciune extrema.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04))"></div></div>
+            <div class="stepContent">
+              <h4>2. Recidiva si optiuni limitate</h4>
+              <p>Dupa tratamentele conventionale, cancerul a <b>recidivat</b>. Medicamentele disponibile erau foarte limitate, iar efectele chimioterapiei repetate erau devastatoare fizic.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Medicina nucleara — tratament de salvare</h4>
+              <p>Terapia nucleara a fost aplicata <b>dupa ce toate celelalte optiuni au esuat</b>. Parintii au fost incurajati sa incerce: <b>"nu va fi la fel de stresant pentru copil ca antibioticele"</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Succes: 11 ani fara recidiva</h4>
+              <p>Efecte secundare minore: <b>gura uscata</b> si <b>dureri de cap</b>. Dar <b>fara efecte secundare grave</b>. La 11 ani dupa tratament, cancerul <b>nu a recidivat</b>. Pacienta este acum <b>studenta la universitate</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Cand eram in scoala primara, nu-mi puteam imagina ca voi ajunge la liceu. E uimitor pentru mine ca acum sunt studenta la universitate. Ma bucur de lucruri obisnuite — azi si maine. Obiectivul meu a fost mereu sa termin ziua in siguranta si sa traiesc ziua urmatoare.&raquo;
+          <cite>— Pacienta vindecata de neuroblastom (tratata in Kanazawa, Japonia)</cite>
+        </div>
+
+        <div class="quote purple" style="margin-top:8px;">
+          &laquo;Nu regret niciun tratament, pentru ca am gandit fiecare decizie foarte serios impreuna. Cred ca faptul ca zambeste acum, iese cu prietenii si are o viata normala se datoreaza tratamentului primit.&raquo;
+          <cite>— Parintele pacientei</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Beta vs Alpha -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Raze Beta vs. Raze Alfa: urmatoarea generatie</h2>
+          <p>Razele alfa sunt mult mai puternice decat cele beta — cercetarea avanseaza catre terapii alfa pentru cancerele agresive</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--glow);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <table class="cmpTable">
+          <thead>
+            <tr>
+              <th>Caracteristica</th>
+              <th style="color:var(--glow)">Raze Beta</th>
+              <th style="color:var(--glow2)">Raze Alfa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Putere de distrugere</td>
+              <td>Moderata</td>
+              <td style="color:var(--glow2)">Foarte puternica</td>
+            </tr>
+            <tr>
+              <td>Raza de actiune</td>
+              <td>Cativa milimetri</td>
+              <td>Mai mica decat beta</td>
+            </tr>
+            <tr>
+              <td>Efect vizual pe celule</td>
+              <td>Nucleul devine roz (ADN distrus)</td>
+              <td style="color:var(--glow2)">"Arde intreaga celula" — semnal foarte puternic</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td style="color:var(--ok)">In uz clinic</td>
+              <td style="color:var(--warn)">In cercetare avansata</td>
+            </tr>
+            <tr>
+              <td>Element radioactiv</td>
+              <td>Varii izotopi beta</td>
+              <td style="color:var(--glow2)">Astatin (At-211)</td>
+            </tr>
+            <tr>
+              <td>Indicat pentru</td>
+              <td>Cancere care raspund la beta</td>
+              <td style="color:var(--glow2)">Cancere agresive, rezistente la terapii standard</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--glow)">Experimentul cu raze alfa</h3>
+            <p>Cercetatorii au testat medicamentul pe <b>celule de cancer de prostata uman</b> implantate la soareci. Imagistica la cateva ore dupa administrare a confirmat ca medicamentul s-a <b>acumulat in celulele canceroase</b>. Cu cat culoarea era mai intensa, cu atat mai mult medicament era prezent.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow2)">Productia de astatin</h3>
+            <p>Astatinul este produs cu un <b>dispozitiv special</b> (ciclotron) in cateva ore, apoi transformat in <b>medicament lichid</b> combinat cu markeri de cancer. Universitatea Osaka lucreaza la crearea unui mediu unde <b>productia si tratamentul</b> se fac in aceeasi facilitate.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Celulele canceroase care sunt puternic activate tind sa prolifereze puternic si sunt greu de eliminat complet — de aceea au nevoie de radiatie mai puternica. Alfa si beta sunt complet diferite.&raquo;
+          <cite>— Cercetator, Universitatea Osaka</cite>
+        </div>
+
+        <div class="alert" style="margin-top:12px;">
+          <h4>Necunoscute ale razelor alfa</h4>
+          <p>Cercetatorii recunosc ca <b>sunt inca multe lucruri necunoscute despre razele alfa</b>. Se lucreaza intens la gasirea dozajului si metodei de administrare care sa permita un efect terapeutic sigur, fara efecte secundare. Productia la scara mare este planificata la Universitatea Osaka.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Efecte secundare si avantaje -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Efecte secundare si avantaje fata de chimioterapie</h2>
+          <p>O terapie mai blanda pentru organism — dar nu complet fara riscuri</p>
+        </div>
+        <span class="badge">SIGURANTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Avantaje</h3>
+            <p><b>Mai bland</b> decat chimioterapia cu medicamente multiple. Nu provoaca caderea severa a parului tipica chimioterapiei. Copiii tratati cu medicina nucleara au <b>mai putine complicatii pe termen lung</b> la organe si oase decat cei tratati cu chimioterapie si radioterapie clasica.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Efecte secundare</h3>
+            <p><b>Gura uscata</b> si <b>dureri de cap</b> sunt efectele secundare cele mai comune. <b>Maduva osoasa</b> este sensibila la radiatie, necesitand monitorizare. Nu exista zero efecte secundare, dar impresia generala este ca terapia e <b>mai delicata</b> decat alternativele.</p>
+          </div>
+        </div>
+
+        <div class="quote purple" style="margin-top:14px;">
+          &laquo;Nu glumesc si nu spun ca efectele sunt zero. Dar cred ca impresia generala a publicului este ca este putin mai bland pentru organism decat utilizarea mai multor medicamente.&raquo;
+          <cite>— Medic specialist medicina nucleara</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Provocari si viitor -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Provocari si perspective de viitor</h2>
+          <p>Obstacolul principal: aprovizionarea — nu exista suficiente medicamente radioactive pentru toti pacientii care au nevoie</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">VIITOR</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Problema aprovizionarii</h3>
+            <p>Cel mai mare obstacol este <b>aprovizionarea</b>. Capacitatea de productie a medicamentelor radioactive este <b>limitata</b> si insuficienta. Multi pacienti care ar beneficia nu pot accesa tratamentul.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--glow)">Productie si tratament integrat</h3>
+            <p>Universitatea <b>Osaka</b> construieste facilitati unde productia medicamentelor si tratamentul pacientilor se fac <b>in acelasi loc</b>, pentru eficienta maxima si acces rapid.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Colaborare globala</h3>
+            <p>Nu doar in Japonia, ci <b>in toata lumea</b> cercetatorii colaboreaza pentru a dezvolta noi medicamente si a creste capacitatea de productie. Scopul: sa ajunga la <b>toti pacientii</b> care au nevoie.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Extinderea la alte cancere</h3>
+            <p>Principiul functioneaza nu doar pentru tiroidian sau neuroblastom — poate fi adaptat la <b>orice cancer</b> care are markeri de suprafata identificabili. Cercetarea in <b>cancer de prostata</b> cu raze alfa este deja in stadiu avansat.</p>
+          </div>
+          <div class="mini">
+            <h3>Cancere metastatice si dificile</h3>
+            <p>Medicina nucleara ofera <b>speranta semnificativa</b> pentru cancerele care s-au raspandit (metastatice) sau sunt dificil de tratat cu metodele conventionale. Abordarea tintita functioneaza acolo unde <b>chimioterapia clasica esueaza</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Vrem ca clinicienii sa cunoasca aceasta terapie alfa si sa o promoveze ca una dintre optiunile de tratament al cancerului. Vrem sa ne asiguram ca ajunge la toti pacientii care au nevoie — la toti pacientii.&raquo;
+          <cite>— Cercetator, Universitatea Osaka</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ======= SIDEBAR ======= -->
+  <div class="side">
+
+    <!-- KPI Summary -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre-cheie</h2></div>
+      </div>
+      <div class="cardBody" style="display:flex;flex-direction:column;gap:14px;">
+        <div class="mini">
+          <h3 style="color:var(--bad)">Cancer tiroidian metastatic</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--bad)">47%</span>
+            <span class="l">rata de supravietuire la 10 ani cand cancerul tiroidian metastazeaza</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--warn)">Neuroblastom pediatric</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--warn)">~30%</span>
+            <span class="l">rata de supravietuire pe termen lung in neuroblastom</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--ok)">Raze beta</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--ok)">~mm</span>
+            <span class="l">raza de actiune a razelor beta — precizie milimetrica</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--glow)">Succes pediatric</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow)">11 ani</span>
+            <span class="l">fara recidiva dupa medicina nucleara pentru neuroblastom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Etapele tratamentului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Diagnostic</span><span class="tDesc">Medicament cu <b>raze gamma</b> — imagistica pentru localizarea cancerului</span></div>
+        <div class="tEvent"><span class="tDate">Confirmare</span><span class="tDesc">Se verifica daca medicamentul <b>ajunge la tumoare</b></span></div>
+        <div class="tEvent"><span class="tDate">Calcul doza</span><span class="tDesc">Se calculeaza <b>doza de radiatie</b> si se estimeaza eficacitatea</span></div>
+        <div class="tEvent"><span class="tDate">Tratament</span><span class="tDesc">Administrare medicament cu <b>raze beta sau alfa</b></span></div>
+        <div class="tEvent"><span class="tDate">Monitorizare</span><span class="tDesc">Imagistica <b>in timp real</b> confirma actiunea medicamentului</span></div>
+        <div class="tEvent"><span class="tDate">Combinare</span><span class="tDesc">Daca e necesar, <b>radioterapie externa</b> pentru zonele neacoperite</span></div>
+        <div class="tEvent"><span class="tDate">Urmarire</span><span class="tDesc">Monitorizare pe termen lung a <b>recidivei</b> si efectelor secundare</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Context si Perspective</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce Japonia?</h4>
+          <p>Japonia este lider in cercetarea medicinei nucleare, cu <b>Societatea Japoneza de Medicina Nucleara</b> coordonand studii clinice avansate. Centrele universitare (inclusiv Osaka si Kanazawa) dezvolta atat tratamente cat si infrastructura de productie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Diferenta fata de chimioterapie</h4>
+          <p>In chimioterapia clasica, <b>nu se poate sti sigur</b> daca medicamentul ajunge la tumoare. In medicina nucleara, se poate <b>vedea si masura</b> exact unde ajunge medicamentul — revolutionand personalizarea tratamentului.</p>
+        </div>
+        <div class="comNote">
+          <h4>Provocarea aprovizionarii</h4>
+          <p>Medicamentele radioactive au o <b>durata de viata scurta</b> (se degradeaza rapid). Productia necesita echipamente specializate (ciclotron). Aceasta limiteaza numarul de pacienti care pot fi tratati simultan.</p>
+        </div>
+        <div class="comNote">
+          <h4>Perspectiva pentru cancerele dificile</h4>
+          <p>Cancerele metastatice sau rezistente la tratamentele clasice au acum o <b>optiune reala</b>. Razele alfa, mai puternice, ar putea trata cancerele cele mai agresive, care nu raspund la terapiile standard.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Medicina nucleara</dt>
+          <dd>Ramura a medicinei care foloseste substante radioactive pentru diagnostic (imagistica) si tratament (distrugerea celulelor canceroase din interior).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Teranostica</dt>
+          <dd>Combinarea diagnosticului si terapiei intr-o singura abordare — acelasi medicament poate fi folosit pentru a vizualiza SI a trata cancerul.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Raze beta</dt>
+          <dd>Particule emise de atomi radioactivi care parcurg doar cativa milimetri. Folosite in tratamentul nuclear actual pentru distrugerea tintita a celulelor canceroase.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Raze alfa</dt>
+          <dd>Particule mult mai puternice decat beta, cu raza de actiune mai mica. Cercetarea actuala le testeaza pentru cancerele agresive si rezistente.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Raze gamma</dt>
+          <dd>Radiatii electromagnetice de inalta energie, folosite in imagistica medicala. Permit vizualizarea distributiei medicamentului in corp.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Astatin (At-211)</dt>
+          <dd>Element radioactiv care emite raze alfa. Produs artificial cu ciclotron, folosit in cercetarea pentru tratamentul alfa al cancerului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Neuroblastom</dt>
+          <dd>Cancer pediatric care se dezvolta in celulele nervoase, de obicei langa maduva spinarii si glandele suprarenale. Afecteaza exclusiv copiii sub 18 ani.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Marker tumoral</dt>
+          <dd>Proteina prezenta in cantitati mari pe suprafata celulelor canceroase. Serveste ca "tinta" pentru medicamentul radioactiv, care se ataseaza selectiv de ea.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Ciclotron</dt>
+          <dd>Accelerator de particule folosit pentru a produce izotopi radioactivi (ex: astatin) necesari in medicina nucleara.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Metastaza</dt>
+          <dd>Raspandirea celulelor canceroase de la locul initial al tumorii la alte organe din corp, prin sistemul sanguin sau limfatic.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=l6K1THLnUSA" target="_blank">NHK Medical Frontiers — Nuclear Medicine to Treat Cancer</a> &middot;
+    Program NHK World Japan &middot;
+    Infografic explicativ bazat pe emisiunea originala
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* -- Hero canvas: atom/radiation symbol with orbiting particles -- */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Orbiting particles
+  const particles = [];
+  for(let i = 0; i < 60; i++){
+    particles.push({
+      orbit: 0.12 + Math.random() * 0.35,
+      angle: Math.random() * Math.PI * 2,
+      speed: (0.003 + Math.random() * 0.008) * (Math.random() < 0.5 ? 1 : -1),
+      r: 1.2 + Math.random() * 2.5,
+      tilt: Math.random() * Math.PI,
+      type: Math.random() < 0.4 ? 'beta' : Math.random() < 0.7 ? 'alpha' : 'gamma',
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  // Cancer cells that get destroyed
+  const cells = [];
+  for(let i = 0; i < 8; i++){
+    const a = (i / 8) * Math.PI * 2 + Math.random() * 0.4;
+    cells.push({
+      x: 0.5 + Math.cos(a) * (0.22 + Math.random() * 0.12),
+      y: 0.5 + Math.sin(a) * (0.22 + Math.random() * 0.12),
+      r: 8 + Math.random() * 6,
+      phase: Math.random() * Math.PI * 2,
+      hit: false,
+      hitTime: 0
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+    const cx = w * 0.5, cy = h * 0.5;
+
+    // Electron orbits (ellipses)
+    for(let o = 0; o < 3; o++){
+      const tilt = (o / 3) * Math.PI;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(tilt + t * 0.15);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, w * 0.32, h * 0.12, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(34,211,238,0.08)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Pulse waves from nucleus
+    for(let p = 0; p < 4; p++){
+      const pulseR = ((t * 30 + p * 45) % 160);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2500);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(34,211,238,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Cancer cells
+    cells.forEach(cell => {
+      const px = cell.x * w;
+      const py = cell.y * h;
+      const pulse = Math.sin(t * 2 + cell.phase) * 2;
+
+      // Check if any particle is near
+      const hitCheck = particles.some(p => {
+        const pa = p.angle + t * p.speed * 60;
+        const orbitX = cx + Math.cos(pa) * p.orbit * w * Math.cos(p.tilt);
+        const orbitY = cy + Math.sin(pa) * p.orbit * h;
+        const dx = orbitX - px, dy = orbitY - py;
+        return Math.sqrt(dx*dx + dy*dy) < cell.r + 5;
+      });
+
+      if(hitCheck && !cell.hit){
+        cell.hit = true;
+        cell.hitTime = t;
+      }
+      if(cell.hit && t - cell.hitTime > 3){
+        cell.hit = false;
+      }
+
+      if(cell.hit){
+        const flash = Math.sin((t - cell.hitTime) * 8) * 0.3 + 0.3;
+        ctx.beginPath();
+        ctx.arc(px, py, cell.r + pulse + 4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(34,211,238,${flash * 0.15})`;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(px, py, cell.r + pulse, 0, Math.PI * 2);
+      ctx.fillStyle = cell.hit ? 'rgba(34,211,238,0.12)' : 'rgba(248,113,113,0.08)';
+      ctx.strokeStyle = cell.hit ? 'rgba(34,211,238,0.3)' : 'rgba(248,113,113,0.15)';
+      ctx.lineWidth = 1;
+      ctx.fill();
+      ctx.stroke();
+
+      // Cell nucleus
+      ctx.beginPath();
+      ctx.arc(px, py, 3, 0, Math.PI * 2);
+      ctx.fillStyle = cell.hit ? 'rgba(34,211,238,0.5)' : 'rgba(248,113,113,0.3)';
+      ctx.fill();
+    });
+
+    // Central nucleus (atom)
+    const nucleusR = 12 + Math.sin(t * 1.5) * 2;
+    // Glow
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, nucleusR * 3);
+    grad.addColorStop(0, 'rgba(167,139,250,0.15)');
+    grad.addColorStop(0.5, 'rgba(34,211,238,0.06)');
+    grad.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(cx, cy, nucleusR * 3, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Nucleus
+    ctx.beginPath();
+    ctx.arc(cx, cy, nucleusR, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(167,139,250,0.35)';
+    ctx.strokeStyle = 'rgba(167,139,250,0.5)';
+    ctx.lineWidth = 2;
+    ctx.fill();
+    ctx.stroke();
+
+    // Inner nucleus detail
+    ctx.beginPath();
+    ctx.arc(cx - 3, cy - 3, nucleusR * 0.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(34,211,238,0.25)';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx + 4, cy + 2, nucleusR * 0.35, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(167,139,250,0.3)';
+    ctx.fill();
+
+    // Orbiting particles
+    particles.forEach(p => {
+      p.angle += p.speed;
+      const orbitX = cx + Math.cos(p.angle) * p.orbit * w * Math.cos(p.tilt);
+      const orbitY = cy + Math.sin(p.angle) * p.orbit * h;
+      const glow = 0.4 + Math.sin(t * 3 + p.phase) * 0.2;
+
+      // Trail
+      for(let tr = 1; tr <= 3; tr++){
+        const trAngle = p.angle - p.speed * tr * 3;
+        const trX = cx + Math.cos(trAngle) * p.orbit * w * Math.cos(p.tilt);
+        const trY = cy + Math.sin(trAngle) * p.orbit * h;
+        ctx.beginPath();
+        ctx.arc(trX, trY, p.r * (1 - tr * 0.25), 0, Math.PI * 2);
+        if(p.type === 'beta'){
+          ctx.fillStyle = `rgba(34,211,238,${glow * 0.1 / tr})`;
+        } else if(p.type === 'alpha'){
+          ctx.fillStyle = `rgba(167,139,250,${glow * 0.1 / tr})`;
+        } else {
+          ctx.fillStyle = `rgba(52,211,153,${glow * 0.08 / tr})`;
+        }
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(orbitX, orbitY, p.r, 0, Math.PI * 2);
+      if(p.type === 'beta'){
+        ctx.fillStyle = `rgba(34,211,238,${glow})`;
+        ctx.shadowColor = 'rgba(34,211,238,0.4)';
+      } else if(p.type === 'alpha'){
+        ctx.fillStyle = `rgba(167,139,250,${glow + 0.1})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.4)';
+      } else {
+        ctx.fillStyle = `rgba(52,211,153,${glow})`;
+        ctx.shadowColor = 'rgba(52,211,153,0.3)';
+      }
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Radiation symbol in center (trefoil hint)
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(t * 0.3);
+    for(let s = 0; s < 3; s++){
+      ctx.save();
+      ctx.rotate((s / 3) * Math.PI * 2);
+      ctx.beginPath();
+      ctx.arc(0, -6, 5, -0.8, 0.8);
+      ctx.lineTo(0, 0);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(34,211,238,0.12)';
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.restore();
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.4)';
+    ctx.fillText('NUCLEU', cx - 18, cy + nucleusR + 16);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(34,211,238,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('beta', 15, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(48, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('alfa', 55, ly+3);
+    ctx.fillStyle = 'rgba(52,211,153,0.7)'; ctx.beginPath(); ctx.arc(84, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('gamma', 91, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.5)'; ctx.beginPath(); ctx.arc(136, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('cancer', 143, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

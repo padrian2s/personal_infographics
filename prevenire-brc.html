@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prevenirea Bolii Renale Cronice — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: prevenirea bolii renale cronice (BRC) bazat pe studiul japonez FROM-J, inhibitorii SGLT2, terapia cu celule stem si ghidajul dietetic. Sursa: NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#DC2626;
+      --glow2:#F59E0B;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(220,38,38,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(245,158,11,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(220,38,38,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(220,38,38,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(245,158,11,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--teal)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(220,38,38,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.amber{border-color:var(--glow2);background:rgba(245,158,11,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(220,38,38,.22),rgba(220,38,38,.04));}
+    .stepBar.amber{background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(220,38,38,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.amber{border-color:var(--glow2);background:rgba(245,158,11,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(220,38,38,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(220,38,38,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.ok{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);}
+    .alert.ok h4{color:var(--ok);}
+
+    /* SVG diagrams */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(220,38,38,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(220,38,38,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(220,38,38,.25);background:rgba(220,38,38,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Bar chart */
+    .barChart{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+    .barRow{display:flex;align-items:center;gap:10px;}
+    .barLabel{font-size:11.5px;color:var(--muted);width:120px;text-align:right;flex-shrink:0;}
+    .barTrack{flex:1;height:28px;background:rgba(6,8,16,.40);border-radius:8px;overflow:hidden;position:relative;border:1px solid rgba(234,240,255,.06);}
+    .barFill{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:11px;font-weight:700;color:var(--ink);transition:width 1.5s ease;}
+    .barFill.red{background:linear-gradient(90deg,rgba(220,38,38,.25),rgba(220,38,38,.65));}
+    .barFill.amber{background:linear-gradient(90deg,rgba(245,158,11,.25),rgba(245,158,11,.65));}
+    .barFill.green{background:linear-gradient(90deg,rgba(52,211,153,.25),rgba(52,211,153,.55));}
+    .barFill.teal{background:linear-gradient(90deg,rgba(34,211,238,.25),rgba(34,211,238,.55));}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Prevenirea Bolii Renale Cronice
+          <small>NHK Medical Frontiers — Studiul FROM-J, inhibitori SGLT2 si terapia cu celule stem din Japonia</small>
+        </h1>
+        <p class="sub">Rinichii sunt "organele tacute" ale corpului — se deterioreaza fara simptome vizibile, iar odata afectati, <b>nu se mai recupereaza complet</b>. Un studiu japonez de referinta, desfasurat pe 10 ani, demonstreaza ca <b>ghidajul dietetic si schimbarea stilului de viata</b> pot incetini semnificativ progresia bolii. In paralel, descoperiri revolutionare — inhibitorii SGLT2 si terapia cu celule stem — deschid noi orizonturi in tratament.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Nefrologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Preventie BRC</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este BRC -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este Boala Renala Cronica (BRC)?</h2>
+          <p>Rinichii filtreaza sangele si elimina deseurile — dar odata deteriorati, functia lor nu se mai recupereaza</p>
+        </div>
+        <span class="badge">DEFINITIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">2</div>
+            <span class="u">rinichi, cate unul de fiecare parte a corpului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">6</div>
+            <span class="u">stadii ale BRC (G1-G5), clasificate dupa eGFR</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">&lt;60</div>
+            <span class="u">eGFR sub 60 = stadiu G3a = BRC confirmata</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">G5</div>
+            <span class="u">functie renala sever redusa — dializa necesara</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Organele "tacute"</h3>
+            <p>Rinichii se deterioreaza <b>fara simptome vizibile</b> — de aceea sunt numiti "organele tacute" ale corpului. Multi pacienti afla ca au BRC abia cand boala e deja avansata. Singurele indicii vin din <b>analizele de sange</b> (eGFR) si <b>analizele de urina</b> (proteinurie).</p>
+          </div>
+          <div class="mini">
+            <h3>Irecuperabili</h3>
+            <p>Odata ce functia renala scade cronic, <b>nu mai poate fi restaurata</b> la nivelul initial. Optiunile ramase sunt <b>dializa</b> (filtrarea artificiala a sangelui, 3-4 ore/sedinta) sau <b>transplantul renal</b>. De aceea, prevenirea progresiei e absolut esentiala.</p>
+          </div>
+        </div>
+
+        <!-- Kidney stages SVG -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Stage boxes -->
+            <rect x="10" y="30" width="100" height="55" rx="10" fill="rgba(52,211,153,.10)" stroke="rgba(52,211,153,.30)" stroke-width="1.5"/>
+            <text x="60" y="52" fill="#34D399" font-size="12" font-weight="700" text-anchor="middle">G1</text>
+            <text x="60" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR &ge; 90</text>
+
+            <rect x="125" y="30" width="100" height="55" rx="10" fill="rgba(52,211,153,.08)" stroke="rgba(52,211,153,.20)" stroke-width="1.5"/>
+            <text x="175" y="52" fill="#34D399" font-size="12" font-weight="700" text-anchor="middle">G2</text>
+            <text x="175" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR 60-89</text>
+
+            <rect x="240" y="30" width="100" height="55" rx="10" fill="rgba(245,158,11,.10)" stroke="rgba(245,158,11,.30)" stroke-width="1.5"/>
+            <text x="290" y="52" fill="#F59E0B" font-size="12" font-weight="700" text-anchor="middle">G3a</text>
+            <text x="290" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR 45-59</text>
+
+            <rect x="355" y="30" width="100" height="55" rx="10" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+            <text x="405" y="52" fill="#F59E0B" font-size="12" font-weight="700" text-anchor="middle">G3b</text>
+            <text x="405" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR 30-44</text>
+
+            <rect x="470" y="30" width="100" height="55" rx="10" fill="rgba(220,38,38,.10)" stroke="rgba(220,38,38,.30)" stroke-width="1.5"/>
+            <text x="520" y="52" fill="#DC2626" font-size="12" font-weight="700" text-anchor="middle">G4</text>
+            <text x="520" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR 15-29</text>
+
+            <rect x="585" y="30" width="100" height="55" rx="10" fill="rgba(220,38,38,.15)" stroke="rgba(220,38,38,.45)" stroke-width="1.5"/>
+            <text x="635" y="52" fill="#DC2626" font-size="12" font-weight="700" text-anchor="middle">G5</text>
+            <text x="635" y="72" fill="#A0ACC8" font-size="9" text-anchor="middle">eGFR &lt; 15</text>
+
+            <!-- Arrows -->
+            <line x1="110" y1="57" x2="125" y2="57" stroke="rgba(234,240,255,.2)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+            <line x1="225" y1="57" x2="240" y2="57" stroke="rgba(234,240,255,.2)" stroke-width="1.5"/>
+            <line x1="340" y1="57" x2="355" y2="57" stroke="rgba(234,240,255,.2)" stroke-width="1.5"/>
+            <line x1="455" y1="57" x2="470" y2="57" stroke="rgba(234,240,255,.2)" stroke-width="1.5"/>
+            <line x1="570" y1="57" x2="585" y2="57" stroke="rgba(234,240,255,.2)" stroke-width="1.5"/>
+
+            <!-- Labels -->
+            <text x="60" y="110" fill="#6E7A9A" font-size="8.5" text-anchor="middle">Normal</text>
+            <text x="175" y="110" fill="#6E7A9A" font-size="8.5" text-anchor="middle">Usor scazut</text>
+            <text x="290" y="110" fill="#F59E0B" font-size="8.5" text-anchor="middle">BRC confirmata</text>
+            <text x="405" y="110" fill="#F59E0B" font-size="8.5" text-anchor="middle">Moderat scazut</text>
+            <text x="520" y="110" fill="#DC2626" font-size="8.5" text-anchor="middle">Sever scazut</text>
+            <text x="635" y="110" fill="#DC2626" font-size="8.5" text-anchor="middle">Dializa</text>
+
+            <!-- Bracket for CKD -->
+            <line x1="240" y1="95" x2="685" y2="95" stroke="rgba(220,38,38,.3)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="462" y="140" fill="rgba(220,38,38,.6)" font-size="10" font-weight="600" text-anchor="middle">Boala Renala Cronica (BRC)</text>
+          </svg>
+        </div>
+
+        <div class="alert">
+          <h4>1 din 6 adulti are BRC</h4>
+          <p>Un studiu japonez din 2024 a analizat examene medicale de la <b>~600.000 de adulti</b> si a descoperit ca aproximativ <b>1 din 6 persoane in varsta</b> are boala renala cronica. Printre cei cu varsta de 75+ ani, prevalenta este si mai ridicata.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Studiul FROM-J -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul FROM-J: 10 ani de cercetare</h2>
+          <p>Cel mai amplu studiu japonez privind prevenirea progresiei BRC prin ghidaj dietetic si schimbarea stilului de viata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(245,158,11,.3);color:var(--glow2);">STUDIU CHEIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Design-ul studiului</h3>
+            <p>In <b>2008</b>, echipa condusa de <b>Dr. Yamagata</b> a lansat studiul FROM-J in parteneriat cu medici din toata Japonia. Au fost inclusi pacienti cu BRC usoara-moderata, monitorizati timp de ani si re-evaluati dupa <b>10 ani</b>.</p>
+            <p style="margin-top:6px;">Participantii au fost impartiti in <b>doua grupuri</b>: unul cu ingrijire standard si unul cu ghidaj suplimentar privind stilul de viata si dieta.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce a inclus ghidajul</h3>
+            <p>Grupul de interventie a fost verificat pentru: <b>evitarea fumatului</b>, administrarea corecta a medicatiei si <b>consiliere dietetica</b> la fiecare cateva luni.</p>
+            <p style="margin-top:6px;">Lista de verificare: <b>IMC</b>, tensiune arteriala, glicemie, lipide, aport de sare, fumat, potasiu, proteine si acid uric.</p>
+          </div>
+        </div>
+
+        <!-- Results bar chart -->
+        <h3 style="margin:16px 0 4px;font-size:13.5px;">Rezultate dupa 10 ani</h3>
+        <div class="barChart">
+          <div class="barRow">
+            <span class="barLabel">Declin rapid eGFR<br><small style="color:var(--muted2)">ingrijire standard</small></span>
+            <div class="barTrack">
+              <div class="barFill red" style="width:70%">20.9%</div>
+            </div>
+          </div>
+          <div class="barRow">
+            <span class="barLabel">Declin rapid eGFR<br><small style="color:var(--muted2)">+ ghidaj dietetic</small></span>
+            <div class="barTrack">
+              <div class="barFill amber" style="width:48%">14.2%</div>
+            </div>
+          </div>
+          <div class="barRow">
+            <span class="barLabel">Boli cardiovasculare<br><small style="color:var(--muted2)">ingrijire standard</small></span>
+            <div class="barTrack">
+              <div class="barFill red" style="width:35%">10.5%</div>
+            </div>
+          </div>
+          <div class="barRow">
+            <span class="barLabel">Boli cardiovasculare<br><small style="color:var(--muted2)">+ ghidaj dietetic</small></span>
+            <div class="barTrack">
+              <div class="barFill green" style="width:20%">6.0%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">Studiu de caz: pacient 61 ani</h3>
+            <p>Un pacient cu BRC usoara-moderata a primit ghidaj dietetic pe parcursul mai multor ani. Rezultate: greutatea s-a redus de la <b>80.5 kg la 71.5 kg</b>, tensiunea arteriala a scazut de la <b>150</b>, iar functia renala (eGFR) a ramas <b>in mare parte stabila</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Proiectie nationala</h3>
+            <p>Daca interventia FROM-J ar fi implementata la nivel national si continuata timp de <b>15 ani</b>, numarul de pacienti noi care incep dializa ar putea fi redus cu aproximativ <b>4.500 de persoane</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote amber">
+          &laquo;S-a confirmat ca, dupa ce pacientii au intrat in programul de ghidaj, tensiunea arteriala a scazut, iar IMC-ul si greutatea s-au redus semnificativ. Cand am ascultat medicii care au supravegheat pacientii, era clar ca tratamentul a fost eficient — ei au inceput sa ia medicamentele corect si sa duca un stil de viata mai stabil.&raquo;
+          <cite>— Dr. Yamagata, coordonator studiu FROM-J</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Dietary Guidance -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ghidul dietetic FROM-J: ce sa schimbi in alimentatie</h2>
+          <p>Nu renunti la tot — reduci treptat. Abordarea practica japoneza pentru pacientii cu BRC</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">DIETA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>Principiul de baza: reduce, nu elimina</h4>
+              <p>In loc sa spui pacientului ce <b>nu are voie</b> sa manance (ceea ce cauzeaza stres), se recomanda reducerea <b>numarului de mese</b> sau a <b>cantitatii</b> la fiecare masa. Abordare progresiva, fara restrictii brutale.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Limiteaza sarea la sub 6g/zi</h4>
+              <p>Pacientii cu BRC trebuie sa limiteze aportul de sare. Sfaturi practice: inlocuieste ouale fierte cu <b>oua jumari cu ketchup</b> (pentru aroma, fara sare adaugata). Evita <b>sosul de soia</b> direct pe mancare. Foloseste condimente fara sare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>Controleaza aportul caloric</h4>
+              <p>Felii de paine <b>mai subtiri</b> pentru a reduce energia. La mancaruri tip "bol" (orez cu topping), se recomanda <b>separarea orezului de garnitura</b> — astfel sosul nu se absoarbe in orez si se controleaza mai bine aportul caloric total.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Alcool si acid uric</h4>
+              <p>Berea: maxim <b>1 doza</b> (350-500ml/zi), cu <b>zile de pauza</b>. Pacientii cu acid uric crescut trebuie sa fie atenti la condimentele sarate (sos de soia) si sa evite adaugarea directa de sare pe mancare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Continuitatea conteaza</h4>
+              <p>Pacientii au primit ghidaj dietetic de <b>12 ori pe parcursul a doi ani si jumatate</b>. Chiar si dupa ani de la sesiuni, declinul functiei renale a fost incetinit. Multi pacienti renunta la controale pentru ca BRC nu are simptome — <b>ghidajul continuu e esential</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Diferente intre barbati si femei</h3>
+            <p>Studiul a relevat o descoperire interesanta: pentru <b>barbati</b>, singura metoda eficienta de a respecta restrictia de sare a fost <b>cresterea frecventei</b> sesiunilor de ghidaj. Pentru <b>femei</b>, pe langa frecventa, a functionat si informarea ca <b>stadiul BRC se agraveaza</b> sau ca ar trebui sa consulte un specialist.</p>
+          </div>
+          <div class="mini">
+            <h3>Exercitiul fizic ajuta</h3>
+            <p>Noi dovezi arata ca <b>exercitiul fizic singur</b> poate reduce nivelurile de proteine din urina si <b>imbunatati usor functia renala</b>. Viitorul ideal: incurajarea unui stil de viata sanatos <b>inainte</b> de a ajunge la spital, pentru a preveni boala din start.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Deoarece este o boala care nu cauzeaza multe simptome, unii pacienti nu mai vin la spital. In consecinta, ajung sa revina mult mai tarziu, cand starea lor s-a agravat mult. Am realizat ca ghidajul nutritional continuu este esential.&raquo;
+          <cite>— medic specialist, studiul FROM-J</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: SGLT2 Inhibitors -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Inhibitorii SGLT2: descoperirea revolutionara</h2>
+          <p>In 2020, Societatea Internationala de Nefrologie i-a numit o descoperire de referinta in protejarea rinichilor</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">MEDICAMENT</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- SGLT2 mechanism SVG -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Normal kidney -->
+            <text x="175" y="22" fill="#A0ACC8" font-size="11" font-weight="600" text-anchor="middle">Rinichi normal</text>
+            <!-- Kidney shape -->
+            <ellipse cx="175" cy="80" rx="50" ry="35" fill="rgba(52,211,153,.10)" stroke="rgba(52,211,153,.30)" stroke-width="1.5"/>
+            <text x="175" y="76" fill="#34D399" font-size="10" font-weight="600" text-anchor="middle">Filtrare</text>
+            <text x="175" y="90" fill="#6E7A9A" font-size="8.5" text-anchor="middle">sange + zahar</text>
+            <!-- Arrow down -->
+            <line x1="175" y1="118" x2="175" y2="145" stroke="rgba(52,211,153,.4)" stroke-width="1.5"/>
+            <text x="175" y="165" fill="#6E7A9A" font-size="9" text-anchor="middle">Zaharul e reabsorbit</text>
+            <text x="175" y="178" fill="#6E7A9A" font-size="9" text-anchor="middle">si refolosit ca energie</text>
+
+            <!-- Diabetic kidney -->
+            <text x="525" y="22" fill="#A0ACC8" font-size="11" font-weight="600" text-anchor="middle">Rinichi diabetic + SGLT2i</text>
+            <ellipse cx="525" cy="80" rx="50" ry="35" fill="rgba(34,211,238,.10)" stroke="rgba(34,211,238,.30)" stroke-width="1.5"/>
+            <text x="525" y="76" fill="#22D3EE" font-size="10" font-weight="600" text-anchor="middle">SGLT2i</text>
+            <text x="525" y="90" fill="#6E7A9A" font-size="8.5" text-anchor="middle">blocheaza reabsorbtia</text>
+            <!-- Arrow down left -->
+            <line x1="500" y1="118" x2="470" y2="155" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+            <text x="450" y="175" fill="#F59E0B" font-size="9" text-anchor="middle">Zaharul e excretat</text>
+            <text x="450" y="188" fill="#F59E0B" font-size="9" text-anchor="middle">prin urina</text>
+            <!-- Arrow down right -->
+            <line x1="550" y1="118" x2="580" y2="155" stroke="rgba(52,211,153,.4)" stroke-width="1.5"/>
+            <text x="600" y="175" fill="#34D399" font-size="9" text-anchor="middle">Rinichii se</text>
+            <text x="600" y="188" fill="#34D399" font-size="9" text-anchor="middle">pot odihni</text>
+
+            <!-- VS divider -->
+            <line x1="350" y1="20" x2="350" y2="210" stroke="rgba(234,240,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>
+            <rect x="335" y="72" width="30" height="18" rx="9" fill="rgba(6,8,16,.8)" stroke="rgba(234,240,255,.12)" stroke-width="1"/>
+            <text x="350" y="85" fill="#6E7A9A" font-size="9" font-weight="600" text-anchor="middle">vs</text>
+
+            <!-- Bottom note -->
+            <rect x="150" y="205" width="400" height="28" rx="8" fill="rgba(34,211,238,.06)" stroke="rgba(34,211,238,.15)" stroke-width="1"/>
+            <text x="350" y="224" fill="#22D3EE" font-size="10" text-anchor="middle">La pacientii diabetici, rinichii sunt suprasolicitati de filtrarea excesului de zahar</text>
+          </svg>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">2020</div>
+            <span class="u">anul declararii ca descoperire de referinta</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">20.9%</div>
+            <span class="u">declin rapid fara medicament</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">9.2%</div>
+            <span class="u">declin rapid cu inhibitor SGLT2</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">&gt;50%</div>
+            <span class="u">reducere a riscului de progresie</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Cum functioneaza</h3>
+            <p>In mod normal, rinichii filtreaza zaharul din sange si il <b>reabsorb</b> in organism pentru energie. La diabetici, rinichii sunt suprasolicitati de excesul de zahar. <b>Inhibitorii SGLT2</b> impiedica zaharul sa reintre in sange, determinand excretia lui prin urina. Astfel, rinichii <b>nu mai trebuie sa filtreze si sa reabsoarba</b> atat de mult zahar — primind o sansa de odihna.</p>
+          </div>
+          <div class="mini">
+            <h3>Rezultate impresionante</h3>
+            <p>In grupul tratat cu inhibitori SGLT2, doar <b>9.2%</b> au experimentat aceleasi niveluri de declin al functiei renale, comparativ cu ratele mult mai mari din grupul de control. Medicamentul a imbunatatit semnificativ <b>progresia bolii si mortalitatea</b>.</p>
+            <p style="margin-top:6px;color:var(--warn);font-size:11.5px;"><b>Atentie:</b> Eficacitatea pe termen lung la pacientii foarte varstnici sau cu stadii avansate ramane de confirmat.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Stem Cell Therapy -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Terapia cu celule stem (ASC): viitorul tratamentului</h2>
+          <p>Dr. Maruyama Hajime dezvolta un tratament bazat pe celule stem derivate din tesutul adipos, cu rezultate promitatoare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>1. Recoltarea celulelor ASC</h4>
+              <p>Celulele stem mezenchimale adipoase (<b>ASC</b>) sunt derivate din <b>tesutul adipos</b> al corpului. Sunt recoltate de la pacient sau donator si pregatite pentru administrare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>2. Activarea celulelor imunitare</h4>
+              <p>Sub microscop, celulele ASC (vizualizate in <b>verde</b>) se ataseaza de celulele imunitare (transparente). La contact, celulele imunitare sunt <b>activate</b> si devin vizibile (marcate).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>3. Migrarea catre rinichi</h4>
+              <p>Celulele imunitare activate din <b>splina</b> se deplaseaza catre rinichi, unde a aparut inflamatia. Acolo, ele actioneaza pentru a <b>reduce inflamatia</b> si a proteja tesutul renal.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Rezultate in studiul clinic</h4>
+              <p>La pacientii cu cazuri severe, nivelurile de <b>proteine urinare</b> au scazut cu peste <b>50%</b> in medie dupa tratament. Efectele au fost confirmate atat dupa o singura administrare, cat si dupa doua administrari. Profilul de siguranta a fost confirmat — fara efecte secundare majore.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Studiu pe soareci: 100% supravietuire</h3>
+            <p>Intr-un experiment cu soareci cu insuficienta renala severa care ar fi murit fara tratament, administrarea celulelor ASC a produs <b>o schimbare dramatica</b> — niciun soarece nu a murit. Fara tratament, toti ar fi decedat.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">Limitari actuale</h3>
+            <p>Celulele injectate <b>dispar in decurs de o saptamana</b> — efectul nu e permanent. O singura sau doua administrari nu sunt suficiente. Echipa pregateste un nou studiu clinic cu <b>administrari repetate</b> pentru stadii si mai avansate de BRC.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Aceasta este cu adevarat cea mai grava stare. Cred ca si aceasta ar putea fi salvata. Daca pot salva macar una sau doua persoane de aceste boli — asta simt in inima mea in fiecare zi.&raquo;
+          <cite>— Dr. Maruyama Hajime, cercetator terapie cu celule stem</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Dialysis Reality -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Realitatea dialicei: ce inseamna sa traiesti cu BRC avansata</h2>
+          <p>Marturii ale pacientilor din Japonia care fac dializa — si de ce prevenirea e atat de importanta</p>
+        </div>
+        <span class="badge">PACIENTI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Simptomele inainte de dializa</h3>
+            <p>O pacienta descrie: <b>"De fiecare data cand ma simteam rau, dormeam cam 20 de ore. Eram treaza doar cand mancam si facean baie. In rest, dormeam. E obositor si epuizant."</b></p>
+            <p style="margin-top:6px;">In 2024, a inceput sa mearga la o clinica pentru dializa.</p>
+          </div>
+          <div class="mini">
+            <h3>Rutina dialicei</h3>
+            <p>Spitalul descris are <b>40 de paturi</b>, majoritatea ocupate de pacienti in dializa. Sesiunile dureaza <b>ore intregi</b> (de la 13:28 la 17:30 in exemplul din documentar). Pacientii descriu ca <b>"nu se schimba nimic"</b> in timpul sedintei — pur si simplu asteapta.</p>
+            <p style="margin-top:6px;color:var(--warn);font-size:11.5px;">Dupa sedinte, corpul se simte <b>greu si obosit</b>.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Dializa in caz de dezastru</h4>
+          <p>Un pacient ridica o ingrijorare importanta: <b>"Daca ar avea loc un cutremur, ce s-ar intampla?"</b> Pacientii dependenti de dializa sunt extrem de vulnerabili in situatii de urgenta — acces la echipament, electricitate si apa curata este vital.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Conclusions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii: ce poti face tu</h2>
+          <p>Constientizarea proprie poate face toata diferenta in prevenirea progresiei bolii</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(220,38,38,.2);">
+            <h3 style="color:var(--glow)">Fa analize regulate</h3>
+            <p>BRC nu are simptome vizibile. Singurul mod de a o detecta devreme este prin <b>analize de sange</b> (eGFR) si <b>analize de urina</b> (proteinurie). Verifica-ti functia renala cel putin o data pe an.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">Redu sarea si controleaza dieta</h3>
+            <p>Limiteaza aportul de sare la <b>sub 6g/zi</b>. Controleaza greutatea, tensiunea arteriala si glicemia. Nu trebuie sa renunti la tot — <b>reduce treptat</b>, cu ajutorul unui nutritionist.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Misca-te regulat</h3>
+            <p>Dovezile arata ca <b>exercitiul fizic</b> poate reduce proteinuria si imbunatati usor functia renala. Un stil de viata activ poate preveni boala <b>inainte de a ajunge la doctor</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Nu abandona tratamentul</h3>
+            <p>Fiindca BRC nu cauzeaza simptome, multi pacienti <b>renunta la controale</b>. Cand revin, boala e deja avansata. <b>Ghidajul nutritional continuu</b> si vizitele regulate la medic sunt esentiale.</p>
+          </div>
+        </div>
+
+        <div class="alert ok" style="margin-top:14px;">
+          <h4>Mesajul central</h4>
+          <p>&laquo;In cele din urma, <b>propria ta constientizare</b> poate face toata diferenta in prevenirea progresiei bolii. Iar cand simti ca ceva nu e in regula cu corpul tau, luarea de masuri pozitive in viata de zi cu zi — <b>impreuna cu sprijinul profesionistilor din sanatate</b> — poate fi cu adevarat transformatoare.&raquo;</p>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key Numbers -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cifre cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--glow)">~600K</span><span class="tDesc">adulti analizati in studiul de prevalenta <b>din 2024</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">1 din 6</span><span class="tDesc">adulti varstnici au <b>BRC</b> in Japonia</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">20.9%</span><span class="tDesc">declin rapid eGFR cu <b>ingrijire standard</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">14.2%</span><span class="tDesc">declin rapid eGFR cu <b>ghidaj dietetic</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--teal)">9.2%</span><span class="tDesc">declin rapid cu <b>inhibitori SGLT2</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--purple)">&gt;50%</span><span class="tDesc">reducerea proteinuriei cu <b>celule stem ASC</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">4.500</span><span class="tDesc">pacienti noi de dializa <b>prevenibili</b> in 15 ani</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">&lt;6g</span><span class="tDesc">limita zilnica recomandata de <b>sare</b> pentru BRC</span></div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">2008</span><span class="tDesc">Echipa Yamagata lanseaza <b>studiul FROM-J</b> cu medici din toata Japonia</span></div>
+        <div class="tEvent"><span class="tDate">~2018</span><span class="tDesc">Rezultate intermediare — <b>prima evaluare</b> la cativa ani</span></div>
+        <div class="tEvent"><span class="tDate">2020</span><span class="tDesc">Soc. Int. de Nefrologie numeste <b>SGLT2i descoperire</b> de referinta</span></div>
+        <div class="tEvent"><span class="tDate">~2023</span><span class="tDesc"><b>Follow-up 10 ani</b> FROM-J — rezultate finale publicate</span></div>
+        <div class="tEvent"><span class="tDate">2024</span><span class="tDesc">Studiu pe <b>600.000 adulti</b> — prevalenta BRC in Japonia</span></div>
+        <div class="tEvent"><span class="tDate">2024</span><span class="tDesc">Dr. Maruyama pregateste <b>studiu clinic</b> cu celule stem ASC repetate</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce "organele tacute"?</h4>
+          <p>Rinichii pot pierde pana la <b>70-80% din functie</b> inainte ca pacientul sa observe vreun simptom. De aceea, milioane de oameni au BRC fara sa stie — si sunt diagnosticati abia cand optiunile sunt limitate.</p>
+        </div>
+        <div class="comNote">
+          <h4>FROM-J: un model de preventie</h4>
+          <p>Studiul FROM-J este remarcabil nu doar prin durata sa (10 ani), ci prin abordarea <b>pragmatica</b>: nu impune restrictii severe, ci ghideaza pacientii sa faca schimbari mici, sustenabile. Rezultatele demonstreaza ca si schimbari modeste au impact major.</p>
+        </div>
+        <div class="comNote">
+          <h4>SGLT2i: de la diabet la rinichi</h4>
+          <p>Initial dezvoltati pentru tratarea <b>diabetului de tip 2</b>, inhibitorii SGLT2 s-au dovedit a avea beneficii semnificative si pentru <b>rinichi si inima</b>. Sunt acum recomandati si pacientilor cu BRC care nu au diabet.</p>
+        </div>
+        <div class="comNote">
+          <h4>Terapia cu celule stem: inca experimentala</h4>
+          <p>Desi rezultatele sunt promitatoare, terapia cu ASC este inca in <b>faza clinica</b>. Celulele dispar in ~ o saptamana, deci sunt necesare administrari repetate. Studiile clinice extinse sunt in pregatire.</p>
+        </div>
+        <div class="comNote">
+          <h4>Contextul global</h4>
+          <p>BRC afecteaza <b>~10% din populatia globala</b> (peste 800 milioane de oameni). Este a 6-a cauza de deces cu cea mai rapida crestere la nivel mondial. Prevenirea si detectia precoce raman cele mai eficiente strategii.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>eGFR (Rata de Filtrare Glomerulara Estimata)</dt>
+          <dd>Masura a capacitatii rinichilor de a filtra sangele. Se determina printr-o analiza de sange. Valori sub 60 ml/min indica BRC.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>BRC (Boala Renala Cronica)</dt>
+          <dd>Deteriorarea progresiva si ireversibila a functiei renale pe o perioada de luni sau ani. Clasificata in 6 stadii (G1-G5) dupa nivelul eGFR.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Inhibitori SGLT2</dt>
+          <dd>Clasa de medicamente care impiedica reabsorbtia zaharului in sange la nivel renal, reducand suprasolicitarea rinichilor. Numiti "descoperire de referinta" in 2020.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ASC (Celule Stem Adipoase)</dt>
+          <dd>Celule stem mezenchimale derivate din tesutul gras al corpului. Pot activa celulele imunitare si reduce inflamatia renala. Terapie experimentala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Dializa</dt>
+          <dd>Procedura medicala care inlocuieste functia renala, filtrand deseurile si excesul de apa din sange. Necesara cand rinichii functioneaza sub 10-15% din capacitate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Proteinurie</dt>
+          <dd>Prezenta de proteine in urina — semn ca filtrul renal (glomerulii) e deteriorat. Un indicator important al sanatatii renale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>FROM-J</dt>
+          <dd>Studiu japonez de referinta pe 10 ani care a demonstrat ca ghidajul dietetic si modificarea stilului de viata incetinesc semnificativ progresia BRC.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>IMC (Indicele de Masa Corporala)</dt>
+          <dd>Raportul dintre greutate si inaltimea la patrat. Un IMC crescut este factor de risc pentru BRC. Scaderea greutatii reduce presiunea asupra rinichilor.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=qCIa-7FzeQA" target="_blank">NHK Medical Frontiers — Things You Should Do To Prevent CKD</a> &middot;
+    Studiul FROM-J, inhibitorii SGLT2, terapia cu celule stem ASC (Dr. Maruyama Hajime) &middot;
+    Infografic explicativ bazat pe documentarul NHK
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract kidney with filtration particles ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing blood filtration
+  const particles = [];
+  const particleCount = 60;
+  for(let i = 0; i < particleCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.002,
+      vy: (Math.random() - 0.5) * 0.002,
+      r: 1.5 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.3 ? 'waste' : Math.random() < 0.6 ? 'blood' : 'clean',
+      speed: 0.5 + Math.random() * 1.5
+    });
+  }
+
+  function drawKidney(ctx, cx, cy, scale, w, h) {
+    // Draw a stylized kidney bean shape
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - 40 * scale);
+    ctx.bezierCurveTo(
+      cx + 35 * scale, cy - 42 * scale,
+      cx + 48 * scale, cy - 15 * scale,
+      cx + 42 * scale, cy + 10 * scale
+    );
+    ctx.bezierCurveTo(
+      cx + 38 * scale, cy + 30 * scale,
+      cx + 20 * scale, cy + 45 * scale,
+      cx, cy + 42 * scale
+    );
+    ctx.bezierCurveTo(
+      cx - 20 * scale, cy + 45 * scale,
+      cx - 38 * scale, cy + 30 * scale,
+      cx - 42 * scale, cy + 10 * scale
+    );
+    ctx.bezierCurveTo(
+      cx - 48 * scale, cy - 15 * scale,
+      cx - 35 * scale, cy - 42 * scale,
+      cx, cy - 40 * scale
+    );
+    ctx.closePath();
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    const cx = w * 0.5, cy = h * 0.48;
+    const kidneyScale = Math.min(w, h) / 160;
+
+    // Glow behind kidney
+    const glowR = 55 * kidneyScale + Math.sin(t * 2) * 5;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+    grad.addColorStop(0, 'rgba(220,38,38,0.12)');
+    grad.addColorStop(0.5, 'rgba(245,158,11,0.06)');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Pulse rings
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 50) % 140);
+      const pulseAlpha = Math.max(0, 0.1 - pulseR / 1600);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(220,38,38,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw kidney outline
+    drawKidney(ctx, cx, cy, kidneyScale, w, h);
+    ctx.strokeStyle = `rgba(220,38,38,${0.25 + Math.sin(t * 3) * 0.08})`;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(220,38,38,0.04)';
+    ctx.fill();
+
+    // Inner kidney detail (hilum indentation)
+    ctx.beginPath();
+    ctx.moveTo(cx - 8 * kidneyScale, cy - 12 * kidneyScale);
+    ctx.bezierCurveTo(
+      cx - 18 * kidneyScale, cy - 5 * kidneyScale,
+      cx - 18 * kidneyScale, cy + 10 * kidneyScale,
+      cx - 8 * kidneyScale, cy + 15 * kidneyScale
+    );
+    ctx.strokeStyle = 'rgba(220,38,38,0.15)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Draw filtration particles
+    particles.forEach(p => {
+      // Move particles
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Attract toward kidney center gently
+      const dx = 0.5 - p.x;
+      const dy = 0.48 - p.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+      if(dist > 0.35) {
+        p.vx += dx * 0.00003;
+        p.vy += dy * 0.00003;
+      } else if(dist < 0.15) {
+        // Push out from center
+        p.vx -= dx * 0.00005;
+        p.vy -= dy * 0.00005;
+      }
+
+      // Add some orbital motion
+      p.vx += Math.sin(t * p.speed + p.phase) * 0.00008;
+      p.vy += Math.cos(t * p.speed + p.phase) * 0.00008;
+
+      // Dampen velocity
+      p.vx *= 0.998;
+      p.vy *= 0.998;
+
+      // Wrap around
+      if(p.x < -0.05) p.x = 1.05;
+      if(p.x > 1.05) p.x = -0.05;
+      if(p.y < -0.05) p.y = 1.05;
+      if(p.y > 1.05) p.y = -0.05;
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const glow = 0.35 + Math.sin(t * 2 + p.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'waste'){
+        ctx.fillStyle = `rgba(245,158,11,${glow})`;
+        ctx.shadowColor = 'rgba(245,158,11,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'blood'){
+        ctx.fillStyle = `rgba(220,38,38,${glow})`;
+        ctx.shadowColor = 'rgba(220,38,38,0.3)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(52,211,153,${glow * 0.7})`;
+        ctx.shadowColor = 'rgba(52,211,153,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Draw connection lines to nearby particles
+      particles.forEach(p2 => {
+        if(p === p2) return;
+        const d = Math.sqrt((p.x - p2.x)**2 + (p.y - p2.y)**2);
+        if(d < 0.08) {
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(p2.x * w, p2.y * h);
+          ctx.strokeStyle = `rgba(220,38,38,${0.04 * (1 - d / 0.08)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      });
+    });
+
+    // Labels
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '9px ' + mono;
+    ctx.fillStyle = 'rgba(160,172,200,0.4)';
+    ctx.fillText('FILTRARE RENALA', cx - 38, cy + 55 * kidneyScale);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(220,38,38,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('sange', 15, ly+3);
+    ctx.fillStyle = 'rgba(245,158,11,0.7)'; ctx.beginPath(); ctx.arc(55, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('deseuri', 62, ly+3);
+    ctx.fillStyle = 'rgba(52,211,153,0.7)'; ctx.beginPath(); ctx.arc(105, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('filtrat', 112, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

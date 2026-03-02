@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glaucom — Lupta pentru prevenirea orbirii | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: glaucomul, hotul tacut al vederii. Stadii, tratamente, chirurgia micro-shunt, terapia genica cu BDNF si autotest. Sursa: NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#081210;
+      --panel:#0C1A18cc;
+      --card:#0A1816;
+      --card2:#081412;
+      --ink:#E8F4F0;
+      --muted:#96B8B0;
+      --muted2:#6A8E84;
+      --line:#163230;
+      --glow:#14B8A6;
+      --glow2:#06B6D4;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(20,184,166,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(6,182,212,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(20,184,166,.20);
+      background: linear-gradient(180deg, rgba(10,24,22,.75), rgba(8,18,16,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(20,184,166,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(6,182,212,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(232,244,240,.12);background:rgba(6,10,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(232,244,240,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,10,16,.30),rgba(6,10,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(232,244,240,.12);
+      background:linear-gradient(180deg,rgba(10,24,22,.75),rgba(8,20,18,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(232,244,240,.07);
+      background:linear-gradient(180deg,rgba(6,10,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(232,244,240,.10);
+      background:linear-gradient(180deg,rgba(6,10,16,.28),rgba(6,10,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(232,244,240,.12);color:rgba(232,244,240,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(232,244,240,.10);background:rgba(6,10,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(20,184,166,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.cyan{border-color:var(--glow2);background:rgba(6,182,212,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(20,184,166,.22),rgba(20,184,166,.04));}
+    .stepBar.cyan{background:linear-gradient(180deg,rgba(6,182,212,.22),rgba(6,182,212,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(20,184,166,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.cyan{border-color:var(--glow2);background:rgba(6,182,212,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.teal{border-color:rgba(20,184,166,.25);background:rgba(20,184,166,.06);}
+    .alert.teal h4{color:var(--glow);}
+
+    /* Eye anatomy SVG */
+    .eyeDiag{
+      border:1px solid rgba(232,244,240,.10);border-radius:16px;
+      background:rgba(6,10,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .eyeDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(20,184,166,.18);
+      background:linear-gradient(180deg,rgba(10,24,22,.80),rgba(8,18,16,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(20,184,166,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(20,184,166,.25);background:rgba(20,184,166,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(232,244,240,.08);border-radius:12px;padding:9px 11px;background:rgba(6,10,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(232,244,240,.12);
+      background:linear-gradient(180deg,rgba(10,24,22,.75),rgba(8,20,18,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(232,244,240,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(232,244,240,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(232,244,240,.12);
+      background:linear-gradient(180deg,rgba(10,24,22,.75),rgba(8,20,18,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(232,244,240,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(232,244,240,.08);border-radius:11px;padding:7px 10px;background:rgba(6,10,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Checklist */
+    .checkList{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px;}
+    .checkList li{
+      font-size:12.5px;color:var(--muted);line-height:1.4;padding:7px 10px;
+      border:1px solid rgba(232,244,240,.08);border-radius:10px;background:rgba(6,10,16,.22);
+      display:flex;align-items:flex-start;gap:8px;
+    }
+    .checkList li span.icon{color:var(--warn);font-size:14px;flex:0 0 auto;line-height:1.2;}
+
+    /* Pressure bar */
+    .pressureBar{
+      margin-top:14px;padding:12px;
+      border:1px solid rgba(232,244,240,.10);border-radius:14px;
+      background:rgba(6,10,16,.30);
+    }
+    .pressureTrack{
+      height:24px;border-radius:12px;position:relative;overflow:hidden;
+      background:linear-gradient(90deg,rgba(52,211,153,.3),rgba(251,191,36,.3) 60%,rgba(248,113,113,.3));
+    }
+    .pressureMarker{
+      position:absolute;top:-4px;width:2px;height:32px;background:var(--ink);
+    }
+    .pressureLabels{display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:var(--muted2);}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Glaucomul — Lupta pentru prevenirea orbirii
+          <small>NHK Medical Frontiers — Noi tehnici chirurgicale si terapie genica dezvoltate in Japonia</small>
+        </h1>
+        <p class="sub">Glaucomul, supranumit <b>hotul tacut al vederii</b>, deterioreaza ireversibil nervul optic inainte ca pacientii sa observe simptomele. <b>70 de milioane</b> de oameni sufera de glaucom la nivel mondial si numarul va depasi <b>100 de milioane pana in 2040</b>. In Japonia se dezvolta chirurgia micro-shunt si prima terapie genica ce poate <b>regenera nervul optic</b>.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Oftalmologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Glaucom</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este glaucomul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este glaucomul?</h2>
+          <p>O boala care deterioreaza nervul optic — conexiunea dintre ochi si creier — ducand la pierderea ireversibila a vederii</p>
+        </div>
+        <span class="badge">BOALA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">80%</div>
+            <span class="u">din informatiile zilnice vin prin ochi</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">70M</div>
+            <span class="u">persoane cu glaucom la nivel mondial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">100M+</div>
+            <span class="u">estimare pentru 2040</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">0</div>
+            <span class="u">tratamente care restaureaza vederea pierduta</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Cum functioneaza vederea</h3>
+            <p>Lumina este refractata de <b>cornee</b> si <b>cristalin</b>, formand o imagine pe <b>retina</b>. Informatia este transmisa catre creier prin <b>nervul optic</b>. Daca glaucomul deterioreaza nervul optic, imaginea nu mai ajunge corect la creier.</p>
+          </div>
+          <div class="mini">
+            <h3>Presiunea intraoculara</h3>
+            <p>Globul ocular este umplut cu o substanta gelatinoasa. <b>Umoarea apoasa</b> — un lichid intre cornee si cristalin — regleaza presiunea. Cand echilibrul productie-drenaj se perturba, presiunea creste si deterioreaza nervul optic.</p>
+          </div>
+        </div>
+
+        <!-- Eye pressure bar -->
+        <div class="pressureBar">
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Scala presiunii intraoculare (mmHg)</div>
+          <div class="pressureTrack">
+            <div class="pressureMarker" style="left:0%"></div>
+            <div class="pressureMarker" style="left:47.6%;background:var(--warn);width:3px;" title="Limita normala superioara: 21 mmHg"></div>
+            <div class="pressureMarker" style="left:100%"></div>
+          </div>
+          <div class="pressureLabels">
+            <span>10 mmHg</span>
+            <span style="color:var(--ok);">Normal: 10-21 mmHg</span>
+            <span style="color:var(--bad);">Risc &gt;21 mmHg</span>
+            <span>33 mmHg</span>
+          </div>
+        </div>
+
+        <div class="alert teal">
+          <h4>Fiecare 1 mmHg conteaza</h4>
+          <p>Studiile clinice arata ca pentru fiecare <b>1 mmHg</b> scadere a presiunii intraoculare, riscul de progresie a glaucomului se reduce cu <b>10%</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Cele trei stadii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cele trei stadii ale glaucomului</h2>
+          <p>Progresia de la simptome imperceptibile la orbire — de aceea glaucomul este numit "hotul tacut"</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--glow);">STADII</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul incipient — fara simptome vizibile</h4>
+              <p>O parte din campul vizual incepe sa dispara, dar <b>cea mai mare parte a vederii ramane intacta</b>. Este foarte putin probabil sa simtiti vreo dificultate. Boala progreseaza in tacere, fara semne de alarma.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul moderat — primele semne</h4>
+              <p>Zonele lipsa din campul vizual se maresc. Vederea poate deveni <b>neclara</b> sau acuitatea vizuala poate scadea. Multi pacienti incep sa observe simptomele abia acum. Daca un singur ochi este afectat, <b>ochiul sanatos compenseaza</b>, facand detectarea si mai dificila.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--bad);background:rgba(248,113,113,.15)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul avansat — orbire posibila</h4>
+              <p>Pierderea vederii se extinde catre <b>centrul campului vizual</b>. Acuitatea vizuala este grav afectata. Fara tratament, poate surveni <b>orbirea completa</b>. Medicina actuala nu poate restaura vederea pierduta — doar poate incetini progresia.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1 din 20</div>
+            <span class="u">japonezi peste 40 de ani au glaucom</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">~90%</div>
+            <span class="u">nu au simptome si nu primesc tratament</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">&gt;70%</div>
+            <span class="u">din cazurile din Japonia = glaucom cu tensiune normala</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">40+</div>
+            <span class="u">varsta de la care riscul creste semnificativ</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Tratamente actuale -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tratamente actuale: picaturi si chirurgie</h2>
+          <p>Toate tratamentele existente vizeaza reducerea presiunii intraoculare — singurul factor controlabil</p>
+        </div>
+        <span class="badge" style="border-color:rgba(6,182,212,.3);color:var(--glow2);">TRATAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Picaturi oftalmice</h3>
+            <p>Picaturile vizeaza <b>umoarea apoasa</b> — lichidul care creste presiunea intraoculara. Ele fie <b>reduc productia</b>, fie <b>imbunatatesc drenajul</b> acestui lichid.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">-6.6</span>
+              <span class="l">mmHg scadere a presiunii intr-o luna (studiu clinic japonez)</span>
+            </div>
+            <p style="margin-top:8px;"><b>Cazul Yoshida Hiroshi</b>: diagnosticat la ~50 de ani, a folosit picaturi timp de <b>20 de ani</b>, incetinind cu succes progresia bolii.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Chirurgie conventionala</h3>
+            <p>Majoritatea interventiilor chirurgicale imbunatatesc drenajul umorii apoase. Medicii aplica <b>laser</b> sau fac o <b>incizie</b> la nivelul retelei trabeculare (structura de la iesirea lichidului).</p>
+            <p style="margin-top:6px;font-size:12px;color:var(--warn)"><b>Provocari:</b> In timp, calea de drenaj se poate <b>infunda din nou</b>, necesitand o noua operatie. Daca deschiderea este prea mare, se pierde prea mult lichid, scazand presiunea sub limita sigura.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Dupa 20 de ani de control cu picaturi, Yoshida a pierdut si mai mult din campul vizual. Vederea ochiului stang s-a deteriorat drastic, iar medicul a recomandat interventia chirurgicala.&raquo;
+          <cite>— NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Micro-shunt -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Chirurgia micro-shunt — inovatie din 2023</h2>
+          <p>O noua metoda chirurgicala aprobata in Japonia in 2023, care creeaza o cale permanenta de drenaj</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">8.5 mm</div>
+            <span class="u">lungimea tubului micro-shunt</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">0.07 mm</div>
+            <span class="u">diametrul interior al tubului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">~400</div>
+            <span class="u">pacienti in studiul clinic (SUA + Europa)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">2023</div>
+            <span class="u">aprobat de Ministerul Sanatatii, Japonia</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Incizia</h4>
+              <p>Chirurgul face o mica incizie in <b>sclera</b> — partea alba a ochiului, adiacenta corneei.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>2. Inserarea micro-shuntului</h4>
+              <p>Un tub minuscul (<b>8.5 mm</b> lungime, putin mai lung decat o geana) este inserat prin incizie. Este <b>moale, flexibil</b> si realizat dintr-un material care minimizeaza rejectia.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>3. Drenaj stabil pe termen lung</h4>
+              <p>Tubul creeaza o <b>cale noua permanenta</b> pentru umoarea apoasa, permitand drenajul eficient. Riscul de infundare e mai mic, reducand nevoia de reinterventie.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pressure results -->
+        <div class="eyeDiag">
+          <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="300" y="22" fill="#96B8B0" font-size="12" font-weight="600" text-anchor="middle">Evolutia presiunii intraoculare dupa chirurgia micro-shunt</text>
+
+            <!-- Axes -->
+            <line x1="80" y1="45" x2="80" y2="160" stroke="rgba(232,244,240,.15)" stroke-width="1"/>
+            <line x1="80" y1="160" x2="560" y2="160" stroke="rgba(232,244,240,.15)" stroke-width="1"/>
+
+            <!-- Danger zone -->
+            <rect x="80" y="45" width="480" height="28" rx="0" fill="rgba(248,113,113,.06)"/>
+            <text x="75" y="57" fill="#F87171" font-size="9" text-anchor="end">21</text>
+            <line x1="80" y1="58" x2="560" y2="58" stroke="rgba(248,113,113,.2)" stroke-width="1" stroke-dasharray="4,4"/>
+
+            <!-- Normal zone label -->
+            <text x="75" y="118" fill="#34D399" font-size="9" text-anchor="end">13</text>
+            <line x1="80" y1="115" x2="560" y2="115" stroke="rgba(52,211,153,.15)" stroke-width="1" stroke-dasharray="4,4"/>
+
+            <!-- 10 mmHg line -->
+            <text x="75" y="145" fill="#6A8E84" font-size="9" text-anchor="end">10</text>
+            <line x1="80" y1="142" x2="560" y2="142" stroke="rgba(232,244,240,.08)" stroke-width="1" stroke-dasharray="4,4"/>
+
+            <!-- Data line -->
+            <polyline points="120,58 240,115 400,118 560,120" fill="none" stroke="#14B8A6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Data points -->
+            <circle cx="120" cy="58" r="5" fill="#F87171" stroke="#060A10" stroke-width="2"/>
+            <circle cx="240" cy="115" r="5" fill="#14B8A6" stroke="#060A10" stroke-width="2"/>
+            <circle cx="400" cy="118" r="5" fill="#14B8A6" stroke="#060A10" stroke-width="2"/>
+            <circle cx="560" cy="120" r="5" fill="#14B8A6" stroke="#060A10" stroke-width="2"/>
+
+            <!-- Data labels -->
+            <text x="120" y="48" fill="#F87171" font-size="10" font-weight="700" text-anchor="middle">21 mmHg</text>
+            <text x="240" y="105" fill="#14B8A6" font-size="10" font-weight="700" text-anchor="middle">13 mmHg</text>
+            <text x="400" y="108" fill="#14B8A6" font-size="10" font-weight="600" text-anchor="middle">~13 mmHg</text>
+            <text x="560" y="110" fill="#14B8A6" font-size="10" font-weight="600" text-anchor="middle">~13 mmHg</text>
+
+            <!-- X axis labels -->
+            <text x="120" y="178" fill="#6A8E84" font-size="10" text-anchor="middle">Pre-operativ</text>
+            <text x="240" y="178" fill="#6A8E84" font-size="10" text-anchor="middle">1 luna</text>
+            <text x="400" y="178" fill="#6A8E84" font-size="10" text-anchor="middle">1 an</text>
+            <text x="560" y="178" fill="#6A8E84" font-size="10" text-anchor="middle">2 ani</text>
+
+            <!-- Normal range shading -->
+            <rect x="80" y="58" width="480" height="84" rx="0" fill="rgba(52,211,153,.03)"/>
+            <text x="565" y="75" fill="rgba(52,211,153,.4)" font-size="8" text-anchor="end">ZONA NORMALA</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Avantaje fata de chirurgia clasica</h3>
+            <p>Operatia este <b>mai rapida</b> si provoaca <b>mai putine sangerari</b>, reducand povara pentru pacient. Insertia tubului subtire reduce riscul de inchidere a plagi in timp.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Rezultate pe 2 ani</h3>
+            <p>Presiunea a scazut de la <b>21 mmHg la 13 mmHg</b> in prima luna si a ramas in <b>intervalul normal chiar si dupa 2 ani</b>. Micro-shuntul este usor mai putin eficient decat excizia clasica, dar mult mai sigur.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Glaucomul cu tensiune normala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Glaucomul cu tensiune normala — paradoxul japonez</h2>
+          <p>Peste 70% din cazurile de glaucom din Japonia apar chiar si cand presiunea oculara este in limite normale</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">PARADOX</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Ce este?</h3>
+            <p>In mod normal, glaucomul este cauzat de presiunea intraoculara ridicata. Dar in <b>glaucomul cu tensiune normala</b>, simptomele apar chiar daca presiunea este sub <b>21 mmHg</b>. Cercetatorii suspecteaza ca acesti pacienti au un <b>nerv optic mai fragil</b>, care se deterioreaza chiar si la presiune normala.</p>
+          </div>
+          <div class="mini">
+            <h3>Cazul Ozawa Kazutotomo</h3>
+            <p>Diagnosticat in jurul varstei de <b>40 de ani</b>, desi nu avea simptome. Presiunea intraoculara era normala (<b>15 mmHg</b>), dar testul campului vizual a aratat ingustare. Chiar si acum, presiunea ramane normala la <b>12 mmHg</b>, dar boala progreseaza.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Cauza exacta ramane necunoscuta</h4>
+          <p>Un studiu amplu al <b>Societatii Japoneze de Glaucom</b> a aratat ca peste <b>70% din cazurile de glaucom din Japonia</b> sunt de tip tensiune normala. Exista posibile diferente intre etnii, dar relatia exacta ramane in curs de cercetare. Singurele tratamente disponibile sunt tot cele care reduc presiunea intraoculara.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Terapia genica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Terapia genica — speranta regenerarii nervului optic</h2>
+          <p>Cercetari japoneze din 2023 arata ca nervul optic deteriorat ar putea fi protejat si chiar regenerat</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--glow);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="margin-bottom:14px;">
+          <h3 style="color:var(--glow)">Proteina BDNF — cheia protectiei nervoase</h3>
+          <p><b>BDNF</b> (Brain-Derived Neurotrophic Factor) este o proteina produsa in <b>hipocampus</b> si <b>cortexul cerebral</b>. Joaca un rol esential in sustinerea memoriei si invatarii si ajuta la <b>protejarea celulelor nervoase</b>. BDNF este secretat din creier in ochi si se crede ca protejeaza nervul optic. Pacientii cu glaucom au <b>mai putin BDNF</b> in ochi decat persoanele sanatoase.</p>
+        </div>
+
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Pregatirea virusului</h4>
+              <p>Un virus este <b>inactivat</b> (facut inofensiv). I se adauga o parte din proteina <b>TrkB</b> — receptorul care ajuta la transmiterea informatiilor legate de BDNF in celule.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>2. Injectarea in ochi</h4>
+              <p>Virusul modificat cu TrkB este <b>injectat direct in ochi</b>. O data ajuns in interior, infecteaza celulele nervului optic si elibereaza proteina. Proteina se integreaza in celule.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>3. Protectia celulelor nervoase</h4>
+              <p>Experiment pe soareci cu glaucom: chiar si la soareci cu nivele scazute de BDNF, celulele nervoase au fost <b>protejate</b>. Celulele ganglionare retiniene (legate direct de nervul optic) au suferit <b>pierderi reduse semnificativ</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Regenerarea nervului optic</h4>
+              <p>La soareci cu nerv optic deteriorat, virusul fara TrkB nu a produs regenerare. Dar dupa <b>2 saptamani</b> cu virusul modificat cu TrkB, zona alba (nervul intact) a crescut. Dupa <b>4 saptamani</b>, nervul optic se regenerase si mai mult, devenind mai lung.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote cyan" style="margin-top:14px;">
+          &laquo;Aceasta abordare iese in evidenta ca fiind foarte creativa, construind pe cercetari anterioare intr-un mod cu adevarat pozitiv. Este atractiva nu doar in glaucom, ci si pentru bolile neurodegenerative ale creierului, maduvei spinarii si chiar ale sistemului nervos periferic.&raquo;
+          <cite>— Prof. Jeffrey L. Goldberg, Universitatea Stanford</cite>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(20,184,166,.2);">
+            <h3 style="color:var(--glow)">Harada Takayuki</h3>
+            <p>Cercetator si oftalmolog practicant la <b>Institutul Metropolitan de Stiinte Medicale din Tokyo</b>. A publicat rezultatele in 2023. A vazut multi pacienti pierzand vederea din cauza glaucomului si a decis sa caute o solutie fundamentala.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Urmatoarele etape</h3>
+            <p>Terapia genica trebuie preparata in <b>facilitati de nivel clinic</b>, sigure pentru uz uman. Materialele trebuie retestate pe animale pentru <b>non-toxicitate</b>. Prof. Goldberg a declarat ca "ar dori sa vada aceasta traducere in practica clinica". Harada continua cercetarile.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Auto-test si semne -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Semne de alarma si auto-testare</h2>
+          <p>Cum sa detectezi posibilele simptome de glaucom inainte sa fie prea tarziu</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">PREVENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--warn)">Semne in viata de zi cu zi</h3>
+            <p>Daca urmatoarele situatii vi se intampla <b>in mod repetat</b>, ar putea fi un semn de glaucom:</p>
+            <ul class="checkList">
+              <li><span class="icon">&#9888;</span> Nu observati un bol mic pe masa si il lasati neatins</li>
+              <li><span class="icon">&#9888;</span> Aveti dificultati la turnat ceaiul din ceainic in ceasca</li>
+              <li><span class="icon">&#9888;</span> Ochelarii par mereu murdari</li>
+              <li><span class="icon">&#9888;</span> Parcarea a devenit mai dificila — zgariati frecvent masina</li>
+              <li><span class="icon">&#9888;</span> Ratati o treapta la scari sau cand urcati in mijloacele de transport</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Auto-test simplu</h3>
+            <p>Un test rapid recomandat de <b>Prof. Shoji Noyuki</b>, presedintele Societatii Japoneze de Glaucom:</p>
+            <div class="flow" style="margin-top:8px;">
+              <div class="step">
+                <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+                <div class="stepContent">
+                  <h4>Priviti ceva luminos</h4>
+                  <p>Un perete alb sau cerul.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+                <div class="stepContent">
+                  <h4>Acoperiti un ochi</h4>
+                  <p>Concentrati-va pe un singur punct cateva momente.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+                <div class="stepContent">
+                  <h4>Schimbati ochiul</h4>
+                  <p>Repetati cu celalalt ochi.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+                <div class="stepContent">
+                  <h4>Comparati</h4>
+                  <p>Vederea pare <b>mai intunecata</b> la un ochi? Vreo zona pare <b>mai inchisa</b>? Daca da, consultati un oftalmolog imediat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert teal" style="margin-top:14px;">
+          <h4>Recomandare: control oftalmologic regulat</h4>
+          <p>Oricine are peste <b>40 de ani</b>, si in special cei cu <b>istoric familial</b> de glaucom, ar trebui sa faca un control oftalmologic complet. Glaucomul nu poate fi detectat prin simpla testare a acuitatii vizuale — este nevoie de <b>examinarea campului vizual</b> si a <b>nervului optic</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Cum se aplica picaturile -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ghid practic: cum se aplica corect picaturile oftalmice</h2>
+          <p>Sfaturi de la Prof. Shoji Noyuki pentru maximizarea eficientei tratamentului zilnic</p>
+        </div>
+        <span class="badge">PRACTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Tintiti ca si cum picatura ar cadea pe spranceana</h4>
+              <p>Tineti sticluta la <b>o distanta mai mare</b> decat ati fi tentati. Nu apropiati sticluta de ochi.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>O singura picatura este suficienta</h4>
+              <p>Daca folositi prea multe picaturi si lichidul se revarsa, poate <b>irita pielea din jurul ochilor</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Nu clipiti — apasati coltul intern</h4>
+              <p>Dupa aplicare, <b>nu clipiti</b>. Apasati usor pe <b>coltul intern al ochiului</b> si tineti ochiul inchis timp de aproximativ <b>1 minut</b>. Aceasta maximizeaza absorbtia si eficienta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key figures -->
+    <div class="timeline">
+      <div class="tHead"><h2>Persoane-cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--glow)">Cercetare</span><span class="tDesc"><b>Prof. Shoji Noyuki</b> — Presedintele Societatii Japoneze de Glaucom</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Terapie</span><span class="tDesc"><b>Harada Takayuki</b> — Institutul Metropolitan de Stiinte Medicale din Tokyo, dezvoltator al terapiei genice</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--purple)">Validare</span><span class="tDesc"><b>Prof. Jeffrey L. Goldberg</b> — Universitatea Stanford, cercetator in regenerare nervoasa</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">Pacient</span><span class="tDesc"><b>Yoshida Hiroshi</b> — diagnosticat la ~50 ani, 20 ani cu picaturi, apoi chirurgie micro-shunt</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">Pacient</span><span class="tDesc"><b>Ozawa Kazutotomo</b> — glaucom cu tensiune normala, diagnosticat in jurul varstei de 40 ani</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Statistici-cheie</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Presiunea intraoculara</h4>
+          <p>Normal: <b>10-21 mmHg</b>. Peste 21 = risc de deteriorare a nervului optic. Fiecare 1 mmHg scadere = <b>10% reducere a riscului</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Micro-shunt: dimensiuni</h4>
+          <p>Lungime: <b>8.5 mm</b> (putin mai lung decat o geana). Diametru interior: <b>0.07 mm</b>. Material flexibil, rezistent la rejectie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Picaturi: eficienta</h4>
+          <p>Studiu clinic japonez: picaturile reduc presiunea cu <b>6.6 mmHg intr-o luna</b>. Efectul se mentine pe termen lung.</p>
+        </div>
+        <div class="comNote">
+          <h4>Prevalenta in Japonia</h4>
+          <p><b>1 din 20</b> japonezi peste 40 de ani. <b>~90%</b> nu stiu ca au boala. <b>&gt;70%</b> = glaucom cu tensiune normala.</p>
+        </div>
+        <div class="comNote">
+          <h4>BDNF si terapia genica</h4>
+          <p>Pacientii cu glaucom au mai putin BDNF. Terapia genica cu TrkB a protejat celulele nervoase la soareci si a produs <b>regenerare vizibila a nervului optic</b> in 2-4 saptamani.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Glaucom</dt>
+          <dd>Boala oculara care deterioreaza nervul optic, de obicei (dar nu intotdeauna) din cauza presiunii intraoculare ridicate. Poate duce la orbire ireversibila.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Nervul optic</dt>
+          <dd>Fascicul de fibre nervoase situat in spatele globului ocular care transmite informatia vizuala de la retina catre creier.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Umoarea apoasa</dt>
+          <dd>Lichid transparent intre cornee si cristalin care regleaza presiunea intraoculara. Productia sau drenajul dezechilibrat cauzeaza cresterea presiunii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Reteaua trabeculara</dt>
+          <dd>Structura poroasa la jonctiunea cornee-iris prin care se dreneaza umoarea apoasa. Disfunctia ei este o cauza frecventa a glaucomului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Micro-shunt</dt>
+          <dd>Tub minuscul (8.5 mm) inserat chirurgical in ochi pentru a crea o cale de drenaj permanenta a umorii apoase. Aprobat in Japonia in 2023.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>BDNF</dt>
+          <dd>Brain-Derived Neurotrophic Factor — proteina produsa in creier care protejeaza celulele nervoase. Pacientii cu glaucom au nivele reduse de BDNF in ochi.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>TrkB</dt>
+          <dd>Receptor proteic (tropomyosin receptor kinase B) care faciliteaza actiunea BDNF asupra celulelor nervoase. Folosit in terapia genica experimentala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Celule ganglionare retiniene</dt>
+          <dd>Celule nervoase din retina care formeaza fibrele nervului optic. Deteriorarea lor in glaucom duce la pierderea campului vizual.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Glaucom cu tensiune normala</dt>
+          <dd>Forma de glaucom in care nervul optic se deterioreaza chiar si la presiune intraoculara sub 21 mmHg. Reprezinta peste 70% din cazuri in Japonia.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Camp vizual</dt>
+          <dd>Aria totala a vederii periferice si centrale pe care o percepe un ochi. Testul campului vizual detecteaza zonele "moarte" cauzate de glaucom.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=oRLFs4csFRY" target="_blank">NHK Medical Frontiers — Glaucoma: The Fight to Prevent Blindness</a> &middot;
+    Informatii bazate pe cercetari japoneze prezentate in emisiune &middot;
+    Infografic explicativ in limba romana
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract eye with optic nerve visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Nerve fibers emanating from optic disc
+  const fibers = [];
+  const fiberCount = 60;
+  for(let i = 0; i < fiberCount; i++){
+    const angle = (i / fiberCount) * Math.PI * 2;
+    const len = 0.25 + Math.random() * 0.2;
+    fibers.push({
+      angle: angle,
+      len: len,
+      width: 0.5 + Math.random() * 1.5,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.005,
+      alive: Math.random() > 0.2 // 80% healthy, 20% damaged
+    });
+  }
+
+  // Floating particles (aqueous humor)
+  const particles = [];
+  for(let i = 0; i < 30; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1 + Math.random() * 2,
+      vx: (Math.random() - 0.5) * 0.0003,
+      vy: (Math.random() - 0.5) * 0.0003,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.008;
+
+    const cx = w * 0.5;
+    const cy = h * 0.48;
+    const eyeRx = w * 0.32;
+    const eyeRy = h * 0.30;
+
+    // Outer eye glow
+    const outerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, eyeRx * 1.3);
+    outerGlow.addColorStop(0, 'rgba(20,184,166,0.06)');
+    outerGlow.addColorStop(0.5, 'rgba(6,182,212,0.03)');
+    outerGlow.addColorStop(1, 'transparent');
+    ctx.fillStyle = outerGlow;
+    ctx.fillRect(0, 0, w, h);
+
+    // Draw eye shape (almond)
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - eyeRx, cy);
+    ctx.bezierCurveTo(cx - eyeRx * 0.5, cy - eyeRy, cx + eyeRx * 0.5, cy - eyeRy, cx + eyeRx, cy);
+    ctx.bezierCurveTo(cx + eyeRx * 0.5, cy + eyeRy, cx - eyeRx * 0.5, cy + eyeRy, cx - eyeRx, cy);
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(20,184,166,0.25)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Eye fill
+    const eyeFill = ctx.createRadialGradient(cx, cy, 0, cx, cy, eyeRx * 0.8);
+    eyeFill.addColorStop(0, 'rgba(6,182,212,0.08)');
+    eyeFill.addColorStop(1, 'rgba(20,184,166,0.02)');
+    ctx.fillStyle = eyeFill;
+    ctx.fill();
+    ctx.clip();
+
+    // Iris
+    const irisR = h * 0.22;
+    const irisGrad = ctx.createRadialGradient(cx, cy, irisR * 0.15, cx, cy, irisR);
+    irisGrad.addColorStop(0, 'rgba(6,10,16,0.9)');
+    irisGrad.addColorStop(0.3, 'rgba(6,10,16,0.8)');
+    irisGrad.addColorStop(0.5, 'rgba(20,184,166,0.25)');
+    irisGrad.addColorStop(0.7, 'rgba(6,182,212,0.20)');
+    irisGrad.addColorStop(1, 'rgba(20,184,166,0.08)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, irisR, 0, Math.PI * 2);
+    ctx.fillStyle = irisGrad;
+    ctx.fill();
+
+    // Iris rings
+    for(let r = 0; r < 5; r++){
+      const ringR = irisR * (0.35 + r * 0.13);
+      ctx.beginPath();
+      ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(20,184,166,${0.08 + Math.sin(t + r) * 0.03})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    // Iris radial lines
+    for(let i = 0; i < 36; i++){
+      const a = (i / 36) * Math.PI * 2 + t * 0.1;
+      const inner = irisR * 0.25;
+      const outer = irisR * (0.85 + Math.sin(t * 2 + i) * 0.05);
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
+      ctx.lineTo(cx + Math.cos(a) * outer, cy + Math.sin(a) * outer);
+      ctx.strokeStyle = `rgba(20,184,166,${0.06 + Math.sin(t + i * 0.5) * 0.03})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+
+    // Pupil
+    const pupilR = irisR * (0.22 + Math.sin(t * 0.5) * 0.03);
+    ctx.beginPath();
+    ctx.arc(cx, cy, pupilR, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(6,10,16,0.95)';
+    ctx.fill();
+
+    // Pupil highlight
+    ctx.beginPath();
+    ctx.arc(cx - pupilR * 0.3, cy - pupilR * 0.3, pupilR * 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(232,244,240,0.15)';
+    ctx.fill();
+
+    ctx.restore();
+
+    // Optic nerve fibers from back of eye
+    const nerveX = cx + eyeRx * 0.9;
+    const nerveY = cy;
+
+    fibers.forEach(f => {
+      const pulse = Math.sin(t * 3 + f.phase) * 0.5 + 0.5;
+      const endX = nerveX + Math.cos(f.angle) * f.len * w * 0.5;
+      const endY = nerveY + Math.sin(f.angle) * f.len * h * 0.5;
+
+      ctx.beginPath();
+      ctx.moveTo(nerveX, nerveY);
+
+      const cpx = nerveX + (endX - nerveX) * 0.5 + Math.sin(t + f.phase) * 5;
+      const cpy = nerveY + (endY - nerveY) * 0.5 + Math.cos(t * 1.3 + f.phase) * 5;
+      ctx.quadraticCurveTo(cpx, cpy, endX, endY);
+
+      if(f.alive){
+        ctx.strokeStyle = `rgba(20,184,166,${0.08 + pulse * 0.06})`;
+      } else {
+        ctx.strokeStyle = `rgba(248,113,113,${0.04 + pulse * 0.03})`;
+      }
+      ctx.lineWidth = f.width;
+      ctx.stroke();
+
+      // Signal pulse traveling along fiber
+      if(f.alive){
+        const pt = (t * f.speed * 80 + f.phase) % 1;
+        const px = nerveX + (endX - nerveX) * pt;
+        const py = nerveY + (endY - nerveY) * pt;
+        ctx.beginPath();
+        ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(20,184,166,${0.3 * (1 - pt)})`;
+        ctx.fill();
+      }
+    });
+
+    // Optic disc
+    ctx.beginPath();
+    ctx.arc(nerveX, nerveY, 8, 0, Math.PI * 2);
+    const discGlow = ctx.createRadialGradient(nerveX, nerveY, 0, nerveX, nerveY, 8);
+    discGlow.addColorStop(0, 'rgba(20,184,166,0.3)');
+    discGlow.addColorStop(1, 'rgba(20,184,166,0.05)');
+    ctx.fillStyle = discGlow;
+    ctx.fill();
+
+    // Pressure pulse rings from center
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 25 + p * 50) % 140);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2000);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(6,182,212,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Floating particles (aqueous humor)
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t + p.phase) * 0.00005;
+      p.y += p.vy + Math.cos(t * 1.2 + p.phase) * 0.00005;
+      if(p.x < 0) p.x = 1;
+      if(p.x > 1) p.x = 0;
+      if(p.y < 0) p.y = 1;
+      if(p.y > 1) p.y = 0;
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const alpha = 0.15 + Math.sin(t * 2 + p.phase) * 0.08;
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(6,182,212,${alpha})`;
+      ctx.fill();
+    });
+
+    // Labels
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '8.5px ' + mono;
+    ctx.fillStyle = 'rgba(150,184,176,0.35)';
+    ctx.fillText('NERV OPTIC', nerveX - 22, nerveY + 18);
+    ctx.fillText('IRIS', cx - 8, cy + irisR + 14);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(20,184,166,0.6)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(150,184,176,0.4)'; ctx.fillText('fibre sanatoase', 15, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.6)'; ctx.beginPath(); ctx.arc(105, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(150,184,176,0.4)'; ctx.fillText('fibre deteriorate', 112, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

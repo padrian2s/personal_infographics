@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Revolutii in Stomatologie — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: inovatii japoneze in tratamentul bolii parodontale, regenerarea osoasa si igiena dentara. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#060A14;
+      --bg1:#080E1C;
+      --panel:#0E1630cc;
+      --card:#0C1530;
+      --card2:#091228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#60A5FA;
+      --glow2:#F0ABFC;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(96,165,250,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(240,171,252,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(96,165,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(96,165,250,.20);
+      background: linear-gradient(180deg, rgba(12,21,48,.75), rgba(8,14,28,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(96,165,250,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(240,171,252,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(96,165,250,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--ok)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(96,165,250,.15);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,10,20,.30),rgba(6,10,20,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(96,165,250,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.pink{border-color:var(--glow2);background:rgba(240,171,252,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(96,165,250,.22),rgba(96,165,250,.04));}
+    .stepBar.pink{background:linear-gradient(180deg,rgba(240,171,252,.22),rgba(240,171,252,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(96,165,250,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.pink{border-color:var(--glow2);background:rgba(240,171,252,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(96,165,250,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(96,165,250,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.pink{border-color:rgba(240,171,252,.25);background:rgba(240,171,252,.06);}
+    .alert.pink h4{color:var(--glow2);}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn h4{color:var(--warn);}
+
+    /* Diagram SVG */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(96,165,250,.18);
+      background:linear-gradient(180deg,rgba(12,21,48,.80),rgba(8,14,28,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(96,165,250,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(96,165,250,.25);background:rgba(96,165,250,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Brushing interactive */
+    .brushDemo{
+      border:1px solid rgba(96,165,250,.15);border-radius:16px;
+      background:rgba(6,10,20,.40);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .brushDemo canvas{width:100%;height:160px;display:block;border-radius:12px;cursor:pointer;}
+    .brushLabel{font-size:11px;color:var(--muted2);text-align:center;margin-top:8px;}
+
+    /* Bar chart */
+    .barChart{display:flex;align-items:flex-end;gap:16px;justify-content:center;margin-top:14px;height:140px;}
+    .barGroup{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;max-width:100px;}
+    .barWrap{display:flex;align-items:flex-end;gap:6px;height:110px;}
+    .bar{
+      width:28px;border-radius:6px 6px 0 0;position:relative;
+      transition:height .6s cubic-bezier(.4,0,.2,1);
+    }
+    .bar .bv{
+      position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+      font-size:10px;font-weight:700;white-space:nowrap;
+    }
+    .barLabel{font-size:10px;color:var(--muted2);text-align:center;line-height:1.2;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Revolutii in Stomatologie: Cum iti Salvezi Zambetul
+          <small>NHK Medical Frontiers — Inovatii japoneze in tratamentul bolii parodontale, regenerarea osoasa si igiena dentara</small>
+        </h1>
+        <p class="sub">Boala parodontala afecteaza peste <b>1 miliard de oameni</b> la nivel mondial si adesea evolueaza fara simptome. Cercetatorii japonezi de la <b>Universitatea Tokushima</b> au dezvoltat un tratament revolutionar bazat pe lumina albastra si peroxid de hidrogen, iar regenerarea osoasa din celule adipoase a fost realizata pentru prima data in lume.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Stomatologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Inovatii</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Boala parodontala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Boala parodontala: inamicul invizibil</h2>
+          <p>O afectiune care progreseaza silentios, fara simptome in stadiile incipiente, dar cu consecinte devastatoare asupra intregului organism</p>
+        </div>
+        <span class="badge">PROBLEMA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1 mld+</div>
+            <span class="u">oameni afectati la nivel mondial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">2.8x</div>
+            <span class="u">risc crescut de accident vascular cerebral</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">2x</div>
+            <span class="u">risc crescut de a dezvolta diabet</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">200 mld</div>
+            <span class="u">bacterii in gura, chiar si cu periaj regulat</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Ce este biofilmul?</h3>
+            <p>Daca nu curatam dintii, pe suprafata lor se formeaza o <b>substanta alba si lipicioasa numita placa bacteriana</b>. Aceasta este un biofilm — o structura creata de bacteriile insele. Ganditi-va la pelicula alunecoasa din cada de baie: exact asa arata biofilmul pe dinti.</p>
+            <p style="margin-top:6px;">Biofilmul este <b>extrem de rezistent</b> la antibiotice si la celulele imunitare ale organismului.</p>
+          </div>
+          <div class="mini">
+            <h3>Efecte asupra intregului organism</h3>
+            <p>Bacteriile parodontale nu raman doar in gura. Ele patrund in <b>vasele de sange</b> si ajung in tot corpul. Studiile arata o legatura directa cu <b>diabetul</b>, <b>accidentul vascular cerebral</b> si alte boli sistemice.</p>
+            <p style="margin-top:6px;"><b>Este mai bine sa priviti lucrurile astfel:</b> chiar daca tratati boala acum, opriti progresia — dar bacteriile continua sa se inmulteasca.</p>
+          </div>
+        </div>
+
+        <div class="alert pink">
+          <h4>De ce revine mereu?</h4>
+          <p>Studiu SUA (300 pacienti): <b>peste 60%</b> au avut nevoie de tratament din nou dupa tratament periodic. Studiu Marea Britanie: chiar si cu ingrijire pe termen lung, <b>~25%</b> au recidivat. Eliminarea completa a bacteriilor devine foarte dificila.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Progresia bolii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum progreseaza boala parodontala</h2>
+          <p>De la acumularea de placa la pierderea totala a dintilor — o evolutie treptata si adesea nedureroasa</p>
+        </div>
+        <span class="badge" style="border-color:rgba(240,171,252,.3);color:var(--glow2);">EVOLUTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Formarea placii bacteriene</h4>
+              <p>Bacteriile se aduna pe suprafata dintilor si formeaza <b>biofilmul</b> — o pelicula alba si lipicioasa. Chiar si persoanele care se spala pe dinti au intre <b>100 si 200 de miliarde de bacterii</b> in gura.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot pink"></div><div class="stepBar pink"></div></div>
+            <div class="stepContent">
+              <h4>2. Gingivita</h4>
+              <p>Bacteriile provoaca <b>inflamatia gingiilor</b>. Acest stadiu poate fi reversibil, dar adesea trece neobservat deoarece <b>nu doare</b>. Sangerea usoara la periaj poate fi un semn de avertizare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Distrugerea osului alveolar (~50%)</h4>
+              <p>Toxinele eliberate de <b>patogenii parodontali</b> distrug treptat osul alveolar — fundatia care sustine dintii. Cand aproximativ <b>jumatate din os</b> a fost distrus, apare <b>respiratia urat mirositoare</b> si dintii incep sa se clatine.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Pierderea dintilor (>50% os distrus)</h4>
+              <p>Mestecatul devine <b>dureros si dificil</b>. Dintii sunt extrem de instabili. La acest stadiu, <b>extragerea</b> devine adesea singura optiune. Boala a afectat deja intregul organism prin vasele de sange.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG diagram: tooth cross-section -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Healthy tooth -->
+            <text x="115" y="22" fill="#60A5FA" font-size="12" font-weight="700" text-anchor="middle">Dinte sanatos</text>
+            <!-- Crown -->
+            <path d="M80 55 Q85 30 115 28 Q145 30 150 55 L150 100 Q115 105 80 100 Z" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.4)" stroke-width="1.5"/>
+            <text x="115" y="70" fill="#A0ACC8" font-size="9" text-anchor="middle">Smalт</text>
+            <!-- Root -->
+            <path d="M85 100 Q85 170 100 200 Q105 210 110 200 Q115 170 115 160 Q115 170 120 200 Q125 210 130 200 Q145 170 145 100" fill="rgba(240,171,252,.08)" stroke="rgba(240,171,252,.3)" stroke-width="1"/>
+            <!-- Gum line -->
+            <path d="M40 100 Q80 92 115 95 Q150 92 190 100" fill="none" stroke="rgba(240,171,252,.5)" stroke-width="2"/>
+            <text x="190" y="97" fill="#F0ABFC" font-size="8" text-anchor="start">Gingie sanatoasa</text>
+            <!-- Bone -->
+            <rect x="50" y="110" width="130" height="60" rx="8" fill="rgba(167,139,250,.06)" stroke="rgba(167,139,250,.2)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="115" y="145" fill="#A78BFA" font-size="8" text-anchor="middle">Os alveolar intact</text>
+
+            <!-- Arrow -->
+            <line x1="250" y1="120" x2="310" y2="120" stroke="rgba(251,191,36,.4)" stroke-width="2" marker-end="url(#arrowWarn)"/>
+            <defs><marker id="arrowWarn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(251,191,36,.6)"/></marker></defs>
+
+            <!-- Diseased tooth -->
+            <text x="465" y="22" fill="#F87171" font-size="12" font-weight="700" text-anchor="middle">Boala parodontala avansata</text>
+            <!-- Crown -->
+            <path d="M430 55 Q435 30 465 28 Q495 30 500 55 L500 100 Q465 105 430 100 Z" fill="rgba(96,165,250,.08)" stroke="rgba(96,165,250,.25)" stroke-width="1.5"/>
+            <!-- Root exposed -->
+            <path d="M435 100 Q435 170 450 200 Q455 210 460 200 Q465 170 465 160 Q465 170 470 200 Q475 210 480 200 Q495 170 495 100" fill="rgba(240,171,252,.05)" stroke="rgba(240,171,252,.2)" stroke-width="1"/>
+            <!-- Gum receded -->
+            <path d="M390 85 Q430 100 465 105 Q500 100 540 85" fill="none" stroke="rgba(248,113,113,.5)" stroke-width="2"/>
+            <text x="545" y="83" fill="#F87171" font-size="8" text-anchor="start">Gingie retrasa</text>
+            <!-- Bone destroyed -->
+            <rect x="400" y="140" width="130" height="30" rx="8" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.2)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="465" y="160" fill="#F87171" font-size="8" text-anchor="middle">Os distrus >50%</text>
+            <!-- Bacteria dots -->
+            <circle cx="440" cy="108" r="2" fill="rgba(248,113,113,.6)"/>
+            <circle cx="455" cy="112" r="1.5" fill="rgba(248,113,113,.5)"/>
+            <circle cx="475" cy="110" r="2" fill="rgba(248,113,113,.6)"/>
+            <circle cx="490" cy="106" r="1.5" fill="rgba(248,113,113,.5)"/>
+            <circle cx="460" cy="118" r="1.8" fill="rgba(248,113,113,.4)"/>
+            <circle cx="480" cy="120" r="1.5" fill="rgba(248,113,113,.5)"/>
+            <text x="465" y="235" fill="#6E7A9A" font-size="8" text-anchor="middle">Bacterii in buzunare parodontale</text>
+
+            <!-- Pocket depth label -->
+            <line x1="425" y1="100" x2="425" y2="135" stroke="rgba(251,191,36,.4)" stroke-width="1"/>
+            <text x="415" y="122" fill="#FBBF24" font-size="7" text-anchor="end">7mm</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Tratamentul cu lumina albastra -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Inovatia Tokushima: lumina albastra + peroxid de hidrogen</h2>
+          <p>O echipa de la Universitatea Tokushima a dezvoltat un dispozitiv revolutionar care elimina bacteriile din buzunarele parodontale profunde</p>
+        </div>
+        <span class="badge" style="border-color:rgba(96,165,250,.3);color:var(--glow);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Problema: cum elimini biofilmul?</h4>
+              <p>Exista doar doua metode clasice: <b>periajul mecanic</b> (periuta de dinti) sau <b>substante chimice concentrate</b>. Dar substantele chimice puternice nu pot fi folosite in gura — ar fi toxice. Solutia: <b>energie externa</b> care amplifica puterea de sterilizare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot pink"></div><div class="stepBar pink"></div></div>
+            <div class="stepContent">
+              <h4>2. De ce lumina albastra?</h4>
+              <p>Echipa a incercat mai intai <b>raze X</b> — dificil de aplicat in gura. Apoi <b>ultraviolete</b> — eficiente dar periculoase pentru tesuturi. Solutia finala: <b>lumina albastra vizibila</b> cu lungime de unda de <b>405 nanometri</b>, sigura chiar daca ajunge in ochi.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Mecanismul: radicali hidroxil</h4>
+              <p>Lumina albastra de 405nm descompune <b>peroxidul de hidrogen</b> in <b>radicali hidroxil</b> — substante extrem de reactive care distrug ADN-ul bacteriilor in <b>milionimi de secunda</b>. Radicalii reactioneaza si dispar instantaneu, fara efecte secundare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Dispozitivul</h4>
+              <p>Un varf metalic de doar <b>0.3mm diametru</b> — suficient de subtire pentru a patrunde in buzunarele parodontale profunde. Se introduce in buzunar, se injecteaza peroxid de hidrogen si se aplica lumina albastra. Tratament <b>non-chirurgical</b>, fara stres pentru pacient.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote pink">
+          &laquo;Aceasta este o procedura realizata cu acelasi echipament folosit in mod normal pentru igiena preventiva — nu este vorba de chirurgie. Tot ce trebuie facut este sa inlocuiti echipamentul de tratament cu acesta.&raquo;
+          <cite>— Cercetator principal, Universitatea Tokushima</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Rezultate clinice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Rezultate clinice: dovezi stiintifice</h2>
+          <p>Studiul clinic pe 142 de pacienti la Universitatea Tokushima si reactia comunitatii internationale</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">REZULTATE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--warn)">Tratament conventional</h3>
+            <p>Buzunarele parodontale de <b>~7mm</b> au ramas mai adanci de <b>5mm</b> chiar si dupa <b>12 saptamani</b> de tratament.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--warn)">>5mm</span>
+              <span class="l">adancime dupa 12 saptamani de tratament clasic</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Cu dispozitivul Tokushima</h3>
+            <p>Buzunarele au scazut sub <b>5mm in doar cateva saptamani</b> si au ramas asa pe toata durata celor <b>12 saptamani</b> de monitorizare.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok)"><5mm</span>
+              <span class="l">adancime in cateva saptamani, mentinuta 12 saptamani</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">142</div>
+            <span class="u">pacienti in studiul clinic Tokushima</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">~80%</div>
+            <span class="u">dintre pacienti simt o imbunatatire clara</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">405nm</div>
+            <span class="u">lungimea de unda a luminii albastre</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">0.3mm</div>
+            <span class="u">diametrul varfului dispozitivului</span>
+          </div>
+        </div>
+
+        <!-- Microscopy results -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="20" fill="#EAF0FF" font-size="12" font-weight="700" text-anchor="middle">Rezultate la microscop: bacterii in biofilm</text>
+
+            <!-- Only H2O2 -->
+            <rect x="30" y="40" width="200" height="140" rx="12" fill="rgba(251,191,36,.06)" stroke="rgba(251,191,36,.2)" stroke-width="1.5"/>
+            <text x="130" y="60" fill="#FBBF24" font-size="10" font-weight="600" text-anchor="middle">Doar H2O2</text>
+            <!-- Green dots = alive, red dots = dead -->
+            <circle cx="65" cy="90" r="5" fill="rgba(52,211,153,.6)"/><circle cx="85" cy="105" r="4" fill="rgba(52,211,153,.5)"/>
+            <circle cx="110" cy="85" r="5" fill="rgba(52,211,153,.6)"/><circle cx="130" cy="100" r="4" fill="rgba(52,211,153,.5)"/>
+            <circle cx="155" cy="90" r="5" fill="rgba(52,211,153,.6)"/><circle cx="175" cy="105" r="4" fill="rgba(52,211,153,.5)"/>
+            <circle cx="100" cy="120" r="4" fill="rgba(248,113,113,.6)"/><circle cx="155" cy="125" r="4" fill="rgba(248,113,113,.5)"/>
+            <circle cx="75" cy="140" r="5" fill="rgba(52,211,153,.5)"/><circle cx="140" cy="145" r="4" fill="rgba(52,211,153,.6)"/>
+            <circle cx="190" cy="130" r="3" fill="rgba(248,113,113,.5)"/>
+            <text x="130" y="170" fill="#A0ACC8" font-size="9" text-anchor="middle">Multe bacterii inca vii (verde)</text>
+
+            <!-- Arrow -->
+            <line x1="250" y1="110" x2="310" y2="110" stroke="rgba(96,165,250,.4)" stroke-width="2" marker-end="url(#arrowBlue)"/>
+            <defs><marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(96,165,250,.6)"/></marker></defs>
+
+            <!-- H2O2 + Blue Light -->
+            <rect x="330" y="40" width="200" height="140" rx="12" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.2)" stroke-width="1.5"/>
+            <text x="430" y="60" fill="#60A5FA" font-size="10" font-weight="600" text-anchor="middle">H2O2 + Lumina albastra</text>
+            <!-- All red = all dead -->
+            <circle cx="365" cy="90" r="5" fill="rgba(248,113,113,.6)"/><circle cx="385" cy="105" r="4" fill="rgba(248,113,113,.5)"/>
+            <circle cx="410" cy="85" r="5" fill="rgba(248,113,113,.6)"/><circle cx="430" cy="100" r="4" fill="rgba(248,113,113,.6)"/>
+            <circle cx="455" cy="90" r="5" fill="rgba(248,113,113,.5)"/><circle cx="475" cy="105" r="4" fill="rgba(248,113,113,.6)"/>
+            <circle cx="400" cy="120" r="4" fill="rgba(248,113,113,.6)"/><circle cx="455" cy="125" r="4" fill="rgba(248,113,113,.5)"/>
+            <circle cx="375" cy="140" r="5" fill="rgba(248,113,113,.5)"/><circle cx="440" cy="145" r="4" fill="rgba(248,113,113,.6)"/>
+            <circle cx="490" cy="130" r="3" fill="rgba(248,113,113,.5)"/>
+            <text x="430" y="170" fill="#A0ACC8" font-size="9" text-anchor="middle">Aproape TOATE bacteriile distruse (rosu)</text>
+
+            <!-- Legend -->
+            <circle cx="580" cy="90" r="5" fill="rgba(52,211,153,.6)"/>
+            <text x="592" y="94" fill="#A0ACC8" font-size="9">= Bacterii vii</text>
+            <circle cx="580" cy="115" r="5" fill="rgba(248,113,113,.6)"/>
+            <text x="592" y="119" fill="#A0ACC8" font-size="9">= Bacterii distruse</text>
+          </svg>
+        </div>
+
+        <div class="quote">
+          &laquo;Cand am auzit despre acest dispozitiv, am simtit ca avem un nou instrument, o noua posibilitate de tratament antimicrobian. Putem trata biofilmul intr-un mod complet diferit — pare foarte promitator.&raquo;
+          <cite>— Cercetator, Universitatea din Gothenburg, Suedia</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Regenerarea osoasa -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Premiera mondiala: regenerarea osului parodontal</h2>
+          <p>Pentru prima data in lume, o echipa japoneza a reusit regenerarea osoasa folosind celule din tesut adipos (grasime)</p>
+        </div>
+        <span class="badge" style="border-color:rgba(240,171,252,.3);color:var(--glow2);">REGENERARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Procedura</h3>
+            <p>Echipa de cercetare a extras <b>celule din tesutul adipos</b> al pacientilor si le-a utilizat pentru a <b>regenera osul parodontal</b> distrus de boala. Rezultatele au fost publicate intr-o <b>revista internationala de prestigiu</b>.</p>
+            <p style="margin-top:6px;">Este prima procedura din lume care foloseste cu succes celule adipoase pentru regenerare osoasa in zona dentara.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Rezultate</h3>
+            <p>Toti <b>12 pacientii</b> din studiul initial au prezentat <b>regenerare a osului parodontal</b>. Studiul a fost extins la <b>30 de pacienti</b> pentru validare statistice suplimentara.</p>
+            <p style="margin-top:6px;">Echipa analizeaza acum cu atentie <b>care tipuri de pacienti</b> beneficiaza cel mai mult de tratament.</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">12/12</div>
+            <span class="u">pacienti cu regenerare osoasa confirmata</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">100%</div>
+            <span class="u">rata de succes in studiul initial</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">30</div>
+            <span class="u">pacienti in studiul extins</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">1</div>
+            <span class="u">premiera mondiala: celule adipoase</span>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Marturie: o viata schimbata</h4>
+          <p>&laquo;Brusc, durerea era atat de puternica incat nu puteam sa mestec nimic. Nu stiam de unde vine durerea — credeam ca e in tot corpul. M-am gandit ca poate va trebui sa imi scot toti dintii. Mi-a fost atat de frica... <b>Viata mea s-a schimbat de cand am avut acea legatura cu medicul meu.</b>&raquo;</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Igiena dentara corecta -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ghid practic: igiena dentara corecta</h2>
+          <p>Sfaturi esentiale bazate pe stiinta pentru prevenirea bolii parodontale si a cariilor</p>
+        </div>
+        <span class="badge">PREVENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Periuta de dinti = doar jumatate din treaba</h4>
+              <p>Multi oameni cred ca s-au spalat pe dinti daca au trecut periuta peste toti dintii. In realitate, <b>periuta acopera doar 2 fete din 4</b> ale fiecarui dinte (fata si spatele). Zonele laterale si interproximale raman neacoperite.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot pink"></div><div class="stepBar pink"></div></div>
+            <div class="stepContent">
+              <h4>Tehnica "4 fete" — miscare inainte-inapoi</h4>
+              <p>Expertii recomanda <b>periajul pe 4 fete</b> ale dintilor. Miscarea corecta este <b>inainte-inapoi</b>, nu circulara. Miscarea circulara poate face ca aceeasi zona sa ramana mereu necuratata.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Biofilmul se reformeaza in ~1 zi</h4>
+              <p>Dupa curatare, biofilmul incepe sa se maturizeze din nou in <b>aproximativ o zi</b>. De aceea, periajul temeinic <b>cel putin o data pe zi</b> (ideal inainte de culcare) este esential pentru a intrerupe ciclul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Periajul inlatura 70-80% — restul la dentist</h4>
+              <p>Chiar si cu un periaj corect, <b>70-80% din biofilm</b> este inlaturat. Restul de <b>20-30%</b> trebuie eliminat periodic de dentist. Recomandare: vizita la dentist <b>o data la 3 luni</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Zaharul = hrana pentru bacterii</h3>
+            <p>Cauza principala a cariilor este <b>zaharul din alimentatie</b>. De fiecare data cand mancati, este ca si cum <b>hraniti bacteriile</b> care provoaca carii. Reducerea consumului de zahar si spalarea dintilor dupa mese sunt esentiale.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Ingrijirea seara: cea mai importanta</h3>
+            <p>Boala parodontala <b>nu devine severa peste noapte</b> — se dezvolta treptat si adesea fara simptome. <b>Ingrijirea zilnica consecventa inainte de culcare</b> este absolut esentiala. Constientizarea este prima linie de aparare.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Protejarea dintilor nu inseamna doar sanatatea gurii — ci sanatatea intregului organism.&raquo;
+          <cite>— NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key Numbers -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cifre cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--glow)">1 mld+</span><span class="tDesc"><b>Persoane afectate</b> de boala parodontala la nivel mondial</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">2.8x</span><span class="tDesc">Risc crescut de <b>accident vascular cerebral</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">2x</span><span class="tDesc">Risc crescut de <b>diabet</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">200 mld</span><span class="tDesc"><b>Bacterii in gura</b>, chiar si cu periaj regulat</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">60%+</span><span class="tDesc">Pacienti care au nevoie de <b>retratament</b> (studiu SUA)</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow)">405nm</span><span class="tDesc"><b>Lungimea de unda</b> a luminii albastre terapeutice</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">142</span><span class="tDesc"><b>Pacienti</b> in studiul clinic Tokushima</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">12/12</span><span class="tDesc"><b>Rata de succes</b> in regenerarea osoasa</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">70-80%</span><span class="tDesc"><b>Biofilm inlaturat</b> prin periaj corect</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--purple)">3 luni</span><span class="tDesc">Interval recomandat intre <b>vizitele la dentist</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce Japonia?</h4>
+          <p>Japonia este lider mondial in cercetarea stomatologica si in medicina preventiva. <b>Universitatea Tokushima</b> are una dintre cele mai puternice echipe de cercetare in parodontologie, iar studiile lor sunt publicate in <b>reviste internationale de top</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Lumina albastra vs. ultraviolete</h4>
+          <p>Lumina UV este extrem de eficienta impotriva bacteriilor, dar este <b>periculoasa pentru tesuturi si ochi</b>. Lumina albastra de 405nm are o eficacitate comparabila cand este combinata cu H2O2, dar este <b>complet sigura</b> — chiar daca ajunge in ochi.</p>
+        </div>
+        <div class="comNote">
+          <h4>Celule adipoase pentru os</h4>
+          <p>Utilizarea celulelor din <b>tesut adipos (grasime)</b> pentru regenerare osoasa este o inovatie majora. Grasimea este abundenta si usor de recoltat, ceea ce face procedura <b>mai putin invaziva</b> decat alternativele traditionale.</p>
+        </div>
+        <div class="comNote">
+          <h4>Preventia ramane regina</h4>
+          <p>Chiar si cu aceste inovatii, expertii subliniaza ca <b>preventia zilnica</b> ramane esentiala. Periajul corect, ata dentara si vizitele regulate la dentist sunt <b>prima linie de aparare</b> impotriva bolii parodontale.</p>
+        </div>
+        <div class="comNote">
+          <h4>Universitatea din Gothenburg</h4>
+          <p>Cercetatorii suedezi de la <b>Universitatea din Gothenburg</b> au aratat interes fata de dispozitivul Tokushima, considerandu-l promitator nu doar pentru boala parodontala, ci si pentru <b>tratamentul cariilor</b> inainte de aplicarea plombei.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Boala parodontala</dt>
+          <dd>Infectie cronica a tesuturilor care sustin dintii (gingii, os alveolar, ligament parodontal). Progreseaza silentios si poate duce la pierderea dintilor.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Biofilm</dt>
+          <dd>Comunitate organizata de bacterii care formeaza o pelicula protectoare pe suprafata dintilor. Rezistent la antibiotice si la sistemul imunitar. Echivalentul peliculei alunecoase din cada de baie.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Os alveolar</dt>
+          <dd>Osul maxilarului care inconjoara si sustine radacinile dintilor. Distrugerea sa progresiva este principala consecinta a bolii parodontale avansate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Buzunar parodontal</dt>
+          <dd>Spatiu patologic intre gingie si dinte, creat de retragerea gingiei si distrugerea osului. Se masoara in milimetri — peste 5mm indica boala activa.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Radicali hidroxil (OH)</dt>
+          <dd>Molecule extrem de reactive, generate din descompunerea peroxidului de hidrogen sub actiunea luminii albastre. Distrug ADN-ul bacteriilor in milionimi de secunda.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Peroxid de hidrogen (H2O2)</dt>
+          <dd>Compound chimic folosit ca agent antimicrobian. In combinatie cu lumina albastra de 405nm, genereaza radicali hidroxil care distrug bacteriile din biofilm.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Gingivita</dt>
+          <dd>Inflamatia gingiilor — stadiul incipient al bolii parodontale. Reversibila cu igiena corecta, dar adesea asimptomatica. Sangerea la periaj este un semn frecvent.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Celule adipoase (stem)</dt>
+          <dd>Celule prelevate din tesutul gras al pacientului, cu capacitate de diferentiere in alte tipuri de tesuturi, inclusiv os. Folosite in premiera mondiala pentru regenerarea osului parodontal.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=GZ-DFAzzrBA" target="_blank">NHK Medical Frontiers — Dental Breakthroughs To Save Your Smile</a> &middot;
+    Infografic interactiv bazat pe episodul NHK Medical Frontiers
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract tooth with enamel layers and dental tools ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Floating particles (bacteria & clean particles)
+  const particles = [];
+  for(let i = 0; i < 50; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.0005 + Math.random() * 0.0015,
+      drift: 0.0002 + Math.random() * 0.0008,
+      type: Math.random() < 0.4 ? 'bacteria' : Math.random() < 0.7 ? 'clean' : 'enamel'
+    });
+  }
+
+  // Blue light rays
+  const rays = [];
+  for(let i = 0; i < 6; i++){
+    rays.push({
+      angle: (i / 6) * Math.PI * 0.6 + Math.PI * 0.7,
+      length: 0.25 + Math.random() * 0.15,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.008;
+
+    const cx = w * 0.5, cy = h * 0.48;
+
+    // Tooth shape (simplified molar)
+    const toothW = w * 0.18, toothH = h * 0.55;
+    const toothTop = cy - toothH * 0.45;
+    const toothBot = cy + toothH * 0.55;
+
+    // Enamel glow layers
+    for(let layer = 3; layer >= 0; layer--){
+      const expand = layer * 6;
+      const alpha = 0.03 + (3 - layer) * 0.02;
+      ctx.beginPath();
+      ctx.moveTo(cx - toothW - expand, toothTop + 15);
+      ctx.quadraticCurveTo(cx - toothW * 0.3 - expand, toothTop - 10 - expand, cx, toothTop - 5 - expand);
+      ctx.quadraticCurveTo(cx + toothW * 0.3 + expand, toothTop - 10 - expand, cx + toothW + expand, toothTop + 15);
+      ctx.lineTo(cx + toothW * 0.8 + expand * 0.5, toothBot);
+      ctx.quadraticCurveTo(cx, toothBot + 10, cx - toothW * 0.8 - expand * 0.5, toothBot);
+      ctx.closePath();
+      ctx.fillStyle = `rgba(96,165,250,${alpha})`;
+      ctx.fill();
+    }
+
+    // Main tooth outline
+    ctx.beginPath();
+    ctx.moveTo(cx - toothW, toothTop + 15);
+    ctx.quadraticCurveTo(cx - toothW * 0.3, toothTop - 5, cx, toothTop);
+    ctx.quadraticCurveTo(cx + toothW * 0.3, toothTop - 5, cx + toothW, toothTop + 15);
+    // Crown cusps
+    ctx.lineTo(cx + toothW, cy - 5);
+    // Neck
+    ctx.quadraticCurveTo(cx + toothW * 0.85, cy + 5, cx + toothW * 0.7, cy + 10);
+    // Root
+    ctx.lineTo(cx + toothW * 0.5, toothBot - 10);
+    ctx.quadraticCurveTo(cx + toothW * 0.2, toothBot + 5, cx, toothBot - 5);
+    ctx.quadraticCurveTo(cx - toothW * 0.2, toothBot + 5, cx - toothW * 0.5, toothBot - 10);
+    ctx.lineTo(cx - toothW * 0.7, cy + 10);
+    ctx.quadraticCurveTo(cx - toothW * 0.85, cy + 5, cx - toothW, cy - 5);
+    ctx.closePath();
+    ctx.strokeStyle = `rgba(96,165,250,${0.35 + Math.sin(t) * 0.1})`;
+    ctx.lineWidth = 1.8;
+    ctx.stroke();
+    ctx.fillStyle = `rgba(96,165,250,0.04)`;
+    ctx.fill();
+
+    // Gum line
+    const gumY = cy + 5;
+    ctx.beginPath();
+    ctx.moveTo(0, gumY + 10);
+    ctx.quadraticCurveTo(cx * 0.4, gumY + Math.sin(t * 1.5) * 3, cx - toothW * 0.9, gumY);
+    ctx.quadraticCurveTo(cx - toothW * 0.5, gumY - 8, cx, gumY - 5);
+    ctx.quadraticCurveTo(cx + toothW * 0.5, gumY - 8, cx + toothW * 0.9, gumY);
+    ctx.quadraticCurveTo(w * 0.7, gumY + Math.sin(t * 1.5 + 1) * 3, w, gumY + 10);
+    ctx.strokeStyle = `rgba(240,171,252,${0.3 + Math.sin(t * 0.7) * 0.1})`;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Blue light beam from top-right
+    const beamX = w * 0.78, beamY = h * 0.08;
+    rays.forEach(ray => {
+      const alpha = 0.06 + Math.sin(t * 2 + ray.phase) * 0.03;
+      const endX = beamX + Math.cos(ray.angle) * w * ray.length;
+      const endY = beamY + Math.sin(ray.angle) * h * ray.length;
+      const grad = ctx.createLinearGradient(beamX, beamY, endX, endY);
+      grad.addColorStop(0, `rgba(96,165,250,${alpha * 2})`);
+      grad.addColorStop(1, `rgba(96,165,250,0)`);
+      ctx.beginPath();
+      ctx.moveTo(beamX, beamY);
+      ctx.lineTo(endX - 8, endY - 5);
+      ctx.lineTo(endX + 8, endY + 5);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+    });
+
+    // Light source indicator
+    ctx.beginPath();
+    ctx.arc(beamX, beamY, 5 + Math.sin(t * 3) * 1, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(96,165,250,${0.4 + Math.sin(t * 3) * 0.2})`;
+    ctx.shadowColor = 'rgba(96,165,250,0.5)';
+    ctx.shadowBlur = 12;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Floating particles
+    particles.forEach(p => {
+      p.x += Math.sin(t + p.phase) * p.drift;
+      p.y += Math.cos(t * 0.7 + p.phase) * p.drift * 0.7;
+      if(p.x < -0.05) p.x = 1.05;
+      if(p.x > 1.05) p.x = -0.05;
+      if(p.y < -0.05) p.y = 1.05;
+      if(p.y > 1.05) p.y = -0.05;
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const glow = 0.2 + Math.sin(t * 2 + p.phase) * 0.1;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'bacteria'){
+        ctx.fillStyle = `rgba(240,171,252,${glow})`;
+        ctx.shadowColor = 'rgba(240,171,252,0.3)';
+        ctx.shadowBlur = 5;
+      } else if(p.type === 'clean'){
+        ctx.fillStyle = `rgba(96,165,250,${glow + 0.05})`;
+        ctx.shadowColor = 'rgba(96,165,250,0.3)';
+        ctx.shadowBlur = 5;
+      } else {
+        ctx.fillStyle = `rgba(234,240,255,${glow * 0.6})`;
+        ctx.shadowColor = 'rgba(234,240,255,0.15)';
+        ctx.shadowBlur = 3;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Pulse ring around tooth (healing effect)
+    for(let p = 0; p < 2; p++){
+      const pulseR = ((t * 30 + p * 50) % 80) + 20;
+      const pulseAlpha = Math.max(0, 0.1 - (pulseR - 20) / 800);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(96,165,250,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.5)';
+    ctx.fillText('SMALT', cx - 14, toothTop + 25);
+    ctx.fillText('GINGIE', cx + toothW + 10, gumY + 3);
+
+    // Legend
+    const ly = h - 10;
+    ctx.fillStyle = 'rgba(96,165,250,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('lumina 405nm', 15, ly+3);
+    ctx.fillStyle = 'rgba(240,171,252,0.7)'; ctx.beginPath(); ctx.arc(100, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('bacterii', 107, ly+3);
+    ctx.fillStyle = 'rgba(234,240,255,0.5)'; ctx.beginPath(); ctx.arc(158, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('smalt', 165, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

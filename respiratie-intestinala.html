@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Respiratia intestinala — Cum intestinele pot salva vieti</title>
+  <meta name="description" content="Infografic interactiv: descoperirea ca oxigenul poate fi absorbit prin intestine, testata pe porci, premiata cu Ig Nobel si in drum spre aplicare clinica. Bazat pe NHK Science View." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#081018;
+      --panel:#0C1828cc;
+      --card:#0C1828;
+      --card2:#091420;
+      --ink:#EAF0FF;
+      --muted:#A0B8D0;
+      --muted2:#6E8AAA;
+      --line:#162840;
+      --glow:#38BDF8;
+      --glow2:#34D399;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(56,189,248,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(52,211,153,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(34,211,238,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(56,189,248,.18);
+      background: linear-gradient(180deg, rgba(12,24,40,.75), rgba(8,16,24,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(56,189,248,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(52,211,153,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(34,211,238,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,10,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,10,16,.30),rgba(6,10,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,24,40,.75),rgba(9,20,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,10,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,10,16,.28),rgba(6,10,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,10,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(56,189,248,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--glow2);background:rgba(52,211,153,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(56,189,248,.22),rgba(56,189,248,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(56,189,248,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--glow2);background:rgba(52,211,153,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(56,189,248,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.green{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);}
+    .alert.green h4{color:var(--glow2);}
+
+    /* Diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,10,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(56,189,248,.18);
+      background:linear-gradient(180deg,rgba(12,24,40,.80),rgba(8,16,24,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(56,189,248,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(56,189,248,.25);background:rgba(56,189,248,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,10,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,24,40,.75),rgba(9,20,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,24,40,.75),rgba(9,20,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,10,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Respiratia intestinala — Cum intestinele pot salva vieti
+          <small>NHK Science View: descoperirea ca oxigenul poate fi absorbit prin intestine, de la pestele-inspiratie la trialuri clinice umane</small>
+        </h1>
+        <p class="sub">In timpul pandemiei COVID-19, cand ventilatoarele mecanice si aparatele ECMO erau insuficiente, o echipa japoneza condusa de <b>Prof. Takanori Takebe</b> a demonstrat ca mamiferele pot absorbi oxigen prin intestine. Metoda, testata pe porci, a castigat <b>Premiul Ig Nobel 2024</b> si avanseaza rapid spre aplicare clinica — o noua cale de a salva pacienti cu insuficienta respiratorie.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Science View</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Medicina</b></span>
+          <span class="chip"><i class="i4"></i> <b>Respiratie</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: The Inspiration -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Inspiratia: un peste care respira prin intestine</h2>
+          <p>Cum un peste modest dintr-o enciclopedie ilustrata a declansat o revolutie in medicina respiratorie</p>
+        </div>
+        <span class="badge">ORIGINE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Pestele-loach (Misgurnus)</h3>
+            <p>In apele dulci din Japonia traieste un peste mic, asemeni tiparului, numit <b>loach</b> (dojo). Cand nivelul de oxigen din apa scade, acesta urca la suprafata, inghite aer si <b>absoarbe oxigenul prin intestine</b>. Bulele pe care le elimina sunt aerul in exces.</p>
+          </div>
+          <div class="mini">
+            <h3>Un student curios</h3>
+            <p>In 2017, un student din laboratorul prof. Takebe de la Universitatea de Medicina si Stomatologie din Tokyo a deschis o <b>enciclopedie ilustrata</b> cu animale si a aratat fotografia pestelui-loach. Intrebarea: "Se poate face ceva similar la mamifere?"</p>
+            <p style="margin-top:6px;">Prof. Takebe, specialist in biologia organelor, a simtit imediat <b>potentialul ideii</b>.</p>
+          </div>
+        </div>
+        <div class="quote green" style="margin-top:14px;">
+          &laquo;Tractul digestiv are un potential imens pe care il exploram din multe perspective. Cand am vazut acea ilustratie, am simtit ca ideea ar putea functiona. E genul de gand care vine cu ceva ciudat, dar tocmai de aceea e creativ.&raquo;
+          <cite>— Prof. Takanori Takebe, Institutul de Stiinta Tokyo</cite>
+        </div>
+        <div class="alert green" style="margin-top:12px;">
+          <h4>De la Ig Nobel la medicina serioasa</h4>
+          <p>Premiul <b>Ig Nobel</b> (2024, Fiziologie) celebreaza cercetari care "te fac sa razi, apoi sa gandesti". Cercetatorii japonezi castiga frecvent — dovada ca <b>perspectivele neconventionale</b> pot duce la descoperiri majore.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: How It Works -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum functioneaza respiratia intestinala</h2>
+          <p>Mecanismul stiintific prin care oxigenul ajunge din intestine in sange — pas cu pas</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">STIINTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Perfluorodecalina (PFD) — lichidul-cheie</h4>
+              <p>PFD este un lichid stabil, netoxic, din familia <b>perfluorocarburilor</b>. Are o proprietate remarcabila: poate dizolva si transporta <b>cantitati foarte mari de oxigen</b> — mult mai mult decat apa. Este deja folosit in alte aplicatii medicale.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>2. Oxigenarea lichidului</h4>
+              <p>PFD-ul este <b>saturat cu oxigen</b> folosind un tanc cu oxigen medical. Procesul e simplu si nu necesita echipamente sofisticate — un avantaj crucial pentru utilizarea in <b>situatii de urgenta</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>3. Administrarea rectala</h4>
+              <p>Lichidul oxigenat este introdus in <b>intestinul gros</b> prin rect, folosind o canula simpla — similar unei clisme. Procedura dureaza <b>cateva minute</b> si nu necesita echipament specializat sau tehnicieni calificati.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>4. Absorbtia prin peretele intestinal</h4>
+              <p>Mucoasa intestinala, bogata in <b>vase de sange</b>, absoarbe oxigenul din PFD direct in <b>circuitul sanguin</b>. Lichidul curge natural de-a lungul intestinului gros — de la rect prin colonul sigmoid, descendent si transversal.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>5. Cresterea saturatiei de oxigen</h4>
+              <p>Oxigenul absorbit ajunge in sange si <b>creste SpO2</b> (saturatia de oxigen periferica). In experimentele pe porci, nivelul a crescut de la <b>87% la ~93%</b> — trecand pragul critic de 90% sub care organele vitale sunt in pericol.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diagram: intestinal breathing mechanism -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Flow arrows -->
+            <line x1="155" y1="130" x2="260" y2="130" stroke="rgba(56,189,248,.3)" stroke-width="2" marker-end="url(#arrowB)"/>
+            <line x1="440" y1="130" x2="545" y2="130" stroke="rgba(52,211,153,.3)" stroke-width="2" marker-end="url(#arrowG)"/>
+            <defs>
+              <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(56,189,248,.5)"/></marker>
+              <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(52,211,153,.5)"/></marker>
+            </defs>
+
+            <!-- PFD + O2 box -->
+            <rect x="20" y="90" width="130" height="80" rx="14" fill="rgba(56,189,248,.10)" stroke="rgba(56,189,248,.30)" stroke-width="1.5"/>
+            <text x="85" y="118" fill="#38BDF8" font-size="12" font-weight="700" text-anchor="middle">PFD + O&#8322;</text>
+            <text x="85" y="136" fill="#A0B8D0" font-size="9.5" text-anchor="middle">perfluorodecalina</text>
+            <text x="85" y="150" fill="#A0B8D0" font-size="9.5" text-anchor="middle">saturata cu oxigen</text>
+
+            <!-- Intestine box -->
+            <rect x="265" y="75" width="170" height="110" rx="14" fill="rgba(34,211,238,.08)" stroke="rgba(34,211,238,.25)" stroke-width="1.5"/>
+            <text x="350" y="105" fill="#22D3EE" font-size="12" font-weight="700" text-anchor="middle">Intestin gros</text>
+            <text x="350" y="123" fill="#A0B8D0" font-size="9.5" text-anchor="middle">mucoasa bogata in</text>
+            <text x="350" y="137" fill="#A0B8D0" font-size="9.5" text-anchor="middle">vase de sange absoarbe</text>
+            <text x="350" y="151" fill="#A0B8D0" font-size="9.5" text-anchor="middle">O&#8322; din lichid</text>
+            <text x="350" y="172" fill="#6E8AAA" font-size="8.5" text-anchor="middle">~1.5m lungime utila</text>
+
+            <!-- Blood / SpO2 box -->
+            <rect x="550" y="90" width="130" height="80" rx="14" fill="rgba(52,211,153,.10)" stroke="rgba(52,211,153,.30)" stroke-width="1.5"/>
+            <text x="615" y="118" fill="#34D399" font-size="12" font-weight="700" text-anchor="middle">Sange oxigenat</text>
+            <text x="615" y="136" fill="#A0B8D0" font-size="9.5" text-anchor="middle">SpO&#8322; creste</text>
+            <text x="615" y="150" fill="#34D399" font-size="11" font-weight="700" text-anchor="middle">87% &#8594; 93%</text>
+
+            <!-- Labels -->
+            <text x="207" y="118" fill="#6E8AAA" font-size="8.5" text-anchor="middle">administrare</text>
+            <text x="207" y="130" fill="#6E8AAA" font-size="8.5" text-anchor="middle">rectala</text>
+            <text x="492" y="118" fill="#6E8AAA" font-size="8.5" text-anchor="middle">absorbtie</text>
+            <text x="492" y="130" fill="#6E8AAA" font-size="8.5" text-anchor="middle">in sange</text>
+
+            <!-- Bottom note -->
+            <text x="350" y="230" fill="#6E8AAA" font-size="9" text-anchor="middle">Procedura e simpla, rapida si nu necesita echipament sofisticat</text>
+            <text x="350" y="245" fill="#6E8AAA" font-size="9" text-anchor="middle">— poate fi aplicata in orice spital, ambulanta sau zona de urgenta</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Experiments -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Experimentele: de la soareci la porci</h2>
+          <p>Rezultatele care au demonstrat ca respiratia intestinala functioneaza la mamifere mari</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow2);">EXPERIMENTE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">87%</div>
+            <span class="u">SpO2 inainte de tratament (porci in hipoxie)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">93%</div>
+            <span class="u">SpO2 dupa administrarea PFD oxigenat</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">90%</div>
+            <span class="u">pragul critic — sub el, organele sufera</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">20+</div>
+            <span class="u">experimente pe porci care au confirmat metoda</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Etapa 1: soareci (2021)</h3>
+            <p>Primele experimente au fost pe <b>soareci</b>. Cercetatorii au creat un model de hipoxie (oxigen scazut) si au infuzat PFD oxigenat prin rect. Rezultatele au fost surprinzator de bune: nivelul de oxigen a <b>crescut semnificativ</b>.</p>
+            <p style="margin-top:6px;">Studiul publicat in revista <b>Med</b> (Cell Press) a demonstrat ca "ventilatia enterala amelioreaza insuficienta respiratorie la mamifere".</p>
+          </div>
+          <div class="mini">
+            <h3>Etapa 2: porci (2022-2023)</h3>
+            <p>Porcii au o anatomie digestiva <b>foarte similara cu cea umana</b>. Experimentele pe porci au confirmat ca metoda functioneaza la <b>mamifere de talie mare</b>. SpO2 a crescut de la 87% la ~93% — peste pragul de insuficienta respiratorie.</p>
+            <p style="margin-top:6px;">Metoda a fost <b>simpla, rapida si fara efecte adverse majore</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;La inceput nici nu intelegeam de ce nivelul de oxigen creste atat de mult. A fost surprinzator. Dar biomimetica — imitarea naturii — s-a dovedit din nou o strategie excelenta.&raquo;
+          <cite>— Prof. Takanori Takebe, despre rezultatele experimentelor</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: COVID-19 Connection -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Contextul COVID-19: de ce e urgenta aceasta cercetare</h2>
+          <p>Pandemia a expus limitele sistemelor medicale si a accelerat cautarea unor solutii alternative pentru insuficienta respiratorie</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">URGENTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Criza ventilatoarelor</h3>
+            <p>In 2020, pandemia COVID-19 a pus presiune uriasa pe sistemele de sanatate. Pacientii cu forme severe aveau nevoie de <b>ventilatoare mecanice</b> si <b>ECMO</b> (plaman artificial extracorporal). Dar aceste echipamente erau <b>putine si scumpe</b>.</p>
+            <p style="margin-top:6px;">La Spitalul Universitar din Nagoya, medicii au fost nevoiti sa <b>refuze pacienti</b> din lipsa de echipamente.</p>
+          </div>
+          <div class="mini">
+            <h3>Avantajul respiratiei intestinale</h3>
+            <p>Spre deosebire de ECMO (care necesita <b>tehnicieni calificati</b> si echipament complex), respiratia intestinala necesita doar <b>PFD oxigenat</b> si o <b>canula simpla</b>. Poate fi administrata de orice cadru medical, in orice spital, ambulanta sau zona de dezastru.</p>
+            <p style="margin-top:6px;">Medicii pot <b>castiga timp pretios</b> pana cand pacientul ajunge la un ventilator sau ECMO.</p>
+          </div>
+        </div>
+
+        <div class="alert" style="margin-top:12px;">
+          <h4>O a treia cale de respiratie</h4>
+          <p>In mod normal, oamenii respira doar prin <b>nas si gura</b>. Cand plamanii cedeaza, ECMO preia temporar. Respiratia intestinala ofera <b>o a treia optiune</b> — simpla, accesibila si utilizabila oriunde, fara echipament sofisticat. Nu inlocuieste ventilatoarele, dar le <b>completeaza</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Soft Robot -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Robotul soft: livrarea oxigenului in adancul intestinului</h2>
+          <p>Un robot moale, inspirat din peristaltismul intestinal, care se deplaseaza singur prin colonul uman si distribuie PFD oxigenat</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">INGINERIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Problema: cum distribui lichidul pe tot intestinul?</h4>
+              <p>Intestinul gros are <b>~1.5 metri</b>. O simpla clisma nu ajunge decat in prima portiune. Pentru eficienta maxima, PFD-ul trebuie distribuit pe <b>toata lungimea</b> intestinului gros.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Solutia: un robot moale cu miscare peristaltica</h4>
+              <p>Inginerii au creat un <b>soft robot</b> (robot flexibil) care foloseste <b>presiunea aerului</b> pentru a se rasucit si impinge inainte — imitand miscarea naturala a intestinului. Nu necesita operare manuala: <b>avanseaza singur</b> pana la 130 cm in intestinul gros.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Avantajul: simplitate si accesibilitate</h4>
+              <p>Spre deosebire de ECMO (care necesita tehnicieni specializati prezenti non-stop), robotul soft e <b>usor de inserat</b> si functioneaza autonom. Poate fi folosit in <b>orice spital</b>, nu doar in centrele de excelenta.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote green" style="margin-top:14px;">
+          &laquo;Fara nicio operatie, robotul avanseaza singur. Doar astepti, si el se deplaseaza pana la 130 cm in intestinul gros. E simplu si usor de utilizat.&raquo;
+          <cite>— Echipa de inginerie, demonstratie experimentala</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Clinical Trial -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Trialul clinic: primii oameni testati</h2>
+          <p>De la porci la oameni — primele rezultate ale testarii pe voluntari umani, publicate in 2025</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow2);">TRIAL UMAN</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">27</div>
+            <span class="u">voluntari sanatosi (barbati, 20-45 ani)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">1.500 mL</div>
+            <span class="u">doza maxima testata de PFD</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">60 min</div>
+            <span class="u">durata de retentie a lichidului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">0</div>
+            <span class="u">efecte adverse grave raportate</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Siguranta confirmata</h3>
+            <p>Studiul de faza 1 a demonstrat ca administrarea rectala de PFD este <b>sigura, fezabila si bine tolerata</b>. Simptomele gastrointestinale (balonare, disconfort) au fost <b>usoare, tranzitorii</b> si s-au rezolvat fara interventie. Toti parametrii hepatici si renali au ramas normali.</p>
+          </div>
+          <div class="mini">
+            <h3>Efect de oxigenare observat</h3>
+            <p>Modelul farmacocinetic a prezis un <b>efect de oxigenare dependent de doza</b>. La dozele mai mari, s-a observat o <b>crestere modesta a SpO2</b>. PFD-ul nu a fost detectabil in sange (&lt;1.0 &mu;g/mL) — ramane local in intestin.</p>
+            <p style="margin-top:6px;">Urmatorul pas: testarea cu PFD <b>complet oxigenat</b> la pacienti cu insuficienta respiratorie.</p>
+          </div>
+        </div>
+
+        <div class="alert green" style="margin-top:12px;">
+          <h4>Viteza record a cercetarii</h4>
+          <p>De la experimentele pe soareci (2021) la trialuri clinice umane (2025) au trecut doar <b>4 ani</b>. In comparatie, cercetarea cu celule iPS (domeniul principal al prof. Takebe) a necesitat mult mai mult timp. Motivul vitezei: metoda foloseste <b>materiale medicale deja aprobate</b> (PFD, canule standard).</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Future Applications -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Viitorul: de la nou-nascuti prematuri la medicina de urgenta</h2>
+          <p>Aplicatiile potentiale ale respiratiei intestinale depasesc pandemia — de la terapie intensiva neonatala la dezastre naturale</p>
+        </div>
+        <span class="badge">VIITOR</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Nou-nascuti prematuri</h3>
+            <p>Bebelusii prematuri au plamanii <b>insuficient dezvoltati</b> si depind de ventilatoare. Dar utilizarea indelungata a ventilatoarelor le poate <b>deteriora plamanii</b>. Respiratia intestinala ar putea oferi <b>suport suplimentar</b> in momentele critice, fara sa afecteze plamanii fragili.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Medicina de urgenta</h3>
+            <p>In ambulante, zone de dezastru sau regiuni fara spitale echipate, un <b>plic cu PFD oxigenat</b> si o canula simpla pot fi tot ce e necesar. Nu trebuie electricitate, nu trebuie tehnicieni — <b>orice medic sau paramedic</b> poate administra tratamentul.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Colaborare medicina-inginerie</h3>
+            <p>Proiectul demonstreaza puterea <b>colaborarii interdisciplinare</b>. Institutul de Stiinta Tokyo (fuziunea Universitatii de Medicina si a Institutului de Tehnologie) a creat mediul ideal: medici, ingineri si biologi lucrand <b>impreuna</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Bebelusii prematuri sunt atat de mici si fragili incat orice interventie e un risc. Dar tocmai de aceea avem nevoie de o tehnologie simpla si delicata. Respiratia intestinala ar putea fi exact ce ne trebuie in momentele critice.&raquo;
+          <cite>— Medic neonatolog, Spitalul Universitar Nagoya</cite>
+        </div>
+
+        <div class="quote green" style="margin-top:8px;">
+          &laquo;Lucrez la Cincinnati Children's Hospital, unde vad copii cu provocari respiratorii grave. Daca putem dezvolta aceasta metoda si sa o facem accesibila pe scara larga, am putea salva multe vieti de copii.&raquo;
+          <cite>— Prof. Takanori Takebe, Cincinnati Children's Hospital / Institutul de Stiinta Tokyo</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Conclusions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii: cand stiinta rastoarna conventiile</h2>
+          <p>Ce ne invata aceasta descoperire despre creativitate, biomimetica si viitorul medicinei</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(56,189,248,.2);">
+            <h3 style="color:var(--glow)">Natura stie mai bine</h3>
+            <p>Biomimetica — imitarea naturii — a dovedit din nou ca solutiile exista deja in lumea vie. Un peste modest a inspirat o <b>revolutie in medicina respiratorie</b>. Trebuie doar sa <b>observam si sa intrebam</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--glow2)">Simplitatea salveaza vieti</h3>
+            <p>Cea mai valoroasa calitate a respiratiei intestinale nu e sofisticarea, ci <b>simplitatea</b>. Un lichid, o canula, cateva minute — si un pacient in pericol primeste oxigen vital. <b>Oriunde, oricand</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Ideile "ciudate" merita cercetate</h3>
+            <p>Respiratia prin intestine suna absurd — de aceea a castigat Ig Nobel. Dar Ig Nobel celebreaza <b>tocmai ideile care te fac sa gandesti</b>. Cercetarea serioasa poate incepe dintr-o enciclopedie ilustrata.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Pandemia ca accelerator</h3>
+            <p>COVID-19 a fost o tragedie, dar a <b>accelerat cercetari</b> care altfel ar fi durat decenii. Presiunea sociala si nevoia urgenta au transformat o idee "exotica" intr-un <b>proiect clinic real</b> in doar 4 ani.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">2017</span><span class="tDesc">Student din lab. Takebe arata <b>enciclopedia cu pestele-loach</b> — ideea se naste</span></div>
+        <div class="tEvent"><span class="tDate">2017-20</span><span class="tDesc">Experimente initiale pe <b>soareci</b> in laborator</span></div>
+        <div class="tEvent"><span class="tDate">2020</span><span class="tDesc">Pandemia <b>COVID-19</b> accelereaza cercetarea — criza ventilatoarelor</span></div>
+        <div class="tEvent"><span class="tDate">mai 2021</span><span class="tDesc">Studiul publicat in <b>Med</b> (Cell Press) — prima dovada la mamifere</span></div>
+        <div class="tEvent"><span class="tDate">2022-23</span><span class="tDesc">Experimente pe <b>porci</b> confirma eficacitatea la mamifere mari</span></div>
+        <div class="tEvent"><span class="tDate">2023</span><span class="tDesc">Dezvoltarea <b>robotului soft</b> pentru livrarea PFD in intestin</span></div>
+        <div class="tEvent"><span class="tDate">2024</span><span class="tDesc">Comitetul de etica aproba <b>trialul clinic uman</b></span></div>
+        <div class="tEvent"><span class="tDate">sep 2024</span><span class="tDesc">Echipa castiga <b>Premiul Ig Nobel</b> pentru Fiziologie</span></div>
+        <div class="tEvent"><span class="tDate">oct 2025</span><span class="tDesc">Rezultatele trialului uman publicate in <b>Med</b> — siguranta confirmata</span></div>
+        <div class="tEvent"><span class="tDate">viitor</span><span class="tDesc">Trial pe pacienti cu <b>insuficienta respiratorie</b> — urmatoarea etapa</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Cine e Prof. Takebe?</h4>
+          <p><b>Takanori Takebe</b> este biolog specializat in celule stem si organoizi. Lucreaza la <b>Institutul de Stiinta Tokyo</b> (fost Universitatea de Medicina si Stomatologie din Tokyo, fuzionata cu Institutul de Tehnologie) si la <b>Cincinnati Children's Hospital</b> (SUA). A fost cel mai tanar profesor plin din istoria universitatii.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce "Ig Nobel" nu e o insulta</h4>
+          <p>Premiul Ig Nobel celebreaza cercetari care "te fac sa razi, apoi sa gandesti". Multe descoperiri premiate au devenit <b>baza unor tratamente reale</b>. In cazul respiratiei intestinale, premiul a adus <b>vizibilitate internationala</b> cercetarii si a accelerat finantarea.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce PFD si nu oxigen pur?</h4>
+          <p>Oxigenul gazos poate <b>deteriora mucoasa intestinala</b>. PFD-ul, fiind lichid, distribuie oxigenul <b>uniform si delicat</b> pe suprafata intestinala. In plus, PFD-ul este <b>inert chimic</b> — nu reactioneaza cu tesuturile si se elimina natural.</p>
+        </div>
+        <div class="comNote">
+          <h4>Fuziunea universitara ca motor</h4>
+          <p>In 2024, Universitatea de Medicina si Stomatologie din Tokyo s-a fuzionat cu Institutul de Tehnologie din Tokyo, formand <b>Institutul de Stiinta Tokyo</b>. Aceasta colaborare interdisciplinara (medici + ingineri) a fost esentiala pentru dezvoltarea robotului soft.</p>
+        </div>
+        <div class="comNote">
+          <h4>Nu inlocuieste plamanii</h4>
+          <p>Respiratia intestinala nu e o alternativa permanenta la respiratia normala. Este un <b>tratament de urgenta</b> — o punte care ofera oxigen vital pana cand plamanii pacientului se recupereaza sau acesta ajunge la un ventilator/ECMO.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>PFD (Perfluorodecalina)</dt>
+          <dd>Lichid sintetic din familia perfluorocarburilor. Poate dizolva cantitati mari de oxigen si e biocompatibil — nu provoaca reactii adverse in organism.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>SpO2 (Saturatia de oxigen)</dt>
+          <dd>Procentul de hemoglobina din sange care transporta oxigen. Normal: 95-100%. Sub 90% = insuficienta respiratorie = pericol pentru organe.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ECMO</dt>
+          <dd>Oxigenare prin membrana extracorporala — un "plaman artificial" care preia sangele, il oxigeneaza extern si il returneaza. Complex, scump, necesita tehnicieni 24/7.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>EVA (Ventilatie Enterala)</dt>
+          <dd>Termenul stiintific pentru "respiratia intestinala" — administrarea de oxigen prin tractul digestiv (rect/intestin gros) pentru a suplini functia pulmonara.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Biomimetica</dt>
+          <dd>Imitarea mecanismelor din natura pentru a rezolva probleme umane. Respiratia intestinala imita pestele-loach care absoarbe oxigen prin intestine.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Premiul Ig Nobel</dt>
+          <dd>Premiu parodic acordat anual de revista Annals of Improbable Research la Harvard. Celebreaza cercetari care "te fac sa razi, apoi sa gandesti". Multi laureati fac stiinta serioasa.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Soft Robot</dt>
+          <dd>Robot fabricat din materiale flexibile (silicon, polimeri) care se poate misca si adapta la medii biologice fara a provoca leziuni. Ideal pentru interiorul corpului uman.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Peristaltism</dt>
+          <dd>Miscare ondulatorie naturala a intestinelor care impinge continutul inainte. Robotul soft imita aceasta miscare folosind presiunea aerului.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=_WG7dYNZtHQ" target="_blank">NHK Science View — Breath-Taking Science: How Intestinal Breathing Could Save Lives</a> &middot;
+    Studiu original: <a href="https://www.cell.com/med/fulltext/S2666-6340(21)00153-7" target="_blank">Med (Cell Press), mai 2021</a> &middot;
+    Trial clinic: <a href="https://www.cell.com/med/abstract/S2666-6340(25)00314-9" target="_blank">Med, oct 2025</a> &middot;
+    Infografic explicativ in limba romana
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: intestinal lining with oxygen bubbles being absorbed ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Villi (intestinal lining) at the bottom
+  const villiCount = 28;
+  const villi = [];
+  for(let i = 0; i < villiCount; i++){
+    villi.push({
+      x: (i + 0.5) / villiCount,
+      h: 0.18 + Math.random() * 0.12,
+      w: 0.025 + Math.random() * 0.012,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.008 + Math.random() * 0.006
+    });
+  }
+
+  // Oxygen bubbles
+  const bubbles = [];
+  const bubbleCount = 35;
+  for(let i = 0; i < bubbleCount; i++){
+    bubbles.push({
+      x: Math.random(),
+      y: 0.25 + Math.random() * 0.55,
+      r: 2 + Math.random() * 5,
+      speed: 0.0008 + Math.random() * 0.0015,
+      phase: Math.random() * Math.PI * 2,
+      drift: 0.002 + Math.random() * 0.003,
+      opacity: 0.3 + Math.random() * 0.5,
+      absorbed: false,
+      absorbTimer: 0
+    });
+  }
+
+  // Blood vessels (capillaries in the villi)
+  const capillaries = [];
+  for(let i = 0; i < 12; i++){
+    capillaries.push({
+      x: 0.05 + Math.random() * 0.9,
+      y: 0.78 + Math.random() * 0.15,
+      length: 0.04 + Math.random() * 0.06,
+      angle: -Math.PI/2 + (Math.random() - 0.5) * 0.8,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.012;
+
+    // Background gradient - deep tissue
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+    bgGrad.addColorStop(0, 'rgba(6,10,16,0.1)');
+    bgGrad.addColorStop(0.6, 'rgba(12,24,40,0.3)');
+    bgGrad.addColorStop(1, 'rgba(20,10,25,0.4)');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0,0,w,h);
+
+    // Draw blood vessels (behind villi)
+    capillaries.forEach(cap => {
+      const cx = cap.x * w;
+      const cy = cap.y * h;
+      const pulse = 0.4 + Math.sin(t * 3 + cap.phase) * 0.2;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(cap.angle) * cap.length * w, cy + Math.sin(cap.angle) * cap.length * h);
+      ctx.strokeStyle = `rgba(248,113,113,${pulse * 0.4})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+
+    // Draw intestinal lining (villi) at bottom
+    const villiBaseY = h * 0.72;
+    villi.forEach(v => {
+      const vx = v.x * w;
+      const sway = Math.sin(t * v.speed * 60 + v.phase) * 4;
+      const vh = v.h * h;
+      const vw = v.w * w;
+
+      // Villus body
+      ctx.beginPath();
+      ctx.moveTo(vx - vw, villiBaseY);
+      ctx.quadraticCurveTo(vx - vw * 0.8 + sway * 0.5, villiBaseY - vh * 0.5, vx + sway, villiBaseY - vh);
+      ctx.quadraticCurveTo(vx + vw * 0.8 + sway * 0.5, villiBaseY - vh * 0.5, vx + vw, villiBaseY);
+      ctx.closePath();
+
+      const vGrad = ctx.createLinearGradient(vx, villiBaseY, vx, villiBaseY - vh);
+      vGrad.addColorStop(0, 'rgba(52,211,153,0.15)');
+      vGrad.addColorStop(0.5, 'rgba(56,189,248,0.10)');
+      vGrad.addColorStop(1, 'rgba(56,189,248,0.20)');
+      ctx.fillStyle = vGrad;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(56,189,248,0.18)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+
+      // Inner capillary glow
+      const capPulse = 0.15 + Math.sin(t * 2 + v.phase) * 0.08;
+      ctx.beginPath();
+      ctx.moveTo(vx + sway * 0.3, villiBaseY - 4);
+      ctx.lineTo(vx + sway, villiBaseY - vh + 6);
+      ctx.strokeStyle = `rgba(248,113,113,${capPulse})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    });
+
+    // Intestinal wall base
+    ctx.beginPath();
+    ctx.moveTo(0, villiBaseY);
+    for(let x = 0; x <= w; x += 2){
+      const waveY = Math.sin(x * 0.02 + t) * 2;
+      ctx.lineTo(x, villiBaseY + waveY);
+    }
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    const wallGrad = ctx.createLinearGradient(0, villiBaseY, 0, h);
+    wallGrad.addColorStop(0, 'rgba(52,211,153,0.12)');
+    wallGrad.addColorStop(0.3, 'rgba(34,211,238,0.06)');
+    wallGrad.addColorStop(1, 'rgba(248,113,113,0.08)');
+    ctx.fillStyle = wallGrad;
+    ctx.fill();
+
+    // Draw oxygen bubbles
+    bubbles.forEach(b => {
+      const bx = b.x * w + Math.sin(t * 1.5 + b.phase) * b.drift * w * 8;
+      const by = b.y * h;
+
+      // Check if bubble is near villi (being absorbed)
+      if(by > villiBaseY * 0.85 && !b.absorbed){
+        b.absorbed = true;
+        b.absorbTimer = 0;
+      }
+
+      if(b.absorbed){
+        b.absorbTimer += 0.02;
+        if(b.absorbTimer > 1){
+          // Reset bubble
+          b.y = 0.15 + Math.random() * 0.2;
+          b.x = Math.random();
+          b.absorbed = false;
+          b.absorbTimer = 0;
+          b.opacity = 0.3 + Math.random() * 0.5;
+        } else {
+          // Shrink and fade
+          const shrink = 1 - b.absorbTimer;
+          const fadeOp = b.opacity * shrink;
+
+          // Absorption glow
+          ctx.beginPath();
+          ctx.arc(bx, by, b.r * 2.5 * shrink, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(52,211,153,${fadeOp * 0.3})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(bx, by, b.r * shrink, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(56,189,248,${fadeOp})`;
+          ctx.fill();
+        }
+      } else {
+        // Float upward (toward villi)
+        b.y += b.speed;
+
+        // Bubble glow
+        ctx.beginPath();
+        ctx.arc(bx, by, b.r * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56,189,248,${b.opacity * 0.08})`;
+        ctx.fill();
+
+        // Bubble body
+        ctx.beginPath();
+        ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+        const bubGrad = ctx.createRadialGradient(bx - b.r * 0.3, by - b.r * 0.3, 0, bx, by, b.r);
+        bubGrad.addColorStop(0, `rgba(120,220,255,${b.opacity * 0.9})`);
+        bubGrad.addColorStop(0.6, `rgba(56,189,248,${b.opacity * 0.5})`);
+        bubGrad.addColorStop(1, `rgba(56,189,248,${b.opacity * 0.15})`);
+        ctx.fillStyle = bubGrad;
+        ctx.fill();
+
+        // Highlight
+        ctx.beginPath();
+        ctx.arc(bx - b.r * 0.25, by - b.r * 0.25, b.r * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${b.opacity * 0.4})`;
+        ctx.fill();
+      }
+    });
+
+    // Absorption pulses from wall
+    for(let p = 0; p < 4; p++){
+      const pulseX = (0.2 + p * 0.2) * w;
+      const pulseY = villiBaseY;
+      const pulseR = ((t * 20 + p * 30) % 60);
+      const pulseAlpha = Math.max(0, 0.1 - pulseR / 800);
+      ctx.beginPath();
+      ctx.arc(pulseX, pulseY, pulseR, Math.PI, 0);
+      ctx.strokeStyle = `rgba(52,211,153,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '9px ' + mono;
+    ctx.fillStyle = 'rgba(160,184,208,0.45)';
+    ctx.fillText('O\u2082', w * 0.15, h * 0.22);
+    ctx.fillText('O\u2082', w * 0.55, h * 0.18);
+    ctx.fillText('O\u2082', w * 0.82, h * 0.30);
+    ctx.fillText('BULE OXIGEN', w * 0.35, h * 0.12);
+
+    ctx.fillStyle = 'rgba(52,211,153,0.35)';
+    ctx.fillText('VILOZITATI INTESTINALE', w * 0.28, villiBaseY + 14);
+
+    ctx.fillStyle = 'rgba(248,113,113,0.30)';
+    ctx.fillText('CAPILARE SANGUINE', w * 0.3, h * 0.92);
+
+    // Legend
+    const ly = 10;
+    ctx.fillStyle = 'rgba(56,189,248,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,184,208,0.4)'; ctx.fillText('oxigen', 15, ly+3);
+    ctx.fillStyle = 'rgba(52,211,153,0.7)'; ctx.beginPath(); ctx.arc(60, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,184,208,0.4)'; ctx.fillText('absorbtie', 67, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(120, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,184,208,0.4)'; ctx.fillText('sange', 127, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

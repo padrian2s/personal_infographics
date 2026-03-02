@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proteza de sold revolutionara — Articulatia artificiala cu polimer MPC din Japonia</title>
+  <meta name="description" content="Infografic interactiv: proteza de sold de lunga durata dezvoltata in Japonia cu polimer MPC, care imita cartilajul uman si poate rezista 70 de ani de mers. NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#0A0E18;
+      --panel:#101828cc;
+      --card:#0E1520;
+      --card2:#0B1220;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2540;
+      --glow:#94A3B8;
+      --glow2:#3B82F6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(148,163,184,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(59,130,246,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(148,163,184,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(148,163,184,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(148,163,184,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(59,130,246,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(148,163,184,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(148,163,184,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(59,130,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(148,163,184,.22),rgba(148,163,184,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(148,163,184,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(59,130,246,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(59,130,246,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(59,130,246,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow2);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.silver{border-color:rgba(148,163,184,.25);background:rgba(148,163,184,.06);}
+    .alert.silver h4{color:var(--glow);}
+
+    /* Hip diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(148,163,184,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(148,163,184,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.25);background:rgba(148,163,184,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Exercise cards */
+    .exCard{
+      border:1px solid rgba(52,211,153,.15);border-radius:14px;padding:12px;
+      background:rgba(52,211,153,.04);
+    }
+    .exCard h4{margin:0;font-size:12.5px;color:var(--ok);display:flex;align-items:center;gap:6px;}
+    .exCard p{margin:5px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+    .exGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .exGrid{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Proteza de sold revolutionara care iti poate schimba viata
+          <small>NHK Medical Frontiers — Articulatia artificiala cu polimer MPC dezvoltata in Japonia, rezistenta la 70 de ani de mers</small>
+        </h1>
+        <p class="sub">Mersul biped, simbolul evolutiei umane, pune o presiune imensa pe articulatia soldului. Cand cartilajul cedeaza, durerea devine insuportabila. Cercetatorii japonezi au dezvoltat timp de <b>13 ani</b> o proteza de sold cu un strat de polimer MPC de doar <b>150 de nanometri</b> care imita cartilajul uman, reducand dramatic uzura si eliminand raspunsul imunitar care cauzeaza slabirea protezelor clasice.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Ortopedie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Proteze</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Articulatia soldului -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Articulatia soldului: cea mai mare articulatie din corp</h2>
+          <p>Un mecanism biologic complex care suporta greutatea intregului corp si permite miscarea in toate directiile</p>
+        </div>
+        <span class="badge">ANATOMIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">3x</div>
+            <span class="u">greutatea corporala — forta pe articulatie la mers</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">6</div>
+            <span class="u">directii de miscare: inainte, inapoi, lateral, indoire, extensie, rotatie</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">Nr. 1</div>
+            <span class="u">cea mai mare articulatie din corpul uman</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">24/7</div>
+            <span class="u">in functiune la aproape fiecare miscare pe care o facem</span>
+          </div>
+        </div>
+
+        <!-- Hip joint SVG diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Pelvis outline -->
+            <ellipse cx="350" cy="100" rx="180" ry="60" fill="none" stroke="rgba(148,163,184,.25)" stroke-width="2"/>
+            <text x="350" y="75" fill="#94A3B8" font-size="12" font-weight="700" text-anchor="middle">BAZIN (Pelvis)</text>
+
+            <!-- Socket (acetabulum) -->
+            <circle cx="290" cy="140" r="42" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.3)" stroke-width="2"/>
+            <text x="290" y="135" fill="#3B82F6" font-size="9" font-weight="600" text-anchor="middle">Acetabul</text>
+            <text x="290" y="148" fill="#6E7A9A" font-size="8" text-anchor="middle">(cavitate)</text>
+
+            <!-- Ball (femoral head) -->
+            <circle cx="293" cy="142" r="30" fill="rgba(148,163,184,.12)" stroke="rgba(148,163,184,.4)" stroke-width="2"/>
+            <text x="293" y="145" fill="#94A3B8" font-size="8.5" font-weight="600" text-anchor="middle">Cap femural</text>
+
+            <!-- Cartilage layer label -->
+            <line x1="323" y1="130" x2="400" y2="100" stroke="rgba(52,211,153,.3)" stroke-width="1" stroke-dasharray="4,3"/>
+            <rect x="400" y="88" width="120" height="28" rx="8" fill="rgba(52,211,153,.08)" stroke="rgba(52,211,153,.2)" stroke-width="1"/>
+            <text x="460" y="106" fill="#34D399" font-size="9" font-weight="600" text-anchor="middle">Cartilaj protector</text>
+
+            <!-- Femur -->
+            <line x1="290" y1="182" x2="270" y2="280" stroke="rgba(148,163,184,.35)" stroke-width="8" stroke-linecap="round"/>
+            <text x="250" y="240" fill="#94A3B8" font-size="11" font-weight="600" text-anchor="middle">FEMUR</text>
+            <text x="250" y="255" fill="#6E7A9A" font-size="9" text-anchor="middle">(os coapsa)</text>
+
+            <!-- Synovial fluid -->
+            <line x1="250" y1="155" x2="170" y2="180" stroke="rgba(59,130,246,.3)" stroke-width="1" stroke-dasharray="4,3"/>
+            <rect x="80" y="170" width="130" height="28" rx="8" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.2)" stroke-width="1"/>
+            <text x="145" y="188" fill="#3B82F6" font-size="9" font-weight="600" text-anchor="middle">Lichid sinovial (lubrifiant)</text>
+
+            <!-- Load arrows -->
+            <line x1="500" y1="180" x2="500" y2="250" stroke="rgba(251,191,36,.4)" stroke-width="2" marker-end="url(#arrowWarn)"/>
+            <text x="500" y="175" fill="#FBBF24" font-size="10" font-weight="600" text-anchor="middle">Forta = 3x greutate</text>
+            <text x="500" y="265" fill="#6E7A9A" font-size="9" text-anchor="middle">La mers pe scari,</text>
+            <text x="500" y="278" fill="#6E7A9A" font-size="9" text-anchor="middle">forta creste si mai mult</text>
+
+            <defs>
+              <marker id="arrowWarn" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(251,191,36,.5)"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Articulatie sferica</h3>
+            <p>Soldul este o articulatie de tip <b>"bila si cavitate"</b> (ball-and-socket). Capul femural sferic se aseaza in acetabulul bazinului, permitand o gama larga de miscari: inainte, inapoi, lateral, indoire, extensie si <b>chiar rotatie</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Protectia naturala</h3>
+            <p>Suprafetele articulare sunt acoperite cu <b>cartilaj</b> care protejeaza oasele de impact. Un <b>lichid sinovial lubrifiant</b> inconjoara articulatia, asigurand miscari fluide si fara frecare.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Coxartroza -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Coxartroza: cand cartilajul cedeaza</h2>
+          <p>Artroza articulatiei soldului progresiv distruge cartilajul, duce la deformarea oaselor si la dureri cronice invalidante</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">BOALA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul 1: Subtierea cartilajului</h4>
+              <p>Cartilajul incepe sa se subtieze. Spatiul din interiorul articulatiei se <b>ingusteaza treptat</b>. Apar primele dureri la efort.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul 2: Durere pulsatila la mers</h4>
+              <p>Durere pulsatila la fiecare pas. <b>Durere intepatoare</b> dupa mersul pe distante lungi. Noaptea, picioarele inca "inteapa" cand te culci si <b>nu poti dormi</b>. Durerea este de nesuportat indiferent de pozitia de somn.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul 3: Deformarea oaselor</h4>
+              <p>Oasele se deformeaza si se deplaseaza din pozitia normala. <b>Miscarea devine dificila</b>. Piciorul afectat se scurteaza cu cativa centimetri — corpul se inclina compensator.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Stadiul final: mobilitate severa redusa</h4>
+              <p>Cartilajul dispare complet, oasele se freaca direct. Pacientii ajusteaza inaltimea pantofilor, scurteaza pantalonii, <b>inventeaza tot felul de solutii</b> pentru a compensa dezechilibrul. Interventia chirurgicala ramane <b>singura optiune</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Cauza 1: Uzura in timp</h3>
+            <p>Stresul acumulat pe articulatie de-a lungul vietii, combinat cu <b>factori de stil de viata</b> (supraponderalitate, efort fizic excesiv), erodeaza progresiv cartilajul.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Cauza 2: Predispozitie congenitala</h3>
+            <p>Unii oameni se nasc cu articulatii ale soldului care au <b>suprafete de contact mai mici</b>. Acestea suporta o presiune mai mare pe centimetru patrat, accelerand uzura cartilajului.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Durerea era de nedescris. Indiferent in ce pozitie ma intorceam in somn, ma durea si era cu adevarat chinuitor.&raquo;
+          <cite>— Pacienta, inainte de operatie</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Problema protezelor clasice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Problema protezelor clasice: de ce cedeaza dupa 10-20 de ani</h2>
+          <p>Reactia imunitara la particulele de polietilena: motivul pentru care protezele traditionale se slabesc si necesita re-operare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(148,163,184,.3);color:var(--glow);">PROVOCARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Uzura mecanica</h4>
+              <p>Capul protezei se misca in cavitate, frecarea generand <b>particule microscopice de polietilena</b>. Cu cat pacientul merge mai mult, cu atat se produc mai multe particule.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>2. Raspuns imunitar</h4>
+              <p>Particulele de polietilena sunt <b>straine corpului</b>. Celulele imunitare se aduna in jurul lor, incercand sa le elimine. In acest proces, celulele elibereaza <b>substante inflamatorii</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Eroziunea osoasa (osteoliză)</h4>
+              <p>Substantele eliberate de celulele imunitare <b>erodeaza osul</b> din jurul protezei. Fundatia pe care sta proteza devine instabila.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Slabirea protezei</h4>
+              <p>Proteza se <b>clatina</b>, durerea revine. Pacientul necesita o <b>noua operatie</b> de inlocuire — mai complexa si cu rezultate mai putin bune decat prima.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert silver">
+          <h4>Dilema pacientilor tineri</h4>
+          <p>Pacientii mai tineri aveau de ales intre a suporta durerea ani de zile sau a face operatia cu riscul de a necesita <b>re-operare la 10-20 de ani</b>. Cu cat esti mai tanar, cu atat mai probabil ca vei avea nevoie de <b>mai multe interventii</b> pe parcursul vietii.</p>
+        </div>
+
+        <div class="quote blue" style="margin-top:14px;">
+          &laquo;Sa o fac acum? Sau sa suport durerea si sa mai astept putin? M-am chinuit cu aceasta decizie ani si ani de zile.&raquo;
+          <cite>— Pacienta, despre decizia de a face operatia</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Inovatia MPC -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Inovatia: polimerul MPC care imita cartilajul uman</h2>
+          <p>Cercetatorii japonezi au dezvoltat un strat de polimer biocompatibil de 150 nm care reduce dramatic uzura si previne raspunsul imunitar</p>
+        </div>
+        <span class="badge" style="border-color:rgba(59,130,246,.3);color:var(--glow2);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">150</div>
+            <span class="u">nanometri — grosimea stratului MPC pe suprafata protezei</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">13</div>
+            <span class="u">ani de cercetare si dezvoltare</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">70</div>
+            <span class="u">ani de mers echivalent — rezistenta demonstrata in simulator</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">2011</div>
+            <span class="u">aprobata ca dispozitiv medical in Japonia</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Inspiratie din natura</h3>
+            <p>Cercetatorii au observat ca <b>celulele fosfolipidice</b> sunt prezente pe suprafata genunchilor si a articulatiilor cand mergi perioade lungi — protejand articulatiile si asigurand miscare fluida. Au recreat aceasta structura pe suprafata protezei.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(148,163,184,.2);">
+            <h3 style="color:var(--glow)">Dubla protectie</h3>
+            <p>Polimerul MPC realizeaza simultan <b>doua lucruri</b> pe care cercetatorii din intreaga lume le incercau separat: (1) reduce uzura mecanica si productia de particule si (2) previne raspunsul imunitar la particulele reziduale.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Polimerul MPC — dezvoltat de cercetatori japonezi</h4>
+              <p>MPC (2-methacryloyloxyethyl phosphorylcholine) nu provoaca <b>nicio reactie biologica</b>. A fost dezvoltat initial pentru <b>lentile de contact</b> si <b>inimi artificiale</b>. Echipa a grefat un strat de polimer MPC de ~150 nm pe suprafata protezei.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Testul de atingere</h4>
+              <p>Cand atingi suprafata cu MPC cu degetul, diferenta se simte imediat — este mult mai <b>alunecoasa si neteda</b> decat suprafata fara MPC. Aceasta inseamna ca in interiorul articulatiei, <b>uzura va fi semnificativ mai mica</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Miscare fluida, pe termen nelimitat</h4>
+              <p>Polimerul MPC permite miscari <b>fara efort</b> si <b>rotatii pe perioade indelungate</b>, imitand functia cartilajului natural al corpului uman.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Simularea -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Simularea: 70 de milioane de pasi fara uzura semnificativa</h2>
+          <p>Testele de laborator au demonstrat ca proteza MPC poate rezista echivalentul a 70 de ani de mers zilnic</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">REZULTATE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">20M</div>
+            <span class="u">pasi simulati — echivalent a ~20 de ani de mers</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">70M</div>
+            <span class="u">pasi simulati — echivalent a ~70 de ani de mers</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1/sec</div>
+            <span class="u">un pas pe secunda — ritm simulat 24h/zi</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Minim</div>
+            <span class="u">particule generate — mult sub protezele clasice</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Metoda de testare</h3>
+            <p>Fiecare masina de simulare contine o <b>articulatie artificiala reala</b>. Se aplica forta si miscarea identice cu cele ale soldului uman la mers. Masinile functioneaza <b>24 de ore pe zi</b>, simuland un pas pe secunda, cu <b>sange de vaca diluat</b> ca lubrifiant pentru a reproduce conditiile biologice reale.</p>
+          </div>
+          <div class="mini">
+            <h3>Rezultate extraordinare</h3>
+            <p>Dupa <b>20 de milioane de pasi</b> (echivalentul a 20 de ani de mers), protezele cu MPC au produs <b>semnificativ mai putine particule</b> decat cele conventionale. Testul a continuat pana la <b>70 de milioane de pasi</b> (~70 de ani) fara uzura semnificativa.</p>
+          </div>
+        </div>
+
+        <div class="quote blue" style="margin-top:14px;">
+          &laquo;Sincer, am fost surprins si fericit, dar dupa ce cercetasem acest lucru timp de aproximativ 10 ani, inca imi amintesc sentimentul de usurare ca pot in sfarsit sa-l ofer lumii.&raquo;
+          <cite>— Cercetator principal, despre rezultatele simularii</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Experienta pacientei -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Viata dupa operatie: "M-am simtit ca o persoana noua"</h2>
+          <p>Experienta unei paciente care a primit proteza MPC si i s-a schimbat complet viata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">PACIENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Inainte: ani de suferinta</h4>
+              <p>Mama a doi copii, cu dureri cronice in ambele solduri. A primit doar <b>calmante si comprese</b>. Durerea o impiedica sa doarma. Corpul inclinat, un picior mai scurt cu cativa centimetri. Ani de zile s-a chinuit cu decizia de a face sau nu operatia.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Operatia cu proteza MPC</h4>
+              <p>A aflat despre noua tehnologie si a decis sa faca operatia. Momentul in care s-a ridicat dupa interventie a fost <b>socant</b> — durerea disparuse complet.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Dupa 1 an: rezultate impecabile</h4>
+              <p>La controlul de un an, radiografiile arata proteza <b>perfect pozitionata</b>, axa corecta, fara semne de instabilitate. Locurile in care poate merge pe jos <b>s-au extins enorm</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;A fost ca si cum totul s-a resetat. "Zboara!" — nu mai era nicio durere. Am fost atat de socata ca pot sta dreapta. Am aruncat tot... Mi-au dat lacrimile de fericire. Am simtit ca incepe o viata noua.&raquo;
+          <cite>— Pacienta, dupa operatie</cite>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <h4>Monitorizare pe termen lung necesara</h4>
+          <p>Cercetatorii subliniaza ca rezultatele simulatorului sunt promitaoare, dar pacientii reali pot creste in greutate, imbatrani, alega, sari sau cadea. Urmatoarele <b>20-25 de ani de monitorizare clinica</b> vor fi esentiale pentru a confirma ca MPC functioneaza conform asteptarilor in viata reala.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Osteoporoza si AI -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Riscul ascuns: osteoporoza si diagnosticul cu AI</h2>
+          <p>Oasele fragile pot submina fundatia protezei — inteligenta artificiala ajuta la detectia precoce</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">AI + PREVENIRE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Pericolul</h3>
+            <p>Densitatea minerala osoasa scade cu varsta si din cauza dezechilibrelor hormonale, provocand <b>osteoporoza</b>. Oasele fragile maresc riscul de <b>fracturi la baza piciorului</b> — exact acolo unde proteza este fixata. Osul fragil submineaza fundatia protezei.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Solutia: AI din radiografii toracice</h3>
+            <p>Deoarece osteoporoza afecteaza intregul corp, <b>orice imagine cu oase</b> poate fi utila. Cercetatorii au antrenat un sistem AI pe un volum mare de date despre oase si densitate osoasa, care poate estima densitatea osoasa a soldului <b>doar din radiografia toracica</b>.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Radiografie toracica standard</h4>
+              <p>Orice radiografie de torace arata oase. AI-ul analizeaza <b>structura osoasa</b> vizibila in imaginea toracica.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Estimare de densitate osoasa</h4>
+              <p>Sistemul estimeaza densitatea osoasa a soldului cu <b>precizie ridicata</b>, clasificand pacientul in categorii: normala, masa osoasa scazuta sau osteoporoza.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Detectie precoce = prevenirea fracturilor</h4>
+              <p>Descoperirea timpurie a osteoporozei permite <b>tratament inainte de fractura</b>. Medicul subliniaza: "Gasirea fisurilor si a problemelor devreme si tratarea lor inainte sa provoace o fractura — <b>asta e esential</b>."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Exercitii preventive -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Exercitii pentru sanatatea articulatiei soldului</h2>
+          <p>Program simplu de exercitii recomandate de specialisti pentru mentinerea mobilitatii si fortei musculare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">EXERCITII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(148,163,184,.2);">
+            <h3 style="color:var(--glow)">Managementul greutatii</h3>
+            <p>Obezitatea pune presiune suplimentara pe solduri, accelerand progresia bolii. Dar pierderea excesiva de greutate duce la <b>pierdere de masa musculara</b>, instabilizand articulatia. Solutia: <b>mentinerea unei greutati sanatoase</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Antrenament de forta</h3>
+            <p>Musculatura puternica in jurul soldului <b>stabilizeaza articulatia</b> si absoarbe o parte din soc. Stretching-ul regulat mentine <b>amplitudinea de miscare</b>.</p>
+          </div>
+        </div>
+
+        <div class="exGrid">
+          <div class="exCard">
+            <h4>1. Postura corecta</h4>
+            <p>Stai drept: <b>capul, umarul si urechea</b> pe o linie dreapta. Imaginati-va ca cineva va trage de cap in sus, apoi relaxati-va. Aceasta este postura de baza.</p>
+          </div>
+          <div class="exCard">
+            <h4>2. Stretching flexor sold</h4>
+            <p>Mentinand spatele drept, coborati pe un genunchi (pozitie de fandare). <b>Aplecati-va inainte</b> pentru a intinde articulatia soldului. Repetati de <b>3 ori pe fiecare parte</b>, zilnic.</p>
+          </div>
+          <div class="exCard">
+            <h4>3. Balansul piciorului</h4>
+            <p>Sprijiniti-va de perete. Balansati piciorul <b>inainte si inapoi</b> de 3 ori, apoi <b>lateral</b> de 3 ori. Concentrati-va pe miscarea articulatiei soldului. Un set pe zi pentru fiecare picior.</p>
+          </div>
+          <div class="exCard">
+            <h4>4. Ridicarea genunchiului</h4>
+            <p>Stai drept cu bazinul stabil. Ridica genunchiul <b>cat mai sus</b>, indoind articulatia soldului corect. <b>10 repetari pe fiecare parte</b>, 2 seturi. Intareste muschii si previne caderile.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 9: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si directii viitoare</h2>
+          <p>Ce inseamna aceasta inovatie pentru milioanele de oameni cu probleme ale soldului</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(148,163,184,.2);">
+            <h3 style="color:var(--glow)">Materiale avansate</h3>
+            <p>Polimerul MPC demonstreaza ca <b>stiinta materialelor</b> poate rezolva probleme pe care chirurgia singura nu le poate. O proteza care dureaza o viata intreaga schimba calculul beneficiu/risc pentru <b>milioane de pacienti</b> din intreaga lume.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow2)">Inteligenta artificiala</h3>
+            <p>Diagnosticul AI din radiografii de rutina poate identifica <b>osteoporoza devreme</b>, protejand nu doar pacientii cu proteze, ci pe oricine risca fracturi osoase.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Calitatea vietii</h3>
+            <p>Proteza de sold cu MPC transforma <b>radical</b> viata pacientilor. Durerea disparuta complet, mobilitate restaurata, independenta recapitata — beneficiile sunt <b>transformatoare</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Cercetare continua</h3>
+            <p>Cercetatorii se concentreaza pe doua directii: <b>materiale</b> (imbunatatirea durabilitatii protezelor) si <b>AI</b> (diagnosticul precoce). Monitorizarea pe termen lung a pacientilor va fi esentiala in urmatorii 20-25 de ani.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Exista inca multe provocari in diagnosticarea si tratarea acestor boli. As vrea sa continui sa lupt pentru a depasi aceste boli, concentrandu-ma pe cele doua domenii: materiale si inteligenta artificiala.&raquo;
+          <cite>— Cercetator, despre directiile viitoare</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia inovatiei</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">~1998</span><span class="tDesc">Incepe <b>cercetarea</b> polimerului MPC pentru articulatii artificiale</span></div>
+        <div class="tEvent"><span class="tDate">Ani de cercetare</span><span class="tDesc">Studiu al <b>celulelor fosfolipidice</b> de pe suprafata articulatiilor naturale</span></div>
+        <div class="tEvent"><span class="tDate">Dezvoltare</span><span class="tDesc"><b>Grefarea</b> stratului MPC de 150 nm pe suprafata protezei</span></div>
+        <div class="tEvent"><span class="tDate">Simulare</span><span class="tDesc">Test: <b>20 milioane de pasi</b> — reducere drastica a particulelor</span></div>
+        <div class="tEvent"><span class="tDate">Simulare+</span><span class="tDesc">Test extins: <b>70 milioane de pasi</b> (~70 ani de mers) — proteza functionala</span></div>
+        <div class="tEvent"><span class="tDate">2011</span><span class="tDesc"><b>Aprobare</b> ca dispozitiv medical in Japonia dupa 13 ani de dezvoltare</span></div>
+        <div class="tEvent"><span class="tDate">Post-op</span><span class="tDesc">Pacienta: <b>durere eliminata</b> complet, mobilitate restaurata</span></div>
+        <div class="tEvent"><span class="tDate">1 an dupa</span><span class="tDesc">Control: proteza <b>stabila</b>, axa corecta, fara probleme</span></div>
+        <div class="tEvent"><span class="tDate">Prezent</span><span class="tDesc">Cercetare continua: <b>materiale + AI</b> pentru diagnostic precoce</span></div>
+        <div class="tEvent"><span class="tDate">Viitor</span><span class="tDesc">Monitorizare clinica pe <b>20-25 ani</b> pentru confirmare pe termen lung</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce mersul biped cauzeaza probleme?</h4>
+          <p>Mersul pe doua picioare e simbolul evolutiei umane, dar pune o presiune enorma pe articulatia soldului — <b>de 3 ori greutatea corpului</b> la fiecare pas. Aceasta "taxa" evolutiva afecteaza milioane de oameni la nivel global.</p>
+        </div>
+        <div class="comNote">
+          <h4>Polietilena: materialul-problema</h4>
+          <p>Protezele clasice folosesc <b>polietilena</b> ca suprafata de alunecare. Desi rezistent, materialul genereaza particule microscopice la frecare. Corpul le trateaza ca invadatori — declansand un raspuns imunitar distructiv.</p>
+        </div>
+        <div class="comNote">
+          <h4>MPC: de la lentile de contact la proteze</h4>
+          <p>Polimerul MPC a fost dezvoltat initial pentru <b>lentile de contact si inimi artificiale</b> — aplicatii care necesita biocompatibilitate perfecta. Transferul tehnologiei catre proteze de sold a durat <b>13 ani de cercetare dedicata</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Colaborare universitate-industrie</h4>
+          <p>Proteza a fost dezvoltata prin <b>colaborarea dintre o universitate si o companie japoneza</b> — un model de transfer tehnologic de la cercetarea fundamentala la produsul medical comercializabil.</p>
+        </div>
+        <div class="comNote">
+          <h4>AI-ul schimba diagnosticul</h4>
+          <p>Posibilitatea de a detecta osteoporoza dintr-o <b>simpla radiografie toracica</b> (pe care milioane de oameni o fac de rutina) ar putea revolutiona screening-ul preventiv, fara costuri suplimentare.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Coxartroza</dt>
+          <dd>Artroza articulatiei soldului — uzura progresiva a cartilajului care acpera capul femural si acetabulul, ducand la durere cronica si pierderea mobilitatii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Polimer MPC</dt>
+          <dd>2-methacryloyloxyethyl phosphorylcholine — polimer biocompatibil care imita structura celulelor fosfolipidice naturale. Nu provoaca reactii imunitare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Acetabul</dt>
+          <dd>Cavitatea in forma de cupa din bazin in care se articuleaza capul femural. Formeaza "ceasca" articulatiei soldului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cap femural</dt>
+          <dd>Extremitatea superioara, sferica, a femurului (osul coapsei). Formeaza "bila" articulatiei de tip ball-and-socket.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Osteoporoza</dt>
+          <dd>Boala in care densitatea minerala osoasa scade, facand oasele fragile si predispuse la fracturi. Cauze: varsta, dezechilibre hormonale, lipsa calciului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Osteoliză</dt>
+          <dd>Eroziunea tesutului osos, cauzata in contextul protezelor de raspunsul imunitar la particulele de polietilena. Submineaza fixarea protezei.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Polietilena</dt>
+          <dd>Material plastic foarte rezistent folosit in protezele clasice de sold ca suprafata de alunecare. Genera particule microscopice prin uzura mecanica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Lichid sinovial</dt>
+          <dd>Fluid vascoz care lubrifiaza articulatiile, reduce frecarea si absoarbe socurile. Echivalentul "uleiului" intr-un mecanism.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=Ci3LblFk3TE" target="_blank">NHK Medical Frontiers — "A Long-Lasting Artificial Hip Joint to Change Your Life"</a> &middot;
+    Infografic explicativ in limba romana bazat pe emisiunea NHK World Japan
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract hip joint with mechanical components ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles for MPC polymer effect
+  const particles = [];
+  for(let i = 0; i < 60; i++){
+    particles.push({
+      angle: Math.random() * Math.PI * 2,
+      radius: 30 + Math.random() * 70,
+      speed: 0.003 + Math.random() * 0.008,
+      size: 1 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.4 ? 'silver' : Math.random() < 0.7 ? 'blue' : 'teal'
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    const cx = w * 0.45, cy = h * 0.48;
+
+    // Background glow
+    const bg = ctx.createRadialGradient(cx, cy, 10, cx, cy, 110);
+    bg.addColorStop(0, 'rgba(59,130,246,0.06)');
+    bg.addColorStop(0.5, 'rgba(148,163,184,0.03)');
+    bg.addColorStop(1, 'transparent');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+
+    // Socket (acetabulum) - outer ring
+    const socketR = 52 + Math.sin(t * 0.5) * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, socketR, 0.3, Math.PI * 2 - 0.3);
+    ctx.strokeStyle = 'rgba(148,163,184,0.25)';
+    ctx.lineWidth = 8;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Socket inner glow
+    const socketGlow = ctx.createRadialGradient(cx, cy, socketR - 10, cx, cy, socketR + 5);
+    socketGlow.addColorStop(0, 'rgba(148,163,184,0.03)');
+    socketGlow.addColorStop(1, 'rgba(148,163,184,0.01)');
+    ctx.fillStyle = socketGlow;
+    ctx.beginPath();
+    ctx.arc(cx, cy, socketR, 0, Math.PI * 2);
+    ctx.fill();
+
+    // MPC polymer layer - shimmering ring
+    const mpcR = socketR - 6;
+    for(let i = 0; i < 40; i++){
+      const a = (i / 40) * Math.PI * 2;
+      const shimmer = 0.15 + Math.sin(t * 3 + a * 4) * 0.1;
+      const px = cx + Math.cos(a) * mpcR;
+      const py = cy + Math.sin(a) * mpcR;
+      ctx.beginPath();
+      ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(59,130,246,${shimmer})`;
+      ctx.fill();
+    }
+
+    // Femoral head (ball)
+    const ballR = 34 + Math.sin(t * 0.7) * 1;
+    const ballGrad = ctx.createRadialGradient(cx - 8, cy - 8, 5, cx, cy, ballR);
+    ballGrad.addColorStop(0, 'rgba(148,163,184,0.22)');
+    ballGrad.addColorStop(0.6, 'rgba(148,163,184,0.10)');
+    ballGrad.addColorStop(1, 'rgba(148,163,184,0.04)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, ballR, 0, Math.PI * 2);
+    ctx.fillStyle = ballGrad;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(148,163,184,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Metallic highlight on ball
+    ctx.beginPath();
+    ctx.arc(cx - 10, cy - 10, ballR * 0.4, 0, Math.PI * 2);
+    const hlGrad = ctx.createRadialGradient(cx - 10, cy - 10, 0, cx - 10, cy - 10, ballR * 0.4);
+    hlGrad.addColorStop(0, 'rgba(234,240,255,0.08)');
+    hlGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = hlGrad;
+    ctx.fill();
+
+    // Femur shaft
+    ctx.beginPath();
+    ctx.moveTo(cx - 6, cy + ballR - 5);
+    ctx.lineTo(cx - 20, h + 5);
+    ctx.lineTo(cx + 8, h + 5);
+    ctx.lineTo(cx + 6, cy + ballR - 5);
+    ctx.closePath();
+    const femurGrad = ctx.createLinearGradient(cx, cy + ballR, cx, h);
+    femurGrad.addColorStop(0, 'rgba(148,163,184,0.18)');
+    femurGrad.addColorStop(1, 'rgba(148,163,184,0.06)');
+    ctx.fillStyle = femurGrad;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(148,163,184,0.15)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Pelvis outline (simplified)
+    ctx.beginPath();
+    ctx.moveTo(cx - socketR - 30, cy - 25);
+    ctx.quadraticCurveTo(cx - socketR - 10, cy - 50, cx, cy - socketR - 15);
+    ctx.quadraticCurveTo(cx + socketR + 10, cy - 50, cx + socketR + 30, cy - 25);
+    ctx.strokeStyle = 'rgba(148,163,184,0.12)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Floating particles (representing MPC biocompatibility)
+    particles.forEach(p => {
+      p.angle += p.speed;
+      const px = cx + Math.cos(p.angle + t * 0.3) * (p.radius + Math.sin(t + p.phase) * 8);
+      const py = cy + Math.sin(p.angle + t * 0.3) * (p.radius * 0.7 + Math.cos(t * 1.2 + p.phase) * 6);
+      const alpha = 0.15 + Math.sin(t * 2 + p.phase) * 0.1;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.size, 0, Math.PI * 2);
+      if(p.type === 'silver'){
+        ctx.fillStyle = `rgba(148,163,184,${alpha})`;
+      } else if(p.type === 'blue'){
+        ctx.fillStyle = `rgba(59,130,246,${alpha + 0.05})`;
+      } else {
+        ctx.fillStyle = `rgba(34,211,238,${alpha})`;
+      }
+      ctx.fill();
+    });
+
+    // Pulse rings from the MPC layer
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 25 + p * 50) % 140);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2000);
+      ctx.beginPath();
+      ctx.arc(cx, cy, socketR + pulseR * 0.5, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(59,130,246,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '8px ' + mono;
+    ctx.fillStyle = 'rgba(148,163,184,0.35)';
+    ctx.fillText('PROTEZA MPC', cx + socketR + 12, cy - 10);
+    ctx.fillText('150 nm polimer', cx + socketR + 12, cy + 2);
+
+    ctx.fillStyle = 'rgba(59,130,246,0.35)';
+    ctx.fillText('STRAT MPC', cx - socketR - 60, cy);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(148,163,184,0.5)';
+    ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(148,163,184,0.35)'; ctx.fillText('titan/metal', 15, ly+3);
+
+    ctx.fillStyle = 'rgba(59,130,246,0.5)';
+    ctx.beginPath(); ctx.arc(70, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(148,163,184,0.35)'; ctx.fillText('polimer MPC', 77, ly+3);
+
+    ctx.fillStyle = 'rgba(34,211,238,0.5)';
+    ctx.beginPath(); ctx.arc(142, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(148,163,184,0.35)'; ctx.fillText('biocompatibil', 149, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

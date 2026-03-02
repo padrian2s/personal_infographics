@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Slabire Sanatoasa — Sfaturi medicale care iti salveaza viata | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: sfaturi medicale pentru slabire sanatoasa din NHK Medical Frontiers. Nutritie, exercitii, metabolism si cercetare japoneza de ultima ora." />
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#F97316;
+      --glow2:#22C55E;
+      --ok:#22C55E;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(249,115,22,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(34,197,94,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(249,115,22,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(249,115,22,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(34,197,94,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(249,115,22,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--glow2);background:rgba(34,197,94,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(249,115,22,.22),rgba(249,115,22,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(34,197,94,.22),rgba(34,197,94,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(249,115,22,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--glow2);background:rgba(34,197,94,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(249,115,22,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(249,115,22,.06);margin-top:12px;
+    }
+    .alert.red{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.red h4{color:var(--bad);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(249,115,22,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(249,115,22,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Progress bar */
+    .progBar{
+      border:1px solid rgba(234,240,255,.10);border-radius:10px;overflow:hidden;
+      background:rgba(6,8,16,.45);height:22px;margin-top:8px;position:relative;
+    }
+    .progFill{
+      height:100%;border-radius:10px;transition:width .8s ease;
+      display:flex;align-items:center;padding:0 8px;
+      font-size:10px;font-weight:700;color:var(--ink);white-space:nowrap;
+    }
+
+    /* Tip list */
+    .tipList{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px;}
+    .tipList li{
+      display:flex;align-items:flex-start;gap:10px;
+      border:1px solid rgba(234,240,255,.08);border-radius:12px;
+      padding:10px 12px;background:rgba(6,8,16,.25);
+    }
+    .tipNum{
+      flex:0 0 28px;height:28px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:760;
+      border:1.5px solid var(--glow);color:var(--glow);
+      background:rgba(249,115,22,.08);
+    }
+    .tipText h4{margin:0;font-size:12.5px;}
+    .tipText p{margin:3px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Exercise cards */
+    .exGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+    .exCard{
+      border:1px solid rgba(34,197,94,.15);border-radius:14px;padding:11px 13px;
+      background:rgba(34,197,94,.04);
+    }
+    .exCard h4{margin:0;font-size:12.5px;color:var(--glow2);display:flex;align-items:center;gap:6px;}
+    .exCard p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+    .exIcon{font-size:16px;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .exGrid{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Slabire Sanatoasa: Sfaturi care iti salveaza viata
+          <small>NHK Medical Frontiers — Cercetare japoneza de ultima ora despre obezitate, metabolism si pierderea in greutate pe termen lung</small>
+        </h1>
+        <p class="sub">Obezitatea este factor de risc pentru boli cardiovasculare, diabet si cancer. Conform OMS, <b>2,5 miliarde de adulti</b> sunt supraponderali, dintre care <b>890 milioane</b> traiesc cu obezitate. Cercetatorii japonezi demonstreaza ca pierderea lenta — <b>1 kg pe luna</b> — este cheia succesului pe termen lung, iar obiectivele nerealiste fac mai mult rau decat bine.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Nutritie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Slabire</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Statistici globale obezitate -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Criza globala a obezitatii</h2>
+          <p>Organizatia Mondiala a Sanatatii (OMS) avertizeaza: obezitatea a devenit o pandemie silentioasa cu consecinte letale</p>
+        </div>
+        <span class="badge">OMS</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">2,5 mld</div>
+            <span class="u">adulti supraponderali la nivel global</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">890 mil</div>
+            <span class="u">traiesc cu obezitate (IMC &ge; 30)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">7.000</div>
+            <span class="u">kcal trebuie arse pentru a pierde 1 kg de grasime</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">1 kg</div>
+            <span class="u">pe luna — ritmul optim de slabire sanatoasa</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>De ce e periculoasa obezitatea?</h3>
+            <p>Obezitatea este <b>factor de risc direct</b> pentru diabet de tip 2, boli cardiovasculare, infarct miocardic, infarct cerebral si multiple forme de cancer. Grasimea viscerala este cea mai periculoasa.</p>
+          </div>
+          <div class="mini">
+            <h3>Principala cauza de deces</h3>
+            <p>Cercetarile dr. <b>Takamura Toshinari</b> arata ca la persoanele obeze, principala cauza de deces o reprezinta <b>bolile vasculare</b>: infarctul miocardic si infarctul cerebral.</p>
+          </div>
+        </div>
+        <div class="alert red">
+          <h4>Atentie: obiective nerealiste = esec</h4>
+          <p>Declaratiile de tipul "voi slabi 10 kg pana la data X" duc de obicei la esec. Studiile arata ca <b>obiectivele mici si constante</b> (1 kg/luna) sunt cele care functioneaza pe termen lung. Pentru a pierde un singur kilogram trebuie sa arzi <b>7.000 de kilocalorii</b> in plus.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Studiu cardiovascular -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Slabirea si riscul cardiovascular</h2>
+          <p>Studiu pe termen lung: pierderea in greutate reduce semnificativ riscul de boli cardiovasculare, dar efectul depinde de mentinerea rezultatelor</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,197,94,.3);color:var(--glow2);">STUDIU</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Interventie: dieta + exercitii fizice</h4>
+              <p>Pacientii au fost supusi unui program de <b>reducere a greutatii prin dieta si exercitii fizice</b>, cu monitorizare pe termen lung a riscului cardiovascular (scor CVD).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Dupa 1 an: scaderea riscului CVD</h4>
+              <p>Pacientii care au <b>mentinut pierderea in greutate</b> timp de un an sau mai mult au prezentat o <b>scadere semnificativa a riscului cardiovascular</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Dupa mai multi ani: risc de recidiva</h4>
+              <p>La anii de urmarire ulteriori, unii pacienti au experimentat <b>revenirea scorurilor de risc CVD</b>. Mentinerea rezultatelor pe termen lung ramane principala provocare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Efectul yo-yo: o problema globala</h4>
+              <p>In SUA, show-urile de slabire au demonstrat fenomenul: participanti care au slabit dramatic au <b>recastigat greutatea in 2 ani</b>. Acesta este unul dintre cele mai mari esecuri ale dietelor rapide.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote green">
+          &laquo;Cand ne uitam la pericolele obezitatii, descoperim ca principala cauza de deces o constituie bolile vasculare — infarctul miocardic si infarctul cerebral. Trebuie sa evaluam starea arteriala si sa facem screening de cancer la nivelul intregului organism.&raquo;
+          <cite>— Dr. Takamura Toshinari, cercetator obezitate</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: 7 sfaturi practice de nutritie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>7 reguli de aur pentru slabire sanatoasa</h2>
+          <p>Sfaturi practice de la medicii si nutritionistii japonezi — principii simple dar dovedite stiintific</p>
+        </div>
+        <span class="badge" style="border-color:rgba(249,115,22,.3);color:var(--glow);">NUTRITIE</span>
+      </div>
+      <div class="cardBody">
+        <ol class="tipList">
+          <li>
+            <div class="tipNum">1</div>
+            <div class="tipText">
+              <h4>Mesteca de cel putin 30 de ori fiecare imbucatura</h4>
+              <p>Mestecatul creste nivelul de <b>histamina</b> din creier, care <b>reduce apetitul</b>. Mancatul lent permite stomacului sa trimita semnale de satietate inainte sa mananci in exces.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">2</div>
+            <div class="tipText">
+              <h4>Noteaza-ti greutatea in fiecare zi</h4>
+              <p>Monitorizarea zilnica a greutatii ajuta la constientizare. Medicii recomanda un jurnal cu <b>greutatea zilnica</b> si <b>alimentele consumate</b> — responsabilizarea e cheia.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">3</div>
+            <div class="tipText">
+              <h4>Nu sari peste micul dejun</h4>
+              <p>Medicii japonezi subliniaza: <b>nu posti dimineata</b>. Organismul are nevoie de energie pentru a porni metabolismul. Sarit peste mic dejun duce la supraalimentare la pranz.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">4</div>
+            <div class="tipText">
+              <h4>Spala-te pe dinti devreme seara</h4>
+              <p>Un truc simplu dar eficient: dupa ce te-ai spalat pe dinti, <b>devine prea complicat sa mai mananci</b>. Aceasta tactica reduce semnificativ consumul de gustari nocturne.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">5</div>
+            <div class="tipText">
+              <h4>Evita gustările tarziu in noapte</h4>
+              <p>Mancatul dupa cina si inainte de culcare contribuie major la acumularea de grasime. Eliminarea <b>gustărilor de noapte</b> reduce greutatea si riscul cardiovascular.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">6</div>
+            <div class="tipText">
+              <h4>Culca-te devreme, trezeste-te devreme</h4>
+              <p>O strategie eficienta pentru a evita tentatiile: <b>mergi la culcare mai devreme</b>. Diminetile sunt ideale pentru a manca sanatos, nu serile cand oboseala reduce controlul.</p>
+            </div>
+          </li>
+          <li>
+            <div class="tipNum">7</div>
+            <div class="tipText">
+              <h4>Stabileste obiective mici: 1 kg pe luna</h4>
+              <p><b>"1 kg pe luna ar fi bine"</b> — nu a fost un obiectiv mare, dar a fost unul realist. Obiectivele mici si constante construiesc incredere si previn abandonul.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- Card 4: Grasimea viscerala si ficatul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Grasimea viscerala si ficatul gras</h2>
+          <p>Mecanismul prin care grasimea abdominala afecteaza ficatul si creste riscul de boli metabolice</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">RISC</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG diagram: visceral fat → liver pathway -->
+        <div class="netDiag">
+          <svg viewBox="0 0 460 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Visceral fat -->
+            <rect x="10" y="35" width="110" height="70" rx="16" fill="rgba(249,115,22,.12)" stroke="rgba(249,115,22,.4)" stroke-width="1.5"/>
+            <text x="65" y="62" text-anchor="middle" fill="#F97316" font-size="11" font-weight="700">GRASIME</text>
+            <text x="65" y="78" text-anchor="middle" fill="#F97316" font-size="11" font-weight="700">VISCERALA</text>
+            <text x="65" y="94" text-anchor="middle" fill="#A0ACC8" font-size="9">zona abdominala</text>
+            <!-- Arrow 1 -->
+            <line x1="120" y1="70" x2="170" y2="70" stroke="rgba(249,115,22,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="170,65 182,70 170,75" fill="rgba(249,115,22,.5)"/>
+            <!-- Liver -->
+            <rect x="182" y="35" width="96" height="70" rx="16" fill="rgba(248,113,113,.12)" stroke="rgba(248,113,113,.4)" stroke-width="1.5"/>
+            <text x="230" y="62" text-anchor="middle" fill="#F87171" font-size="11" font-weight="700">FICAT</text>
+            <text x="230" y="78" text-anchor="middle" fill="#A0ACC8" font-size="9">acumulare grasime</text>
+            <text x="230" y="92" text-anchor="middle" fill="#A0ACC8" font-size="9">= ficat gras</text>
+            <!-- Arrow 2 -->
+            <line x1="278" y1="70" x2="328" y2="70" stroke="rgba(248,113,113,.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="328,65 340,70 328,75" fill="rgba(248,113,113,.5)"/>
+            <!-- Disease -->
+            <rect x="340" y="20" width="110" height="100" rx="16" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.35)" stroke-width="1.5"/>
+            <text x="395" y="42" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="700">COMPLICATII</text>
+            <text x="395" y="58" text-anchor="middle" fill="#A0ACC8" font-size="9">Diabet tip 2</text>
+            <text x="395" y="72" text-anchor="middle" fill="#A0ACC8" font-size="9">Infarct miocardic</text>
+            <text x="395" y="86" text-anchor="middle" fill="#A0ACC8" font-size="9">Infarct cerebral</text>
+            <text x="395" y="100" text-anchor="middle" fill="#A0ACC8" font-size="9">Cancer hepatic</text>
+            <text x="395" y="114" text-anchor="middle" fill="#A0ACC8" font-size="9">Hipertensiune</text>
+          </svg>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Grasimea viscerala</h3>
+            <p>Se acumuleaza in jurul organelor interne. Cand se reduce grasimea viscerala, <b>fluxul de grasime catre ficat scade</b>, prevenind progresia catre ficat gras si boli metabolice.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Screening complet</h3>
+            <p>Pacientii obezi trebuie evaluati pentru <b>starea arteriala</b> si trebuie sa faca <b>screening de cancer</b> la nivelul intregului organism, inclusiv la nivel hepatic.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cercetare taxifolin -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cercetare: Taxifolina — compus anti-obezitate</h2>
+          <p>Studiu japonez pe soareci demonstreaza eficienta remarcabila a taxifolinei in prevenirea acumularii de grasime, chiar si sub dieta bogata in grasimi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Grupul cu dieta grasa + taxifolina</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">~0 kg</span>
+              <span class="l">Soarecii au castigat foarte putina greutate in ciuda dietei bogate in grasimi</span>
+            </div>
+            <div class="progBar" style="margin-top:10px;">
+              <div class="progFill" style="width:12%;background:linear-gradient(90deg,var(--glow2),rgba(34,197,94,.5));">Minim</div>
+            </div>
+            <p style="font-size:11px;color:var(--muted);margin-top:6px;">Acumulare de grasime: minima</p>
+          </div>
+          <div class="mini">
+            <h3>Grupul cu dieta grasa FARA taxifolina</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--bad)">+++</span>
+              <span class="l">Acumulare semnificativa de grasime, vizibila ca zone albe la scanare</span>
+            </div>
+            <div class="progBar" style="margin-top:10px;">
+              <div class="progFill" style="width:88%;background:linear-gradient(90deg,var(--bad),rgba(248,113,113,.5));">Masiva</div>
+            </div>
+            <p style="font-size:11px;color:var(--muted);margin-top:6px;">Acumulare de grasime: semnificativa</p>
+          </div>
+        </div>
+        <div class="alert" style="margin-top:14px;">
+          <h4>Dezvoltare farmaceutica in curs</h4>
+          <p>Echipa de cercetare lucreaza cu colaboratori la dezvoltarea unui medicament pe baza de <b>taxifolina de inalta puritate (99,8%)</b>, cu scopul de a-l face sigur si eficient pentru administrarea la oameni. Obiectivul: <b>extinderea duratei de viata sanatoasa</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Exercitii fizice si NEAT -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Miscare si NEAT: arde calorii fara "sport"</h2>
+          <p>Activitatile zilnice non-sportive (NEAT) si exercitiile simple pot transforma metabolismul</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,197,94,.3);color:var(--glow2);">EXERCITII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">NEAT — Termogeneza non-sportiva</h3>
+            <p>Activitatile de zi cu zi, altele decat exercitiul fizic propriu-zis, contribuie semnificativ la arderea caloriilor: <b>curatenie, spălat pe jos, mers pe scari, gatit</b>. Foloseste <b>mopul in loc de robotul de curatenie</b>!</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Studiu de caz</h3>
+            <p>O pacienta mergea doar <b>2.000 de pasi pe zi</b> din cauza muncii sedentare. Treptat, a ajuns sa mearga de <b>3 ori pe zi</b> si sa-si misite corpul regulat. Progresul a fost gradual.</p>
+          </div>
+        </div>
+
+        <h3 style="font-size:14px;margin:16px 0 0;">Exercitii recomandate</h3>
+        <div class="exGrid">
+          <div class="exCard">
+            <h4><span class="exIcon">&#x1F4AA;</span> Genuflexiuni (Squats)</h4>
+            <p>Construiesc un corp care <b>arde grasime mai usor</b>. Lucreaza cei mai mari muschi din corp, crescand metabolismul bazal.</p>
+          </div>
+          <div class="exCard">
+            <h4><span class="exIcon">&#x1F9B4;</span> Exercitii pentru brate si umeri</h4>
+            <p>Impinge bratele inainte cu rezistenta. Miscarea simpla dar eficienta activeaza <b>musculatura scapulara</b>.</p>
+          </div>
+          <div class="exCard">
+            <h4><span class="exIcon">&#x1F9D8;</span> Exercitii pentru spate</h4>
+            <p>Intins pe burta, ridica incet bratele si picioarele. Intareste <b>musculatura posterioara</b> si imbunatateste postura.</p>
+          </div>
+          <div class="exCard">
+            <h4><span class="exIcon">&#x1F3AF;</span> Exercitii pentru core</h4>
+            <p>Activeaza musculatura profunda. <b>Respira constant</b> — nu retine respiratia! Incepe usor si progreseaza gradual.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Daca ai muschi slabi, incepe de la usor. Progreseaza incet. Cel mai important e sa incepi, nu sa fii perfect de la inceput.&raquo;
+          <cite>— Antrenor fizic, fost preparator al echipei nationale de volei a Japoniei</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Sanatate mintala si obezitate -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Obezitate si sanatate mintala</h2>
+          <p>Legatura critica dintre depresie, stres si obezitate — de ce abordarea psihologica este esentiala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">PSIHOLOGIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">~60%</div>
+            <span class="u">din pacientii clinicii de obezitate au simptome de depresie usoara</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">6 zile</div>
+            <span class="u">pe saptamana cu stres ridicat (munca + acasa)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">Echipa</div>
+            <span class="u">abordare personalizata, multidisciplinara</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--purple)">Stresul saboteaza dieta</h3>
+            <p>Presiunea sociala si de acasa, prezenta <b>6 zile pe saptamana</b>, face extrem de dificila schimbarea stilului de viata. Mancatul emotional este o reactie comuna la stres.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Motivatia conteaza</h3>
+            <p>Medicii folosesc <b>modele de grasime</b> pentru a vizualiza progresul: "Tine asta in mana — asta ai pierdut!" Complimentele si recunoasterea progresului <b>sustin motivatia</b>.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Managementul stresului prin alimentatie</h4>
+          <p>In viitor, cand oferim ghidaj alimentar pacientilor, va fi important sa <b>gestionam stresul prin diverse obiceiuri alimentare</b>. Multi pacienti cu obezitate severa au si <b>boli mintale sau depresie</b> — tratamentul trebuie sa fie holistic.</p>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Sidebar: Reguli rapide -->
+    <div class="timeline">
+      <div class="tHead"><h2>Plan rapid de actiune</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate">DIMINEATA</div>
+          <div class="tDesc"><b>Mananca mic dejun</b> — nu sari peste el. Porneste metabolismul de dimineata.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">PRANZ</div>
+          <div class="tDesc"><b>Mesteca de 30+ ori</b> fiecare imbucatura. Mananca incet si constient.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">DUPA-AMIAZA</div>
+          <div class="tDesc"><b>Misca-te!</b> Curatenie, plimbari, scari. Totul conteaza (NEAT).</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">SEARA</div>
+          <div class="tDesc"><b>Cina usoara</b>, fara exces. Nu manca din emotii.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">DUPA CINA</div>
+          <div class="tDesc"><b>Spala-te pe dinti imediat</b> — elimina tentatia de gustari nocturne.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">NOAPTE</div>
+          <div class="tDesc"><b>Culca-te devreme</b>. Fara gustari tarziu. Somnul ajuta metabolismul.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">ZILNIC</div>
+          <div class="tDesc"><b>Cantareste-te</b> si noteaza greutatea. Jurnal alimentar.</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">LUNAR</div>
+          <div class="tDesc">Obiectiv: <b>-1 kg/luna</b>. Mic, realist, constant. Nu te grabi!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar: Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Abordarea japoneza</h4>
+          <p>Spre deosebire de dietele drastice occidentale, medicina japoneza pune accent pe <b>schimbari mici si graduale</b>. Filosofia "kaizen" (imbunatatire continua) se aplica si in nutritie.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce 7.000 kcal?</h4>
+          <p>Un kilogram de tesut adipos contine aproximativ 7.000-7.700 kcal de energie stocata. Pentru a pierde 1 kg trebuie sa creezi un <b>deficit caloric total</b> de aceasta magnitudine.</p>
+        </div>
+        <div class="comNote">
+          <h4>Efectul yo-yo</h4>
+          <p>Show-urile americane de slabire au demonstrat ca pierderea rapida de greutate duce la <b>recidiva in 2 ani</b>. Metabolismul se adapteaza si devine mai eficient, facand reluarea greutatii mai usoara.</p>
+        </div>
+        <div class="comNote">
+          <h4>Taxifolina: promisiune, nu miracol</h4>
+          <p>Cercetarea cu taxifolina este inca in faza preclinica (studii pe soareci). Rezultatele sunt promitatoare dar <b>nu exista inca un medicament aprobat</b> pentru oameni.</p>
+        </div>
+        <div class="comNote">
+          <h4>Tensiunea arteriala</h4>
+          <p>Pacientii din studiu au raportat <b>scaderea tensiunii arteriale</b> ca beneficiu direct al pierderii in greutate — dovada ca fiecare kilogram conteaza pentru sanatatea cardiovasculara.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar: Cazuri clinice -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cazuri clinice</h2></div>
+        <span class="badge">PACIENTI</span>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow)">Pacientul Asahara</h3>
+          <p><b>-1,5 kg in 2 luni</b> — progres lent dar stabil. Problema: mese prea mari la pranz cu clientii, gustari emotionale seara. Solutia: notarea alimentelor, constientizare.</p>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow);font-size:22px;">-1,5 kg</span>
+            <span class="l">in 2 luni de monitorizare</span>
+          </div>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3 style="color:var(--glow2)">Pacienta cu obezitate severa</h3>
+          <p><b>-5,2 kg</b> prin program supervizat. Folosirea modelului de grasime ca motivatie vizuala. "Mi-au spus ca arat ca o actrita!" — motivatia exterioara ajuta.</p>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow2);font-size:22px;">-5,2 kg</span>
+            <span class="l">prin program medical supervizat</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3 style="color:var(--teal)">Pacienta sedentara</h3>
+          <p>Munca de acasa = doar <b>2.000 pasi/zi</b>. Strategia: somn devreme, masa dimineata, evitarea mancatului nocturn. Renuntare la ciocolata favorita din proprie initiativa.</p>
+          <div class="kpi">
+            <span class="n" style="color:var(--teal);font-size:22px;">2k</span>
+            <span class="l">pasi/zi initial &rarr; plimbari regulate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>IMC (Indice de Masa Corporala)</dt>
+          <dd>Formula: greutate (kg) / inaltime (m)^2. Supraponderal: 25-30. Obez: peste 30. Standard OMS pentru clasificarea greutatii corporale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Grasime viscerala</dt>
+          <dd>Grasime depozitata in jurul organelor interne (ficat, intestine, stomac). Mai periculoasa decat grasimea subcutanata. Cauza directa a sindromului metabolic.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>CVD (Cardiovascular Disease)</dt>
+          <dd>Boli cardiovasculare — termen general pentru afectiunile inimii si vaselor de sange, inclusiv infarctul miocardic, infarctul cerebral si ateroscleroza.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>NEAT (Non-Exercise Activity Thermogenesis)</dt>
+          <dd>Energia consumata prin activitati zilnice care NU sunt exercitii fizice: mers, curatenie, gatit, ridicat obiecte. Contribuie semnificativ la metabolismul total.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Histamina cerebrala</dt>
+          <dd>Neurotransmitator care, la nivelul creierului, reduce senzatia de foame. Productia creste prin mestecatul prelungit al alimentelor.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Taxifolina (Dihidroquercetina)</dt>
+          <dd>Flavonoid natural cu proprietati antioxidante. Cercetarile japoneze arata potentialul sau in prevenirea acumularii de grasime. In faza de dezvoltare farmaceutica (puritate 99,8%).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Ficat gras (Steatoza hepatica)</dt>
+          <dd>Acumulare excesiva de grasime in celulele hepatice. Poate evolua in steatohepatita, ciroza si cancer hepatic. Direct legata de obezitatea viscerala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Efect yo-yo</dt>
+          <dd>Ciclul de pierdere rapida si recastigare a greutatii. Metabolismul se adapteaza la restrictia calorica, facand reluarea greutatii mai usoara dupa dieta.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=_22e6rs_l6o" target="_blank">NHK Medical Frontiers — Life-Saving Weight Loss Tips</a> &middot;
+    Informatii medicale din cercetarea japoneza &middot;
+    Infografic explicativ in limba romana
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: body silhouette with metabolism/energy particles ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Body silhouette points (simplified torso outline)
+  const bodyPoints = [];
+  const bodySegments = 40;
+  for(let i = 0; i <= bodySegments; i++){
+    const t2 = i / bodySegments;
+    // Create a simplified body silhouette curve
+    let bx, by;
+    if(t2 < 0.1){ // head
+      const a = t2 / 0.1 * Math.PI;
+      bx = 0.5 + Math.sin(a) * 0.06;
+      by = 0.08 + (1 - Math.cos(a)) * 0.04;
+    } else if(t2 < 0.25){ // neck to shoulders
+      const p = (t2 - 0.1) / 0.15;
+      bx = 0.56 + p * 0.10;
+      by = 0.16 + p * 0.12;
+    } else if(t2 < 0.55){ // torso
+      const p = (t2 - 0.25) / 0.30;
+      bx = 0.66 - p * 0.02 + Math.sin(p * Math.PI) * 0.04;
+      by = 0.28 + p * 0.30;
+    } else if(t2 < 0.75){ // waist to hips
+      const p = (t2 - 0.55) / 0.20;
+      bx = 0.64 - p * 0.03;
+      by = 0.58 + p * 0.18;
+    } else { // legs
+      const p = (t2 - 0.75) / 0.25;
+      bx = 0.61 - p * 0.08;
+      by = 0.76 + p * 0.18;
+    }
+    bodyPoints.push({x: bx, y: by});
+  }
+
+  // Metabolism particles
+  const particles = [];
+  const particleCount = 65;
+  for(let i = 0; i < particleCount; i++){
+    particles.push({
+      x: 0.2 + Math.random() * 0.6,
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.002,
+      vy: -0.001 - Math.random() * 0.003,
+      r: 1 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.4 ? 'energy' : Math.random() < 0.7 ? 'fat' : 'health',
+      life: Math.random()
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Draw body silhouette (right side)
+    ctx.beginPath();
+    bodyPoints.forEach((p, i) => {
+      const px = p.x * w + Math.sin(t * 0.5 + i * 0.1) * 1;
+      const py = p.y * h;
+      if(i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    });
+    // Mirror left side
+    for(let i = bodyPoints.length - 1; i >= 0; i--){
+      const p = bodyPoints[i];
+      const px = (1 - p.x) * w - Math.sin(t * 0.5 + i * 0.1) * 1;
+      const py = p.y * h;
+      ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(249,115,22,0.04)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(249,115,22,0.15)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    // Inner body glow
+    const grd = ctx.createRadialGradient(w*0.5, h*0.45, 10, w*0.5, h*0.45, h*0.35);
+    grd.addColorStop(0, 'rgba(249,115,22,0.06)');
+    grd.addColorStop(0.5, 'rgba(34,197,94,0.03)');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Draw energy flow lines inside body
+    for(let i = 0; i < 5; i++){
+      const flowY = (t * 30 + i * 44) % (h * 0.8) + h * 0.1;
+      const flowAlpha = 0.06 + Math.sin(t * 2 + i) * 0.03;
+      ctx.beginPath();
+      ctx.moveTo(w * 0.38, flowY);
+      ctx.quadraticCurveTo(w * 0.5, flowY - 8 + Math.sin(t + i) * 5, w * 0.62, flowY);
+      ctx.strokeStyle = `rgba(34,197,94,${flowAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Draw particles
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t * 2 + p.phase) * 0.0005;
+      p.y += p.vy;
+      p.life -= 0.003;
+
+      if(p.life <= 0 || p.y < -0.05){
+        p.x = 0.3 + Math.random() * 0.4;
+        p.y = 0.7 + Math.random() * 0.3;
+        p.life = 0.7 + Math.random() * 0.3;
+      }
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const alpha = p.life * (0.4 + Math.sin(t * 3 + p.phase) * 0.15);
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'energy'){
+        ctx.fillStyle = `rgba(249,115,22,${alpha})`;
+        ctx.shadowColor = 'rgba(249,115,22,0.3)';
+      } else if(p.type === 'fat'){
+        ctx.fillStyle = `rgba(251,191,36,${alpha * 0.7})`;
+        ctx.shadowColor = 'rgba(251,191,36,0.2)';
+      } else {
+        ctx.fillStyle = `rgba(34,197,94,${alpha})`;
+        ctx.shadowColor = 'rgba(34,197,94,0.3)';
+      }
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Pulse rings around midsection (metabolism)
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 25 + p * 50) % 120);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 1500);
+      ctx.beginPath();
+      ctx.ellipse(w/2, h*0.45, pulseR * 1.2, pulseR * 0.6, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(249,115,22,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.35)';
+    ctx.fillText('METABOLISM', w/2 - 30, h*0.47);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(249,115,22,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('energie', 15, ly+3);
+    ctx.fillStyle = 'rgba(251,191,36,0.7)'; ctx.beginPath(); ctx.arc(62, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('grasime', 69, ly+3);
+    ctx.fillStyle = 'rgba(34,197,94,0.7)'; ctx.beginPath(); ctx.arc(120, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('sanatate', 127, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

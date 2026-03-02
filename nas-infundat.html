@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>De ce nu trebuie ignorat nasul infundat — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic explicativ: sinuzita, complicatii, legatura cu dintii, chirurgia nazala moderna si antrenarea simtului mirosului. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#0A0A06;
+      --bg1:#0E0E08;
+      --panel:#18160Ecc;
+      --card:#151308;
+      --card2:#12100A;
+      --ink:#FFF8E8;
+      --muted:#C8B898;
+      --muted2:#9A8A6A;
+      --line:#2A2418;
+      --glow:#F59E0B;
+      --glow2:#14B8A6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#14B8A6;
+      --purple:#D97706;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(245,158,11,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(20,184,166,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(217,119,6,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(245,158,11,.20);
+      background: linear-gradient(180deg, rgba(21,19,8,.75), rgba(14,14,8,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(245,158,11,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(20,184,166,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(217,119,6,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(255,248,232,.12);background:rgba(10,10,6,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(255,248,232,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,10,6,.30),rgba(10,10,6,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(255,248,232,.12);
+      background:linear-gradient(180deg,rgba(21,19,8,.75),rgba(18,16,10,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(255,248,232,.07);
+      background:linear-gradient(180deg,rgba(10,10,6,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(255,248,232,.10);
+      background:linear-gradient(180deg,rgba(10,10,6,.28),rgba(10,10,6,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(255,248,232,.12);color:rgba(255,248,232,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(255,248,232,.10);background:rgba(10,10,6,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(245,158,11,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.teal{border-color:var(--glow2);background:rgba(20,184,166,.15);}
+    .stepDot.amber{border-color:var(--purple);background:rgba(217,119,6,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(20,184,166,.22),rgba(20,184,166,.04));}
+    .stepBar.amber{background:linear-gradient(180deg,rgba(217,119,6,.22),rgba(217,119,6,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(245,158,11,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.teal{border-color:var(--glow2);background:rgba(20,184,166,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.ok{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);}
+    .alert.ok h4{color:var(--ok);}
+
+    /* Sinus diagram (SVG) */
+    .sinusDiag{
+      border:1px solid rgba(255,248,232,.10);border-radius:16px;
+      background:rgba(10,10,6,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .sinusDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(245,158,11,.18);
+      background:linear-gradient(180deg,rgba(21,19,8,.80),rgba(14,14,8,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(245,158,11,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(245,158,11,.25);background:rgba(245,158,11,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(255,248,232,.08);border-radius:12px;padding:9px 11px;background:rgba(10,10,6,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Checklist sidebar */
+    .checklist{
+      border:1px solid rgba(255,248,232,.12);
+      background:linear-gradient(180deg,rgba(21,19,8,.75),rgba(18,16,10,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .checklist .clHead{padding:13px 16px;border-bottom:1px solid rgba(255,248,232,.07);}
+    .checklist .clHead h2{margin:0;font-size:14.5px;}
+    .checklist .clBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .clItem{display:grid;grid-template-columns:28px 1fr;gap:4px;padding:8px 0;border-bottom:1px solid rgba(255,248,232,.05);}
+    .clItem:last-child{border-bottom:0;}
+    .clIcon{font-size:16px;text-align:center;padding-top:1px;}
+    .clText{font-size:12px;color:var(--muted);line-height:1.35;}
+    .clText b{color:var(--ink);}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(255,248,232,.12);
+      background:linear-gradient(180deg,rgba(21,19,8,.75),rgba(18,16,10,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(255,248,232,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,248,232,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(255,248,232,.12);
+      background:linear-gradient(180deg,rgba(21,19,8,.75),rgba(18,16,10,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(255,248,232,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(255,248,232,.08);border-radius:11px;padding:7px 10px;background:rgba(10,10,6,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>De ce nu trebuie ignorat nasul infundat
+          <small>NHK Medical Frontiers — Sinuzita, complicatii, chirurgia nazala moderna si antrenarea simtului mirosului</small>
+        </h1>
+        <p class="sub">Aproape <b>29 de milioane de adulti</b> din SUA sufera de sinuzita. Ignorarea congestiei nazale poate duce la complicatii grave: raspandirea infectiei la ochi, pierderea mirosului si probleme dentare ascunse. Spitalul universitar care efectueaza cele mai multe operatii nazale din Japonia explica <b>de ce tratamentul precoce este esential</b> si ce cercetari revolutionare se desfasoara in domeniu.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b> — spitalul universitar lider</span>
+          <span class="chip"><i class="i3"></i> <b>ORL</b> — otorinolaringologie</span>
+          <span class="chip"><i class="i4"></i> <b>Sinuzita</b> — nu o ignora!</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este sinuzita -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este sinuzita?</h2>
+          <p>Sinusurile paranazale sunt cavitati pline cu aer in jurul nasului. Cand se inflameaza, secretiile se acumuleaza si apar probleme</p>
+        </div>
+        <span class="badge">ANATOMIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">4</div>
+            <span class="u">perechi de sinusuri paranazale</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">29M</div>
+            <span class="u">adulti diagnosticati in SUA (CDC)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">20%</div>
+            <span class="u">din cazuri cauzate de probleme dentare</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">~90%</div>
+            <span class="u">rata de succes a chirurgiei</span>
+          </div>
+        </div>
+
+        <!-- Sinus diagram -->
+        <div class="sinusDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Head outline -->
+            <ellipse cx="350" cy="140" rx="160" ry="120" fill="none" stroke="rgba(200,184,152,.15)" stroke-width="2"/>
+            <!-- Nose line -->
+            <path d="M350,50 L350,200" stroke="rgba(200,184,152,.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="350" y="220" fill="#9A8A6A" font-size="9" text-anchor="middle">Linia nasului</text>
+
+            <!-- Frontal sinuses -->
+            <ellipse cx="310" cy="60" rx="30" ry="18" fill="rgba(245,158,11,.10)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+            <ellipse cx="390" cy="60" rx="30" ry="18" fill="rgba(245,158,11,.10)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+            <text x="350" y="40" fill="#F59E0B" font-size="10" font-weight="700" text-anchor="middle">Sinusuri frontale</text>
+            <text x="350" y="25" fill="#9A8A6A" font-size="8.5" text-anchor="middle">in spatele fruntii</text>
+
+            <!-- Ethmoid sinuses -->
+            <rect x="325" y="88" width="15" height="28" rx="4" fill="rgba(20,184,166,.12)" stroke="rgba(20,184,166,.35)" stroke-width="1.5"/>
+            <rect x="360" y="88" width="15" height="28" rx="4" fill="rgba(20,184,166,.12)" stroke="rgba(20,184,166,.35)" stroke-width="1.5"/>
+            <line x1="280" y1="102" x2="322" y2="102" stroke="rgba(20,184,166,.25)" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="275" y="99" fill="#14B8A6" font-size="9.5" font-weight="600" text-anchor="end">Sinusuri etmoidale</text>
+            <text x="275" y="111" fill="#9A8A6A" font-size="8" text-anchor="end">intre ochi</text>
+
+            <!-- Maxillary sinuses -->
+            <ellipse cx="290" cy="155" rx="42" ry="30" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.30)" stroke-width="1.5"/>
+            <ellipse cx="410" cy="155" rx="42" ry="30" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.30)" stroke-width="1.5"/>
+            <text x="290" y="152" fill="#F59E0B" font-size="9" font-weight="600" text-anchor="middle">Maxilar</text>
+            <text x="290" y="163" fill="#9A8A6A" font-size="8" text-anchor="middle">in obraji</text>
+            <text x="410" y="152" fill="#F59E0B" font-size="9" font-weight="600" text-anchor="middle">Maxilar</text>
+            <text x="410" y="163" fill="#9A8A6A" font-size="8" text-anchor="middle">in obraji</text>
+
+            <!-- Sphenoid sinus -->
+            <ellipse cx="350" cy="130" rx="20" ry="14" fill="rgba(217,119,6,.12)" stroke="rgba(217,119,6,.35)" stroke-width="1.5"/>
+            <line x1="420" y1="130" x2="373" y2="130" stroke="rgba(217,119,6,.25)" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="425" y="127" fill="#D97706" font-size="9.5" font-weight="600">Sinusul sfenoidal</text>
+            <text x="425" y="139" fill="#9A8A6A" font-size="8">in spatele nasului</text>
+
+            <!-- Connection passages -->
+            <text x="580" y="82" fill="#C8B898" font-size="9" font-weight="600">Pasaje inguste</text>
+            <text x="580" y="95" fill="#9A8A6A" font-size="8">leaga sinusurile de</text>
+            <text x="580" y="106" fill="#9A8A6A" font-size="8">cavitatea nazala</text>
+            <line x1="560" y1="95" x2="378" y2="102" stroke="rgba(200,184,152,.15)" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Teeth hint at bottom -->
+            <rect x="275" y="195" width="12" height="16" rx="3" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.25)" stroke-width="1"/>
+            <rect x="292" y="193" width="12" height="18" rx="3" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.25)" stroke-width="1"/>
+            <rect x="309" y="195" width="12" height="16" rx="3" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.25)" stroke-width="1"/>
+            <line x1="130" y1="200" x2="272" y2="200" stroke="rgba(248,113,113,.20)" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="125" y="197" fill="#F87171" font-size="9" font-weight="600" text-anchor="end">Radacinile dintilor</text>
+            <text x="125" y="209" fill="#9A8A6A" font-size="8" text-anchor="end">foarte aproape de sinusul maxilar!</text>
+
+            <!-- Eyes hint at top -->
+            <circle cx="300" cy="88" r="8" fill="none" stroke="rgba(200,184,152,.15)" stroke-width="1"/>
+            <circle cx="400" cy="88" r="8" fill="none" stroke="rgba(200,184,152,.15)" stroke-width="1"/>
+            <circle cx="300" cy="88" r="3" fill="rgba(200,184,152,.10)"/>
+            <circle cx="400" cy="88" r="3" fill="rgba(200,184,152,.10)"/>
+            <text x="140" y="68" fill="#9A8A6A" font-size="8">Ochii se afla</text>
+            <text x="140" y="79" fill="#9A8A6A" font-size="8">imediat deasupra</text>
+            <text x="140" y="90" fill="#9A8A6A" font-size="8">sinusurilor</text>
+            <line x1="185" y1="80" x2="290" y2="88" stroke="rgba(200,184,152,.12)" stroke-width="1" stroke-dasharray="3,2"/>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Secretia nazala normala vs. patologica</h3>
+            <p>Secretia nazala e <b>normal benefica</b> — umidifica aerul inspirat. Insa daca devine <b>galbena sau verde</b>, insotita de durere si greutate, inseamna ca bacteriile s-au inmultit si e nevoie de consult medical.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce se intampla cand sinusurile se blocheaza</h3>
+            <p>Inflamatia produce <b>secretii groase</b> care blocheaza pasajele inguste dintre sinusuri si cavitatea nazala. Secretiile nu mai pot fi evacuate, ducand la <b>acumulare de puroi</b> si dezvoltarea de <b>polipi nazali</b>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: De ce e periculos sa ignori -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>De ce e periculos sa ignori nasul infundat</h2>
+          <p>Inflamatia cronica poate depasi sinusurile si afecta ochii, gatul, urechile si chiar creierul</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">PERICOL</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Te obisnuiesti cu boala (cel mai mare pericol)</h4>
+              <p>Daca nasul se infunda <b>treptat</b>, creierul se adapteaza. Nu mai simti cat de grav e. "Daca intr-o zi te-ai trezi brusc cu nasul infundat, ar fi foarte neplacut. Dar daca se intampla lent, te obisnuiesti." Aceasta <b>auto-amagire</b> este cel mai periculos aspect al bolilor cronice.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="border-color:var(--bad);background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04))"></div></div>
+            <div class="stepContent">
+              <h4>2. Raspandire la ochi (complicatii orbitale)</h4>
+              <p>Sinusurile sunt <b>imediat sub ochi</b>. La persoanele cu imunitate scazuta, infectia poate trece de la nas la ochi: <b>albul ochiului se infunda</b>, vederea se tulbura, globul ocular este impins in jos. Imagini CT arata cum lichidul din sinusuri patrunde in orbita.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>3. Secretii in gat si bronsita</h4>
+              <p>Secretiile nazale pot <b>curge in gat</b> (scurgere post-nazala), provocand <b>tuse cronica</b> si bronsita. Respiratia pe gura in timpul somnului cauzeaza <b>dureri de gat la trezire</b> si treziri repetate pe timpul noptii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Pierderea simtului mirosului</h4>
+              <p>Inflamatia prelungita poate afecta <b>nervii olfactivi</b>. Pierderea poate fi selectiva: "Poti mirosi un lucru, dar nu altul — simti curry, dar nu pestele." Cercetarile moderne arata ca fibrele nervoase sunt distribuite <b>neuniform</b> in nas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Caz real: infectia s-a raspandit la ochi</h4>
+          <p>Imagini CT prezentate in emisiune arata cum <b>lichidul acumulat in sinusuri</b> a patruns in orbita, impingand globul ocular in jos. Ochiul stang si drept arata vizibil diferit. Acesta este un caz prezentat in emisiune ca exemplu de <b>complicatie grava</b> a sinuzitei netratate.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Legatura cu dintii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Legatura ascunsa: dintii si sinuzita</h2>
+          <p>Cercetarile echipei universitare japoneze arata ca ~20% din sinuzite sunt cauzate de probleme dentare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(245,158,11,.3);color:var(--glow);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Studiul pe ~900 de pacienti</h3>
+            <p>Echipa de cercetare de la spitalul universitar a examinat <b>scanari CT ale aproximativ 900 de pacienti</b> cu sinuzita. Concluzia: <b>circa 20% din cazuri</b> erau cauzate de probleme dentare, inclusiv carii si infectii la radacina dintilor.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">~900</span>
+              <span class="l">scanari CT analizate</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--bad)">Mecanismul infectiei</h3>
+            <p>Radacinile dintilor superiori sunt <b>foarte aproape de peretele sinusului maxilar</b>. O membrana subtire separa dintii de sinus. Cariile si infectiile pot <b>eroda aceasta bariera</b>, permitand bacteriilor sa patrunda in sinus si sa declanseze sinuzita.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Carie dentara sau infectie la radacina</h4>
+              <p>Procesul incepe cu o <b>carie netratata</b> sau o infectie la varful radacinii unui dinte superior (de obicei premolari sau molari).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="border-color:var(--bad);background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04))"></div></div>
+            <div class="stepContent">
+              <h4>Leziunea se extinde spre membrana sinusului</h4>
+              <p>Infectia se raspandeste treptat de la varful dintelui catre <b>membrana de bariera a sinusului maxilar</b>, erodand-o.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Infectia patrunde in sinus</h4>
+              <p>Odata ce bariera e sparta, <b>infectia se raspandeste in sinusul maxilar</b>. Pacientul poate avea dureri faciale timp de ani fara sa realizeze ca sursa e un dinte.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Am crezut ca sunt doua probleme separate si le-am tratat separat timp de doi ani. De fapt, totul era cauzat de un singur lucru. Imi pare rau ca nu am mers mai devreme la spital. Dar viata mea s-a imbunatatit mult dupa operatie.&raquo;
+          <cite>— Pacient japonez, dupa interventia chirurgicala combinata</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Chirurgia nazala moderna -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Chirurgia nazala moderna cu sistem de navigatie</h2>
+          <p>Spitalul universitar japonez a revolucionat interventia chirurgicala endoscopica prin tehnologie avansata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--glow2);">TRATAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">~90%</div>
+            <span class="u">pacienti fara recidiva dupa operatie</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">&lt;10%</div>
+            <span class="u">rata de recurenta a polipilor</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">2&#8594;1</div>
+            <span class="u">operatii combinate (inainte erau doua separate)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">GPS</div>
+            <span class="u">sistem de navigatie in timp real</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Sistemul de navigatie</h3>
+            <p>Un <b>sistem de navigatie chirurgicala</b> (similar unui GPS) permite medicului sa vada in timp real exact unde se afla instrumentul in interiorul nasului. Cand <b>sonda speciala</b> este introdusa, pe ecran se afiseaza zona precisa care este tratata.</p>
+            <p style="margin-top:6px;">Polipii care se afla <b>langa ochi</b> sau <b>in profunzimea nasului</b> pot fi localizati si inlaturati in siguranta.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Rezultate dupa operatie</h3>
+            <p>Avantajul major: <b>poate vindeca ce medicamentele nu reusesc</b>. Majoritatea pacientilor raporteaza ca nasul e "liber si curat". Respiratia nu mai e dificila, somnul nu mai e perturbat.</p>
+            <p style="margin-top:6px;">&laquo;Dupa operatie, nu mai esti constient de nasul tau. Respiratia nu e dificila deloc, asa ca daca adormi, <b>nu te mai trezesti pana dimineata</b>. La trezire, nu mai ai durere in gat.&raquo;</p>
+          </div>
+        </div>
+
+        <div class="alert ok">
+          <h4>Operatii combinate — inainte doua, acum una</h4>
+          <p>Anterior, medicii operau <b>polipii nazali</b> si <b>sinuzita dentara</b> in doua interventii separate. Acum, datorita tehnologiei de navigatie, totul se face <b>intr-o singura sedinta</b>, reducand riscurile si timpul de recuperare.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cercetarea nervului olfactiv -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cercetare revolutionara: cartografierea nervului olfactiv</h2>
+          <p>Prima imagine din lume a fibrelor nervoase olfactive — premiera mondiala realizata de cercetatorii japonezi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--glow2);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(20,184,166,.2);">
+            <h3 style="color:var(--glow2)">Prima imagine din lume</h3>
+            <p>Cercetatorii de la universitatea japoneza au capturat <b>prima imagine din lume</b> a fibrelor nervoase olfactive cu un asemenea nivel de detaliu. Aceasta descoperire permite intelegerea modului in care simtul mirosului functioneaza la nivel structural.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow)">Fibrele sunt distribuite neuniform</h3>
+            <p>Fibrele nervoase olfactive sunt distribuite <b>in intregul nas</b>, nu doar intr-o zona. Aceasta explica de ce unii oameni <b>pierd selectiv</b> mirosul: "Poti mirosi cafea, dar nu pesti crud. Poti mirosi curry, dar nu alt lucru."</p>
+          </div>
+        </div>
+
+        <div class="quote teal" style="margin-top:14px;">
+          &laquo;Examinand distributia nervilor implicati in miros, cred ca am putea oferi un tratament mai bun, mai personalizat, adaptat fiecarui individ.&raquo;
+          <cite>— Cercetator, Spitalul Universitar, Japonia</cite>
+        </div>
+
+        <div class="alert ok" style="margin-top:12px;">
+          <h4>Tratament personalizat in viitor</h4>
+          <p>Intelegerea distributiei exacte a fibrelor nervoase deschide calea catre <b>tratamente individualizate</b> pentru tulburarile de miros. In loc de o abordare generica, medicii vor putea tinti <b>zonele specifice</b> afectate la fiecare pacient.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Antrenarea simtului mirosului -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Antrenarea simtului mirosului & traditia japoneza Kodo</h2>
+          <p>Exercitii simple pentru mentinerea sanatatii olfactive si traditia milenara japoneza de "a asculta parfumul"</p>
+        </div>
+        <span class="badge">PREVENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Antrenarea nasului</h3>
+            <p>La fel cum <b>exercitiul fizic</b> mentine corpul tanar, stimularea constanta a nasului mentine simtul mirosului activ. "Vederea functioneaza tot timpul fara sa ne gandim. La fel auzul. Dar mirosul necesita <b>intentie si atentie constanta</b>."</p>
+            <p style="margin-top:6px;">Recomandare: mirosi <b>in mod constient</b> cat mai multe arome diferite in fiecare zi.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Kodo — arta de "a asculta parfumul"</h3>
+            <p>Traditie japoneza veche de <b>500 de ani</b>, nascuta in randul aristocratiei. In Japonia nu se spune "a mirosi", ci <b>"a asculta"</b> parfumul. Prin concentrare totala asupra mirosului, se atinge o stare de <b>relaxare si flux mental</b> (mindfulness).</p>
+            <p style="margin-top:6px;">Ritual: incensul se pune in palma stangii, se roteste usor in sens invers acelor de ceasornic, se acopera cu mana dreapta.</p>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Sachet cu plante locale</h3>
+            <p>Ingredientele vin din <b>mediul in care traiesti</b>. Frunze de camfor, ierburi aromatice, condimente — toate organice si usor de gasit. Se zdrobesc si se pun intr-un sachet parfumat.</p>
+          </div>
+          <div class="mini">
+            <h3>Mindfulness olfactiv</h3>
+            <p>Concentrarea asupra <b>mirosului prezent</b> este o forma de meditatie. Aerul care intra prin nas este "primul lucru pe care il inspiram in corp" — de aceea e important sa fim <b>constienti de el</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Beneficiu dublu</h3>
+            <p>Antrenarea mirosului nu doar <b>previne declinul olfactiv</b>, ci actioneaza si ca <b>exercitiu de concentrare</b>. Practicantii Kodo descriu o stare de flux mental similara meditatiei profunde.</p>
+          </div>
+        </div>
+
+        <div class="quote teal" style="margin-top:14px;">
+          &laquo;Aerul care intra prin nas este primul lucru pe care il inspiri in corp. De aceea, cred ca e cu adevarat important sa iti antrenezi simtul mirosului si sa fii mereu constient de el.&raquo;
+          <cite>— Medic ORL, Japonia</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Self-check -->
+    <div class="checklist">
+      <div class="clHead"><h2>Auto-verificare: cand sa mergi la medic</h2></div>
+      <div class="clBody">
+        <div class="clItem">
+          <span class="clIcon">&#x1F534;</span>
+          <span class="clText">Sufla pe <b>dreapta</b>, apoi pe <b>stanga</b>. Ambele parti sunt la fel? Sau una e <b>mereu blocata</b>?</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x1F7E1;</span>
+          <span class="clText">Cand iti sufli nasul, secretiile au <b>culoare galbena sau verde</b>?</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x1F7E0;</span>
+          <span class="clText">Simti <b>greutate sau presiune</b> in zona obrajilor, fruntii sau intre ochi?</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x1F535;</span>
+          <span class="clText">Te trezesti dimineata cu <b>dureri de gat</b>? (semn ca respiri pe gura noaptea)</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x1F7E3;</span>
+          <span class="clText">Simtul mirosului <b>s-a diminuat</b> in ultimul timp?</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x26A0;&#xFE0F;</span>
+          <span class="clText">Ai <b>probleme dentare</b> netratate la dintii superiori?</span>
+        </div>
+        <div class="clItem">
+          <span class="clIcon">&#x2757;</span>
+          <span class="clText">Simptomele <b>nu s-au ameliorat</b> de mai mult de 2-3 saptamani?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Etapele bolii timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Etapele sinuzitei netratate</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Faza 1</span><span class="tDesc">Raceala obisnuita. Secretii nazale <b>transparente</b>, congestie usoara</span></div>
+        <div class="tEvent"><span class="tDate">Faza 2</span><span class="tDesc">Bacteriile se inmultesc. Secretii <b>galbene/verzi</b>, durere, greutate</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">Faza 3</span><span class="tDesc">Pasajele sinusurilor se <b>blocheaza</b>. Puroi acumulat, presiune faciala</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">Faza 4</span><span class="tDesc"><b>Polipi nazali</b> se dezvolta din inflamatia prelungita</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">Faza 5</span><span class="tDesc">Infectia se poate <b>raspandi</b>: ochi, gat, urechi, creier</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">Tratament</span><span class="tDesc">Diagnostic, <b>medicatie</b>, iar daca nu e suficient &rarr; <b>chirurgie endoscopica</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Sfaturi de la medic</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Nu amana consultul</h4>
+          <p>"Daca simptomele <b>nu se amelioreaza</b>, recomand sa mergeti la o clinica, sa obtineti un diagnostic si sa incepeti <b>tratamentul cat mai repede posibil</b>."</p>
+        </div>
+        <div class="comNote">
+          <h4>Secretia nazala e normala</h4>
+          <p>"Corpul uman trebuie sa fie <b>mereu umed</b>. Secretia nazala <b>umidifica aerul</b> — e un lucru bun. Problema apare cand devine excesiva, verde sau galbena."</p>
+        </div>
+        <div class="comNote">
+          <h4>Verifica si dintii</h4>
+          <p>"Nu m-am gandit niciodata ca <b>dintii mei pot cauza sinuzita</b>." — Acesta e un diagnostic ratat frecvent. Daca ai sinuzita recurenta, cere si o verificare dentara.</p>
+        </div>
+        <div class="comNote">
+          <h4>Dupa operatie</h4>
+          <p>"Respiratia nu mai e dificila, asa ca adormi si <b>nu te mai trezesti pana dimineata</b>. La trezire, nu mai ai durere in gat." — Pacient operat</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Sinuzita</dt>
+          <dd>Inflamatia sinusurilor paranazale, de obicei cauzata de infectii virale sau bacteriene. Poate fi acuta (sub 4 saptamani) sau cronica (peste 12 saptamani).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sinusuri paranazale</dt>
+          <dd>Patru perechi de cavitati pline cu aer in oasele craniului, conectate la cavitatea nazala prin pasaje inguste. Rol: umidificarea aerului si rezonanta vocii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Polipi nazali</dt>
+          <dd>Excrescente benigne ale mucoasei nazale, cauzate de inflamatie cronica. Blocheaza caile nazale si reduc simtul mirosului. Inlaturati chirurgical.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Endoscopie nazala</dt>
+          <dd>Procedura minim invaziva prin care un tub subtire cu camera este introdus in nas pentru diagnostic sau interventie chirurgicala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Nerv olfactiv</dt>
+          <dd>Nervul cranial I, responsabil pentru transmiterea senzatiilor de miros de la nas la creier. Fibrele sale sunt distribuite in intreaga cavitate nazala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sinuzita odontogena</dt>
+          <dd>Sinuzita cauzata de o infectie dentara. Radacinile dintilor superiori sunt foarte aproape de sinusul maxilar — cariile pot eroda bariera naturala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Kodo (ceremonia incensului)</dt>
+          <dd>Arta japoneza de "a asculta parfumul", veche de 500 de ani. Forma de meditatie olfactiva care antreneaza simtul mirosului si induce relaxare profunda.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Scurgere post-nazala</dt>
+          <dd>Curgerea secretiilor nazale pe peretele posterior al gatului, cauzand tuse, durere in gat si disconfort — frecvent in sinuzita cronica.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=SDICS69ZFbQ" target="_blank">NHK Medical Frontiers — Why You Shouldn't Ignore a Stuffy Nose</a> &middot;
+    Infografic explicativ in limba romana bazat pe emisiunea NHK World-Japan
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract nasal cavity cross-section with airflow particles ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Nasal cavity walls (bezier curves defining the nasal passage)
+  const w = () => W / devicePixelRatio;
+  const h = () => H / devicePixelRatio;
+
+  // Air particles flowing through nasal cavity
+  const particles = [];
+  const particleCount = 60;
+  for(let i = 0; i < particleCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: 0.3 + Math.random() * 0.4,
+      speed: 0.002 + Math.random() * 0.004,
+      size: 1 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.15 ? 'infected' : Math.random() < 0.3 ? 'mucus' : 'air',
+      wobble: 0.5 + Math.random() * 1.5
+    });
+  }
+
+  // Sinus cavities (circular regions)
+  const sinuses = [
+    {x: 0.25, y: 0.22, r: 0.08, label: 'Frontal', color: '245,158,11'},
+    {x: 0.75, y: 0.22, r: 0.08, label: 'Frontal', color: '245,158,11'},
+    {x: 0.18, y: 0.50, r: 0.10, label: 'Maxilar', color: '245,158,11'},
+    {x: 0.82, y: 0.50, r: 0.10, label: 'Maxilar', color: '245,158,11'},
+    {x: 0.40, y: 0.35, r: 0.05, label: 'Etmoid', color: '20,184,166'},
+    {x: 0.60, y: 0.35, r: 0.05, label: 'Etmoid', color: '20,184,166'},
+    {x: 0.50, y: 0.42, r: 0.06, label: 'Sfenoid', color: '217,119,6'}
+  ];
+
+  function draw(){
+    const cw = w(), ch = h();
+    ctx.clearRect(0, 0, cw, ch);
+    t += 0.006;
+
+    // Background subtle gradient
+    const bgGrad = ctx.createRadialGradient(cw*0.5, ch*0.4, 0, cw*0.5, ch*0.4, cw*0.5);
+    bgGrad.addColorStop(0, 'rgba(245,158,11,0.03)');
+    bgGrad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, cw, ch);
+
+    // Draw nasal cavity outline (central passage)
+    ctx.beginPath();
+    ctx.moveTo(cw * 0.45, ch * 0.05);
+    ctx.bezierCurveTo(cw * 0.42, ch * 0.3, cw * 0.38, ch * 0.5, cw * 0.40, ch * 0.95);
+    ctx.strokeStyle = 'rgba(200,184,152,0.15)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cw * 0.55, ch * 0.05);
+    ctx.bezierCurveTo(cw * 0.58, ch * 0.3, cw * 0.62, ch * 0.5, cw * 0.60, ch * 0.95);
+    ctx.strokeStyle = 'rgba(200,184,152,0.15)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw sinus cavities
+    sinuses.forEach((s, i) => {
+      const sx = s.x * cw, sy = s.y * ch, sr = s.r * cw;
+      const pulse = 1 + Math.sin(t * 1.5 + i * 1.2) * 0.08;
+
+      // Glow
+      const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * pulse);
+      grd.addColorStop(0, `rgba(${s.color},0.12)`);
+      grd.addColorStop(0.7, `rgba(${s.color},0.04)`);
+      grd.addColorStop(1, `rgba(${s.color},0)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr * pulse * 1.3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Border
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr * pulse, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${s.color},${0.2 + Math.sin(t * 2 + i) * 0.08})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    });
+
+    // Draw connection lines between sinuses and nasal cavity
+    sinuses.forEach((s, i) => {
+      const sx = s.x * cw, sy = s.y * ch;
+      const nx = cw * 0.5, ny = sy;
+      const alpha = 0.06 + Math.sin(t * 2 + i) * 0.03;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(nx, ny);
+      ctx.strokeStyle = `rgba(${s.color},${alpha})`;
+      ctx.lineWidth = 0.8;
+      ctx.setLineDash([3, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // Draw airflow particles
+    particles.forEach(p => {
+      // Move particle downward through nasal passage
+      p.y += p.speed;
+      if(p.y > 1.05) {
+        p.y = -0.05;
+        p.x = 0.42 + Math.random() * 0.16;
+      }
+
+      // Wobble around the central passage
+      const wobbleX = Math.sin(t * 3 + p.phase) * p.wobble * 0.02;
+      const centralX = 0.50 + wobbleX;
+      // Particles drift toward center
+      p.x += (centralX - p.x) * 0.01;
+
+      const px = p.x * cw;
+      const py = p.y * ch;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.size, 0, Math.PI * 2);
+
+      if(p.type === 'infected'){
+        ctx.fillStyle = `rgba(248,113,113,${0.4 + Math.sin(t * 4 + p.phase) * 0.2})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'mucus'){
+        ctx.fillStyle = `rgba(245,158,11,${0.3 + Math.sin(t * 3 + p.phase) * 0.15})`;
+        ctx.shadowColor = 'rgba(245,158,11,0.2)';
+        ctx.shadowBlur = 4;
+      } else {
+        ctx.fillStyle = `rgba(20,184,166,${0.2 + Math.sin(t * 2.5 + p.phase) * 0.1})`;
+        ctx.shadowColor = 'rgba(20,184,166,0.15)';
+        ctx.shadowBlur = 3;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Inflammation pulse waves from sinus areas
+    for(let p = 0; p < 2; p++){
+      const pulseR = ((t * 25 + p * 70) % 120);
+      const pulseAlpha = Math.max(0, 0.06 - pulseR / 2400);
+      ctx.beginPath();
+      ctx.arc(cw * 0.18, ch * 0.50, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(245,158,11,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    ctx.font = '8.5px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(200,184,152,0.35)';
+    ctx.fillText('CAVITATE NAZALA', cw * 0.5 - 38, ch * 0.92);
+
+    // Legend
+    const ly = ch - 10;
+    ctx.fillStyle = 'rgba(20,184,166,0.6)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,184,152,0.4)'; ctx.fillText('aer', 15, ly + 3);
+    ctx.fillStyle = 'rgba(245,158,11,0.6)'; ctx.beginPath(); ctx.arc(38, ly, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,184,152,0.4)'; ctx.fillText('mucus', 45, ly + 3);
+    ctx.fillStyle = 'rgba(248,113,113,0.6)'; ctx.beginPath(); ctx.arc(82, ly, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,184,152,0.4)'; ctx.fillText('infectie', 89, ly + 3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

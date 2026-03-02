@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hidrogenul Medicinal — Gazul care poate salva vieti | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: terapia cu hidrogen gazos in medicina de urgenta. Studii clinice din Japonia pentru stop cardiac si sindrom de detresa respiratorie acuta (ARDS)." />
+  <style>
+    :root{
+      --bg0:#060A14;
+      --bg1:#081020;
+      --panel:#0C1832cc;
+      --card:#0B1530;
+      --card2:#091228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#60A5FA;
+      --glow2:#22D3EE;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(96,165,250,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(34,211,238,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(96,165,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* -- HERO -- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(96,165,250,.20);
+      background: linear-gradient(180deg, rgba(11,21,48,.75), rgba(8,16,32,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(96,165,250,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(34,211,238,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(96,165,250,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--ok)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,10,20,.30),rgba(6,10,20,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* -- CARDS -- */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(11,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,10,20,.28),rgba(6,10,20,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,10,20,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(96,165,250,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.cyan{border-color:var(--glow2);background:rgba(34,211,238,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(96,165,250,.22),rgba(96,165,250,.04));}
+    .stepBar.cyan{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(96,165,250,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.cyan{border-color:var(--glow2);background:rgba(34,211,238,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(96,165,250,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(96,165,250,.06);margin-top:12px;
+    }
+    .alert.green{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.green h4{color:var(--ok);}
+    .alert.warn h4{color:var(--warn);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* Comparison bars */
+    .compBars{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+    .compBar{display:flex;align-items:center;gap:10px;}
+    .compBar .label{font-size:11.5px;color:var(--muted);width:120px;flex-shrink:0;text-align:right;}
+    .compBar .track{flex:1;height:28px;background:rgba(6,10,20,.5);border-radius:8px;position:relative;overflow:hidden;border:1px solid rgba(234,240,255,.07);}
+    .compBar .fill{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:12px;font-weight:700;transition:width 1.5s ease-out;}
+    .compBar .val{font-size:13px;font-weight:700;width:52px;text-align:right;flex-shrink:0;}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,10,20,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(96,165,250,.18);
+      background:linear-gradient(180deg,rgba(11,21,48,.80),rgba(8,16,32,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(96,165,250,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(96,165,250,.25);background:rgba(96,165,250,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,10,20,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(11,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(11,21,48,.75),rgba(9,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,10,20,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Hidrogenul Medicinal: Gazul care poate salva vieti
+          <small>NHK Medical Frontiers — Cercetari revolutionare din Japonia privind terapia cu hidrogen gazos</small>
+        </h1>
+        <p class="sub">In Japonia, peste <b>140.000 de persoane</b> ajung anual la urgente in stop cardiac. Doar 30% dintre ele isi revin, iar leziunile cerebrale sunt devastatoare. Un tratament revolutionar bazat pe <b>inhalarea de hidrogen gazos</b> — incolor, inodor si netoxic — a crescut rata de supravietuire cu <b>24%</b> si reduce dramatic efectele secundare. Cercetatorii japonezi sunt la un pas de aplicarea clinica.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b> — cercetare de frontiera</span>
+          <span class="chip"><i class="i3"></i> <b>Medicina</b> — urgente & resuscitare</span>
+          <span class="chip"><i class="i4"></i> <b>Hidrogen</b> — H&#8322; gazos terapeutic</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- Card 1: Problema -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Problema: Stopul cardiac si sindromul post-resuscitare</h2>
+          <p>Chiar daca inima reporneste, organismul sufera un al doilea val de distrugere — sindromul post-stop cardiac (PCAS)</p>
+        </div>
+        <span class="badge">CONTEXT</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">140K</div>
+            <span class="u">pacienti/an in stop cardiac in Japonia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">~30%</div>
+            <span class="u">reusesc repornirea inimii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">PCAS</div>
+            <span class="u">sindrom post-stop cardiac</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">Creier</div>
+            <span class="u">organul cel mai afectat si cel mai greu de recuperat</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04))"></div></div>
+            <div class="stepContent">
+              <h4>1. Stopul cardiac</h4>
+              <p>Inima se opreste. <b>Fluxul sanguin inceteaza</b>. Oxigenul si nutrientii nu mai ajung la organe. Celulele incep sa moara.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>2. Resuscitarea</h4>
+              <p>Inima reporneste. Dar fluxul brusc de sange si oxigen declanseaza o <b>reactie severa in tot corpul</b> — ca si cum organele ar fi "incendiate".</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>3. Explozia de ROS (specii reactive de oxigen)</h4>
+              <p>Cresterea brusca a oxigenului produce cantitati excesive de <b>ROS</b> — subproduse toxice ale mitocondriilor. Acestea <b>distrug sau ucid celulele</b>, in special in creier.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Sindromul PCAS</h4>
+              <p>Leziuni cerebrale severe, pierderea memoriei, a limbajului, a gandirii. Unii pacienti raman inconstienti si imobilizati la pat. Altii <b>nu supravietuiesc</b> in ciuda resuscitarii.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert warn">
+          <h4>De ce creierul sufera cel mai mult?</h4>
+          <p>Creierul are cel mai mare consum de oxigen si este <b>cel mai sensibil la ROS</b>. Odata deteriorat, recuperarea este extrem de dificila. Tulburarile de gandire, memorie si limbaj pot afecta permanent viata de zi cu zi.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Studiul clinic principal -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul clinic: Inhalarea de H&#8322; in stop cardiac</h2>
+          <p>Primul trial clinic multicentric din Japonia demonstreaza eficacitatea hidrogenului gazos la pacientii cu PCAS</p>
+        </div>
+        <span class="badge" style="border-color:rgba(96,165,250,.3);color:var(--glow);">TRIAL CLINIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">15</div>
+            <span class="u">spitale implicate in studiu</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">73</div>
+            <span class="u">pacienti cu PCAS</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">2%</div>
+            <span class="u">concentratie H&#8322; inhalat</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">18h</div>
+            <span class="u">durata inhalarii</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Protocolul</h3>
+            <p>73 de pacienti cu PCAS au fost impartiti in doua grupuri. Grupul de control a primit <b>oxigen + azot</b> (tratament standard). Grupul experimental a primit aceleasi gaze <b>plus 2% hidrogen</b>. Ambele grupuri au inhalat timp de <b>18 ore</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Coordonator: Dr. Suzuki Masaru</h3>
+            <p>Peste <b>30 de ani de experienta</b> in medicina de urgenta. A reusit sa resusciteze multi pacienti care ulterior nu au supravietuit din cauza PCAS. Studiul a inceput in <b>2017</b>.</p>
+          </div>
+        </div>
+
+        <!-- Comparison bars for survival -->
+        <h3 style="margin:18px 0 4px;font-size:13.5px;">Rata de supravietuire la 90 de zile</h3>
+        <div class="compBars">
+          <div class="compBar">
+            <span class="label">Fara H&#8322;</span>
+            <div class="track">
+              <div class="fill" id="barNoH2" style="width:0%;background:linear-gradient(90deg,rgba(110,122,154,.3),rgba(110,122,154,.5));">
+              </div>
+            </div>
+            <span class="val" style="color:var(--muted)">~60%</span>
+          </div>
+          <div class="compBar">
+            <span class="label">Cu H&#8322; (2%)</span>
+            <div class="track">
+              <div class="fill" id="barH2" style="width:0%;background:linear-gradient(90deg,rgba(96,165,250,.4),rgba(34,211,238,.6));">
+              </div>
+            </div>
+            <span class="val" style="color:var(--glow)">85.5%</span>
+          </div>
+        </div>
+
+        <h3 style="margin:18px 0 4px;font-size:13.5px;">Recuperare fara simptome la 90 de zile</h3>
+        <div class="compBars">
+          <div class="compBar">
+            <span class="label">Fara H&#8322;</span>
+            <div class="track">
+              <div class="fill" id="barNoH2b" style="width:0%;background:linear-gradient(90deg,rgba(110,122,154,.3),rgba(110,122,154,.5));">
+              </div>
+            </div>
+            <span class="val" style="color:var(--muted)">20%</span>
+          </div>
+          <div class="compBar">
+            <span class="label">Cu H&#8322; (2%)</span>
+            <div class="track">
+              <div class="fill" id="barH2b" style="width:0%;background:linear-gradient(90deg,rgba(52,211,153,.4),rgba(34,211,238,.5));">
+              </div>
+            </div>
+            <span class="val" style="color:var(--ok)">~50%</span>
+          </div>
+        </div>
+
+        <div class="alert green" style="margin-top:14px;">
+          <h4>Rezultat remarcabil: +24% supravietuire</h4>
+          <p>Grupul care a inhalat hidrogen a avut o rata de supravietuire cu <b>24% mai mare</b>. Aproape <b>jumatate din pacienti</b> s-au recuperat complet, fara simptome sau sechele, si au revenit la viata normala. In grupul fara hidrogen, <b>40% au decedat</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Mecanismul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum functioneaza: mecanismul molecular al H&#8322;</h2>
+          <p>Hidrogenul patrunde in celule si activeaza apararea antioxidanta naturala a organismului</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--glow2);">MECANISM</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- SVG mechanism diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Flow arrows -->
+            <line x1="130" y1="70" x2="260" y2="70" stroke="rgba(96,165,250,.3)" stroke-width="2" marker-end="url(#arrowB)"/>
+            <line x1="440" y1="70" x2="570" y2="70" stroke="rgba(34,211,238,.3)" stroke-width="2" marker-end="url(#arrowC)"/>
+            <line x1="350" y1="110" x2="350" y2="160" stroke="rgba(52,211,153,.3)" stroke-width="2" marker-end="url(#arrowG)"/>
+            <line x1="350" y1="220" x2="200" y2="250" stroke="rgba(52,211,153,.25)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="350" y1="220" x2="500" y2="250" stroke="rgba(52,211,153,.25)" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+            <defs>
+              <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(96,165,250,.5)"/></marker>
+              <marker id="arrowC" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(34,211,238,.5)"/></marker>
+              <marker id="arrowG" markerWidth="8" markerHeight="6" refX="3" refY="8" orient="auto"><path d="M0,0 L3,8 L6,0" fill="rgba(52,211,153,.5)"/></marker>
+            </defs>
+
+            <!-- H2 molecule -->
+            <rect x="20" y="42" width="105" height="55" rx="12" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.35)" stroke-width="1.5"/>
+            <text x="72" y="64" fill="#60A5FA" font-size="14" font-weight="700" text-anchor="middle">H&#8322;</text>
+            <text x="72" y="82" fill="#A0ACC8" font-size="9" text-anchor="middle">hidrogen inhalat</text>
+
+            <!-- Cell entry -->
+            <rect x="265" y="42" width="170" height="55" rx="12" fill="rgba(96,165,250,.08)" stroke="rgba(96,165,250,.25)" stroke-width="1.5"/>
+            <text x="350" y="62" fill="#60A5FA" font-size="11" font-weight="700" text-anchor="middle">Patrunde in celule</text>
+            <text x="350" y="78" fill="#A0ACC8" font-size="9" text-anchor="middle">cel mai mic element, trece oriunde</text>
+
+            <!-- Nrf2 activation -->
+            <rect x="575" y="42" width="110" height="55" rx="12" fill="rgba(34,211,238,.12)" stroke="rgba(34,211,238,.35)" stroke-width="1.5"/>
+            <text x="630" y="62" fill="#22D3EE" font-size="11" font-weight="700" text-anchor="middle">Activeaza Nrf2</text>
+            <text x="630" y="78" fill="#A0ACC8" font-size="9" text-anchor="middle">proteina antioxidanta</text>
+
+            <!-- Antioxidant production -->
+            <rect x="270" y="163" width="160" height="55" rx="12" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1.5"/>
+            <text x="350" y="185" fill="#34D399" font-size="11" font-weight="700" text-anchor="middle">Produce antioxidanti</text>
+            <text x="350" y="201" fill="#A0ACC8" font-size="9" text-anchor="middle">suprima generarea de ROS</text>
+
+            <!-- Results -->
+            <rect x="115" y="238" width="170" height="36" rx="10" fill="rgba(52,211,153,.06)" stroke="rgba(52,211,153,.18)" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="200" y="261" fill="#34D399" font-size="10" font-weight="600" text-anchor="middle">Celulele supravietuiesc</text>
+
+            <rect x="415" y="238" width="170" height="36" rx="10" fill="rgba(52,211,153,.06)" stroke="rgba(52,211,153,.18)" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="500" y="261" fill="#34D399" font-size="10" font-weight="600" text-anchor="middle">Creierul e protejat</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Studiul Osawa (2007)</h3>
+            <p>Cercetarea revolutionara a lui <b>Osawa Ikuro</b> a uimit lumea stiintifica. A oprit fluxul sanguin in creierele sobolanilor timp de <b>90 de minute</b>, apoi le-a administrat H&#8322;. Creierele sobolanilor care au inhalat <b>2% hidrogen</b> nu au prezentat aproape nicio moarte celulara, spre deosebire de cei fara H&#8322;.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Experimentul cu celule vii</h3>
+            <p>Celulele vii (verde) au fost expuse la cantitati mari de ROS. <b>Fara hidrogen</b>: celulele au murit treptat (au devenit rosii). <b>Cu hidrogen</b>: aproape nicio schimbare de culoare — H&#8322; a <b>suprimat deteriorarea cauzata de ROS</b>, permitand celulelor sa supravietuiasca.</p>
+          </div>
+        </div>
+
+        <div class="quote cyan" style="margin-top:14px;">
+          &laquo;Efectul hidrogenului este incredibil de rapid. Patrunde in creier, in inima, peste tot. Ar putea fi unul dintre primele medicamente care ajunge in creier foarte repede in situatii de urgenta, unde fiecare secunda conteaza.&raquo;
+          <cite>— Dr. Lance Becker, expert in resuscitare, Universitatea din Chicago / Universitatea din Pennsylvania</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: ARDS -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>A doua aplicatie: Sindromul de detresa respiratorie acuta (ARDS)</h2>
+          <p>Cercetarile se extind dincolo de stopul cardiac — hidrogenul combate inflamatia pulmonara severa</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">ARDS</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">~40%</div>
+            <span class="u">mortalitate in cazuri severe de ARDS</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">8.000</div>
+            <span class="u">cazuri de ARDS pe an in Japonia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">48h</div>
+            <span class="u">inhalarea incepe in 48h de la diagnostic</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">5 zile</div>
+            <span class="u">durata tratamentului cu H&#8322;</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Ce este ARDS?</h3>
+            <p>Sindrom de <b>insuficienta respiratorie</b> cauzata de inflamatie (pneumonie etc.). Plamanii sanatosi apar negri pe scanari (plini de oxigen). In ARDS, apar <b>albi, ca sticla mata</b>. Plamanii devin rigizi, respiratia devine dificila. Se pot necesita <b>ventilatoare sau ECMO</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Studiul pe soareci</h3>
+            <p>Soarecii cu ARDS au inhalat <b>3,2% hidrogen</b> timp de <b>6 ore/zi</b>, <b>3 saptamani</b>. Rezultat: respiratie imbunatatita, <b>fibroza suprimata</b>. Alveolele si-au pastrat forma (vs. distrugere masiva in grupul fara H&#8322;). Nivelul de <b>IL-6</b> (substanta inflamatorie) a scazut la <b>o treime</b>.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>H&#8322; ajunge in alveole</h4>
+              <p>Hidrogenul inhalat patrunde in alveolele pulmonare — sacii minusculi unde are loc schimbul de oxigen si dioxid de carbon.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>Inhiba celulele imunitare inflamatorii</h4>
+              <p>In ARDS, plamanii sunt invadati de celule imunitare care cauzeaza inflamatie cronica. Hidrogenul <b>inhiba activitatea acestor celule</b>, reducand inflamatia.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Suprima IL-6 si previne fibroza</h4>
+              <p>H&#8322; reduce eliberarea de <b>IL-6</b> (un mediator inflamator cheie) si opreste <b>fibroza</b> — intarirea si ingrosarea tesutului pulmonar care face plamanii rigizi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert green" style="margin-top:14px;">
+          <h4>Trial clinic uman in desfasurare</h4>
+          <p>Studiul pe oameni a inceput in <b>2023</b>, condus de Dr. Aag Toshiyuki, specialist in terapie intensiva respiratorie. <b>7 cazuri completate</b> pana acum. Studiul continua pana in <b>martie 2026</b>, cu analiza detaliata planificata la atingerea a <b>40 de cazuri</b>. Echipa a dezvoltat un <b>generator de hidrogen personalizat</b> care foloseste electroliza apei.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Properties of H2 -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Proprietatile unice ale hidrogenului in medicina</h2>
+          <p>De ce H&#8322; este candidatul ideal pentru tratamente de urgenta — si cat de aproape suntem de aplicarea clinica</p>
+        </div>
+        <span class="badge">H&#8322;</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(96,165,250,.2);">
+            <h3 style="color:var(--glow)">Cel mai mic element</h3>
+            <p>Hidrogenul este <b>cel mai mic si cel mai usor</b> element din univers. Atomii sai pot fi gasiti in apa. Marimea minuscula ii permite sa <b>patrunda oriunde</b> in organism — inclusiv prin bariera hemato-encefalica.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--glow2)">Complet sigur</h3>
+            <p>Hidrogenul gazos este <b>incolor, inodor, fara gust si netoxic</b>. Pacientii trebuie doar sa-l inhaleze. Nu s-au raportat efecte secundare semnificative in trialurile clinice. Concentratia de <b>2%</b> este sigura si eficace.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Actiune fulgeratoare</h3>
+            <p>Efectul hidrogenului este <b>"incredibil de rapid"</b> conform cercetatorilor. In urgente, unde <b>fiecare secunda conteaza</b>, H&#8322; ar putea fi primul medicament care ajunge in creier aproape instantaneu.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>De la laborator la practica</h3>
+            <p>Au trecut aproape <b>20 de ani</b> de cand cercetatorii japonezi au descoperit potentialul hidrogenului. Dedicarea lor a extins posibilitatile si acum H&#8322; este la <b>un singur pas de aplicarea practica</b> in medicina de urgenta.</p>
+          </div>
+          <div class="mini">
+            <h3>Generator de H&#8322; personalizat</h3>
+            <p>Echipa Dr. Aag a construit un <b>generator de hidrogen gazos</b> pentru trialul ARDS. Foloseste <b>electroliza apei</b> pentru a produce H&#8322;, care este diluat la 2% prin amestecarea cu aer. Concentratia este <b>monitorizata constant</b> pentru stabilitate.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Datele preliminare sunt foarte incurajatoare. Se pare ca hidrogenul poate proteja creierul — foarte important dupa un stop cardiac. Terapia cu hidrogen gazos ar putea schimba radical medicina de urgenta.&raquo;
+          <cite>— Dr. Lance Becker, pionier in cercetarea resuscitarii</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Conclusions -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si perspective de viitor</h2>
+          <p>Ce ne spun cercetarile si cat mai e pana la tratamentul disponibil in spitale</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(96,165,250,.2);">
+            <h3 style="color:var(--glow)">Stop cardiac: dovezi solide</h3>
+            <p>Trialul cu 73 de pacienti din 15 spitale a demonstrat ca inhalarea de H&#8322; <b>creste supravietuirea cu 24%</b> si reduce dramatic sechelele cerebrale. Aproape <b>jumatate din pacientii</b> tratati cu H&#8322; s-au recuperat complet.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--glow2)">ARDS: trialul continua</h3>
+            <p>Rezultatele pe soareci sunt promitatoare: <b>fibroza suprimata</b>, inflamatie redusa, IL-6 la o treime. Trialul pe oameni (7 cazuri completate) continua pana in <b>2026</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Mecanism dovedit</h3>
+            <p>H&#8322; activeaza <b>proteina Nrf2</b>, produce antioxidanti, suprima ROS in mitocondrii. Efectul este rapid, sigur si demonstrat atat in laborator, cat si in trialuri clinice.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">20 de ani de cercetare</h3>
+            <p>De la studiul lui <b>Osawa din 2007</b> la trialurile clinice de azi, cercetatorii japonezi au deschis un camp complet nou. Hidrogenul este acum la <b>un pas de aplicarea practica</b> in spitalele din intreaga lume.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Am fost atat de surprins de rezultate — care au aratat ca simpla inhalare de hidrogen poate creste supravietuirea pacientilor cu sindrom post-stop cardiac.&raquo;
+          <cite>— Dr. Osawa Ikuro, autorul studiului fondator din 2007</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- SIDEBAR -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia cercetarii</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">~2005</span><span class="tDesc">Cercetatorii japonezi incep sa studieze <b>potentialul H&#8322;</b></span></div>
+        <div class="tEvent"><span class="tDate">2007</span><span class="tDesc"><b>Osawa Ikuro</b> publica studiul revolutionar: H&#8322; reduce leziunile cerebrale la sobolani</span></div>
+        <div class="tEvent"><span class="tDate">2007+</span><span class="tDesc">Descoperirea mecanismului: H&#8322; neutralizeaza <b>ROS</b> prin activarea <b>Nrf2</b></span></div>
+        <div class="tEvent"><span class="tDate">2017</span><span class="tDesc"><b>Dr. Suzuki Masaru</b> lanseaza trialul clinic in 15 spitale din Japonia</span></div>
+        <div class="tEvent"><span class="tDate">2017-20</span><span class="tDesc">73 pacienti cu PCAS tratati; <b>85,5% supravietuire</b> cu H&#8322;</span></div>
+        <div class="tEvent"><span class="tDate">2023</span><span class="tDesc">Incepe trialul clinic pentru <b>ARDS</b> condus de Dr. Aag Toshiyuki</span></div>
+        <div class="tEvent"><span class="tDate">2023-26</span><span class="tDesc"><b>7 cazuri</b> completate; tinta: 40 cazuri pana in <b>martie 2026</b></span></div>
+        <div class="tEvent"><span class="tDate">viitor</span><span class="tDesc">Un singur pas pana la <b>aplicarea clinica</b> pe scara larga</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Detalii stiintifice</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce 2% hidrogen?</h4>
+          <p>Concentratia de 2% este suficient de mica pentru a fi <b>complet sigura</b> (nu este inflamabila sau exploziva la aceasta concentratie), dar suficient de mare pentru a avea <b>efect terapeutic semnificativ</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>ROS: prieten si dusman</h4>
+          <p>Speciile reactive de oxigen sunt <b>mereu prezente</b> in organism — sunt subproduse naturale ale mitocondriilor. In cantitati mici sunt utile. Dar in exces (dupa resuscitare), devin <b>extrem de distructive</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce creierul e cel mai vulnerabil?</h4>
+          <p>Creierul consuma ~20% din oxigenul total al corpului, desi reprezinta doar 2% din greutate. Aceasta dependenta masiva il face <b>primul organ care sufera</b> cand fluxul sanguin se opreste — si cel mai afectat de ROS.</p>
+        </div>
+        <div class="comNote">
+          <h4>IL-6 in ARDS</h4>
+          <p>Interleukina 6 este un <b>mediator inflamator cheie</b> in ARDS. Nivelurile ridicate de IL-6 coreleaza cu severitatea bolii. Faptul ca H&#8322; reduce IL-6 la <b>o treime</b> este o descoperire semnificativa.</p>
+        </div>
+        <div class="comNote">
+          <h4>Scala de evaluare 0-6</h4>
+          <p>Echipa lui Suzuki a folosit o <b>scala de la 0 la 6</b> pentru a masura severitatea leziunilor cerebrale la 90 de zile. 0 = fara simptome, 6 = deces. Grupul H&#8322; a avut semnificativ mai multi pacienti la scor 0.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key figures sidebar -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cercetatori cheie</h2></div>
+        <span class="badge">OAMENI</span>
+      </div>
+      <div class="cardBody" style="display:flex;flex-direction:column;gap:10px;">
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--glow)">Dr. Suzuki Masaru</h3>
+          <p>Peste 30 de ani in medicina de urgenta. Coordonatorul trialului clinic multicentric cu H&#8322; pentru pacientii cu PCAS.</p>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--glow2)">Dr. Osawa Ikuro</h3>
+          <p>Autorul studiului fondator din 2007. A demonstrat ca H&#8322; suprima moartea celulara in creier si neutralizeaza ROS.</p>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--ok)">Dr. Aag Toshiyuki</h3>
+          <p>Specialist in terapie intensiva respiratorie. Conduce trialul ARDS cu generator de H&#8322; personalizat.</p>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--warn)">Dr. Lance Becker</h3>
+          <p>Expert american in resuscitare. A fondat centre de resuscitare la Universitatea din Chicago si din Pennsylvania. Sustine potentialul H&#8322;.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>PCAS (Sindrom Post-Stop Cardiac)</dt>
+          <dd>Reactie severa a organismului dupa resuscitare, cauzata de revenirea brusca a fluxului sanguin si oxigenului. Afecteaza cel mai grav creierul.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ROS (Specii Reactive de Oxigen)</dt>
+          <dd>Subproduse toxice generate de mitocondrii in exces dupa resuscitare. Distrug sau ucid celulele. Hidrogenul le neutralizeaza.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Nrf2</dt>
+          <dd>Proteina activata de hidrogen care stimuleaza productia de antioxidanti, suprimand generarea de ROS in mitocondrii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ARDS</dt>
+          <dd>Sindrom de Detresa Respiratorie Acuta — insuficienta respiratorie grava cauzata de inflamatie pulmonara. Mortalitate ~40% in cazuri severe.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>IL-6 (Interleukina 6)</dt>
+          <dd>Substanta inflamatorie cheie in ARDS. Nivelurile ridicate agraveaza boala. Hidrogenul reduce IL-6 la o treime din nivelul normal.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Fibroza pulmonara</dt>
+          <dd>Intarirea si ingrosarea tesutului pulmonar, facand plamanii rigizi. Hidrogenul previne progresia fibrozei in ARDS.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Electroliza apei</dt>
+          <dd>Proces folosit de generatorul de H&#8322; pentru a descompune apa in hidrogen si oxigen folosind curent electric.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Bariera hemato-encefalica</dt>
+          <dd>Bariera protectoare intre sange si creier care blocheaza majoritatea medicamentelor. H&#8322; o traverseaza usor datorita dimensiunii minuscule.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=PcgsSyrvtn0" target="_blank">NHK Medical Frontiers — Hydrogen Gas Could Save Lives</a> &middot;
+    Cercetare: Japonia, 2007-2026 &middot;
+    Infografic explicativ bazat pe documentarul NHK
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* -- Hero canvas: H2 molecule with orbiting electrons and bubbles -- */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Bubbles
+  const bubbles = [];
+  for(let i = 0; i < 30; i++){
+    bubbles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1.5 + Math.random() * 4,
+      speed: 0.0003 + Math.random() * 0.0008,
+      phase: Math.random() * Math.PI * 2,
+      drift: 0.3 + Math.random() * 0.7,
+      alpha: 0.08 + Math.random() * 0.15
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.012;
+
+    const cx = w * 0.5;
+    const cy = h * 0.48;
+
+    // Rising bubbles
+    bubbles.forEach(b => {
+      b.y -= b.speed;
+      if(b.y < -0.05) b.y = 1.05;
+      const bx = b.x * w + Math.sin(t * b.drift + b.phase) * 8;
+      const by = b.y * h;
+      const pulse = b.alpha + Math.sin(t * 2 + b.phase) * 0.04;
+      ctx.beginPath();
+      ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(96,165,250,${pulse})`;
+      ctx.fill();
+      // Highlight
+      ctx.beginPath();
+      ctx.arc(bx - b.r * 0.25, by - b.r * 0.25, b.r * 0.35, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${pulse * 0.5})`;
+      ctx.fill();
+    });
+
+    // H2 molecule — two hydrogen atoms bonded
+    const bondLen = 34;
+    const atomR = 18;
+    const ax1 = cx - bondLen / 2;
+    const ax2 = cx + bondLen / 2;
+    const bobY = cy + Math.sin(t * 0.8) * 4;
+
+    // Glow around molecule
+    const grd = ctx.createRadialGradient(cx, bobY, 10, cx, bobY, 80);
+    grd.addColorStop(0, 'rgba(96,165,250,0.08)');
+    grd.addColorStop(0.5, 'rgba(34,211,238,0.04)');
+    grd.addColorStop(1, 'rgba(96,165,250,0)');
+    ctx.beginPath();
+    ctx.arc(cx, bobY, 80, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Bond
+    ctx.beginPath();
+    ctx.moveTo(ax1, bobY);
+    ctx.lineTo(ax2, bobY);
+    ctx.strokeStyle = 'rgba(96,165,250,0.4)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Atom 1
+    const grd1 = ctx.createRadialGradient(ax1 - 4, bobY - 4, 2, ax1, bobY, atomR);
+    grd1.addColorStop(0, 'rgba(147,197,253,0.7)');
+    grd1.addColorStop(0.5, 'rgba(96,165,250,0.5)');
+    grd1.addColorStop(1, 'rgba(59,130,246,0.15)');
+    ctx.beginPath();
+    ctx.arc(ax1, bobY, atomR, 0, Math.PI * 2);
+    ctx.fillStyle = grd1;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(96,165,250,0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Atom 2
+    const grd2 = ctx.createRadialGradient(ax2 - 4, bobY - 4, 2, ax2, bobY, atomR);
+    grd2.addColorStop(0, 'rgba(165,243,252,0.7)');
+    grd2.addColorStop(0.5, 'rgba(34,211,238,0.5)');
+    grd2.addColorStop(1, 'rgba(6,182,212,0.15)');
+    ctx.beginPath();
+    ctx.arc(ax2, bobY, atomR, 0, Math.PI * 2);
+    ctx.fillStyle = grd2;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(34,211,238,0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // "H" labels
+    ctx.font = 'bold 13px ' + getComputedStyle(document.body).getPropertyValue('--sans');
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillText('H', ax1, bobY);
+    ctx.fillText('H', ax2, bobY);
+
+    // Orbiting electrons
+    for(let e = 0; e < 3; e++){
+      const angle = t * (1.5 + e * 0.3) + (e * Math.PI * 2 / 3);
+      const orbitRx = 52 + e * 8;
+      const orbitRy = 26 + e * 4;
+      const tilt = 0.3 + e * 0.25;
+      const ex = cx + Math.cos(angle) * orbitRx;
+      const ey = bobY + Math.sin(angle) * orbitRy * Math.cos(tilt);
+
+      // Orbit path (faint)
+      ctx.beginPath();
+      ctx.ellipse(cx, bobY, orbitRx, orbitRy * Math.cos(tilt), 0, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(96,165,250,${0.06 + e * 0.02})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+
+      // Electron dot
+      const eAlpha = 0.5 + Math.sin(t * 3 + e) * 0.2;
+      ctx.beginPath();
+      ctx.arc(ex, ey, 3, 0, Math.PI * 2);
+      ctx.fillStyle = e < 2 ? `rgba(96,165,250,${eAlpha})` : `rgba(34,211,238,${eAlpha})`;
+      ctx.shadowColor = e < 2 ? 'rgba(96,165,250,0.6)' : 'rgba(34,211,238,0.6)';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Electron trail
+      for(let tr = 1; tr <= 4; tr++){
+        const ta = angle - tr * 0.15;
+        const tx = cx + Math.cos(ta) * orbitRx;
+        const ty = bobY + Math.sin(ta) * orbitRy * Math.cos(tilt);
+        ctx.beginPath();
+        ctx.arc(tx, ty, 2 - tr * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = e < 2 ? `rgba(96,165,250,${(eAlpha - tr * 0.1) * 0.4})` : `rgba(34,211,238,${(eAlpha - tr * 0.1) * 0.4})`;
+        ctx.fill();
+      }
+    }
+
+    // "H2" label below molecule
+    ctx.font = '10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.45)';
+    ctx.textAlign = 'center';
+    ctx.fillText('MOLECULA H\u2082', cx, bobY + 50);
+
+    // Legend
+    const ly = h - 12;
+    ctx.textAlign = 'left';
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(96,165,250,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('H atom', 15, ly+3);
+    ctx.fillStyle = 'rgba(34,211,238,0.7)'; ctx.beginPath(); ctx.arc(62, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('electroni', 69, ly+3);
+    ctx.fillStyle = 'rgba(96,165,250,0.3)'; ctx.beginPath(); ctx.arc(122, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('bule H\u2082', 129, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* -- Animate comparison bars on scroll -- */
+(function(){
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const barNoH2 = document.getElementById('barNoH2');
+        const barH2 = document.getElementById('barH2');
+        const barNoH2b = document.getElementById('barNoH2b');
+        const barH2b = document.getElementById('barH2b');
+        if(barNoH2) barNoH2.style.width = '60%';
+        if(barH2) barH2.style.width = '85.5%';
+        if(barNoH2b) barNoH2b.style.width = '20%';
+        if(barH2b) barH2b.style.width = '50%';
+        observer.disconnect();
+      }
+    });
+  }, {threshold: 0.3});
+  const target = document.getElementById('barH2');
+  if(target) observer.observe(target.closest('.card'));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BPOC si Longevitate — Cercetari din Japonia | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: Boala Pulmonara Obstructiva Cronica (BPOC) — cauze, efecte sistemice, tratament si tehnici de respiratie pentru longevitate. Cercetari japoneze." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#081018;
+      --panel:#0C1628cc;
+      --card:#0C1428;
+      --card2:#091020;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#38BDF8;
+      --glow2:#94A3B8;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(56,189,248,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(148,163,184,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(34,211,238,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(56,189,248,.20);
+      background: linear-gradient(180deg, rgba(12,20,40,.75), rgba(8,16,24,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(56,189,248,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(148,163,184,.08), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(34,211,238,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--teal)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,20,40,.75),rgba(9,16,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(56,189,248,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.silver{border-color:var(--glow2);background:rgba(148,163,184,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(56,189,248,.22),rgba(56,189,248,.04));}
+    .stepBar.silver{background:linear-gradient(180deg,rgba(148,163,184,.22),rgba(148,163,184,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(56,189,248,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.silver{border-color:var(--glow2);background:rgba(148,163,184,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(56,189,248,.06);margin-top:12px;
+    }
+    .alert.bad{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06);}
+    .alert.ok{border-color:rgba(52,211,153,.25);background:rgba(52,211,153,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.bad h4{color:var(--bad);}
+    .alert.ok h4{color:var(--ok);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* Anatomy diagram (SVG) */
+    .anatDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .anatDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(56,189,248,.18);
+      background:linear-gradient(180deg,rgba(12,20,40,.80),rgba(8,16,24,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(56,189,248,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(56,189,248,.25);background:rgba(56,189,248,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,20,40,.75),rgba(9,16,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(12,20,40,.75),rgba(9,16,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Breathing exercise interactive */
+    .breathBox{
+      border:1px solid rgba(56,189,248,.20);border-radius:16px;
+      background:linear-gradient(180deg,rgba(12,20,40,.80),rgba(6,10,18,.70));
+      padding:18px;margin-top:14px;text-align:center;
+    }
+    .breathCircle{
+      width:120px;height:120px;border-radius:50%;margin:12px auto;
+      border:3px solid var(--glow);
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:700;color:var(--glow);
+      transition:transform 4s ease-in-out, box-shadow 4s ease-in-out;
+    }
+    .breathCircle.inhale{
+      transform:scale(1.35);
+      box-shadow:0 0 40px rgba(56,189,248,.3), inset 0 0 30px rgba(56,189,248,.1);
+    }
+    .breathCircle.exhale{
+      transform:scale(0.85);
+      box-shadow:0 0 15px rgba(56,189,248,.1);
+    }
+    .breathBtn{
+      margin-top:10px;padding:8px 20px;border-radius:999px;
+      border:1px solid var(--glow);background:rgba(56,189,248,.10);
+      color:var(--glow);font-size:12px;font-weight:600;cursor:pointer;
+      font-family:var(--sans);
+    }
+    .breathBtn:hover{background:rgba(56,189,248,.18);}
+    .breathLabel{font-size:11px;color:var(--muted2);margin-top:8px;}
+
+    /* Bar chart */
+    .barChart{margin-top:14px;}
+    .barRow{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+    .barLabel{font-size:11px;color:var(--muted);width:110px;text-align:right;flex-shrink:0;}
+    .barTrack{flex:1;height:22px;background:rgba(6,8,16,.4);border-radius:8px;overflow:hidden;position:relative;}
+    .barFill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:8px;font-size:10.5px;font-weight:700;color:#fff;transition:width 1.2s ease;}
+    .barValue{font-family:var(--mono);font-size:11px;color:var(--muted);width:45px;text-align:left;flex-shrink:0;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>BPOC si Longevitate: Cum sa Traiesti Mai Mult cu Plamanii Sanatosi
+          <small>NHK Medical Frontiers — Cercetari japoneze despre tratamentul BPOC si prelungirea vietii</small>
+        </h1>
+        <p class="sub">Boala Pulmonara Obstructiva Cronica (BPOC) a fost a <b>4-a cauza de deces la nivel global</b> in 2024, conform OMS. Cu toate acestea, sub 10% din cei afectati primesc tratament. Cercetarile din Japonia dezvaluie ca BPOC nu e doar o boala pulmonara — e o <b>boala sistemica</b> care afecteaza creierul, inima si intregul organism. Dar cu diagnostic precoce, reabilitare si tehnici de respiratie, longevitatea e posibila.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Pneumologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>BPOC</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este BPOC -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este BPOC?</h2>
+          <p>Boala pulmonara legata de stilul de viata care distruge ireversibil capacitatea de respiratie</p>
+        </div>
+        <span class="badge">DEFINITIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">#4</div>
+            <span class="u">cauza de deces la nivel global (OMS, 2024)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">90%+</div>
+            <span class="u">din pacienti sunt fumatori sau fosti fumatori</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">5.3M</div>
+            <span class="u">persoane cu BPOC estimate in Japonia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">&lt;10%</div>
+            <span class="u">primesc tratament efectiv</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Bronsita cronica</h3>
+            <p>Inflamatia persistenta a cailor respiratorii (bronhiilor) cauzeaza <b>ingustarea acestora</b> si productie excesiva de mucus. Aerul circula din ce in ce mai greu, facand respiratia dificila si dureroasa.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Emfizemul pulmonar</h3>
+            <p>Alveolele — sacii de aer de <b>~0.3 mm</b> situati la capetele bronhiilor — sunt distruse. Exista <b>~10 miliarde</b> de alveole in plamani. Cand peretii lor se distrug, functia de schimb gazos dispare ireversibil.</p>
+          </div>
+        </div>
+
+        <!-- Lung anatomy SVG diagram -->
+        <div class="anatDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Healthy lung side -->
+            <text x="175" y="22" fill="#34D399" font-size="12" font-weight="700" text-anchor="middle">Plamanul sanatos</text>
+
+            <!-- Trachea -->
+            <rect x="155" y="30" width="40" height="30" rx="6" fill="rgba(56,189,248,.08)" stroke="rgba(56,189,248,.25)" stroke-width="1.5"/>
+            <text x="175" y="50" fill="#94A3B8" font-size="8" text-anchor="middle">Trahee</text>
+
+            <!-- Bronchi -->
+            <line x1="165" y1="60" x2="130" y2="90" stroke="rgba(56,189,248,.25)" stroke-width="2"/>
+            <line x1="185" y1="60" x2="220" y2="90" stroke="rgba(56,189,248,.25)" stroke-width="2"/>
+
+            <!-- Left lung outline -->
+            <ellipse cx="120" cy="145" rx="75" ry="80" fill="rgba(56,189,248,.06)" stroke="rgba(56,189,248,.18)" stroke-width="1.5"/>
+            <!-- Right lung outline -->
+            <ellipse cx="230" cy="145" rx="75" ry="80" fill="rgba(56,189,248,.06)" stroke="rgba(56,189,248,.18)" stroke-width="1.5"/>
+
+            <!-- Healthy alveoli clusters -->
+            <circle cx="100" cy="130" r="8" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="115" cy="125" r="7" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="108" cy="140" r="7.5" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="125" cy="138" r="6" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="93" cy="142" r="6.5" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="135" cy="150" r="7" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="110" cy="155" r="7" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="95" cy="158" r="6" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+
+            <circle cx="215" cy="130" r="7.5" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="230" cy="125" r="7" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="245" cy="135" r="6.5" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="222" cy="145" r="7" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="238" cy="150" r="7.5" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+            <circle cx="250" cy="148" r="6" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+
+            <text x="175" y="200" fill="#34D399" font-size="9" text-anchor="middle">Alveole intacte (~0.3mm)</text>
+            <text x="175" y="215" fill="#6E7A9A" font-size="8" text-anchor="middle">Schimb gazos O2/CO2 normal</text>
+
+            <!-- Arrow between -->
+            <line x1="320" y1="140" x2="370" y2="140" stroke="rgba(248,113,113,.3)" stroke-width="2" marker-end="url(#arrowBad)"/>
+            <text x="345" y="158" fill="#F87171" font-size="9" font-weight="600" text-anchor="middle">BPOC</text>
+
+            <defs><marker id="arrowBad" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6" fill="rgba(248,113,113,.5)"/>
+            </marker></defs>
+
+            <!-- Diseased lung side -->
+            <text x="525" y="22" fill="#F87171" font-size="12" font-weight="700" text-anchor="middle">Plamanul cu BPOC</text>
+
+            <rect x="505" y="30" width="40" height="30" rx="6" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1.5"/>
+            <text x="525" y="50" fill="#94A3B8" font-size="8" text-anchor="middle">Trahee</text>
+
+            <line x1="515" y1="60" x2="480" y2="90" stroke="rgba(248,113,113,.25)" stroke-width="2"/>
+            <line x1="535" y1="60" x2="570" y2="90" stroke="rgba(248,113,113,.25)" stroke-width="2"/>
+
+            <!-- Diseased lungs (darker, irregular) -->
+            <ellipse cx="470" cy="145" rx="75" ry="80" fill="rgba(248,113,113,.04)" stroke="rgba(248,113,113,.15)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <ellipse cx="580" cy="145" rx="75" ry="80" fill="rgba(248,113,113,.04)" stroke="rgba(248,113,113,.15)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- Destroyed alveoli (larger, broken circles) -->
+            <circle cx="450" cy="125" r="18" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.18)" stroke-width="1" stroke-dasharray="3,3"/>
+            <circle cx="485" cy="140" r="22" fill="rgba(248,113,113,.05)" stroke="rgba(248,113,113,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+            <circle cx="455" cy="160" r="15" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.18)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <circle cx="565" cy="125" r="20" fill="rgba(248,113,113,.05)" stroke="rgba(248,113,113,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+            <circle cx="595" cy="145" r="16" fill="rgba(248,113,113,.06)" stroke="rgba(248,113,113,.18)" stroke-width="1" stroke-dasharray="3,3"/>
+            <circle cx="575" cy="162" r="18" fill="rgba(248,113,113,.05)" stroke="rgba(248,113,113,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+
+            <text x="525" y="200" fill="#F87171" font-size="9" text-anchor="middle">Alveole distruse si marite</text>
+            <text x="525" y="215" fill="#6E7A9A" font-size="8" text-anchor="middle">Schimb gazos compromis</text>
+
+            <!-- Narrowed bronchi indicator -->
+            <rect x="495" y="85" width="8" height="20" rx="2" fill="rgba(248,113,113,.15)" stroke="rgba(248,113,113,.25)" stroke-width="1"/>
+            <rect x="545" y="85" width="8" height="20" rx="2" fill="rgba(248,113,113,.15)" stroke="rgba(248,113,113,.25)" stroke-width="1"/>
+            <text x="525" y="240" fill="#6E7A9A" font-size="7.5" text-anchor="middle">Bronhii ingustate, mucus in exces</text>
+          </svg>
+        </div>
+
+        <div class="alert bad">
+          <h4>Distrugere ireversibila</h4>
+          <p>BPOC este o conditie in care <b>deteriorarea a avut loc deja</b> si nu poate fi reparata. Insa datele stiintifice arata ca mentinerea activitatii fizice prin reabilitare poate <b>incetini declinul</b> si chiar <b>imbunatati functia pulmonara</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Studiul japonez pe scara larga -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul japonez pe scara larga</h2>
+          <p>Cercetare cu CT pe ~3.000 de persoane peste 40 de ani, urmarite timp de 20 de ani</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">CERCETARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~3.000</div>
+            <span class="u">participanti in studiu (varsta 40+)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">20 ani</div>
+            <span class="u">de urmarire a participantilor</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">2004</div>
+            <span class="u">anul inceperii colectarii datelor</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">CT scan</div>
+            <span class="u">metoda de detectare precoce</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Risc de dementa</h3>
+            <p>Un studiu de urmarire a pacientilor cu BPOC tratati la un spital universitar a aratat ca <b>2% din pacienti</b> (1 din 50) dezvolta dementa intr-un an. Comparativ, probabilitatea de a descoperi o boala pulmonara la un control general este de doar <b>0.1%</b> (1 din 1.000).</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--bad)">Risc cardiovascular</h3>
+            <p>Cercetatorii au urmarit ~3.000 de persoane timp de <b>30 de ani</b> si au descoperit ca declinul functiei respiratorii inseamna un <b>risc foarte mare de deces prin boala cardiaca</b>. La persoanele cu functie respiratorie sanatoasa, rata cardio ramane stabila.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;E probabil usor de inteles ca functia respiratorie scazuta duce la boli pulmonare, dar s-a demonstrat ca declinul functiei respiratorii inseamna si un risc foarte mare de a muri din cauza bolilor de inima in viitor.&raquo;
+          <cite>— Cercetator japonez, NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: BPOC ca boala sistemica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>BPOC — Boala sistemica, nu doar pulmonara</h2>
+          <p>Cercetarile recente arata ca BPOC afecteaza creierul, inima, muschii si metabolismul</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">EFECTE SISTEMICE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Creierul: atrofie hipocampica</h4>
+              <p>Echipa Universitatii Oxford (publicat in <b>Scientific Reports, 2024</b>) a studiat RMN-ul cerebral al pacientilor cu BPOC. Au gasit <b>reducerea volumului hipocampului</b> — zona legata de memorie si stari depresive. BPOC interfereaza cu schimbul de O2/CO2, provocand molecule anormale in sange care <b>dauneaza celulelor cerebrale</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="border-color:var(--bad);background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));"></div></div>
+            <div class="stepContent">
+              <h4>Inima: risc cardiovascular crescut</h4>
+              <p>Functia respiratorie scazuta coreleaza direct cu <b>riscul de deces cardiac</b>. La cei cu plamani sanatosi, ratele cardiace raman stabile; la pacientii BPOC, riscul creste constant pe masura ce functia pulmonara scade.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Diabet: 9.4% la 65+</h4>
+              <p>S-a raportat ca <b>9.4% din persoanele cu BPOC peste 65 de ani</b> dezvolta diabet. Lipsa de miscare, scaderea masei musculare si metabolismul alterat contribuie la aceasta complicatie.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot silver"></div><div class="stepBar silver" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Declin fizic general</h4>
+              <p>Nemiscarea duce la <b>scaderea fortei fizice</b>, pierderea energiei, scadere in greutate, emaciere, anemie si alte probleme sistemice. Pacientii intra intr-un cerc vicios: nu se misca pentru ca le e greu sa respire, dar lipsa miscarii agraveaza boala.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert bad">
+          <h4>Risc de dependenta de ingrijire</h4>
+          <p>Cercetatorii au descoperit ca pacientii BPOC al caror stil de viata se deterioreaza sunt <b>expusi riscului de a necesita ingrijire permanenta</b>. Masa musculara scade, apetitul se reduce, rezistenta scade, iar stilul de viata devine tot mai sedentar.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Tratament si medicatie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tratament: medicatia inhalatorie si reabilitarea</h2>
+          <p>Medicamentele orale rareori sunt eficiente — cheia este inhalatia corecta si activitatea fizica</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">TRATAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Medicatia inhalatorie</h3>
+            <p>La pacientii cu BPOC, <b>medicamentele orale rareori sunt eficiente</b>. Cheia tratamentului este utilizarea corecta a medicatiei inhalatorii. Studiile japoneze au comparat un singur tip de inhalator vs. <b>doua tipuri combinate</b>.</p>
+            <p style="margin-top:6px;">Grupul cu <b>doua inhalatoare</b> a demonstrat <b>mai multa rezistenta</b> in activitati zilnice: imbracat, mers la toaleta, plimbare si exercitii fizice.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Reabilitarea respiratorie</h3>
+            <p>Clinicile din Japonia invata pacientii <b>cum sa respire corect</b>. Scopul: evitarea spitalizarii si mentinerea pacientilor sanatosi acasa. Procesul include evaluare individuala, tehnici de respiratie si exercitii personalizate.</p>
+            <p style="margin-top:6px;"><b>Tehnica respiratiei inhalatorii</b>: inspira deliberat, retine respiratia, deschide gura incet si expira lent.</p>
+          </div>
+        </div>
+
+        <div class="quote silver" style="margin-top:14px;">
+          &laquo;Clinica noastra urmareste sa evite spitalizarea si sa le permita pacientilor sa ramana sanatosi acasa. Ceea ce fac aici este sa-i invat pe pacienti cum sa respire si apoi le ofer orice antrenament necesar.&raquo;
+          <cite>— Specialist in reabilitare respiratorie, Japonia</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Activitatea fizica si supravietuirea -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Activitate fizica si rata de supravietuire</h2>
+          <p>Un studiu german demonstreaza ca miscarea face diferenta intre viata si moarte la pacientii cu BPOC</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">SUPRAVIETUIRE</span>
+      </div>
+      <div class="cardBody">
+        <p style="font-size:13px;color:var(--muted);margin:0 0 6px;">Rata de supravietuire dupa <b>4 ani</b> (studiu german):</p>
+        <div class="barChart">
+          <div class="barRow">
+            <span class="barLabel" style="color:var(--ok)">Foarte activi</span>
+            <div class="barTrack">
+              <div class="barFill" style="width:98%;background:linear-gradient(90deg,rgba(52,211,153,.6),rgba(52,211,153,.3));">~100%</div>
+            </div>
+            <span class="barValue" style="color:var(--ok)">~100%</span>
+          </div>
+          <div class="barRow">
+            <span class="barLabel" style="color:var(--warn)">Putin activi</span>
+            <div class="barTrack">
+              <div class="barFill" style="width:90%;background:linear-gradient(90deg,rgba(251,191,36,.6),rgba(251,191,36,.3));">90%</div>
+            </div>
+            <span class="barValue" style="color:var(--warn)">90%</span>
+          </div>
+          <div class="barRow">
+            <span class="barLabel" style="color:var(--bad)">Sedentari</span>
+            <div class="barTrack">
+              <div class="barFill" style="width:67%;background:linear-gradient(90deg,rgba(248,113,113,.6),rgba(248,113,113,.3));">67%</div>
+            </div>
+            <span class="barValue" style="color:var(--bad)">67%</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Exemplul pacientului</h3>
+            <p>Un pacient care a fumat <b>din anii '20 pana la 60 de ani</b> a inceput reabilitarea si si-a notat zilnic pasii si starea respiratorie intr-un jurnal. La inceput putea face doar <b>~2.000 de pasi</b>. Dupa ani de reabilitare, <b>si-a crescut semnificativ capacitatea</b>.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Mesajul specialistilor</h3>
+            <p>&laquo;Chiar daca ai BPOC, poti trai mult. Cel mai varstnic pacient pe care l-am tratat are <b>peste 90 de ani</b>. Vreau ca toata lumea sa munceasca si sa tinteasca spre o <b>viata de 100 de ani</b>.&raquo;</p>
+            <p style="margin-top:6px;color:var(--muted2);font-size:11.5px;font-style:italic;">— Specialist japonez, NHK Medical Frontiers</p>
+          </div>
+        </div>
+
+        <div class="alert ok">
+          <h4>Concluzie stiintifica</h4>
+          <p>Continuand activitatea fizica, se poate <b>preveni agravarea bolii</b> si se poate mentine o stare sanatoasa. BPOC nu e o sentinta — este o conditie gestionabila cu abordarea corecta.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Tehnici de respiratie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tehnici de respiratie si exercitii</h2>
+          <p>Respiratia cu buzele pensate, respiratia abdominala si stretchingul — metode practice pentru viata de zi cu zi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">EXERCITII</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Respiratia cu buzele pensate (pursed-lip)</h4>
+              <p>Expira prin buze usor intredeschise. Aceasta creeaza <b>rezistenta la gura</b>, crescand presiunea in interiorul bronhiilor. Rezultat: bronhiile raman deschise mai mult, aerul prins se elibereaza, respiratia devine <b>mai confortabila</b>. Expira mai lent si mai lung decat inspiri.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>2. Respiratia abdominala (diafragmatica)</h4>
+              <p>Foloseste diafragma si muschii respiratori pentru a <b>respira inconstient, profund</b>. Inspira pe nas, simtind cum abdomenul se umfla. Expira lent pe gura. Aceasta tehnica regleaza <b>sistemul nervos autonom</b> — echilibrand ramurile simpatica si parasimpatica.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>3. Stretchingul gatului</h4>
+              <p>Tine fata dreapta, inspira pe nas, expira pe gura in timp ce <b>inclini capul lateral</b> — urechea spre umar. Revino, repeta in cealalta directie. Acest stretching elibereaza muschii gatului si umeri, facilitand o respiratie mai profunda.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>4. Deschiderea omoplatilor</h4>
+              <p>Pune dosul mainilor impreuna in fata pieptului. Desface mainile si deschide bratele larg, impingandu-le spre spate. Repeta. Aceasta <b>elibereaza omoplatii</b> care sunt blocati de postura cu capul in telefon, crescand spatiul pentru expansiunea plamanilor.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot silver"></div><div class="stepBar silver" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>5. Percutia sternului</h4>
+              <p>Loveste usor fruntea (sternul) si lasa-l in jos. Ridica, loveste din nou, lasa in jos. Muschii din jurul sternului si umerilor se <b>relaxeaza</b>, permitand deschiderea cutiei toracice si o respiratie <b>mult mai profunda</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive breathing exercise -->
+        <div class="breathBox">
+          <p style="margin:0;font-size:13px;color:var(--ink);font-weight:600;">Exercitiu interactiv: Respiratia cu buzele pensate</p>
+          <p style="margin:4px 0 0;font-size:11.5px;color:var(--muted);">Inspira 3 secunde pe nas, expira 6 secunde prin buze intredeschise</p>
+          <div class="breathCircle" id="breathCircle">
+            <span id="breathText">START</span>
+          </div>
+          <button class="breathBtn" id="breathBtn" onclick="startBreathing()">Incepe exercitiul</button>
+          <p class="breathLabel" id="breathLabel">Apasa butonul pentru a incepe</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Sistemul nervos autonom -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Respiratia si sistemul nervos autonom</h2>
+          <p>Cum respiri influenteaza direct echilibrul nervos — cheia sanatatii pe termen lung</p>
+        </div>
+        <span class="badge">NEUROLOGIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--warn)">Sistemul simpatic</h3>
+            <p>Creste <b>tensiunea</b> si permite plamanilor sa se contracte. Se activeaza in situatii de stres, efort sau alerta. La pacientii cu BPOC, <b>miscarea redusa a muschilor dorsali</b> si viteza crescuta de respiratie suprima functionarea normala.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Sistemul parasimpatic</h3>
+            <p>Relaxeaza organismul. Ambele sisteme sunt <b>conectate la plamani si coloana vertebrala</b>. Respiratia controlata — inspir scurt, expir lung — activeaza parasimpaticul si aduce <b>calmul si recuperarea</b>.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Respiratia este esentiala pentru reglarea sistemului nervos autonom. In termeni extremi, respiratia este cea mai buna forma de respiratie: inspir rapid, expir lung si controlat. Combinand respiratii profunde si scurte, poti stimula plamanii si echilibra sistemul nervos autonom.&raquo;
+          <cite>— Dr. Kobayashi, expert in sistemul nervos autonom, NHK</cite>
+        </div>
+
+        <div class="alert">
+          <h4>Cheia longevitatii: spatiu pentru plamani</h4>
+          <p>Expertul subliniaza ca punctul-cheie este <b>cum sa creezi spatiu</b> pentru ca plamanii sa se expandeze suficient, astfel incat respiratia sa fie corecta si profunda. Exercitiile de stretching si postura corecta sunt esentiale.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Prevenire si concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Prevenire si mesaj final</h2>
+          <p>Diagnostic precoce, renuntarea la fumat si activitate fizica — formula longevitatii cu BPOC</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(56,189,248,.2);">
+            <h3 style="color:var(--glow)">Diagnostic precoce prin CT</h3>
+            <p>Studiul japonez demonstreaza ca <b>scanarea CT</b> in cadrul checkup-urilor medicale poate detecta BPOC inainte de aparitia simptomelor severe. Detectarea timpurie permite <b>interventia rapida</b> si incetinirea progresiei bolii.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Renuntarea la fumat</h3>
+            <p>Peste <b>90% din cazurile de BPOC</b> sunt cauzate de fumat. In Japonia, prevalenta e masiv mai mare la barbati din cauza ratei ridicate de fumatori masculini. In alte tari, <b>inhalarea biomasei</b> (gatit pe foc deschis) e un alt factor major.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--ok)">Activitate fizica constanta</h3>
+            <p>Studiul german arata ca pacientii activi au o rata de supravietuire de <b>aproape 100%</b> dupa 4 ani, fata de <b>67%</b> la sedentari. Reabilitarea respiratorie si plimbarea zilnica fac diferenta.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Colaborare multidisciplinara</h3>
+            <p>Scopul este <b>cresterea constientizarii BPOC</b>, diagnostic si tratament precoce, si colaborarea cu specialisti si autoritati locale pentru <b>prevenirea si gestionarea complicatiilor</b> respiratorii si sistemice.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Nimeni nu vrea sa ajunga sa-si piarda capacitatile. De aceea le spun intotdeauna pacientilor mei: imbatraniti sanatos si traiti mult. Sper ca vor fi tot mai multi oameni ca acestia.&raquo;
+          <cite>— Specialist japonez, NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- KPI sidebar card -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre-cheie</h2></div>
+      </div>
+      <div class="cardBody">
+        <div class="kpi">
+          <span class="n" style="color:var(--glow)">#4</span>
+          <span class="l">cauza de deces la nivel global (OMS, 2024)</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--bad)">90%+</span>
+          <span class="l">din pacienti sunt fumatori sau fosti fumatori</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--warn)">5.3M</span>
+          <span class="l">persoane estimate cu BPOC in Japonia</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--bad)">&lt;10%</span>
+          <span class="l">primesc tratament efectiv in Japonia</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--warn)">2%</span>
+          <span class="l">dezvolta dementa pe an (1 din 50 pacienti)</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--warn)">9.4%</span>
+          <span class="l">din pacientii 65+ dezvolta diabet</span>
+        </div>
+        <div class="kpi">
+          <span class="n" style="color:var(--ok)">67%</span>
+          <span class="l">rata supravietuire sedentari vs ~100% activi (4 ani)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Progresia bolii</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">EXPUNERE</span><span class="tDesc">Inhalarea <b>fumului de tigara</b>, poluare, biomasa — ani de zile</span></div>
+        <div class="tEvent"><span class="tDate">INFLAMATIE</span><span class="tDesc"><b>Bronsita cronica</b>: bronhii ingustate, mucus excesiv</span></div>
+        <div class="tEvent"><span class="tDate">DISTRUGERE</span><span class="tDesc"><b>Emfizem</b>: alveolele se distrug, schimbul gazos scade</span></div>
+        <div class="tEvent"><span class="tDate">DISPNEE</span><span class="tDesc">Respiratia devine <b>dificila</b>, efortul minim oboseste</span></div>
+        <div class="tEvent"><span class="tDate">INACTIVITATE</span><span class="tDesc">Miscarea scade, <b>masa musculara</b> se pierde</span></div>
+        <div class="tEvent"><span class="tDate">SISTEMIC</span><span class="tDesc">Afectare: <b>creier</b> (dementa), <b>inima</b>, <b>diabet</b></span></div>
+        <div class="tEvent"><span class="tDate">DEPENDENTA</span><span class="tDesc">Risc de a necesita <b>ingrijire permanenta</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">REABILITARE</span><span class="tDesc" style="color:var(--ok)">Cu tratament si exercitii: <b>longevitate posibila</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Observatii si context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce BPOC e subdiagnosticata?</h4>
+          <p>In Japonia, din cele 5.3 milioane de persoane estimate cu BPOC, <b>sub 10% primesc tratament</b>. Multi atribuie tusea si lipsa de aer varsta inaintate sau "normalului". Scanarea CT ar putea schimba aceasta situatie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Diferente de gen</h4>
+          <p>In Japonia, BPOC e covarsitor mai frecventa la <b>barbati</b> — din cauza ratei ridicate de fumatori masculini. In alte tari insa, unde femeile gatesc pe foc deschis (biomasa), <b>nu exista diferente de gen</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Fumatul: cauza #1</h4>
+          <p>Societatea Japoneza de Pneumologie afirma ca <b>peste 90% din pacientii cu BPOC</b> sunt fumatori actuali sau fosti fumatori. Un pacient din emisiune a fumat din anii '20 pana la 60 de ani.</p>
+        </div>
+        <div class="comNote">
+          <h4>Scopul final al cercetarii</h4>
+          <p>Desi obiectivul ultim este <b>reducerea mortalitatii</b>, scopul imediat este cresterea constientizarii BPOC prin diagnostic precoce, tratament si colaborare cu specialisti si autoritatile locale.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>BPOC</dt>
+          <dd>Boala Pulmonara Obstructiva Cronica — afectiune progresiva care limiteaza fluxul de aer in plamani. Includebronsita cronica si emfizemul.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Alveole</dt>
+          <dd>Saci microscopici de aer (~0.3 mm) la capetele bronhiilor, unde se realizeaza schimbul de oxigen si dioxid de carbon. Aproximativ 10 miliarde in plamanii sanatosi.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Emfizem pulmonar</dt>
+          <dd>Distrugerea ireversibila a peretilor alveolelor, care mareste spatiile aeriene si reduce suprafata de schimb gazos.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hipocampus</dt>
+          <dd>Zona a creierului implicata in memorie si emotii. La pacientii cu BPOC, volumul hipocampului se reduce, crescand riscul de dementa si depresie.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Respiratia pursed-lip</dt>
+          <dd>Tehnica de respiratie in care expiri prin buze intredeschise, creand rezistenta care mentine bronhiile deschise si imbunatateste ventilarea.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Diafragma</dt>
+          <dd>Muscul principal al respiratiei, situat sub plamani. Respiratia abdominala (diafragmatica) il foloseste eficient pentru o ventilare mai profunda.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sistem nervos autonom</dt>
+          <dd>Componenta a sistemului nervos care controleaza functiile involuntare: respiratia, bataile inimii, digestia. Se imparte in simpatic (activare) si parasimpatic (relaxare).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>CT scan</dt>
+          <dd>Tomografie computerizata — tehnica imagistica care creeaza imagini detaliate ale plamanilor, permitand detectarea precoce a BPOC inainte de aparitia simptomelor.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=hq_4HU0jvIM" target="_blank">NHK Medical Frontiers — Treating COPD for Longevity</a> &middot;
+    Infografic interactiv bazat pe emisiunea NHK Medical Frontiers &middot;
+    Toate datele provin din cercetari japoneze, britanice si germane citate in emisiune
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: abstract lungs with airways and airflow ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Airflow particles
+  const particles = [];
+  const particleCount = 60;
+  for(let i = 0; i < particleCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1 + Math.random() * 2.5,
+      speed: 0.002 + Math.random() * 0.004,
+      phase: Math.random() * Math.PI * 2,
+      opacity: 0.2 + Math.random() * 0.5,
+      type: Math.random() < 0.7 ? 'o2' : 'co2'
+    });
+  }
+
+  // Alveoli positions (two lung clusters)
+  const alveoli = [];
+  // Left lung
+  for(let i = 0; i < 18; i++){
+    const angle = (i / 18) * Math.PI * 2 + Math.random() * 0.5;
+    const radius = 0.08 + Math.random() * 0.12;
+    alveoli.push({
+      x: 0.3 + Math.cos(angle) * radius,
+      y: 0.55 + Math.sin(angle) * radius,
+      r: 4 + Math.random() * 6,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+  // Right lung
+  for(let i = 0; i < 18; i++){
+    const angle = (i / 18) * Math.PI * 2 + Math.random() * 0.5;
+    const radius = 0.08 + Math.random() * 0.12;
+    alveoli.push({
+      x: 0.7 + Math.cos(angle) * radius,
+      y: 0.55 + Math.sin(angle) * radius,
+      r: 4 + Math.random() * 6,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Breathing pulse effect
+    const breathScale = 1 + Math.sin(t * 1.5) * 0.04;
+
+    // Draw trachea
+    ctx.beginPath();
+    ctx.moveTo(w * 0.5, h * 0.05);
+    ctx.lineTo(w * 0.5, h * 0.28);
+    ctx.strokeStyle = 'rgba(56,189,248,0.2)';
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // Bronchi branches
+    ctx.beginPath();
+    ctx.moveTo(w * 0.5, h * 0.28);
+    ctx.quadraticCurveTo(w * 0.4, h * 0.35, w * 0.3, h * 0.4);
+    ctx.strokeStyle = 'rgba(56,189,248,0.15)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(w * 0.5, h * 0.28);
+    ctx.quadraticCurveTo(w * 0.6, h * 0.35, w * 0.7, h * 0.4);
+    ctx.strokeStyle = 'rgba(56,189,248,0.15)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    // Sub-bronchi
+    const branches = [
+      [0.3, 0.4, 0.22, 0.55], [0.3, 0.4, 0.30, 0.58], [0.3, 0.4, 0.38, 0.52],
+      [0.7, 0.4, 0.62, 0.52], [0.7, 0.4, 0.70, 0.58], [0.7, 0.4, 0.78, 0.55]
+    ];
+    branches.forEach(b => {
+      ctx.beginPath();
+      ctx.moveTo(w * b[0], h * b[1]);
+      ctx.lineTo(w * b[2], h * b[3]);
+      ctx.strokeStyle = 'rgba(56,189,248,0.08)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    // Draw lung outlines (breathing)
+    ctx.save();
+    ctx.translate(w * 0.3, h * 0.55);
+    ctx.scale(breathScale, breathScale);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, w * 0.18, h * 0.32, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(56,189,248,0.12)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(56,189,248,0.02)';
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(w * 0.7, h * 0.55);
+    ctx.scale(breathScale, breathScale);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, w * 0.18, h * 0.32, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(56,189,248,0.12)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(56,189,248,0.02)';
+    ctx.fill();
+    ctx.restore();
+
+    // Draw alveoli
+    alveoli.forEach(a => {
+      const pulse = 1 + Math.sin(t * 2 + a.phase) * 0.15;
+      const px = a.x * w;
+      const py = a.y * h;
+      const pr = a.r * pulse * breathScale;
+
+      ctx.beginPath();
+      ctx.arc(px, py, pr, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(56,189,248,${0.04 + Math.sin(t + a.phase) * 0.02})`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(56,189,248,${0.12 + Math.sin(t * 1.5 + a.phase) * 0.06})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    });
+
+    // Draw airflow particles
+    particles.forEach(p => {
+      // Move particles along airways
+      p.y += Math.sin(t * 3 + p.phase) > 0 ? -p.speed : p.speed;
+      p.x += Math.sin(t * 2 + p.phase) * 0.001;
+
+      // Reset particles
+      if(p.y < 0) { p.y = 1; p.x = 0.3 + Math.random() * 0.4; }
+      if(p.y > 1) { p.y = 0; p.x = 0.4 + Math.random() * 0.2; }
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const alpha = p.opacity * (0.5 + Math.sin(t * 3 + p.phase) * 0.3);
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'o2'){
+        ctx.fillStyle = `rgba(56,189,248,${alpha})`;
+        ctx.shadowColor = 'rgba(56,189,248,0.3)';
+      } else {
+        ctx.fillStyle = `rgba(148,163,184,${alpha * 0.7})`;
+        ctx.shadowColor = 'rgba(148,163,184,0.2)';
+      }
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Breathing wave pulse from center
+    for(let p = 0; p < 2; p++){
+      const pulseR = ((t * 30 + p * 80) % 160);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2500);
+      ctx.beginPath();
+      ctx.arc(w * 0.5, h * 0.28, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(56,189,248,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Legend
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '9px ' + mono;
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(56,189,248,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('O\u2082', 15, ly+3);
+    ctx.fillStyle = 'rgba(148,163,184,0.5)'; ctx.beginPath(); ctx.arc(35, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('CO\u2082', 42, ly+3);
+    ctx.fillStyle = 'rgba(160,172,200,0.3)'; ctx.fillText('flux aerian', 68, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Breathing exercise ── */
+let breathingActive = false;
+let breathInterval = null;
+function startBreathing(){
+  const circle = document.getElementById('breathCircle');
+  const text = document.getElementById('breathText');
+  const label = document.getElementById('breathLabel');
+  const btn = document.getElementById('breathBtn');
+
+  if(breathingActive){
+    breathingActive = false;
+    clearInterval(breathInterval);
+    circle.className = 'breathCircle';
+    text.textContent = 'START';
+    label.textContent = 'Apasa butonul pentru a incepe';
+    btn.textContent = 'Incepe exercitiul';
+    return;
+  }
+
+  breathingActive = true;
+  btn.textContent = 'Opreste';
+  let phase = 'inhale';
+
+  function cycle(){
+    if(!breathingActive) return;
+
+    if(phase === 'inhale'){
+      circle.className = 'breathCircle inhale';
+      text.textContent = 'INSPIRA';
+      label.textContent = 'Inspira pe nas... 3 secunde';
+      phase = 'hold';
+      setTimeout(() => {
+        if(!breathingActive) return;
+        text.textContent = 'RETINE';
+        label.textContent = 'Retine respiratia... 2 secunde';
+        phase = 'exhale';
+        setTimeout(() => {
+          if(!breathingActive) return;
+          circle.className = 'breathCircle exhale';
+          text.textContent = 'EXPIRA';
+          label.textContent = 'Expira prin buze intredeschise... 6 secunde';
+          phase = 'inhale';
+        }, 2000);
+      }, 3000);
+    }
+  }
+
+  cycle();
+  breathInterval = setInterval(cycle, 11000);
+}
+</script>
+</body>
+</html>

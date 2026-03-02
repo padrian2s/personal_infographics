@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Puterea Matcha, Explicata de Stiinta — NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: beneficiile ceaiului matcha demonstrate stiintific — creier, somn, anxietate, muschi, microbiom intestinal. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#050C08;
+      --bg1:#071210;
+      --panel:#0C1E18cc;
+      --card:#0B1A14;
+      --card2:#091610;
+      --ink:#E8F5EC;
+      --muted:#9CC4AA;
+      --muted2:#6A9B7A;
+      --line:#163028;
+      --glow:#22C55E;
+      --glow2:#86EFAC;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(34,197,94,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(134,239,172,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(34,211,153,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* -- HERO -- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(34,197,94,.20);
+      background: linear-gradient(180deg, rgba(11,26,20,.75), rgba(7,18,16,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(34,197,94,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(134,239,172,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(34,211,153,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(232,245,236,.12);background:rgba(5,12,8,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--teal)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(232,245,236,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(5,12,8,.30),rgba(5,12,8,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* -- CARDS -- */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(232,245,236,.12);
+      background:linear-gradient(180deg,rgba(11,26,20,.75),rgba(9,22,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(232,245,236,.07);
+      background:linear-gradient(180deg,rgba(5,12,8,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(232,245,236,.10);
+      background:linear-gradient(180deg,rgba(5,12,8,.28),rgba(5,12,8,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(232,245,236,.12);color:rgba(232,245,236,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(232,245,236,.10);background:rgba(5,12,8,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(34,197,94,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.light{border-color:var(--glow2);background:rgba(134,239,172,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(34,197,94,.22),rgba(34,197,94,.04));}
+    .stepBar.light{background:linear-gradient(180deg,rgba(134,239,172,.22),rgba(134,239,172,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(34,197,94,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.light{border-color:var(--glow2);background:rgba(134,239,172,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(34,197,94,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(34,197,94,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn h4{color:var(--warn);}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(232,245,236,.10);border-radius:16px;
+      background:rgba(5,12,8,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(34,197,94,.18);
+      background:linear-gradient(180deg,rgba(11,26,20,.80),rgba(7,18,16,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(34,197,94,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(232,245,236,.08);border-radius:12px;padding:9px 11px;background:rgba(5,12,8,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(232,245,236,.12);
+      background:linear-gradient(180deg,rgba(11,26,20,.75),rgba(9,22,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(232,245,236,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(232,245,236,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(232,245,236,.12);
+      background:linear-gradient(180deg,rgba(11,26,20,.75),rgba(9,22,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(232,245,236,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(232,245,236,.08);border-radius:11px;padding:7px 10px;background:rgba(5,12,8,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    /* Compound bars */
+    .compBar{margin-top:10px;}
+    .compRow{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+    .compLabel{font-size:11px;color:var(--muted);width:80px;flex-shrink:0;text-align:right;}
+    .compTrack{flex:1;height:14px;background:rgba(5,12,8,.4);border-radius:7px;overflow:hidden;position:relative;}
+    .compFill{height:100%;border-radius:7px;transition:width .8s ease;}
+    .compVal{font-family:var(--mono);font-size:10px;color:var(--ink);width:36px;flex-shrink:0;}
+
+    /* Recipe card */
+    .recipe{
+      border:1px solid rgba(34,197,94,.18);border-radius:14px;padding:12px 14px;
+      background:rgba(34,197,94,.04);margin-top:10px;
+    }
+    .recipe h4{margin:0;font-size:13px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .recipe ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:12.5px;line-height:1.5;}
+    .recipe ul b{color:var(--ink);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Puterea Matcha, Explicata de Stiinta
+          <small>NHK Medical Frontiers — Cercetari japoneze recente despre beneficiile ceaiului matcha pentru creier, somn, anxietate si muschi</small>
+        </h1>
+        <p class="sub">De secole, ceaiul matcha este considerat un elixir al sanatatii in Japonia. Acum, cercetarile stiintifice moderne confirma: matcha <b>imbunatateste functia cognitiva</b>, <b>amelioreaza somnul</b>, <b>reduce anxietatea</b> si <b>sustine masa musculara</b>. Secretul? O combinatie unica de L-teanina, catechine EGCG, vitamine si fibre care actioneaza sinergic.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b> — cercetare medicala</span>
+          <span class="chip"><i class="i3"></i> <b>Nutritie</b> — nutrienti bioactivi</span>
+          <span class="chip"><i class="i4"></i> <b>Ceai Matcha</b> — traditie & stiinta</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MAIN ======= -->
+  <div class="main">
+
+    <!-- Card 1: Ce este Matcha -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce face matcha atat de speciala?</h2>
+          <p>Productia unica si consumul frunzei intregi fac ca matcha sa contina de 2-3x mai multi nutrienti decat ceaiul verde obisnuit</p>
+        </div>
+        <span class="badge">COMPOZITIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">2x</div>
+            <span class="u">mai multa L-teanina decat ceaiul verde normal</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">100%</div>
+            <span class="u">din nutrienti consumati (frunza intreaga)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">sec. XII</div>
+            <span class="u">prima utilizare documentata in Japonia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">137x</div>
+            <span class="u">mai multe catechine decat ceaiul verde infuzat</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>1. Acoperirea cu plase de umbra</h4>
+              <p>Cu saptamani inainte de recoltare, campurile de ceai sunt acoperite cu plase care <b>blocheaza lumina solara</b>. Acest stres controlat face ca frunzele sa produca mai multa L-teanina si mai putine taninuri amare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot light"></div><div class="stepBar light"></div></div>
+            <div class="stepContent">
+              <h4>2. Aburirea si racirea imediata</h4>
+              <p>Frunzele moi sunt <b>aburite rapid</b> dupa recoltare pentru a opri oxidarea, apoi <b>racite cu grija</b>. Acest proces pastreaza intacti compusii bioactivi si culoarea verde intensa.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>3. Uscarea lenta</h4>
+              <p>Frunzele sunt uscate cu atentie la temperaturi scazute. Spre deosebire de ceaiul verde obisnuit, <b>nu sunt rasucite</b>, ci pastrate plate pentru o macinare uniforma.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Macinarea cu piatra</h4>
+              <p>Frunzele uscate sunt macinate <b>incet, cu mori de piatra</b>, transformandu-le in pulbere fina. Rezultat: cand bei matcha, consumi <b>frunza intreaga</b> cu toti nutrientii, nu doar extractul din apa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Creier & Somn -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Matcha si creierul: cognitie si somn</h2>
+          <p>Studiu clinic international pe 1 an: participanti cu declin cognitiv subiectiv si deteriorare cognitiva usoara (MCI)</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,197,94,.3);color:var(--glow);">STUDIU CLINIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Designul studiului</h3>
+            <p>Participantii aveau fie <b>declin cognitiv subiectiv</b>, fie <b>deteriorare cognitiva usoara (MCI)</b> — stadiu pre-diagnostic al dementei. Au baut matcha zilnic timp de <b>1 an</b>.</p>
+            <p style="margin-top:6px;">Jumatate au primit <b>capsule cu 2g matcha</b> zilnic, cealalta jumatate — <b>capsule placebo</b> (fara matcha).</p>
+          </div>
+          <div class="mini">
+            <h3>Rezultate remarcabile</h3>
+            <p>Grupul cu matcha a aratat <b>somn mai bun</b> si <b>functie cerebrala imbunatatita</b> dupa un an de consum zilnic. Publicat intr-un jurnal international.</p>
+            <p style="margin-top:6px;">Surprinzator: desi matcha contine <b>cofeina</b>, somnul s-a imbunatatit — datorita <b>L-teaninei</b>, care contrabalanseaza efectul stimulant.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Oamenii spun adesea sa nu bei ceai noaptea din cauza cofeinei, dar rezultatele acestui studiu arata ca, de fapt, matcha poate imbunatati somnul.&raquo;
+          <cite>— Cercetator, NHK Medical Frontiers</cite>
+        </div>
+
+        <div class="alert" style="margin-top:12px;">
+          <h4>Mecanismul: L-Teanina</h4>
+          <p>L-Teanina, un aminoacid unic din matcha, <b>promoveaza relaxarea</b> si <b>imbunatateste calitatea somnului</b>. Matcha contine de <b>cel putin 2 ori</b> mai multa teanina decat ceaiul verde obisnuit, datorita cultivarii la umbra care reduce amareala si pastreaza teanina in frunze.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Biomarkeri sanguini -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Biomarkeri sanguini: protectie impotriva Alzheimer</h2>
+          <p>Matcha a modificat semnificativ 3 proteine din sange, toate legate de prevenirea acumularii de beta-amiloid in creier</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">BIOMARKERI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(34,197,94,.2);">
+            <h3 style="color:var(--glow)">Albumina</h3>
+            <p>Proteina legata de nutritie. Nivelurile scazute de albumina duc la <b>acumularea de beta-amiloid</b>, substanta care deterioreaza neuronii si cauzeaza boala Alzheimer. Matcha a crescut nivelul de albumina.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(134,239,172,.2);">
+            <h3 style="color:var(--glow2)">Transtiretina</h3>
+            <p>Se combina cu beta-amiloidul si ajuta la <b>eliminarea lui din creier</b>. Niveluri mai ridicate = mecanisme de curatare mai eficiente impotriva proteinelor toxice.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Apolipoproteina A1</h3>
+            <p><b>Protejeaza vasele de sange din creier</b> si ajuta la eliminarea beta-amiloidului. Impreuna, cele 3 proteine formeaza un <b>sistem de aparare</b> impotriva neurodegenerarii.</p>
+          </div>
+        </div>
+
+        <!-- Beta-amyloid pathway SVG -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Arrows -->
+            <line x1="130" y1="100" x2="270" y2="60" stroke="rgba(34,197,94,.4)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="130" y1="100" x2="270" y2="100" stroke="rgba(134,239,172,.4)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="130" y1="100" x2="270" y2="140" stroke="rgba(34,211,238,.4)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="430" y1="60" x2="540" y2="100" stroke="rgba(34,197,94,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="430" y1="100" x2="540" y2="100" stroke="rgba(134,239,172,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <line x1="430" y1="140" x2="540" y2="100" stroke="rgba(34,211,238,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+
+            <!-- Matcha -->
+            <rect x="30" y="72" width="100" height="56" rx="14" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.35)" stroke-width="1.5"/>
+            <text x="80" y="96" fill="#22C55E" font-size="13" font-weight="700" text-anchor="middle">MATCHA</text>
+            <text x="80" y="114" fill="#9CC4AA" font-size="9" text-anchor="middle">2g / zi, 1 an</text>
+
+            <!-- 3 Proteins -->
+            <rect x="270" y="35" width="160" height="42" rx="10" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.25)" stroke-width="1.2"/>
+            <text x="350" y="55" fill="#22C55E" font-size="11" font-weight="600" text-anchor="middle">Albumina</text>
+            <text x="350" y="68" fill="#6A9B7A" font-size="8.5" text-anchor="middle">nutritie & protectie neuroni</text>
+
+            <rect x="270" y="80" width="160" height="42" rx="10" fill="rgba(134,239,172,.08)" stroke="rgba(134,239,172,.25)" stroke-width="1.2"/>
+            <text x="350" y="100" fill="#86EFAC" font-size="11" font-weight="600" text-anchor="middle">Transtiretina</text>
+            <text x="350" y="113" fill="#6A9B7A" font-size="8.5" text-anchor="middle">leaga beta-amiloidul</text>
+
+            <rect x="270" y="125" width="160" height="42" rx="10" fill="rgba(34,211,238,.08)" stroke="rgba(34,211,238,.25)" stroke-width="1.2"/>
+            <text x="350" y="145" fill="#22D3EE" font-size="11" font-weight="600" text-anchor="middle">Apolipoproteina A1</text>
+            <text x="350" y="158" fill="#6A9B7A" font-size="8.5" text-anchor="middle">protejeaza vasele cerebrale</text>
+
+            <!-- Result -->
+            <rect x="540" y="72" width="130" height="56" rx="14" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="605" y="93" fill="#F87171" font-size="10" font-weight="600" text-anchor="middle">Beta-amiloid</text>
+            <text x="605" y="107" fill="#F87171" font-size="10" text-anchor="middle">REDUS</text>
+            <text x="605" y="120" fill="#6A9B7A" font-size="8" text-anchor="middle">risc Alzheimer scazut</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Recunoasterea emotionala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cognitie sociala: recunoasterea emotiilor</h2>
+          <p>Matcha imbunatateste capacitatea de a recunoaste expresiile faciale — functie care se deterioreaza in dementa</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">COGNITIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Testul</h3>
+            <p>Participantilor li s-au aratat <b>48 de fotografii</b> pe ecranul unui computer, cu expresii faciale de <b>furie</b> si <b>tristete</b>. Inainte de studiu, ambele grupuri (matcha si placebo) au raspuns corect la aceeasi rata.</p>
+          </div>
+          <div class="mini">
+            <h3>Dupa 1 an</h3>
+            <p>Grupul cu matcha a <b>imbunatatit</b> recunoasterea emotiilor faciale, in timp ce grupul placebo <b>nu a aratat progres</b>. Persoanele cu MCI sufera de obicei de un declin in aceste functii sociale.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Cand comunicarea reciproca in viata de zi cu zi devine dificila, stresul preia controlul. Daca putem imbunatati recunoasterea emotionala, poate putem intarzia aparitia bolii.&raquo;
+          <cite>— Cercetator principal, studiul cognitie sociala</cite>
+        </div>
+
+        <div class="alert">
+          <h4>Implicatii pentru prevenirea dementei</h4>
+          <p>Deteriorarea cognitiva sociala este adesea printre <b>primele semne</b> ale dementei. Faptul ca matcha poate mentine sau imbunatati aceasta functie sugereaza un potential <b>preventiv real</b>, accesibil prin simpla incorporare a matcha in dieta zilnica.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Anxietate si depresie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Anxietatea si depresia: rezultate pe modele animale</h2>
+          <p>Matcha activeaza circuitele dopaminergice din creier si reduce comportamentul anxios — cu implicatii pentru sanatatea mintala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">NEUROLOGIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">&gt;30%</div>
+            <span class="u">din pacientii cu depresie NU raspund la tratamentul actual</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">3</div>
+            <span class="u">regiuni cerebrale activate de matcha via dopamina</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">EGCG</div>
+            <span class="u">+ EGC + cofeina traverseaza bariera hemato-encefalica</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">BBB</div>
+            <span class="u">bariera hemato-encefalica — compusii matcha o pot traversa</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Testul labirintului elevat</h3>
+            <p>Soarecii prefera in mod natural spatiile <b>intunecate si inguste</b>. Soarecii anxiosi stau in <b>bratele inchise</b> ale labirintului. Grupul cu matcha a petrecut <b>mai mult timp</b> si a parcurs <b>distante mai mari</b> in bratele deschise (inalte, expuse) — semn de <b>anxietate redusa</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Dopamina si circuitele cerebrale</h3>
+            <p>Matcha a activat neuronii in <b>3 regiuni</b> din circuitele dopaminergice ale creierului: una care <b>regleaza emotiile</b>, una implicata in <b>motivatie</b>, si o a treia. Dopamina este neurotransmitator-cheie pentru functia de control si recompensa.</p>
+          </div>
+        </div>
+
+        <div class="quote light" style="margin-top:14px;">
+          &laquo;Efectele matcha dezvaluite in acest studiu ar putea contribui la intelegerea tulburarilor mintale inca slab intelese, precum depresia si anxietatea. Sper ca acest consum sa ajute la prevenirea depresiei.&raquo;
+          <cite>— Cercetator, studiul dopamina-matcha</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Muschi & Recuperare -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Muschi, recuperare si microbiomul intestinal</h2>
+          <p>Matcha reduce stresul indus de exercitiu, sustine cresterea masei musculare si imbunatateste flora intestinala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">FITNESS</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Antrenament + Matcha</h3>
+            <p>Intr-un program de antrenament de <b>8-12 saptamani</b>, grupul cu matcha a aratat <b>niveluri de stres mai scazute</b> dupa program comparativ cu stadiul initial. Matcha ajuta la <b>recuperarea rapida</b> din oboseala si stresul cauzate de exercitiu.</p>
+            <p style="margin-top:6px;">Aceasta adaptare mai buna la antrenament a dus la <b>cresteri superioare</b> in forta si masa musculara.</p>
+          </div>
+          <div class="mini">
+            <h3>Microbiomul intestinal</h3>
+            <p>Matcha a crescut bacteriile care <b>suprima inflamatia</b> in intestin. Aceste bacterii benefice produc compusi pe care <b>muschii ii iubesc</b>. S-a gasit o <b>corelatie directa</b>: cu cat crestea mai mult populatia bacteriana benefica, cu atat era mai mare forta musculara.</p>
+          </div>
+        </div>
+
+        <div class="alert" style="margin-top:12px;">
+          <h4>Efectul sinergic al ingredientelor multiple</h4>
+          <p>Cercetatorii au descoperit ca <b>combinatia de ingrediente</b> din matcha (catechine + fibre + vitamine + teanina) produce efecte pe care niciun ingredient individual nu le poate genera. Este o sinergie unica: <b>intregul este mai mare decat suma partilor</b>.</p>
+        </div>
+
+        <div class="quote" style="margin-top:12px;">
+          &laquo;Daca fibrele alimentare sunt benefice, nu inseamna ca trebuie sa iei doar fibre. Am descoperit ca luand aceste ingrediente impreuna, se produc efecte incredibil de benefice care nu ar aparea daca le-ai lua individual.&raquo;
+          <cite>— Cercetator, studiul microbiom-muschi</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Retete si Sfaturi -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum sa consumi matcha pentru efect maxim</h2>
+          <p>Sfaturi practice si retete de la Dr. Yamamoto si specialistii din emisiune</p>
+        </div>
+        <span class="badge">PRACTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~2</div>
+            <span class="u">portii de matcha pe zi — doza recomandata</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">Vit A</div>
+            <span class="u">liposolubila — necesita grasimi pentru absorbtie</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Atentie</div>
+            <span class="u">la cofeina daca bei si cafea</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">Gravide</div>
+            <span class="u">limita stricta de cofeina — consultati medicul</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="recipe">
+            <h4>Smoothie de smarald</h4>
+            <ul>
+              <li><b>Avocado</b> — grasimi sanatoase pentru absorbtia vitaminei A</li>
+              <li><b>Mar</b> — fibre si dulceata naturala</li>
+              <li><b>Spanac baby</b> — nutrienti suplimentari</li>
+              <li><b>Lapte de soia</b> — proteine vegetale</li>
+              <li><b>Zahar de sfecla</b> — indulcitor natural</li>
+              <li><b>Matcha</b> — 1-2 lingurite</li>
+            </ul>
+          </div>
+          <div class="recipe">
+            <h4>Bile energetice cu matcha</h4>
+            <ul>
+              <li><b>Nuci</b> — lipidele cresc absorbtia vitaminei A</li>
+              <li><b>Curmale</b> — dulceata naturala, fara zahar adaugat</li>
+              <li><b>Pudra de nuca de cocos</b> — textura si grasimi</li>
+              <li><b>Matcha</b> — o lingurita</li>
+              <li>Se mixeaza in food processor si se formeaza bile</li>
+              <li>Imbunatatesc <b>flora intestinala</b> si absorbtia nutrientilor</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert warn" style="margin-top:14px;">
+          <h4>Precautii importante</h4>
+          <p>Dulciurile cu matcha contin <b>multa cofeina</b>. Daca esti sensibil la cofeina, nu combina cu cafea. Femeile <b>gravide</b> trebuie sa fie extrem de atente la aportul de cofeina. Foloseste indulcitori naturali: <b>zahar de sfecla</b>, <b>zahar de artar</b> sau <b>zahar de palmier</b>.</p>
+        </div>
+
+        <div class="quote light" style="margin-top:12px;">
+          &laquo;Vitamina A din matcha se dizolva in grasimi, asa ca este important sa folosesti avocado sau ulei pentru a o extrage. Asa absorbi corect nutrientii matcha.&raquo;
+          <cite>— Dr. Yamamoto, specialist nutritie</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Concluzia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Viitorul cercetarii si matcha autentica</h2>
+          <p>Ce urmeaza in cercetare si de ce conteaza ca matcha sa fie autentica</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(34,197,94,.2);">
+            <h3 style="color:var(--glow)">Efecte multiple, un singur ingredient</h3>
+            <p>Matcha actioneaza simultan pe <b>creier</b> (cognitie, somn, anxietate), <b>sange</b> (biomarkeri protectivi), <b>muschi</b> (forta, recuperare) si <b>intestin</b> (microbiom). Putine alimente au o actiune atat de ampla si sustinuta stiintific.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(134,239,172,.2);">
+            <h3 style="color:var(--glow2)">Cercetari viitoare</h3>
+            <p>Cercetatorii subliniaza ca matcha contine <b>multi alti compusi</b> inca nestudiat in profunzime. Efectele sinergice ale combinatiei de ingrediente vor fi un <b>subiect major</b> al cercetarilor urmatoare.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Matcha autentica vs. falsa</h3>
+            <p>Este esential ca Japonia sa stabileasca <b>standarde clare de fabricatie</b> pentru matcha. Pe piata exista produse etichetate "matcha" care <b>nu respecta</b> procesul traditional (umbra + piatra). Matcha falsa nu ofera aceleasi beneficii.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Prevenire, nu tratament</h3>
+            <p>Mesajul central: matcha nu e medicament, ci un <b>instrument de prevenire</b> accesibil. Incorporata zilnic in dieta, poate contribui la <b>intarzierea</b> dementei, reducerea anxietatii si mentinerea sanatatii fizice.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Sper ca, baut regulat, ceaiul matcha va contribui la promovarea unei educatii nutritionale care sa previna aparitia depresiei si a deteriorarii cognitive.&raquo;
+          <cite>— Cercetator, NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ======= SIDEBAR ======= -->
+  <div class="side">
+
+    <!-- Compozitia Matcha -->
+    <div class="timeline">
+      <div class="tHead"><h2>Compusii-cheie din matcha</h2></div>
+      <div class="tBody" style="gap:6px;">
+        <div class="tEvent" style="grid-template-columns:1fr;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--glow);font-weight:700;">L-Teanina</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted2);">2x vs ceai verde</span>
+            </div>
+            <div style="margin-top:4px;height:10px;background:rgba(5,12,8,.4);border-radius:5px;overflow:hidden;">
+              <div style="width:90%;height:100%;background:linear-gradient(90deg,var(--glow),var(--glow2));border-radius:5px;"></div>
+            </div>
+            <span class="tDesc" style="margin-top:3px;display:block;">Relaxare, somn mai bun, contrabalanseaza cofeina</span>
+          </div>
+        </div>
+        <div class="tEvent" style="grid-template-columns:1fr;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--teal);font-weight:700;">EGCG (Catechina)</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted2);">antioxidant puternic</span>
+            </div>
+            <div style="margin-top:4px;height:10px;background:rgba(5,12,8,.4);border-radius:5px;overflow:hidden;">
+              <div style="width:95%;height:100%;background:linear-gradient(90deg,var(--teal),rgba(34,211,238,.5));border-radius:5px;"></div>
+            </div>
+            <span class="tDesc" style="margin-top:3px;display:block;">Previne arterioscleroza, arde grasimile, traverseaza BBB</span>
+          </div>
+        </div>
+        <div class="tEvent" style="grid-template-columns:1fr;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--warn);font-weight:700;">Cofeina</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted2);">stimulant moderat</span>
+            </div>
+            <div style="margin-top:4px;height:10px;background:rgba(5,12,8,.4);border-radius:5px;overflow:hidden;">
+              <div style="width:50%;height:100%;background:linear-gradient(90deg,var(--warn),rgba(251,191,36,.5));border-radius:5px;"></div>
+            </div>
+            <span class="tDesc" style="margin-top:3px;display:block;">Traverseaza bariera hemato-encefalica, actioneaza pe neurotransmitatori</span>
+          </div>
+        </div>
+        <div class="tEvent" style="grid-template-columns:1fr;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--purple);font-weight:700;">Beta-caroten (Vit A)</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted2);">liposolubila</span>
+            </div>
+            <div style="margin-top:4px;height:10px;background:rgba(5,12,8,.4);border-radius:5px;overflow:hidden;">
+              <div style="width:65%;height:100%;background:linear-gradient(90deg,var(--purple),rgba(167,139,250,.5));border-radius:5px;"></div>
+            </div>
+            <span class="tDesc" style="margin-top:3px;display:block;">Se absoarbe cu grasimi (avocado, nuci, ulei)</span>
+          </div>
+        </div>
+        <div class="tEvent" style="grid-template-columns:1fr;">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:var(--ok);font-weight:700;">Fibre alimentare</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted2);">prebiotic</span>
+            </div>
+            <div style="margin-top:4px;height:10px;background:rgba(5,12,8,.4);border-radius:5px;overflow:hidden;">
+              <div style="width:55%;height:100%;background:linear-gradient(90deg,var(--ok),rgba(52,211,153,.5));border-radius:5px;"></div>
+            </div>
+            <span class="tDesc" style="margin-top:3px;display:block;">Hraneste bacteriile benefice, imbunatateste microbiomul intestinal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Context & Observatii</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce matcha e diferita de ceaiul verde</h4>
+          <p>Cand bei ceai verde, infuzezi frunzele si le arunci. Cu matcha, bei <b>frunza intreaga macinata</b> — deci primesti absolut toti nutrientii, nu doar cei solubili in apa.</p>
+        </div>
+        <div class="comNote">
+          <h4>Umbra = mai multa teanina</h4>
+          <p>Acoperirea campurilor cu plase de umbra <b>reduce conversia teaninei in catechine</b>. Rezultat: matcha e mai bogata in teanina (relaxare) si mai putin amara decat ceaiul verde crescut la soare.</p>
+        </div>
+        <div class="comNote">
+          <h4>Nu inlocuieste tratamentul medical</h4>
+          <p>Matcha este un <b>supliment alimentar preventiv</b>, nu un medicament. Cercetatorii subliniaza rolul ei in <b>prevenirea</b> bolilor, nu in tratarea celor deja diagnosticate.</p>
+        </div>
+        <div class="comNote">
+          <h4>Sinergia ingredientelor</h4>
+          <p>Efectul combinat al L-teaninei + EGCG + cofeina + fibre + vitamine produce beneficii pe care <b>niciun ingredient luat separat</b> nu le poate oferi. Aceasta sinergie este ceea ce face matcha unica.</p>
+        </div>
+        <div class="comNote">
+          <h4>Populatie studiata</h4>
+          <p>Studiul clinic a fost facut pe persoane cu <b>declin cognitiv deja existent</b> (subiectiv sau MCI). La persoane sanatoase, efectele preventive ar putea fi si mai puternice.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beneficii rapide -->
+    <div class="timeline">
+      <div class="tHead"><h2>Beneficii demonstrate</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="width:30px;">01</span><span class="tDesc"><b>Somn imbunatatit</b> — datorita L-teaninei, desi contine cofeina</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">02</span><span class="tDesc"><b>Functie cognitiva</b> — protejeaza impotriva declinului mental</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">03</span><span class="tDesc"><b>Biomarkeri Alzheimer</b> — creste 3 proteine protectoare</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">04</span><span class="tDesc"><b>Cognitie sociala</b> — imbunatateste recunoasterea emotiilor</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">05</span><span class="tDesc"><b>Reduce anxietatea</b> — activare circuite dopamina</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">06</span><span class="tDesc"><b>Forta musculara</b> — recuperare mai rapida dupa exercitiu</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">07</span><span class="tDesc"><b>Microbiom</b> — creste bacteriile anti-inflamatoare</span></div>
+        <div class="tEvent"><span class="tDate" style="width:30px;">08</span><span class="tDesc"><b>Antioxidant</b> — previne arterioscleroza, arde grasimile</span></div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>L-Teanina</dt>
+          <dd>Aminoacid unic din ceaiul matcha care promoveaza relaxarea fara somnolenta. Inhiba excitabilitatea neurala si favorizeaza undele cerebrale alfa, asociate cu starea de calm concentrat.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>EGCG (Epigalocatechin galat)</dt>
+          <dd>Cea mai abundenta si puternica catechina din matcha. Antioxidant care traverseaza bariera hemato-encefalica, protejand neuronii si vasele de sange cerebrale.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Beta-amiloid</dt>
+          <dd>Proteina care se acumuleaza in creierul persoanelor cu Alzheimer, formand "placi" toxice care distrug neuronii. Matcha creste proteinele care ajuta la eliminarea lui.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>MCI (Deteriorare Cognitiva Usoara)</dt>
+          <dd>Stadiu intermediar intre imbatranirea normala si dementa. Persoanele cu MCI au probleme de memorie mai mari decat normalul, dar pot inca functiona independent.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Bariera hemato-encefalica (BBB)</dt>
+          <dd>Sistem de filtrare care protejeaza creierul, blocand majoritatea substantelor din sange. EGCG, EGC si cofeina din matcha pot traversa aceasta bariera si actiona direct pe neuroni.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Dopamina</dt>
+          <dd>Neurotransmitator esential pentru motivatie, recompensa si reglarea emotionala. Deficitul de dopamina e legat de depresie si anxietate. Matcha activeaza circuitele dopaminergice.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Microbiom intestinal</dt>
+          <dd>Comunitatea de trilioane de bacterii din intestin. Matcha creste bacteriile benefice care produc compusi anti-inflamatori si substante nutritive pentru muschi.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=Q7XzEiHSpdQ" target="_blank">NHK Medical Frontiers — "Matcha's Power, Explained by Science"</a> &middot;
+    Infografic interactiv bazat pe emisiunea NHK Medical Frontiers
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* -- Hero canvas: matcha bowl with swirling green particles -- */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles swirling around matcha bowl
+  const particles = [];
+  const pCount = 80;
+  for(let i = 0; i < pCount; i++){
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 0.08 + Math.random() * 0.38;
+    particles.push({
+      angle: angle,
+      dist: dist,
+      r: 1 + Math.random() * 2.5,
+      speed: 0.003 + Math.random() * 0.008,
+      phase: Math.random() * Math.PI * 2,
+      yOff: (Math.random() - 0.5) * 0.3,
+      green: Math.random(),
+      opacity: 0.3 + Math.random() * 0.5
+    });
+  }
+
+  // Steam particles
+  const steam = [];
+  for(let i = 0; i < 20; i++){
+    steam.push({
+      x: 0.45 + Math.random() * 0.10,
+      y: Math.random(),
+      size: 1 + Math.random() * 2,
+      speed: 0.002 + Math.random() * 0.003,
+      drift: (Math.random() - 0.5) * 0.001,
+      opacity: Math.random() * 0.3
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.01;
+
+    const cx = w * 0.5, cy = h * 0.55;
+    const bowlW = w * 0.28, bowlH = h * 0.15;
+
+    // Glow under bowl
+    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, bowlW * 1.5);
+    grd.addColorStop(0, 'rgba(34,197,94,0.08)');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,w,h);
+
+    // Swirling particles
+    particles.forEach(p => {
+      p.angle += p.speed;
+      const wobble = Math.sin(t * 2 + p.phase) * 0.02;
+      const px = cx + Math.cos(p.angle + wobble) * (bowlW * (0.5 + p.dist));
+      const py = cy + Math.sin(p.angle + wobble) * (bowlH * (0.4 + p.dist)) + p.yOff * h * 0.3;
+
+      const alpha = p.opacity * (0.5 + Math.sin(t * 3 + p.phase) * 0.3);
+      const g1 = Math.floor(180 + p.green * 60);
+      const g2 = Math.floor(100 + p.green * 60);
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${Math.floor(30 + p.green * 20)},${g1},${g2},${alpha})`;
+      ctx.shadowColor = `rgba(34,197,94,${alpha * 0.5})`;
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Draw matcha bowl (stylized)
+    // Bowl body
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + bowlH * 0.3, bowlW * 0.7, bowlH * 0.7, 0, 0, Math.PI);
+    ctx.fillStyle = 'rgba(20,60,40,0.6)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(34,197,94,0.3)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Bowl top (liquid surface)
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - bowlH * 0.05, bowlW * 0.65, bowlH * 0.25, 0, 0, Math.PI * 2);
+    const liquidGrd = ctx.createRadialGradient(cx, cy - bowlH * 0.05, 0, cx, cy - bowlH * 0.05, bowlW * 0.65);
+    liquidGrd.addColorStop(0, 'rgba(134,239,172,0.25)');
+    liquidGrd.addColorStop(0.5, 'rgba(34,197,94,0.18)');
+    liquidGrd.addColorStop(1, 'rgba(20,80,50,0.3)');
+    ctx.fillStyle = liquidGrd;
+    ctx.fill();
+
+    // Foam swirl on surface
+    for(let s = 0; s < 3; s++){
+      const sa = t * 0.5 + s * (Math.PI * 2 / 3);
+      const sr = bowlW * 0.25 + Math.sin(t + s) * bowlW * 0.1;
+      const sx = cx + Math.cos(sa) * sr * 0.5;
+      const sy = cy - bowlH * 0.05 + Math.sin(sa) * bowlH * 0.1;
+      ctx.beginPath();
+      ctx.arc(sx, sy, 2 + Math.sin(t * 2 + s) * 1, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,255,220,${0.15 + Math.sin(t + s) * 0.08})`;
+      ctx.fill();
+    }
+
+    // Chasen (whisk) handle
+    const whiskX = cx + bowlW * 0.4;
+    const whiskY1 = cy - bowlH * 1.2;
+    const whiskY2 = cy - bowlH * 0.1;
+    ctx.beginPath();
+    ctx.moveTo(whiskX, whiskY1);
+    ctx.lineTo(whiskX + 3, whiskY2);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(180,140,80,0.5)';
+    ctx.stroke();
+
+    // Whisk tines
+    for(let i = -3; i <= 3; i++){
+      ctx.beginPath();
+      ctx.moveTo(whiskX + 3 + i * 2, whiskY2);
+      const cp1x = whiskX + 3 + i * 4;
+      const cp1y = whiskY2 + bowlH * 0.15;
+      ctx.quadraticCurveTo(cp1x, cp1y, whiskX + 3 + i * 1.5, whiskY2 + bowlH * 0.25);
+      ctx.strokeStyle = 'rgba(180,140,80,0.25)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Steam
+    steam.forEach(s => {
+      s.y -= s.speed;
+      s.x += s.drift + Math.sin(t * 3 + s.x * 10) * 0.0003;
+      if(s.y < 0){ s.y = 1; s.opacity = Math.random() * 0.3; s.x = 0.45 + Math.random() * 0.10; }
+      const sy = cy - bowlH * 0.4 - (1 - s.y) * h * 0.35;
+      const sx = s.x * w;
+      const alpha = s.opacity * s.y * (0.5 + Math.sin(t * 2 + sx) * 0.3);
+      ctx.beginPath();
+      ctx.arc(sx, sy, s.size + (1 - s.y) * 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(134,239,172,${alpha * 0.4})`;
+      ctx.fill();
+    });
+
+    // Pulse rings from bowl
+    for(let p = 0; p < 2; p++){
+      const pr = ((t * 25 + p * 50) % 120);
+      const pa = Math.max(0, 0.08 - pr / 1500);
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, bowlW * 0.5 + pr, bowlH * 0.2 + pr * 0.3, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(34,197,94,${pa})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(156,196,170,0.35)';
+    ctx.fillText('MATCHA', cx - 18, h - 10);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

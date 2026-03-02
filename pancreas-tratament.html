@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noi abordari in tratamentul bolilor pancreatice — EUS, stentul IT si procedura E-PASS</title>
+  <meta name="description" content="Infografic interactiv: ecografia endoscopica (EUS), stentul IT si procedura E-PASS — inovatii japoneze in diagnosticarea si tratamentul bolilor pancreasului. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#0A0712;
+      --bg1:#0E0A1A;
+      --panel:#18102Ccc;
+      --card:#140E28;
+      --card2:#110B22;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#2A1E48;
+      --glow:#F59E0B;
+      --glow2:#8B5CF6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+      --amber:#F59E0B;
+      --amberDim:#D97706;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(245,158,11,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(139,92,246,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.07), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* -- HERO -- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(245,158,11,.20);
+      background: linear-gradient(180deg, rgba(20,14,40,.75), rgba(14,10,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(245,158,11,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(139,92,246,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,7,18,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--purple)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,7,18,.30),rgba(10,7,18,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* -- CARDS -- */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,7,18,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,7,18,.28),rgba(10,7,18,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,7,18,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(245,158,11,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.purple{border-color:var(--glow2);background:rgba(139,92,246,.15);}
+    .stepDot.amber{border-color:var(--glow);background:rgba(245,158,11,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(52,211,153,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(139,92,246,.22),rgba(139,92,246,.04));}
+    .stepBar.amber{background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(245,158,11,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.purple{border-color:var(--glow2);background:rgba(139,92,246,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(245,158,11,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(245,158,11,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.purple{border-color:rgba(139,92,246,.25);background:rgba(139,92,246,.06);}
+    .alert.purple h4{color:var(--glow2);}
+    .alert.bad{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06);}
+    .alert.bad h4{color:var(--bad);}
+
+    /* Anatomy SVG */
+    .anatDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,7,18,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .anatDiag svg{width:100%;height:auto;display:block;}
+
+    /* Risk grid */
+    .riskGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+    .riskItem{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,7,18,.38);
+      border-radius:14px;padding:11px;display:flex;align-items:flex-start;gap:10px;
+    }
+    .riskIcon{font-size:20px;flex:0 0 auto;margin-top:1px;}
+    .riskItem .rLabel{font-size:12.5px;font-weight:600;color:var(--ink);}
+    .riskItem .rDesc{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.35;}
+
+    /* Signs list */
+    .signsList{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+    .signItem{
+      border:1px solid rgba(248,113,113,.15);background:rgba(248,113,113,.04);
+      border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:9px;
+    }
+    .signNum{
+      width:24px;height:24px;border-radius:999px;background:rgba(248,113,113,.15);
+      border:1px solid rgba(248,113,113,.3);display:flex;align-items:center;justify-content:center;
+      font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bad);flex:0 0 auto;
+    }
+    .signItem span{font-size:12.5px;color:var(--muted);line-height:1.35;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(245,158,11,.18);
+      background:linear-gradient(180deg,rgba(20,14,40,.80),rgba(14,10,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(245,158,11,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(245,158,11,.25);background:rgba(245,158,11,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,7,18,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(20,14,40,.75),rgba(17,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,7,18,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Procedure comparison */
+    .procCompare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+    .procBox{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;padding:14px;
+      background:linear-gradient(180deg,rgba(10,7,18,.28),rgba(10,7,18,.55));
+    }
+    .procBox h3{margin:0;font-size:13px;display:flex;align-items:center;gap:7px;}
+    .procBox ul{margin:8px 0 0;padding-left:16px;list-style:none;}
+    .procBox ul li{font-size:12px;color:var(--muted);line-height:1.5;padding:2px 0;position:relative;}
+    .procBox ul li:before{content:"\2022";color:var(--glow);position:absolute;left:-14px;}
+    .procBox.purple ul li:before{color:var(--glow2);}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    /* Tooltip */
+    .tip{
+      position:relative;border-bottom:1px dotted var(--glow);cursor:help;
+    }
+    .tip:hover .tipText{opacity:1;visibility:visible;transform:translateY(0);}
+    .tipText{
+      position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(4px);
+      background:var(--card);border:1px solid rgba(245,158,11,.25);border-radius:10px;
+      padding:7px 10px;font-size:11px;color:var(--muted);line-height:1.35;
+      width:max-content;max-width:260px;z-index:99;
+      opacity:0;visibility:hidden;transition:all .2s;pointer-events:none;
+      font-style:normal;font-weight:400;box-shadow:var(--shadow);
+    }
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .grid4{grid-template-columns:1fr 1fr;}
+      .footer{grid-column:1;}
+      .riskGrid{grid-template-columns:1fr;}
+      .signsList{grid-template-columns:1fr;}
+      .procCompare{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Noi abordari in tratamentul bolilor pancreatice
+          <small>Ecografia endoscopica (EUS), stentul IT si procedura E-PASS &mdash; inovatii din Japonia care schimba diagnostic si tratament</small>
+        </h1>
+        <p class="sub">Bolile pancreasului sunt extrem de greu de depistat devreme. Doar <b>7,8%</b> din cazurile de cancer pancreatic sunt descoperite in stadiul 1, iar aproape jumatate din pacienti ajung la diagnostic abia in <b>stadiul 4</b>. Tehnologia <b>EUS</b> (ecografie endoscopica) si procedurile dezvoltate de echipa prof. Itoi din Japonia ofera sperante noi &mdash; de la detectie timpurie la tratamente minim invazive.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Gastroenterologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Pancreas</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MAIN COLUMN ======= -->
+  <div class="main">
+
+    <!-- Card 1: Pancreasul - organul tacut -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Pancreasul &mdash; &laquo;organul tacut&raquo;</h2>
+          <p>Ascuns in profunzimea abdomenului, pancreasul indeplineste doua functii vitale dar rareori da semne timpurii de boala</p>
+        </div>
+        <span class="badge">ANATOMIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Functia digestiva</h3>
+            <p>Produce <b>sucul pancreatic</b> &mdash; un fluid digestiv puternic care curge prin <span class="tip">ductul pancreatic<span class="tipText">Canal prin care sucul pancreatic ajunge in duoden pentru a descompune alimentele</span></span> in <span class="tip">duoden<span class="tipText">Prima portiune a intestinului subtire, imediat dupa stomac</span></span>, unde descompune alimentele.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Functia hormonala</h3>
+            <p>Produce <b>hormoni</b> care regleaza nivelul zaharului din sange si secretia fluidelor digestive. Acesti hormoni calatoresc prin <b>fluxul sanguin</b> pentru a-si indeplini functiile.</p>
+          </div>
+        </div>
+
+        <div class="anatDiag">
+          <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Stomach -->
+            <ellipse cx="200" cy="100" rx="90" ry="65" fill="rgba(139,92,246,.08)" stroke="rgba(139,92,246,.25)" stroke-width="1.5"/>
+            <text x="200" y="95" fill="#8B5CF6" font-size="12" font-weight="600" text-anchor="middle">Stomac</text>
+            <text x="200" y="112" fill="#6E7A9A" font-size="10" text-anchor="middle">(indepartat)</text>
+
+            <!-- Liver -->
+            <ellipse cx="120" cy="55" rx="70" ry="35" fill="rgba(34,211,238,.06)" stroke="rgba(34,211,238,.20)" stroke-width="1.5"/>
+            <text x="120" y="58" fill="#22D3EE" font-size="11" font-weight="600" text-anchor="middle">Ficat</text>
+
+            <!-- Pancreas highlighted -->
+            <rect x="300" y="72" width="200" height="56" rx="28" fill="rgba(245,158,11,.15)" stroke="rgba(245,158,11,.45)" stroke-width="2"/>
+            <text x="400" y="97" fill="#F59E0B" font-size="13" font-weight="700" text-anchor="middle">PANCREAS</text>
+            <text x="400" y="114" fill="#A0ACC8" font-size="10" text-anchor="middle">ascuns in spatele stomacului</text>
+
+            <!-- Duct -->
+            <line x1="500" y1="100" x2="580" y2="140" stroke="rgba(245,158,11,.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="560" y="158" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Ductul pancreatic</text>
+
+            <!-- Duodenum -->
+            <path d="M570 130 C600 130, 620 150, 620 180 C620 210, 590 225, 560 225" fill="none" stroke="rgba(52,211,153,.25)" stroke-width="1.5"/>
+            <text x="620" y="200" fill="#34D399" font-size="10.5" font-weight="600" text-anchor="start">Duoden</text>
+
+            <!-- Kidneys -->
+            <ellipse cx="440" cy="190" rx="40" ry="25" fill="rgba(167,139,250,.06)" stroke="rgba(167,139,250,.18)" stroke-width="1"/>
+            <text x="440" y="193" fill="#6E7A9A" font-size="9.5" text-anchor="middle">Rinichi</text>
+
+            <!-- Spine -->
+            <rect x="345" y="160" width="20" height="60" rx="4" fill="rgba(234,240,255,.04)" stroke="rgba(234,240,255,.08)" stroke-width="1"/>
+            <text x="355" y="200" fill="#6E7A9A" font-size="8" text-anchor="middle" transform="rotate(-90 355 200)">Coloana</text>
+
+            <!-- Labels -->
+            <text x="400" y="35" fill="#6E7A9A" font-size="10" text-anchor="middle">Inconjurat de organe din toate partile</text>
+            <line x1="300" y1="40" x2="500" y2="40" stroke="rgba(234,240,255,.08)" stroke-width="1"/>
+          </svg>
+        </div>
+
+        <div class="alert">
+          <h4>De ce e greu de detectat</h4>
+          <p>Pancreasul e situat <b>in profunzimea corpului</b>, in spatele stomacului, inconjurat de organe din toate partile. Undele ultrasonice trimise din exterior au dificultati in a-l atinge. Chiar si cu <b>CT</b> sau <b>RMN</b>, detectia timpurie ramane o provocare majora.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: EUS - Ecografia Endoscopica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>EUS &mdash; ecografia endoscopica</h2>
+          <p>Tehnologia-cheie pentru detectia timpurie: trimite unde ultrasonice din interiorul corpului, producand imagini clare chiar si pentru anomalii foarte mici</p>
+        </div>
+        <span class="badge" style="border-color:rgba(245,158,11,.3);color:var(--glow);">DIAGNOSTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1,2 m</div>
+            <span class="u">lungimea endoscopului EUS</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">14 mm</div>
+            <span class="u">diametrul endoscopului</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">6 mm</div>
+            <span class="u">tumoare detectata (invizibila pe CT)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">3-in-1</div>
+            <span class="u">camera + lumina + ecograf</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>1. Introducerea endoscopului</h4>
+              <p>Endoscopul EUS este ghidat prin <b>gura</b>, prin stomac si duoden, cat mai aproape de pancreas. La varf are un dispozitiv de <b>ecografie</b> crucial pentru observarea organului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>2. Imagini din interior</h4>
+              <p>Emite unde ultrasonice <b>din interiorul corpului</b>, direct langa pancreas. Produce imagini clare care pot releva anomalii chiar si de <b>6 mm</b> &mdash; invizibile pe CT. Doctorii observa imaginile in <b>timp real</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>3. Biopsie cu ac</h4>
+              <p>Daca EUS gaseste o tumoare, un <b>ac special</b> poate fi introdus pentru a colecta celule. Acestea sunt trimise la <b>analiza detaliata</b> pentru a determina daca sunt canceroase.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Complementaritate cu CT/RMN</h4>
+              <p>CT si RMN ofera o <b>viziune de ansamblu</b>, aratand relatia pancreasului cu organele si vasele din jur. Combinat cu EUS, permite depistarea bolilor pancreatice <b>intr-un stadiu incipient</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Aceasta este o imagine CT a unui pacient cu boala pancreatica. Scanul nu arata nicio anomalie vizibila. Nici specialistii nu au putut detecta nimic. Dar EUS a capturat o tumoare de 6 mm care nu aparea pe CT.&raquo;
+          <cite>&mdash; Prof. Itoi Takao, specialist EUS</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Studiu de caz - Kato Yasco -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiu de caz: Kato Yasco</h2>
+          <p>Diagnosticata cu cancer pancreatic in stadiul 1 datorita EUS &mdash; o sansa de viata oferita de detectia timpurie</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--ok);">CAZ REAL</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>Martie 2025 &mdash; Descoperire intamplatoare</h4>
+              <p>Kato a facut un <b>RMN</b> pentru o alta afectiune, care a relevat o <b>modificare suspecta</b> la nivelul pancreasului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Examinare EUS</h4>
+              <p>A fost trimisa la <b>ecografie endoscopica</b>. Imaginile au aratat o <b>usoara ingustare</b> a ductului pancreatic. Examinarea sucului pancreatic a confirmat: <b>cancer pancreatic stadiul 1</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Mai 2025 &mdash; Interventie chirurgicala</h4>
+              <p>Jumatate din pancreas a fost indepartat. Cancerul a fost <b>complet extirpat</b>. Primeste <b>medicamente anticanceroase orale</b> pentru prevenirea recidivei.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot" style="border-color:var(--ok);background:rgba(52,211,153,.15)"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Prognostic favorabil</h4>
+              <p>Diagnosticul in <b>stadiul 1</b> ofera sanse semnificativ mai bune de supravietuire decat stadiul 4, unde doar <b>1,6%</b> dintre pacienti supravietuiesc 5 ani.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Pancreatita cronica si stentul IT -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tratamentul pancreatitei cronice: stentul IT</h2>
+          <p>O inovatie dezvoltata de prof. Itoi care creeaza o cale noua de drenaj cand abordarea conventionala esueaza</p>
+        </div>
+        <span class="badge" style="border-color:rgba(139,92,246,.3);color:var(--glow2);">TRATAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Problema</h3>
+            <p>In <span class="tip">pancreatita cronica<span class="tipText">Inflamatie pe termen lung care intareste treptat pancreasul si ii afecteaza functia</span></span>, inflamatia pe termen lung <b>intareste pancreasul</b> si provoaca ingustarea sau blocarea ductului pancreatic. Sucul pancreatic se acumuleaza, creste presiunea si apare <b>durerea</b>.</p>
+            <div class="kpi">
+              <div class="n" style="color:var(--bad)">10x</div>
+              <div class="l">cresterea riscului de cancer pancreatic la pacientii cu pancreatita cronica</div>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Solutia clasica vs. inovatie</h3>
+            <p>De obicei, medicii introduc un <span class="tip">stent<span class="tipText">Tub mic care mentine deschis un canal sau vas din corp</span></span> la deschiderea ductului in duoden. Dar cand un <b>calcul mare</b> blocheaza ductul, abordarea clasica e imposibila. Prof. Itoi a dezvoltat o cale alternativa.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>1. EUS prin stomac</h4>
+              <p>Endoscopul EUS este avansat in <b>stomac</b>. Tinta: ductul pancreatic aflat in pancreasul din spatele stomacului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>2. Punctie si dilatare</h4>
+              <p>Un <b>ac</b> este inserat prin peretele stomacului in ductul pancreatic. Apoi ductul este <b>largit</b> pentru a facilita plasarea stentului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>3. Plasarea stentului IT</h4>
+              <p>Stentul IT are un <b>capat drept</b> si unul <b>in spirala</b> (ca o coada de porc). Capatul spiralat ramane ferm in ductul pancreatic, creand un <b>pasaj stabil</b> intre duct si stomac. Sucul pancreatic se dreneaza, simptomele se amelioreaza.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="procCompare">
+          <div class="procBox">
+            <h3 style="color:var(--muted2)">Stent conventional</h3>
+            <ul>
+              <li>Drept la ambele capete</li>
+              <li>Miscarile organelor pot cauza <b>alunecarea</b> in duct</li>
+              <li>Necesita repozitionare frecventa</li>
+            </ul>
+          </div>
+          <div class="procBox purple">
+            <h3 style="color:var(--glow2)">Stentul IT (Itoi)</h3>
+            <ul>
+              <li>Un capat drept, unul <b>in spirala</b></li>
+              <li>Ramane <b>ferm fixat</b> in pozitie</li>
+              <li>In uz in Japonia <b>din 2015</b></li>
+              <li>Adoptat de numeroase spitale</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote purple">
+          &laquo;Fara EUS, acest pacient ar fi avut nevoie de chirurgie deschisa. Aceasta tehnica reduce semnificativ efortul asupra pacientului.&raquo;
+          <cite>&mdash; Prof. Itoi Takao</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: E-PASS -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Procedura E-PASS: bypass gastric in 15 minute</h2>
+          <p>EUS-guided Gastroenterostomy Bypass &mdash; un tratament revolutionar pentru pacientii cu cancer pancreatic avansat care nu mai pot manca</p>
+        </div>
+        <span class="badge" style="border-color:rgba(245,158,11,.3);color:var(--glow);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="min-height:auto;margin-bottom:14px;">
+          <h3 style="color:var(--bad)">Problema: obstructia gastrica</h3>
+          <p>In stadiile avansate, cancerul pancreatic apasa pe <b>duoden</b>, provocand ingustarea acestuia. Pacientii nu mai pot manca &mdash; exact cand au nevoie maxima de nutritie pentru a continua <b>chimioterapia</b>. Chirurgia clasica de bypass este o povara majora pentru acesti pacienti.</p>
+        </div>
+
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>1. Pregatirea jejunului</h4>
+              <p>Doua <b>baloane</b> sunt introduse in <span class="tip">jejun<span class="tipText">A doua portiune a intestinului subtire, dupa duoden</span></span> si umflate. Spatiul dintre ele este umplut cu <b>apa colorata cu albastru</b>, vizibila clar pe ecografie.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>2. Localizarea cu EUS</h4>
+              <p>Endoscopul EUS este introdus in <b>stomac</b>. Doctorul observa jejunul umflat si gaseste <b>locul optim</b> pentru crearea bypass-ului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>3. Crearea deschiderilor</h4>
+              <p>Un <b>curent electric</b> este folosit pentru a crea deschideri atat in stomac cat si in jejun. Stentul este plasat intre cele doua.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Confirmare si rezultat</h4>
+              <p>Camera confirma ca stentul e ferm pe loc. <b>Apa albastra</b> din jejun vizibila in stomac confirma crearea corecta a bypass-ului. Pacientul poate manca din nou &mdash; <b>totul in ~15 minute</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="statGrid" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~15</div>
+            <span class="u">minute durata procedurii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">0</div>
+            <span class="u">incizii chirurgicale</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">2025</div>
+            <span class="u">disponibila doar la spitalul prof. Itoi</span>
+          </div>
+        </div>
+
+        <div class="alert purple">
+          <h4>Importanta nutritiei</h4>
+          <p>Capacitatea de a manca normal ajuta pacientii sa-si <b>mentina fortele</b>, ceea ce le permite sa continue tratamentul anticanceros. Prof. Itoi lucreaza ca procedura sa fie adoptata pe scara larga in <b>Japonia si international</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Factori de risc -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>7 factori de risc pentru bolile pancreatice</h2>
+          <p>Prof. Itoi avertizeaza: persoanele cu oricare dintre acesti factori ar trebui sa fie precaute in viata de zi cu zi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">RISC</span>
+      </div>
+      <div class="cardBody">
+        <div class="riskGrid">
+          <div class="riskItem">
+            <div class="riskIcon">&#127863;</div>
+            <div>
+              <div class="rLabel">Consum de alcool zilnic &gt;10 ani</div>
+              <div class="rDesc">Toata lumea se gandeste la ficat, dar nimeni nu se gandeste la pancreas</div>
+            </div>
+          </div>
+          <div class="riskItem">
+            <div class="riskIcon">&#127828;</div>
+            <div>
+              <div class="rLabel">Preferinta pentru alimente grase</div>
+              <div class="rDesc">Schimbarile alimentare pun presiune suplimentara pe organ</div>
+            </div>
+          </div>
+          <div class="riskItem">
+            <div class="riskIcon">&#9878;&#65039;</div>
+            <div>
+              <div class="rLabel">Obezitatea</div>
+              <div class="rDesc">Factor de risc semnificativ pentru cancer pancreatic</div>
+            </div>
+          </div>
+          <div class="riskItem">
+            <div class="riskIcon">&#128716;</div>
+            <div>
+              <div class="rLabel">Lipsa exercitiului fizic</div>
+              <div class="rDesc">Stilul sedentar creste riscul bolilor pancreatice</div>
+            </div>
+          </div>
+          <div class="riskItem">
+            <div class="riskIcon">&#128684;</div>
+            <div>
+              <div class="rLabel">Fumatul</div>
+              <div class="rDesc">Crestere semnificativa a riscului de cancer pancreatic</div>
+            </div>
+          </div>
+          <div class="riskItem">
+            <div class="riskIcon">&#128548;</div>
+            <div>
+              <div class="rLabel">Stresul cronic</div>
+              <div class="rDesc">Stresul de la munca sau din relatii personale</div>
+            </div>
+          </div>
+          <div class="riskItem" style="grid-column:1/-1;">
+            <div class="riskIcon">&#128137;</div>
+            <div>
+              <div class="rLabel">Diabetul</div>
+              <div class="rDesc">Pancreasul produce hormoni care regleaza glicemia; diabetul semnaleaza o disfunctie legata de pancreas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Semne de alarma -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>8 semne de alarma &mdash; mergi la doctor imediat</h2>
+          <p>Prof. Itoi: &laquo;Chiar daca aveti un singur semn, mergeti la medic. Probabil exista o lista de boli pancreatice asociate.&raquo;</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">URGENTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="signsList">
+          <div class="signItem">
+            <div class="signNum">1</div>
+            <span><b>Pierderea poftei de mancare</b></span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">2</div>
+            <span><b>Scadere in greutate</b> inexplicabila</span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">3</div>
+            <span><b>Balonare abdominala</b></span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">4</div>
+            <span><b>Indigestie sau arsuri</b> persistente</span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">5</div>
+            <span><b>Durere</b> in abdomenul superior sau spate</span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">6</div>
+            <span><b>Diaree</b> sau <b>scaune albicios</b></span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">7</div>
+            <span><b style="color:var(--warn)">Icter</b> (ingalbenirea pielii/ochilor)</span>
+          </div>
+          <div class="signItem">
+            <div class="signNum">8</div>
+            <span><b>Agravarea diabetului</b> existent</span>
+          </div>
+        </div>
+
+        <div class="alert bad" style="margin-top:14px;">
+          <h4>Multe boli pancreatice progreseaza in tacere</h4>
+          <p>Simptomele apar rar in stadiile incipiente. Pancreasul este numit <b>&laquo;organul tacut&raquo;</b> tocmai pentru ca da semne abia cand boala este avansata. Verificarile regulate si atentia la aceste semnale pot face diferenta intre viata si moarte.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Commentary Panel -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="this.nextElementSibling.classList.toggle('hidden')">
+        <h2>Comentariu si context</h2>
+        <button class="comToggle">arata / ascunde</button>
+      </div>
+      <div class="comBody">
+        <div class="comNote">
+          <h4 style="color:var(--glow)">Despre prof. Itoi Takao</h4>
+          <p>Conduce una dintre cele mai importante echipe din lume in utilizarea EUS atat pentru diagnostic cat si pentru tratament. A dezvoltat stentul IT si procedura E-PASS. La cererea medicilor din strainatate, demonstreaza frecvent procedurile in direct pentru a preda tehnica.</p>
+        </div>
+        <div class="comNote">
+          <h4 style="color:var(--glow2)">Perspectiva internationala &mdash; Robert Hawes</h4>
+          <p>Fostul presedinte al Societatii Americane de Endoscopie Gastrointestinala (ASGE) si printre primii care au introdus EUS in SUA. Despre Itoi: <i>&laquo;Singura modalitate de a extinde o procedura si de a ajuta mai multi pacienti este sa ai mai multi medici care o practica. Il admir pentru natura lui cercetaoare si pentru interesul de a forma tineri medici.&raquo;</i></p>
+        </div>
+        <div class="comNote">
+          <h4 style="color:var(--ok)">Incidenta in crestere</h4>
+          <p>Cazurile de pancreatita acuta, cronica si cancer pancreatic sunt in crestere la nivel mondial. Un motiv principal: <b>schimbarile alimentare</b> care pun presiune suplimentara pe organ. Cancerul pancreatic a crescut de aproape <b>8 ori</b> in ultimii 40+ ani.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- ======= SIDEBAR ======= -->
+  <div class="side">
+
+    <!-- Statistics KPI -->
+    <article class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre-cheie</h2></div>
+        <span class="badge">STATISTICI</span>
+      </div>
+      <div class="cardBody" style="display:flex;flex-direction:column;gap:14px;">
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--bad)">Detectie tardiva</h3>
+          <div class="kpi">
+            <div class="n" style="color:var(--bad)">7,8%</div>
+            <div class="l">din cazurile de cancer pancreatic sunt descoperite in stadiul 1</div>
+          </div>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--warn)">Diagnostic tardiv</h3>
+          <div class="kpi">
+            <div class="n" style="color:var(--warn)">~50%</div>
+            <div class="l">dintre pacienti sunt deja in stadiul 4 la diagnostic</div>
+          </div>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--bad)">Supravietuire stadiul 4</h3>
+          <div class="kpi">
+            <div class="n" style="color:var(--bad)">1,6%</div>
+            <div class="l">rata de supravietuire la 5 ani pentru stadiul 4 (Japonia)</div>
+          </div>
+        </div>
+        <div class="mini" style="min-height:auto;">
+          <h3 style="color:var(--glow)">Crestere dramatica</h3>
+          <div class="kpi">
+            <div class="n" style="color:var(--glow)">8x</div>
+            <div class="l">cresterea incidentei cancerului pancreatic in ultimii 40+ ani</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie inovatii</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow2)">~2000</div>
+          <div class="tDesc"><b>EUS diagnostic</b> devine standard pentru examinarea pancreasului in Japonia</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow)">2015</div>
+          <div class="tDesc"><b>Stentul IT</b> intra in uz clinic in Japonia &mdash; adoptat de multe spitale</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow2)">2020+</div>
+          <div class="tDesc"><b>EUS terapeutic</b> se extinde: nu doar diagnostic, ci si tratament minim invaziv</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--ok)">Mar 2025</div>
+          <div class="tDesc"><b>Cazul Kato</b> &mdash; cancer stadiul 1 detectat prin EUS, operat cu succes</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate" style="color:var(--glow)">2025</div>
+          <div class="tDesc"><b>E-PASS</b> disponibila exclusiv la spitalul prof. Itoi; demonstratii internationale</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar medical</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>EUS (Ecografie Endoscopica)</dt>
+          <dd>Endoscop echipat cu ecograf, introdus prin gura, care trimite unde ultrasonice din interiorul corpului pentru imagini foarte detaliate ale pancreasului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Stentul IT</dt>
+          <dd>Stent cu un capat drept si unul in spirala, dezvoltat de prof. Itoi, care ramane ferm in pozitie si creeaza un pasaj de drenaj stabil intre ductul pancreatic si stomac.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>E-PASS</dt>
+          <dd>EUS-guided Gastroenterostomy Bypass &mdash; procedura de ~15 min care conecteaza stomacul direct la jejun, ocolind duodenul obstructionat de tumoare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Pancreatita cronica</dt>
+          <dd>Inflamatie pe termen lung a pancreasului care il intareste treptat si creste riscul de cancer de peste 10 ori.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Ductul pancreatic</dt>
+          <dd>Canalul prin care sucul pancreatic curge din pancreas in duoden pentru digestia alimentelor.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Duoden</dt>
+          <dd>Prima portiune a intestinului subtire, imediat dupa stomac, unde ajung sucul pancreatic si bila.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Jejun</dt>
+          <dd>A doua portiune a intestinului subtire, dupa duoden. In procedura E-PASS, stomacul este conectat direct la jejun.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Biopsie prin EUS</dt>
+          <dd>Colectarea de celule din tumoare prin intermediul unui ac ghidat de ecografie endoscopica, pentru analiza la microscop.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Infografic bazat pe <a href="https://www.youtube.com/watch?v=Bb2Lau9pYLQ" target="_blank">NHK Medical Frontiers &mdash; New Approach To Treating Pancreatic Disease</a> &bull; Informatii cu scop educativ, nu constituie sfat medical &bull; Consulta intotdeauna un medic specialist
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero Canvas: Abstract pancreas with enzyme particles ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, dpr;
+  const particles = [];
+  const enzymes = [];
+
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    const r = c.getBoundingClientRect();
+    W = r.width; H = r.height;
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Pancreas shape points (organic curve)
+  function drawPancreas(t) {
+    const cx = W * 0.48, cy = H * 0.48;
+    const sx = W * 0.38, sy = H * 0.22;
+    ctx.save();
+    ctx.translate(cx, cy);
+
+    // Main body glow
+    const grd = ctx.createRadialGradient(0, 0, sx * 0.1, 0, 0, sx * 1.1);
+    grd.addColorStop(0, 'rgba(245,158,11,.12)');
+    grd.addColorStop(0.5, 'rgba(245,158,11,.06)');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, sx * 1.1, sy * 1.3, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Pancreas shape
+    ctx.beginPath();
+    const wobble = Math.sin(t * 0.8) * 2;
+    ctx.moveTo(-sx * 0.85, -sy * 0.1 + wobble);
+    ctx.bezierCurveTo(-sx * 0.9, -sy * 0.6, -sx * 0.5, -sy * 0.85 + wobble, -sx * 0.1, -sy * 0.6);
+    ctx.bezierCurveTo(sx * 0.2, -sy * 0.4, sx * 0.5, -sy * 0.55 - wobble, sx * 0.75, -sy * 0.3);
+    ctx.bezierCurveTo(sx * 0.95, -sy * 0.1, sx * 0.9, sy * 0.2 + wobble, sx * 0.7, sy * 0.35);
+    ctx.bezierCurveTo(sx * 0.5, sy * 0.5, sx * 0.2, sy * 0.65 - wobble, -sx * 0.1, sy * 0.55);
+    ctx.bezierCurveTo(-sx * 0.4, sy * 0.45, -sx * 0.7, sy * 0.3 + wobble, -sx * 0.85, -sy * 0.1 + wobble);
+    ctx.closePath();
+
+    const fill = ctx.createLinearGradient(-sx, -sy, sx, sy);
+    fill.addColorStop(0, 'rgba(245,158,11,.14)');
+    fill.addColorStop(0.5, 'rgba(217,119,6,.10)');
+    fill.addColorStop(1, 'rgba(139,92,246,.08)');
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(245,158,11,.30)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Pancreatic duct
+    ctx.beginPath();
+    ctx.moveTo(-sx * 0.6, sy * 0.05);
+    ctx.bezierCurveTo(-sx * 0.3, sy * 0.1 + Math.sin(t) * 2, sx * 0.1, -sy * 0.05, sx * 0.65, sy * 0.05 + Math.sin(t * 1.2) * 2);
+    ctx.strokeStyle = 'rgba(245,158,11,.25)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.restore();
+  }
+
+  // Initialize enzyme particles
+  for(let i = 0; i < 60; i++) {
+    enzymes.push({
+      x: Math.random() * 1000,
+      y: Math.random() * 1000,
+      r: 1.5 + Math.random() * 3,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.4,
+      hue: Math.random() > 0.6 ? 38 : 270, // amber or purple
+      alpha: 0.15 + Math.random() * 0.35,
+      pulse: Math.random() * Math.PI * 2,
+      speed: 0.5 + Math.random() * 1.5,
+    });
+  }
+
+  // Floating background dots
+  for(let i = 0; i < 30; i++) {
+    particles.push({
+      x: Math.random() * 1000,
+      y: Math.random() * 1000,
+      r: 0.5 + Math.random() * 1.5,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.15,
+      alpha: 0.05 + Math.random() * 0.12,
+    });
+  }
+
+  let time = 0;
+  function frame(){
+    time += 0.016;
+    ctx.clearRect(0, 0, W, H);
+
+    // Background particles
+    for(const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      const px = (p.x / 1000) * W;
+      const py = (p.y / 1000) * H;
+      if(p.x < 0) p.x = 1000;
+      if(p.x > 1000) p.x = 0;
+      if(p.y < 0) p.y = 1000;
+      if(p.y > 1000) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(234,240,255,${p.alpha})`;
+      ctx.fill();
+    }
+
+    // Draw pancreas
+    drawPancreas(time);
+
+    // Enzyme particles
+    for(const e of enzymes) {
+      e.x += e.vx;
+      e.y += e.vy;
+      e.pulse += 0.03 * e.speed;
+
+      // Gentle drift toward center
+      const dx = 500 - e.x;
+      const dy = 500 - e.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if(dist > 350) {
+        e.vx += dx * 0.0002;
+        e.vy += dy * 0.0002;
+      }
+      // Random walk
+      e.vx += (Math.random() - 0.5) * 0.06;
+      e.vy += (Math.random() - 0.5) * 0.06;
+      e.vx *= 0.99;
+      e.vy *= 0.99;
+
+      if(e.x < 0) e.x = 1000;
+      if(e.x > 1000) e.x = 0;
+      if(e.y < 0) e.y = 1000;
+      if(e.y > 1000) e.y = 0;
+
+      const px = (e.x / 1000) * W;
+      const py = (e.y / 1000) * H;
+      const pulse = 1 + Math.sin(e.pulse) * 0.3;
+      const r = e.r * pulse;
+
+      // Glow
+      const glow = ctx.createRadialGradient(px, py, 0, px, py, r * 4);
+      if(e.hue === 38) {
+        glow.addColorStop(0, `rgba(245,158,11,${e.alpha * 0.6})`);
+        glow.addColorStop(1, 'transparent');
+      } else {
+        glow.addColorStop(0, `rgba(139,92,246,${e.alpha * 0.5})`);
+        glow.addColorStop(1, 'transparent');
+      }
+      ctx.beginPath();
+      ctx.arc(px, py, r * 4, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+
+      // Core
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      if(e.hue === 38) {
+        ctx.fillStyle = `rgba(245,158,11,${e.alpha})`;
+      } else {
+        ctx.fillStyle = `rgba(139,92,246,${e.alpha})`;
+      }
+      ctx.fill();
+    }
+
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body>
+</html>
