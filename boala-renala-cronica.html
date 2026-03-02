@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boala Renala Cronica — Epidemia Tacuta | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: prevenirea bolii renale cronice (CKD). 850 milioane de oameni afectati la nivel mondial. Factori de risc, stadii, dializa si preventie. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#0A0608;
+      --bg1:#120A0E;
+      --panel:#1A1018cc;
+      --card:#160E14;
+      --card2:#120A10;
+      --ink:#FFF0F0;
+      --muted:#C8A8B0;
+      --muted2:#8A6A78;
+      --line:#2A1820;
+      --glow:#DC2626;
+      --glow2:#F59E0B;
+      --ok:#14B8A6;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#14B8A6;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(220,38,38,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(245,158,11,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(20,184,166,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(220,38,38,.20);
+      background: linear-gradient(180deg, rgba(22,14,20,.75), rgba(18,10,14,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(220,38,38,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(245,158,11,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(20,184,166,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(255,240,240,.12);background:rgba(10,6,8,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--ok)} .i4{background:var(--purple)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(255,240,240,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,6,8,.30),rgba(10,6,8,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(255,240,240,.12);
+      background:linear-gradient(180deg,rgba(22,14,20,.75),rgba(18,10,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(255,240,240,.07);
+      background:linear-gradient(180deg,rgba(10,6,8,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(255,240,240,.10);
+      background:linear-gradient(180deg,rgba(10,6,8,.28),rgba(10,6,8,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(255,240,240,.12);color:rgba(255,240,240,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(255,240,240,.10);background:rgba(10,6,8,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(220,38,38,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.amber{border-color:var(--glow2);background:rgba(245,158,11,.15);}
+    .stepDot.teal{border-color:var(--ok);background:rgba(20,184,166,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(220,38,38,.22),rgba(220,38,38,.04));}
+    .stepBar.amber{background:linear-gradient(180deg,rgba(245,158,11,.22),rgba(245,158,11,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(20,184,166,.22),rgba(20,184,166,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.bad{background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(220,38,38,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.amber{border-color:var(--glow2);background:rgba(245,158,11,.05);}
+    .quote.teal{border-color:var(--ok);background:rgba(20,184,166,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(220,38,38,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(220,38,38,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.ok{border-color:rgba(20,184,166,.25);background:rgba(20,184,166,.06);}
+    .alert.ok h4{color:var(--ok);}
+
+    /* CKD Stages diagram */
+    .netDiag{
+      border:1px solid rgba(255,240,240,.10);border-radius:16px;
+      background:rgba(10,6,8,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(220,38,38,.18);
+      background:linear-gradient(180deg,rgba(22,14,20,.80),rgba(18,10,14,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(220,38,38,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(220,38,38,.25);background:rgba(220,38,38,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(255,240,240,.08);border-radius:12px;padding:9px 11px;background:rgba(10,6,8,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Quick reference sidebar */
+    .timeline{
+      border:1px solid rgba(255,240,240,.12);
+      background:linear-gradient(180deg,rgba(22,14,20,.75),rgba(18,10,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(255,240,240,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,240,240,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(255,240,240,.12);
+      background:linear-gradient(180deg,rgba(22,14,20,.75),rgba(18,10,16,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(255,240,240,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(255,240,240,.08);border-radius:11px;padding:7px 10px;background:rgba(10,6,8,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* CKD stage bars */
+    .ckdStages{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+    .ckdRow{display:grid;grid-template-columns:52px 90px 1fr;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.25);}
+    .ckdLabel{font-family:var(--mono);font-size:13px;font-weight:700;}
+    .ckdGfr{font-family:var(--mono);font-size:11px;color:var(--muted);}
+    .ckdDesc{font-size:12px;color:var(--muted);line-height:1.3;}
+    .ckdBar{height:6px;border-radius:3px;margin-top:4px;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .grid4{grid-template-columns:1fr 1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Boala Renala Cronica — Epidemia Tacuta
+          <small>Cum sa prevenim boala care afecteaza 850 milioane de oameni si nu da simptome pana e prea tarziu</small>
+        </h1>
+        <p class="sub">Rinichii filtreaza zilnic <b>150 de litri de sange</b>, elimina toxinele si regleaza lichidele din corp. Odata ce functia lor se pierde, <b>nu poate fi recuperata</b>. Boala renala cronica (BRC) avanseaza in tacere — fara simptome clare in stadiile timpurii — si afecteaza aproape <b>1 din 10 oameni</b> la nivel mondial. A proteja rinichii inseamna a proteja viata insasi.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b></span>
+          <span class="chip"><i class="i2"></i> <b>Japonia</b></span>
+          <span class="chip"><i class="i3"></i> <b>Nefrologie</b></span>
+          <span class="chip"><i class="i4"></i> <b>Preventie</b></span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce fac rinichii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce fac rinichii — 4 functii esentiale</h2>
+          <p>Rinichii sunt organe mici dar indispensabile, responsabile de curatarea sangelui, echilibrul hidric si productia de hormoni</p>
+        </div>
+        <span class="badge">FUNCTII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(220,38,38,.2);">
+            <h3 style="color:var(--glow)">1. Filtrarea sangelui</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">~150L</span>
+              <span class="l">de sange filtrat in fiecare zi pentru eliminarea deseurilor si toxinelor</span>
+            </div>
+            <p>Sangele trece prin <b>glomeruli</b> — structuri microscopice de 0,2 mm — unde substante nocive sunt extrase si transformate in urina.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">2. Reabsorbtia nutrientilor</h3>
+            <p>Dupa filtrare, rinichii <b>recupereaza</b> substantele esentiale — minerale, proteine, glucoza — si le returneaza in sange. Doar deseurile raman in urina.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(20,184,166,.2);">
+            <h3 style="color:var(--ok)">3. Reglarea nivelului de apa</h3>
+            <p>Rinichii decid cat lichid sa <b>retina</b> si cat sa <b>elimine</b> — mentinand echilibrul hidric al corpului. Apa in exces si deseurile dizolvate devin urina.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">4. Secretia de hormoni</h3>
+            <p>Rinichii produc <b>hormoni</b> care regleaza tensiunea arteriala, stimuleaza producerea globulelor rosii (eritropoietina) si mentin sanatatea oaselor.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Cum se deterioreaza rinichii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum se deterioreaza rinichii</h2>
+          <p>Glomerulul — unitatea de filtrare a rinichiului — odata deteriorat, nu mai poate fi reparat</p>
+        </div>
+        <span class="badge" style="border-color:rgba(220,38,38,.3);color:var(--glow);">DETERIORARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Glomerulul</h3>
+            <p>O structura de doar <b>0,2 mm diametru</b> — un ghem complex de capilare care filtreaza sangele cu o viteza uimitoare. Fiecare rinichi contine aproximativ <b>1 milion de glomeruli</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Mecanismul deteriorarii</h3>
+            <p>Capilarele din glomerul sunt extrem de fragile. <b>Glicemia crescuta</b> (diabet), <b>tensiunea arteriala mare</b> si alti factori le deterioreaza treptat. Odata avariati, capilarele <b>nu revin la starea initiala</b>.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Nu exista tratament fundamental</h4>
+          <p>Odata ce functia renala se pierde, <b>nu exista nicio modalitate de a o restaura complet</b>. Tratamentul poate doar incetini progresia bolii, dar nu o poate vindeca. De aceea, <b>detectarea timpurie</b> este critica.</p>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Analize de sange</h3>
+            <p>Masoara <b>RFG</b> (rata de filtrare glomerulara) — cantitatea de sange pe care rinichii o pot filtra pe minut. Un RFG scazut indica functie renala redusa.</p>
+          </div>
+          <div class="mini">
+            <h3>Analize de urina</h3>
+            <p>Detecteaza <b>proteinuria</b> — prezenta proteinelor in urina. In mod normal, proteinele sunt reabsorbite; prezenta lor in urina semnaleaza deteriorarea filtrului renal.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Stadiile BRC -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cele 6 stadii ale bolii renale cronice</h2>
+          <p>Clasificarea pe baza RFG (ratei de filtrare glomerulara) — de la functie normala la insuficienta renala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(245,158,11,.3);color:var(--glow2);">STADII</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG staircase diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Staircase steps descending from left to right -->
+            <!-- G1 -->
+            <rect x="10" y="30" width="105" height="50" rx="10" fill="rgba(20,184,166,.15)" stroke="rgba(20,184,166,.45)" stroke-width="1.5"/>
+            <text x="62" y="50" fill="#14B8A6" font-size="14" font-weight="700" text-anchor="middle">G1</text>
+            <text x="62" y="68" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG &#8805; 90</text>
+
+            <!-- Connection line G1-G2 -->
+            <line x1="115" y1="55" x2="125" y2="80" stroke="rgba(200,168,176,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- G2 -->
+            <rect x="125" y="70" width="105" height="50" rx="10" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.35)" stroke-width="1.5"/>
+            <text x="177" y="90" fill="#34D399" font-size="14" font-weight="700" text-anchor="middle">G2</text>
+            <text x="177" y="108" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG 60–89</text>
+
+            <!-- Connection line G2-G3a -->
+            <line x1="230" y1="95" x2="240" y2="120" stroke="rgba(200,168,176,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- G3a -->
+            <rect x="240" y="110" width="105" height="50" rx="10" fill="rgba(251,191,36,.12)" stroke="rgba(251,191,36,.35)" stroke-width="1.5"/>
+            <text x="292" y="130" fill="#FBBF24" font-size="14" font-weight="700" text-anchor="middle">G3a</text>
+            <text x="292" y="148" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG 45–59</text>
+
+            <!-- Connection line G3a-G3b -->
+            <line x1="345" y1="135" x2="355" y2="160" stroke="rgba(200,168,176,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- G3b -->
+            <rect x="355" y="150" width="105" height="50" rx="10" fill="rgba(245,158,11,.15)" stroke="rgba(245,158,11,.40)" stroke-width="1.5"/>
+            <text x="407" y="170" fill="#F59E0B" font-size="14" font-weight="700" text-anchor="middle">G3b</text>
+            <text x="407" y="188" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG 30–44</text>
+
+            <!-- Connection line G3b-G4 -->
+            <line x1="460" y1="175" x2="470" y2="200" stroke="rgba(200,168,176,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- G4 -->
+            <rect x="470" y="190" width="105" height="50" rx="10" fill="rgba(248,113,113,.12)" stroke="rgba(248,113,113,.35)" stroke-width="1.5"/>
+            <text x="522" y="210" fill="#F87171" font-size="14" font-weight="700" text-anchor="middle">G4</text>
+            <text x="522" y="228" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG 15–29</text>
+
+            <!-- Connection line G4-G5 -->
+            <line x1="575" y1="215" x2="585" y2="240" stroke="rgba(200,168,176,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+            <!-- G5 -->
+            <rect x="585" y="230" width="105" height="55" rx="10" fill="rgba(220,38,38,.15)" stroke="rgba(220,38,38,.45)" stroke-width="2"/>
+            <text x="637" y="252" fill="#DC2626" font-size="14" font-weight="700" text-anchor="middle">G5</text>
+            <text x="637" y="270" fill="#C8A8B0" font-size="9" text-anchor="middle">RFG &lt; 15</text>
+
+            <!-- Labels below -->
+            <text x="62" y="100" fill="#14B8A6" font-size="8.5" text-anchor="middle">Normal</text>
+            <text x="177" y="140" fill="#34D399" font-size="8.5" text-anchor="middle">Declin usor</text>
+            <text x="292" y="178" fill="#FBBF24" font-size="8.5" text-anchor="middle">Usor-moderat</text>
+            <text x="407" y="218" fill="#F59E0B" font-size="8.5" text-anchor="middle">Moderat-sever</text>
+            <text x="522" y="258" fill="#F87171" font-size="8.5" text-anchor="middle">Sever</text>
+            <text x="637" y="300" fill="#DC2626" font-size="8.5" text-anchor="middle">Insuficienta renala</text>
+
+            <!-- Arrow annotation -->
+            <line x1="50" y1="16" x2="650" y2="16" stroke="rgba(200,168,176,.15)" stroke-width="1" marker-end="url(#arrowR)"/>
+            <text x="350" y="12" fill="#8A6A78" font-size="9" text-anchor="middle">Progresia bolii renale cronice</text>
+            <defs>
+              <marker id="arrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L8,3 L0,6" fill="rgba(200,168,176,.3)"/>
+              </marker>
+            </defs>
+
+            <!-- Diagnostic threshold line -->
+            <line x1="237" y1="105" x2="237" y2="295" stroke="rgba(245,158,11,.3)" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="239" y="305" fill="#F59E0B" font-size="8" text-anchor="start">Diagnostic BRC (de obicei de aici)</text>
+          </svg>
+        </div>
+
+        <div class="ckdStages">
+          <div class="ckdRow">
+            <span class="ckdLabel" style="color:#14B8A6">G1</span>
+            <span class="ckdGfr">RFG &#8805; 90</span>
+            <span class="ckdDesc"><b style="color:var(--ok)">Normal</b> — functie renala completa, fara simptome</span>
+          </div>
+          <div class="ckdRow">
+            <span class="ckdLabel" style="color:#34D399">G2</span>
+            <span class="ckdGfr">RFG 60–89</span>
+            <span class="ckdDesc"><b style="color:#34D399">Declin usor</b> — de obicei fara simptome detectabile</span>
+          </div>
+          <div class="ckdRow">
+            <span class="ckdLabel" style="color:#FBBF24">G3a</span>
+            <span class="ckdGfr">RFG 45–59</span>
+            <span class="ckdDesc"><b style="color:var(--warn)">Usor-moderat</b> — BRC de obicei diagnosticata aici sau mai tarziu</span>
+          </div>
+          <div class="ckdRow">
+            <span class="ckdLabel" style="color:#F59E0B">G3b</span>
+            <span class="ckdGfr">RFG 30–44</span>
+            <span class="ckdDesc"><b style="color:var(--glow2)">Moderat-sever</b> — simptome incipiente, necesita monitorizare</span>
+          </div>
+          <div class="ckdRow">
+            <span class="ckdLabel" style="color:#F87171">G4</span>
+            <span class="ckdGfr">RFG 15–29</span>
+            <span class="ckdDesc"><b style="color:var(--bad)">Sever</b> — acumulare de deseuri, retentie de lichide, edeme</span>
+          </div>
+          <div class="ckdRow" style="border-color:rgba(220,38,38,.25);">
+            <span class="ckdLabel" style="color:#DC2626">G5</span>
+            <span class="ckdGfr">RFG &lt; 15</span>
+            <span class="ckdDesc"><b style="color:var(--glow)">Insuficienta renala</b> — necesita dializa sau transplant renal</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Povestea lui Matsuda -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Povestea lui Matsuda — de la neglijenta la dializa pe viata</h2>
+          <p>Un pacient real care a ignorat semnele pana cand era prea tarziu</p>
+        </div>
+        <span class="badge" style="border-color:rgba(220,38,38,.3);color:var(--glow);">TESTIMONIAL</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot amber"></div><div class="stepBar amber"></div></div>
+            <div class="stepContent">
+              <h4>1. Simptomele ignorate</h4>
+              <p>Analizele de rutina au aratat <b>proteine in urina</b> — un semn clar ca filtrele renale sunt deteriorate. Matsuda nu a luat in serios rezultatul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>2. Sotia l-a convins sa mearga la spital</h4>
+              <p>Dupa repetate insistente, sotia l-a convins sa se prezinte la un <b>nefrolog</b> pentru investigatii suplimentare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>3. RFG sub 15 — stadiul cel mai grav</h4>
+              <p>La consultatie, RFG-ul era deja <b>sub 15</b>. Diagnosticul: <b>boala renala cronica in stadiu terminal</b> (G5). Functia renala era irecuperabila.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Dializa — pentru tot restul vietii</h4>
+              <p>Matsuda a inceput <b>dializa de 3 ori pe saptamana</b>. Trebuie sa-si restrictioneze sever consumul de lichide. Ingheata sticle de apa ca sa bea incet, picatura cu picatura.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Nu o luati in gluma. Mergeti la spital. Detectarea timpurie este totul.&raquo;
+          <cite>— Matsuda, pacient cu BRC stadiu G5, in dializa pe viata</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Dializa -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Dializa — ce inseamna pentru viata de zi cu zi</h2>
+          <p>Cand rinichii nu mai functioneaza, o masina preia rolul lor</p>
+        </div>
+        <span class="badge">DIALIZA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">3x</div>
+            <span class="u">pe saptamana, la spital, pe toata durata vietii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">4-5h</div>
+            <span class="u">durata unei sesiuni de hemodializa</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">PE VIATA</div>
+            <span class="u">nu exista alternativa decat transplantul</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">LIMITE</div>
+            <span class="u">stricte de lichide si alimente zilnic</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Cum functioneaza</h3>
+            <p>Sangele este <b>extras din corp</b>, trecut printr-un filtru artificial care elimina deseurile si excesul de lichide, apoi <b>returnat in corp</b>. Procedeul inlocuieste partial functia renala, dar nu complet.</p>
+          </div>
+          <div class="mini">
+            <h3>Impactul asupra vietii</h3>
+            <p>Pacientul trebuie sa mearga la spital <b>de 3 ori pe saptamana</b>, sa respecte o dieta stricta, sa limiteze sever consumul de lichide si sa renunte la multe activitati. Calitatea vietii scade dramatic.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Factori de risc -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Factori de risc pentru boala renala cronica</h2>
+          <p>De la diabet si hipertensiune la somn insuficient, sedentarism si saritul meselor</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">RISC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(220,38,38,.2);">
+            <h3 style="color:var(--glow)">Diabetul</h3>
+            <p>Glicemia crescuta deterioreaza <b>capilarele din glomeruli</b>, reducand treptat capacitatea de filtrare a rinichilor. Cauza #1 a BRC la nivel mondial.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Hipertensiunea</h3>
+            <p>Tensiunea arteriala mare pune <b>presiune excesiva pe vasele renale</b>, accelerand deteriorarea glomerulilor si scaderea functiei renale.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">Fumatul si obezitatea</h3>
+            <p>Fumatul <b>restrange vasele de sange</b> si reduce fluxul sanguin renal. Obezitatea creste riscul de diabet si hipertensiune — ambii factori primari ai BRC.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Somnul insuficient</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--purple)">&lt;5h</span>
+              <span class="l">de somn pe noapte = risc crescut de proteinurie, asociat cu debutul BRC</span>
+            </div>
+            <p style="margin-top:8px;">Persoanele cu <b>datorie de somn</b> (de ex. 5h in timpul saptamanii dar 8h in weekend) au de asemenea risc mai mare de BRC.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.2);">
+            <h3 style="color:var(--glow2)">Saritul meselor</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow2)">1.54x</span>
+              <span class="l">risc crescut de proteinurie la femeile care sar micul dejun (Universitatea Osaka)</span>
+            </div>
+            <p style="margin-top:8px;">Saritul oricarei mese (pranz, cina) a fost de asemenea asociat cu riscuri similare.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini" style="border-color:rgba(20,184,166,.2);">
+            <h3 style="color:var(--ok)">Excesul de sodiu</h3>
+            <p>Consumul excesiv de sare forteaza rinichii sa lucreze <b>peste capacitate</b>, contribuind la hipertensiune si deteriorare renala pe termen lung.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(220,38,38,.2);">
+            <h3 style="color:var(--glow)">Sedentarismul</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">1.5x</span>
+              <span class="l">risc crescut la barbatii cu perioade lungi de stat pe scaun (Universitatea Osaka)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: AI in diagnosticul renal -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Inteligenta artificiala in diagnosticul renal</h2>
+          <p>Sisteme AI care invata sa identifice anomalii in biopsiile renale, cu o acuratete superioara analizei umane</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--ok);">INOVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Biopsia renala</h3>
+            <p>Se extrage o <b>mostra de tesut renal</b> care este examinata la microscop. Interpretarea depinde in mare masura de <b>experienta medicului</b>, cu riscul de a rata anomalii subtile.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce face AI-ul</h3>
+            <p>Sistemul AI <b>invata automat caracteristicile tesutului</b>, codifica tipurile de celule cu culori diferite si identifica anomalii la <b>standarde inalte de precizie</b>. Este util in special pentru cazuri complexe si boli minore dar importante.</p>
+          </div>
+        </div>
+        <div class="alert ok" style="margin-top:12px;">
+          <h4>Avantajul standardizarii</h4>
+          <p>Spre deosebire de analiza umana, care variaza de la doctor la doctor, AI-ul aplica <b>acelasi standard consistent</b> tuturor probelor, reducand riscul de eroare umana si accelerand diagnosticul.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Preventie — exercitii si stil de viata -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Preventie — exercitii si schimbari in stilul de viata</h2>
+          <p>Boxing fitness si alte strategii care protejeaza rinichii prin imbunatatirea circulatiei sangvine</p>
+        </div>
+        <span class="badge" style="border-color:rgba(20,184,166,.3);color:var(--ok);">PREVENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(20,184,166,.25);">
+            <h3 style="color:var(--ok)">Boxing fitness — exercitiu complet</h3>
+            <p>Un antrenament recomandat de specialisti japonezi, care antreneaza <b>intregul corp</b> si imbunatateste circulatia sangvina, in special pentru persoanele care lucreaza la birou.</p>
+            <div class="flow" style="margin-top:10px;">
+              <div class="step">
+                <div class="stepLine"><div class="stepDot teal" style="width:14px;height:14px;"></div><div class="stepBar teal"></div></div>
+                <div class="stepContent">
+                  <h4>Pozitia de start</h4>
+                  <p>Picioarele la latimea umerilor, genunchii usor indoiti, greutatea distribuita uniform.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot teal" style="width:14px;height:14px;"></div><div class="stepBar teal"></div></div>
+                <div class="stepContent">
+                  <h4>Lovituri cu rotatie</h4>
+                  <p>Loviturile sunt executate cu <b>rotatia soldurilor</b>, folosind omoplatii si rasucind talia. Implicarea intregului corp maximizeaza beneficiul.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot teal" style="width:14px;height:14px;"></div><div class="stepBar teal"></div></div>
+                <div class="stepContent">
+                  <h4>Crosetele si eschivele</h4>
+                  <p>Include <b>crosete laterale</b> si miscari ale capului (ca si cum ai esquiva o lovitura) — antreneaza musculatura abdominala si imbunatateste coordonarea.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepLine"><div class="stepDot teal" style="width:14px;height:14px;"></div><div class="stepBar teal" style="background:transparent"></div></div>
+                <div class="stepContent">
+                  <h4>Intarirea picioarelor</h4>
+                  <p>Exercitii de <b>genuflexiuni</b> integrate in rutina de box. Creste metabolismul, incalzeste corpul si imbunatateste circulatia.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mini" style="border-color:rgba(245,158,11,.25);">
+            <h3 style="color:var(--glow2)">Schimbari esentiale in stilul de viata</h3>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--ok)">Somn suficient:</b> minimum 7-8 ore pe noapte, evitati datoria de somn</p>
+              </div>
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--glow2)">Mese regulate:</b> nu sariti micul dejun — reduce riscul de proteinurie cu pana la 35%</p>
+              </div>
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--bad)">Reduceti sarea:</b> excesul de sodiu forteaza rinichii si creste tensiunea arteriala</p>
+              </div>
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--glow)">Nu fumati:</b> fumatul restrange vasele de sange si accelereaza deteriorarea renala</p>
+              </div>
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--purple)">Evitati sedentarismul:</b> pauze regulate de miscare, maxim 1h de stat pe scaun continuu</p>
+              </div>
+              <div style="padding:8px 10px;border-radius:10px;border:1px solid rgba(255,240,240,.06);background:rgba(10,6,8,.3);">
+                <p style="margin:0;font-size:12px;color:var(--muted);"><b style="color:var(--ok)">Analize anuale:</b> analize de sange (RFG) si urina (proteinurie) — detectarea timpurie salveaza vieti</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote teal" style="margin-top:14px;">
+          &laquo;A proteja rinichii inseamna a proteja viata insasi. Boala renala cronica poate fi prevenita sau incetinita prin schimbari simple in stilul de viata — dar numai daca este detectata la timp.&raquo;
+          <cite>— NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Quick reference -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cifre cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">850M</span><span class="tDesc"><b>oameni afectati</b> de BRC la nivel mondial</span></div>
+        <div class="tEvent"><span class="tDate">6 stadii</span><span class="tDesc">clasificarea BRC dupa <b>rata de filtrare</b> (G1 la G5)</span></div>
+        <div class="tEvent"><span class="tDate">150L/zi</span><span class="tDesc">cantitatea de sange <b>filtrat zilnic</b> de rinichi</span></div>
+        <div class="tEvent"><span class="tDate">0,2 mm</span><span class="tDesc">diametrul unui <b>glomerul</b> — unitatea de filtrare</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">3x/sapt</span><span class="tDesc"><b>dializa</b> necesara pe viata in stadiul G5</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">1.54x</span><span class="tDesc">risc crescut de proteinurie la <b>saritul micului dejun</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--purple)">&lt;5h somn</span><span class="tDesc"><b>proteinurie crescuta</b> — asociata cu debutul BRC</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow)">1.5x</span><span class="tDesc">risc la barbatii cu <b>sedentarism prelungit</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">0%</span><span class="tDesc"><b>sanse de recuperare</b> a functiei renale pierdute</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Epidemia invizibila</h4>
+          <p>BRC este numita "epidemia tacuta" pentru ca majoritatea pacientilor <b>nu au simptome</b> pana in stadiile avansate (G4-G5). Cand apar simptomele, e de obicei prea tarziu pentru a preveni dializa.</p>
+        </div>
+        <div class="comNote">
+          <h4>Cercetarea japoneza</h4>
+          <p>Studiile citate vin de la <b>Universitatea Osaka</b> — una dintre cele mai prestigioase institutii de cercetare medicala din Japonia, cu o atentie deosebita pentru medicina preventiva.</p>
+        </div>
+        <div class="comNote">
+          <h4>Datoria de somn</h4>
+          <p>Conceptul de "datorie de somn" (somnul recuperat in weekend) nu compenseaza daunele. Studiile arata ca un <b>deficit cronic de 3 ore</b> pe noapte in timpul saptamanii creste riscul de BRC, chiar daca dormi mai mult in weekend.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce box fitness?</h4>
+          <p>Boxing fitness este recomandat pentru ca este un <b>exercitiu complet</b> care antreneaza simultan partea superioara si inferioara a corpului, imbunatatind circulatia sangvina si metabolismul — factori cheie in protejarea functiei renale.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>RFG (Rata de Filtrare Glomerulara)</dt>
+          <dd>Masoara cantitatea de sange pe care rinichii o pot filtra pe minut. Valoarea normala este peste 90 mL/min. Se determina printr-o analiza de sange.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Glomerul</dt>
+          <dd>Structura microscopica (0,2 mm) din rinichi — un ghem de capilare care filtreaza sangele. Fiecare rinichi are ~1 milion de glomeruli. Odata deteriorati, nu se mai regenereaza.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Proteinurie</dt>
+          <dd>Prezenta anormala a proteinelor in urina. In mod normal, proteinele sunt reabsorbite de rinichi. Prezenta lor in urina indica deteriorarea filtrelor glomerulare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Dializa</dt>
+          <dd>Procedura medicala care inlocuieste partial functia renala: sangele este extras, filtrat artificial si returnat in corp. Necesara de 3 ori pe saptamana, pe viata.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Biopsie renala</dt>
+          <dd>Procedura prin care se extrage o mostra mica de tesut renal pentru examinare la microscop. Folosita pentru diagnosticarea exacta a tipului de boala renala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>BRC (Boala Renala Cronica)</dt>
+          <dd>Pierderea progresiva si ireversibila a functiei renale, clasificata in 6 stadii (G1-G5) pe baza RFG. Afecteaza ~850 milioane de oameni la nivel mondial.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Orexina</dt>
+          <dd>Hormon produs de creier care regleaza starea de veghe si apetitul. Legat de ciclul somn-veghe, a carui perturbare contribuie indirect la riscul de BRC.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www3.nhk.or.jp/nhkworld/en/tv/medicalfrontiers/" target="_blank">NHK Medical Frontiers</a> &middot;
+    Episod: Preventing Life-Threatening Chronic Kidney Disease &middot;
+    Infografic explicativ bazat pe emisiunea originala
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: kidney filtration visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Blood cells (particles flowing through kidney)
+  const particles = [];
+  const particleCount = 60;
+  for(let i = 0; i < particleCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1.5 + Math.random() * 2.5,
+      speed: 0.001 + Math.random() * 0.002,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.5 ? 'red' : Math.random() < 0.7 ? 'waste' : 'clean',
+      angle: Math.random() * Math.PI * 2
+    });
+  }
+
+  // Kidney shape parameters
+  function kidneyX(t, cx, rx){ return cx + Math.cos(t) * rx; }
+  function kidneyY(t, cy, ry){ return cy + Math.sin(t) * ry * (1 + 0.3 * Math.cos(t)); }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    const cx = w * 0.5, cy = h * 0.48;
+    const rx = w * 0.22, ry = h * 0.32;
+
+    // Draw kidney outline (abstract bean shape)
+    ctx.beginPath();
+    for(let a = 0; a < Math.PI * 2; a += 0.05){
+      const kx = cx + Math.cos(a) * rx * (1 - 0.25 * Math.cos(a));
+      const ky = cy + Math.sin(a) * ry * (1 + 0.15 * Math.cos(a * 2));
+      if(a === 0) ctx.moveTo(kx, ky);
+      else ctx.lineTo(kx, ky);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(220,38,38,0.15)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Inner glow
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rx);
+    grad.addColorStop(0, 'rgba(220,38,38,0.06)');
+    grad.addColorStop(0.6, 'rgba(220,38,38,0.02)');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Draw glomeruli clusters inside the kidney
+    for(let g = 0; g < 5; g++){
+      const ga = (g / 5) * Math.PI * 2 + t * 0.3;
+      const gx = cx + Math.cos(ga) * rx * 0.45;
+      const gy = cy + Math.sin(ga) * ry * 0.45;
+      const gr = 8 + Math.sin(t * 2 + g) * 2;
+
+      ctx.beginPath();
+      ctx.arc(gx, gy, gr, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(245,158,11,${0.12 + Math.sin(t + g) * 0.05})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Tiny capillaries inside each glomerulus
+      for(let c2 = 0; c2 < 4; c2++){
+        const ca = (c2 / 4) * Math.PI * 2 + t;
+        ctx.beginPath();
+        ctx.arc(gx + Math.cos(ca) * gr * 0.4, gy + Math.sin(ca) * gr * 0.4, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245,158,11,${0.2 + Math.sin(t * 3 + c2) * 0.1})`;
+        ctx.fill();
+      }
+    }
+
+    // Filtration pulse waves from center
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 50) % 140);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2000);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(220,38,38,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Draw flowing particles (blood cells)
+    particles.forEach(p => {
+      // Update position — flow through the kidney
+      p.angle += p.speed;
+      const distFromCenter = 0.15 + (p.phase / (Math.PI * 2)) * 0.35;
+      const px = cx + Math.cos(p.angle + p.phase) * rx * distFromCenter + Math.sin(t * 2 + p.phase) * 5;
+      const py = cy + Math.sin(p.angle + p.phase) * ry * distFromCenter + Math.cos(t * 1.5 + p.phase) * 5;
+
+      const glow = 0.3 + Math.sin(t * 2 + p.phase) * 0.15;
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'red'){
+        ctx.fillStyle = `rgba(220,38,38,${glow})`;
+        ctx.shadowColor = 'rgba(220,38,38,0.3)';
+        ctx.shadowBlur = 5;
+      } else if(p.type === 'waste'){
+        ctx.fillStyle = `rgba(248,113,113,${glow * 0.7})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.2)';
+        ctx.shadowBlur = 4;
+      } else {
+        ctx.fillStyle = `rgba(20,184,166,${glow * 0.8})`;
+        ctx.shadowColor = 'rgba(20,184,166,0.2)';
+        ctx.shadowBlur = 4;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(200,168,176,0.35)';
+    ctx.fillText('RINICHI', cx - 18, cy + ry + 16);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(220,38,38,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,168,176,0.4)'; ctx.fillText('celule rosii', 15, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(82, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,168,176,0.4)'; ctx.fillText('deseuri', 89, ly+3);
+    ctx.fillStyle = 'rgba(20,184,166,0.7)'; ctx.beginPath(); ctx.arc(138, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(200,168,176,0.4)'; ctx.fillText('nutrienti', 145, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
