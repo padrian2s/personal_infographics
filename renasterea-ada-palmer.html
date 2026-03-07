@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Renasterea a fost absolut nebuneasca — Ada Palmer</title>
+  <meta name="description" content="Infografic interactiv: cum republicile italiene, visul lui Petrarca, Medici, Machiavelli, tiparul si Revolutia Stiintifica sunt toate conectate. Bazat pe conversatia cu Ada Palmer." />
+  <style>
+    :root{
+      --bg0:#0A0A12;
+      --bg1:#0E0C18;
+      --panel:#18152Acc;
+      --card:#12101E;
+      --card2:#0F0D1A;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#2A2240;
+      --glow:#D4A855;
+      --glow2:#C4784A;
+      --ok:#7AB87A;
+      --warn:#C4784A;
+      --bad:#B84A4A;
+      --teal:#D4A855;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(212,168,85,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(196,120,74,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* HERO */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(212,168,85,.20);
+      background: linear-gradient(180deg, rgba(18,16,30,.75), rgba(14,12,24,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(212,168,85,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(196,120,74,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,10,18,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--purple)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,10,18,.30),rgba(10,10,18,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* CARDS */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,16,30,.75),rgba(15,13,26,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,10,18,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,10,18,.28),rgba(10,10,18,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,10,18,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(212,168,85,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(122,184,122,.15);}
+    .stepDot.terra{border-color:var(--warn);background:rgba(196,120,74,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.red{border-color:var(--bad);background:rgba(184,74,74,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(212,168,85,.22),rgba(212,168,85,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(122,184,122,.22),rgba(122,184,122,.04));}
+    .stepBar.terra{background:linear-gradient(180deg,rgba(196,120,74,.22),rgba(196,120,74,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(212,168,85,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.terra{border-color:var(--warn);background:rgba(196,120,74,.05);}
+    .quote.green{border-color:var(--ok);background:rgba(122,184,122,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(212,168,85,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(212,168,85,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.red{border-color:rgba(184,74,74,.25);background:rgba(184,74,74,.06);}
+    .alert.red h4{color:var(--bad);}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,10,18,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(212,168,85,.18);
+      background:linear-gradient(180deg,rgba(18,16,30,.80),rgba(14,12,24,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(212,168,85,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(212,168,85,.25);background:rgba(212,168,85,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,10,18,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,16,30,.75),rgba(15,13,26,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,16,30,.75),rgba(15,13,26,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,10,18,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    /* Slider */
+    .sliderWrap{margin-top:14px;padding:10px 14px;border:1px solid rgba(234,240,255,.10);border-radius:14px;background:rgba(10,10,18,.35);}
+    .sliderWrap label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px;}
+    .sliderWrap input[type=range]{width:100%;accent-color:var(--glow);}
+    .sliderOut{font-size:13px;margin-top:6px;min-height:40px;color:var(--ink);line-height:1.4;}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Renasterea a fost absolut nebuneasca
+          <small>Ada Palmer — Cum republicile italiene, Petrarca, Medici, Machiavelli, tiparul si Revolutia Stiintifica sunt toate conectate</small>
+        </h1>
+        <p class="sub">Istoricul Ada Palmer explica in cartea sa <b>"Inventing the Renaissance"</b> cum un vis al unui poet din sec. XIV a transformat cultura, puterea politica si stiinta Europei. De la republicile italiene la tipografia lui Gutenberg, de la Machiavelli la Francis Bacon — o poveste despre <b>cum se reinventeaza civilizatia</b>.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Republici italiene</b> — orase-stat autonome</span>
+          <span class="chip"><i class="i2"></i> <b>Educatie clasica</b> — visul lui Petrarca</span>
+          <span class="chip"><i class="i3"></i> <b>Tipar & difuzare</b> — revolutia informatiei</span>
+          <span class="chip"><i class="i4"></i> <b>Metoda stiintifica</b> — nasterea stiintei moderne</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN COLUMN -->
+  <div class="main">
+
+    <!-- Card 1: Republici italiene -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Republicile italiene — De ce Italia era diferita</h2>
+          <p>Agricultura bogata a permis oraselor sa supravietuiasca dupa caderea Romei, creand republici unice in Europa</p>
+        </div>
+        <span class="badge">CONTEXT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Venetia</h3>
+            <p>Republica maritima, putere comerciala dominanta. Hub pentru comertul cu Orientul. <b>Cea mai stabila republica</b> din istoria europeana.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Florenta</h3>
+            <p>Centru bancar si artistic. <b>Fara nobilime</b> — au masacrat-o. Sistem de guvernare prin tragere la sorti (sortitie).</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Genova</h3>
+            <p>Rivala Venetiei pe mare. Putere financiara enorma. A finantat expeditii de explorare, inclusiv pe cea a lui <b>Cristofor Columb</b>.</p>
+          </div>
+        </div>
+        <div class="quote">
+          In restul Europei, satele se formau in jurul domeniilor nobiliare. In Italia, orasele aveau agricultura suficient de bogata incat sa se autosustina si dupa caderea Romei — nu aveau nevoie de nobili.
+          <cite>— Ada Palmer</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Visul lui Petrarca -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Visul lui Petrarca — Reinventarea civilizatiei</h2>
+          <p>Dupa Ciuma Neagra, Petrarca a propus: imitati-i pe romani. Cititi ce citeau ei. Construiti biblioteci.</p>
+        </div>
+        <span class="badge" style="border-color:rgba(212,168,85,.3);color:var(--glow);">FUNDATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Ciuma Neagra (1347-1351)</h4>
+              <p>Europa pierde <b>30-60% din populatie</b>. Petrarca pierde prieteni, mentori, intreaga sa lume intelectuala. Criza existentiala profunda.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Planul: imitati-i pe romani</h4>
+              <p>Cititi ce citeau ei — <b>Platon, Homer, Cicero</b>. Construiti biblioteci. Cresteti lideri mai buni prin educatie clasica.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Educatia ca "osmoza"</h4>
+              <p>Teoria: expunerea la virtute <b>creeaza virtute</b>. Daca citesti despre oameni virtuosi, devii virtuos. Daca vezi arta frumoasa, devii mai bun.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot terra"></div><div class="stepBar terra"></div></div>
+            <div class="stepContent">
+              <h4>Rezultatul: Renasterea</h4>
+              <p>Acest plan — simplu dar radical — a <b>functionat</b>. A generat cea mai mare explozie culturala din istoria Europei.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Medici -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Medici — Bancherul care a furat Renasterea</h2>
+          <p>Cosimo de' Medici a transformat cultura clasica in propaganda si putere politica</p>
+        </div>
+        <span class="badge" style="border-color:rgba(196,120,74,.3);color:var(--warn);">PUTERE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>Bancherul papal</h3>
+            <p>Cosimo era <b>"gunoi de negustor"</b> in ochii nobilimii europene. Banii nu-i aduceau respect — doar ura. Avea nevoie de <b>legitimitate culturala</b>.</p>
+          </div>
+          <div class="mini">
+            <h3>Scena geniului</h3>
+            <p>Ambasadorul Frantei vine la Florenta si ramane <b>uluit</b>: statui antice, cupola lui Brunelleschi, copii care vorbesc greceste. <b>Dinamica puterii s-a rasturnat.</b></p>
+          </div>
+        </div>
+        <!-- SVG: Florence power flip -->
+        <div class="netDiag">
+          <svg viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="10" y="20" fill="#6E7A9A" font-size="11" font-family="system-ui">Inversarea puterii culturale</text>
+            <!-- Before -->
+            <rect x="10" y="35" width="220" height="60" rx="12" fill="rgba(184,74,74,.12)" stroke="rgba(184,74,74,.3)"/>
+            <text x="25" y="55" fill="#B84A4A" font-size="11" font-weight="700">INAINTE</text>
+            <text x="25" y="75" fill="#A0ACC8" font-size="10">Franta/Anglia = nobili puternici</text>
+            <text x="25" y="88" fill="#A0ACC8" font-size="10">Florenta = "negustori parveniti"</text>
+            <!-- Arrow -->
+            <path d="M240 65 L260 65" stroke="#D4A855" stroke-width="2" marker-end="url(#arrowG)"/>
+            <defs><marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0 0L8 3L0 6" fill="#D4A855"/></marker></defs>
+            <!-- After -->
+            <rect x="270" y="35" width="220" height="60" rx="12" fill="rgba(122,184,122,.12)" stroke="rgba(122,184,122,.3)"/>
+            <text x="285" y="55" fill="#7AB87A" font-size="11" font-weight="700">DUPA</text>
+            <text x="285" y="75" fill="#A0ACC8" font-size="10">Florenta = capitala culturii mondiale</text>
+            <text x="285" y="88" fill="#A0ACC8" font-size="10">Restul Europei = "barbari inculti"</text>
+            <!-- Bottom labels -->
+            <rect x="10" y="115" width="140" height="50" rx="10" fill="rgba(212,168,85,.08)" stroke="rgba(212,168,85,.2)"/>
+            <text x="25" y="135" fill="#D4A855" font-size="10" font-weight="600">Instrumentele Medici</text>
+            <text x="25" y="150" fill="#A0ACC8" font-size="9.5">Arta, arhitectura, biblioteci</text>
+            <rect x="180" y="115" width="140" height="50" rx="10" fill="rgba(196,120,74,.08)" stroke="rgba(196,120,74,.2)"/>
+            <text x="195" y="135" fill="#C4784A" font-size="10" font-weight="600">Costul real</text>
+            <text x="195" y="150" fill="#A0ACC8" font-size="9.5">Coruptia republicii florentine</text>
+            <rect x="350" y="115" width="140" height="50" rx="10" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.2)"/>
+            <text x="365" y="135" fill="#A78BFA" font-size="10" font-weight="600">Mostenirea</text>
+            <text x="365" y="150" fill="#A0ACC8" font-size="9.5">Modelul patronajului artistic</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Republica Florentei -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Republica bizara a Florentei</h2>
+          <p>Sortitia, turnul cu 9 mestesugarilor si cum Medici au corupt totul</p>
+        </div>
+        <span class="badge">POLITICA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">9</div>
+            <span class="u">membri alesi prin tragere la sorti</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">3 luni</div>
+            <span class="u">mandat — incuiati intr-un turn</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">0</div>
+            <span class="u">nobili — au fost masacrati toti</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">1 an</div>
+            <span class="u">seful politiei (nobil strain) apoi exilat</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Sistemul sortitiei</h3>
+            <p>9 membri de bresla alesi <b>aleatoriu</b>, incuiati intr-un turn timp de 3 luni. Decizii prin consens. <b>Nimeni nu putea acumula putere</b> — in teorie.</p>
+          </div>
+          <div class="mini">
+            <h3>Coruptia Medici</h3>
+            <p>Cosimo a corupt sistemul prin <b>controlul pluralitatii</b> si mita. Nu detinea puterea direct, dar controla cine intra in sacul de tragere la sorti.</p>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Politia externalizata</h4>
+          <p>Florentinii angajau <b>nobili straini</b> ca sefi de politie pe un an. Dupa mandat, erau <b>exilati</b> din oras — ca sa nu acumuleze putere sau loialitati locale. Un sistem ingenios dar fragil.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Machiavelli -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Machiavelli — Nasterea stiintei politice</h2>
+          <p>A observat esecul planului lui Petrarca si a propus altceva: foloseste istoria ca studiu de caz</p>
+        </div>
+        <span class="badge" style="border-color:rgba(184,74,74,.3);color:var(--bad);">REVOLUTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot red"></div><div class="stepBar terra"></div></div>
+            <div class="stepContent">
+              <h4>Esecul "osmozei"</h4>
+              <p>Cesare Borgia a citit <b>tot Platon</b> — si tot a ars lumea. Educatia clasica <b>nu garanta virtutea</b>. Planul lui Petrarca avea o gaura enorma.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Propunerea: stiinta politica</h4>
+              <p>In loc de osmoza morala, foloseste istoria ca <b>culegere de exemple</b> — un caiet de studii de caz. Ce a functionat? Ce a esuat? De ce?</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot terra"></div><div class="stepBar terra"></div></div>
+            <div class="stepContent">
+              <h4>Principele — scris doar pentru Florenta</h4>
+              <p>In exil, a <b>refuzat sa plece</b>. A scris Principele nu ca manual universal, ci ca solutie specifica pentru salvarea Florentei. "Scopul scuza mijloacele" = <b>supravietuirea tarii</b>, nu castigul personal.</p>
+            </div>
+          </div>
+        </div>
+        <div class="quote terra">
+          "Scopul scuza mijloacele" nu inseamna "faci ce vrei". Inseamna: daca tara ta e pe cale sa fie distrusa, faci ce trebuie ca sa o salvezi — chiar daca e urat.
+          <cite>— Ada Palmer, interpretand pe Machiavelli</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Tiparul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Revolutia tiparului — Paralela cu revolutia digitala</h2>
+          <p>Gutenberg a dat faliment, dar ucenicii sai au schimbat lumea. Fiecare revolutie e "penetrarea mai adanca" a aceleiasi tehnologii.</p>
+        </div>
+        <span class="badge" style="border-color:rgba(122,184,122,.3);color:var(--ok);">TEHNOLOGIE</span>
+      </div>
+      <div class="cardBody">
+        <!-- Interactive slider: parallel revolutions -->
+        <div class="sliderWrap">
+          <label>Compara revolutiile: muta slider-ul pentru a vedea paralelele</label>
+          <input type="range" id="revSlider" min="0" max="3" step="1" value="0" />
+          <div class="sliderOut" id="revOut"></div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Gutenberg da faliment</h3>
+            <p>Nu avea <b>retea de distributie</b>. Ucenicii fug la Venetia (hub comercial). Apar targurile de carte. <b>95 de teze ale lui Luther</b> ajung la Londra in 17 zile prin pamflete.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Foamea de suprafata de scris</h3>
+            <p><b>400 de ani de foamete</b> a suprafetei de scris in Europa. Papirus = nu creste la frig. Pergament = o oaie moarta = scump ca o geaca de piele. Hartie = scame de rufe, de 10x mai ieftina.</p>
+          </div>
+        </div>
+        <!-- SVG: Writing surfaces comparison -->
+        <div class="netDiag">
+          <svg viewBox="0 0 500 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="10" y="18" fill="#6E7A9A" font-size="11" font-family="system-ui">Suprafete de scris — cost relativ</text>
+            <!-- Papyrus -->
+            <rect x="10" y="30" width="150" height="40" rx="8" fill="rgba(122,184,122,.10)" stroke="rgba(122,184,122,.25)"/>
+            <text x="20" y="50" fill="#7AB87A" font-size="11" font-weight="600">Papirus</text>
+            <text x="20" y="63" fill="#A0ACC8" font-size="9">Ieftin, dar nu creste la frig</text>
+            <!-- Parchment -->
+            <rect x="175" y="30" width="150" height="40" rx="8" fill="rgba(184,74,74,.10)" stroke="rgba(184,74,74,.25)"/>
+            <text x="185" y="50" fill="#B84A4A" font-size="11" font-weight="600">Pergament (10x)</text>
+            <text x="185" y="63" fill="#A0ACC8" font-size="9">= piele de oaie = foarte scump</text>
+            <!-- Paper -->
+            <rect x="340" y="30" width="150" height="40" rx="8" fill="rgba(212,168,85,.10)" stroke="rgba(212,168,85,.25)"/>
+            <text x="350" y="50" fill="#D4A855" font-size="11" font-weight="600">Hartie (1x)</text>
+            <text x="350" y="63" fill="#A0ACC8" font-size="9">Scame de rufe — revolutionara</text>
+            <!-- Library comparison -->
+            <rect x="10" y="85" width="230" height="35" rx="8" fill="rgba(184,74,74,.08)" stroke="rgba(184,74,74,.15)"/>
+            <text x="20" y="107" fill="#B84A4A" font-size="10">Biblioteca Parisului: <tspan fill="#EAF0FF" font-weight="700">600 carti</tspan></text>
+            <rect x="255" y="85" width="235" height="35" rx="8" fill="rgba(122,184,122,.08)" stroke="rgba(122,184,122,.15)"/>
+            <text x="265" y="107" fill="#7AB87A" font-size="10">Orient Mijlociu/China: <tspan fill="#EAF0FF" font-weight="700">mii de carti</tspan></text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: De ce Italia nu a avut Rev. Industriala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>De ce Italia nu a avut Revolutia Industriala</h2>
+          <p>Erau deja cei mai bogati. Big Olive Oil + Big Wool + Big Finance</p>
+        </div>
+        <span class="badge">PARADOX</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3>Big Olive Oil</h3>
+            <div class="kpi"><span class="n" style="color:var(--ok)">Nr.1</span><span class="l">exportator de ulei de masline din lume</span></div>
+          </div>
+          <div class="mini">
+            <h3>Big Wool</h3>
+            <div class="kpi"><span class="n" style="color:var(--glow)">Nr.1</span><span class="l">industrie textila de lux din Europa</span></div>
+          </div>
+          <div class="mini">
+            <h3>Big Finance</h3>
+            <div class="kpi"><span class="n" style="color:var(--warn)">Nr.1</span><span class="l">centru bancar al lumii (Medici, Bardi)</span></div>
+          </div>
+        </div>
+        <div class="alert red">
+          <h4>Paradoxul bogatiei</h4>
+          <p>Au inventat <b>razboaiele de tesut industriale</b> inca din anii 1400 — dar au preferat luxul artizanal. Orasele-stat fragmentate <b>nu se puteau coordona</b> pentru industrializare la scara mare. Cand esti deja cel mai bogat, <b>nu ai motivatia sa inovezi</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Metoda stiintifica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Nasterea metodei stiintifice — Cele 3 insecte ale lui Bacon</h2>
+          <p>Francis Bacon, Leonardo da Vinci, Brunelleschi si trecerea de la tezaurizarea cunoasterii la partajarea ei</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">STIINTA</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Bacon's 3 insects -->
+        <div class="netDiag">
+          <svg viewBox="0 0 500 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="170" y="18" fill="#A78BFA" font-size="12" font-weight="700" font-family="system-ui">Cele 3 insecte ale lui Francis Bacon</text>
+            <!-- Ant -->
+            <circle cx="90" cy="80" r="40" fill="rgba(184,74,74,.10)" stroke="rgba(184,74,74,.3)" stroke-width="1.5"/>
+            <text x="90" y="68" fill="#B84A4A" font-size="24" text-anchor="middle">&#x1F41C;</text>
+            <text x="90" y="90" fill="#EAF0FF" font-size="11" font-weight="700" text-anchor="middle">Furnica</text>
+            <text x="90" y="105" fill="#A0ACC8" font-size="9" text-anchor="middle">Enciclopedistul</text>
+            <text x="90" y="140" fill="#6E7A9A" font-size="9" text-anchor="middle" style="max-width:120px">Colecteaza date</text>
+            <text x="90" y="153" fill="#6E7A9A" font-size="9" text-anchor="middle">fara sa le inteleaga</text>
+            <!-- Spider -->
+            <circle cx="250" cy="80" r="40" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.3)" stroke-width="1.5"/>
+            <text x="250" y="68" fill="#A78BFA" font-size="24" text-anchor="middle">&#x1F577;</text>
+            <text x="250" y="90" fill="#EAF0FF" font-size="11" font-weight="700" text-anchor="middle">Paianjenul</text>
+            <text x="250" y="105" fill="#A0ACC8" font-size="9" text-anchor="middle">Teoreticianul</text>
+            <text x="250" y="140" fill="#6E7A9A" font-size="9" text-anchor="middle">Tese panze din mintea</text>
+            <text x="250" y="153" fill="#6E7A9A" font-size="9" text-anchor="middle">proprie, fara date</text>
+            <!-- Bee -->
+            <circle cx="410" cy="80" r="40" fill="rgba(212,168,85,.10)" stroke="rgba(212,168,85,.3)" stroke-width="1.5"/>
+            <text x="410" y="68" fill="#D4A855" font-size="24" text-anchor="middle">&#x1F41D;</text>
+            <text x="410" y="90" fill="#EAF0FF" font-size="11" font-weight="700" text-anchor="middle">Albina</text>
+            <text x="410" y="105" fill="#A0ACC8" font-size="9" text-anchor="middle">Omul de stiinta</text>
+            <text x="410" y="140" fill="#D4A855" font-size="9" text-anchor="middle" font-weight="600">Proceseaza natura in</text>
+            <text x="410" y="153" fill="#D4A855" font-size="9" text-anchor="middle" font-weight="600">ceva util (miere)</text>
+            <!-- Arrows -->
+            <path d="M135 80 L205 80" stroke="#6E7A9A" stroke-width="1" stroke-dasharray="4 3"/>
+            <path d="M295 80 L365 80" stroke="#6E7A9A" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- Bottom insight -->
+            <rect x="100" y="170" width="300" height="25" rx="8" fill="rgba(212,168,85,.08)" stroke="rgba(212,168,85,.2)"/>
+            <text x="250" y="187" fill="#D4A855" font-size="10" text-anchor="middle" font-weight="600">Stiinta = colecteaza + teoretizeaza + transforma</text>
+          </svg>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Leonardo NU era om de stiinta</h3>
+            <p>Scria in <b>oglinda</b>, cifrat. Refuza sa-si imparta descoperirile. Brunelleschi si-a ars notitele despre cupola. Inainte de 1600: <b>tezaurizeaza cunoasterea</b>.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Dupa 1600: impartaseste</h3>
+            <p>Stiinta devine <b>"actul suprem de caritate"</b>. Publici pentru ca altii sa verifice, sa imbunatateasca, sa construiasca mai departe. O schimbare de paradigma totala.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 9: Cenzura si Inchizitia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cenzura greseste mereu & Inchizitia a inventat peer review-ul</h2>
+          <p>Inchizitia a ignorat pe Machiavelli si Voltaire, dar a ars tratate janseniste. Dupa Galilei, au construit laboratoare.</p>
+        </div>
+        <span class="badge" style="border-color:rgba(184,74,74,.3);color:var(--bad);">IRONIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Ce au cenzurat</h3>
+            <p>Au <b>ignorat</b>: Machiavelli, Lucretiu, Voltaire, Enciclopedia. Au fost <b>obsedati</b> de ereziile janseniste — un conflict teologic intern pe care nimeni nu-l mai stie.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Peer review-ul</h3>
+            <p>Dupa procesul lui Galilei, Inchizitia a construit <b>cel mai mare laborator experimental</b> din Europa — sa verifice afirmatiile stiintifice din carti. Inchizitori ziua, <b>cercetatori noaptea</b>.</p>
+          </div>
+        </div>
+        <div class="quote green">
+          Paradise Lost al lui Milton a fost cenzurat pentru... o singura linie despre astrologie. Nu pentru teologie, nu pentru politica — pentru astrologie.
+          <cite>— Ada Palmer</cite>
+        </div>
+        <div class="alert">
+          <h4>Columb — descoperire ignorata</h4>
+          <p>Franta invada, otomanii ameninta, papalitatea e in haos. "Nu ne pasa de un alt continent — <b>cine se casatoreste cu Charles?</b>" Descoperirea Americii a fost profund subevaluata la momentul respectiv.</p>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- SIDEBAR -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologie Renasterii</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><div class="tDate">~476</div><div class="tDesc"><b>Caderea Romei</b> — orasele italiene supravietuiesc autonom</div></div>
+        <div class="tEvent"><div class="tDate">1304</div><div class="tDesc"><b>Se naste Petrarca</b> — parintele umanismului</div></div>
+        <div class="tEvent"><div class="tDate">1347-51</div><div class="tDesc"><b>Ciuma Neagra</b> — 30-60% din Europa moare</div></div>
+        <div class="tEvent"><div class="tDate">~1397</div><div class="tDesc"><b>Banca Medici</b> fondata de Giovanni de' Medici</div></div>
+        <div class="tEvent"><div class="tDate">1436</div><div class="tDesc"><b>Cupola lui Brunelleschi</b> finalizata la Florenta</div></div>
+        <div class="tEvent"><div class="tDate">~1440</div><div class="tDesc"><b>Gutenberg</b> dezvolta tiparul cu caractere mobile</div></div>
+        <div class="tEvent"><div class="tDate">1469</div><div class="tDesc"><b>Machiavelli</b> se naste la Florenta</div></div>
+        <div class="tEvent"><div class="tDate">1492</div><div class="tDesc"><b>Columb</b> ajunge in Americi — Europa nu prea-i pasa</div></div>
+        <div class="tEvent"><div class="tDate">1513</div><div class="tDesc"><b>Principele</b> scris de Machiavelli in exil</div></div>
+        <div class="tEvent"><div class="tDate">1517</div><div class="tDesc"><b>Luther</b> — 95 de teze ajung la Londra in 17 zile</div></div>
+        <div class="tEvent"><div class="tDate">1620</div><div class="tDesc"><b>Francis Bacon</b> — Novum Organum (metoda stiintifica)</div></div>
+        <div class="tEvent"><div class="tDate">1633</div><div class="tDesc"><b>Procesul lui Galilei</b> — Inchizitia devine laborator</div></div>
+      </div>
+    </div>
+
+    <!-- Chain SVG: Petrarca → Machiavelli → Bacon → Galilei -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Lantul ideilor</h2><p>De la visul lui Petrarca la metoda stiintifica</p></div>
+      </div>
+      <div class="cardBody">
+        <div class="netDiag" style="margin-top:0;">
+          <svg viewBox="0 0 260 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Petrarch -->
+            <circle cx="130" cy="30" r="22" fill="rgba(212,168,85,.12)" stroke="#D4A855" stroke-width="1.5"/>
+            <text x="130" y="34" fill="#D4A855" font-size="10" text-anchor="middle" font-weight="700">Petrarca</text>
+            <text x="130" y="68" fill="#A0ACC8" font-size="9" text-anchor="middle">"Imitati-i pe romani"</text>
+            <line x1="130" y1="52" x2="130" y2="88" stroke="#D4A855" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Medici -->
+            <circle cx="130" cy="110" r="22" fill="rgba(196,120,74,.12)" stroke="#C4784A" stroke-width="1.5"/>
+            <text x="130" y="114" fill="#C4784A" font-size="10" text-anchor="middle" font-weight="700">Medici</text>
+            <text x="130" y="148" fill="#A0ACC8" font-size="9" text-anchor="middle">"Cultura = putere"</text>
+            <line x1="130" y1="132" x2="130" y2="168" stroke="#C4784A" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Machiavelli -->
+            <circle cx="130" cy="190" r="22" fill="rgba(184,74,74,.12)" stroke="#B84A4A" stroke-width="1.5"/>
+            <text x="130" y="188" fill="#B84A4A" font-size="9" text-anchor="middle" font-weight="700">Machia-</text>
+            <text x="130" y="198" fill="#B84A4A" font-size="9" text-anchor="middle" font-weight="700">velli</text>
+            <text x="130" y="228" fill="#A0ACC8" font-size="9" text-anchor="middle">"Istoria ca laborator"</text>
+            <line x1="130" y1="212" x2="130" y2="248" stroke="#B84A4A" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Bacon -->
+            <circle cx="130" cy="270" r="22" fill="rgba(167,139,250,.12)" stroke="#A78BFA" stroke-width="1.5"/>
+            <text x="130" y="274" fill="#A78BFA" font-size="10" text-anchor="middle" font-weight="700">Bacon</text>
+            <text x="130" y="308" fill="#A0ACC8" font-size="9" text-anchor="middle">"Metoda stiintifica"</text>
+            <line x1="130" y1="292" x2="130" y2="318" stroke="#A78BFA" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Final label -->
+            <rect x="55" y="322" width="150" height="18" rx="9" fill="rgba(122,184,122,.12)" stroke="rgba(122,184,122,.3)"/>
+            <text x="130" y="335" fill="#7AB87A" font-size="9" text-anchor="middle" font-weight="600">Revolutia Stiintifica</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commentary panel -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comB').classList.toggle('hidden')">
+        <h2>Comentariu & context</h2>
+        <button class="comToggle" id="comBtn">arata / ascunde</button>
+      </div>
+      <div class="comBody" id="comB">
+        <div class="comNote">
+          <h4>Despre Ada Palmer</h4>
+          <p>Profesor de istorie la Universitatea din Chicago, specialist in Renastere si Iluminism. Autoare a seriei SF <b>"Terra Ignota"</b> si a cartii <b>"Inventing the Renaissance"</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce conteaza azi</h4>
+          <p>Paralela tipar-internet este izbitoare: fiecare revolutie tehnologica produce <b>aceleasi etape</b> — inventie, distributie, democratizare, haos informational. Suntem in mijlocul aceluiasi proces.</p>
+        </div>
+        <div class="comNote">
+          <h4>Lectia lui Machiavelli</h4>
+          <p>"Scopul scuza mijloacele" a fost <b>deformat</b> timp de 500 de ani. In context, e un argument despre responsabilitatea fata de cetateni — nu despre cinism politic.</p>
+        </div>
+        <div class="comNote">
+          <h4>Stiinta ca act de caritate</h4>
+          <p>Trecerea de la Leonardo (care <b>ascundea</b> cunoasterea) la publicarea stiintifica deschisa a fost cea mai importanta schimbare de mentalitate din istoria umana.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem"><dt>Sortitie</dt><dd>Sistem de selectie a conducatorilor prin tragere la sorti, nu prin vot sau mostenire. Folosit in Florenta si Atena antica.</dd></dl>
+        <dl class="gItem"><dt>Umanism</dt><dd>Miscare intelectuala care pune accent pe studiul textelor clasice (grecesti si romane) ca baza a educatiei si formarii caracterului.</dd></dl>
+        <dl class="gItem"><dt>Patronaj</dt><dd>Sistemul prin care mecenati bogati (ca familia Medici) finantau artisti si intelectuali in schimbul prestigiului si influentei.</dd></dl>
+        <dl class="gItem"><dt>Novum Organum</dt><dd>Opera lui Francis Bacon (1620) care propune metoda stiintifica bazata pe observatie si experiment, nu pe autoritate sau speculatie.</dd></dl>
+        <dl class="gItem"><dt>Jansenism</dt><dd>Miscare teologica catolica bazata pe predestinare. Inchizitia a fost obsedata de ea, ignorand amenintarile intelectuale reale.</dd></dl>
+        <dl class="gItem"><dt>Areopagitica</dt><dd>Eseu al lui John Milton (1644) impotriva cenzurii — ironic, a esuat complet la momentul publicarii.</dd></dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Infografic bazat pe conversatia cu Ada Palmer — <a href="https://www.youtube.com/watch?v=PAIhVfGbREA" target="_blank">The Renaissance Was Absolutely Crazy</a> &middot; Generat automat &middot; Nu este un document academic
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero Canvas: Renaissance arches & quill animation ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, frame=0;
+
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = r.width * devicePixelRatio;
+    c.height = r.height * devicePixelRatio;
+    W = c.width; H = c.height;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const stars = Array.from({length:60},()=>({
+    x: Math.random(), y: Math.random(),
+    r: Math.random()*1.5+.5,
+    s: Math.random()*0.003+0.001,
+    o: Math.random()*Math.PI*2
+  }));
+
+  function drawArch(cx, cy, w, h, color, alpha){
+    ctx.beginPath();
+    ctx.ellipse(cx, cy+h*0.2, w/2, h*0.6, 0, Math.PI, 0);
+    ctx.lineTo(cx+w/2, cy+h);
+    ctx.lineTo(cx-w/2, cy+h);
+    ctx.closePath();
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Columns
+    ctx.beginPath();
+    ctx.moveTo(cx-w/2, cy+h*0.2);
+    ctx.lineTo(cx-w/2, cy+h);
+    ctx.moveTo(cx+w/2, cy+h*0.2);
+    ctx.lineTo(cx+w/2, cy+h);
+    ctx.stroke();
+  }
+
+  function drawQuill(x, y, angle, size){
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.globalAlpha = 0.7;
+    // Shaft
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(size, 0);
+    ctx.strokeStyle = '#D4A855';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Feather
+    ctx.beginPath();
+    ctx.moveTo(size*0.6, 0);
+    ctx.quadraticCurveTo(size*0.8, -size*0.3, size, 0);
+    ctx.quadraticCurveTo(size*0.8, size*0.2, size*0.6, 0);
+    ctx.fillStyle = 'rgba(212,168,85,0.3)';
+    ctx.fill();
+    // Nib
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-size*0.08, -size*0.04);
+    ctx.lineTo(-size*0.08, size*0.04);
+    ctx.closePath();
+    ctx.fillStyle = '#A0ACC8';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function draw(){
+    frame++;
+    const rW = c.getBoundingClientRect().width;
+    const rH = c.getBoundingClientRect().height;
+    ctx.clearRect(0,0,rW,rH);
+
+    // Stars
+    stars.forEach(s=>{
+      const pulse = Math.sin(frame*s.s*2+s.o)*0.3+0.7;
+      ctx.beginPath();
+      ctx.arc(s.x*rW, s.y*rH, s.r*pulse, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(212,168,85,${0.15*pulse})`;
+      ctx.globalAlpha = 1;
+      ctx.fill();
+    });
+
+    // Arches (3 nested)
+    const centerX = rW*0.5;
+    const baseY = rH*0.35;
+    const sway = Math.sin(frame*0.008)*3;
+    drawArch(centerX+sway, baseY, rW*0.55, rH*0.55, '#D4A855', 0.25+Math.sin(frame*0.01)*0.05);
+    drawArch(centerX+sway*0.7, baseY+8, rW*0.40, rH*0.45, '#C4784A', 0.20+Math.sin(frame*0.012)*0.04);
+    drawArch(centerX+sway*0.4, baseY+16, rW*0.25, rH*0.35, '#A78BFA', 0.15+Math.sin(frame*0.015)*0.03);
+
+    // Floating quill
+    const qx = rW*0.2 + Math.sin(frame*0.012)*20;
+    const qy = rH*0.3 + Math.cos(frame*0.009)*10;
+    drawQuill(qx, qy, -0.4+Math.sin(frame*0.006)*0.15, 40);
+
+    // Ink drops trail
+    for(let i=0;i<5;i++){
+      const t = (frame*0.5+i*30)%200;
+      const dx = qx - 15 + Math.sin(t*0.1+i)*8;
+      const dy = qy + 18 + t*0.5;
+      const alpha = Math.max(0, 1-t/200)*0.3;
+      ctx.beginPath();
+      ctx.arc(dx, dy, 1.5-t*0.005, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(167,139,250,${alpha})`;
+      ctx.globalAlpha = 1;
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Revolution slider ── */
+(function(){
+  const slider = document.getElementById('revSlider');
+  const out = document.getElementById('revOut');
+  if(!slider||!out) return;
+  const data = [
+    {tipar:'Tipografia cu caractere mobile', digital:'Computerul personal', desc:'Inventie fundamentala — un singur om (Gutenberg / Wozniak) construieste masina. Amandoi dau aproape faliment.'},
+    {tipar:'Pamflete si carti', digital:'Internetul si site-uri web', desc:'Distributia devine posibila. Targuri de carte = motoare de cautare. Continutul se raspandeste rapid dar haotic.'},
+    {tipar:'Ziare si reviste', digital:'Retele sociale', desc:'Informatia se democratizeaza complet. Oricine poate publica. Luther = primul "viral post" — 95 de teze in 17 zile.'},
+    {tipar:'Enciclopedii si jurnale stiintifice', digital:'AI si modele lingvistice', desc:'Penetrare maxima: tehnologia nu doar distribuie, ci proceseaza si sintetizeaza cunoasterea. Fiecare etapa e aceeasi tehnologie, mai adanc.'}
+  ];
+  function update(){
+    const i = +slider.value;
+    const d = data[i];
+    out.innerHTML = '<b style="color:var(--glow)">'+d.tipar+'</b> &#8596; <b style="color:var(--purple)">'+d.digital+'</b><br><span style="color:var(--muted);font-size:12px;">'+d.desc+'</span>';
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>
