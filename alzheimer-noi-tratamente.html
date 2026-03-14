@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alzheimer — Noi Modalitati de a Incetini Boala | NHK Medical Frontiers</title>
+  <meta name="description" content="Infografic interactiv: noi medicamente anti-amiloid si strategii de preventie pentru boala Alzheimer. Bazat pe NHK Medical Frontiers." />
+  <style>
+    :root{
+      --bg0:#080810;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#A78BFA;
+      --glow2:#60A5FA;
+      --ok:#60A5FA;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(167,139,250,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(96,165,250,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(251,191,36,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* -- HERO -- */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(167,139,250,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(167,139,250,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(96,165,250,.12), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(251,191,36,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* -- CARDS -- */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(167,139,250,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(96,165,250,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(96,165,250,.15);}
+    .stepDot.red{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(96,165,250,.22),rgba(96,165,250,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.red{background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(167,139,250,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(96,165,250,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.ok{border-color:rgba(96,165,250,.25);background:rgba(96,165,250,.06);}
+    .alert.ok h4{color:var(--ok);}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Comparison bars */
+    .compBar{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+    .compRow{display:flex;align-items:center;gap:10px;}
+    .compLabel{font-size:12px;color:var(--muted);width:120px;flex:0 0 120px;text-align:right;}
+    .compTrack{flex:1;height:28px;background:rgba(6,8,16,.45);border-radius:8px;overflow:hidden;position:relative;}
+    .compFill{height:100%;border-radius:8px;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:650;color:#fff;transition:width .8s ease;}
+    .compVal{font-family:var(--mono);font-size:11px;color:var(--muted);width:50px;flex:0 0 50px;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(167,139,250,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(167,139,250,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(167,139,250,.25);background:rgba(167,139,250,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .grid2{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Alzheimer &mdash; Noi Modalitati de a Incetini Boala
+          <small>Medicamentele anti-amiloid si strategiile de preventie bazate pe stil de viata deschid o noua era in lupta impotriva dementei</small>
+        </h1>
+        <p class="sub">Peste <b>50 de milioane</b> de oameni la nivel mondial traiesc cu boala Alzheimer. Noile medicamente anti-amiloid precum <b>Lecanemab</b> si <b>Donanemab</b>, combinate cu strategii de preventie bazate pe nutritie, somn si exercitii fizice, ofera speranta reala pentru incetinirea declinului cognitiv.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>NHK Medical Frontiers</b> &middot; Japonia</span>
+          <span class="chip"><i class="i2"></i> <b>Neurologie</b> &middot; Alzheimer</span>
+          <span class="chip"><i class="i3"></i> <b>Anti-amiloid</b> &middot; Tratament</span>
+          <span class="chip"><i class="i4"></i> <b>Preventie</b> &middot; Stil de viata</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MAIN ======= -->
+  <div class="main">
+
+    <!-- Card 1: Mecanismul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este boala Alzheimer &mdash; Mecanismul</h2>
+          <p>Proteina amiloid beta se acumuleaza anormal in creier, declansand o cascada de evenimente care duc la declin cognitiv</p>
+        </div>
+        <span class="badge">MECANISM</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">50M+</div>
+            <span class="u">persoane afectate la nivel global</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">~1%</div>
+            <span class="u">din populatia mondiala</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Nr. 1</div>
+            <span class="u">cauza de dementa</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">20+ ani</div>
+            <span class="u">acumulare inainte de simptome</span>
+          </div>
+        </div>
+
+        <!-- SVG: Amyloid cascade -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stage boxes -->
+            <rect x="2" y="30" width="108" height="50" rx="12" fill="rgba(167,139,250,.12)" stroke="rgba(167,139,250,.4)" stroke-width="1.5"/>
+            <text x="56" y="52" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="700">Acumulare</text>
+            <text x="56" y="68" text-anchor="middle" fill="#A0ACC8" font-size="9">Amiloid Beta</text>
+
+            <rect x="140" y="30" width="108" height="50" rx="12" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.4)" stroke-width="1.5"/>
+            <text x="194" y="52" text-anchor="middle" fill="#60A5FA" font-size="10" font-weight="700">Protofibrile</text>
+            <text x="194" y="68" text-anchor="middle" fill="#A0ACC8" font-size="9">Forme timpurii</text>
+
+            <rect x="278" y="30" width="108" height="50" rx="12" fill="rgba(251,191,36,.12)" stroke="rgba(251,191,36,.4)" stroke-width="1.5"/>
+            <text x="332" y="52" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="700">Placi</text>
+            <text x="332" y="68" text-anchor="middle" fill="#A0ACC8" font-size="9">Depuneri solide</text>
+
+            <rect x="416" y="30" width="108" height="50" rx="12" fill="rgba(248,113,113,.12)" stroke="rgba(248,113,113,.4)" stroke-width="1.5"/>
+            <text x="470" y="52" text-anchor="middle" fill="#F87171" font-size="10" font-weight="700">Inflamatie</text>
+            <text x="470" y="68" text-anchor="middle" fill="#A0ACC8" font-size="9">Neuronala</text>
+
+            <rect x="554" y="30" width="140" height="50" rx="12" fill="rgba(248,113,113,.18)" stroke="rgba(248,113,113,.5)" stroke-width="1.5"/>
+            <text x="624" y="52" text-anchor="middle" fill="#F87171" font-size="10" font-weight="700">Declin cognitiv</text>
+            <text x="624" y="68" text-anchor="middle" fill="#A0ACC8" font-size="9">Pierdere neuronala</text>
+
+            <!-- Arrows -->
+            <path d="M112 55 L138 55" stroke="rgba(167,139,250,.5)" stroke-width="2" marker-end="url(#arrowP)"/>
+            <path d="M250 55 L276 55" stroke="rgba(96,165,250,.5)" stroke-width="2" marker-end="url(#arrowB)"/>
+            <path d="M388 55 L414 55" stroke="rgba(251,191,36,.5)" stroke-width="2" marker-end="url(#arrowW)"/>
+            <path d="M526 55 L552 55" stroke="rgba(248,113,113,.5)" stroke-width="2" marker-end="url(#arrowR)"/>
+
+            <defs>
+              <marker id="arrowP" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6Z" fill="rgba(167,139,250,.6)"/></marker>
+              <marker id="arrowB" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6Z" fill="rgba(96,165,250,.6)"/></marker>
+              <marker id="arrowW" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6Z" fill="rgba(251,191,36,.6)"/></marker>
+              <marker id="arrowR" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6Z" fill="rgba(248,113,113,.6)"/></marker>
+            </defs>
+
+            <!-- Cleaning label -->
+            <text x="56" y="98" text-anchor="middle" fill="#A0ACC8" font-size="8">Somnul activeaza</text>
+            <text x="56" y="108" text-anchor="middle" fill="#A0ACC8" font-size="8">curatarea</text>
+          </svg>
+        </div>
+
+        <div class="quote blue">
+          Intr-un creier sanatos, un sistem de curatare &mdash; activ mai ales in timpul somnului &mdash; transporta amiloidul beta in sange si il elimina. Imbatranirea si stilul de viata nesanatos slabiesc treptat acest mecanism.
+          <cite>NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Medicamente anti-amiloid -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Medicamentele anti-amiloid &mdash; O noua era</h2>
+          <p>Lecanemab (Leqembi) &mdash; primul medicament care incetineste efectiv progresia bolii Alzheimer</p>
+        </div>
+        <span class="badge">TRATAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3><span style="color:var(--glow)">&#9670;</span> Administrare</h3>
+            <p>Intravenos, la fiecare <b>2 saptamani</b>, cate <b>1 ora/sesiune</b>. Disponibil in Japonia pentru persoane cu acumulare excesiva de amiloid.</p>
+          </div>
+          <div class="mini">
+            <h3><span style="color:var(--glow2)">&#9670;</span> Eligibilitate</h3>
+            <p>Diagnosticat cu <b>MCI</b> (deteriorare cognitiva usoara) sau Alzheimer in stadiu incipient, cu confirmare de acumulare de amiloid.</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~1800</div>
+            <span class="u">pacienti in studiul clinic</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">27.1%</div>
+            <span class="u">incetinire a declinului cognitiv</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">26</div>
+            <span class="u">pacienti au finalizat tratamentul</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">24/26</div>
+            <span class="u">au mentinut starea cognitiva</span>
+          </div>
+        </div>
+
+        <div class="alert ok" style="margin-top:14px;">
+          <h4>&#x1f6c8; Important</h4>
+          <p>Lecanemab <b>nu este un remediu fundamental</b> &mdash; nu vindeca boala Alzheimer. Dar poate amana semnificativ aparitia simptomelor severe si incetini progresia, oferind pacientilor mai mult timp cu functionare cognitiva mai buna.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Donanemab vs Lecanemab -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Donanemab vs Lecanemab &mdash; Mecanisme diferite</h2>
+          <p>Doua tipuri de anticorpi care vizeaza stadii diferite ale acumularii de amiloid</p>
+        </div>
+        <span class="badge">COMPARATIE</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Mechanism comparison -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lecanemab side -->
+            <rect x="10" y="10" width="330" height="160" rx="14" fill="rgba(167,139,250,.06)" stroke="rgba(167,139,250,.2)" stroke-width="1"/>
+            <text x="175" y="32" text-anchor="middle" fill="#A78BFA" font-size="12" font-weight="700">Lecanemab (Leqembi)</text>
+
+            <!-- Protofibrils -->
+            <circle cx="80" cy="80" r="18" fill="rgba(167,139,250,.15)" stroke="rgba(167,139,250,.4)" stroke-width="1.5"/>
+            <circle cx="72" cy="74" r="5" fill="rgba(167,139,250,.35)"/>
+            <circle cx="88" cy="78" r="4" fill="rgba(167,139,250,.3)"/>
+            <circle cx="78" cy="88" r="4.5" fill="rgba(167,139,250,.3)"/>
+            <text x="80" y="110" text-anchor="middle" fill="#A0ACC8" font-size="9">Protofibrile</text>
+            <text x="80" y="122" text-anchor="middle" fill="#A0ACC8" font-size="8">(forme timpurii)</text>
+
+            <!-- Arrow -->
+            <path d="M105 80 L155 80" stroke="rgba(167,139,250,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="130" y="74" text-anchor="middle" fill="#A78BFA" font-size="8">leaga</text>
+
+            <!-- Antibody Y shape -->
+            <path d="M175 68 L175 90 M165 62 L175 72 L185 62" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="175" y="105" text-anchor="middle" fill="#A78BFA" font-size="9" font-weight="600">Anticorp</text>
+
+            <!-- Arrow to microglia -->
+            <path d="M195 80 L240 80" stroke="rgba(167,139,250,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="218" y="74" text-anchor="middle" fill="#A78BFA" font-size="8">semnal</text>
+
+            <!-- Microglia -->
+            <circle cx="268" cy="80" r="20" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.4)" stroke-width="1.5"/>
+            <text x="268" y="78" text-anchor="middle" fill="#60A5FA" font-size="9" font-weight="600">Micro-</text>
+            <text x="268" y="90" text-anchor="middle" fill="#60A5FA" font-size="9" font-weight="600">glia</text>
+            <text x="268" y="115" text-anchor="middle" fill="#A0ACC8" font-size="8">Elimina amiloidul</text>
+
+            <!-- Donanemab side -->
+            <rect x="360" y="10" width="330" height="160" rx="14" fill="rgba(251,191,36,.06)" stroke="rgba(251,191,36,.2)" stroke-width="1"/>
+            <text x="525" y="32" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="700">Donanemab</text>
+
+            <!-- Plaques -->
+            <rect x="400" y="62" width="42" height="36" rx="8" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.4)" stroke-width="1.5"/>
+            <circle cx="412" cy="74" r="5" fill="rgba(251,191,36,.3)"/>
+            <circle cx="428" cy="80" r="4" fill="rgba(251,191,36,.25)"/>
+            <circle cx="416" cy="88" r="4.5" fill="rgba(251,191,36,.3)"/>
+            <text x="421" y="115" text-anchor="middle" fill="#A0ACC8" font-size="9">Placi formate</text>
+            <text x="421" y="127" text-anchor="middle" fill="#A0ACC8" font-size="8">(depuneri solide)</text>
+
+            <!-- Arrow -->
+            <path d="M448 80 L498 80" stroke="rgba(251,191,36,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="473" y="74" text-anchor="middle" fill="#FBBF24" font-size="8">vizeaza</text>
+
+            <!-- Antibody Y -->
+            <path d="M520 68 L520 90 M510 62 L520 72 L530 62" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="520" y="105" text-anchor="middle" fill="#FBBF24" font-size="9" font-weight="600">Anticorp</text>
+
+            <!-- Result -->
+            <text x="590" y="76" text-anchor="middle" fill="#A0ACC8" font-size="9">Distruge</text>
+            <text x="590" y="90" text-anchor="middle" fill="#A0ACC8" font-size="9">placile direct</text>
+            <path d="M540 80 L565 80" stroke="rgba(251,191,36,.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Labels -->
+            <text x="175" y="152" text-anchor="middle" fill="#A0ACC8" font-size="9">Tinte: forme timpurii (protofibrile)</text>
+            <text x="525" y="152" text-anchor="middle" fill="#A0ACC8" font-size="9">Tinte: placi de amiloid deja formate</text>
+          </svg>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <h4>&#9888; Efecte secundare &mdash; ARIA</h4>
+          <p><b>ARIA</b> (anomalii de imagistica legate de amiloid): <b>12-24%</b> din participanti, in functie de genotipul ApoE. Majoritatea cazurilor sunt <b>asimptomatice</b> &mdash; descoperite doar la RMN. Este necesara monitorizare regulata prin RMN si evaluarea riscului individual (dimensiunea tumorii, risc de sangerare).</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Detectarea timpurie J-TRI -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Detectarea timpurie &mdash; Japan Trial (J-TRI)</h2>
+          <p>Un sistem inovator de screening cognitiv pentru detectarea precoce a acumularii de amiloid</p>
+        </div>
+        <span class="badge">DETECTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Inscriere: persoane 50-85 ani fara dementa</h4>
+              <p>13.000 de participanti intre 2019 si 2023. Sistemul J-TRI permite screeningul la scara larga fara proceduri invazive.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Teste cognitive online lunare</h4>
+              <p>Participantii completeaza teste cognitive de acasa, lunar. Algoritmii detecteaza schimbari subtile in performanta cognitiva.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Semne de declin &rarr; examinare la spital</h4>
+              <p>Doar cei cu semne de declin merg la spital pentru examinare detaliata si analize de sange, reducand costurile si expunerea la radiatii (PET scan).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Biomarker revolutionar: p-tau 217</h4>
+              <p>O proteina din sange &mdash; <b>p-tau 217</b> &mdash; creste cand se acumuleaza amiloid beta. Poate <b>prezice acumularea cu acuratete ridicata</b> dintr-o simpla analiza de sange, detectand amiloidul intr-un stadiu mult mai timpuriu decat MCI.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">7400</div>
+            <span class="u">pacienti tratati in Japonia (pana in martie)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">13000</div>
+            <span class="u">participanti J-TRI (2019-2023)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">50-85</div>
+            <span class="u">grupa de varsta eligibila (ani)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">p-tau 217</div>
+            <span class="u">noul biomarker sanguin</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Anserina -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Anserina &mdash; Componenta naturala care protejeaza creierul</h2>
+          <p>O dipeptida naturala cu proprietati antiinflamatorii puternice, prezenta in peste si pui</p>
+        </div>
+        <span class="badge">NUTRITIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3><span style="color:var(--glow)">&#9670;</span> Ce este anserina?</h3>
+            <p>Dipeptida prezenta natural in corp si creier. Suprima <b>eficient inflamatia</b> care apare cand dementa incepe. Experimentele pe soareci au aratat reducere semnificativa a markerilor de inflamatie.</p>
+          </div>
+          <div class="mini">
+            <h3><span style="color:var(--warn)">&#9670;</span> Legatura cu ApoE4</h3>
+            <p>Persoanele cu gena <b>ApoE4</b> nu pot elimina eficient amiloidul &rarr; se acumuleaza &rarr; stimuleaza celulele de suport &rarr; supraactivare &rarr; <b>inflamatie cronica</b>. Anserina controleaza aceasta inflamatie.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          Controlul inflamatiei cu anserina a extins semnificativ durata de viata la soarecii de laborator (cu viata de ~6 luni). Efectul este asteptat si la persoane peste 70-80 de ani.
+          <cite>Cercetari publicate &mdash; NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Studiul clinic cu anserina -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiu clinic: Anserina + Ghidaj stil de viata</h2>
+          <p>Rezultate prezentate la conferinta Clinical Trials on Alzheimer's Disease</p>
+        </div>
+        <span class="badge">STUDIU</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3><span style="color:var(--glow)">&#9670;</span> Protocol</h3>
+            <p>Participanti sanatosi, impartiti in 2 grupuri. Grupul activ: <b>anserina + ghidaj de exercitii, somn, dieta</b> + mesaje regulate prin aplicatie AI.</p>
+          </div>
+          <div class="mini">
+            <h3><span style="color:var(--ok)">&#9670;</span> ApoE4 pozitivi</h3>
+            <p><b>53 participanti</b> cu gena ApoE4 (risc ridicat de MCI) au aratat crestere medie de <b>+30 puncte</b> la testele cognitive.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok)">+30</span>
+              <span class="l">puncte cognitive la purtatorii ApoE4</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3><span style="color:var(--warn)">&#9670;</span> Doza</h3>
+            <p>~<b>1g anserina/saptamana</b>, echivalent cu aproximativ <b>250g somon sau pui</b>. Aplicatie AI personalizata pentru monitorizare.</p>
+          </div>
+        </div>
+
+        <!-- Interactive comparison -->
+        <h3 style="font-size:13px;margin:18px 0 6px;">Rata de dezvoltare MCI in 6 luni</h3>
+        <div class="compBar" id="compBars">
+          <div class="compRow">
+            <span class="compLabel">Grup control</span>
+            <div class="compTrack">
+              <div class="compFill" style="width:0%;background:linear-gradient(90deg,rgba(248,113,113,.7),rgba(248,113,113,.4));" data-target="100">10%</div>
+            </div>
+            <span class="compVal" style="color:var(--bad)">10%</span>
+          </div>
+          <div class="compRow">
+            <span class="compLabel">Grup ghidat</span>
+            <div class="compTrack">
+              <div class="compFill" style="width:0%;background:linear-gradient(90deg,rgba(96,165,250,.7),rgba(96,165,250,.4));" data-target="50">~5%</div>
+            </div>
+            <span class="compVal" style="color:var(--ok)">~5%</span>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted2);margin-top:8px;">Dintre cei cu stil de viata obisnuit, 10% au dezvoltat MCI in 6 luni; la grupul ghidat, doar ~5%.</p>
+      </div>
+    </article>
+
+    <!-- Card 7: Concluzie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzie &mdash; Cele doua roti ale preventiei</h2>
+          <p>Medicamentele noi si stilul de viata sanatos trebuie sa functioneze impreuna</p>
+        </div>
+        <span class="badge">CONCLUZIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3><span style="color:var(--glow)">&#9670;</span> Roata 1: Medicamentele</h3>
+            <p>Lecanemab si Donanemab &mdash; anticorpi monoclonali care <b>incetinesc acumularea de amiloid</b>. Detectarea precoce prin p-tau 217 permite interventii mai devreme.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(96,165,250,.2);">
+            <h3><span style="color:var(--ok)">&#9670;</span> Roata 2: Stilul de viata</h3>
+            <p>Exercitii fizice, somn de calitate, dieta bogata in anserina (peste, pui), stimulare cognitiva &mdash; toate <b>reduc inflamatia</b> si sustin sistemul natural de curatare al creierului.</p>
+          </div>
+        </div>
+        <div class="quote blue" style="margin-top:14px;">
+          Cercetarea avansata in Alzheimer ofera speranta reala. Este crucial ca ambele abordari &mdash; medicamentele si stilul de viata &mdash; sa functioneze impreuna. Alegerile de zi cu zi pot influenta semnificativ riscul pe termen lung.
+          <cite>NHK Medical Frontiers</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ======= SIDEBAR ======= -->
+  <div class="side">
+
+    <!-- Cifre cheie -->
+    <div class="card">
+      <div class="cardHeader">
+        <div><h2>Cifre cheie</h2></div>
+        <span class="badge">KPI</span>
+      </div>
+      <div class="cardBody">
+        <div class="mini" style="margin-bottom:10px;">
+          <h3><span style="color:var(--glow)">&#9670;</span> Persoane afectate</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow)">50M+</span>
+            <span class="l">la nivel global traiesc cu Alzheimer</span>
+          </div>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3><span style="color:var(--ok)">&#9670;</span> Eficacitate Lecanemab</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--ok)">27.1%</span>
+            <span class="l">incetinire a declinului cognitiv</span>
+          </div>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3><span style="color:var(--warn)">&#9670;</span> Pacienti tratati</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--warn)">7400</span>
+            <span class="l">in Japonia (pana in martie)</span>
+          </div>
+        </div>
+        <div class="mini" style="margin-bottom:10px;">
+          <h3><span style="color:var(--glow2)">&#9670;</span> Studiu J-TRI</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--glow2)">13000</span>
+            <span class="l">participanti (2019-2023)</span>
+          </div>
+        </div>
+        <div class="mini">
+          <h3><span style="color:var(--ok)">&#9670;</span> Preventie MCI</h3>
+          <div class="kpi">
+            <span class="n" style="color:var(--ok)">10%&rarr;5%</span>
+            <span class="l">MCI redus cu interventie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline: Cascada amiloid -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cascada amiloid &mdash; Etape</h2></div>
+      <div class="tBody">
+        <div class="tEvent">
+          <div class="tDate">Faza 1</div>
+          <div class="tDesc"><b>Acumulare</b> &mdash; proteina amiloid beta incepe sa se acumuleze in creier (fara simptome)</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">Faza 2</div>
+          <div class="tDesc"><b>Protofibrile</b> &mdash; amiloidul formeaza agregate solubile (forme timpurii)</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">Faza 3</div>
+          <div class="tDesc"><b>Placi</b> &mdash; protofibrile se solidifica in depuneri insolubile</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">Faza 4</div>
+          <div class="tDesc"><b>Inflamatie</b> &mdash; placile declansaza raspuns inflamator neuronal</div>
+        </div>
+        <div class="tEvent">
+          <div class="tDate">Faza 5</div>
+          <div class="tDesc"><b>Declin cognitiv</b> &mdash; celulele nervoase sunt distruse, apar simptomele de dementa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commentary panel -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Analiza si semnificatie</h2>
+        <button class="comToggle" id="comBtn">ascunde/arata</button>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4><span style="color:var(--glow)">&#9733;</span> Schimbare de paradigma</h4>
+          <p>Pentru prima data, medicamentele anti-amiloid incetinesc progresia bolii, nu doar trateaza simptomele. Aceasta este o schimbare fundamentala in abordarea Alzheimer.</p>
+        </div>
+        <div class="comNote">
+          <h4><span style="color:var(--ok)">&#9733;</span> Detectie timpurie accesibila</h4>
+          <p>Biomarkerul p-tau 217 din sange poate inlocui PET scan-urile scumpe si invazive, facand screeningul accesibil la scara larga.</p>
+        </div>
+        <div class="comNote">
+          <h4><span style="color:var(--warn)">&#9733;</span> Anserina &mdash; preventie accesibila</h4>
+          <p>Doar ~1g anserina/saptamana (250g somon sau pui) poate reduce inflamatia cerebrala. Este o interventie simpla, ieftina si accesibila tuturor.</p>
+        </div>
+        <div class="comNote">
+          <h4><span style="color:var(--bad)">&#9733;</span> Limitari importante</h4>
+          <p>Medicamentele anti-amiloid nu vindeca boala. Efectele secundare ARIA (12-24%) necesita monitorizare RMN. Tratamentul este disponibil doar in stadii incipiente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Amiloid beta</dt>
+          <dd>Proteina care se acumuleaza anormal in creierul persoanelor cu Alzheimer, formand placi toxice.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>MCI (Mild Cognitive Impairment)</dt>
+          <dd>Deteriorare cognitiva usoara, stadiu pre-dementa care poate preceda boala Alzheimer.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Protofibrile</dt>
+          <dd>Forme timpurii ale agregatelor de amiloid, inainte de formarea placilor solide.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ARIA</dt>
+          <dd>Anomalii de imagistica legate de amiloid &mdash; efect secundar al medicamentelor anti-amiloid, vizibil la RMN.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ApoE4</dt>
+          <dd>Varianta genetica care creste riscul de Alzheimer prin reducerea capacitatii de eliminare a amiloidului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Anserina</dt>
+          <dd>Dipeptida naturala cu proprietati antiinflamatorii, prezenta in peste si pui.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Microglia</dt>
+          <dd>Celule imunitare ale creierului care elimina deseurile, inclusiv amiloidul beta.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=hNyJAVMA3zo" target="_blank">NHK Medical Frontiers &mdash; New Ways to Slow Alzheimer's Disease</a> &middot; Infografic generat in scop educational
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+// ── Hero Canvas: Brain outline with floating amyloid particles being cleaned ──
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, dpr;
+  const particles = [];
+  const cleaners = [];
+
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    const rect = c.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function initParticles(){
+    particles.length = 0;
+    cleaners.length = 0;
+    const cx = W * 0.5, cy = H * 0.48;
+    // Amyloid particles inside brain area
+    for(let i = 0; i < 45; i++){
+      const angle = Math.random() * Math.PI * 2;
+      const r = Math.random() * Math.min(W, H) * 0.32;
+      particles.push({
+        x: cx + Math.cos(angle) * r,
+        y: cy + Math.sin(angle) * r,
+        r: 2 + Math.random() * 3.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        opacity: 0.3 + Math.random() * 0.5,
+        color: Math.random() > 0.5 ? '#A78BFA' : '#FBBF24',
+        cleaning: false,
+        cleanTimer: 0
+      });
+    }
+    // Cleaner cells (microglia)
+    for(let i = 0; i < 5; i++){
+      cleaners.push({
+        x: cx + (Math.random() - 0.5) * W * 0.4,
+        y: cy + (Math.random() - 0.5) * H * 0.4,
+        targetIdx: -1,
+        speed: 0.6 + Math.random() * 0.4,
+        r: 6
+      });
+    }
+  }
+
+  function drawBrainOutline(){
+    const cx = W * 0.5, cy = H * 0.48;
+    const s = Math.min(W, H) * 0.38;
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.beginPath();
+    // Simplified brain shape
+    ctx.moveTo(0, -s * 0.85);
+    ctx.bezierCurveTo(s * 0.6, -s * 0.9, s * 0.95, -s * 0.4, s * 0.9, s * 0.05);
+    ctx.bezierCurveTo(s * 0.85, s * 0.45, s * 0.5, s * 0.7, s * 0.15, s * 0.72);
+    ctx.bezierCurveTo(s * 0.05, s * 0.75, 0, s * 0.8, 0, s * 0.8);
+    ctx.bezierCurveTo(0, s * 0.8, -s * 0.05, s * 0.75, -s * 0.15, s * 0.72);
+    ctx.bezierCurveTo(-s * 0.5, s * 0.7, -s * 0.85, s * 0.45, -s * 0.9, s * 0.05);
+    ctx.bezierCurveTo(-s * 0.95, -s * 0.4, -s * 0.6, -s * 0.9, 0, -s * 0.85);
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(167,139,250,.2)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Center fissure
+    ctx.beginPath();
+    ctx.moveTo(0, -s * 0.8);
+    ctx.bezierCurveTo(s * 0.02, -s * 0.2, -s * 0.02, s * 0.2, 0, s * 0.75);
+    ctx.strokeStyle = 'rgba(167,139,250,.12)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function frame(){
+    ctx.clearRect(0, 0, W, H);
+    drawBrainOutline();
+
+    // Update and draw particles
+    particles.forEach((p, idx) => {
+      if(p.cleaning){
+        p.cleanTimer++;
+        p.opacity = Math.max(0, p.opacity - 0.015);
+        if(p.cleanTimer > 60){
+          // Respawn
+          const cx = W * 0.5, cy = H * 0.48;
+          const angle = Math.random() * Math.PI * 2;
+          const r = Math.random() * Math.min(W, H) * 0.28;
+          p.x = cx + Math.cos(angle) * r;
+          p.y = cy + Math.sin(angle) * r;
+          p.opacity = 0.3 + Math.random() * 0.5;
+          p.cleaning = false;
+          p.cleanTimer = 0;
+        }
+      } else {
+        p.x += p.vx;
+        p.y += p.vy;
+        // Soft bounds
+        const cx = W * 0.5, cy = H * 0.48;
+        const dx = p.x - cx, dy = p.y - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxR = Math.min(W, H) * 0.34;
+        if(dist > maxR){
+          p.vx -= dx * 0.002;
+          p.vy -= dy * 0.002;
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color.replace(')', ',' + p.opacity + ')').replace('rgb', 'rgba').replace('#A78BFA', 'rgba(167,139,250,' + p.opacity + ')').replace('#FBBF24', 'rgba(251,191,36,' + p.opacity + ')');
+      // Simple fill
+      const alpha = p.opacity;
+      if(p.color === '#A78BFA'){
+        ctx.fillStyle = 'rgba(167,139,250,' + alpha + ')';
+        ctx.shadowColor = 'rgba(167,139,250,.3)';
+      } else {
+        ctx.fillStyle = 'rgba(251,191,36,' + alpha + ')';
+        ctx.shadowColor = 'rgba(251,191,36,.3)';
+      }
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Cleaners (microglia)
+    cleaners.forEach(cl => {
+      // Find target
+      if(cl.targetIdx < 0 || particles[cl.targetIdx].cleaning){
+        let minD = Infinity;
+        particles.forEach((p, i) => {
+          if(p.cleaning) return;
+          const d = Math.hypot(p.x - cl.x, p.y - cl.y);
+          if(d < minD){ minD = d; cl.targetIdx = i; }
+        });
+      }
+      const t = particles[cl.targetIdx];
+      if(t && !t.cleaning){
+        const dx = t.x - cl.x, dy = t.y - cl.y;
+        const d = Math.hypot(dx, dy);
+        if(d < 8){
+          t.cleaning = true;
+          cl.targetIdx = -1;
+        } else {
+          cl.x += (dx / d) * cl.speed;
+          cl.y += (dy / d) * cl.speed;
+        }
+      }
+
+      // Draw cleaner
+      ctx.beginPath();
+      ctx.arc(cl.x, cl.y, cl.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(96,165,250,.25)';
+      ctx.strokeStyle = 'rgba(96,165,250,.5)';
+      ctx.lineWidth = 1.5;
+      ctx.fill();
+      ctx.stroke();
+      // Cross inside
+      ctx.beginPath();
+      ctx.moveTo(cl.x - 3, cl.y); ctx.lineTo(cl.x + 3, cl.y);
+      ctx.moveTo(cl.x, cl.y - 3); ctx.lineTo(cl.x, cl.y + 3);
+      ctx.strokeStyle = 'rgba(96,165,250,.6)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Label
+    ctx.font = '10px ' + getComputedStyle(document.body).fontFamily;
+    ctx.fillStyle = 'rgba(160,172,200,.5)';
+    ctx.textAlign = 'center';
+    ctx.fillText('Microglia elimina amiloidul', W * 0.5, H - 8);
+
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  initParticles();
+  frame();
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+})();
+
+// ── Animate comparison bars on scroll ──
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const fills = e.target.querySelectorAll('.compFill');
+        fills.forEach(f => {
+          const target = f.getAttribute('data-target');
+          setTimeout(() => { f.style.width = target + '%'; }, 200);
+        });
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.3});
+  const el = document.getElementById('compBars');
+  if(el) observer.observe(el);
+})();
+</script>
+
+</body>
+</html>
