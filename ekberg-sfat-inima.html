@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cel Mai Prost Sfat pentru Inima — 5 mituri demontate de Dr. Sten Ekberg</title>
+  <meta name="description" content="Infografic interactiv: cele mai proaste 5 sfaturi medicale despre sanatatea inimii — grasimi saturate, statine, colesterol, dieta low-fat, trigliceride. Bazat pe Dr. Sten Ekberg." />
+  <style>
+    :root{
+      --bg0:#0A0A12;
+      --bg1:#0E0E1A;
+      --panel:#101428cc;
+      --card:#0E1228;
+      --card2:#0B1020;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2040;
+      --glow:#EF4444;
+      --glow2:#3B82F6;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(239,68,68,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(59,130,246,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(74,222,128,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(239,68,68,.20);
+      background: linear-gradient(180deg, rgba(14,18,40,.75), rgba(10,10,18,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(239,68,68,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(59,130,246,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(74,222,128,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,10,18,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--glow2)} .i3{background:var(--ok)} .i4{background:var(--warn)} .i5{background:var(--purple)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,10,18,.30),rgba(10,10,18,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,18,40,.75),rgba(11,14,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,10,18,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,10,18,.28),rgba(10,10,18,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,10,18,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(239,68,68,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(59,130,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(239,68,68,.22),rgba(239,68,68,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(239,68,68,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(59,130,246,.05);}
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(239,68,68,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(239,68,68,.06);margin-top:12px;
+    }
+    .alert.green{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.green h4{color:var(--ok);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagrams */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,10,18,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Interactive slider */
+    .sliderWrap{margin-top:14px;padding:12px 14px;border:1px solid rgba(234,240,255,.10);border-radius:14px;background:rgba(10,10,18,.30);}
+    .sliderWrap label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .sliderWrap input[type=range]{width:100%;margin-top:6px;accent-color:var(--glow);}
+    .sliderVal{font-family:var(--mono);font-size:14px;color:var(--ink);font-weight:700;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(239,68,68,.18);
+      background:linear-gradient(180deg,rgba(14,18,40,.80),rgba(10,10,18,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(239,68,68,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(239,68,68,.25);background:rgba(239,68,68,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,10,18,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,18,40,.75),rgba(11,14,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,18,40,.75),rgba(11,14,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,10,18,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    /* Versus table */
+    .vsTable{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px;}
+    .vsTable th{text-align:left;padding:7px 10px;font-size:11px;color:var(--muted2);border-bottom:1px solid rgba(234,240,255,.08);font-weight:600;}
+    .vsTable td{padding:7px 10px;border-bottom:1px solid rgba(234,240,255,.05);color:var(--muted);line-height:1.35;}
+    .vsTable .myth{color:var(--bad);}
+    .vsTable .truth{color:var(--ok);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Cel Mai Prost Sfat pentru Inima pe care Ti-l Da Medicul
+          <small>5 mituri despre sanatatea cardiovasculara demontate — bazat pe Dr. Sten Ekberg</small>
+        </h1>
+        <p class="sub">Bolile cardiovasculare sunt ucigasul numarul 1 la nivel mondial. Cu toate acestea, sfaturile medicale mainstream din ultimii 50 de ani nu doar ca nu au rezolvat problema — au transformat-o intr-o <b>epidemie</b>. Infograficul explica de ce aceste sfaturi sunt gresite si ce ar trebui sa faci in schimb.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Grasimi saturate</b> — nu sunt inamicul</span>
+          <span class="chip"><i class="i2"></i> <b>Statine</b> — beneficii supraevaluate</span>
+          <span class="chip"><i class="i3"></i> <b>Low-fat</b> — inlocuit cu zahar</span>
+          <span class="chip"><i class="i4"></i> <b>Trigliceride</b> — vin din carbohidrati</span>
+          <span class="chip"><i class="i5"></i> <b>Markeri</b> — se masoara ce nu conteaza</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Myth 1 — Saturated Fat -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul #1: Evita grasimile saturate</h2>
+          <p>Studiul celor 7 tari a selectat deliberat 7 din 22 de tari pentru a sustine o concluzie prestabilita — ca grasimea saturata cauzeaza boli de inima</p>
+        </div>
+        <span class="badge" style="border-color:rgba(239,68,68,.3);color:var(--glow);">MIT DEMONTAT</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">22</div>
+            <span class="u">tari studiate de fapt</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">7</div>
+            <span class="u">tari selectate selectiv</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">+136%</div>
+            <span class="u">crestere omega-6 din anii 1960</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">0.89</div>
+            <span class="u">corelatie placi / grasime corporala</span>
+          </div>
+        </div>
+
+        <!-- SVG: Omega-6 Timeline -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="20" fill="#A0ACC8" font-size="11" font-weight="700" text-anchor="middle">Omega-6 in tesutul adipos uman (% din grasimea totala)</text>
+            <!-- Axis -->
+            <line x1="80" y1="160" x2="620" y2="160" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <line x1="80" y1="40" x2="80" y2="160" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <!-- Grid lines -->
+            <line x1="80" y1="100" x2="620" y2="100" stroke="rgba(234,240,255,.06)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="80" y1="60" x2="620" y2="60" stroke="rgba(234,240,255,.06)" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- 1960 bar -->
+            <rect x="150" y="118" width="100" height="42" rx="6" fill="rgba(59,130,246,.25)" stroke="rgba(59,130,246,.4)" stroke-width="1.5"/>
+            <text x="200" y="108" fill="#3B82F6" font-size="18" font-weight="800" text-anchor="middle">9%</text>
+            <text x="200" y="175" fill="#A0ACC8" font-size="10" text-anchor="middle">Anii 1960</text>
+            <!-- Arrow -->
+            <line x1="280" y1="130" x2="400" y2="90" stroke="rgba(251,191,36,.4)" stroke-width="2" marker-end="url(#arrowWarn)"/>
+            <text x="340" y="100" fill="#FBBF24" font-size="10" font-weight="700" text-anchor="middle">+136%</text>
+            <!-- 2008 bar -->
+            <rect x="420" y="60" width="100" height="100" rx="6" fill="rgba(239,68,68,.25)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+            <text x="470" y="50" fill="#EF4444" font-size="18" font-weight="800" text-anchor="middle">21.5%</text>
+            <text x="470" y="175" fill="#A0ACC8" font-size="10" text-anchor="middle">Anul 2008</text>
+            <!-- Defs -->
+            <defs>
+              <marker id="arrowWarn" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="rgba(251,191,36,.6)"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Ce contine de fapt o placa de aterom?</h3>
+            <p>In anii <b>1960</b>, placile contineau mai ales grasime saturata. In anii <b>2000</b>, contineau mai ales <b>omega-6</b>. Corelatie de <b>R=0.89</b> cu grasimea corporala totala. Concluzie: inflamatia creeaza placa, iar corpul include orice grasime e disponibila.</p>
+          </div>
+          <div class="mini">
+            <h3>LDL "pufos" vs. LDL mic dens</h3>
+            <p>Grasimea saturata creste in principal <b>LDL-ul mare, pufos</b> — care NU este aterogen. LDL-ul <b>mic si dens</b> (cel periculos) e creat de <b>rezistenta la insulina</b>, exces de omega-6 si zahar. Reducerea grasimilor saturate duce la mai multi carbohidrati, deci mai multa inflamatie.</p>
+          </div>
+        </div>
+
+        <!-- SVG: LDL Particle Comparison -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="20" fill="#A0ACC8" font-size="11" font-weight="700" text-anchor="middle">Particule LDL: mare pufos vs. mic dens</text>
+
+            <!-- Large buoyant LDL -->
+            <circle cx="180" cy="120" r="55" fill="rgba(74,222,128,.08)" stroke="rgba(74,222,128,.4)" stroke-width="2"/>
+            <circle cx="180" cy="120" r="40" fill="rgba(74,222,128,.12)" stroke="rgba(74,222,128,.25)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="180" y="112" fill="#4ADE80" font-size="14" font-weight="800" text-anchor="middle">LDL</text>
+            <text x="180" y="128" fill="#4ADE80" font-size="10" text-anchor="middle">MARE PUFOS</text>
+            <text x="180" y="195" fill="#4ADE80" font-size="11" font-weight="700" text-anchor="middle">Dimensiune 21-23 nm</text>
+            <text x="180" y="210" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Nu trece prin peretii vaselor</text>
+
+            <!-- VS -->
+            <text x="350" y="125" fill="#6E7A9A" font-size="16" font-weight="800" text-anchor="middle">vs.</text>
+
+            <!-- Small dense LDL -->
+            <circle cx="520" cy="120" r="28" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.5)" stroke-width="2"/>
+            <circle cx="520" cy="120" r="18" fill="rgba(239,68,68,.18)" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+            <text x="520" y="116" fill="#EF4444" font-size="11" font-weight="800" text-anchor="middle">LDL</text>
+            <text x="520" y="130" fill="#EF4444" font-size="8" text-anchor="middle">MIC DENS</text>
+            <text x="520" y="195" fill="#EF4444" font-size="11" font-weight="700" text-anchor="middle">Dimensiune &lt;19.6 nm</text>
+            <text x="520" y="210" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Se strecoara prin peretii vaselor</text>
+
+            <!-- Damage indicators -->
+            <line x1="548" y1="100" x2="580" y2="80" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+            <text x="590" y="75" fill="#F87171" font-size="9" text-anchor="start">oxidat</text>
+            <line x1="548" y1="140" x2="580" y2="155" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+            <text x="590" y="160" fill="#F87171" font-size="9" text-anchor="start">glicat</text>
+
+            <!-- Arrow labels -->
+            <rect x="310" y="42" width="80" height="22" rx="6" fill="rgba(74,222,128,.10)" stroke="rgba(74,222,128,.25)" stroke-width="1"/>
+            <text x="350" y="57" fill="#4ADE80" font-size="9" font-weight="600" text-anchor="middle">INOFENSIV</text>
+            <rect x="310" y="155" width="80" height="22" rx="6" fill="rgba(239,68,68,.10)" stroke="rgba(239,68,68,.25)" stroke-width="1"/>
+            <text x="350" y="170" fill="#EF4444" font-size="9" font-weight="600" text-anchor="middle">PERICULOS</text>
+          </svg>
+        </div>
+
+        <div class="quote">
+          &laquo;Cand au spus oamenilor sa reduca grasimea saturata si sa o inlocuiasca cu uleiuri vegetale polinesaturate, situatia s-a inrautatit dramatic. Cel mai bun mix de energie stabila pentru oameni este o combinatie de grasime mononesaturata (uleiul de masline) si acizi grasi saturati (carne, unt, oua).&raquo;
+          <cite>— Dr. Sten Ekberg</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Myth 2 — Statins -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul #2: Ia statine ca sa-ti scazi colesterolul</h2>
+          <p>Colesterolul nu este dusmanul — inflamatia este. LDL devine periculos doar cand e oxidat si glicat, nu din cauza numarului total</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">ATENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">100</div>
+            <span class="u">pacienti tratati cu statine</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">99</div>
+            <span class="u">fara niciun beneficiu in 5 ani</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">1</div>
+            <span class="u">infarct prevenit (preventie primara)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">+25%</div>
+            <span class="u">risc crescut de diabet tip 2</span>
+          </div>
+        </div>
+
+        <!-- SVG: Cholesterol Pathway / CoQ10 Block -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="20" fill="#A0ACC8" font-size="11" font-weight="700" text-anchor="middle">Calea metabolica blocata de statine</text>
+
+            <!-- HMG-CoA Reductase -->
+            <rect x="250" y="38" width="200" height="36" rx="10" fill="rgba(59,130,246,.10)" stroke="rgba(59,130,246,.30)" stroke-width="1.5"/>
+            <text x="350" y="60" fill="#3B82F6" font-size="11" font-weight="700" text-anchor="middle">HMG-CoA Reductaza</text>
+
+            <!-- Statin block -->
+            <rect x="490" y="38" width="120" height="36" rx="10" fill="rgba(239,68,68,.15)" stroke="rgba(239,68,68,.45)" stroke-width="2"/>
+            <text x="550" y="55" fill="#EF4444" font-size="10" font-weight="800" text-anchor="middle">STATINA</text>
+            <text x="550" y="68" fill="#F87171" font-size="8" text-anchor="middle">BLOCHEAZA</text>
+            <line x1="450" y1="56" x2="490" y2="56" stroke="rgba(239,68,68,.5)" stroke-width="2" marker-end="url(#arrowRed)"/>
+
+            <!-- Branch down to Cholesterol -->
+            <line x1="290" y1="74" x2="290" y2="130" stroke="rgba(234,240,255,.15)" stroke-width="2"/>
+            <line x1="290" y1="130" x2="200" y2="130" stroke="rgba(234,240,255,.15)" stroke-width="2" marker-end="url(#arrowGray)"/>
+            <rect x="100" y="115" width="100" height="36" rx="10" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.30)" stroke-width="1.5"/>
+            <text x="150" y="137" fill="#FBBF24" font-size="11" font-weight="700" text-anchor="middle">Colesterol</text>
+            <text x="150" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">Esential pt. hormoni,</text>
+            <text x="150" y="177" fill="#A0ACC8" font-size="9" text-anchor="middle">membrane celulare, creier</text>
+
+            <!-- Branch down to CoQ10 -->
+            <line x1="410" y1="74" x2="410" y2="130" stroke="rgba(234,240,255,.15)" stroke-width="2"/>
+            <line x1="410" y1="130" x2="500" y2="130" stroke="rgba(234,240,255,.15)" stroke-width="2" marker-end="url(#arrowGray)"/>
+            <rect x="500" y="115" width="100" height="36" rx="10" fill="rgba(74,222,128,.10)" stroke="rgba(74,222,128,.30)" stroke-width="1.5"/>
+            <text x="550" y="137" fill="#4ADE80" font-size="11" font-weight="700" text-anchor="middle">CoQ10</text>
+            <text x="550" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">Enzima pt. producerea</text>
+            <text x="550" y="177" fill="#A0ACC8" font-size="9" text-anchor="middle">de ATP (energie)</text>
+
+            <!-- Down from CoQ10 to organs -->
+            <line x1="550" y1="151" x2="550" y2="200" stroke="rgba(74,222,128,.2)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="350" y="215" fill="#A0ACC8" font-size="10" text-anchor="middle">Organe afectate de deficitul de CoQ10:</text>
+            <text x="160" y="240" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle">Inima</text>
+            <text x="290" y="240" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle">Creier</text>
+            <text x="410" y="240" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle">Ficat</text>
+            <text x="520" y="240" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle">Rinichi</text>
+            <text x="630" y="240" fill="#EF4444" font-size="10" font-weight="600" text-anchor="middle">Muschi</text>
+
+            <defs>
+              <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="rgba(239,68,68,.6)"/>
+              </marker>
+              <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="rgba(234,240,255,.25)"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Preventie primara (N=100)</h3>
+            <p><b>100 de pacienti</b> iau statine timp de 5 ani. <b>99</b> nu au niciun beneficiu. <b>1</b> evita un infarct in acea perioada — dar asta nu inseamna ca traieste mai mult sau ca e mai sanatos. Toti sufera potential de efecte secundare.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Preventie secundara (N=25)</h3>
+            <p>Dupa un infarct anterior, NNT scade la <b>25</b> — argument mai solid. La barbati 50+ cu factori multipli de risc sau <b>Lp(a)</b> genetic ridicat, statinele merita discutate. Dar <b>CoQ10</b> (200-600mg/zi) trebuie co-prescris obligatoriu.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Efecte secundare silentioase</h4>
+          <p>Muschii au receptori de durere si "reclama" — dureri musculare, slabiciune. Dar <b>inima, creierul, ficatul si rinichii</b> nu au receptori de durere in tesutul intern. Deteriorarea lor de la lipsa CoQ10 se produce <b>in tacere</b>, fara simptome.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Myth 3 — Low Fat / Triglycerides -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul #3: Redu grasimile din dieta ca sa-ti scazi trigliceridele</h2>
+          <p>Trigliceridele din sange nu vin din grasimea alimentara — vin din carbohidrati, zahar si supraalimentare in prezenta insulinei</p>
+        </div>
+        <span class="badge" style="border-color:rgba(59,130,246,.3);color:var(--glow2);">PARADOX</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Mananci multi carbohidrati si zahar</h4>
+              <p>Corpul are o capacitate <b>foarte limitata</b> de a stoca glucoza (sub forma de glicogen). Tot excesul este transformat in grasime — adica <b>trigliceride</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Trigliceridele cresc in sange</h4>
+              <p>Ficatul produce trigliceride din excesul de carbohidrati. Insulina crescuta impiedica celulele sa le foloseasca — grasimea ramane <b>in circulatie</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Medicul zice: "Mananca mai putin gras!"</h4>
+              <p>Reduci grasimea din dieta. Proteina ramane constanta. Rezultat: <b>cresti carbohidratii</b> — exact ce produce trigliceride. Un cerc vicios.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Solutia reala: low-carb, high-fat</h4>
+              <p>Doctorii care recomanda diete <b>low-carb</b> constata ca nimic nu scade trigliceridele mai rapid. Trebuie sa <b>reduci carbohidratii</b> si sa compensezi cu grasimi sanatoase. Nu e suficient sa cresti doar grasimea — trebuie sa elimini excesul de carbohidrati.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive: Triglyceride/HDL Ratio Calculator -->
+        <div class="sliderWrap">
+          <label>Trigliceride (mg/dL): <span class="sliderVal" id="trigVal">150</span></label>
+          <input type="range" min="50" max="400" value="150" id="trigSlider" oninput="updateRatio()"/>
+          <label style="margin-top:8px;">HDL (mg/dL): <span class="sliderVal" id="hdlVal">50</span></label>
+          <input type="range" min="20" max="100" value="50" id="hdlSlider" oninput="updateRatio()"/>
+          <div style="margin-top:10px;display:flex;align-items:baseline;gap:10px;">
+            <span style="font-size:12px;color:var(--muted);">Raport TG/HDL:</span>
+            <span id="ratioResult" style="font-size:24px;font-weight:760;color:var(--warn);">3.0</span>
+            <span id="ratioLabel" style="font-size:11px;color:var(--warn);font-family:var(--mono);">RISC MODERAT</span>
+          </div>
+          <p style="margin:6px 0 0;font-size:11px;color:var(--muted2);">Ideal: ~1.0 | Sub 2 = risc scazut | Peste 3 = risc ridicat | Peste 5 = pericol</p>
+        </div>
+
+        <div class="quote blue" style="margin-top:14px;">
+          &laquo;Trigliceridele ridicate sunt un indicator direct si puternic al rezistentei la insulina. Cand celulele sunt supraalimentate, rezista si la grasime — care ramane in sange fara sa aiba unde sa se duca.&raquo;
+          <cite>— Dr. Sten Ekberg</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Myth 4 — Avoid Saturated Fat → More Carbs Chain -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul #4: Grasimile saturate sunt instabile si periculoase</h2>
+          <p>In realitate, grasimea saturata este extrem de stabila. Cea instabila si periculoasa este grasimea polinesaturata omega-6 din uleiurile vegetale</p>
+        </div>
+        <span class="badge">BIOCHIMIE</span>
+      </div>
+      <div class="cardBody">
+        <table class="vsTable">
+          <thead>
+            <tr><th>Tip de grasime</th><th>Stabilitate</th><th>Oxidare</th><th>Inflamatie</th><th>Exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Saturata</b></td>
+              <td class="truth">Foarte stabila</td>
+              <td class="truth">Aproape imposibil</td>
+              <td class="truth">Minima</td>
+              <td>Unt, seu, cocos</td>
+            </tr>
+            <tr>
+              <td><b>Mononesaturata</b></td>
+              <td class="truth">Stabila</td>
+              <td class="truth">Dificil</td>
+              <td class="truth">Scazuta</td>
+              <td>Ulei de masline</td>
+            </tr>
+            <tr>
+              <td><b>Polinesaturata (omega-6)</b></td>
+              <td class="myth">Foarte instabila</td>
+              <td class="myth">Foarte usor</td>
+              <td class="myth">Ridicata</td>
+              <td>Ulei de floarea-soarelui, soia, porumb</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Analogia vacii</h3>
+            <p>Vaca mananca <b>iarba</b> (care contine omega-3 ALA). Dar 70% din energia vacii vine din <b>acizi grasi saturati cu lant scurt</b>, 30% din proteine, si <b>0% din carbohidrati</b>. Grasimea stocata in tesut se transforma in <b>acid stearic</b> (saturat) si <b>acid oleic</b> (mononesaturat, ca in uleiul de masline).</p>
+          </div>
+          <div class="mini">
+            <h3>La fel si la om</h3>
+            <p>Nu conteaza ce mananci — corpul transforma excesul in acizi grasi saturati si acid oleic. Carbohidratii se transforma in aceleasi grasimi. Ce conteaza este <b>comportamentul biologic</b> al grasimii: e stabila sau se oxideaza usor? Grasimile omega-6 se rancezesc rapid si cresc <b>speciile reactive de oxigen</b> si <b>inflamatia</b>.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Sfatul care a inrautatit epidemia</h4>
+          <p>Cand oamenilor li s-a spus sa inlocuiasca <b>untul si carnea rosie</b> cu <b>uleiuri vegetale polinesaturate</b>, au crescut dramatic omega-6 (de la 9% la 21.5%), oxidarea si inflamatia — adica exact <b>motorul principal</b> al bolilor cardiovasculare.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Myth 5 — False Positive / Wrong Markers -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul #5: "Cifrele tale arata bine" — fals pozitiv pe markeri gresiti</h2>
+          <p>Medicul masoara colesterol total si LDL — dar ignora markerii care chiar conteaza: insulina, CRP, Lp(a), dimensiunea LDL, scorul de calciu</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">DIAGNOSTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(239,68,68,.2);">
+            <h3 style="color:var(--bad)">Ce se masoara de obicei</h3>
+            <p><b>Colesterol total</b> &lt; 200 mg/dL<br/><b>LDL</b> &lt; 130 mg/dL<br/><br/>Aceste cifre pot fi "bune" si totusi sa ai risc cardiovascular major. Sunt o imagine <b>incompleta si irelevanta</b> a situatiei reale.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Ce ar trebui masurat</h3>
+            <p><b>Lp(a)</b> &lt; 30 (genetic, o singura data)<br/><b>Insulina</b>: 2-5 (rezistenta la insulina)<br/><b>hs-CRP</b> &lt; 1 (inflamatie)<br/><b>Homocisteina</b>: 5-7<br/><b>LDL mic</b> &lt; 200 particule<br/><b>Dimensiune LDL</b>: 21-23 nm<br/><b>Scor calciu</b>: ideal 0</p>
+          </div>
+        </div>
+
+        <!-- SVG: Real danger scenario -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="20" fill="#A0ACC8" font-size="11" font-weight="700" text-anchor="middle">Scenariu tipic de "fals pozitiv" — cifre "bune" cu risc real ridicat</text>
+
+            <!-- "Good" markers column -->
+            <rect x="30" y="38" width="160" height="150" rx="12" fill="rgba(74,222,128,.05)" stroke="rgba(74,222,128,.15)" stroke-width="1"/>
+            <text x="110" y="56" fill="#4ADE80" font-size="10" font-weight="700" text-anchor="middle">CE-TI SPUNE MEDICUL</text>
+            <text x="110" y="78" fill="#4ADE80" font-size="12" text-anchor="middle">Colesterol: 195</text>
+            <text x="110" y="96" fill="#4ADE80" font-size="12" text-anchor="middle">LDL: 125</text>
+            <text x="110" y="124" fill="#A0ACC8" font-size="14" font-weight="800" text-anchor="middle">"Arati bine!"</text>
+            <text x="110" y="142" fill="#6E7A9A" font-size="9" text-anchor="middle">Revino peste un an.</text>
+
+            <!-- Arrow -->
+            <text x="245" y="115" fill="#6E7A9A" font-size="22" text-anchor="middle">→</text>
+
+            <!-- Hidden danger markers -->
+            <rect x="290" y="38" width="380" height="150" rx="12" fill="rgba(239,68,68,.05)" stroke="rgba(239,68,68,.18)" stroke-width="1"/>
+            <text x="480" y="56" fill="#EF4444" font-size="10" font-weight="700" text-anchor="middle">CE NU SE TESTEAZA (dar ar trebui)</text>
+
+            <text x="380" y="80" fill="#F87171" font-size="10" text-anchor="middle">Lp(a): 75</text>
+            <text x="380" y="93" fill="#6E7A9A" font-size="8" text-anchor="middle">(limita: &lt;30)</text>
+            <text x="530" y="80" fill="#F87171" font-size="10" text-anchor="middle">Insulina: 14</text>
+            <text x="530" y="93" fill="#6E7A9A" font-size="8" text-anchor="middle">(limita: 2-5)</text>
+
+            <text x="380" y="116" fill="#F87171" font-size="10" text-anchor="middle">hs-CRP: 6</text>
+            <text x="380" y="129" fill="#6E7A9A" font-size="8" text-anchor="middle">(limita: &lt;1)</text>
+            <text x="530" y="116" fill="#F87171" font-size="10" text-anchor="middle">Homocisteina: 23</text>
+            <text x="530" y="129" fill="#6E7A9A" font-size="8" text-anchor="middle">(limita: 5-7)</text>
+
+            <text x="380" y="152" fill="#F87171" font-size="10" text-anchor="middle">LDL mic: 800</text>
+            <text x="380" y="165" fill="#6E7A9A" font-size="8" text-anchor="middle">(limita: &lt;200)</text>
+            <text x="530" y="152" fill="#F87171" font-size="10" text-anchor="middle">Scor calciu: 600</text>
+            <text x="530" y="165" fill="#6E7A9A" font-size="8" text-anchor="middle">(ideal: 0)</text>
+          </svg>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Cel mai rau sfat este sa ti se spuna ca totul e in regula — bazat pe markeri care nu conteaza. Ai putea avea inflamatie cronica, rezistenta la insulina si placi de aterom avansate, iar analizele standard sa nu semnaleze nimic.&raquo;
+          <cite>— Dr. Sten Ekberg</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: What Doctors Should Actually Say -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce ar trebui sa-ti spuna de fapt medicul</h2>
+          <p>In loc de cele 5 sfaturi gresite, iata recomandarile bazate pe mecanismele reale ale bolilor cardiovasculare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">SOLUTII</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>1. Redu rezistenta la insulina</h4>
+              <p>Masoara <b>insulina, HbA1c si glicemia</b>. Practica <b>alimentatia restrictiva temporal</b> (mai putine mese, in ferestre mai scurte). Adopta o forma de dieta <b>low-carb, high-fat</b> — nu trebuie sa fie keto, dar nu poti inversa nimic cu 300g de carbohidrati pe zi.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>2. Verifica markerii reali de risc</h4>
+              <p>Cere analize pentru <b>Lp(a)</b>, <b>hs-CRP</b>, <b>homocisteina</b>, <b>numar si dimensiune particule LDL</b>. Optional: <b>scor de calciu coronarian</b> (o data la 5-10 ani). Daca scorul e 0, riscul e minim pentru urmatorii 10 ani.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>3. Elimina uleiurile de seminte</h4>
+              <p>Renunta la uleiurile de <b>floarea-soarelui, soia, porumb, rapita</b> — bogate in omega-6, pro-inflamatoare. Inlocuieste cu <b>unt, ulei de cocos, ulei de masline extravirgin</b>. Include <b>carne, peste, oua</b> ca surse principale de grasime.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>4. Echilibreaza cu legume si fibre</h4>
+              <p>O varietate mare de <b>legume fara amidon</b> — care contin fibre si fitochimicale de care bacteriile intestinale au nevoie. Nu elimina total carbohidratii, ci elimina pe cei <b>rafinati</b> (zahar, faina alba, sucuri).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert green">
+          <h4>Daca totusi iei statine</h4>
+          <p>Ia <b>CoQ10</b> obligatoriu: 200-300 mg/zi (pana la 600 mg in cazuri terapeutice). Cu masa grasa, pentru absorbtie maxima. Multe tari co-prescriu automat CoQ10 cu statinele — in SUA, de cele mai multe ori, nu. Nu neglija acest supliment esential.</p>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key Numbers -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cifre-cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">22 vs 7</span><span class="tDesc">Tari in studiul original — <b>7 selectate</b> sa "confirme" ipoteza</span></div>
+        <div class="tEvent"><span class="tDate">+136%</span><span class="tDesc">Crestere omega-6 in tesut adipos <b>1960 → 2008</b></span></div>
+        <div class="tEvent"><span class="tDate">R=0.89</span><span class="tDesc"><b>Corelatie</b> tip grasime din placi = tip grasime din corp</span></div>
+        <div class="tEvent"><span class="tDate">NNT=100</span><span class="tDesc">Preventie primara: <b>100 tratati</b> pt. 1 beneficiu</span></div>
+        <div class="tEvent"><span class="tDate">NNT=25</span><span class="tDesc">Preventie secundara: argument <b>mai solid</b></span></div>
+        <div class="tEvent"><span class="tDate">+10-25%</span><span class="tDesc">Risc crescut <b>diabet tip 2</b> de la statine</span></div>
+        <div class="tEvent"><span class="tDate">TG/HDL≈1</span><span class="tDesc">Raportul <b>ideal</b> trigliceride / HDL</span></div>
+        <div class="tEvent"><span class="tDate">LDL 21-23</span><span class="tDesc">Dimensiune ideala <b>particule LDL</b> (nm)</span></div>
+        <div class="tEvent"><span class="tDate">&lt;200</span><span class="tDesc">Numar <b>particule LDL mici</b> — ideal sub 100</span></div>
+        <div class="tEvent"><span class="tDate">CRP &lt;1</span><span class="tDesc">Proteina C reactiva — <b>inflamatie</b> sub control</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce persista miturile?</h4>
+          <p>Studiul celor 7 tari din anii 1950-60 a creat o <b>dogma institutionala</b>. Industria alimentara a profitat vanzand produse "low-fat" pline de zahar. Industria farmaceutica a profitat din statine — unul din cele mai prescrise medicamente din istorie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Colesterolul nu e dusmanul</h4>
+          <p>Corpul <b>produce</b> colesterol pentru ca il are nevoie: hormoni, membrane celulare, vitamina D, functionarea creierului. LDL este doar un <b>transportor</b>. Devine periculos doar cand e oxidat si glicat — de inflamatie si rezistenta la insulina.</p>
+        </div>
+        <div class="comNote">
+          <h4>Statinele nu sunt intotdeauna gresite</h4>
+          <p>Dr. Ekberg nu zice sa nu iei niciodata statine. Candidati reali: post-infarct, barbati 50+ cu factori multipli, Lp(a) genetic ridicat. Dar <b>prescrierea automata</b> la colesterol peste 200 este o problema serioasa.</p>
+        </div>
+        <div class="comNote">
+          <h4>CoQ10 — informatia esentiala</h4>
+          <p>Multe tari <b>co-prescriu</b> CoQ10 cu statinele. In SUA si multe alte tari, nu se intampla asta. Dozele recomandate: <b>200-300 mg/zi</b>, pana la <b>600 mg</b> terapeutic. Cu masa grasa pentru absorbtie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Raportul TG/HDL</h4>
+          <p>Cel mai simplu marker de risc pe care il poti calcula din analize standard: <b>trigliceride / HDL</b>. Ideal sub 1. Peste 3 = risc semnificativ. Peste 5 = pericol. Acesta reflecta <b>rezistenta la insulina</b> mai bine decat colesterolul total.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>LDL (Low-Density Lipoprotein)</dt>
+          <dd>Lipoproteina cu densitate scazuta — transporta colesterolul catre celule. Devine periculoasa doar cand e oxidata si glicata, nu din cauza numarului total.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>HDL (High-Density Lipoprotein)</dt>
+          <dd>Lipoproteina cu densitate ridicata — colecteaza colesterolul in exces si il transporta inapoi la ficat. Considerat "colesterolul bun".</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Trigliceride</dt>
+          <dd>Grasimi din sange produse mai ales din carbohidrati si zahar. Nivel ridicat = indicator puternic de rezistenta la insulina.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>CoQ10 (Coenzima Q10)</dt>
+          <dd>Enzima esentiala pentru producerea de ATP (energie celulara) in mitocondrii. Productia este blocata de statine — co-suplimentarea este critica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Rezistenta la insulina</dt>
+          <dd>Stare in care celulele nu mai raspund eficient la insulina. Cauza principala a inflamatiei cronice, sindromului metabolic si bolilor cardiovasculare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Omega-6</dt>
+          <dd>Acid gras polinesaturat esential, dar consumat in exces din uleiuri vegetale. Excesul creste inflamatia, oxidarea si riscul cardiovascular.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Lp(a) — Lipoproteina (a)</dt>
+          <dd>Varianta genetica de LDL mai "lipicioasa" si mai aterogena. Se testeaza o singura data (e genetic). Trebuie sa fie sub 30.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>hs-CRP (Proteina C reactiva)</dt>
+          <dd>Marker de inflamatie cronica. Valori peste 1 indica inflamatie smoldering — invizibila, dar periculoasa. Ideal sub 1.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>NNT (Number Needed to Treat)</dt>
+          <dd>Numarul de pacienti care trebuie tratati pentru ca unul singur sa beneficieze. La statine: 100 (preventie primara) vs. 25 (secundara).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Scor de calciu coronarian</dt>
+          <dd>Test CT care masoara depunerile de calciu in arterele coronare. 0 = risc minim. Peste 100 = risc crescut. Se face la 5-10 ani.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=gxPog8boQjo" target="_blank">"#1 Absolute Worst HEART ADVICE Your Doctor Gives You" — Dr. Sten Ekberg</a> &middot;
+    Infografic explicativ in limba romana &middot; Nu inlocuieste sfatul medicului personal
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: heart pulse / ECG animation ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing blood cells / cholesterol
+  const particles = [];
+  for(let i = 0; i < 35; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1.5 + Math.random() * 3,
+      speed: 0.0005 + Math.random() * 0.001,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.3 ? 'ldl' : Math.random() < 0.5 ? 'hdl' : 'cell'
+    });
+  }
+
+  function drawECG(w, h, yCenter, amplitude, offset){
+    ctx.beginPath();
+    ctx.moveTo(0, yCenter);
+    for(let x = 0; x < w; x++){
+      const progress = (x / w + offset) % 1;
+      let y = yCenter;
+      // ECG waveform segments
+      const p = progress * 10 % 1;
+      const seg = Math.floor(progress * 10) % 10;
+      if(seg === 2){ // P wave
+        y = yCenter - Math.sin(p * Math.PI) * amplitude * 0.3;
+      } else if(seg === 4){ // QRS complex
+        if(p < 0.15) y = yCenter + p / 0.15 * amplitude * 0.3;
+        else if(p < 0.35) y = yCenter + amplitude * 0.3 - ((p - 0.15) / 0.2) * amplitude * 1.8;
+        else if(p < 0.55) y = yCenter - amplitude * 1.5 + ((p - 0.35) / 0.2) * amplitude * 1.8;
+        else if(p < 0.7) y = yCenter + amplitude * 0.3 - ((p - 0.55) / 0.15) * amplitude * 0.3;
+        else y = yCenter;
+      } else if(seg === 6){ // T wave
+        y = yCenter - Math.sin(p * Math.PI) * amplitude * 0.4;
+      }
+      ctx.lineTo(x, y);
+    }
+    return ctx;
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Draw heart shape in center (faint)
+    const hx = w * 0.5, hy = h * 0.45;
+    const scale = 0.9 + Math.sin(t * 3) * 0.08; // heartbeat scale
+    ctx.save();
+    ctx.translate(hx, hy);
+    ctx.scale(scale, scale);
+    ctx.beginPath();
+    ctx.moveTo(0, 8);
+    ctx.bezierCurveTo(-2, -5, -18, -18, -32, -18);
+    ctx.bezierCurveTo(-52, -18, -52, 6, -52, 6);
+    ctx.bezierCurveTo(-52, 22, -32, 42, 0, 58);
+    ctx.bezierCurveTo(32, 42, 52, 22, 52, 6);
+    ctx.bezierCurveTo(52, 6, 52, -18, 32, -18);
+    ctx.bezierCurveTo(18, -18, 2, -5, 0, 8);
+    ctx.closePath();
+    const heartAlpha = 0.06 + Math.sin(t * 3) * 0.03;
+    ctx.fillStyle = `rgba(239,68,68,${heartAlpha})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(239,68,68,${heartAlpha + 0.08})`;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // Pulse rings from heart center
+    for(let p = 0; p < 4; p++){
+      const pulseR = ((t * 35 + p * 50) % 160);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2500);
+      ctx.beginPath();
+      ctx.arc(hx, hy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(239,68,68,${pulseAlpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // ECG line 1 (main)
+    ctx.save();
+    drawECG(w, h, h * 0.3, 18, t * 0.3);
+    ctx.strokeStyle = 'rgba(239,68,68,0.25)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // ECG line 2 (secondary)
+    ctx.save();
+    drawECG(w, h, h * 0.72, 12, t * 0.25 + 0.5);
+    ctx.strokeStyle = 'rgba(59,130,246,0.15)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.restore();
+
+    // Draw floating particles
+    particles.forEach(p => {
+      const px = ((p.x + t * p.speed * 60) % 1.1) * w;
+      const py = p.y * h + Math.sin(t * 2 + p.phase) * 8;
+      const glow = 0.25 + Math.sin(t * 2 + p.phase) * 0.1;
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      if(p.type === 'ldl'){
+        ctx.fillStyle = `rgba(239,68,68,${glow})`;
+        ctx.shadowColor = 'rgba(239,68,68,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'hdl'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.2)';
+        ctx.shadowBlur = 5;
+      } else {
+        ctx.fillStyle = `rgba(59,130,246,${glow * 0.7})`;
+        ctx.shadowColor = 'rgba(59,130,246,0.15)';
+        ctx.shadowBlur = 4;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Legend
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.font = '9px ' + mono;
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(239,68,68,0.6)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('LDL', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.6)'; ctx.beginPath(); ctx.arc(42, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('HDL', 49, ly+3);
+    ctx.fillStyle = 'rgba(59,130,246,0.5)'; ctx.beginPath(); ctx.arc(78, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('celule', 85, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── TG/HDL Ratio Calculator ── */
+function updateRatio(){
+  const tg = parseInt(document.getElementById('trigSlider').value);
+  const hdl = parseInt(document.getElementById('hdlSlider').value);
+  document.getElementById('trigVal').textContent = tg;
+  document.getElementById('hdlVal').textContent = hdl;
+  const ratio = (tg / hdl).toFixed(1);
+  const el = document.getElementById('ratioResult');
+  const label = document.getElementById('ratioLabel');
+  el.textContent = ratio;
+  if(ratio <= 1){
+    el.style.color = 'var(--ok)';
+    label.style.color = 'var(--ok)';
+    label.textContent = 'IDEAL';
+  } else if(ratio <= 2){
+    el.style.color = 'var(--ok)';
+    label.style.color = 'var(--ok)';
+    label.textContent = 'RISC SCAZUT';
+  } else if(ratio <= 3){
+    el.style.color = 'var(--warn)';
+    label.style.color = 'var(--warn)';
+    label.textContent = 'RISC MODERAT';
+  } else if(ratio <= 5){
+    el.style.color = 'var(--bad)';
+    label.style.color = 'var(--bad)';
+    label.textContent = 'RISC RIDICAT';
+  } else {
+    el.style.color = 'var(--glow)';
+    label.style.color = 'var(--glow)';
+    label.textContent = 'PERICOL';
+  }
+}
+</script>
+</body>
+</html>
