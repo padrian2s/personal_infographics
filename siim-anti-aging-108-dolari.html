@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>55 de Ani cu Viteza de Imbatranire Mai Mica decat Bryan Johnson — $108/luna</title>
+  <meta name="description" content="Infografic interactiv: Julie Gibson Clark, 55 de ani, are o viteza de imbatranire mai mica decat Bryan Johnson, cheltuind doar $108 pe luna vs. $2 milioane pe an." />
+  <style>
+    :root{
+      --bg0:#0A0810;
+      --bg1:#0E0A1A;
+      --panel:#14102Ecc;
+      --card:#110E28;
+      --card2:#0D0A22;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1E1840;
+      --glow:#E879F9;
+      --glow2:#A78BFA;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#C084FC;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(232,121,249,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(167,139,250,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(74,222,128,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(232,121,249,.20);
+      background: linear-gradient(180deg, rgba(17,14,40,.75), rgba(10,8,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(232,121,249,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(167,139,250,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(74,222,128,.07), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--glow2)} .i4{background:var(--warn)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,8,16,.30),rgba(10,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,14,40,.75),rgba(13,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,8,16,.28),rgba(10,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(232,121,249,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.purple{border-color:var(--glow2);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(232,121,249,.22),rgba(232,121,249,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(232,121,249,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(74,222,128,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(74,222,128,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--ok);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn h4{color:var(--warn);}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Slider */
+    .sliderWrap{margin-top:14px;padding:12px;border:1px solid rgba(234,240,255,.10);border-radius:16px;background:rgba(10,8,16,.35);}
+    .sliderWrap label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+    .sliderWrap label b{color:var(--ink);font-family:var(--mono);font-size:14px;}
+    input[type=range]{width:100%;accent-color:var(--glow);cursor:pointer;height:6px;}
+    .sliderResult{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.4;min-height:32px;}
+    .sliderResult b{color:var(--ink);}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(232,121,249,.18);
+      background:linear-gradient(180deg,rgba(17,14,40,.80),rgba(10,8,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(232,121,249,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(232,121,249,.25);background:rgba(232,121,249,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,14,40,.75),rgba(13,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,14,40,.75),rgba(13,10,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>55 de Ani cu Viteza de Imbatranire Mai Mica decat Bryan Johnson
+          <small>Cum cheltuie $108/luna si bate un protocol de $2 milioane/an — Julie Gibson Clark la Rejuvenation Olympics</small>
+        </h1>
+        <p class="sub">Julie Gibson Clark, 55 de ani, din Phoenix, se claseaza pe <b>locul 1 (valori absolute)</b> si locul 2 (valori relative) in Rejuvenation Olympics. Viteza ei de imbatranire: <b>0.665</b> — mai buna decat Bryan Johnson (0.72). Secretul? Abonament la sala, un supliment si disciplina zilnica. Nimic extravagant, nimic scump.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>$108/luna</b> — costul total lunar</span>
+          <span class="chip"><i class="i2"></i> <b>0.665</b> — viteza de imbatranire</span>
+          <span class="chip"><i class="i3"></i> <b>DunedinPACE</b> — testul folosit</span>
+          <span class="chip"><i class="i4"></i> <b>5 zile/sapt</b> — antrenament</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Comparatie Julie vs Bryan -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Julie vs. Bryan Johnson — comparatie directa</h2>
+          <p>Aceeasi competitie, rezultate similare, costuri extrem de diferite</p>
+        </div>
+        <span class="badge">COMPARATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">0.665</div>
+            <span class="u">viteza de imbatranire Julie (media 3 teste)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">0.72</div>
+            <span class="u">viteza de imbatranire Bryan Johnson</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">$108</div>
+            <span class="u">cheltuiala lunara Julie</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">$167K</div>
+            <span class="u">cheltuiala lunara Bryan (~$2M/an)</span>
+          </div>
+        </div>
+
+        <!-- SVG comparison diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Julie side -->
+            <rect x="30" y="20" width="300" height="220" rx="16" fill="rgba(74,222,128,.05)" stroke="rgba(74,222,128,.20)" stroke-width="1.5"/>
+            <text x="180" y="50" fill="#4ADE80" font-size="14" font-weight="700" text-anchor="middle">Julie Gibson Clark</text>
+            <text x="180" y="70" fill="#A0ACC8" font-size="10.5" text-anchor="middle">55 ani, Phoenix, Arizona</text>
+
+            <!-- Julie bars -->
+            <rect x="60" y="90" width="220" height="22" rx="6" fill="rgba(74,222,128,.08)" stroke="rgba(74,222,128,.15)" stroke-width="1"/>
+            <rect x="60" y="90" width="146" height="22" rx="6" fill="rgba(74,222,128,.25)"/>
+            <text x="70" y="105" fill="#EAF0FF" font-size="10" font-weight="600">Viteza: 0.665</text>
+
+            <rect x="60" y="122" width="220" height="22" rx="6" fill="rgba(232,121,249,.08)" stroke="rgba(232,121,249,.15)" stroke-width="1"/>
+            <rect x="60" y="122" width="3" height="22" rx="6" fill="rgba(232,121,249,.35)"/>
+            <text x="70" y="137" fill="#EAF0FF" font-size="10" font-weight="600">Cost: $108/luna ($1.296/an)</text>
+
+            <text x="70" y="165" fill="#A0ACC8" font-size="9.5">Sala: $27/luna</text>
+            <text x="70" y="180" fill="#A0ACC8" font-size="9.5">Supliment Novos: $79/luna</text>
+            <text x="70" y="195" fill="#A0ACC8" font-size="9.5">Alte suplimente: ~$2/luna</text>
+            <text x="70" y="215" fill="#4ADE80" font-size="10" font-weight="600">Loc 1 (valori absolute)</text>
+            <text x="70" y="230" fill="#4ADE80" font-size="10" font-weight="600">Loc 2 (valori relative)</text>
+
+            <!-- Bryan side -->
+            <rect x="370" y="20" width="300" height="220" rx="16" fill="rgba(248,113,113,.05)" stroke="rgba(248,113,113,.20)" stroke-width="1.5"/>
+            <text x="520" y="50" fill="#F87171" font-size="14" font-weight="700" text-anchor="middle">Bryan Johnson</text>
+            <text x="520" y="70" fill="#A0ACC8" font-size="10.5" text-anchor="middle">47 ani, tech entrepreneur</text>
+
+            <!-- Bryan bars -->
+            <rect x="400" y="90" width="220" height="22" rx="6" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.15)" stroke-width="1"/>
+            <rect x="400" y="90" width="158" height="22" rx="6" fill="rgba(248,113,113,.25)"/>
+            <text x="410" y="105" fill="#EAF0FF" font-size="10" font-weight="600">Viteza: 0.72</text>
+
+            <rect x="400" y="122" width="220" height="22" rx="6" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.15)" stroke-width="1"/>
+            <rect x="400" y="122" width="220" height="22" rx="6" fill="rgba(251,191,36,.20)"/>
+            <text x="410" y="137" fill="#EAF0FF" font-size="10" font-weight="600">Cost: ~$167K/luna ($2M/an)</text>
+
+            <text x="410" y="165" fill="#A0ACC8" font-size="9.5">Echipa medicala dedicata</text>
+            <text x="410" y="180" fill="#A0ACC8" font-size="9.5">Sute de suplimente si proceduri</text>
+            <text x="410" y="195" fill="#A0ACC8" font-size="9.5">Dieta ultra-precisa, hiper-monitorizata</text>
+            <text x="410" y="215" fill="#FBBF24" font-size="10" font-weight="600">Protocol "Blueprint"</text>
+            <text x="410" y="230" fill="#6E7A9A" font-size="10">Cost: 1.543x mai mult</text>
+
+            <!-- VS circle -->
+            <circle cx="350" cy="130" r="22" fill="rgba(232,121,249,.12)" stroke="rgba(232,121,249,.35)" stroke-width="2"/>
+            <text x="350" y="134" fill="#E879F9" font-size="13" font-weight="700" text-anchor="middle">VS</text>
+          </svg>
+        </div>
+
+        <div class="quote green" style="margin-top:14px;">
+          &laquo;Nu ai nevoie de bani multi ca sa obtii rezultate excelente in longevitate. Unele dintre cele mai eficiente lucruri sunt gratuite sau costa foarte putin.&raquo;
+          <cite>— Concluzia principala a videoclipului</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Ce inseamna testul DunedinPACE -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce inseamna testul DunedinPACE?</h2>
+          <p>Instrumentul stiintific care masoara viteza biologica de imbatranire si sta la baza Rejuvenation Olympics</p>
+        </div>
+        <span class="badge" style="border-color:rgba(232,121,249,.3);color:var(--glow);">STIINTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3>DunedinPACE</h3>
+            <p>Un test epigenetic care masoara <b>viteza de imbatranire</b>. Un scor de 1.0 inseamna ca imbatranesti cu viteza normala. Sub 1.0 = imbatranesti mai lent. Scorul minim posibil este <b>0.6</b> (60% din viteza normala).</p>
+          </div>
+          <div class="mini">
+            <h3>Rejuvenation Olympics</h3>
+            <p>Un clasament public creat de Bryan Johnson unde oricine isi poate incarca rezultatele testului DunedinPACE. Julie se claseaza pe <b>locul 1 la valori absolute</b> si pe locul 2 la valori relative (ajustate pentru varsta).</p>
+          </div>
+        </div>
+
+        <div class="statGrid" style="margin-top:14px;">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">0.6</div>
+            <span class="u">scorul minim posibil (cea mai lenta imbatranire)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">0.665</div>
+            <span class="u">scorul Julie (media pe 3 teste)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">0.72</div>
+            <span class="u">scorul Bryan Johnson</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--muted)">1.0</div>
+            <span class="u">viteza normala de imbatranire</span>
+          </div>
+        </div>
+
+        <div class="alert warn" style="margin-top:14px;">
+          <h4>Limitari importante</h4>
+          <p>Testul DunedinPACE este <b>relativ nou</b>. Deocamdata <b>nu exista dovezi</b> ca un scor mai mic se traduce direct in longevitate mai mare. Insa studii arata ca un scor mai mic coreleaza cu un <b>risc mai scazut de mortalitate din orice cauza</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Rutina de sanatate a Julie -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Protocolul Julie — simplu si accesibil</h2>
+          <p>Fara biohacking, fara echipa medicala, fara proceduri scumpe — doar disciplina si obiceiuri sanatoase</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">PROTOCOL</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>1. Abonament la sala — $27/luna</h4>
+              <p>5 zile pe saptamana la sala: <b>2 zile</b> pentru partea superioara cu greutati, <b>2 zile</b> pentru partea inferioara, <b>1 zi</b> de antrenament pentru midsection (zona abdominala). Plus <b>20-30 min cardio</b> de 4 ori pe saptamana si plimbari lungi frecvente.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>2. Suplimentul Novos — $79/luna</h4>
+              <p>Un plic de pudra cu <b>14 ingrediente</b> dizolvat in apa, cu gust de portocala-vanilie. Formulat sa tinteasca toate <b>semnele distinctive ale imbatranirii</b>. Contine calciu alfa-ketoglutarat, care a fost asociat in studii cu efecte asupra varstei biologice.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>3. Alte suplimente (cost minim)</h4>
+              <p><b>Magneziu</b>, <b>Vitamina D3 + K2</b>, <b>Ulei de peste</b> (fish oil) si <b>Complex de vitamine B</b>. Suplimente comune si ieftine, disponibile in orice farmacie. Julie a mentionat aceste suplimente in podcastul Ben Greenfield.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>4. Dieta echilibrata (fara costuri speciale)</h4>
+              <p><b>~450g de legume pe zi</b> (salate si supe). Gustari: morcovi, ridichi, ardei. Proteina principala: <b>piept de pui, branza, iaurt</b>. Tinteste <b>100g proteina/zi</b>. Limiteaza zaharul rafinat si cerealele. Nu e vegana, dar mananca preponderent legume.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>5. Post intermitent 16:8</h4>
+              <p>Julie posteaza <b>16 ore pe zi</b>, mancand prima masa in jurul orei 10-11 dimineata. Un protocol simplu si gratuit care a fost asociat in studii cu beneficii metabolice si de longevitate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Rutina de somn si recuperare -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Somn, sauna si recuperare</h2>
+          <p>Obiceiurile zilnice care completeaza protocolul si nu costa aproape nimic</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--glow2);">RECUPERARE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--glow2)">8 ore de somn</h3>
+            <p>Julie tinteste <b>8 ore pe noapte</b>. Foloseste <b>banda adeziva pentru gura</b> (mouth tape) pentru a preveni respiratia pe gura si o <b>masca de somn cu greutate</b> pentru relaxare.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Sauna + dus rece</h3>
+            <p><b>3 ori pe saptamana</b>, cate 20 de minute de sauna, urmate de un <b>dus rece</b>. Termogeneza si expunerea la frig sunt asociate cu beneficii cardiovasculare si imunitare.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Meditatie si rugaciune</h3>
+            <p>Julie <b>mediteaza si se roaga dimineata</b>. Reducerea stresului cronic este un factor cheie in incetinirea imbatranirii biologice. Este <b>complet gratuit</b>.</p>
+          </div>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <h4>Concluzia protocolului</h4>
+          <p>Totul e <b>simplu si replicabil</b>. Nici macar nu ai nevoie de abonament la sala — poti face calistenica in parc. Suplimentul Novos a imbunatatit rezultatele Julie, dar nu este obligatoriu. Cele mai eficiente lucruri (somnul, miscarea, dieta) sunt <b>gratuite</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Antrenamentul detaliat -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Programul de antrenament — 5 zile/saptamana</h2>
+          <p>Mix de greutati, cardio si plimbari lungi, fara antrenor personal sau echipament scump</p>
+        </div>
+        <span class="badge">EXERCITIU</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- Interactive slider: cost comparison -->
+        <div class="sliderWrap">
+          <label>Compara costurile lunare: <b id="sliderVal">$108</b></label>
+          <input type="range" id="costSlider" min="108" max="167000" value="108" step="100">
+          <div class="sliderResult" id="sliderResult">
+            La <b>$108/luna</b> (bugetul Julie), ai: abonament sala ($27) + supliment Novos ($79) + suplimente de baza ($2). Viteza de imbatranire: <b>0.665</b>.
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Partea superioara (2 zile)</h3>
+            <p>Antrenament cu <b>greutati</b> pentru brate, umeri, piept si spate. Cresterea masei musculare este esentiala pentru longevitate — previne sarcopenia (pierderea de masa musculara legata de varsta).</p>
+          </div>
+          <div class="mini">
+            <h3>Partea inferioara (2 zile)</h3>
+            <p>Antrenament cu <b>greutati</b> pentru picioare si fese. Fortarea picioarelor este cel mai important predictor al mobilitatii la varsta a treia si reduce riscul de caderi.</p>
+          </div>
+          <div class="mini">
+            <h3>Zona abdominala (1 zi)</h3>
+            <p>Antrenament de forta concentrat pe <b>midsection</b> — abdomen, oblici, spate inferioara. Un core puternic imbunatateste postura, echilibrul si protectia coloanei vertebrale.</p>
+          </div>
+          <div class="mini">
+            <h3>Cardio (4x/sapt) + plimbari</h3>
+            <p><b>20-30 minute</b> de cardio de 4 ori pe saptamana, plus plimbari lungi frecvente. Exercitiul aerob imbunatateste sanatatea cardiovasculara si sensibilitatea la insulina.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Genetica si perspectiva -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Genetica favorabila — dar nu decisiva</h2>
+          <p>Julie are si o componenta genetica, dar lectia e ca stilul de viata conteaza cel mai mult</p>
+        </div>
+        <span class="badge">GENETICA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(232,121,249,.2);">
+            <h3 style="color:var(--glow)">Bunicii — peste 80 de ani</h3>
+            <p>Bunicii lui Julie au trait pana la <b>peste 80 de ani</b>. Mama ei are <b>85 de ani</b> in prezent. A trai pana la 80+ inseamna deja <b>10 ani peste media</b> populatiei generale.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Potentialul Julie: 90-100 de ani</h3>
+            <p>Daca mentine aceste obiceiuri, e foarte probabil sa ajunga la <b>90 de ani</b>, si potential chiar <b>100 de ani</b>. Combinatia de genetica favorabila cu un stil de viata sanatoasa da rezultate cumulative in timp.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Julie nu are niciun biohacking special. Castiga sub 6 cifre pe an si cheltuie doar $108 pe luna pe sanatate. Abonament la sala si un supliment cu 14 ingrediente. Atat.&raquo;
+          <cite>— Din videoclip</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Lectii de aplicat -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Lectii cheie — ce poti aplica imediat</h2>
+          <p>Principiile din protocolul Julie, traduse in actiuni concrete pe care le poti incepe azi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">ACTIUNE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Miscare consistenta > exercitiu intens ocazional</h4>
+              <p>5 zile/sapt de antrenament moderat bate orice program intens pe care nu-l poti sustine. Nu ai nevoie de sala — <b>poti face calistenica in parc</b>. Mersul pe jos lung si frecvent e subestimat.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Somnul e nenegociabil</h4>
+              <p><b>8 ore pe noapte</b>. Banda adeziva pentru gura previne respiratia pe gura si imbunatateste calitatea somnului. Masca de somn cu greutate adauga relaxare. Investitie minima, efect maxim.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Alimentatie bogata in legume, post intermitent</h4>
+              <p>~450g legume/zi, 100g proteina/zi, zahar rafinat limitat. Post intermitent 16:8. Nu e nevoie de diete speciale — doar <b>alimente reale, simple, in cantitati corecte</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Suplimentele nu sunt magice, dar ajuta</h4>
+              <p>Julie spune ca Novos i-a imbunatatit rezultatele. Dar suplimentele de baza (<b>D3+K2, magneziu, omega-3, complex B</b>) sunt ieftine si au baza stiintifica solida. Incepand cu $5-10/luna poti acoperi esentialul.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Cele 14 ingrediente Novos -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cele 14 ingrediente Novos & suplimentele extra</h2>
+          <p>Ce contine suplimentul de $79/luna si ce ia Julie suplimentar — cu baza stiintifica rezumata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(232,121,249,.3);color:var(--glow);">SUPLIMENTE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(232,121,249,.2);">
+            <h3 style="color:var(--glow)">Novos Core ($79/luna)</h3>
+            <p>Un plic de pudra dizolvat in apa (gust portocala-vanilie). Contine <b>14 ingrediente</b> formulate sa tinteasca toate cele 12 hallmarks of aging. Ingredientul-vedeta: <b>calciu alfa-ketoglutarat</b> (AKG) — studii pe animale au aratat reducerea varstei biologice cu pana la 50%.</p>
+            <p style="margin-top:6px;">Alte ingrediente includ: acid hialuronic, glucozamina, glicina, litiu (microdoza), pterostilben, EGCG (extract de ceai verde), coenzima Q10, si altele.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow2)">Suplimente extra (cost minim)</h3>
+            <p><b>Magneziu</b> — esential pentru peste 300 de reactii enzimatice; majoritatea populatiei e deficitara. <b>Vitamina D3 + K2</b> — D3 pentru imunitate si oase, K2 directioneaza calciul spre oase (nu artere). <b>Ulei de peste</b> (omega-3) — reduce inflamatia cronica. <b>Complex B</b> — suporta metabolismul energetic si functia neurologica.</p>
+            <p style="margin-top:6px;">Toate aceste suplimente <b>costa sub $10/luna</b> cumparate din farmacie sau online.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Julie a spus ca Novos i-a imbunatatit rezultatele. Dar nu exista inca dovezi pe termen lung privind longevitatea sau reducerea mortalitatii de la aceste suplimente.&raquo;
+          <cite>— Nuanta importanta din videoclip</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Bugetul detaliat -->
+    <div class="timeline">
+      <div class="tHead"><h2>Bugetul lunar: $108</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">$27</span><span class="tDesc"><b>Abonament sala</b> — antrenament 5 zile/sapt</span></div>
+        <div class="tEvent"><span class="tDate">$79</span><span class="tDesc"><b>Novos</b> — supliment cu 14 ingrediente</span></div>
+        <div class="tEvent"><span class="tDate">~$2</span><span class="tDesc"><b>Suplimente extra</b> — Mg, D3+K2, fish oil, B</span></div>
+        <div class="tEvent"><span class="tDate">$0</span><span class="tDesc"><b>Post intermitent</b> 16:8 — gratuit</span></div>
+        <div class="tEvent"><span class="tDate">$0</span><span class="tDesc"><b>8 ore somn</b> — gratuit</span></div>
+        <div class="tEvent"><span class="tDate">$0</span><span class="tDesc"><b>Meditatie</b> si rugaciune dimineata</span></div>
+        <div class="tEvent"><span class="tDate">$0</span><span class="tDesc"><b>Plimbari lungi</b> — gratuit</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">TOTAL</span><span class="tDesc"><b style="color:var(--ok)">$108/luna</b> = $1.296/an vs. $2M/an (Bryan)</span></div>
+      </div>
+    </div>
+
+    <!-- Programul saptamanal -->
+    <div class="timeline">
+      <div class="tHead"><h2>Programul saptamanal</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Luni</span><span class="tDesc"><b>Upper body</b> (greutati) + 20-30 min cardio</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Marti</span><span class="tDesc"><b>Lower body</b> (greutati) + 20-30 min cardio</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Miercuri</span><span class="tDesc"><b>Upper body</b> (greutati) + 20-30 min cardio</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Joi</span><span class="tDesc"><b>Lower body</b> (greutati) + 20-30 min cardio</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--glow2)">Vineri</span><span class="tDesc"><b>Midsection</b> — abdomen, oblici, core</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">3x/sapt</span><span class="tDesc"><b>Sauna</b> 20 min + <b>dus rece</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">Zilnic</span><span class="tDesc"><b>Plimbari lungi</b> + meditatie dimineata</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Costul real al alimentatiei</h4>
+          <p>Julie <b>nu a inclus costul alimentatiei</b> in cele $108/luna. Bryan Johnson include mancarea in bugetul sau. Insa Julie nu mananca nimic extravagant — legume, piept de pui, iaurt — deci costul e comparabil cu o dieta normala.</p>
+        </div>
+        <div class="comNote">
+          <h4>Ce e Novos?</h4>
+          <p>O companie care produce un supliment-pudra cu 14 ingrediente formulate sa tinteasca <b>toate semnele distinctive ale imbatranirii</b>. Unele ingrediente (ca alpha-ketoglutarat de calciu) au studii promitoare, dar nu exista dovezi pe termen lung privind longevitatea.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce $108 bate $2M?</h4>
+          <p>Principiul <b>diminishing returns</b> — primele 10% din investitia in sanatate genereaza 90% din beneficii. Somnul, miscarea, alimentatia si stresul scazut sunt factori dominanti. Procedurile scumpe adauga avantaje marginale.</p>
+        </div>
+        <div class="comNote">
+          <h4>Greseli de evitat</h4>
+          <p>Nu copia protocolul altcuiva 1:1. Julie a construit aceste obiceiuri de-a lungul anilor. Incepe cu <b>un singur obicei</b> (somn sau miscare) si adauga progresiv. Consistenta bate perfectiunea.</p>
+        </div>
+        <div class="comNote">
+          <h4>Autorul videoclipului</h4>
+          <p>Creatorul (Siim Land) mentioneaza ca propriul sau scor DunedinPACE este <b>0.62</b>, iar media pe 3 teste e <b>0.65</b> — ceea ce l-ar plasa pe locul 1 daca clasamentul ar fi actualizat.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>DunedinPACE</dt>
+          <dd>Test epigenetic ce masoara viteza biologica de imbatranire. Dezvoltat de cercetatorii de la Duke University. Scor de 1.0 = viteza normala; sub 1.0 = imbatranire mai lenta.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Rejuvenation Olympics</dt>
+          <dd>Clasament public al celor mai bune scoruri DunedinPACE, creat de Bryan Johnson. Participantii isi incarca rezultatele testelor pentru a fi comparati global.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Post intermitent 16:8</dt>
+          <dd>Protocol alimentar in care mananci intr-o fereastra de 8 ore si postesti 16 ore. Asociat cu beneficii metabolice: autofagie crescuta, sensibilitate la insulina imbunatatita.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Alpha-ketoglutarat de calciu (AKG)</dt>
+          <dd>Ingredient din suplimentul Novos. Studii pe animale sugereaza efecte asupra varstei biologice, dar dovezile la oameni sunt inca limitate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sarcopenia</dt>
+          <dd>Pierderea progresiva de masa musculara si forta asociata cu inaintarea in varsta. Antrenamentul cu greutati este cea mai eficienta metoda de prevenire.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hallmarks of Aging</dt>
+          <dd>Cele 12 procese biologice care cauzeaza imbatranirea (instabilitate genomica, scurtare telomere, epigenetica alterata etc.). Suplimentul Novos pretinde ca le tinteste pe toate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Mouth Taping</dt>
+          <dd>Practica de a aplica o banda adeziva pe gura in timpul somnului, pentru a forta respiratia nazala. Imbunatateste calitatea somnului si reduce sforaitul.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=LKWoxAJZAws" target="_blank">She's 55 and Has a Slower Speed of Aging Than Bryan Johnson — YouTube</a> &middot;
+    Infografic educational bazat pe informatii din videoclip &middot; Nu constituie sfat medical
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: aging speed visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* Particles representing biological age markers */
+  const particles = [];
+  const count = 55;
+  for(let i = 0; i < count; i++){
+    const angle = (i / count) * Math.PI * 2 + Math.random() * 0.4;
+    const radius = 0.12 + Math.random() * 0.35;
+    particles.push({
+      x: 0.5 + Math.cos(angle) * radius,
+      y: 0.5 + Math.sin(angle) * radius,
+      r: 1.5 + Math.random() * 3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.0005 + Math.random() * 0.0015,
+      type: i < 18 ? 'slow' : i < 36 ? 'normal' : 'fast',
+      orbit: radius,
+      angle: angle
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    const cx = w * 0.5, cy = h * 0.5;
+
+    /* Draw orbit rings */
+    for(let ring = 1; ring <= 4; ring++){
+      const rr = ring * Math.min(w,h) * 0.11;
+      const alpha = 0.04 + Math.sin(t + ring) * 0.015;
+      ctx.beginPath();
+      ctx.arc(cx, cy, rr, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(232,121,249,${alpha})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+
+    /* Pulse from center (heartbeat) */
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 55) % 140);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 1600);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(74,222,128,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    /* Draw connections between nearby particles */
+    for(let i = 0; i < particles.length; i++){
+      const a = particles[i];
+      const ax = a.x * w + Math.sin(t * 0.7 + a.phase) * 2;
+      const ay = a.y * h + Math.cos(t * 0.9 + a.phase) * 2;
+      for(let j = i+1; j < Math.min(i+4, particles.length); j++){
+        const b = particles[j];
+        const bx = b.x * w + Math.sin(t * 0.7 + b.phase) * 2;
+        const by = b.y * h + Math.cos(t * 0.9 + b.phase) * 2;
+        const dist = Math.hypot(ax-bx, ay-by);
+        if(dist < 80){
+          const lineAlpha = (1 - dist/80) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(ax, ay);
+          ctx.lineTo(bx, by);
+          ctx.strokeStyle = a.type === 'slow' ? `rgba(74,222,128,${lineAlpha})` :
+                            a.type === 'normal' ? `rgba(232,121,249,${lineAlpha})` :
+                            `rgba(248,113,113,${lineAlpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* Update and draw particles */
+    particles.forEach(p => {
+      p.angle += p.speed * (p.type === 'slow' ? 0.5 : p.type === 'fast' ? 1.8 : 1.0);
+      p.x = 0.5 + Math.cos(p.angle) * p.orbit;
+      p.y = 0.5 + Math.sin(p.angle) * p.orbit;
+
+      const px = p.x * w + Math.sin(t * 0.7 + p.phase) * 2;
+      const py = p.y * h + Math.cos(t * 0.9 + p.phase) * 2;
+      const glow = 0.35 + Math.sin(t * 1.5 + p.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'slow'){
+        ctx.fillStyle = `rgba(74,222,128,${glow + 0.1})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 8;
+      } else if(p.type === 'normal'){
+        ctx.fillStyle = `rgba(232,121,249,${glow})`;
+        ctx.shadowColor = 'rgba(232,121,249,0.25)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(248,113,113,${glow - 0.05})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    /* Central label */
+    ctx.font = '10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(232,121,249,0.5)';
+    ctx.textAlign = 'center';
+    ctx.fillText('VITEZA DE', cx, cy - 6);
+    ctx.fillText('IMBATRANIRE', cx, cy + 7);
+
+    /* Legend */
+    const ly = h - 12;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.45)'; ctx.fillText('lent (Julie)', 15, ly+3);
+    ctx.fillStyle = 'rgba(232,121,249,0.7)'; ctx.beginPath(); ctx.arc(85, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.45)'; ctx.fillText('normal', 92, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(140, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.45)'; ctx.fillText('rapid', 147, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Interactive cost slider ── */
+(function(){
+  const slider = document.getElementById('costSlider');
+  const val = document.getElementById('sliderVal');
+  const result = document.getElementById('sliderResult');
+  if(!slider) return;
+
+  function fmt(n){ return n >= 1000 ? '$' + (n/1000).toFixed(n >= 10000 ? 0 : 1) + 'K' : '$' + n; }
+
+  slider.addEventListener('input', function(){
+    const v = parseInt(this.value);
+    val.textContent = fmt(v);
+
+    if(v <= 200){
+      result.innerHTML = 'La <b>' + fmt(v) + '/luna</b> (bugetul Julie): abonament sala, supliment Novos, suplimente de baza. Viteza de imbatranire: <b>0.665</b>. Dovada ca simplitatea functioneaza.';
+    } else if(v <= 1000){
+      result.innerHTML = 'La <b>' + fmt(v) + '/luna</b>: ai putea adauga analize de sange trimestriale, un tracker de somn si suplimente premium. Probabil nu vei bate scorul Julie de <b>0.665</b> cu mult.';
+    } else if(v <= 10000){
+      result.innerHTML = 'La <b>' + fmt(v) + '/luna</b>: poti accesa consultanti in longevitate, tratamente NAD+, teste epigenetice frecvente. Imbunatatirile devin <b>marginale</b> — legea randamentelor descrescatoare.';
+    } else if(v <= 50000){
+      result.innerHTML = 'La <b>' + fmt(v) + '/luna</b>: protocol avansat cu echipa medicala. Dar studiile arata ca 80-90% din beneficii vin din somn, miscare si dieta — lucruri care costa <b>aproape nimic</b>.';
+    } else {
+      result.innerHTML = 'La <b>' + fmt(v) + '/luna</b> (teritoriul Bryan Johnson): echipa de medici, sute de suplimente, proceduri experimentale. Viteza de imbatranire: <b>0.72</b> — mai slaba decat Julie cu $108.';
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dave Pascoe — 61 de Ani cu Viteza de Imbatranire Mai Mica decat Bryan Johnson</title>
+  <meta name="description" content="Infografic interactiv: protocolul anti-aging al lui Dave Pascoe — dieta, suplimente, rutina zilnica, comparatie cu Bryan Johnson. Rejuvenation Olympics." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#0A0F1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#06B6D4;
+      --glow2:#3B82F6;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(6,182,212,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(59,130,246,.10), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(74,222,128,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(6,182,212,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(6,182,212,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(59,130,246,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(74,222,128,.07), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--purple)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(6,182,212,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(59,130,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(6,182,212,.22),rgba(6,182,212,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(6,182,212,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(59,130,246,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(6,182,212,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(6,182,212,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn h4{color:var(--warn);}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(6,182,212,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(6,182,212,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(6,182,212,.25);background:rgba(6,182,212,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Slider */
+    .sliderWrap{margin-top:14px;padding:10px 14px;border:1px solid rgba(234,240,255,.10);border-radius:14px;background:rgba(6,8,16,.30);}
+    .sliderWrap label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .sliderWrap label b{color:var(--ink);font-family:var(--mono);font-size:14px;}
+    .sliderWrap input[type=range]{width:100%;margin-top:6px;accent-color:var(--glow);}
+
+    /* Tabs */
+    .tabBar{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+    .tabBtn{
+      font-family:var(--mono);font-size:10.5px;padding:5px 11px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.35);
+      color:var(--muted);cursor:pointer;transition:all .2s;
+    }
+    .tabBtn:hover{border-color:rgba(6,182,212,.3);color:var(--ink);}
+    .tabBtn.active{border-color:var(--glow);background:rgba(6,182,212,.12);color:var(--glow);}
+    .tabPane{display:none;}
+    .tabPane.active{display:block;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Dave Pascoe — 61 de Ani cu Viteza de Imbatranire Mai Mica decat Bryan Johnson
+          <small>Protocol anti-aging: $30.000/an vs. $2.000.000/an — si rezultate comparabile sau mai bune</small>
+        </h1>
+        <p class="sub">Dave Pascoe este un barbat de 61 de ani care se claseaza pe <b>locul 6</b> in Rejuvenation Olympics — clasamentul creat de Bryan Johnson care masoara viteza de imbatranire prin teste epigenetice. Cu o viteza de imbatranire de <b>0.66</b> (fata de 0.69 al lui Bryan Johnson), Dave cheltuieste doar <b>$30.000/an</b> fata de cele peste <b>$2 milioane/an</b> ale lui Bryan.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Varsta biologica 37.9</b> — la 61 ani cronologici</span>
+          <span class="chip"><i class="i2"></i> <b>150+ suplimente/zi</b> — 82 dimineata, 76 seara</span>
+          <span class="chip"><i class="i3"></i> <b>$30.000/an</b> — ~$2.500/luna total</span>
+          <span class="chip"><i class="i4"></i> <b>Loc #6</b> — Rejuvenation Olympics</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Comparatie Dave vs Bryan -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Dave Pascoe vs. Bryan Johnson</h2>
+          <p>Comparatie directa intre cei doi competitori din Rejuvenation Olympics — diferente uriase de buget, rezultate similare</p>
+        </div>
+        <span class="badge">COMPARATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">0.66</div>
+            <span class="u">pace of aging Dave (cel mai recent test)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">0.69</div>
+            <span class="u">pace of aging Bryan Johnson</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">$30K</div>
+            <span class="u">buget anual Dave Pascoe</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">$2M+</div>
+            <span class="u">buget anual Bryan Johnson</span>
+          </div>
+        </div>
+
+        <!-- SVG comparison diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Dave side -->
+            <rect x="20" y="20" width="310" height="220" rx="16" fill="rgba(6,182,212,.06)" stroke="rgba(6,182,212,.20)" stroke-width="1.5"/>
+            <text x="175" y="50" fill="#06B6D4" font-size="14" font-weight="700" text-anchor="middle">Dave Pascoe</text>
+            <text x="175" y="72" fill="#A0ACC8" font-size="10" text-anchor="middle">61 ani cronologici / 37.9 ani biologici</text>
+
+            <text x="60" y="105" fill="#EAF0FF" font-size="11" font-weight="600">Varsta bio:</text>
+            <text x="200" y="105" fill="#4ADE80" font-size="13" font-weight="700">37.9 ani</text>
+            <text x="60" y="130" fill="#EAF0FF" font-size="11" font-weight="600">Pace of Aging:</text>
+            <text x="200" y="130" fill="#06B6D4" font-size="13" font-weight="700">0.66</text>
+            <text x="60" y="155" fill="#EAF0FF" font-size="11" font-weight="600">Suplimente:</text>
+            <text x="200" y="155" fill="#FBBF24" font-size="13" font-weight="700">150+/zi</text>
+            <text x="60" y="180" fill="#EAF0FF" font-size="11" font-weight="600">Buget:</text>
+            <text x="200" y="180" fill="#4ADE80" font-size="13" font-weight="700">$30.000/an</text>
+            <text x="60" y="205" fill="#EAF0FF" font-size="11" font-weight="600">Dieta:</text>
+            <text x="200" y="205" fill="#A0ACC8" font-size="11">Omnivora, nu numara calorii</text>
+            <text x="60" y="225" fill="#EAF0FF" font-size="11" font-weight="600">TRT:</text>
+            <text x="200" y="225" fill="#4ADE80" font-size="11">NU (testosteron 880-1200 natural)</text>
+
+            <!-- Bryan side -->
+            <rect x="370" y="20" width="310" height="220" rx="16" fill="rgba(59,130,246,.06)" stroke="rgba(59,130,246,.20)" stroke-width="1.5"/>
+            <text x="525" y="50" fill="#3B82F6" font-size="14" font-weight="700" text-anchor="middle">Bryan Johnson</text>
+            <text x="525" y="72" fill="#A0ACC8" font-size="10" text-anchor="middle">~45 ani cronologici / Blueprint protocol</text>
+
+            <text x="410" y="105" fill="#EAF0FF" font-size="11" font-weight="600">Varsta bio:</text>
+            <text x="550" y="105" fill="#4ADE80" font-size="13" font-weight="700">~42 ani</text>
+            <text x="410" y="130" fill="#EAF0FF" font-size="11" font-weight="600">Pace of Aging:</text>
+            <text x="550" y="130" fill="#3B82F6" font-size="13" font-weight="700">0.69</text>
+            <text x="410" y="155" fill="#EAF0FF" font-size="11" font-weight="600">Suplimente:</text>
+            <text x="550" y="155" fill="#FBBF24" font-size="13" font-weight="700">~100/zi</text>
+            <text x="410" y="180" fill="#EAF0FF" font-size="11" font-weight="600">Buget:</text>
+            <text x="550" y="180" fill="#F87171" font-size="13" font-weight="700">$2.000.000+/an</text>
+            <text x="410" y="205" fill="#EAF0FF" font-size="11" font-weight="600">Dieta:</text>
+            <text x="550" y="205" fill="#A0ACC8" font-size="11">Vegana, restrictie calorica</text>
+            <text x="410" y="225" fill="#EAF0FF" font-size="11" font-weight="600">TRT:</text>
+            <text x="550" y="225" fill="#FBBF24" font-size="11">DA (testosterone replacement)</text>
+
+            <!-- VS circle -->
+            <circle cx="350" cy="130" r="22" fill="rgba(6,8,16,.8)" stroke="rgba(234,240,255,.2)" stroke-width="1.5"/>
+            <text x="350" y="135" fill="#EAF0FF" font-size="12" font-weight="700" text-anchor="middle">VS</text>
+          </svg>
+        </div>
+
+        <div class="alert">
+          <h4>Diferenta cheie</h4>
+          <p>Dave cheltuieste de <b>66 de ori mai putin</b> decat Bryan Johnson si obtine rezultate <b>comparabile sau mai bune</b>. Cu 16 ani mai in varsta, Dave demonstreaza ca un protocol mai ieftin, dar consistent, poate rivaliza cu cele mai scumpe programe anti-aging din lume.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Dieta -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Dieta lui Dave Pascoe</h2>
+          <p>Omnivora, bogata in nutrienti, fara restrictie calorica severa — focalizata pe diversitate si calitate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">DIETA</span>
+      </div>
+      <div class="cardBody">
+        <div class="tabBar">
+          <span class="tabBtn active" onclick="showTab('mic-dejun')">Mic dejun</span>
+          <span class="tabBtn" onclick="showTab('pranz')">Pranz</span>
+          <span class="tabBtn" onclick="showTab('cina')">Cina</span>
+          <span class="tabBtn" onclick="showTab('principii')">Principii</span>
+        </div>
+
+        <div class="tabPane active" id="tab-mic-dejun">
+          <div class="grid2">
+            <div class="mini">
+              <h3 style="color:var(--ok)">Luni - Vineri</h3>
+              <p><b>1 banana verde</b> (indice glicemic scazut, amidon rezistent). <b>4 linguri Chia Nut Berry Bowl</b> — seminte de chia inmuiate peste noapte in lapte de migdale, toate tipurile de nuci si seminte organice, fructe de padure (afine, zmeura, mure), pudra de sfecla, spirulina, ulei de masline extravirgin, condimente (busuioc, ghimbir, cimbru).</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--ok)">Weekend</h3>
+              <p><b>Sambata:</b> 1 banana verde + omleta din 4 oua cu rucola si ciuperci pre-gatite. <b>Duminica:</b> omleta cu oua suplimentare (3+) la biserica. Dave nu este vegan si nu urmeaza o restrictie calorica — mananca cat doreste, fara a castiga in greutate.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-pranz">
+          <div class="mini">
+            <h3 style="color:var(--teal)">Pranz (de cateva ori pe saptamana)</h3>
+            <p>Focus pe <b>fructe de mare</b>: sardine, midii, stridii, macrou, creveti (8-10 buc). Plus: <b>1 avocado</b>, mar verde, para, portocala, morcovi baby, telina cu humus, supa de oase (pui sau vita). Nu mananca pranz in fiecare zi — uneori e prea ocupat.</p>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-cina">
+          <div class="grid2">
+            <div class="mini">
+              <h3 style="color:var(--warn)">Salata mare</h3>
+              <p>Mix de verdeturi organice (rucola, spanac baby, mangold), germeni si micro-verdeturi, fructe de padure, legume rase (sfecla, varza, morcovi, pastarnac, ridichi, napi), masline, branza de capra, ulei de masline extravirgin + otet de mere ca dressing.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--warn)">Carne + Garnitura</h3>
+              <p><b>Optiuni carne:</b> rasol de vita, coaste de porc cu varza murata, somon salbatic, vita grassfed. <b>Optiuni garnitura:</b> cartofi dulci, dovleac, ciuperci (baby bella, shiitake), orez gatit in zeama de ciuperci si supa de oase. Cina terminata inainte de ora 18:00.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-principii">
+          <div class="flow">
+            <div class="step">
+              <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+              <div class="stepContent">
+                <h4>Nu numara caloriile</h4>
+                <p>Nu este in restrictie calorica deliberata, dar este slab — ceea ce sugereaza ca, in medie, consuma in jurul nivelului de intretinere caloric.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+              <div class="stepContent">
+                <h4>Limiteaza carbohidratii simpli</h4>
+                <p>Evita zaharurile si carbohidratii procesati. Mananca orez, cartofi dulci si fructe — dar nu dulciuri sau paine alba.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+              <div class="stepContent">
+                <h4>Carne organica, grassfed</h4>
+                <p>Toate produsele din carne vin de la Butcher Box — organic, grassfed, grass-finished. Calitate maxima a proteinei animale.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+              <div class="stepContent">
+                <h4>Diversitate nutritionala</h4>
+                <p>Include cat mai multe tipuri de nuci, seminte, fructe de padure, legume si condimente — desi beneficiile marginale ale diversitatii extreme sunt discutabile.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Suplimente -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cele 150+ de suplimente zilnice</h2>
+          <p>82 dimineata, 76 seara — cele mai interesante ingrediente si comentarii critice</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">SUPLIMENTE</span>
+      </div>
+      <div class="cardBody">
+
+        <div class="tabBar">
+          <span class="tabBtn active" onclick="showTab('shake')">Shake pre/post</span>
+          <span class="tabBtn" onclick="showTab('dimineata')">Dimineata</span>
+          <span class="tabBtn" onclick="showTab('seara')">Seara</span>
+          <span class="tabBtn" onclick="showTab('speciale')">Speciale</span>
+        </div>
+
+        <div class="tabPane active" id="tab-shake">
+          <div class="mini" style="min-height:auto;">
+            <h3>Shake Pre/Post-Antrenament</h3>
+            <p>Lapte de migdale (360ml), aminoacizi, colostrum, Athletic Greens, pudra de sfecla, beta-alanina, <b>peptide de colagen</b>, creatina monohidrat, D-riboza, citrulina, glutamina, leucina, <b>glutation lipozomal</b>, MitoPure (urolithin A — functie mitocondriale), extract de steroli vegetali, fitoplancton, pudra rosie (legume/fructe rosii), <b>trehaloze</b> (zahar care promoveaza autofagia), proteina whey (30g).</p>
+            <p style="margin-top:8px;">Ingredientele ajuta la: <b>performanta fizica</b> (creatina, beta-alanina, citrulina), <b>recuperare</b> (colostrum, whey, glutamina), <b>articulatii si piele</b> (colagen), <b>mitocondrii</b> (MitoPure).</p>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-dimineata">
+          <div class="grid2">
+            <div class="mini">
+              <h3 style="color:var(--glow)">Longevitate NAD+</h3>
+              <p><b>TruNiagen</b> (nicotinamida ribozida 300mg) — creste NAD+ doza-dependent. <b>NAD Regen</b> — supliment suplimentar NAD. Calciu alfa-ketoglutarat — un studiu arata reducerea varstei biologice cu pana la <b>8 ani</b>.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--glow)">Telomeri</h3>
+              <p><b>TAM-818</b> ($800/90 capsule) — activator de telomeraza, pretins a fi de 300x mai puternic decat alte ingrediente. <b>TA-65</b> ($487/90 capsule) — extract din Astragalus, alt activator de telomeraza. Stiinta nu este foarte clara.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--ok)">Hormoni si Precursori</h3>
+              <p><b>DHEA</b> 10mg — precursor al testosteronului. <b>Pregnenolona</b> 50mg — hormon steroid, ajuta la somn si recuperare. <b>Tongkat Ali</b> — creste testosteronul. <b>Tiroid</b>: T3 si T4 (prescriptie) — tiroidul nu-i mai functioneaza din anii 30.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--ok)">Oxid Nitric si Circulatie</h3>
+              <p><b>Neo40 Pro</b> — stimuleaza productia de oxid nitric. <b>Endothelial Defense</b> — arginina, acid folic, B6. <b>Vascanox</b> — suport NO. Plus pudra de sfecla din shake. Potentiala redundanta — exces de NO poate fi daunator.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--purple)">Creier si Cognitie</h3>
+              <p><b>CDP-Colina</b> si <b>Fosfatidilcolina</b> — importanta pentru creier si ficat. <b>Huperzina A</b> — compound colinergic. <b>Ergotioneina</b> — "vitamina longevitatii" din ciuperci. <b>Bacopa</b> si <b>Ginkgo Biloba</b> — cognitie.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--purple)">Antioxidanti si Piele</h3>
+              <p><b>Astaxantina</b> — dovezi clinice solide (colesterol, inflamatie, tensiune, piele). <b>Acid hialuronic</b> — hidratare piele (doze de 200mg eficiente). <b>Zeaxantina cu luteina</b> — ochi. <b>Vitamina D3</b> 8000 IU. <b>Super K</b> — K1+K2.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-seara">
+          <div class="grid2">
+            <div class="mini">
+              <h3 style="color:var(--warn)">Anti-inflamatoare</h3>
+              <p><b>Curcumina</b> — eficienta, dar poate suprima hipertrofia musculara daca e luata dupa antrenament (timing problematic). <b>Quercetina</b> + <b>Teaflavine</b> — senolitice. <b>Fisetin</b> 800mg — senolitic (fara protocoale umane stabilite).</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--warn)">Conflict de suplimente</h3>
+              <p><b>Acid arahidonic</b> 1500mg — creste inflamatia pentru crestere musculara. Dar e luat in acelasi timp cu curcumina si EGCG care sunt <b>anti-inflamatoare</b> — efectele se pot anula reciproc. Un exemplu clar de "stacking" fara strategie.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--glow2)">Metilare si Detox</h3>
+              <p><b>TMG/Betaina</b> 3000mg — suport metilare, scade homocisteina. <b>NAC</b> — creste glutationul (dar dozele mici pot fi insuficiente: studiile arata efect de la 5g+). <b>SAMe</b> — donator de grupuri metil. <b>Acid alfa-lipoic</b> — antioxidant.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--glow2)">Diverse</h3>
+              <p><b>Taurina</b> 4000mg — studiu pe soareci (2023) arata prelungirea vietii la doze similare. <b>Berberina</b> 200mg — colesterol, glicemie. <b>Ashwagandha</b> — stres, relaxare, potential testosteron. <b>Resveratrol</b> — dovezi minime la oameni sanatosi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabPane" id="tab-speciale">
+          <div class="grid3">
+            <div class="mini">
+              <h3 style="color:var(--bad)">Rapamicina</h3>
+              <p><b>6mg o data la 1-2 saptamani</b> — inhibitor mTOR. In studii pe animale, extinde constant durata de viata. Fara efecte secundare cunoscute la dozele recreationale.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--bad)">Senolitice</h3>
+              <p><b>Fisetin</b> + <b>Quercetina</b> + <b>Teaflavine</b> — scopul e de a curata celulele senescente, dar <b>nu exista studii clinice umane</b> si nici un protocol stabilit de dozare sau frecventa.</p>
+            </div>
+            <div class="mini">
+              <h3 style="color:var(--bad)">Costisitoare si incerte</h3>
+              <p><b>TAM-818</b>: $800/90caps. <b>TA-65</b>: $487/90caps. <b>Stem Regen</b>: $186/60caps. <b>Fatty 15</b>: $120/90 zile. Total: peste $1.500/luna doar pe acestea.</p>
+            </div>
+          </div>
+          <div class="alert warn">
+            <h4>Analiza critica</h4>
+            <p>Multe suplimente se suprapun (mai multi boosteri de oxid nitric, mai multe surse de colina, anti-inflamatoare + pro-inflamatoare in acelasi timp). Nu exista un "split test" care sa arate care supliment contribuie efectiv. O abordare cu <b>10 suplimente bine alese</b> poate fi la fel de eficienta si mult mai ieftina.</p>
+          </div>
+        </div>
+
+        <!-- Cost slider -->
+        <div class="sliderWrap">
+          <label>Simulare buget lunar suplimente: <b id="budgetVal">$2.500</b></label>
+          <input type="range" min="50" max="5000" value="2500" step="50" id="budgetSlider" oninput="updateBudget(this.value)">
+          <p style="margin:6px 0 0;font-size:11px;color:var(--muted2);" id="budgetDesc">La acest buget poti replica aproximativ protocolul complet al lui Dave Pascoe, incluzand suplimentele premium si mancarea organica.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Rutina zilnica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Rutina zilnica completa</h2>
+          <p>De la trezire pana la culcare — fiecare pas din programul de longevitate al lui Dave Pascoe</p>
+        </div>
+        <span class="badge" style="border-color:rgba(6,182,212,.3);color:var(--glow);">RUTINA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Trezire (fara alarma)</h4>
+              <p>Beamer Body Mat (dispozitiv de microcirculatie) in pat, stretching cu genunchii la piept, suplimentele de la trezire (hormoni tiroidieni, TAM-818, TA-65, DHEA, pregnenolona). Asculta podcasturi sau audiobook-uri.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Exercitii de dimineata</h4>
+              <p>Mini-trambulina 5 min, stretching pe podea 15 min, foam roller 15 min, masa de inversie 5 min. Periaj dinti, racleta limba, spalare pe fata, cantarire, verificare scoruri somn pe fitness tracker.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Biohacking matinal</h4>
+              <p>Terapie cu <b>lumina rosie</b> 20 min (ideal inainte de rasarit). Sprint pe <b>Carol bike</b> (HIIT pe bicicleta AI). Bea shake-ul pre/post antrenament. Expunere la lumina soarelui dimineata.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Antrenament principal</h4>
+              <p><b>P90X</b> (antrenamentul zilei), <b>Tap Out XT</b> abdominale, plimbare/alergare/drumetie in aer liber (sau banda de alergat iarna). <b>Sauna infrarosie</b> + meditatie 25-45 min. Dus cu sapun Castile.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Masa si dupa-amiaza</h4>
+              <p>Mic dejun cu suplimente si enzime proteolitice. Pranz optional (de cateva ori pe saptamana). Cina intre 15:00-17:00, terminata inainte de 18:00. Suplimente de seara cu cina.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Rutina de seara</h4>
+              <p>Netflix + exercitii de echilibru (BOSU ball, placa de balans). 2 kiwi (ajuta somnul — serotonina). Rutina de ingrijire a pielii (creme cu celule stem, acid hialuronic, retinol). Supliment de somn + peptide de colagen + cetone IQ. Beamer Body Mat, rugaciune.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Exercitii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Protocolul de exercitii</h2>
+          <p>Combinatie de HIIT, forta cu greutatea corporala, flexibilitate si echilibru</p>
+        </div>
+        <span class="badge">EXERCITII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Cardio</h3>
+            <p><b>Mers, alergare, drumetii.</b> Carol bike (bicicleta AI pentru sprint-uri HIIT optimizate). Plimbari in aer liber pentru expunere la soare. Iarna — banda de alergat.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow2)">Forta si HIIT</h3>
+            <p><b>P90X</b> — program complet cu greutatea corporala. <b>Tap Out XT</b> — abdominale + HIIT. <b>P90X Ab Ripper X</b> — antrenament abdominal intens, la fiecare 2 zile. Uneori impartite in "gustari de exercitii" pe parcursul zilei.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Recuperare si Flexibilitate</h3>
+            <p><b>Yoga si Pilates.</b> Foam roller 15 min. Stretching pe podea 15 min. Masa de inversie 5 min. Sauna infrarosie + meditatie 25-45 min. Exercitii de echilibru seara (BOSU ball, placa Fitter First).</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Terapii speciale -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Terapii si biohacking avansate</h2>
+          <p>Interventii periodice si tehnologii folosite in protocolul de longevitate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">TERAPII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--teal)">Terapie cu oxigen hiperbaric</h3>
+            <p><b>10 sedinte</b> a cate 90 min, 10 zile consecutive, trimestrial. Scopuri: reparare ADN, alungire telomeri, eliminare celule senescente. Una din cele mai costisitoare terapii din protocol.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Donatii de plasma</h3>
+            <p><b>De 2 ori pe saptamana</b>, timp de 2-3 saptamani, trimestrial si semianual. Scop: reinnoire componente sanguine, eliminare proteine imbatranite.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Lumina rosie si infrarosie</h3>
+            <p><b>20 min dimineata</b>, ideal inainte de rasarit. Plus <b>sauna infrarosie</b> 25-45 min cu meditatie. Beneficii: recuperare, circulatie, producere colagen, reducere inflamatie.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Peptide injectabile</h3>
+            <p>Injectii de peptide dimineata si seara (cand e cazul). Tipurile exacte nu sunt specificate, dar sunt folosite pentru <b>regenerare, recuperare si crestere musculara</b>.</p>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Igiena luminii si a somnului</h3>
+            <p>Toate becurile din casa sunt <b>Philips Hue</b> programate sa reduca lumina albastra seara. Ecranele au filtre blue light pe program. Ochelari blue-blocking seara. 2 kiwi inainte de culcare. Supliment de somn + cetone.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Ingrijire piele</h3>
+            <p>Rutina completa: <b>crema regenerativa cu celule stem</b>, formula anti-pigmentare, Differin gel, acid hialuronic, OneSkin OS-1, La Roche-Posay Lipikar — aplicata pe fata, gat, piept si maini seara.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si lectii de invatat</h2>
+          <p>Ce functioneaza, ce e discutabil si ce poti aplica din protocolul lui Dave Pascoe</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Ce functioneaza clar</h3>
+            <p>Exercitiu regulat si variat, dieta bogata in nutrienti fara procesare, somn optimizat, expunere la soare dimineata, stres redus, consistenta pe termen lung. Acestea sunt <b>fundamentele</b> care probabil explica cel mai mult din rezultatele lui.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Ce e discutabil</h3>
+            <p>Multe suplimente sunt <b>redundante</b> (mai multi boosteri NO, mai multe surse de colina). Unele sunt luate la momente nepotrivite (anti-inflamatoare dupa antrenament). Produsele premium ($800/luna pe telomeri) au <b>dovezi stiintifice limitate</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(6,182,212,.2);">
+            <h3 style="color:var(--glow)">Lectia principala</h3>
+            <p>Nu trebuie sa cheltuiesti $2M/an ca Bryan Johnson. Cu <b>$30.000/an</b> (sau chiar mult mai putin pe bazele esentiale), poti obtine rezultate comparabile. Consistenta bate complexitatea. Dave demonstreaza ca <b>varsta cronologica nu dicteaza varsta biologica</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Ce poti aplica gratuit</h3>
+            <p>Mers pe jos zilnic, stretching si exercitii bodyweight, dieta cu legume si fructe de padure, somn regulat, expunere la lumina naturala dimineata, evitarea ecranelor seara, reducerea carbohidratilor simpli. <b>Cele mai puternice interventii sunt gratuite.</b></p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Protocolul lui Dave Pascoe demonstreaza ca longevitatea optimizata nu este doar pentru miliardari. Consistenta, disciplina si alegeri inteligente pot compensa un buget modest.&raquo;
+          <cite>— Analiza bazata pe prezentarea de pe canalul YouTube Siim Land</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Profil rapid -->
+    <div class="timeline">
+      <div class="tHead"><h2>Profil Dave Pascoe</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Varsta</span><span class="tDesc"><b>61 ani</b> (va face 62 in august)</span></div>
+        <div class="tEvent"><span class="tDate">Bio age</span><span class="tDesc"><b>37.9 ani</b> — epigenetic</span></div>
+        <div class="tEvent"><span class="tDate">Pace</span><span class="tDesc"><b>0.66</b> (medie: 0.79)</span></div>
+        <div class="tEvent"><span class="tDate">Inaltime</span><span class="tDesc"><b>183 cm</b> (6 ft)</span></div>
+        <div class="tEvent"><span class="tDate">Greutate</span><span class="tDesc"><b>75.7 kg</b> (167 lb)</span></div>
+        <div class="tEvent"><span class="tDate">BMI</span><span class="tDesc"><b>22.1</b></span></div>
+        <div class="tEvent"><span class="tDate">Testost.</span><span class="tDesc"><b>880-1200</b> ng/dL (fara TRT)</span></div>
+        <div class="tEvent"><span class="tDate">Loc</span><span class="tDesc"><b>#6</b> Rejuvenation Olympics</span></div>
+        <div class="tEvent"><span class="tDate">Buget</span><span class="tDesc"><b>~$30.000/an</b> (~$2.500/luna)</span></div>
+        <div class="tEvent"><span class="tDate">Stare</span><span class="tDesc"><b>Necasatorit</b></span></div>
+        <div class="tEvent"><span class="tDate">Website</span><span class="tDesc"><b>davepascoe.net</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu Critic</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Redundanta suplimentelor</h4>
+          <p>Dave ia mai multe surse de <b>colina</b> (CDP-colina, fosfatidilcolina), mai multi boosteri de <b>oxid nitric</b> (Neo40, arginina, sfecla, Vascanox) si mai multi <b>antioxidanti</b> similari. Excesul de NO poate fi chiar daunator, crescand stresul oxidativ.</p>
+        </div>
+        <div class="comNote">
+          <h4>Conflicte de timing</h4>
+          <p>Seara ia simultan <b>acid arahidonic</b> (pro-inflamator, crestere musculara) si <b>curcumina + EGCG</b> (anti-inflamatoare, inhibitori mTOR). Efectele se pot anula. EGCG ar fi mai bine luat dimineata, inainte de exercitiu.</p>
+        </div>
+        <div class="comNote">
+          <h4>Produse scumpe, dovezi slabe</h4>
+          <p><b>TAM-818</b> ($800), <b>TA-65</b> ($487), <b>Stem Regen</b> ($186) — fara studii clinice robuste. Banii ar putea fi redirectionati catre interventii cu dovezi mai solide, cum ar fi terapia cu oxigen hiperbaric sau alimentatie de calitate superioara.</p>
+        </div>
+        <div class="comNote">
+          <h4>Ce conteaza cu adevarat</h4>
+          <p>Consistenta lui Dave este remarcabila. Exercitiul zilnic variat, dieta bogata in nutrienti, somnul optimizat si stresul scazut sunt probabil <b>responsabile pentru 80-90% din rezultate</b>. Suplimentele adauga un beneficiu marginal.</p>
+        </div>
+        <div class="comNote">
+          <h4>Resveratrol — mit sau realitate?</h4>
+          <p>Dave ia resveratrol, dar studiile arata ca <b>nu are beneficii la oameni sanatosi</b>. Poate chiar reduce testosteronul si VO2max. Functioneaza doar la persoane obeze cu sindrom metabolic — ceea ce Dave clar nu este.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Pace of Aging</dt>
+          <dd>Viteza de imbatranire masurata prin teste epigenetice (metilarea ADN-ului). Un scor de 1.0 = imbatranire normala. Sub 1.0 = imbatranesti mai incet decat media. Dave: 0.66.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Rejuvenation Olympics</dt>
+          <dd>Clasament creat de Bryan Johnson care ordoneaza participantii dupa viteza de imbatranire epigenetica. Dave Pascoe este pe locul 6.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Varsta epigenetica</dt>
+          <dd>Varsta biologica estimata prin analiza modificarilor chimice ale ADN-ului (metilarile). Poate fi mai mica sau mai mare decat varsta cronologica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>mTOR</dt>
+          <dd>Mechanistic Target of Rapamycin — senzor celular de nutrienti si crestere. Inhibarea mTOR (prin rapamicina, post, EGCG) activeaza mecanisme de reparare celulara.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Autofagie</dt>
+          <dd>Procesul prin care celulele "se curata" — elimina componente deteriorate si le recicleaza. Activata de post, exercitiu, rapamicina si trehaloze.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Senolitice</dt>
+          <dd>Compusi care elimina celulele senescente ("zombie") — celule care nu mai functioneaza dar nici nu mor, eliberand substante inflamatorii. Ex: fisetin, quercetina.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>NAD+</dt>
+          <dd>Nicotinamida adenin dinucleotida — molecula esentiala pentru producerea de energie celulara. Scade cu varsta. Se creste cu NR (nicotinamida ribozida) sau NMN.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Telomeri</dt>
+          <dd>Capetele protectoare ale cromozomilor. Se scurteaza cu fiecare diviziune celulara. Activatorii de telomeraza (TAM-818, TA-65) pretind sa le alungeasca din nou.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>HIIT</dt>
+          <dd>High-Intensity Interval Training — antrenament cu intervale de efort maxim alternate cu pauze scurte. Carol bike optimizeaza automat aceste intervale.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=v7iOhjOTK9Y" target="_blank">Dave Pascoe Is 61 and Has a Slower Speed of Aging Than Bryan Johnson — Siim Land, YouTube</a> &middot;
+    Website Dave Pascoe: <a href="https://davepascoe.net" target="_blank">davepascoe.net</a> &middot;
+    Infografic informativ bazat pe analiza video
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: biological clock / aging visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* DNA helix particles */
+  const particles = [];
+  const count = 60;
+  for(let i = 0; i < count; i++){
+    particles.push({
+      pos: i / count,
+      strand: i % 2 === 0 ? 1 : -1,
+      size: 1.5 + Math.random() * 2,
+      hue: Math.random() < 0.4 ? 'cyan' : Math.random() < 0.6 ? 'green' : 'blue',
+      speed: 0.3 + Math.random() * 0.4,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.012;
+
+    const cx = w * 0.5, cy = h * 0.5;
+    const helixW = w * 0.35, helixH = h * 0.35;
+
+    /* Draw DNA helix connections */
+    for(let i = 0; i < 30; i++){
+      const pos = i / 30;
+      const y = pos * h * 0.8 + h * 0.1;
+      const wave = Math.sin(pos * Math.PI * 4 + t * 1.5);
+      const x1 = cx + wave * helixW * 0.5;
+      const x2 = cx - wave * helixW * 0.5;
+      const alpha = 0.04 + Math.abs(wave) * 0.04;
+      ctx.beginPath();
+      ctx.moveTo(x1, y);
+      ctx.lineTo(x2, y);
+      ctx.strokeStyle = `rgba(6,182,212,${alpha})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+
+    /* Pulse rings representing biological age */
+    for(let p = 0; p < 4; p++){
+      const pulseR = ((t * 30 + p * 50) % 160);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 2000);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(6,182,212,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    /* Draw particles along helix */
+    particles.forEach(p => {
+      const yPos = ((p.pos + t * 0.03 * p.speed) % 1) * h * 0.8 + h * 0.1;
+      const wave = Math.sin(p.pos * Math.PI * 4 + t * 1.5 + p.phase);
+      const xPos = cx + wave * helixW * 0.5 * p.strand;
+      const glow = 0.4 + Math.sin(t * 2 + p.phase) * 0.2;
+
+      ctx.beginPath();
+      ctx.arc(xPos, yPos, p.size, 0, Math.PI * 2);
+
+      if(p.hue === 'cyan'){
+        ctx.fillStyle = `rgba(6,182,212,${glow})`;
+        ctx.shadowColor = 'rgba(6,182,212,0.4)';
+      } else if(p.hue === 'green'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+      } else {
+        ctx.fillStyle = `rgba(59,130,246,${glow})`;
+        ctx.shadowColor = 'rgba(59,130,246,0.3)';
+      }
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    /* Central age display */
+    ctx.font = 'bold 32px ' + getComputedStyle(document.body).getPropertyValue('--sans');
+    ctx.fillStyle = `rgba(6,182,212,${0.6 + Math.sin(t) * 0.15})`;
+    ctx.textAlign = 'center';
+    ctx.fillText('37.9', cx, cy - 4);
+    ctx.font = '10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.45)';
+    ctx.fillText('VARSTA BIOLOGICA', cx, cy + 14);
+
+    /* Legend */
+    const ly = h - 12;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = 'rgba(6,182,212,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('ADN', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(48, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('telomeri', 55, ly+3);
+    ctx.fillStyle = 'rgba(59,130,246,0.7)'; ctx.beginPath(); ctx.arc(108, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('metilare', 115, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Tab switching ── */
+function showTab(id){
+  document.querySelectorAll('.tabPane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+  const pane = document.getElementById('tab-' + id);
+  if(pane){
+    pane.classList.add('active');
+    /* Find the clicked button */
+    document.querySelectorAll('.tabBtn').forEach(b => {
+      if(b.textContent.toLowerCase().includes(id.substring(0,4)) ||
+         b.getAttribute('onclick').includes(id)){
+        b.classList.add('active');
+      }
+    });
+  }
+}
+
+/* ── Budget slider ── */
+function updateBudget(val){
+  const v = parseInt(val);
+  document.getElementById('budgetVal').textContent = '$' + v.toLocaleString();
+  const desc = document.getElementById('budgetDesc');
+  if(v < 200){
+    desc.textContent = 'La acest buget te concentrezi doar pe baze: dieta de calitate, creatina, vitamina D3, magneziu si omega-3. Rezultatele pot fi surprinzator de bune.';
+  } else if(v < 500){
+    desc.textContent = 'Poti adauga: NR/NMN pentru NAD+, colina, astaxantina, TMG, taurina. Un protocol solid cu suplimente bazate pe dovezi stiintifice.';
+  } else if(v < 1000){
+    desc.textContent = 'Buget bun pentru un protocol serios: NAD+, antioxidanti premium, colagen, probiotice avansate, plus terapie cu lumina rosie acasa.';
+  } else if(v < 2000){
+    desc.textContent = 'Poti replica 70-80% din protocolul lui Dave: cele mai importante suplimente, mancare organica, unele terapii. Fara produsele premium de telomeri.';
+  } else if(v < 3500){
+    desc.textContent = 'La acest buget poti replica aproximativ protocolul complet al lui Dave Pascoe, incluzand suplimentele premium si mancarea organica.';
+  } else {
+    desc.textContent = 'Buget generos care permite inclusiv terapii avansate (oxigen hiperbaric, peptide, sauna infrarosie) pe langa tot protocolul de suplimente.';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ce Poti Bea in Timpul Postului Intermitent — Ghid Complet</title>
+  <meta name="description" content="Infografic interactiv: ce bauturi poti consuma in timpul postului intermitent fara sa-l intrerupi. Apa, cafea, ceaiuri, otet de mere si altele — cu beneficii, riscuri si doze recomandate." />
+  <style>
+    :root{
+      --bg0:#060A12;
+      --bg1:#0A0F1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#38BDF8;
+      --glow2:#60A5FA;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(56,189,248,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(74,222,128,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(56,189,248,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(56,189,248,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(74,222,128,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.07), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(56,189,248,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(56,189,248,.22),rgba(56,189,248,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.bad{background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(56,189,248,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote.warn{border-color:var(--warn);background:rgba(251,191,36,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert.ok{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert.info{border-color:rgba(56,189,248,.25);background:rgba(56,189,248,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert.ok h4{color:var(--ok);}
+    .alert.info h4{color:var(--glow);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Interactive slider */
+    .sliderWrap{margin-top:14px;padding:12px;border:1px solid rgba(234,240,255,.10);border-radius:16px;background:rgba(6,8,16,.30);}
+    .sliderWrap label{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .sliderWrap label b{color:var(--ink);font-size:14px;}
+    .sliderWrap input[type=range]{width:100%;margin-top:8px;accent-color:var(--glow);}
+    .sliderOutput{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+    .sliderOutput .so{text-align:center;padding:8px;border:1px solid rgba(234,240,255,.08);border-radius:12px;background:rgba(6,8,16,.25);}
+    .sliderOutput .so .sv{font-size:20px;font-weight:760;letter-spacing:-.02em;}
+    .sliderOutput .so .sl{font-size:10px;color:var(--muted2);margin-top:2px;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(56,189,248,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(56,189,248,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(56,189,248,.25);background:rgba(56,189,248,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Beverage rating cards */
+    .bevGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+    .bev{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;padding:12px;
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      position:relative;overflow:hidden;
+    }
+    .bev h3{margin:0;font-size:13.5px;display:flex;align-items:center;gap:8px;}
+    .bev h3 .icon{font-size:18px;}
+    .bev .rating{
+      position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;
+      padding:3px 8px;border-radius:999px;border:1px solid rgba(234,240,255,.12);
+    }
+    .bev .rating.safe{color:var(--ok);border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.08);}
+    .bev .rating.caution{color:var(--warn);border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.08);}
+    .bev .rating.avoid{color:var(--bad);border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.08);}
+    .bev p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.42;}
+    .bev ul{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:11.5px;line-height:1.5;}
+    .bev ul li b{color:var(--ink);}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .bevGrid{grid-template-columns:1fr;}
+      .sliderOutput{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Ce Poti Bea in Timpul Postului Intermitent
+          <small>Ghid complet al bauturilor permise — fara sa intrerupi postul, cu beneficii maxime</small>
+        </h1>
+        <p class="sub">In timpul postului intermitent trebuie sa eviti orice aport caloric pentru o anumita perioada. Insa exista bauturi care nu doar ca <b>nu intrerup postul</b>, ci pot chiar <b>amplifica efectele benefice</b> — de la arderea grasimilor la detoxifierea celulara (autofagie). Acest ghid acopera fiecare bautura permisa, dozele corecte si capcanele de evitat.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>0 calorii</b> — regula de aur a postului</span>
+          <span class="chip"><i class="i2"></i> <b>Autofagie</b> — curatenie celulara</span>
+          <span class="chip"><i class="i3"></i> <b>Cetoze</b> — ardere de grasimi</span>
+          <span class="chip"><i class="i4"></i> <b>Evita</b> — indulcitorii si caloriile ascunse</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Cum functioneaza postul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum functioneaza postul intermitent</h2>
+          <p>Corpul trece prin faze metabolice distincte pe masura ce postul avanseaza — de la epuizarea glicogenului la cetoza profunda</p>
+        </div>
+        <span class="badge">MECANISM</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">0</div>
+            <span class="u">calorii permise in fereastra de post</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">12-16h</div>
+            <span class="u">durata tipica a postului zilnic</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">18-24h</div>
+            <span class="u">cetoza mai profunda si autofagie activa</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">48h+</div>
+            <span class="u">nivelul foamei se stabilizeaza</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Faza 1: Epuizarea glicogenului (0-12h)</h4>
+              <p>Corpul consuma rezervele de glicogen (zahar stocat) din ficat si muschi. Nivelul insulinei scade treptat, pregatind tranzitia spre arderea grasimilor.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Faza 2: Cetoza usoara (12-18h)</h4>
+              <p>Corpul trece la arderea grasimilor ca sursa principala de energie. Se produc <b>corpi cetonici</b> care reduc apetitul si cresc claritatea mentala. Cu cat postesti mai mult, cu atat cetoza se adanceste.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Faza 3: Autofagia (18-48h+)</h4>
+              <p>Celulele incep sa se <b>"autodigereze"</b> — elimina proteinele deteriorate si componentele disfunctionale. Acest proces de curatenie celulara este unul dintre cele mai valoroase beneficii ale postului.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Adaptarea corpului</h4>
+              <p>Dupa 48h, nivelul foamei se <b>stabilizeaza</b>. Diferenta de foame intre 48h si 7 zile de post este minima — corpul se adapteaza rapid la absenta alimentelor.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote green">
+          &laquo;Cu cat postesti mai mult, cu atat intri mai adanc in cetoza si cu atat devine mai usor. Corpul se adapteaza la absenta alimentelor surprinzator de repede.&raquo;
+          <cite>— Principiul adaptarii metabolice</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Bauturi permise - Apa & Electrolit -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Apa, minerale si electroliti</h2>
+          <p>Baza oricarui post — hidratarea corecta si echilibrul electrolitic sunt esentiale</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">FUNDAMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="bevGrid">
+          <div class="bev">
+            <h3><span class="icon">&#x1F4A7;</span> Apa plata si minerala</h3>
+            <span class="rating safe">SIGUR</span>
+            <p>Bautura nr. 1 in post. Apa minerala ofera electrolit necesari — <b>sodiu, potasiu, magneziu</b> — care se pierd prin urinare frecventa in timpul postului.</p>
+            <ul>
+              <li><b>Apa plata</b> — fara limite, bea cat ai nevoie</li>
+              <li><b>Apa carbogazoasa</b> — perfecta pentru a taia foamea</li>
+              <li><b>Apa minerala</b> — sursa naturala de electroliti</li>
+            </ul>
+          </div>
+          <div class="bev">
+            <h3><span class="icon">&#x1F9C2;</span> Sare si electroliti</h3>
+            <span class="rating safe">SIGUR</span>
+            <p>In post pierzi multa apa si electroliti. Adauga un <b>varf de sare</b> in apa pentru a preveni oboseala, crampele si durerile de cap.</p>
+            <ul>
+              <li><b>Sare de mare</b> — sursa naturala de minerale</li>
+              <li><b>Sare de Himalaya</b> — contine iod pentru tiroida</li>
+              <li><b>Sarea ionizata</b> — previne hipotiroidismul</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert ok" style="margin-top:12px;">
+          <h4>De ce electrolitii sunt cruciali</h4>
+          <p>Postul intermitent creste eliminarea apei. Fara electroliti adecvati poti experimenta <b>oboseala, ameteli, crampe musculare</b> si dureri de cap. Sarea si apa minerala previn aceste simptome.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Bicarbonat si sare Glauber -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Bicarbonat de sodiu si sare Glauber</h2>
+          <p>Doua ingrediente surprinzatoare care pot amplifica beneficiile postului — de la echilibrul pH la curatarea tractului digestiv</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">DETOX</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Bicarbonat de sodiu</h3>
+            <p>O <b>lingurita</b> de bicarbonat in apa ofera beneficii multiple in timpul postului:</p>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+              <li>Ajuta la <b>problemele digestive</b></li>
+              <li>Elimina <b>constipatia si balonarea</b></li>
+              <li>Ucide <b>bacteriile si parazitii</b> nocivi</li>
+              <li>Reduce <b>oboseala si durerile musculare</b></li>
+              <li>Neutralizeaza <b>aciditatea</b> din intestin</li>
+              <li><b>Echilibreaza pH-ul</b> corpului</li>
+            </ul>
+            <p style="margin-top:8px;font-size:11.5px;color:var(--warn);">Bonus: dupa ce il bei, foamea dispare aproape complet — nu mai vrei sa mananci nimic altceva.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Sare Glauber (sulfat de sodiu)</h3>
+            <p>Folosita in medicina ca laxativ usor, sarea Glauber curata tractul digestiv in timpul postului.</p>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+              <li>Adauga <b>5-20 grame</b> in apa</li>
+              <li>Elimina <b>constipatia</b></li>
+              <li>Reduce <b>balonarea</b></li>
+              <li>Curata <b>tractul digestiv</b></li>
+            </ul>
+            <div class="alert" style="margin-top:8px;">
+              <h4>Atentie la doza!</h4>
+              <p>Mai mult de 20g poate cauza <b>diaree si deshidratare</b>. Respecta limitele recomandate.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Bicarbonatul de sodiu este 100% bicarbonat de sodiu — o sursa excelenta de sodiu in timpul postului, cand electrolitii se pierd rapid. Gustul e neplacut, dar efectele merita.&raquo;
+          <cite>— Despre electroliti si post</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Ceaiuri si Cafea -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ceaiuri din plante si cafea neagra</h2>
+          <p>Cele mai populare bauturi in post — suprima foamea, amplifica arderea grasimilor si ofera beneficii suplimentare pentru sanatate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">BAUTURI CALDE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Ceai verde</h3>
+            <p>Considerat <b>cea mai sanatoasa bautura din lume</b> dupa apa. Bogat in polifenoli, promoveaza sanatatea inimii si a creierului. Cofeina stimuleaza arderea grasimilor.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Ceai de musetel</h3>
+            <p>Calmeaza <b>stomacul deranjat</b> si ajuta la somn. Ideal pentru postul de seara, cand vrei sa te relaxezi fara a intrerupe procesul de autofagie.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Ceai de menta</h3>
+            <p>Imbunatateste <b>digestia</b>, reduce <b>inflamatia</b> si durerile musculare. Un aliat excelent pentru zilele de post mai lungi.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Ceai negru si iasomie</h3>
+            <p><b>Ceaiul negru</b> este imbogatit cu compusi benefici pentru inima, digestie si reducerea stresului. <b>Ceaiul de iasomie</b> intareste sistemul imunitar, previne diabetul si scade colesterolul. Fiecare ceasca are doar <b>1-5 calorii</b> — insuficient pentru a intrerupe postul.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Ceaiuri de evitat</h3>
+            <p>Nu prepara ceaiuri cu <b>fructe, fructe de padure</b> sau alte ingrediente cu carbohidrati. Zaharul din ele va opri cel mai probabil <b>efectele benefice ale autofagiei</b>.</p>
+          </div>
+        </div>
+
+        <!-- Coffee section -->
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(234,240,255,.07);">
+          <div class="grid2">
+            <div class="mini" style="border-color:rgba(56,189,248,.2);">
+              <h3 style="color:var(--glow)">Cafea neagra — cea mai eficienta</h3>
+              <p>Cea mai simpla si eficienta metoda de a <b>suprima foamea</b> in post. Cofeina ofera energie, creste focusul si amplifica arderea grasimilor.</p>
+              <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+                <li>Regleaza <b>glicemia</b></li>
+                <li>Continut ridicat de <b>polifenoli</b></li>
+                <li>Reduce riscul de <b>Alzheimer</b></li>
+                <li>Imbunatateste functia <b>mitocondriilor</b></li>
+                <li>Max <b>2-4 cesti pe zi</b></li>
+              </ul>
+            </div>
+            <div class="mini" style="border-color:rgba(251,191,36,.2);">
+              <h3 style="color:var(--warn)">Reguli pentru cafea in post</h3>
+              <p>Doar <b>cafea neagra</b>, fara adaosuri. Cafeaua instant de obicei contine substante adaugate care intrerup postul.</p>
+              <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+                <li><b>Scortisoara / stevia</b> — cantitati foarte mici (mg) pot fi OK</li>
+                <li><b>Peste 4 cesti</b> — risc de intoleranta la cofeina</li>
+                <li><b>Cortizol ridicat</b> — stresul poate intrerupe cetoza</li>
+                <li><b>Cafea decofeinizata</b> — practic nelimitata</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cafea Bulletproof & Grasimi -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cafeaua bulletproof — da sau nu?</h2>
+          <p>Unt, ulei de cocos sau MCT in cafea — ramane intrebarea: intrerupe sau nu postul?</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">CONTROVERSA</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- SVG Decision Diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Top question -->
+            <rect x="220" y="15" width="260" height="50" rx="14" fill="rgba(56,189,248,.10)" stroke="rgba(56,189,248,.30)" stroke-width="1.5"/>
+            <text x="350" y="36" fill="#38BDF8" font-size="12" font-weight="700" text-anchor="middle">De ce postesti?</text>
+            <text x="350" y="52" fill="#A0ACC8" font-size="10" text-anchor="middle">Aceasta intrebare determina totul</text>
+
+            <!-- Left branch: Weight loss -->
+            <line x1="280" y1="65" x2="160" y2="120" stroke="rgba(74,222,128,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <rect x="60" y="100" width="200" height="55" rx="12" fill="rgba(74,222,128,.08)" stroke="rgba(74,222,128,.25)" stroke-width="1.5"/>
+            <text x="160" y="122" fill="#4ADE80" font-size="11.5" font-weight="700" text-anchor="middle">Slabire / Cetoza</text>
+            <text x="160" y="138" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Unt / MCT = ACCEPTABIL</text>
+            <text x="160" y="150" fill="#6E7A9A" font-size="8.5" text-anchor="middle">grasimea pura nu ridica glicemia</text>
+
+            <!-- Right branch: Autophagy -->
+            <line x1="420" y1="65" x2="540" y2="120" stroke="rgba(248,113,113,.3)" stroke-width="2" stroke-dasharray="6,4"/>
+            <rect x="440" y="100" width="200" height="55" rx="12" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1.5"/>
+            <text x="540" y="122" fill="#F87171" font-size="11.5" font-weight="700" text-anchor="middle">Detoxifiere / Autofagie</text>
+            <text x="540" y="138" fill="#A0ACC8" font-size="9.5" text-anchor="middle">Unt / MCT = DE EVITAT</text>
+            <text x="540" y="150" fill="#6E7A9A" font-size="8.5" text-anchor="middle">chiar si 50 kcal blocheaza autofagia</text>
+
+            <!-- Left sub-box -->
+            <line x1="160" y1="155" x2="160" y2="195" stroke="rgba(74,222,128,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <rect x="55" y="190" width="210" height="55" rx="12" fill="rgba(6,8,16,.35)" stroke="rgba(234,240,255,.10)" stroke-width="1"/>
+            <text x="160" y="210" fill="#EAF0FF" font-size="10" font-weight="600" text-anchor="middle">Ramai in cetoza</text>
+            <text x="160" y="224" fill="#A0ACC8" font-size="9" text-anchor="middle">Creierul crede ca nu a mancat</text>
+            <text x="160" y="237" fill="#FBBF24" font-size="8.5" text-anchor="middle">Dar atentie la calorii totale!</text>
+
+            <!-- Right sub-box -->
+            <line x1="540" y1="155" x2="540" y2="195" stroke="rgba(248,113,113,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <rect x="435" y="190" width="210" height="55" rx="12" fill="rgba(6,8,16,.35)" stroke="rgba(234,240,255,.10)" stroke-width="1"/>
+            <text x="540" y="210" fill="#EAF0FF" font-size="10" font-weight="600" text-anchor="middle">Post strict cu apa</text>
+            <text x="540" y="224" fill="#A0ACC8" font-size="9" text-anchor="middle">Doar apa, minerale si ceaiuri</text>
+            <text x="540" y="237" fill="#4ADE80" font-size="8.5" text-anchor="middle">Autofagia functioneaza la maxim</text>
+
+            <!-- Bottom warning -->
+            <line x1="160" y1="245" x2="350" y2="280" stroke="rgba(251,191,36,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <line x1="540" y1="245" x2="350" y2="280" stroke="rgba(251,191,36,.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <rect x="220" y="270" width="260" height="40" rx="12" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.25)" stroke-width="1.5"/>
+            <text x="350" y="290" fill="#FBBF24" font-size="10.5" font-weight="600" text-anchor="middle">Un bat intreg de unt = ~1.000 kcal</text>
+            <text x="350" y="303" fill="#6E7A9A" font-size="9" text-anchor="middle">Nu exagera — deficitul caloric ramane obligatoriu</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Ce face grasimea pura</h3>
+            <p>Untul, uleiul de cocos si uleiul MCT <b>nu ridica glicemia</b>. Te mentin intr-o stare <b>semi-postita</b>. Grasimea nu traverseaza bariera hemato-encefalica, asa ca creierul tau crede ca nu a mancat nimic.</p>
+          </div>
+          <div class="mini">
+            <h3>Ce blocheaza grasimea</h3>
+            <p>Chiar si <b>50 de calorii</b> opresc celulele din a se auto-digera. Ramai in cetoza, dar <b>pierzi beneficiile de detoxifiere</b> ale autofagiei. Daca postesti pentru curatenie celulara, evita orice calorie.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Otet de mere si indulcitori -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Otet de mere si indulcitori</h2>
+          <p>Doua categorii controversate — una recomandata, cealalta cu precautii serioase</p>
+        </div>
+        <span class="badge">NUANTE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Otet de mere — excelent in post</h3>
+            <p>Practic <b>fara calorii</b>, dar cu minerale valoroase: <b>potasiu, magneziu si fier</b>. Perfect pentru mentinerea electrolitilor.</p>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+              <li><b>Antibacterian</b> si antiinflamator</li>
+              <li>Echilibreaza <b>pH-ul</b> corpului</li>
+              <li>Ucide <b>bacteriile nocive</b> din intestin</li>
+              <li><b>Suprima foamea</b> eficient</li>
+              <li>Max <b>1-2 linguri</b> in post</li>
+              <li>Adauga in <b>apa carbogazoasa</b> pentru o bautura gustoasa</li>
+            </ul>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Indulcitori — depinde!</h3>
+            <p>Multi indulcitori contin <b>carbohidrati ascunsi</b> (maltodextrina, dextroza, sucraloza). Acestia trebuie evitati complet.</p>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.5;">
+              <li><b>Stevia</b> — nu ridica insulina sau glicemia</li>
+              <li>Dar e de <b>300x</b> mai dulce ca zaharul</li>
+              <li>Poate cauza <b>raspuns placebo</b> al insulinei</li>
+              <li>Mugurii gustativi stimulati de dulceata pot <b>trimite corpul in stare de "hranire"</b></li>
+              <li>Cel mai sigur: <b>evita toti indulcitorii</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert info" style="margin-top:12px;">
+          <h4>Cum sa rupi postul corect</h4>
+          <p>Otetul de mere este si o modalitate excelenta de a <b>rupe postul</b>. Adauga <b>suc de lamaie</b> stors in otet de mere diluat in apa pentru a stimula producerea de enzime digestive sanatoase. Nu adauga lamaie <i>in timpul postului</i> — efectul placebo poate intrerupe autofagia.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Calculator interactiv -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Calculator: fereastra ta de post</h2>
+          <p>Ajusteaza durata postului si vezi ce procese metabolice se activeaza</p>
+        </div>
+        <span class="badge" style="border-color:rgba(56,189,248,.3);color:var(--glow);">INTERACTIV</span>
+      </div>
+      <div class="cardBody">
+        <div class="sliderWrap">
+          <label>Durata post: <b id="fastVal">16</b> ore</label>
+          <input type="range" id="fastSlider" min="8" max="72" value="16" step="1" />
+          <div class="sliderOutput">
+            <div class="so">
+              <div class="sv" id="soKetosis" style="color:var(--ok)">Activa</div>
+              <div class="sl">Cetoza</div>
+            </div>
+            <div class="so">
+              <div class="sv" id="soAutophagy" style="color:var(--muted2)">Incipienta</div>
+              <div class="sl">Autofagie</div>
+            </div>
+            <div class="so">
+              <div class="sv" id="soHunger" style="color:var(--warn)">Moderata</div>
+              <div class="sl">Nivel foame</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sliderWrap" style="margin-top:12px;">
+          <label>Cesti de cafea pe zi: <b id="coffeeVal">2</b></label>
+          <input type="range" id="coffeeSlider" min="0" max="8" value="2" step="1" />
+          <div class="sliderOutput">
+            <div class="so">
+              <div class="sv" id="coCaffeine" style="color:var(--glow)">~200mg</div>
+              <div class="sl">Cofeina totala</div>
+            </div>
+            <div class="so">
+              <div class="sv" id="coFatBurn" style="color:var(--ok)">+25%</div>
+              <div class="sl">Boost ardere grasimi</div>
+            </div>
+            <div class="so">
+              <div class="sv" id="coCortisol" style="color:var(--ok)">Normal</div>
+              <div class="sl">Nivel cortizol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Concluzii si reguli -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si reguli de aur</h2>
+          <p>Ce trebuie sa retii despre bauturile in timpul postului intermitent</p>
+        </div>
+        <span class="badge">REZUMAT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Permise fara restrictii</h3>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.7;">
+              <li><b>Apa plata, carbogazoasa, minerala</b></li>
+              <li><b>Cafea neagra</b> (max 2-4 cesti)</li>
+              <li><b>Ceaiuri din plante</b> (fara fructe)</li>
+              <li><b>Ceai verde si negru</b></li>
+              <li><b>Otet de mere</b> (1-2 linguri)</li>
+              <li><b>Bicarbonat de sodiu</b> (1 lingurita)</li>
+              <li><b>Sare de mare / Himalaya</b></li>
+            </ul>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">De evitat complet</h3>
+            <ul style="margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12px;line-height:1.7;">
+              <li><b>Sucuri</b> (de orice fel)</li>
+              <li><b>Bauturi energizante</b></li>
+              <li><b>Cafea instant cu adaosuri</b></li>
+              <li><b>Ceai cu fructe sau fructe de padure</b></li>
+              <li><b>Indulcitori cu carbohidrati</b> (maltodextrina, dextroza)</li>
+              <li><b>Lapte, smantana, zahar in cafea</b></li>
+              <li><b>Smoothie-uri</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote warn" style="margin-top:14px;">
+          &laquo;Nu ar trebui sa cauti o solutie rapida sau un mecanism de evadare din post. Postul nu e o problema mare. E foarte benefic pentru corpul si mintea ta sa treci prin perioade in care consumi ceva atat de simplu precum apa.&raquo;
+          <cite>— Despre mentalitatea corecta in post</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Beverage Scorecard -->
+    <div class="timeline">
+      <div class="tHead"><h2>Fisa bauturilor in post</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Apa plata / minerala</b> — nelimitata, baza postului</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Apa carbogazoasa</b> — taie foamea eficient</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Cafea neagra</b> — max 2-4 cesti/zi</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Ceai verde / negru</b> — 1-5 kcal/ceasca</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Ceai de musetel / menta</b> — medicinal</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Otet de mere</b> — 1-2 linguri in apa</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">&#10004; OK</span><span class="tDesc"><b>Bicarbonat de sodiu</b> — 1 lingurita</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">&#9888; Atentie</span><span class="tDesc"><b>Cafea bulletproof</b> — OK pt slabire, nu pt autofagie</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">&#9888; Atentie</span><span class="tDesc"><b>Stevia</b> — poate cauza raspuns placebo</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">&#10008; NU</span><span class="tDesc"><b>Sucuri si smoothie-uri</b> — intrerup postul</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">&#10008; NU</span><span class="tDesc"><b>Cafea instant cu adaosuri</b> — substante ascunse</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--bad)">&#10008; NU</span><span class="tDesc"><b>Indulcitori cu carbohidrati</b> — maltodextrina etc.</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Post pentru slabire vs. detoxifiere</h4>
+          <p>Scopul postului determina ce poti bea. Daca vrei sa slabesti, cafeaua bulletproof e OK. Daca vrei <b>autofagie si detoxifiere</b>, trebuie sa consumi <b>zero calorii</b> — doar apa, minerale si ceaiuri.</p>
+        </div>
+        <div class="comNote">
+          <h4>Efectul placebo al dulcelui</h4>
+          <p>Chiar daca stevia nu are calorii, mugurii gustativi trimit un <b>semnal fals</b> creierului. Corpul se pregateste sa primeasca zahar si poate elibera insulina — mintea e atat de puternica incat poate <b>intrerupe postul fara calorii reale</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Hipotiroidismul si postul</h4>
+          <p>Postul intermitent frecvent poate afecta functia tiroidei. Sarea ionizata (cu iod) sau sarea de Himalaya ajuta la <b>prevenirea hipotiroidismului</b>, o problema destul de comuna la cei care postesc regulat.</p>
+        </div>
+        <div class="comNote">
+          <h4>Cortizolul — dusmanul ascuns</h4>
+          <p>Prea multa cofeina (5+ cesti) ridica nivelul de cortizol (hormonul stresului). Stresul nu doar ca te scoate din cetoza, dar poate face corpul <b>mai catabolic</b> — adica incepe sa consume masa musculara.</p>
+        </div>
+        <div class="comNote">
+          <h4>Nu cauta scapari</h4>
+          <p>Postul nu e atat de greu pe cat pare. Corpul se adapteaza rapid. In loc sa cauti bauturi-minune care sa faca postul mai usor, accepta simplitatea: <b>apa si rabdare</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Autofagie</dt>
+          <dd>Proces celular in care celulele isi "digera" componentele deteriorate sau inutile. Se activeaza in post prelungit (18h+) si e considerat unul dintre cele mai puternice mecanisme anti-imbatranire.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cetoza</dt>
+          <dd>Stare metabolica in care corpul arde grasimi in loc de glucoza pentru energie. Produce corpi cetonici care reduc apetitul si cresc claritatea mentala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Electroliti</dt>
+          <dd>Minerale esentiale (sodiu, potasiu, magneziu) care regleaza hidratarea, functia musculara si nervoasa. Se pierd rapid in post prin urinare crescuta.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Bicarbonat de sodiu</dt>
+          <dd>NaHCO3 — compus alcalin care neutralizeaza aciditatea din stomac, ofera sodiu si poate reduce foamea in timpul postului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sare Glauber</dt>
+          <dd>Sulfat de sodiu decahidrat (Na2SO4 . 10H2O) — laxativ usor folosit pentru curatarea tractului digestiv. Doza: 5-20g in apa.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>MCT (trigliceride cu lant mediu)</dt>
+          <dd>Grasimi care se absorb rapid si se transforma in corpi cetonici. Folosite in cafeaua bulletproof. Nu ridica glicemia dar adauga calorii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Polifenoli</dt>
+          <dd>Compusi antioxidanti din ceai verde, cafea si alte plante. Protejeaza inima, creierul si reduc inflamatia — amplifica beneficiile postului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cortizol</dt>
+          <dd>Hormonul stresului. Niveluri ridicate (de la prea multa cofeina sau stres) pot bloca cetoza si pot face corpul sa consume masa musculara in loc de grasime.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=SmOPae4FOQY" target="_blank">What Can You Drink While Fasting Without Breaking the Fast</a> &middot;
+    Infografic interactiv in limba romana bazat pe videoclip
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: fasting metabolism visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing molecules (water, ketones, fat cells)
+  const particles = [];
+  const pCount = 55;
+  for(let i = 0; i < pCount; i++){
+    const type = i < 15 ? 'water' : i < 30 ? 'ketone' : i < 45 ? 'fat' : 'mineral';
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: type === 'fat' ? 3 + Math.random() * 4 : 1.5 + Math.random() * 2.5,
+      vx: (Math.random() - 0.5) * 0.0008,
+      vy: (Math.random() - 0.5) * 0.0008,
+      phase: Math.random() * Math.PI * 2,
+      type: type
+    });
+  }
+
+  // Central cell (autophagy visualization)
+  const cellX = 0.5, cellY = 0.5, cellR = 0.18;
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Cell membrane - pulsing
+    const pulse = cellR * Math.min(w,h) + Math.sin(t * 1.5) * 4;
+    ctx.beginPath();
+    ctx.arc(cellX * w, cellY * h, pulse, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(56,189,248,${0.12 + Math.sin(t) * 0.05})`;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Inner autophagy rings
+    for(let r = 0; r < 3; r++){
+      const ringR = ((t * 25 + r * 30) % 90);
+      const ringA = Math.max(0, 0.15 - ringR / 700);
+      ctx.beginPath();
+      ctx.arc(cellX * w, cellY * h, ringR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(74,222,128,${ringA})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw connections between nearby particles
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i+1; j < particles.length; j++){
+        const dx = (particles[i].x - particles[j].x) * w;
+        const dy = (particles[i].y - particles[j].y) * h;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 60){
+          const alpha = (1 - dist/60) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x * w, particles[i].y * h);
+          ctx.lineTo(particles[j].x * w, particles[j].y * h);
+          ctx.strokeStyle = `rgba(56,189,248,${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Update and draw particles
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t + p.phase) * 0.0003;
+      p.y += p.vy + Math.cos(t * 1.2 + p.phase) * 0.0003;
+
+      // Wrap around
+      if(p.x < -0.05) p.x = 1.05;
+      if(p.x > 1.05) p.x = -0.05;
+      if(p.y < -0.05) p.y = 1.05;
+      if(p.y > 1.05) p.y = -0.05;
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const glow = 0.35 + Math.sin(t * 2 + p.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'water'){
+        ctx.fillStyle = `rgba(56,189,248,${glow})`;
+        ctx.shadowColor = 'rgba(56,189,248,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'ketone'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'fat'){
+        ctx.fillStyle = `rgba(251,191,36,${glow * 0.7})`;
+        ctx.shadowColor = 'rgba(251,191,36,0.2)';
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.fillStyle = `rgba(167,139,250,${glow})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Center label
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.45)';
+    ctx.textAlign = 'center';
+    ctx.fillText('CELULA', cellX * w, cellY * h - 6);
+    ctx.fillText('AUTOFAGIE', cellX * w, cellY * h + 6);
+    ctx.textAlign = 'start';
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(56,189,248,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('apa', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(42, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('cetone', 49, ly+3);
+    ctx.fillStyle = 'rgba(251,191,36,0.7)'; ctx.beginPath(); ctx.arc(92, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('grasimi', 99, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(150, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('minerale', 157, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Interactive sliders ── */
+(function(){
+  // Fasting duration slider
+  const fSlider = document.getElementById('fastSlider');
+  const fVal = document.getElementById('fastVal');
+  const soKetosis = document.getElementById('soKetosis');
+  const soAutophagy = document.getElementById('soAutophagy');
+  const soHunger = document.getElementById('soHunger');
+
+  function updateFast(){
+    const h = parseInt(fSlider.value);
+    fVal.textContent = h;
+
+    if(h < 12){
+      soKetosis.textContent = 'Inactiva';
+      soKetosis.style.color = 'var(--muted2)';
+      soAutophagy.textContent = 'Inactiva';
+      soAutophagy.style.color = 'var(--muted2)';
+      soHunger.textContent = 'Ridicata';
+      soHunger.style.color = 'var(--bad)';
+    } else if(h < 16){
+      soKetosis.textContent = 'Incipienta';
+      soKetosis.style.color = 'var(--warn)';
+      soAutophagy.textContent = 'Inactiva';
+      soAutophagy.style.color = 'var(--muted2)';
+      soHunger.textContent = 'Moderata';
+      soHunger.style.color = 'var(--warn)';
+    } else if(h < 20){
+      soKetosis.textContent = 'Activa';
+      soKetosis.style.color = 'var(--ok)';
+      soAutophagy.textContent = 'Incipienta';
+      soAutophagy.style.color = 'var(--warn)';
+      soHunger.textContent = 'Moderata';
+      soHunger.style.color = 'var(--warn)';
+    } else if(h < 36){
+      soKetosis.textContent = 'Profunda';
+      soKetosis.style.color = 'var(--ok)';
+      soAutophagy.textContent = 'Activa';
+      soAutophagy.style.color = 'var(--ok)';
+      soHunger.textContent = 'Scazuta';
+      soHunger.style.color = 'var(--ok)';
+    } else {
+      soKetosis.textContent = 'Maxima';
+      soKetosis.style.color = 'var(--glow)';
+      soAutophagy.textContent = 'Intensa';
+      soAutophagy.style.color = 'var(--glow)';
+      soHunger.textContent = 'Minima';
+      soHunger.style.color = 'var(--ok)';
+    }
+  }
+  fSlider.addEventListener('input', updateFast);
+  updateFast();
+
+  // Coffee slider
+  const cSlider = document.getElementById('coffeeSlider');
+  const cVal = document.getElementById('coffeeVal');
+  const coCaffeine = document.getElementById('coCaffeine');
+  const coFatBurn = document.getElementById('coFatBurn');
+  const coCortisol = document.getElementById('coCortisol');
+
+  function updateCoffee(){
+    const cups = parseInt(cSlider.value);
+    cVal.textContent = cups;
+
+    const mg = cups * 95;
+    coCaffeine.textContent = cups === 0 ? '0mg' : '~' + mg + 'mg';
+
+    if(cups === 0){
+      coFatBurn.textContent = 'Bazal';
+      coFatBurn.style.color = 'var(--muted2)';
+      coCortisol.textContent = 'Bazal';
+      coCortisol.style.color = 'var(--ok)';
+    } else if(cups <= 2){
+      coFatBurn.textContent = '+' + (cups * 12) + '%';
+      coFatBurn.style.color = 'var(--ok)';
+      coCortisol.textContent = 'Normal';
+      coCortisol.style.color = 'var(--ok)';
+    } else if(cups <= 4){
+      coFatBurn.textContent = '+' + Math.min(cups * 10, 35) + '%';
+      coFatBurn.style.color = 'var(--ok)';
+      coCortisol.textContent = 'Usor ridicat';
+      coCortisol.style.color = 'var(--warn)';
+    } else {
+      coFatBurn.textContent = '+' + Math.min(cups * 7, 40) + '%';
+      coFatBurn.style.color = 'var(--warn)';
+      coCortisol.textContent = 'RIDICAT';
+      coCortisol.style.color = 'var(--bad)';
+    }
+  }
+  cSlider.addEventListener('input', updateCoffee);
+  updateCoffee();
+})();
+</script>
+</body>
+</html>

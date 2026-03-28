@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Am Luat TMG timp de 90 de Zile — Rezultate Surprinzatoare</title>
+  <meta name="description" content="Infografic interactiv: experiment personal cu trimetilglicina (betaina) timp de 90 de zile. Efecte asupra homocisteinei, masei musculare, metilarii si performantei fizice." />
+  <style>
+    :root{
+      --bg0:#0A0810;
+      --bg1:#0E0C1A;
+      --panel:#12102Ecc;
+      --card:#100E28;
+      --card2:#0D0B22;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1E1840;
+      --glow:#C084FC;
+      --glow2:#A855F7;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --violet:#C084FC;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(192,132,252,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(74,222,128,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(168,85,247,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(192,132,252,.20);
+      background: linear-gradient(180deg, rgba(16,14,40,.75), rgba(10,8,16,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(192,132,252,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(74,222,128,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(168,85,247,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--teal)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,8,16,.30),rgba(10,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(16,14,40,.75),rgba(13,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,8,16,.28),rgba(10,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(192,132,252,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(192,132,252,.22),rgba(192,132,252,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(192,132,252,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(192,132,252,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(192,132,252,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.ok{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert.ok h4{color:var(--ok);}
+    .alert.warn-a{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn-a h4{color:var(--warn);}
+
+    /* SVG Diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(192,132,252,.18);
+      background:linear-gradient(180deg,rgba(16,14,40,.80),rgba(10,8,16,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(192,132,252,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(192,132,252,.25);background:rgba(192,132,252,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(16,14,40,.75),rgba(13,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(16,14,40,.75),rgba(13,11,34,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Interactive range slider */
+    .sliderWrap{margin-top:14px;padding:14px;border:1px solid rgba(234,240,255,.10);border-radius:16px;background:rgba(10,8,16,.30);}
+    .sliderWrap label{font-size:12.5px;color:var(--muted);display:block;margin-bottom:8px;}
+    .sliderWrap input[type=range]{
+      width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:4px;
+      background:linear-gradient(90deg,var(--ok),var(--warn),var(--bad));outline:none;cursor:pointer;
+    }
+    .sliderWrap input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+      background:var(--glow);border:2px solid var(--ink);box-shadow:0 0 10px rgba(192,132,252,.4);cursor:grab;
+    }
+    .sliderRow{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+    .sliderVal{font-family:var(--mono);font-size:20px;font-weight:760;color:var(--glow);}
+    .sliderLabel{font-size:11px;color:var(--muted2);}
+
+    /* Meter bar */
+    .meterWrap{margin-top:10px;}
+    .meterLabel{display:flex;justify-content:space-between;font-size:11px;color:var(--muted2);margin-bottom:4px;}
+    .meterTrack{height:8px;border-radius:4px;background:rgba(234,240,255,.08);overflow:hidden;position:relative;}
+    .meterFill{height:100%;border-radius:4px;transition:width .5s ease;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Am Luat TMG timp de 90 de Zile — Rezultate Surprinzatoare
+          <small>Experiment personal cu trimetilglicina (betaina): efecte asupra homocisteinei, masei musculare, metilarii si performantei fizice</small>
+        </h1>
+        <p class="sub">Trimetilglicina (TMG), cunoscuta si ca betaina, este un aminoacid gasit in plante care actioneaza ca <b>donator de grupari metil</b>. Acest infografic prezinta rezultatele unui experiment personal de 90 de zile cu TMG: scaderea homocisteinei, efectele asupra compozitiei corporale si ce arata studiile stiintifice.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Homocisteina</b> scazuta de la 12.1 la 9.6</span>
+          <span class="chip"><i class="i2"></i> <b>Masa musculara</b> +0.2 kg masa slaba</span>
+          <span class="chip"><i class="i3"></i> <b>Doza optima</b> 2-4 g/zi</span>
+          <span class="chip"><i class="i4"></i> <b>Metilare</b> sustinuta prin donare de CH3</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este TMG -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este trimetilglicina (TMG)?</h2>
+          <p>Un aminoacid natural gasit in sfecla de zahar, spanac si cereale integrale — cu rol esential in metilare</p>
+        </div>
+        <span class="badge">BAZA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">3</div>
+            <span class="u">grupari metil (-CH3) atasate glicinei</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">100-300</div>
+            <span class="u">mg/zi — aport mediu din dieta</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">2-4 g</div>
+            <span class="u">doza efectiva zilnica din studii</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">Betaina</div>
+            <span class="u">alt nume — descoperita in sfecla</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>De ce "trimetilglicina"?</h3>
+            <p>Numele vine de la <b>structura chimica</b>: este o molecula de glicina cu trei grupari metil atasate. "Betaina" vine de la <b>Beta vulgaris</b> (sfecla de zahar), planta in care a fost descoperita initial.</p>
+          </div>
+          <div class="mini">
+            <h3>Rol in organism</h3>
+            <p>TMG este un <b>donator de grupari metil</b> — sustine procesul de metilare, esential pentru ADN, neurotransmitatori si detoxifierea ficatului. Ajuta la convertirea homocisteinei in <b>metionina</b>.</p>
+          </div>
+        </div>
+
+        <!-- SVG: Methylation Pathway -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Arrows -->
+            <line x1="155" y1="100" x2="245" y2="100" stroke="rgba(192,132,252,.4)" stroke-width="2" marker-end="url(#arrowV)"/>
+            <line x1="395" y1="100" x2="485" y2="100" stroke="rgba(74,222,128,.4)" stroke-width="2" marker-end="url(#arrowG)"/>
+            <path d="M350,75 Q350,30 200,30 Q155,30 155,75" stroke="rgba(251,191,36,.3)" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+            <text x="255" y="24" fill="#FBBF24" font-size="9" text-anchor="middle">ciclul metioninei</text>
+            <defs>
+              <marker id="arrowV" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="rgba(192,132,252,.5)"/></marker>
+              <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="rgba(74,222,128,.5)"/></marker>
+            </defs>
+
+            <!-- TMG Box -->
+            <rect x="30" y="70" width="120" height="60" rx="14" fill="rgba(192,132,252,.10)" stroke="rgba(192,132,252,.35)" stroke-width="1.5"/>
+            <text x="90" y="95" fill="#C084FC" font-size="13" font-weight="700" text-anchor="middle">TMG</text>
+            <text x="90" y="115" fill="#A0ACC8" font-size="9" text-anchor="middle">donator de -CH3</text>
+
+            <!-- Homocisteina Box -->
+            <rect x="250" y="70" width="140" height="60" rx="14" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.30)" stroke-width="1.5"/>
+            <text x="320" y="95" fill="#F87171" font-size="12" font-weight="700" text-anchor="middle">Homocisteina</text>
+            <text x="320" y="115" fill="#A0ACC8" font-size="9" text-anchor="middle">factor de risc cardiovascular</text>
+
+            <!-- Metionina Box -->
+            <rect x="490" y="70" width="140" height="60" rx="14" fill="rgba(74,222,128,.10)" stroke="rgba(74,222,128,.30)" stroke-width="1.5"/>
+            <text x="560" y="95" fill="#4ADE80" font-size="12" font-weight="700" text-anchor="middle">Metionina</text>
+            <text x="560" y="115" fill="#A0ACC8" font-size="9" text-anchor="middle">aminoacid esential</text>
+
+            <!-- Label -->
+            <text x="200" y="92" fill="#C084FC" font-size="8.5" text-anchor="middle">dona -CH3</text>
+            <text x="440" y="92" fill="#4ADE80" font-size="8.5" text-anchor="middle">convertire</text>
+
+            <!-- DMG result -->
+            <text x="200" y="165" fill="#6E7A9A" font-size="9" text-anchor="middle">TMG pierde o grupa metil</text>
+            <text x="200" y="180" fill="#A0ACC8" font-size="10" font-weight="600" text-anchor="middle">DMG (dimetilglicina)</text>
+            <line x1="90" y1="130" x2="170" y2="158" stroke="rgba(192,132,252,.2)" stroke-width="1" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Rezultate Homocisteina -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Rezultatele analizelor de sange: homocisteina</h2>
+          <p>Scadere de la 12.1 la 9.6 micromoli/L in 5 luni — cu 2-4 g TMG/zi</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">ANALIZE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">12.1</div>
+            <span class="u">feb 2024 — homocisteina initiala (umol/L)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">9.7</div>
+            <span class="u">iul 2024 — dupa 3 luni cu 2g TMG/zi</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">9.62</div>
+            <span class="u">oct 2024 — dupa 2 luni cu 4g TMG/zi</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">-2.48</div>
+            <span class="u">scadere totala in 5 luni (umol/L)</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));"></div></div>
+            <div class="stepContent">
+              <h4>Februarie 2024 — Punct de plecare</h4>
+              <p>Homocisteina: <b>12.1 umol/L</b>. Valoarea era "in intervalul normal" dar <b>peste pragul optim</b> de sub 10. Homocisteina crescuta este factor de risc pentru <b>dementa, boli cardiace si AVC</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Incepe cu 2 g TMG/zi</h4>
+              <p>Meta-analizele arata ca pana la <b>4 g TMG/zi</b> timp de 6 saptamani pot scadea homocisteina la adulti sanatosi. Dozele sub 4 g/zi nu cresc colesterolul. A inceput cu doza moderata de <b>2 grame pe zi</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Iulie 2024 — Prima analiza de control</h4>
+              <p>Homocisteina: <b>9.7 umol/L</b> — scadere de <b>2.4 umol/L</b>. Aproape dublu fata de media din studii (-1.23 umol/L). In ciuda faptului ca a facut <b>mai mult exercitiu fizic</b>, care de obicei creste homocisteina.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Creste doza la 4 g TMG/zi</h4>
+              <p>Obiectivul: sa aduca homocisteina mai aproape de <b>5 umol/L</b>. A crescut doza la 4 grame pe zi pentru urmatoarele doua luni, ramanand sub pragul care poate ridica lipidele.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Octombrie 2024 — A doua analiza</h4>
+              <p>Homocisteina: <b>9.62 umol/L</b> — o scadere suplimentara mica. Probabil s-a atins <b>efectul maxim al TMG</b> — reductia medie de 1.23 umol/L din studii fusese deja depasita semnificativ.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive slider: Homocysteine risk -->
+        <div class="sliderWrap">
+          <label>Exploreaza nivelurile de homocisteina si riscul asociat:</label>
+          <input type="range" id="homoSlider" min="3" max="25" step="0.1" value="12.1" />
+          <div class="sliderRow">
+            <span class="sliderVal" id="homoVal">12.1 umol/L</span>
+            <span class="sliderLabel" id="homoRisk" style="color:var(--warn)">Suboptimal — risc moderat</span>
+          </div>
+          <div class="meterWrap" style="margin-top:8px;">
+            <div class="meterLabel"><span>Optim (&lt;7)</span><span>Normal (&lt;10)</span><span>Ridicat (&gt;15)</span></div>
+            <div class="meterTrack">
+              <div class="meterFill" id="homoMeter" style="width:48%;background:linear-gradient(90deg,var(--ok),var(--warn));"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert ok">
+          <h4>Exercitiul fizic nu explica scaderea</h4>
+          <p>Cercetarile arata ca <b>exercitiul fizic de intensitate moderata creste homocisteina</b> cu ~1.39 umol/L, iar exercitiul intens cu ~0.83 umol/L. Intre februarie si iulie, autorul a facut <b>mai mult exercitiu</b>, deci scaderea se datoreaza aproape sigur TMG-ului.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Masa musculara si compozitie corporala -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Masa musculara si compozitie corporala</h2>
+          <p>Crestere surprinzatoare a masei slabe de +0.2 kg, in ciuda pierderii in greutate si a mai putinei proteine</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">DEXA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">8.9</div>
+            <span class="u">ALMI nov 2023 (kg/m2)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">9.1</div>
+            <span class="u">ALMI iul 2024 (kg/m2)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">19.4</div>
+            <span class="u">masa slaba/inaltime2 (kg/m2)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">+0.2</div>
+            <span class="u">kg masa slaba castigata</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">De ce e surprinzator</h3>
+            <p>Autorul a <b>pierdut cateva kilograme</b> in greutate, a facut <b>mai putina antrenare cu greutati</b> si a mancat <b>20-30 g mai putina proteina</b> pe zi. In mod normal, toate acestea ar fi cauzat <b>pierdere de masa musculara</b>, nu castig.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--glow)">Ce arata studiile</h3>
+            <p>Un studiu RCT din 2013 a aratat ca TMG creste semnificativ <b>hormonul de crestere</b>, <b>IGF-1</b> si semnalizarea <b>Akt</b> (calea responsabila pentru cresterea musculara). TMG a scazut si <b>cortizolul</b>.</p>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:12px;">
+          <div class="mini">
+            <h3>GH crescut</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok);">&#x2191;</span>
+              <span class="l">Hormon de crestere — semnal anabolic imbunatatit de TMG</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3>IGF-1 crescut</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--teal);">&#x2191;</span>
+              <span class="l">Factor de crestere insulinic — sinteza proteica musculara</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3>Cortizol scazut</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok);">&#x2193;</span>
+              <span class="l">Hormon de stres — mai putin catabolism muscular</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote green" style="margin-top:14px;">
+          &laquo;Nu stiu cu certitudine daca TMG a fost cauza cresterii masei musculare, dar adaugarea a 2 g de TMG a fost una dintre singurele modificari pe care le-am facut in aceasta perioada.&raquo;
+          <cite>— Autorul experimentului</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Forta si performanta fizica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Forta, anduranta si performanta fizica</h2>
+          <p>Dovezile din studii sunt mixte, dar exista semnale pozitive pentru sportivi</p>
+        </div>
+        <span class="badge">PERFORMANTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Studiu 2020 — Sportivi universitari</h4>
+              <p><b>5 g TMG/zi</b> timp de 6 saptamani a imbunatatit 1RM la <b>impins de la piept, overhead press, sumo deadlift</b> si half squat. Studiu mic: 7 persoane in fiecare grup.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Studiu 2021 — Fotbalisti profesionisti</h4>
+              <p><b>2 g TMG/zi</b> timp de 14 saptamani a imbunatatit <b>1RM prezis, VO2max</b> si performanta la sprinturi repetate. Un studiu de urmarire a aratat si <b>cresterea testosteronului</b> si <b>scaderea cortizolului</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Studiu 2023 — Atleti CrossFit</h4>
+              <p>Doze de <b>2.5 si 5 g TMG</b> au crescut <b>testosteronul cu 7%</b> fata de placebo dupa 3 saptamani. Nu s-a observat diferenta intre cele doua doze.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Studiu 2020 (CrossFit) — Fara efect</h4>
+              <p>Un alt studiu pe atleti CrossFit <b>nu a gasit imbunatatiri</b> ale hipertrofiei sau fortei dupa 6 saptamani de TMG. Dintr-o meta-analiza din 2017, doar <b>2 din 7 studii</b> au aratat beneficii pentru forta.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert warn-a">
+          <h4>Dovezi mixte pentru forta</h4>
+          <p>Dintr-un review de 7 studii clinice randomizate, doar 2 au aratat imbunatatiri ale fortei si puterii (de pana la <b>24.6%</b>), in timp ce celelalte 5 nu au aratat niciun efect. TMG pare sa beneficieze mai ales <b>performanta de inalta intensitate</b> si <b>sprinturile repetate</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Doza si siguranta -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Doza optima si siguranta</h2>
+          <p>Cat sa iei, ce sa eviti si de unde o poti obtine natural</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">DOZAJ</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Dose-Response -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Axis -->
+            <line x1="80" y1="180" x2="650" y2="180" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <line x1="80" y1="30" x2="80" y2="180" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+
+            <!-- X labels -->
+            <text x="80" y="198" fill="#6E7A9A" font-size="9" text-anchor="middle">0 g</text>
+            <text x="223" y="198" fill="#6E7A9A" font-size="9" text-anchor="middle">1 g</text>
+            <text x="365" y="198" fill="#4ADE80" font-size="10" font-weight="600" text-anchor="middle">2 g</text>
+            <text x="508" y="198" fill="#4ADE80" font-size="10" font-weight="600" text-anchor="middle">4 g</text>
+            <text x="600" y="198" fill="#F87171" font-size="9" text-anchor="middle">&gt;4 g</text>
+            <text x="365" y="215" fill="#A0ACC8" font-size="9" text-anchor="middle">Doza zilnica de TMG</text>
+
+            <!-- Y label -->
+            <text x="30" y="105" fill="#A0ACC8" font-size="9" text-anchor="middle" transform="rotate(-90,30,105)">Efect</text>
+
+            <!-- Benefit curve -->
+            <path d="M80,165 C150,160 200,120 365,70 S480,55 508,50" stroke="#4ADE80" stroke-width="2.5" fill="none"/>
+            <path d="M508,50 C540,48 570,50 600,52" stroke="#4ADE80" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/>
+            <text x="440" y="40" fill="#4ADE80" font-size="9">Scadere homocisteina</text>
+
+            <!-- Risk line (lipids) -->
+            <path d="M80,170 C200,168 400,165 508,160" stroke="rgba(248,113,113,.3)" stroke-width="1.5" fill="none"/>
+            <path d="M508,160 C540,145 570,120 620,80" stroke="#F87171" stroke-width="2" fill="none"/>
+            <text x="610" y="70" fill="#F87171" font-size="9" text-anchor="end">Risc lipide</text>
+
+            <!-- Optimal zone -->
+            <rect x="340" y="25" width="190" height="155" rx="8" fill="rgba(74,222,128,.04)" stroke="rgba(74,222,128,.15)" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="435" y="20" fill="#4ADE80" font-size="9" text-anchor="middle">ZONA OPTIMA</text>
+
+            <!-- Danger zone -->
+            <rect x="545" y="25" width="110" height="155" rx="8" fill="rgba(248,113,113,.04)" stroke="rgba(248,113,113,.12)" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="600" y="20" fill="#F87171" font-size="9" text-anchor="middle">RISC</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Doza recomandata</h3>
+            <p><b>2-4 g TMG pe zi</b> pentru scaderea homocisteinei. Aceeasi doza este folosita si in studiile despre performanta fizica. <b>Sub 4 g/zi</b> nu creste colesterolul sau alte lipide.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--bad)">Ce sa eviti</h3>
+            <p>Dozele <b>peste 4 g/zi</b> pot creste colesterolul si trigliceridele. Efectul de scadere a homocisteinei se plafoneaza — dozele mai mari nu aduc beneficii suplimentare, dar aduc riscuri.</p>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:12px;">
+          <div class="mini">
+            <h3>Sfecla rosie</h3>
+            <p>Cea mai bogata sursa naturala de betaina. Totusi, din dieta obisnuita obtii doar <b>100-300 mg/zi</b> — mult sub doza eficace.</p>
+          </div>
+          <div class="mini">
+            <h3>Spanac & cereale</h3>
+            <p>Spanacul, germenii de grau, taratele de grau si cerealele integrale contin betaina, dar in cantitati <b>insuficiente</b> pentru efecte terapeutice.</p>
+          </div>
+          <div class="mini">
+            <h3>Supliment necesar</h3>
+            <p>Pentru a obtine <b>2-4 g/zi</b> este practic imposibil doar din dieta. Suplimentarea este <b>singura cale realista</b> de a atinge doza eficace.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si lectii din experiment</h2>
+          <p>Ce a functionat, ce nu si ce ar trebui sa stii inainte de a incepe cu TMG</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Homocisteina — succes clar</h3>
+            <p>Scadere de la <b>12.1 la 9.6 umol/L</b> in 5 luni. TMG a jucat rolul principal. Efectul a fost aproape <b>dublu fata de media din studii</b> (-2.48 vs. -1.23 umol/L).</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Masa musculara — surpriza pozitiva</h3>
+            <p>+0.2 kg masa slaba in conditii care ar fi trebuit sa duca la <b>pierdere musculara</b>. Nu e cert ca TMG e cauza, dar este un rezultat <b>neasteptat si incurajator</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Forta — fara schimbari evidente</h3>
+            <p>Autorul <b>nu a observat imbunatatiri</b> ale fortei, posibil din cauza deficitului caloric si a pierderii de grasime. Studiile sunt si ele mixte pe acest subiect.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(192,132,252,.2);">
+            <h3 style="color:var(--glow)">Planul de viitor</h3>
+            <p>Va continua cu <b>4 g TMG/zi</b> in urmatoarele luni pentru a vedea daca homocisteina mai scade. Probabil efectul s-a <b>plafonat</b>, dar merita monitorizat.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;O scadere a homocisteinei de la 12.1 la 9.6 este excelenta si se pare ca TMG a jucat un rol major in acest rezultat. Voi continua cu 4 grame pe zi pentru a vedea daca mai exista o scadere suplimentara.&raquo;
+          <cite>— Concluzia autorului experimentului</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia experimentului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">nov 2023</span><span class="tDesc">Scan DEXA: ALMI = <b>8.9 kg/m2</b>, masa slaba/inaltime2 = 19.1</span></div>
+        <div class="tEvent"><span class="tDate">feb 2024</span><span class="tDesc">Analiza de sange: homocisteina = <b>12.1 umol/L</b></span></div>
+        <div class="tEvent"><span class="tDate">feb 2024</span><span class="tDesc">Incepe <b>2 g TMG/zi</b></span></div>
+        <div class="tEvent"><span class="tDate">feb-iul</span><span class="tDesc">Creste volumul de <b>exercitiu fizic</b></span></div>
+        <div class="tEvent"><span class="tDate">iul 2024</span><span class="tDesc">Analiza: homocisteina = <b>9.7 umol/L</b> (-2.4)</span></div>
+        <div class="tEvent"><span class="tDate">iul 2024</span><span class="tDesc">DEXA: ALMI = <b>9.1 kg/m2</b> (+0.2 kg slaba)</span></div>
+        <div class="tEvent"><span class="tDate">iul 2024</span><span class="tDesc">Creste doza la <b>4 g TMG/zi</b></span></div>
+        <div class="tEvent"><span class="tDate">oct 2024</span><span class="tDesc">Analiza: homocisteina = <b>9.62 umol/L</b> (-0.08)</span></div>
+        <div class="tEvent"><span class="tDate">viitor</span><span class="tDesc">Continua cu 4 g/zi — <b>monitorizare</b> in curs</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce conteaza homocisteina?</h4>
+          <p>Homocisteina crescuta este un <b>factor de risc independent</b> pentru boli cardiovasculare, AVC si dementa. Nivelul optim este <b>sub 10 umol/L</b>, iar ideal sub 7. Multe persoane au niveluri suboptimale fara sa stie.</p>
+        </div>
+        <div class="comNote">
+          <h4>TMG vs. folat si B12</h4>
+          <p>Folatul si vitamina B12 scad si ele homocisteina, prin <b>alta cale metabolica</b>. TMG actioneaza prin calea BHMT (betaina-homocisteina metiltransferaza), complementara cu calea folat/B12.</p>
+        </div>
+        <div class="comNote">
+          <h4>Nu doar un supliment de fitness</h4>
+          <p>Desi TMG apare in magazinele de sport, rolul sau principal este in <b>metilare si sanatatea cardiovasculara</b>. Efectele asupra musculaturii sunt un bonus potential, nu scopul principal.</p>
+        </div>
+        <div class="comNote">
+          <h4>Studii mici = prudenta mare</h4>
+          <p>Majoritatea studiilor pe TMG si performanta fizica au <b>sub 15 participanti</b> per grup. Rezultatele trebuie interpretate cu precautie si confirmate in studii mai mari.</p>
+        </div>
+        <div class="comNote">
+          <h4>N=1 nu e dovada</h4>
+          <p>Experimentul personal al autorului este <b>un singur caz</b>. Multi factori pot influenta rezultatele. Nu inlocuieste sfatul medical si nici studiile clinice randomizate pe esantioane mari.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>TMG (Trimetilglicina)</dt>
+          <dd>Aminoacid cu 3 grupari metil, gasit in sfecla de zahar. Sustine metilarea si scade homocisteina. Sinonim: betaina.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Homocisteina</dt>
+          <dd>Aminoacid din sange a carui concentratie crescuta este factor de risc pentru boli cardiace, AVC si dementa. Optim: sub 10 umol/L.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Metilare</dt>
+          <dd>Proces biochimic prin care o grupa metil (-CH3) este transferata de la un donator la o molecula tinta. Esentiala pentru ADN, neurotransmitatori si detoxifiere.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ALMI</dt>
+          <dd>Appendicular Lean Mass Index — masoara masa slaba (musculara) din brate si picioare, impartita la inaltimea la patrat. Indicator al sanatatii musculare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>DEXA</dt>
+          <dd>Dual-Energy X-ray Absorptiometry — metoda precisa de masurare a compozitiei corporale: masa musculara, grasime si densitate osoasa.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>IGF-1</dt>
+          <dd>Insulin-like Growth Factor 1 — hormon care stimuleaza cresterea celulara si sinteza proteica musculara. Crescut de TMG in studii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Calea Akt/mTOR</dt>
+          <dd>Principala cale de semnalizare pentru cresterea musculara. TMG pare sa activeze semnalizarea Akt, promovand sinteza proteica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>VO2max</dt>
+          <dd>Consumul maxim de oxigen — indicator al capacitatii aerobe. Unele studii arata imbunatatire cu TMG la sportivi.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=cd-IAu5DGBQ" target="_blank">I Took TMG for 90 Days — YouTube</a> &middot;
+    Experiment personal cu trimetilglicina (betaina) — nu inlocuieste sfatul medical &middot;
+    Infografic interactiv bazat pe transcript video
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: methylation molecule animation ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing methyl groups and molecules
+  const particles = [];
+  const pCount = 50;
+  for(let i = 0; i < pCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1.5 + Math.random() * 3,
+      vx: (Math.random() - 0.5) * 0.0008,
+      vy: (Math.random() - 0.5) * 0.0008,
+      phase: Math.random() * Math.PI * 2,
+      type: i < 12 ? 'tmg' : i < 24 ? 'methyl' : i < 36 ? 'homo' : 'cell'
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Update positions
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t + p.phase) * 0.0002;
+      p.y += p.vy + Math.cos(t * 0.8 + p.phase) * 0.0002;
+      if(p.x < 0) p.x = 1; if(p.x > 1) p.x = 0;
+      if(p.y < 0) p.y = 1; if(p.y > 1) p.y = 0;
+    });
+
+    // Draw connections between nearby particles
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i+1; j < particles.length; j++){
+        const a = particles[i], b = particles[j];
+        const dx = (a.x - b.x) * w, dy = (a.y - b.y) * h;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 80){
+          const alpha = (1 - dist / 80) * 0.08;
+          ctx.beginPath();
+          ctx.moveTo(a.x * w, a.y * h);
+          ctx.lineTo(b.x * w, b.y * h);
+          ctx.strokeStyle = a.type === 'tmg' ? `rgba(192,132,252,${alpha})` :
+                            a.type === 'methyl' ? `rgba(74,222,128,${alpha})` :
+                            a.type === 'homo' ? `rgba(248,113,113,${alpha})` :
+                            `rgba(34,211,238,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Pulse waves — methylation process
+    for(let p = 0; p < 3; p++){
+      const cx = w * 0.5, cy = h * 0.5;
+      const pulseR = ((t * 30 + p * 50) % 150);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 1800);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(192,132,252,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw particles
+    particles.forEach(p => {
+      const px = p.x * w, py = p.y * h;
+      const glow = 0.35 + Math.sin(t * 2.5 + p.phase) * 0.15;
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'tmg'){
+        ctx.fillStyle = `rgba(192,132,252,${glow + 0.2})`;
+        ctx.shadowColor = 'rgba(192,132,252,0.4)';
+        ctx.shadowBlur = 10;
+      } else if(p.type === 'methyl'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 8;
+      } else if(p.type === 'homo'){
+        ctx.fillStyle = `rgba(248,113,113,${glow})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.3)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(34,211,238,${glow - 0.05})`;
+        ctx.shadowColor = 'rgba(34,211,238,0.2)';
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Central label
+    ctx.font = '10px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(192,132,252,0.35)';
+    ctx.fillText('METILARE', w/2 - 28, h/2 + 4);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(192,132,252,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('TMG', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(48, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('-CH3', 55, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(92, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('homocisteina', 99, ly+3);
+    ctx.fillStyle = 'rgba(34,211,238,0.7)'; ctx.beginPath(); ctx.arc(175, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('celule', 182, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Homocysteine slider interaction ── */
+(function(){
+  const slider = document.getElementById('homoSlider');
+  const valEl = document.getElementById('homoVal');
+  const riskEl = document.getElementById('homoRisk');
+  const meterEl = document.getElementById('homoMeter');
+  if(!slider) return;
+
+  function update(){
+    const v = parseFloat(slider.value);
+    valEl.textContent = v.toFixed(1) + ' umol/L';
+
+    let pct = Math.min(100, (v / 25) * 100);
+    meterEl.style.width = pct + '%';
+
+    if(v < 7){
+      riskEl.textContent = 'Optim — risc scazut';
+      riskEl.style.color = 'var(--ok)';
+      meterEl.style.background = 'linear-gradient(90deg,var(--ok),var(--ok))';
+      valEl.style.color = 'var(--ok)';
+    } else if(v < 10){
+      riskEl.textContent = 'Bun — in intervalul normal';
+      riskEl.style.color = 'var(--teal)';
+      meterEl.style.background = 'linear-gradient(90deg,var(--ok),var(--teal))';
+      valEl.style.color = 'var(--teal)';
+    } else if(v < 15){
+      riskEl.textContent = 'Suboptimal — risc moderat crescut';
+      riskEl.style.color = 'var(--warn)';
+      meterEl.style.background = 'linear-gradient(90deg,var(--ok),var(--warn))';
+      valEl.style.color = 'var(--warn)';
+    } else {
+      riskEl.textContent = 'Ridicat — risc cardiovascular semnificativ';
+      riskEl.style.color = 'var(--bad)';
+      meterEl.style.background = 'linear-gradient(90deg,var(--warn),var(--bad))';
+      valEl.style.color = 'var(--bad)';
+    }
+  }
+
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>

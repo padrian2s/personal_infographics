@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Megadoza de Creatina — Ce s-a Intamplat dupa o Saptamana cu 28g/zi</title>
+  <meta name="description" content="Infografic interactiv: efectele megadozei de creatina (28g/zi timp de 7 zile) asupra cognitiei, somnului, performantei fizice si efectele secundare. Bazat pe studii stiintifice din 2024." />
+  <style>
+    :root{
+      --bg0:#0A0810;
+      --bg1:#0E0A1A;
+      --panel:#141030cc;
+      --card:#120E28;
+      --card2:#0E0A20;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1E1840;
+      --glow:#F472B6;
+      --glow2:#8B5CF6;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#EF4444;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(244,114,182,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(139,92,246,.09), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(74,222,128,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(244,114,182,.20);
+      background: linear-gradient(180deg, rgba(18,14,40,.75), rgba(10,8,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(244,114,182,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(139,92,246,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(74,222,128,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,8,16,.30),rgba(10,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,14,40,.75),rgba(14,10,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,8,16,.28),rgba(10,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(244,114,182,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--glow2);background:rgba(139,92,246,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(244,114,182,.22),rgba(244,114,182,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(139,92,246,.22),rgba(139,92,246,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(244,114,182,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--glow2);background:rgba(139,92,246,.05);}
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(244,114,182,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(244,114,182,.06);margin-top:12px;
+    }
+    .alert.green{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.green h4{color:var(--ok);}
+    .alert.warn h4{color:var(--warn);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Slider */
+    .sliderWrap{margin-top:14px;padding:12px 14px;border:1px solid rgba(234,240,255,.10);border-radius:14px;background:rgba(10,8,16,.30);}
+    .sliderWrap label{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .sliderWrap label b{color:var(--ink);font-family:var(--mono);font-size:14px;}
+    .sliderWrap input[type=range]{width:100%;margin-top:8px;accent-color:var(--glow);}
+    .sliderResult{margin-top:8px;font-size:13px;color:var(--ink);font-weight:600;text-align:center;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(244,114,182,.18);
+      background:linear-gradient(180deg,rgba(18,14,40,.80),rgba(10,8,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(244,114,182,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(244,114,182,.25);background:rgba(244,114,182,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,14,40,.75),rgba(14,10,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(18,14,40,.75),rgba(14,10,32,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow2);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Megadoza de Creatina — Ce s-a Intamplat
+          <small>28 grame pe zi timp de 7 zile: efecte asupra cognitiei, somnului, performantei musculare si efecte secundare</small>
+        </h1>
+        <p class="sub">Un experiment personal inspirat de un studiu din 2024 care arata ca o singura doza mare de creatina (0.35 g/kg) <b>inverseaza declinul cognitiv</b> dupa 21 de ore de privare de somn. Ce se intampla cand iei 28g de creatina zilnic timp de o saptamana? Creierul foloseste <b>20% din energia zilnica</b> si are nevoie de creatina pentru reciclarea ATP.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>28g/zi</b> — megadoza experimentala</span>
+          <span class="chip"><i class="i2"></i> <b>Cognitie</b> — imbunatatita dupa privare de somn</span>
+          <span class="chip"><i class="i3"></i> <b>Efecte secundare</b> — greata, disconfort GI</span>
+          <span class="chip"><i class="i4"></i> <b>Nu pe termen lung</b> — doar strategie de scurta durata</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Studiul din 2024 -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Studiul care a inspirat experimentul</h2>
+          <p>O singura doza mare de creatina (0.35 g/kg) inverseaza declinul cognitiv dupa privarea de somn de 21 de ore</p>
+        </div>
+        <span class="badge">STUDIU 2024</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">0.35</div>
+            <span class="u">g/kg corp — doza unica din studiu</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">21h</div>
+            <span class="u">ore de privare de somn testate</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">+</div>
+            <span class="u">viteza de procesare crescuta</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">20%</div>
+            <span class="u">din energia creierului vine din ATP</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Ce au descoperit cercetatorii</h3>
+            <p>Dupa 21 de ore de privare de somn, participantii care au primit o doza unica de creatina la <b>0.35 g/kg</b> nu doar ca au recuperat declinul cognitiv, ci au avut <b>performanta mai buna</b> decat la baseline. Viteza de procesare si performanta cognitiva au fost semnificativ imbunatatite.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce functioneaza</h3>
+            <p>Creatina este esentiala pentru <b>reciclarea ATP</b> (molecula energetica a celulelor). Creierul consuma 20% din energia zilnica si are nevoie masiva de creatina. Cand esti lipsit de somn, rezervele de creatina cerebrale scad — suplimentarea le reumple rapid.</p>
+          </div>
+        </div>
+        <div class="quote green">
+          &laquo;Studiile arata ca creatina contracareza pierderea de somn si ajuta la reducerea nevoii de somn.&raquo;
+          <cite>— Meta-analiza studiilor privind creatina si cognitia</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Experimentul personal -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Experimentul: 28g creatina zilnic timp de 7 zile</h2>
+          <p>Experienta subiectiva a unei saptamani cu megadoza — efecte asupra energiei, concentrarii si efecte secundare</p>
+        </div>
+        <span class="badge" style="border-color:rgba(244,114,182,.3);color:var(--glow);">EXPERIMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Efect pozitiv: claritate cognitiva</h4>
+              <p>Dupa nopti cu doar <b>6-7 ore de somn</b>, la 1-2 ore dupa ingestia celor 28g de creatina, senzatia era ca si cum ar fi dormit <b>8 ore complete</b>. Energie crescuta si o ascutime mentala notabila. Efectul aparea specific dupa administrarea creatinei, nu la trezire.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Confirmare subiectiva</h4>
+              <p>Pe baza experientei proprii, concluzia este ca <b>da, creatina contracareza partial declinul cognitiv</b> cauzat de privarea usoara de somn. Gandirea era mai rapida, concentrarea mai buna.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Efect negativ: greata</h4>
+              <p>O senzatie de <b>greata usoara</b> dupa administrare. Stomacul era deranjat — nu sever, dar perceptibil. Disconfortul gastric era consistent de-a lungul saptamanii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Efect negativ: scaun mai moale</h4>
+              <p>Consistenta scaunului s-a schimbat catre <b>tipul 5 pe scara Bristol</b> — bule moi, nu diaree propriu-zisa, dar o schimbare notabila fata de normal. Efect secundar frecvent la doze mari.</p>
+            </div>
+          </div>
+        </div>
+        <div class="alert warn">
+          <h4>Concluzie experimentala</h4>
+          <p>Megadoza functioneaza ca <b>strategie de scurta durata</b> pentru privarea de somn, dar <b>nu este recomandata pe termen lung</b>. Pe termen scurt (pana la o saptamana), nu s-au demonstrat efecte negative la persoane sanatoase cu rinichi functionali.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Dozaj si strategii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Dozaj si strategii de administrare</h2>
+          <p>De la doza de incarcare la mentinere — cum sa-ti optimizezi nivelul de creatina musculara si cerebrala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(139,92,246,.3);color:var(--glow2);">DOZAJ</span>
+      </div>
+      <div class="cardBody">
+
+        <!-- SVG: Dosage comparison diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Background grid lines -->
+            <line x1="80" y1="40" x2="80" y2="250" stroke="rgba(234,240,255,.06)" stroke-width="1"/>
+            <line x1="80" y1="250" x2="660" y2="250" stroke="rgba(234,240,255,.08)" stroke-width="1"/>
+            <text x="75" y="52" fill="#6E7A9A" font-size="9" text-anchor="end">100%</text>
+            <text x="75" y="145" fill="#6E7A9A" font-size="9" text-anchor="end">50%</text>
+            <text x="75" y="252" fill="#6E7A9A" font-size="9" text-anchor="end">0%</text>
+            <line x1="80" y1="145" x2="660" y2="145" stroke="rgba(234,240,255,.04)" stroke-width="1" stroke-dasharray="4,4"/>
+            <text x="370" y="280" fill="#A0ACC8" font-size="10" text-anchor="middle">Timp (saptamani)</text>
+            <text x="30" y="145" fill="#A0ACC8" font-size="9" text-anchor="middle" transform="rotate(-90,30,145)">Saturatie creatina musculara</text>
+
+            <!-- X-axis labels -->
+            <text x="130" y="266" fill="#6E7A9A" font-size="9" text-anchor="middle">1</text>
+            <text x="275" y="266" fill="#6E7A9A" font-size="9" text-anchor="middle">2</text>
+            <text x="420" y="266" fill="#6E7A9A" font-size="9" text-anchor="middle">3</text>
+            <text x="565" y="266" fill="#6E7A9A" font-size="9" text-anchor="middle">4</text>
+
+            <!-- Loading phase curve (fast - pink) -->
+            <path d="M80,240 C130,230 160,100 200,60 L660,60" fill="none" stroke="rgba(244,114,182,.7)" stroke-width="2.5"/>
+            <circle cx="200" cy="60" r="4" fill="var(--glow)" opacity=".8"/>
+            <text x="210" y="55" fill="#F472B6" font-size="10" font-weight="600">Faza de incarcare (20-28g/zi)</text>
+            <text x="210" y="68" fill="#A0ACC8" font-size="8.5">Saturatie in ~7 zile, apoi 3-5g/zi mentinere</text>
+
+            <!-- Maintenance-only curve (slow - purple) -->
+            <path d="M80,240 C200,230 350,160 420,100 C480,75 530,62 660,60" fill="none" stroke="rgba(139,92,246,.6)" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <circle cx="565" cy="62" r="4" fill="var(--purple)" opacity=".8"/>
+            <text x="430" y="110" fill="#A78BFA" font-size="10" font-weight="600">Doar mentinere (3-5g/zi)</text>
+            <text x="430" y="123" fill="#A0ACC8" font-size="8.5">Saturatie in ~4 saptamani</text>
+
+            <!-- Saturation line -->
+            <line x1="80" y1="60" x2="660" y2="60" stroke="rgba(74,222,128,.2)" stroke-width="1" stroke-dasharray="4,4"/>
+            <text x="660" y="52" fill="#4ADE80" font-size="9" text-anchor="end" font-weight="600">SATURATIE COMPLETA</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Faza de incarcare</h3>
+            <p>20-28g pe zi timp de <b>5-7 zile</b>, apoi se trece la doza de mentinere. Avantaj: atingi saturatia musculara <b>mult mai rapid</b>. Dezavantaj: posibile efecte gastrointestinale (greata, diaree, balonare).</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">~7</span>
+              <span class="l">zile pana la saturatia completa a creatinei musculare</span>
+            </div>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Doar doza de mentinere</h3>
+            <p>3-5g pe zi (sau <b>100 mg/kg</b>) zilnic, fara faza de incarcare. Ajungi la aceleasi niveluri de saturatie, dar dureaza <b>aproximativ 4 saptamani</b>. Fara efecte secundare semnificative.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--purple)">~28</span>
+              <span class="l">zile pana la saturatia completa fara incarcare</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive slider -->
+        <div class="sliderWrap">
+          <label>Greutatea ta corporala: <b id="weightVal">80 kg</b></label>
+          <input type="range" id="weightSlider" min="40" max="130" value="80" step="1">
+          <div class="sliderResult" id="doseResult">
+            Doza recomandata zilnica: <span style="color:var(--ok)">8.0g</span> &nbsp;|&nbsp; Doza megadoza: <span style="color:var(--glow)">28.0g</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Creatina si creierul -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Creatina si creierul: de ce functioneaza</h2>
+          <p>Nu doar pentru muschi — creatina are efecte demonstrate asupra memoriei, cognitiei si recuperarii dupa leziuni cerebrale</p>
+        </div>
+        <span class="badge">NEUROSTIINTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(244,114,182,.2);">
+            <h3 style="color:var(--glow)">Reciclarea ATP</h3>
+            <p>Creatina doneaza un grup fosfat pentru a reface <b>ATP-ul (adenozin-trifosfat)</b> din ADP. Creierul, care consuma 20% din energie, are nevoie critica de acest proces. Suplimentarea creste rezerva energetica cerebrala.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Memorie imbunatatita</h3>
+            <p>O <b>meta-analiza din 2022</b> a demonstrat imbunatatirea memoriei la persoane sanatoase, la doze intre <b>2.2g si 20g pe zi</b>. Efectul e mai pronuntat la vegetarieni (care au niveluri bazale mai scazute).</p>
+          </div>
+          <div class="mini" style="border-color:rgba(139,92,246,.2);">
+            <h3 style="color:var(--glow2)">Recuperare dupa TBI</h3>
+            <p>Creatina a fost observata ca ajuta la <b>recuperarea dupa leziuni cerebrale traumatice</b>. Mecanismul: sustine producerea de energie in celulele neuronale afectate de trauma.</p>
+          </div>
+        </div>
+
+        <!-- SVG: ATP recycling mechanism -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Title -->
+            <text x="350" y="24" fill="#EAF0FF" font-size="12" font-weight="700" text-anchor="middle">Ciclul creatina-fosfocreatina in celula cerebrala</text>
+
+            <!-- Central cycle arrows (circular) -->
+            <path d="M250,140 C250,90 450,90 450,140" fill="none" stroke="rgba(244,114,182,.35)" stroke-width="2" marker-end="url(#arrowPink)"/>
+            <path d="M450,150 C450,200 250,200 250,150" fill="none" stroke="rgba(74,222,128,.35)" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+            <!-- Arrow markers -->
+            <defs>
+              <marker id="arrowPink" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(244,114,182,.6)"/>
+              </marker>
+              <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(74,222,128,.6)"/>
+              </marker>
+              <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(139,92,246,.6)"/>
+              </marker>
+            </defs>
+
+            <!-- ATP box (left) -->
+            <rect x="155" y="115" width="100" height="55" rx="14" fill="rgba(74,222,128,.10)" stroke="rgba(74,222,128,.30)" stroke-width="1.5"/>
+            <text x="205" y="140" fill="#4ADE80" font-size="14" font-weight="700" text-anchor="middle">ATP</text>
+            <text x="205" y="157" fill="#A0ACC8" font-size="8.5" text-anchor="middle">adenozin-trifosfat</text>
+
+            <!-- ADP box (right) -->
+            <rect x="445" y="115" width="100" height="55" rx="14" fill="rgba(251,191,36,.10)" stroke="rgba(251,191,36,.30)" stroke-width="1.5"/>
+            <text x="495" y="140" fill="#FBBF24" font-size="14" font-weight="700" text-anchor="middle">ADP</text>
+            <text x="495" y="157" fill="#A0ACC8" font-size="8.5" text-anchor="middle">adenozin-difosfat</text>
+
+            <!-- Top label: energy release -->
+            <text x="350" y="82" fill="#F472B6" font-size="10" font-weight="600" text-anchor="middle">ENERGIE ELIBERATA</text>
+            <text x="350" y="96" fill="#A0ACC8" font-size="8.5" text-anchor="middle">ATP → ADP + Pi (fosfor)</text>
+
+            <!-- Bottom label: creatine recycles -->
+            <text x="350" y="210" fill="#4ADE80" font-size="10" font-weight="600" text-anchor="middle">CREATINA RECICLEAZA</text>
+            <text x="350" y="224" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Fosfocreatina + ADP → Creatina + ATP</text>
+
+            <!-- External: Creatine supplement input -->
+            <rect x="15" y="52" width="120" height="45" rx="12" fill="rgba(244,114,182,.08)" stroke="rgba(244,114,182,.20)" stroke-width="1.5"/>
+            <text x="75" y="72" fill="#F472B6" font-size="10" font-weight="600" text-anchor="middle">Supliment</text>
+            <text x="75" y="86" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Creatina exogena</text>
+            <line x1="135" y1="75" x2="195" y2="120" stroke="rgba(244,114,182,.25)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPink)"/>
+
+            <!-- External: Brain/Muscle usage -->
+            <rect x="565" y="52" width="120" height="45" rx="12" fill="rgba(139,92,246,.08)" stroke="rgba(139,92,246,.20)" stroke-width="1.5"/>
+            <text x="625" y="72" fill="#A78BFA" font-size="10" font-weight="600" text-anchor="middle">Creier + Muschi</text>
+            <text x="625" y="86" fill="#A0ACC8" font-size="8.5" text-anchor="middle">consum 24/7</text>
+            <line x1="505" y1="120" x2="565" y2="75" stroke="rgba(139,92,246,.25)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)"/>
+
+            <!-- Note at bottom -->
+            <text x="350" y="250" fill="#6E7A9A" font-size="8.5" text-anchor="middle">Cand esti lipsit de somn, rezervele de fosfocreatina scad → suplimentarea le reumple → cognitia revine</text>
+          </svg>
+        </div>
+
+        <div class="flow" style="margin-top:14px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Studiu pe sportivi de elita</h4>
+              <p>100 mg/kg de creatina (doar <b>8g pentru o persoana de 80 kg</b>) a contracareat efectele negative ale somnului de doar 3-5 ore asupra performantei sportive. Doza mult mai mica decat cei 28g din studiul principal.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Performanta dubla</h4>
+              <p>Creatina nu doar imbunatateste performanta fizica — studiile arata ca <b>functioneaza si pentru performanta cognitiva</b>. Daca esti lipsit de somn, doze mai mari ajuta atat mintea cat si corpul.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Efecte secundare -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Efecte secundare si siguranta</h2>
+          <p>Ce riscuri exista la megadoze si de ce pe termen scurt nu e periculos la persoane sanatoase</p>
+        </div>
+        <span class="badge" style="border-color:rgba(239,68,68,.3);color:var(--bad);">SIGURANTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Greata</div>
+            <span class="u">disconfort gastric la doze mari</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Diaree</div>
+            <span class="u">scaun mai moale (Bristol tip 5)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">Cefalee</div>
+            <span class="u">dureri de cap la unii utilizatori</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">0</div>
+            <span class="u">efecte grave pe termen scurt</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--bad)">Ce NU se recomanda</h3>
+            <p>Nu este o idee buna sa iei <b>28g de creatina zilnic pentru tot restul vietii</b>. Pe termen lung, dozele mari continui nu au fost studiate suficient. Rinichii suplimentar solicitati pot fi o problema la persoanele cu afectiuni renale preexistente.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Ce se confirma</h3>
+            <p>Pe termen scurt (pana la <b>o saptamana</b>), megadoza nu a aratat efecte negative la <b>persoane sanatoase cu rinichi functionali</b>. Faza de incarcare este o practica comuna in sportul de performanta.</p>
+          </div>
+        </div>
+
+        <div class="alert green">
+          <h4>Cel mai studiat supliment din lume</h4>
+          <p>Creatina este unul dintre cele mai <b>bine documentate suplimente</b> din punct de vedere stiintific. Sute de studii confirma eficacitatea si siguranta sa la dozele recomandate. La doze de mentinere (3-8g/zi), este considerata <b>foarte sigura pe termen lung</b>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Recomandari practice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Recomandari practice</h2>
+          <p>Cum sa folosesti creatina inteligent — atat pentru performanta fizica cat si pentru cognitie</p>
+        </div>
+        <span class="badge">PRACTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(244,114,182,.2);">
+            <h3 style="color:var(--glow)">Strategie de urgenta</h3>
+            <p>Daca ai dormit putin si ai nevoie de performanta cognitiva (examen, prezentare, zbor de dimineata): o doza de <b>0.35 g/kg</b> poate ajuta. Efectul apare la <b>1-2 ore</b> dupa ingestie. Asteapta-te la posibile efecte GI.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Strategie pe termen lung</h3>
+            <p>Pentru beneficii constante: <b>100 mg/kg pe zi</b> (5-8g pentru majoritatea oamenilor). Nu e nevoie de faza de incarcare. Saturatia vine in ~4 saptamani. Beneficii atat fizice cat si cognitive.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(139,92,246,.2);">
+            <h3 style="color:var(--glow2)">Creatina monohidrat</h3>
+            <p>Forma cea mai studiata si cea mai ieftina. Nu exista dovezi ca alte forme (HCl, buffered, etc.) sunt superioare. <b>Creatina monohidrat</b> este standardul de aur.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Cand sa eviti</h3>
+            <p>Persoanele cu <b>probleme renale</b> ar trebui sa consulte un medic inainte de suplimentare. Doza mare (28g) nu este recomandata <b>mai mult de 7 zile</b>. Hidrateaza-te adecvat — creatina atrage apa in muschi.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Creatina este unul dintre cele mai bine documentate suplimente. Dar exista cel putin o duzina de alte suplimente care au, de asemenea, dovezi stiintifice solide.&raquo;
+          <cite>— Concluzia videoclipului</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline: experiment days -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia experimentului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Ziua 0</span><span class="tDesc">Citirea <b>studiului din 2024</b> despre privarea de somn si creatina</span></div>
+        <div class="tEvent"><span class="tDate">Ziua 1</span><span class="tDesc">Prima doza de <b>28g creatina</b> — cantitate vizual impresionanta</span></div>
+        <div class="tEvent"><span class="tDate">Zilele 1-3</span><span class="tDesc">Primele efecte: <b>greata usoara</b>, schimbari digestive</span></div>
+        <div class="tEvent"><span class="tDate">Ziua 4</span><span class="tDesc">Zbor la <b>5:30 dimineata</b> — test cu somn scurt (6h)</span></div>
+        <div class="tEvent"><span class="tDate">Zilele 4-7</span><span class="tDesc">Efect pozitiv clar: somn de 6h <b>simtit ca 8h</b></span></div>
+        <div class="tEvent"><span class="tDate">Ziua 7</span><span class="tDesc">Sfarsitul experimentului — <b>concluzie pozitiva</b> cu rezerve</span></div>
+        <div class="tEvent"><span class="tDate">Dupa</span><span class="tDesc">Revenire la doza de <b>5-8g/zi</b> mentinere</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Nu e doar pentru sportivi</h4>
+          <p>Creatina este asociata in mod traditional cu culturismul, dar dovezile stiintifice arata ca beneficiile <b>cognitive</b> sunt la fel de importante. Ideal pentru studenti, profesionisti care calatoresc, oricine cu program de somn neregulat.</p>
+        </div>
+        <div class="comNote">
+          <h4>Vegetarienii beneficiaza mai mult</h4>
+          <p>Creatina se gaseste natural in <b>carne si peste</b>. Vegetarienii si veganii au niveluri bazale mai scazute, deci suplimentarea produce efecte <b>mai pronuntate</b> la aceasta categorie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Hidratarea conteaza</h4>
+          <p>Creatina atrage apa in celulele musculare. La doze mari, <b>deshidratarea</b> devine un risc real daca nu bei suficient. Regula: adauga cel putin <b>500ml apa extra pe zi</b> la dozele de incarcare.</p>
+        </div>
+        <div class="comNote">
+          <h4>N=1: o experienta subiectiva</h4>
+          <p>Experimentul descris este o experienta individuala (<b>n=1</b>), nu un studiu controlat. Efectele pot varia de la persoana la persoana. Studiile citate sunt insa bazate pe <b>grupuri mai mari</b> si sunt revizuite de specialisti.</p>
+        </div>
+        <div class="comNote">
+          <h4>5-8g/zi e suficient</h4>
+          <p>Doza zilnica optima pentru <b>majoritatea oamenilor</b> este 5-8g (sau 100 mg/kg). Megadoza de 28g e utila doar ca <b>strategie de urgenta</b> — nu ca practica zilnica.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Creatina</dt>
+          <dd>Molecula naturala produsa de organism (ficat, rinichi) si obtinuta din carne/peste. Stocata in muschi si creier, esentiala pentru producerea rapida de ATP.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ATP (adenozin-trifosfat)</dt>
+          <dd>Molecula-moneda energetica a celulelor. Toate procesele celulare folosesc ATP. Creatina ajuta la reciclarea rapida a ATP-ului din ADP.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Faza de incarcare</dt>
+          <dd>Protocol de 5-7 zile cu doze mari (20-28g/zi) pentru saturarea rapida a depozitelor de creatina musculara, urmat de doza de mentinere (3-5g/zi).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Creatina monohidrat</dt>
+          <dd>Forma standard si cea mai studiata de creatina. Cea mai ieftina si cu cele mai multe dovezi stiintifice. Alte forme (HCl, kre-alkalyn) nu s-au dovedit superioare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Scara Bristol</dt>
+          <dd>Scala medicala cu 7 tipuri de scaun, de la tip 1 (bilute tari) la tip 7 (lichid). Tip 5 = bule moi cu margini clare, usor sub normal.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Meta-analiza</dt>
+          <dd>Studiu care combina rezultatele mai multor cercetari individuale pentru a obtine concluzii statistice mai puternice. Considerata cel mai inalt nivel de dovada stiintifica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>TBI (Traumatic Brain Injury)</dt>
+          <dd>Leziune cerebrala traumatica — cauzata de lovituri la cap (accidente, sport de contact). Creatina poate ajuta la recuperare prin sustinerea energetica a neuronilor.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=5lpAbFzwQyU" target="_blank">I MEGADOSED Creatine for a Week and Here's What Happened</a> &middot;
+    Bazat pe studii stiintifice din 2022-2024 privind creatina, cognitia si privarea de somn &middot;
+    Infografic interactiv
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: ATP molecule energy visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing creatine/ATP molecules
+  const particles = [];
+  const count = 55;
+  for(let i = 0; i < count; i++){
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 0.12 + Math.random() * 0.36;
+    particles.push({
+      x: 0.5 + Math.cos(angle) * dist,
+      y: 0.5 + Math.sin(angle) * dist,
+      r: 1.5 + Math.random() * 3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.002 + Math.random() * 0.003,
+      orbit: 0.02 + Math.random() * 0.04,
+      type: i < 15 ? 'creatine' : i < 30 ? 'atp' : 'neuron',
+      alpha: 0.3 + Math.random() * 0.4
+    });
+  }
+
+  // Central brain node
+  const brain = {x:0.5, y:0.5, r:8};
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Pulsing energy rings from center
+    for(let p = 0; p < 4; p++){
+      const pulseR = ((t * 35 + p * 50) % 160);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 1800);
+      ctx.beginPath();
+      ctx.arc(w * brain.x, h * brain.y, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(244,114,182,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Draw connections from particles to center
+    particles.forEach((p, i) => {
+      const px = p.x * w + Math.sin(t * 1.5 + p.phase) * p.orbit * w;
+      const py = p.y * h + Math.cos(t * 1.8 + p.phase) * p.orbit * h;
+      const cx = brain.x * w;
+      const cy = brain.y * h;
+
+      // Animated energy transfer line
+      const lineAlpha = 0.03 + Math.sin(t * 3 + i * 0.5) * 0.02;
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(cx, cy);
+      ctx.strokeStyle = p.type === 'creatine' ? `rgba(244,114,182,${lineAlpha})` :
+                        p.type === 'atp' ? `rgba(74,222,128,${lineAlpha})` :
+                        `rgba(139,92,246,${lineAlpha})`;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+
+      // Energy packet moving along line
+      const packetT = (t * 1.2 + i * 0.3) % 1;
+      const epx = px + (cx - px) * packetT;
+      const epy = py + (cy - py) * packetT;
+      const epAlpha = Math.sin(packetT * Math.PI) * 0.4;
+      if(epAlpha > 0.05){
+        ctx.beginPath();
+        ctx.arc(epx, epy, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = p.type === 'creatine' ? `rgba(244,114,182,${epAlpha})` :
+                        p.type === 'atp' ? `rgba(74,222,128,${epAlpha})` :
+                        `rgba(139,92,246,${epAlpha})`;
+        ctx.fill();
+      }
+    });
+
+    // Draw center brain glow
+    const brainGlow = 0.4 + Math.sin(t * 2) * 0.15;
+    const grad = ctx.createRadialGradient(w * brain.x, h * brain.y, 0, w * brain.x, h * brain.y, brain.r * 3);
+    grad.addColorStop(0, `rgba(244,114,182,${brainGlow})`);
+    grad.addColorStop(0.5, `rgba(139,92,246,${brainGlow * 0.3})`);
+    grad.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(w * brain.x, h * brain.y, brain.r * 3, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(w * brain.x, h * brain.y, brain.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(244,114,182,${brainGlow + 0.2})`;
+    ctx.shadowColor = 'rgba(244,114,182,0.5)';
+    ctx.shadowBlur = 18;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Draw particles
+    particles.forEach(p => {
+      const px = p.x * w + Math.sin(t * 1.5 + p.phase) * p.orbit * w;
+      const py = p.y * h + Math.cos(t * 1.8 + p.phase) * p.orbit * h;
+      const glow = p.alpha + Math.sin(t * 2.5 + p.phase) * 0.12;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'creatine'){
+        ctx.fillStyle = `rgba(244,114,182,${glow})`;
+        ctx.shadowColor = 'rgba(244,114,182,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'atp'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(139,92,246,${glow})`;
+        ctx.shadowColor = 'rgba(139,92,246,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.45)';
+    ctx.fillText('CREIER', w * brain.x - 16, h * brain.y + 18);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(244,114,182,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('creatina', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(72, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('ATP', 79, ly+3);
+    ctx.fillStyle = 'rgba(139,92,246,0.7)'; ctx.beginPath(); ctx.arc(108, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('neuroni', 115, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Weight slider: dose calculator ── */
+(function(){
+  const slider = document.getElementById('weightSlider');
+  const valEl = document.getElementById('weightVal');
+  const resultEl = document.getElementById('doseResult');
+  if(!slider) return;
+
+  function update(){
+    const kg = parseFloat(slider.value);
+    valEl.textContent = kg + ' kg';
+    const maintenance = (kg * 0.1).toFixed(1);
+    const mega = (kg * 0.35).toFixed(1);
+    resultEl.innerHTML =
+      'Doza recomandata zilnica: <span style="color:var(--ok)">' + maintenance + 'g</span>' +
+      ' &nbsp;|&nbsp; Doza megadoza: <span style="color:var(--glow)">' + mega + 'g</span>';
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>

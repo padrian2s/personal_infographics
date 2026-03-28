@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Semne ale Autofagiei — Cum Stii ca Esti in Autofagie</title>
+  <meta name="description" content="Infografic interactiv: semnele fizice si mentale ale autofagiei, biomarkeri, linia temporala a postului si indicele glucoza-cetone (GKI). Cum stii daca esti in autofagie." />
+  <style>
+    :root{
+      --bg0:#080810;
+      --bg1:#0A0C1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2048;
+      --glow:#A78BFA;
+      --glow2:#7C3AED;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#C084FC;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(167,139,250,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(74,222,128,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(192,132,252,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(167,139,250,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(167,139,250,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(74,222,128,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(192,132,252,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--teal)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(167,139,250,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.bad{background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(167,139,250,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert.purple{border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert.purple h4{color:var(--glow);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* Network diagram (SVG) */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* GKI Calculator */
+    .calcWrap{
+      border:1px solid rgba(167,139,250,.2);border-radius:16px;
+      background:linear-gradient(180deg,rgba(6,8,16,.35),rgba(6,8,16,.55));
+      padding:16px;margin-top:14px;
+    }
+    .calcWrap label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;}
+    .calcWrap input[type=range]{
+      width:100%;accent-color:var(--glow);margin:4px 0 12px;
+    }
+    .calcResult{
+      text-align:center;padding:14px;border-radius:14px;margin-top:8px;
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.4);
+    }
+    .calcResult .gkiVal{font-size:38px;font-weight:760;letter-spacing:-.02em;}
+    .calcResult .gkiLabel{font-size:12px;color:var(--muted);margin-top:4px;}
+    .calcResult .gkiZone{font-size:13px;font-weight:600;margin-top:6px;}
+    .sliderRow{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+    .sliderVal{font-family:var(--mono);font-size:14px;font-weight:700;min-width:70px;text-align:right;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(167,139,250,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(167,139,250,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(167,139,250,.25);background:rgba(167,139,250,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Semne ale Autofagiei — Cum Stii ca Esti in Autofagie
+          <small>Indicatori fizici, biomarkeri si linia temporala a activarii procesului de reciclare celulara</small>
+        </h1>
+        <p class="sub">Autofagia este mecanismul metabolic prin care celulele tale isi <b>dezasambleaza si recicleaza</b> componentele deteriorate, transformand deseurile celulare in energie. Se activeaza in principal prin <b>post alimentar</b>, restrictie calorica si exercitiu fizic. Cum stii ca esti in autofagie daca nu poti face o biopsie musculara acasa? Acest infografic iti arata <b>semnele indirecte</b> si instrumentele practice de masurare.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Autofagie</b> — reciclare celulara</span>
+          <span class="chip"><i class="i2"></i> <b>GKI</b> — indicele glucoza-cetone</span>
+          <span class="chip"><i class="i3"></i> <b>mTOR vs AMPK</b> — echilibru metabolic</span>
+          <span class="chip"><i class="i4"></i> <b>Post</b> — principalul activator</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este autofagia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este autofagia?</h2>
+          <p>Procesul metabolic prin care celulele isi curata si recicleaza componentele deteriorate pentru a supravietui</p>
+        </div>
+        <span class="badge">BAZA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">mTOR</div>
+            <span class="u">semnalul de crestere care inhiba autofagia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">AMPK</div>
+            <span class="u">senzorul de energie care activeaza autofagia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">IGF-1</div>
+            <span class="u">factor de crestere — inhiba autofagia</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">2016</div>
+            <span class="u">Premiul Nobel pt. descoperirea autofagiei</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Cum functioneaza</h3>
+            <p>Cand corpul tau este lipsit de nutrienti (post, exercitiu), celulele incep sa-si <b>dezmembreze componentele deteriorate</b> — proteine defecte, organele celulare uzate — si le transforma in <b>energie de supravietuire</b>. E ca un sistem de reciclare intern.</p>
+          </div>
+          <div class="mini">
+            <h3>De ce e greu de masurat</h3>
+            <p>In prezent, nu exista o metoda de a masura autofagia <b>in timp real</b> la oameni. Ar fi nevoie de o <b>biopsie musculara</b> si analiza proteinelor de autofagie din tesut. Masurarea "fluxului autofagic" e complicata chiar si in celule cultivate in laborator.</p>
+          </div>
+        </div>
+
+        <!-- SVG: mTOR vs AMPK balance -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Balance beam -->
+            <line x1="350" y1="40" x2="350" y2="130" stroke="rgba(167,139,250,.3)" stroke-width="2"/>
+            <polygon points="340,40 360,40 350,28" fill="rgba(167,139,250,.4)"/>
+            <!-- Left side: mTOR (anabolism) -->
+            <line x1="140" y1="110" x2="350" y2="110" stroke="rgba(248,113,113,.3)" stroke-width="2"/>
+            <rect x="60" y="80" width="160" height="60" rx="14" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1.5"/>
+            <text x="140" y="104" fill="#F87171" font-size="13" font-weight="700" text-anchor="middle">mTOR Activ</text>
+            <text x="140" y="122" fill="#A0ACC8" font-size="10" text-anchor="middle">Anabolism / Crestere</text>
+            <!-- mTOR consequences -->
+            <text x="100" y="165" fill="#6E7A9A" font-size="9" text-anchor="middle">Insulina crescuta</text>
+            <text x="100" y="180" fill="#6E7A9A" font-size="9" text-anchor="middle">Stocare grasime</text>
+            <text x="100" y="195" fill="#6E7A9A" font-size="9" text-anchor="middle">Crestere musculara</text>
+            <text x="100" y="210" fill="#F87171" font-size="9.5" font-weight="600" text-anchor="middle">AUTOFAGIE SCAZUTA</text>
+            <!-- Right side: AMPK (catabolism) -->
+            <line x1="350" y1="110" x2="560" y2="110" stroke="rgba(74,222,128,.3)" stroke-width="2"/>
+            <rect x="480" y="80" width="160" height="60" rx="14" fill="rgba(74,222,128,.08)" stroke="rgba(74,222,128,.25)" stroke-width="1.5"/>
+            <text x="560" y="104" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="middle">AMPK Activ</text>
+            <text x="560" y="122" fill="#A0ACC8" font-size="10" text-anchor="middle">Catabolism / Reciclare</text>
+            <!-- AMPK consequences -->
+            <text x="600" y="165" fill="#6E7A9A" font-size="9" text-anchor="middle">Insulina scazuta</text>
+            <text x="600" y="180" fill="#6E7A9A" font-size="9" text-anchor="middle">Ardere grasime</text>
+            <text x="600" y="195" fill="#6E7A9A" font-size="9" text-anchor="middle">Cetoza</text>
+            <text x="600" y="210" fill="#4ADE80" font-size="9.5" font-weight="600" text-anchor="middle">AUTOFAGIE RIDICATA</text>
+            <!-- Center label -->
+            <rect x="295" y="120" width="110" height="34" rx="10" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.25)" stroke-width="1"/>
+            <text x="350" y="142" fill="#A78BFA" font-size="11" font-weight="700" text-anchor="middle">Balanta metabolica</text>
+            <!-- Arrows -->
+            <text x="260" y="98" fill="#F87171" font-size="16" text-anchor="middle">&larr;</text>
+            <text x="440" y="98" fill="#4ADE80" font-size="16" text-anchor="middle">&rarr;</text>
+            <text x="260" y="78" fill="#6E7A9A" font-size="9" text-anchor="middle">Mancare</text>
+            <text x="440" y="78" fill="#6E7A9A" font-size="9" text-anchor="middle">Post</text>
+          </svg>
+        </div>
+
+        <div class="quote">
+          &laquo;Autofagia se activeaza cand esti in privare de energie si stres — cum ar fi postul alimentar sau exercitiul fizic. Pe masura ce corpul se epuizeaza de anumiti nutrienti, incepe gradual sa creasca autofagia ca mod de a face fata stresului si de a folosi combustibilul de rezerva.&raquo;
+          <cite>— Siim Land, "Signs of Autophagy"</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Raportul Insulina/Glucagon -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Raportul Insulina-Glucagon: cheia autofagiei</h2>
+          <p>Insulina si glucagonul sunt doi hormoni opusi — raportul lor iti spune daca esti in mod anabolic sau catabolic</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--glow);">BIOMARKER</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Raport insulina/glucagon CRESCUT</h3>
+            <p>Inseamna mai mult <b>anabolism</b> si mTOR activ. Se asociaza cu: crestere in greutate, stocare de grasime, crestere musculara, hiperinsulinemie si risc crescut de hipoglicemie. <b>Autofagia este inhibata</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Raport insulina/glucagon SCAZUT</h3>
+            <p>Promoveaza <b>catabolismul</b>, arderea grasimilor, activarea AMPK si autofagia. Corpul isi foloseste rezervele de energie. Se obtine prin <b>post</b>, diete low-carb si exercitiu fizic.</p>
+          </div>
+        </div>
+
+        <div class="alert purple" style="margin-top:14px;">
+          <h4>Important: trebuie sa fii in post</h4>
+          <p>Chiar daca indicele glucoza-cetone e scazut, daca <b>mananci</b>, nu esti in autofagie — esti doar in cetoza. Autofagia necesita <b>absenta caloriilor</b>. Caloriile consumate vor inhiba autofagia prin activarea mTOR, chiar daca esti in cetoza.</p>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>Insulina crescuta = mTOR activ = Autofagie OFF</h4>
+              <p>Cand mananci (mai ales carbohidrati si proteine), insulina creste. mTOR-ul se activeaza prin calea de semnalizare <b>insulina/IGF-1</b>. Celulele intra in mod de crestere si reparare, nu de reciclare.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Insulina scazuta = AMPK activ = Autofagie ON</h4>
+              <p>In post prelungit, insulina scade, glucagonul creste. AMPK-ul detecteaza deficitul energetic si activeaza autofagia. Celulele incep sa-si <b>recicleze componentele deteriorate</b> pentru energie.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Cum masori raportul acasa: GKI</h4>
+              <p>Indicele Glucoza-Cetone (GKI) este un proxy accesibil pentru raportul insulina/glucagon. Se calculeaza cu un <b>aparat de masurat glicemia si cetonele</b> din deget. Vezi calculatorul interactiv din sidebar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Semnele fizice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Semnele fizice ale autofagiei</h2>
+          <p>Indicatori observabili care sugereaza ca procesul de reciclare celulara este activ</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">SEMNE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">1. Glicemie scazuta</h3>
+            <p>Cand glicemia scade, corpul raspunde crescand <b>cortizolul, hormonul de crestere si cetonele</b>. Aceasta promoveaza oxidarea grasimilor si cetoza — inceputul autofagiei. De obicei trebuie sa scazi sub <b>70 mg/dL</b>, ceea ce se intampla in postul prelungit.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">2. Insulina si IGF-1 scazute</h3>
+            <p>Insulina bazala la post sub <b>15-20 mU/L</b> indica activare autofagica. Normal e considerat sub 25, dar pentru autofagie trebuie mai jos. <b>Postul, dietele low-carb si exercitiul</b> reduc insulina si IGF-1.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">3. Pierdere in greutate</h3>
+            <p>Autofagia e implicata in <b>lipofagia</b> (oxidarea grasimilor). In post, pierzi in greutate, ceea ce probabil inseamna autofagie crescuta. Chiar si fara post, pierderea in greutate prin restrictie calorica sugereaza autofagie bazala mai mare.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">4. Sanatatea pielii</h3>
+            <p>Ridurile si deteriorarea pielii apar din cauza imbatranirii si stresului oxidativ. Autofagia in <b>fibroblastii pielii</b> promoveaza sanatatea cutanata. Postul curata pielea fara produse cosmetice — pielea reflecta sanatatea digestiva.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">5. Pierderea musculara (atentie!)</h3>
+            <p>Autofagia protejeaza impotriva disfunctiei musculare si sarcopeniei degradand proteinele defecte. Dar postul <b>prea lung</b> duce la catabolism muscular. Beneficiile ating un plafon dupa <b>ziua 3-5</b> — nu exista motiv sa postesti mai mult.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">6. Cetoza crescuta</h3>
+            <p>Cetone crescute in sange (masurabile cu un dispozitiv de la farmacie) indica ca corpul arde grasimi. In combinatie cu <b>postul</b> si un GKI scazut, cetoza puternica sugereaza autofagie activa.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Nu sunt 100% exacte</h4>
+          <p>Aceste variabile nu garanteaza mereu autofagia, dar sunt <b>indicatori utili</b> ca organismul trece prin procese autofagice si le foloseste. Nu vrei sa fii in autofagie permanent — trebuie sa echilibrezi cu <b>nutritie adecvata, exercitiu, lumina solara</b> si toti nutrientii esentiali.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Indicele Glucoza-Cetone GKI -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Indicele Glucoza-Cetone (GKI)</h2>
+          <p>Cel mai practic instrument de acasa pentru a estima daca esti in autofagie</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">INSTRUMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Pasul 1: Masoara glicemia</h4>
+              <p>Inteapa-ti degetul si masoara <b>glucoza din sange</b>. Noteaza numarul obtinut. Daca dispozitivul arata in mg/dL, imparte la 18 pentru a converti in mmol/L.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Pasul 2: Masoara cetonele</h4>
+              <p>Inteapa-ti degetul din nou si masoara <b>cetonele din sange</b> (beta-hidroxibutirat). Noteaza numarul in mmol/L.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Pasul 3: Calculeaza</h4>
+              <p>Formula: <b>GKI = (Glucoza in mmol/L) / (Cetone in mmol/L)</b>. Daca glucoza e in mg/dL, formula devine: <b>GKI = (Glucoza / 18) / Cetone</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Pasul 4: Interpreteaza rezultatul</h4>
+              <p>GKI sub 3 = cetoza profunda si autofagie probabil activa. GKI 3-6 = cetoza moderata. GKI 6-9 = cetoza usoara. GKI peste 9 = fara cetoza, fara autofagie.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GKI Zone SVG -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Zone bars -->
+            <rect x="40" y="40" width="140" height="55" rx="12" fill="rgba(74,222,128,.12)" stroke="rgba(74,222,128,.3)" stroke-width="1.5"/>
+            <text x="110" y="60" fill="#4ADE80" font-size="18" font-weight="700" text-anchor="middle">&lt; 3</text>
+            <text x="110" y="78" fill="#A0ACC8" font-size="10" text-anchor="middle">Cetoza profunda</text>
+            <text x="110" y="110" fill="#4ADE80" font-size="9.5" font-weight="600" text-anchor="middle">AUTOFAGIE ACTIVA</text>
+
+            <rect x="200" y="40" width="140" height="55" rx="12" fill="rgba(167,139,250,.10)" stroke="rgba(167,139,250,.25)" stroke-width="1.5"/>
+            <text x="270" y="60" fill="#A78BFA" font-size="18" font-weight="700" text-anchor="middle">3 — 6</text>
+            <text x="270" y="78" fill="#A0ACC8" font-size="10" text-anchor="middle">Cetoza moderata</text>
+            <text x="270" y="110" fill="#A78BFA" font-size="9.5" font-weight="600" text-anchor="middle">AUTOFAGIE POSIBILA</text>
+
+            <rect x="360" y="40" width="140" height="55" rx="12" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.20)" stroke-width="1.5"/>
+            <text x="430" y="60" fill="#FBBF24" font-size="18" font-weight="700" text-anchor="middle">6 — 9</text>
+            <text x="430" y="78" fill="#A0ACC8" font-size="10" text-anchor="middle">Cetoza usoara</text>
+            <text x="430" y="110" fill="#FBBF24" font-size="9.5" font-weight="600" text-anchor="middle">AUTOFAGIE MINIMA</text>
+
+            <rect x="520" y="40" width="140" height="55" rx="12" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.20)" stroke-width="1.5"/>
+            <text x="590" y="60" fill="#F87171" font-size="18" font-weight="700" text-anchor="middle">&gt; 9</text>
+            <text x="590" y="78" fill="#A0ACC8" font-size="10" text-anchor="middle">Fara cetoza</text>
+            <text x="590" y="110" fill="#F87171" font-size="9.5" font-weight="600" text-anchor="middle">FARA AUTOFAGIE</text>
+
+            <!-- Scale arrow -->
+            <line x1="40" y1="140" x2="660" y2="140" stroke="rgba(234,240,255,.15)" stroke-width="1.5"/>
+            <polygon points="660,136 660,144 672,140" fill="rgba(234,240,255,.2)"/>
+            <text x="40" y="160" fill="#4ADE80" font-size="9" text-anchor="start">Mai multa autofagie</text>
+            <text x="660" y="160" fill="#F87171" font-size="9" text-anchor="end">Mai putina autofagie</text>
+            <text x="350" y="160" fill="#6E7A9A" font-size="9" text-anchor="middle">GKI (Glucose Ketone Index)</text>
+          </svg>
+        </div>
+
+        <div class="quote green" style="margin-top:14px;">
+          &laquo;Indicele glucoza-cetone iti arata raportul insulina-glucagon in ceea ce priveste starea catabolica. Un GKI mai scazut indica mai multa cetoza, glicemie mai mica, insulina mai mica, AMPK mai mare si, prin urmare, mai multa autofagie.&raquo;
+          <cite>— Siim Land</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Cum activezi autofagia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum activezi si ciclezi autofagia</h2>
+          <p>Strategii practice bazate pe mecanismele biologice ale autofagiei</p>
+        </div>
+        <span class="badge">STRATEGIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3 style="color:var(--glow)">Postul alimentar</h3>
+            <p>Principalul activator. Beneficiile autofagice cresc cu durata postului, dar ating <b>randamente descrescatoare dupa ziua 3-5</b>. Nu exista motiv stiintific sa postesti mai mult de atat.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--ok)">Exercitiu fizic</h3>
+            <p>Exercitiul stimuleaza autofagia prin activarea <b>AMPK</b> si reducerea insulinei. Antrenamentul intens in stare de post amplifica efectul. Ideal: <b>combinat cu postul</b> intermitent.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Dieta low-carb</h3>
+            <p>Reducerea carbohidratilor scade insulina si IGF-1, stimuland usor autofagia. Dieta <b>cetogena</b> e mai eficienta — mentine corpul in cetoza chiar si cand mananci.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini">
+            <h3 style="color:var(--teal)">Ciclizarea e esentiala</h3>
+            <p>Nu vrei sa fii in autofagie <b>tot timpul</b>. Trebuie sa alternezi cu perioade de nutritie adecvata, obtinand toti nutrientii esentiali. Echilibrul intre <b>anabolism si catabolism</b> e cheia longevitatii.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--purple)">Dieta antiinflamatoare</h3>
+            <p>In perioadele de alimentare, alege o dieta <b>antiinflamatoare</b>: legume, grasimi sanatoase, proteine de calitate. Pielea, digestia si sanatatea generala depind de calitatea alimentatiei, nu doar de post.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Nu e cea mai perfecta metoda, dar e cea mai buna pe care o ai si o poti folosi acasa. Post cu un indice glucoza-cetone scazut — asta iti spune daca esti in autofagie. Daca mananci dar GKI e scazut, esti doar in cetoza, nu in autofagie.&raquo;
+          <cite>— Siim Land</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii: ce sa retii</h2>
+          <p>Rezumatul principalelor lectii despre semnele autofagiei si cum sa le monitorizezi</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--glow)">Nu poti masura direct</h3>
+            <p>Autofagia nu poate fi masurata in timp real la oameni cu tehnologia actuala. Dar poti folosi <b>indicatori indirecti</b>: GKI, glicemie, cetone, insulina bazala, pierdere in greutate.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">GKI sub 3 + Post = Semn bun</h3>
+            <p>Combinatia unui <b>GKI sub 3</b> cu starea de post alimentar este cel mai puternic indicator accesibil ca esti in autofagie. Fara post, un GKI scazut indica doar cetoza.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Echilibru, nu exces</h3>
+            <p>Autofagia excesiva cauzeaza <b>pierdere musculara si sarcopenie</b>. Beneficiile ating un plafon dupa 3-5 zile de post. Ciclizeaza intre post si nutritie adecvata.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Pielea te arata</h3>
+            <p>Pielea curata fara produse cosmetice este un semn ca autofagia si digestia functioneaza bine. <b>Postul si dieta antiinflamatoare</b> sunt mai eficiente decat orice crema.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- GKI Calculator -->
+    <div class="timeline">
+      <div class="tHead"><h2>Calculator GKI interactiv</h2></div>
+      <div class="tBody" style="padding-bottom:16px;">
+        <div class="calcWrap" style="border:0;padding:0;margin:0;">
+          <label>Glucoza din sange (mg/dL):</label>
+          <div class="sliderRow">
+            <input type="range" id="glucSlider" min="40" max="200" value="85" oninput="calcGKI()">
+            <span class="sliderVal" id="glucVal" style="color:var(--warn)">85 mg/dL</span>
+          </div>
+          <label>Cetone din sange (mmol/L):</label>
+          <div class="sliderRow">
+            <input type="range" id="ketSlider" min="1" max="60" value="5" oninput="calcGKI()">
+            <span class="sliderVal" id="ketVal" style="color:var(--teal)">0.5 mmol/L</span>
+          </div>
+          <label style="margin-top:6px;font-size:11px;color:var(--muted2);">Esti in post alimentar?</label>
+          <div style="display:flex;gap:10px;margin-top:4px;">
+            <button id="fastYes" onclick="setFast(true)" style="flex:1;padding:8px;border-radius:10px;border:1px solid rgba(74,222,128,.3);background:rgba(74,222,128,.08);color:var(--ok);cursor:pointer;font-weight:600;font-size:12px;">Da, postesc</button>
+            <button id="fastNo" onclick="setFast(false)" style="flex:1;padding:8px;border-radius:10px;border:1px solid rgba(248,113,113,.3);background:rgba(248,113,113,.08);color:var(--bad);cursor:pointer;font-weight:600;font-size:12px;">Nu, am mancat</button>
+          </div>
+          <div class="calcResult" id="gkiResult" style="margin-top:12px;">
+            <div class="gkiVal" id="gkiNum" style="color:var(--ok)">9.4</div>
+            <div class="gkiLabel">Indicele Glucoza-Cetone</div>
+            <div class="gkiZone" id="gkiZone" style="color:var(--bad);">Fara cetoza — fara autofagie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Linia temporala a postului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">0-4 ore</span><span class="tDesc">Digestia activa. <b>Insulina crescuta</b>, mTOR activ. Fara autofagie.</span></div>
+        <div class="tEvent"><span class="tDate">4-8 ore</span><span class="tDesc"><b>Glicemia scade</b> treptat. Corpul incepe tranzitia.</span></div>
+        <div class="tEvent"><span class="tDate">8-12 ore</span><span class="tDesc">Insulina scade semnificativ. <b>Glicogenul hepatic</b> incepe sa se epuizeze.</span></div>
+        <div class="tEvent"><span class="tDate">12-18 ore</span><span class="tDesc"><b>Cetoza incipienta</b>. AMPK se activeaza. Primele semne de autofagie.</span></div>
+        <div class="tEvent"><span class="tDate">18-24 ore</span><span class="tDesc">Cetoza stabila. <b>Autofagia creste</b> semnificativ. GKI scade sub 6.</span></div>
+        <div class="tEvent"><span class="tDate">24-48 ore</span><span class="tDesc"><b>Autofagie intensa</b>. Corpul recicleaza activ proteine deteriorate.</span></div>
+        <div class="tEvent"><span class="tDate">48-72 ore</span><span class="tDesc"><b>Varf autofagic</b>. Regenerare celulara masiva. GKI poate scadea sub 3.</span></div>
+        <div class="tEvent"><span class="tDate">72h-5 zile</span><span class="tDesc">Beneficii in platou. <b>Randamente descrescatoare</b>. Risc de catabolism muscular.</span></div>
+        <div class="tEvent"><span class="tDate">&gt; 5 zile</span><span class="tDesc"><b>Nu se recomanda.</b> Pierdere musculara, fara beneficii suplimentare semnificative.</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce nu putem masura direct?</h4>
+          <p>Masurarea autofagiei necesita observarea directa a structurilor autofagice in tesut sau cuantificarea degradarii proteinelor dependente de lizozomi. Acest lucru e <b>impracticabil</b> la oameni cu echipament casnic — de aceea folosim indicatori indirecti.</p>
+        </div>
+        <div class="comNote">
+          <h4>Cetoza ≠ Autofagie</h4>
+          <p>Poti fi in cetoza fara sa fii in autofagie (de exemplu, mananci o dieta cetogena). Autofagia necesita si <b>restrictie calorica</b> — postul este esential. Cetoza e o conditie necesara dar nu suficienta.</p>
+        </div>
+        <div class="comNote">
+          <h4>Skincare prin autofagie</h4>
+          <p>Autorul sustine ca nu foloseste niciun produs cosmetic — doar apa. Pielea sa clara se datoreaza postului, autofagiei si unei diete antiinflamatoare. Pielea reflecta <b>sanatatea intestinala</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Limitele metodei</h4>
+          <p>GKI-ul nu este o masura directa a autofagiei. E cel mai bun instrument <b>accesibil acasa</b>, dar nu e perfect. Singura metoda sigura ar fi o biopsie musculara cu analiza proteinelor autofagice.</p>
+        </div>
+        <div class="comNote">
+          <h4>Insulina bazala optima</h4>
+          <p>Sub 25 mU/L e considerat normal. Dar pentru autofagie, tinta e <b>sub 15-20 mU/L</b>. Valori crescute indica sindrom metabolic si diabet — asociate cu exces energetic cronic.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Autofagie</dt>
+          <dd>Proces celular de auto-digestie in care celulele isi dezasambleaza si recicleaza componentele deteriorate, transformandu-le in energie. Literal: "a se manca pe sine" (din greaca).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>mTOR</dt>
+          <dd>Mechanistic Target of Rapamycin — complex proteic care regleaza cresterea celulara. Cand e activ, promoveaza anabolismul si inhiba autofagia.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>AMPK</dt>
+          <dd>AMP-activated Protein Kinase — senzor energetic celular. Se activeaza cand energia e scazuta si stimuleaza autofagia, arderea grasimilor si productia de cetone.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>GKI (Glucose Ketone Index)</dt>
+          <dd>Raportul dintre glucoza din sange (mmol/L) si cetonele din sange (mmol/L). Sub 3 indica cetoza profunda, peste 9 indica absenta cetozei.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Lipofagie</dt>
+          <dd>Forma de autofagie specializata in degradarea depozitelor de grasime. Se activeaza in post si contribuie la pierderea in greutate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>IGF-1</dt>
+          <dd>Insulin-like Growth Factor 1 — hormon de crestere care stimuleaza mTOR si inhiba autofagia. Scade in post si dieta cu restrictie proteica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sarcopenie</dt>
+          <dd>Pierderea progresiva a masei musculare si a fortei, de obicei asociata cu imbatranirea. Autofagia moderata protejeaza impotriva ei, dar excesul o agraveaza.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Flux autofagic</dt>
+          <dd>Cantitatea de material celular procesata prin autofagie intr-un interval de timp. Masurarea sa exacta e dificila chiar si in laborator.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=ij8NdWUTbj8" target="_blank">Siim Land — Signs of Autophagy: How to Know If You're In Autophagy</a> &middot;
+    Infografic educativ bazat pe continutul video
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── GKI Calculator ── */
+let isFasting = false;
+
+function setFast(val){
+  isFasting = val;
+  document.getElementById('fastYes').style.borderColor = val ? 'rgba(74,222,128,.6)' : 'rgba(74,222,128,.3)';
+  document.getElementById('fastYes').style.background = val ? 'rgba(74,222,128,.18)' : 'rgba(74,222,128,.08)';
+  document.getElementById('fastNo').style.borderColor = !val ? 'rgba(248,113,113,.6)' : 'rgba(248,113,113,.3)';
+  document.getElementById('fastNo').style.background = !val ? 'rgba(248,113,113,.18)' : 'rgba(248,113,113,.08)';
+  calcGKI();
+}
+
+function calcGKI(){
+  const gluc = +document.getElementById('glucSlider').value;
+  const ketRaw = +document.getElementById('ketSlider').value;
+  const ket = ketRaw / 10;
+  document.getElementById('glucVal').textContent = gluc + ' mg/dL';
+  document.getElementById('ketVal').textContent = ket.toFixed(1) + ' mmol/L';
+
+  const glucMmol = gluc / 18;
+  const gki = ket > 0 ? glucMmol / ket : 99;
+  const gkiRound = Math.round(gki * 10) / 10;
+
+  const numEl = document.getElementById('gkiNum');
+  const zoneEl = document.getElementById('gkiZone');
+  numEl.textContent = gkiRound;
+
+  if(!isFasting){
+    numEl.style.color = 'var(--muted2)';
+    zoneEl.style.color = 'var(--bad)';
+    zoneEl.textContent = 'Nu postesti — autofagia e inhibata (GKI: ' + gkiRound + ')';
+    return;
+  }
+
+  if(gki < 3){
+    numEl.style.color = 'var(--ok)';
+    zoneEl.style.color = 'var(--ok)';
+    zoneEl.textContent = 'Cetoza profunda — autofagie probabil activa!';
+  } else if(gki < 6){
+    numEl.style.color = 'var(--glow)';
+    zoneEl.style.color = 'var(--glow)';
+    zoneEl.textContent = 'Cetoza moderata — autofagie posibila';
+  } else if(gki < 9){
+    numEl.style.color = 'var(--warn)';
+    zoneEl.style.color = 'var(--warn)';
+    zoneEl.textContent = 'Cetoza usoara — autofagie minima';
+  } else {
+    numEl.style.color = 'var(--bad)';
+    zoneEl.style.color = 'var(--bad)';
+    zoneEl.textContent = 'Fara cetoza — fara autofagie';
+  }
+}
+calcGKI();
+
+/* ── Hero canvas: cellular autophagy visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Cell particles
+  const cells = [];
+  const cellCount = 28;
+  for(let i = 0; i < cellCount; i++){
+    cells.push({
+      x: 0.1 + Math.random() * 0.8,
+      y: 0.1 + Math.random() * 0.8,
+      r: 4 + Math.random() * 8,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.005,
+      health: Math.random(),
+      recycling: Math.random() < 0.3
+    });
+  }
+
+  // Lysosomes (recycling agents)
+  const lysosomes = [];
+  for(let i = 0; i < 6; i++){
+    lysosomes.push({
+      x: 0.2 + Math.random() * 0.6,
+      y: 0.2 + Math.random() * 0.6,
+      r: 6,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.008 + Math.random() * 0.006,
+      target: Math.floor(Math.random() * cellCount)
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Background membrane
+    ctx.beginPath();
+    ctx.ellipse(w/2, h/2, w * 0.42, h * 0.42, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(167,139,250,0.08)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw connections between lysosomes and targets
+    lysosomes.forEach(ly => {
+      const target = cells[ly.target];
+      if(target && target.recycling){
+        const lx = ly.x * w + Math.sin(t * ly.speed * 80 + ly.phase) * 12;
+        const lky = ly.y * h + Math.cos(t * ly.speed * 60 + ly.phase) * 10;
+        const tx = target.x * w + Math.sin(t + target.phase) * 4;
+        const ty = target.y * h + Math.cos(t * 1.2 + target.phase) * 4;
+        const alpha = 0.06 + Math.sin(t * 3 + ly.phase) * 0.03;
+        ctx.beginPath();
+        ctx.moveTo(lx, lky);
+        ctx.lineTo(tx, ty);
+        ctx.strokeStyle = `rgba(74,222,128,${alpha})`;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3,4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    });
+
+    // Pulse waves (autophagy activation)
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 55) % 160);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 2000);
+      ctx.beginPath();
+      ctx.arc(w/2, h/2, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(167,139,250,${pulseAlpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Draw cell particles
+    cells.forEach(cell => {
+      const cx = cell.x * w + Math.sin(t + cell.phase) * 4;
+      const cy = cell.y * h + Math.cos(t * 1.2 + cell.phase) * 4;
+      const pulse = 0.3 + Math.sin(t * 2 + cell.phase) * 0.15;
+
+      // Outer membrane
+      ctx.beginPath();
+      ctx.arc(cx, cy, cell.r + 2, 0, Math.PI * 2);
+      if(cell.recycling){
+        ctx.strokeStyle = `rgba(74,222,128,${pulse * 0.5})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+      } else if(cell.health > 0.6){
+        ctx.strokeStyle = `rgba(167,139,250,${pulse * 0.3})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+      } else {
+        ctx.strokeStyle = `rgba(248,113,113,${pulse * 0.4})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.2)';
+      }
+      ctx.shadowBlur = 6;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Inner fill
+      ctx.beginPath();
+      ctx.arc(cx, cy, cell.r, 0, Math.PI * 2);
+      if(cell.recycling){
+        ctx.fillStyle = `rgba(74,222,128,${pulse})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.4)';
+        ctx.shadowBlur = 10;
+      } else if(cell.health > 0.6){
+        ctx.fillStyle = `rgba(167,139,250,${pulse * 0.7})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.3)';
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.fillStyle = `rgba(248,113,113,${pulse * 0.6})`;
+        ctx.shadowColor = 'rgba(248,113,113,0.2)';
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Draw lysosomes
+    lysosomes.forEach(ly => {
+      const lx = ly.x * w + Math.sin(t * ly.speed * 80 + ly.phase) * 12;
+      const lky = ly.y * h + Math.cos(t * ly.speed * 60 + ly.phase) * 10;
+      const glow = 0.5 + Math.sin(t * 3 + ly.phase) * 0.2;
+
+      // Double membrane (autophagosome look)
+      ctx.beginPath();
+      ctx.arc(lx, lky, ly.r + 3, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(74,222,128,${glow * 0.3})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(lx, lky, ly.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(74,222,128,${glow * 0.6})`;
+      ctx.shadowColor = 'rgba(74,222,128,0.5)';
+      ctx.shadowBlur = 12;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Energy particles (recycled energy)
+    for(let i = 0; i < 8; i++){
+      const ex = (0.3 + Math.sin(t * 2 + i * 0.8) * 0.25) * w;
+      const ey = (0.3 + Math.cos(t * 1.7 + i * 1.1) * 0.25) * h;
+      const ea = 0.15 + Math.sin(t * 4 + i) * 0.1;
+      ctx.beginPath();
+      ctx.arc(ex, ey, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(251,191,36,${ea})`;
+      ctx.fill();
+    }
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.35)';
+    ctx.fillText('CELULA', w/2 - 18, h/2 - 2);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('sanatoase', 15, ly+3);
+    ctx.fillStyle = 'rgba(248,113,113,0.7)'; ctx.beginPath(); ctx.arc(80, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('deteriorate', 87, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(158, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('autofagie', 165, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

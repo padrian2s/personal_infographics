@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Am Luat Albastru de Metilen timp de o Luna — Ce s-a Intamplat</title>
+  <meta name="description" content="Infografic interactiv: experiment personal cu albastru de metilen timp de o luna. Efecte asupra mitocondriilor, cognitiei, energiei. Dozaje, mecanisme si riscuri." />
+  <style>
+    :root{
+      --bg0:#060810;
+      --bg1:#0A0E1A;
+      --panel:#101630cc;
+      --card:#0E1530;
+      --card2:#0B1228;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2548;
+      --glow:#3B82F6;
+      --glow2:#22D3EE;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(59,130,246,.08), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(34,211,238,.07), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(59,130,246,.20);
+      background: linear-gradient(180deg, rgba(14,21,48,.75), rgba(10,14,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(59,130,246,.12), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(34,211,238,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.08), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,8,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,8,16,.30),rgba(6,8,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,8,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,8,16,.28),rgba(6,8,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,8,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(59,130,246,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.cyan{border-color:var(--glow2);background:rgba(34,211,238,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(59,130,246,.22),rgba(59,130,246,.04));}
+    .stepBar.cyan{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(59,130,246,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.cyan{border-color:var(--glow2);background:rgba(34,211,238,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(248,113,113,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(248,113,113,.06);margin-top:12px;
+    }
+    .alert.blue{border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.06);}
+    .alert.green{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--bad);display:flex;align-items:center;gap:6px;}
+    .alert.blue h4{color:var(--glow);}
+    .alert.green h4{color:var(--ok);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,8,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Dose slider */
+    .dosePanel{margin-top:14px;border:1px solid rgba(59,130,246,.15);border-radius:16px;padding:14px;background:rgba(6,8,16,.35);}
+    .dosePanel label{font-size:13px;font-weight:600;display:block;margin-bottom:8px;}
+    .dosePanel input[type=range]{width:100%;accent-color:var(--glow);cursor:pointer;}
+    .doseOut{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted);}
+    .doseOut .dVal{font-family:var(--mono);font-size:20px;font-weight:760;color:var(--glow);}
+    .doseOut .dLabel{font-size:11.5px;color:var(--muted);margin-top:2px;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(59,130,246,.18);
+      background:linear-gradient(180deg,rgba(14,21,48,.80),rgba(10,14,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(59,130,246,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(59,130,246,.25);background:rgba(59,130,246,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,8,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,21,48,.75),rgba(11,18,40,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,8,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Am Luat Albastru de Metilen timp de o Luna
+          <small>Experiment personal — efecte asupra mitocondriilor, energiei si cognitiei. Ce spune stiinta si ce am simtit</small>
+        </h1>
+        <p class="sub">Albastrul de metilen este o substanta veche de peste 140 de ani, folosita initial ca vopsea textila si apoi in medicina. Unii il numesc "drogul-minune" care le-a salvat viata, altii il considera toxic. Am testat doua forme diferite timp de o luna pentru a vedea <b>daca face vreo diferenta reala</b> la un adult sanatos de 30 de ani.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>Mitocondrii</b> — suport energetic celular</span>
+          <span class="chip"><i class="i2"></i> <b>Cognitie</b> — claritate mentala</span>
+          <span class="chip"><i class="i3"></i> <b>Dozaj</b> — doza joasa vs. doza mare</span>
+          <span class="chip"><i class="i4"></i> <b>Riscuri</b> — G6PD, serotonina, hemoliza</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Ce este albastrul de metilen -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ce este albastrul de metilen?</h2>
+          <p>O substanta cu proprietati unice care poate actiona si ca antioxidant, si ca donor de electroni in lantul de transport mitocondrial</p>
+        </div>
+        <span class="badge">BAZA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">1876</div>
+            <span class="u">sintetizat prima data de Heinrich Caro</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow2)">94%</div>
+            <span class="u">din populatia SUA are disfunctie mitocondr.</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">2-25mg</div>
+            <span class="u">doza joasa pentru optimizare mitocondriala</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">1-2mg/kg</div>
+            <span class="u">doza mare, anti-infectioasa</span>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Mecanism principal</h3>
+            <p>Albastrul de metilen actioneaza ca un <b>transportor alternativ de electroni</b> care ocoleste complexele I si III din lantul de transport electronic mitocondrial. De asemenea, stimuleaza <b>activitatea complexului IV</b> (citocrom C oxidaza), crescand consumul de oxigen si productia de energie.</p>
+          </div>
+          <div class="mini">
+            <h3>Efect adaptogen</h3>
+            <p>Se comporta aproape ca un <b>adaptogen</b>: daca ai nevoie de suport antioxidant (deficit de antioxidanti, exercitiu intens fara recuperare adecvata), actioneaza acolo. Daca ai nevoie de <b>donare de electroni</b> in lantul mitocondrial, face si asta.</p>
+          </div>
+        </div>
+        <div class="quote" style="margin-top:14px;">
+          &laquo;94% din populatie are disfunctie mitocondriale. In acea populatie, o proportie semnificativa poate beneficia de albastru de metilen, o parte din timp.&raquo;
+          <cite>— Dr. Scott Sherr, medic clinician specializat in albastru de metilen</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Cum functioneaza in mitocondrii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mecanismul mitocondrial: cum functioneaza</h2>
+          <p>Albastrul de metilen interactioneaza direct cu lantul de transport electronic — sursa principala de energie celulara (ATP)</p>
+        </div>
+        <span class="badge" style="border-color:rgba(59,130,246,.3);color:var(--glow);">MECANISM</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG Electron Transport Chain Diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Membrane background -->
+            <rect x="20" y="80" width="660" height="140" rx="16" fill="rgba(59,130,246,.04)" stroke="rgba(59,130,246,.12)" stroke-width="1"/>
+            <text x="350" y="105" fill="rgba(160,172,200,0.3)" font-size="10" text-anchor="middle" letter-spacing="3">MEMBRANA MITOCONDRIALEI INTERNA</text>
+
+            <!-- Complex I -->
+            <rect x="50" y="120" width="100" height="70" rx="12" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.30)" stroke-width="1.5"/>
+            <text x="100" y="148" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Complex I</text>
+            <text x="100" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">NADH dehidrogenaza</text>
+            <text x="100" y="180" fill="#6E7A9A" font-size="8.5" text-anchor="middle">MB il INHIBA</text>
+
+            <!-- Arrow I -> III -->
+            <line x1="150" y1="155" x2="195" y2="155" stroke="rgba(234,240,255,.15)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+
+            <!-- Complex III -->
+            <rect x="195" y="120" width="100" height="70" rx="12" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.30)" stroke-width="1.5"/>
+            <text x="245" y="148" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Complex III</text>
+            <text x="245" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">Citocrom bc1</text>
+            <text x="245" y="180" fill="#6E7A9A" font-size="8.5" text-anchor="middle">MB il INHIBA</text>
+
+            <!-- Arrow III -> IV -->
+            <line x1="295" y1="155" x2="395" y2="155" stroke="rgba(234,240,255,.15)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+
+            <!-- Complex IV -->
+            <rect x="395" y="120" width="110" height="70" rx="12" fill="rgba(74,222,128,.10)" stroke="rgba(74,222,128,.30)" stroke-width="1.5"/>
+            <text x="450" y="148" fill="#4ADE80" font-size="11" font-weight="700" text-anchor="middle">Complex IV</text>
+            <text x="450" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">Citocrom C oxidaza</text>
+            <text x="450" y="180" fill="#6E7A9A" font-size="8.5" text-anchor="middle">MB il STIMULEAZA</text>
+
+            <!-- Arrow IV -> ATP -->
+            <line x1="505" y1="155" x2="555" y2="155" stroke="rgba(234,240,255,.15)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+
+            <!-- ATP Synthase -->
+            <rect x="555" y="120" width="100" height="70" rx="12" fill="rgba(59,130,246,.12)" stroke="rgba(59,130,246,.35)" stroke-width="1.5"/>
+            <text x="605" y="148" fill="#3B82F6" font-size="11" font-weight="700" text-anchor="middle">ATP Sintaza</text>
+            <text x="605" y="165" fill="#A0ACC8" font-size="9" text-anchor="middle">Productie ENERGIE</text>
+            <text x="605" y="180" fill="#3B82F6" font-size="9" font-weight="600" text-anchor="middle">ATP</text>
+
+            <!-- MB bypass arrow (curved) -->
+            <path d="M100,190 Q100,250 350,260 Q450,262 450,190" fill="none" stroke="rgba(59,130,246,.45)" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowB)"/>
+            <text x="270" y="278" fill="#3B82F6" font-size="10" font-weight="700" text-anchor="middle">ALBASTRU DE METILEN — ocoleste I si III</text>
+
+            <!-- Legend -->
+            <rect x="50" y="20" width="12" height="12" rx="3" fill="rgba(248,113,113,.25)" stroke="rgba(248,113,113,.4)" stroke-width="1"/>
+            <text x="68" y="30" fill="#A0ACC8" font-size="9.5">Inhibat de MB (potential reducere energie la sanatosi)</text>
+            <rect x="370" y="20" width="12" height="12" rx="3" fill="rgba(74,222,128,.25)" stroke="rgba(74,222,128,.4)" stroke-width="1"/>
+            <text x="388" y="30" fill="#A0ACC8" font-size="9.5">Stimulat de MB (crestere consum O2)</text>
+            <rect x="50" y="42" width="12" height="12" rx="3" fill="rgba(59,130,246,.25)" stroke="rgba(59,130,246,.4)" stroke-width="1"/>
+            <text x="68" y="52" fill="#A0ACC8" font-size="9.5">Calea alternativa a albastrului de metilen</text>
+
+            <!-- Arrow markers -->
+            <defs>
+              <marker id="arrowG" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(234,240,255,.25)"/></marker>
+              <marker id="arrowB" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="rgba(59,130,246,.5)"/></marker>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Cand ajuta</h3>
+            <p>Daca ai <b>disfunctie mitocondriale</b> sau lanturi de transport electronic deteriorate (complexele I si III afectate), albastrul de metilen poate sustine productia de ATP prin ruta alternativa. Beneficii raportate: <b>mai multa energie</b>, <b>claritate mentala</b>, reducerea oboselii.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Cand poate dauna</h3>
+            <p>Daca mitocondriile tale functioneaza <b>perfect normal</b>, albastrul de metilen inhiba complexele I si III — care sunt principalii contributori la energia totala. Rezultat posibil: <b>scaderea productiei de energie</b> la persoane perfect sanatoase.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Experimentul personal -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Experimentul: 4 saptamani, 2 forme diferite</h2>
+          <p>Protocol detaliat cu tinctura lichida si pastile (troches) — dozele folosite si efectele observate</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--glow2);">EXPERIMENT</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Saptamana 1-2: Tinctura lichida — 5 mg/zi</h4>
+              <p>Tinctura lichida de albastru de metilen, dizolvata in <b>apa</b>. Gust destul de neplacut, dar nu oribil. Doza totala: <b>5 mg pe zi</b>. Nu a observat nicio diferenta in energie sau performanta cognitiva.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>Saptamana 3-4: Pastile (troches) — ~4 mg/zi</h4>
+              <p>Pastile de tip <b>trochee</b> (mentol), fiecare de 16 mg. A luat <b>un sfert</b> (~4 mg). Se tin in obrazul gurii sau se inghit direct. Dezavantaj: <b>coloreaza limba si dintii in albastru</b> mult mai mult decat tinctura. Solutie: inghiti imediat sau speli dintii.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Rezultat: zero diferenta perceptibila</h4>
+              <p>Nici <b>imbunatatire</b>, nici <b>declin</b> in energie, cognitie sau stare generala. La un adult sanatos de 30 de ani cu mitocondrii functionale, doza joasa nu a produs efecte observabile. Nu este surprinzator — <b>doza a fost mica si metabolismul era deja optim</b>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive dose slider -->
+        <div class="dosePanel">
+          <label>Calculeaza doza in functie de greutate:</label>
+          <input type="range" id="weightSlider" min="40" max="120" value="70" step="1"/>
+          <div class="doseOut">
+            <div>
+              <div class="dVal" id="weightVal">70 kg</div>
+              <div class="dLabel">greutatea ta</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="dVal" id="lowDose" style="color:var(--ok);">2–25 mg</div>
+              <div class="dLabel">doza joasa (optimizare)</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="dVal" id="highDose" style="color:var(--warn);">70–140 mg</div>
+              <div class="dLabel">doza anti-infectioasa</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote cyan" style="margin-top:14px;">
+          &laquo;Nu ma surprinde ca nu ai simtit mare lucru la 4 mg. E dependent de doza, pentru aproape toata lumea. Am pacienti care simt o schimbare enorma la doar 2 mg — creierul li se "reaprinde", energia e mai buna.&raquo;
+          <cite>— Dr. Scott Sherr</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Dozajul detaliat -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Ghid de dozaj: doua categorii principale</h2>
+          <p>De la micro-doze pentru optimizare mitocondriale pana la doze anti-infectioase sub supraveghere medicala</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">DOZAJ</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Doza joasa: 2–25 mg</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok)">2–25</span>
+              <span class="l">mg pe zi — optimizare mitocondriale</span>
+            </div>
+            <p>Indicata pentru <b>disfunctie mitocondriale usoara-moderata</b>. Se incepe cu 2-4 mg si se creste treptat la fiecare 3 zile (4 → 8 → 12 → ...) daca nu se simte niciun efect. Aceasta strategie se numeste <b>titrare</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Doza mare: 1–2 mg/kg</h3>
+            <div class="kpi">
+              <span class="n" style="color:var(--warn)">1–2</span>
+              <span class="l">mg per kilogram corp — anti-infectioasa</span>
+            </div>
+            <p>Folosita clinic pentru <b>infectii intestinale, virale, fungice</b> si infectii ale tractului urinar. Necesita <b>supraveghere medicala</b>. Nu se combina cu alte medicamente fara consultarea medicului. Dr. Sherr si echipa de 4 medici o folosesc regulat.</p>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Ziua 1-3: Incepe cu 4 mg</h4>
+              <p>Doza initiala recomandata. Observa daca simti vreo diferenta in energie, claritate mentala sau oboseala.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Ziua 4-6: Creste la 8 mg</h4>
+              <p>Daca nu s-a simtit nimic la 4 mg, se dubleaza doza. Efectul este <b>dependent de doza</b> pentru aproape toata lumea.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot cyan"></div><div class="stepBar cyan"></div></div>
+            <div class="stepContent">
+              <h4>Ziua 7-9: Creste la 12 mg</h4>
+              <p>Continua titrarea pana gasesti doza la care simti un efect pozitiv. <b>Nu depasi 25 mg</b> fara supraveghere medicala.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Bonus: combina cu exercitii de anduranta</h4>
+              <p>Dr. Sherr recomanda testarea albastrului de metilen <b>in timpul exercitiilor de anduranta</b> — acolo se vad diferentele cele mai clare in sustinerea energetica.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert blue">
+          <h4>Recomandare clinica</h4>
+          <p>Titrarea este cheia. Nu sari direct la doze mari. Incepe mic, creste treptat la 3 zile. Daca esti sanatos si nu simti nimic la 25 mg, probabil <b>mitocondriile tale functioneaza bine</b> si nu ai nevoie.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Beneficii raportate -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Beneficii raportate si utilizari clinice</h2>
+          <p>Ce spun studiile si practica clinica despre efectele albastrului de metilen</p>
+        </div>
+        <span class="badge">BENEFICII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow)">Energie celulara</h3>
+            <p>Sustine productia de <b>ATP</b> atunci cand complexele I si III sunt compromise. Multi pacienti raporteaza cresterea energiei si reducerea oboselii cronice.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--glow2)">Claritate mentala</h3>
+            <p>Reducerea <b>"brain fog"</b> (ceata mentala). Unii pacienti spun ca "creierul li s-a reaprins" de la doze mici de 2 mg. Efect neuroprotector documentat.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Anti-infectios</h3>
+            <p>La doze de 1-2 mg/kg, folosit clinic pentru <b>infectii intestinale, virale, fungice</b> si infectii urinare. Echipa Dr. Sherr il foloseste regulat in practica.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Suport antioxidant</h3>
+            <p>Actioneaza ca antioxidant atunci cand corpul are un <b>deficit de antioxidanti</b> sau in perioada de recuperare dupa <b>exercitii fizice intense</b>. Se comporta adaptogen — ajuta acolo unde e nevoie.</p>
+          </div>
+          <div class="mini">
+            <h3>Utilitate in calatorii</h3>
+            <p>Albastrul de metilen poate fi util <b>in timpul zborurilor lungi</b>, cand corpul experimenteaza o forma de privare energetica. O utilizare <b>ocazionala</b>, nu zilnica, pare cea mai logica pentru persoanele sanatoase.</p>
+          </div>
+        </div>
+
+        <div class="alert green">
+          <h4>Evidenta stiintifica</h4>
+          <p>Nu exista multe studii clinice randomizate, dar evidenta clinica existenta sugereaza beneficii in tratarea conditiilor caracterizate de <b>disfunctie mitocondriale sau afectarea productiei de energie</b>. Sunt necesare mai multe cercetari.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Riscuri si avertismente -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Riscuri, contraindicatii si efecte secundare</h2>
+          <p>Ce trebuie sa stii inainte de a lua albastru de metilen — de la teste necesare la interactiuni periculoase</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">RISCURI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.25);">
+            <h3 style="color:var(--bad)">Deficit de G6PD</h3>
+            <p><b>Glucoza-6-fosfat dehidrogenaza</b> — o tulburare ereditara in care globulele rosii sunt mai sensibile la stres si pot <b>hemoliza</b> (se sparg). Dozele mari de albastru de metilen pot provoca o <b>criza hemolitica</b> (distrugerea globulelor rosii). Descris la doze peste 1 mg/kg, doar IV.</p>
+            <p style="margin-top:6px;"><b>Solutie:</b> fa un test G6PD la orice medic inainte de a incepe. E simplu si rapid.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.25);">
+            <h3 style="color:var(--warn)">Inhibitor MAO — interactiuni</h3>
+            <p>Albastrul de metilen este un <b>inhibitor de monoaminooxidaza (MAO)</b>. Creste nivelurile de <b>serotonina si dopamina</b>. Daca iei medicamente care cresc si ele serotonina (SSRI, SNRI), risti <b>sindrom serotoninergic</b> — potential letal.</p>
+            <p style="margin-top:6px;"><b>Nu combina cu antidepresive fara aviz medical!</b></p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini">
+            <h3>Colorarea albastra</h3>
+            <p>La doze mici, <b>urina devine albastra/verde</b>. Pastilele coloreaza limba si dintii. La doze foarte mari IV (3 mg/kg, soc septic), organele interne se coloreaza albastru — dar asta se intampla doar in situatii medicale extreme, nu la doze orale normale.</p>
+          </div>
+          <div class="mini">
+            <h3>Doze foarte mari: context medical</h3>
+            <p>La <b>3 mg/kg IV</b> (circa 200-240 mg intravenos), folosit ca ultim resort in stopul cardiac si socul septic. In aceste cazuri extreme, post-mortem la 3-5 ore, creierele erau albastre. Complet diferit de 4-25 mg oral.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Nu lua fara supraveghere medicala daca:</h4>
+          <p>Ai <b>deficit de G6PD</b> (fa testul!) &bull; Iei <b>antidepresive SSRI/SNRI</b> sau alte medicamente serotoninergice &bull; Iei <b>orice alt medicament</b> — verifica interactiunile &bull; Esti gravida sau alaptezi &bull; Ai afectiuni renale sau hepatice severe.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii si recomandari</h2>
+          <p>Ce ar trebui sa retii din acest experiment de o luna cu albastru de metilen</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(59,130,246,.2);">
+            <h3 style="color:var(--glow)">Nu e pentru toata lumea</h3>
+            <p>Un adult sanatos de 30 de ani nu a simtit <b>absolut nimic</b> la doze mici. Asta confirma ideea ca albastrul de metilen ajuta mai ales cand ai <b>probleme mitocondriale reale</b>. Daca metabolismul tau e optim, nu are ce sa "repare".</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Utilizare ocazionala, nu zilnica</h3>
+            <p>Cel mai logic scenariu: albastru de metilen <b>la nevoie</b> — zboruri lungi, perioade de oboseala extrema, recuperare dupa boala. Nu ca supliment zilnic pentru o persoana sanatoasa.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Titreaza intotdeauna</h3>
+            <p>Nu sari la doze mari. Incepe cu <b>4 mg, 3 zile</b>. Apoi 8 mg, apoi 12. Observa-ti corpul. Unii simt diferenta la 2 mg, altii la 20. Fiecare organism e diferit.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Fa testele inainte</h3>
+            <p>Test <b>G6PD</b> obligatoriu. Verifica <b>interactiunile medicamentoase</b>. Vorbeste cu un medic daca iei antidepresive sau orice alt tratament cronic. Siguranta pe primul loc.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Albastrul de metilen este foarte interesant. Nu are multe studii clinice, dar evidenta clinica sugereaza beneficii potentiale in conditiile caracterizate de disfunctie mitocondriale. Ca adult sanatos de 30 de ani, nu pot spune ca am simtit ceva — dar nici nu am experimentat vreun declin.&raquo;
+          <cite>— Concluzia experimentului personal</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia experimentului</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Sapt. 1</span><span class="tDesc">Incepe cu <b>tinctura lichida</b>, 5 mg/zi in apa</span></div>
+        <div class="tEvent"><span class="tDate">Sapt. 2</span><span class="tDesc">Continua tinctura — <b>niciun efect</b> perceptibil</span></div>
+        <div class="tEvent"><span class="tDate">Sapt. 3</span><span class="tDesc">Trece la <b>pastile (troches)</b>, ~4 mg/zi</span></div>
+        <div class="tEvent"><span class="tDate">Sapt. 4</span><span class="tDesc">Pastile — limba albastra, <b>zero efect</b> altfel</span></div>
+        <div class="tEvent"><span class="tDate">Concluzie</span><span class="tDesc"><b>Nicio diferenta</b> la adult sanatos cu doza joasa</span></div>
+        <div class="tEvent"><span class="tDate">Sfat med.</span><span class="tDesc">Dr. Sherr: <b>titreaza doza</b> si testeaza cu exercitii</span></div>
+        <div class="tEvent"><span class="tDate">Viitor</span><span class="tDesc">Posibil: utilizare <b>ocazionala</b> in zboruri lungi</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce nu a simtit nimic?</h4>
+          <p>Cel mai probabil pentru ca mitocondriile sale functionau deja optim. Albastrul de metilen ocoleste complexele I si III — dar daca acestea nu sunt deteriorate, <b>nu ai ce sa ocolesti</b>. Inhibitia partiala a complexelor I si III la un om sanatos se anuleaza cu stimularea complexului IV.</p>
+        </div>
+        <div class="comNote">
+          <h4>Controversa Paul Saladino</h4>
+          <p>Dr. Paul Saladino a afirmat ca albastrul de metilen e toxic si reduce energia. Dr. Scott Sherr contrazice: <b>depinde de starea mitocondriilor</b>. 94% din populatie are disfunctie mitocondriale — pentru ei, poate fi benefic.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce "adaptogen"?</h4>
+          <p>Albastrul de metilen pare sa "stie" ce e nevoie: <b>antioxidant</b> cand ai deficit, <b>donor de electroni</b> cand ai nevoie de energie. Aceasta versatilitate ii da un comportament similar adaptoagenelor clasice.</p>
+        </div>
+        <div class="comNote">
+          <h4>Calitate si puritate</h4>
+          <p>Nu orice albastru de metilen e acelasi. Varianta <b>farmaceutica (USP grade)</b> difera de cea industriala (pentru colorat). Asigura-te ca folosesti o sursa de calitate, cu certificat de analiza.</p>
+        </div>
+        <div class="comNote">
+          <h4>15 suplimente cu dovezi mai solide</h4>
+          <p>Creatorul videoclipului mentioneaza ca exista <b>cel putin 15 ingrediente</b> cu dovezi clinice mai puternice decat albastrul de metilen pentru diverse beneficii de sanatate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Mitocondrii</dt>
+          <dd>"Centralele electrice" ale celulei. Produc ATP (energie) prin lantul de transport electronic. Fiecare celula contine sute-mii de mitocondrii.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Lant de transport electronic (ETC)</dt>
+          <dd>Serie de complexe proteice (I, II, III, IV) din membrana mitocondriale interna care transfera electroni si genereaza ATP. Albastrul de metilen interactioneaza cu complexele I, III si IV.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>ATP (Adenozin trifosfat)</dt>
+          <dd>"Moneda energetica" a celulei. Aproape toate procesele biologice — de la contractia musculara la gandire — consuma ATP. Mitocondriile produc ~90% din ATP-ul corpului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>G6PD (Glucoza-6-fosfat dehidrogenaza)</dt>
+          <dd>Enzima care protejeaza globulele rosii de stresul oxidativ. Deficienta ereditara poate duce la hemoliza (spargerea globulelor rosii) cand se iau anumite substante, inclusiv doze mari de albastru de metilen.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Inhibitor MAO</dt>
+          <dd>Substanta care blocheaza monoaminooxidaza — enzima care descompune serotonina si dopamina. Albastrul de metilen are aceasta proprietate, de aceea nu se combina cu antidepresive.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Titrare</dt>
+          <dd>Metoda de ajustare treptata a dozei. Incepi cu doza minima si cresti gradual pana obtii efectul dorit, pentru a gasi doza optima individuala.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Citocrom C oxidaza (Complex IV)</dt>
+          <dd>Ultimul complex din lantul de transport electronic. Albastrul de metilen il stimuleaza, crescand consumul de oxigen si productia de energie.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Troches (pastile bucale)</dt>
+          <dd>Forma farmaceutica solida care se dizolva in gura (in obraz). Permite absorbtie prin mucoasa bucala, ocolind partial tractul digestiv. Coloreaza limba si dintii albastru.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=lAc2l07Dk6s" target="_blank">I Took Methylene Blue for a Month — YouTube</a> &middot;
+    Infografic explicativ bazat pe experimentul personal si comentariile Dr. Scott Sherr &middot;
+    <b>Nu inlocuieste sfatul medical</b>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: mitochondria & electron flow visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing electrons flowing through the mitochondria
+  const particles = [];
+  const pCount = 55;
+  for(let i = 0; i < pCount; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.002,
+      vy: (Math.random() - 0.5) * 0.002,
+      r: 1.5 + Math.random() * 2.5,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.008 + Math.random() * 0.012,
+      type: i < 15 ? 'electron' : i < 30 ? 'atp' : i < 42 ? 'mb' : 'o2'
+    });
+  }
+
+  // Central mitochondria shape points
+  const mitoPoints = [];
+  for(let a = 0; a < Math.PI * 2; a += 0.15){
+    const rx = 0.22 + Math.sin(a * 3) * 0.04;
+    const ry = 0.14 + Math.cos(a * 2) * 0.03;
+    mitoPoints.push({
+      bx: 0.5 + Math.cos(a) * rx,
+      by: 0.5 + Math.sin(a) * ry
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Draw mitochondria outline (double membrane)
+    ctx.beginPath();
+    mitoPoints.forEach((p, i) => {
+      const px = p.bx * w + Math.sin(t * 1.5 + i * 0.3) * 2;
+      const py = p.by * h + Math.cos(t * 1.2 + i * 0.3) * 1.5;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    });
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(59,130,246,0.12)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(59,130,246,0.02)';
+    ctx.fill();
+
+    // Inner membrane folds (cristae)
+    for(let cr = 0; cr < 5; cr++){
+      const cx = 0.32 + cr * 0.09;
+      const amplitude = 0.06 + Math.sin(t + cr) * 0.015;
+      ctx.beginPath();
+      for(let y = 0.38; y <= 0.62; y += 0.02){
+        const px = (cx + Math.sin((y - 0.5) * 20 + t * 2 + cr) * 0.015) * w;
+        const py = y * h;
+        y === 0.38 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = `rgba(59,130,246,${0.06 + Math.sin(t + cr) * 0.03})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Pulse waves (energy production)
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 35 + p * 55) % 160);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2200);
+      ctx.beginPath();
+      ctx.ellipse(w * 0.5, h * 0.5, pulseR * 1.3, pulseR * 0.8, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(59,130,246,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw and update particles
+    particles.forEach((p, i) => {
+      // Orbital movement around center
+      const angle = t * p.speed + p.phase;
+      const orbitX = 0.5 + Math.cos(angle) * (0.12 + i * 0.004);
+      const orbitY = 0.5 + Math.sin(angle) * (0.08 + i * 0.003);
+
+      // Blend between orbit and drift
+      p.x += (orbitX - p.x) * 0.02 + p.vx;
+      p.y += (orbitY - p.y) * 0.02 + p.vy;
+
+      // Wrap
+      if(p.x < 0) p.x = 1; if(p.x > 1) p.x = 0;
+      if(p.y < 0) p.y = 1; if(p.y > 1) p.y = 0;
+
+      const px = p.x * w;
+      const py = p.y * h;
+      const glow = 0.35 + Math.sin(t * 3 + p.phase) * 0.2;
+
+      // Draw connections to nearby particles
+      particles.forEach((q, j) => {
+        if(j <= i) return;
+        const dx = (p.x - q.x) * w;
+        const dy = (p.y - q.y) * h;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 50){
+          const alpha = (1 - dist/50) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(q.x * w, q.y * h);
+          ctx.strokeStyle = p.type === 'mb' ? `rgba(59,130,246,${alpha})` :
+                            p.type === 'atp' ? `rgba(74,222,128,${alpha})` :
+                            p.type === 'electron' ? `rgba(34,211,238,${alpha})` :
+                            `rgba(167,139,250,${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      });
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'mb'){
+        ctx.fillStyle = `rgba(59,130,246,${glow + 0.2})`;
+        ctx.shadowColor = 'rgba(59,130,246,0.4)';
+        ctx.shadowBlur = 10;
+      } else if(p.type === 'atp'){
+        ctx.fillStyle = `rgba(74,222,128,${glow})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 7;
+      } else if(p.type === 'electron'){
+        ctx.fillStyle = `rgba(34,211,238,${glow + 0.1})`;
+        ctx.shadowColor = 'rgba(34,211,238,0.3)';
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.fillStyle = `rgba(167,139,250,${glow})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.35)';
+    ctx.fillText('MITOCONDRIE', w * 0.5 - 30, h * 0.5 + 3);
+
+    // Legend
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(59,130,246,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('albastru metilen', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(110, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('ATP', 117, ly+3);
+    ctx.fillStyle = 'rgba(34,211,238,0.7)'; ctx.beginPath(); ctx.arc(145, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('electroni', 152, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(200, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('O\u2082', 207, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Dose slider interactivity ── */
+(function(){
+  const slider = document.getElementById('weightSlider');
+  if(!slider) return;
+  const wVal = document.getElementById('weightVal');
+  const low = document.getElementById('lowDose');
+  const high = document.getElementById('highDose');
+
+  function update(){
+    const kg = parseInt(slider.value);
+    wVal.textContent = kg + ' kg';
+    low.textContent = '2\u201325 mg';
+    const hLow = Math.round(kg * 1);
+    const hHigh = Math.round(kg * 2);
+    high.textContent = hLow + '\u2013' + hHigh + ' mg';
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>

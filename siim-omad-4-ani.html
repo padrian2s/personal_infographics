@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>O Masa pe Zi timp de 4 Ani — Rezultate OMAD</title>
+  <meta name="description" content="Infografic interactiv: experienta de 4 ani cu OMAD (One Meal A Day) — pierdere in greutate, energie, markeri sanguini, claritate mentala si lectii invatate." />
+  <style>
+    :root{
+      --bg0:#0A0A0E;
+      --bg1:#0E0E14;
+      --panel:#141418cc;
+      --card:#111116;
+      --card2:#0E0E13;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1E1E2A;
+      --glow:#FB923C;
+      --glow2:#F59E0B;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(251,146,60,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(245,158,11,.08), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(74,222,128,.05), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(251,146,60,.20);
+      background: linear-gradient(180deg, rgba(14,14,20,.75), rgba(10,10,14,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(251,146,60,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(74,222,128,.08), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(245,158,11,.06), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,10,14,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--teal)} .i4{background:var(--purple)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,10,14,.30),rgba(10,10,14,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,22,.75),rgba(14,14,19,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,10,14,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,10,14,.28),rgba(10,10,14,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,10,14,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(251,146,60,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.teal{border-color:var(--teal);background:rgba(34,211,238,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(251,146,60,.22),rgba(251,146,60,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.teal{background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(251,146,60,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(251,146,60,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(251,146,60,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.green{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);}
+    .alert.green h4{color:var(--ok);}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,10,14,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(251,146,60,.18);
+      background:linear-gradient(180deg,rgba(17,17,22,.80),rgba(14,14,19,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(251,146,60,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(251,146,60,.25);background:rgba(251,146,60,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,10,14,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,22,.75),rgba(14,14,19,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,22,.75),rgba(14,14,19,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,10,14,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Interactive slider */
+    .sliderWrap{margin-top:14px;padding:12px 14px;border:1px solid rgba(234,240,255,.10);border-radius:14px;background:rgba(10,10,14,.30);}
+    .sliderWrap label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+    .sliderWrap label b{color:var(--ink);font-family:var(--mono);font-size:14px;}
+    .sliderWrap input[type=range]{width:100%;margin-top:8px;accent-color:var(--glow);}
+    .sliderResult{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.4;}
+    .sliderResult b{color:var(--glow);}
+
+    /* Pros/Cons toggles */
+    .toggleGroup{display:flex;gap:8px;margin-bottom:14px;}
+    .toggleBtn{
+      padding:7px 14px;border-radius:999px;font-size:12px;font-weight:600;
+      border:1px solid rgba(234,240,255,.15);background:rgba(10,10,14,.40);
+      color:var(--muted);cursor:pointer;transition:all .2s;
+    }
+    .toggleBtn.active{border-color:var(--glow);background:rgba(251,146,60,.12);color:var(--glow);}
+    .toggleBtn.activeGreen{border-color:var(--ok);background:rgba(74,222,128,.12);color:var(--ok);}
+    .toggleBtn.activeBad{border-color:var(--bad);background:rgba(248,113,113,.12);color:var(--bad);}
+    .toggleContent{display:none;}
+    .toggleContent.show{display:block;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>O Masa pe Zi timp de 4 Ani — Rezultate OMAD
+          <small>Post intermitent extrem: pierdere in greutate, energie stabila, markeri sanguini excelenti si claritate mentala</small>
+        </h1>
+        <p class="sub">Timp de 4 ani, autorul a consumat <b>o singura masa pe zi</b> (~90% din zile), cu o fereastra alimentara de 2-3 ore si un post de 21-22 ore zilnic. Rezultatul: compozitie corporala imbunatatita, analize de sange impecabile, zero foame cronica si productivitate maxima. Acest infografic sintetizeaza <b>experienta completa</b>, mecanismele biologice si sfaturile practice.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>OMAD</b> — One Meal A Day</span>
+          <span class="chip"><i class="i2"></i> <b>Autofagie</b> — reciclare celulara</span>
+          <span class="chip"><i class="i3"></i> <b>Cetoza</b> — ardere de grasimi</span>
+          <span class="chip"><i class="i4"></i> <b>BDNF</b> — neurogeneza</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: De ce OMAD -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>De ce o singura masa pe zi?</h2>
+          <p>Motivatii personale si beneficii stiintifice dovedite ale postului intermitent extins</p>
+        </div>
+        <span class="badge">MOTIVATIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">21-22h</div>
+            <span class="u">post zilnic</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">2-3h</div>
+            <span class="u">fereastra alimentara</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">90%</div>
+            <span class="u">din zile cu o singura masa</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">4 ani</div>
+            <span class="u">de experienta continua</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Convenienta</h3>
+            <p>Motivatia principala: <b>simplitate</b>. Fara timp pierdut gatind si mancand de 3 ori pe zi. Mai multa productivitate, mai putine decizii legate de mancare, mai mult timp pentru munca si proiecte.</p>
+          </div>
+          <div class="mini">
+            <h3>Flexibilitate</h3>
+            <p>Nu e strict 100% OMAD. In zilele cu calatorii, evenimente sau cine sociale, poate manca <b>2-3 mese</b>. Abordarea ramane consistenta: ~90% din timp, o singura masa, restul — adaptare la context.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Nu vreau sa-mi petrec timpul gatind sau mancand pe parcursul zilei. Prefer sa fiu productiv, sa postesc, sa beneficiez de avantajele postului, si apoi sa mananc.&raquo;
+          <cite>— Siim Land, autor OMAD</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Beneficii stiintifice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Beneficii biologice ale postului extins</h2>
+          <p>Mecanismele prin care postul de 21-22 de ore zilnic imbunatateste sanatatea la nivel celular</p>
+        </div>
+        <span class="badge" style="border-color:rgba(74,222,128,.3);color:var(--ok);">STIINTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Autofagie crescuta</h4>
+              <p>Postul extins activeaza <b>autofagia bazala</b> — procesul prin care celulele recicleaza componentele disfunctionale si le transforma in energie. Un mecanism esential de curatare celulara si longevitate.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Pulsuri de hormon de crestere</h4>
+              <p>In starea de post, corpul elibereaza <b>pulsuri mai frecvente de GH</b> (hormon de crestere), care favorizeaza arderea grasimilor si mentinerea masei musculare fara a manca frecvent.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Neurogeneza si BDNF</h4>
+              <p>Postul intermitent stimuleaza <b>BDNF</b> (Brain-Derived Neurotrophic Factor), promovand cresterea de noi celule cerebrale. Rezultat: claritate mentala superioara si protectie neurologica pe termen lung.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Sensibilitate la insulina</h4>
+              <p>Studii din 2019 arata ca mancatul in <b>sub 9 ore</b> imbunatateste sensibilitatea la insulina, scade trigliceridele, activeaza caile epigenetice de longevitate si intensifica autofagia.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Adaptare la cetoza</h4>
+              <p>Dupa adaptarea la grasimi, corpul devine extrem de eficient in utilizarea <b>acizilor grasi ca sursa de combustibil</b>. Fara fluctuatii de glicemie, fara crahuri energetice — energie stabila toata ziua.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG: Metabolic clock diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- 24h circle -->
+            <circle cx="350" cy="150" r="120" fill="none" stroke="rgba(234,240,255,.08)" stroke-width="2"/>
+            <!-- Fasting arc (21-22h) -->
+            <path d="M350,30 A120,120 0 1,1 245,247" fill="none" stroke="rgba(251,146,60,.35)" stroke-width="8" stroke-linecap="round"/>
+            <!-- Eating window arc (2-3h) -->
+            <path d="M245,247 A120,120 0 0,1 350,30" fill="none" stroke="rgba(74,222,128,.40)" stroke-width="8" stroke-linecap="round"/>
+
+            <!-- Center label -->
+            <text x="350" y="140" fill="#EAF0FF" font-size="18" font-weight="700" text-anchor="middle">24h</text>
+            <text x="350" y="160" fill="#A0ACC8" font-size="11" text-anchor="middle">ciclul zilnic OMAD</text>
+
+            <!-- Fasting label -->
+            <text x="530" y="105" fill="#FB923C" font-size="12" font-weight="600" text-anchor="start">POST: 21-22 ore</text>
+            <text x="530" y="120" fill="#6E7A9A" font-size="10" text-anchor="start">autofagie + cetoza + GH</text>
+            <line x1="470" y1="110" x2="520" y2="110" stroke="rgba(251,146,60,.3)" stroke-width="1.5"/>
+
+            <!-- Eating label -->
+            <text x="120" y="260" fill="#4ADE80" font-size="12" font-weight="600" text-anchor="start">MASA: 2-3 ore</text>
+            <text x="120" y="275" fill="#6E7A9A" font-size="10" text-anchor="start">absorbtie + sinteza proteica</text>
+            <line x1="225" y1="250" x2="190" y2="265" stroke="rgba(74,222,128,.3)" stroke-width="1.5"/>
+
+            <!-- Hour markers -->
+            <text x="350" y="22" fill="#6E7A9A" font-size="9" text-anchor="middle">0h / 24h</text>
+            <text x="478" y="155" fill="#6E7A9A" font-size="9" text-anchor="middle">6h</text>
+            <text x="350" y="285" fill="#6E7A9A" font-size="9" text-anchor="middle">12h</text>
+            <text x="222" y="155" fill="#6E7A9A" font-size="9" text-anchor="middle">18h</text>
+
+            <!-- Metabolic events -->
+            <circle cx="440" cy="58" r="4" fill="rgba(251,146,60,.6)"/>
+            <text x="450" y="55" fill="#A0ACC8" font-size="9">autofagie max</text>
+
+            <circle cx="470" cy="150" r="4" fill="rgba(167,139,250,.6)"/>
+            <text x="530" y="140" fill="#A0ACC8" font-size="9">cetoza profunda</text>
+
+            <circle cx="440" cy="242" r="4" fill="rgba(34,211,238,.6)"/>
+            <text x="450" y="245" fill="#A0ACC8" font-size="9">GH puls maxim</text>
+          </svg>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Rezultate fizice -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Rezultate dupa 4 ani de OMAD</h2>
+          <p>Compozitie corporala, forta, analize de sange si stare mentala — toate imbunatatite sau stabile</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,146,60,.3);color:var(--glow);">REZULTATE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">74 kg</div>
+            <span class="u">greutate initiala inainte de OMAD</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">76-78 kg</div>
+            <span class="u">greutate actuala stabila</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--teal)">80 kg</div>
+            <span class="u">greutate maxima atinsa (masa musculara)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">168 lbs</div>
+            <span class="u">echivalent in livre</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3 style="color:var(--ok)">Compozitie corporala</h3>
+            <p>Greutatea totala a ramas <b>relativ constanta</b>, dar masa musculara neta a crescut usor. E usor de slabit si de mentinut un corp suplu, <b>fara cardio excesiv</b> si fara privare. Raportul grasime/muschi s-a imbunatatit constant.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--teal)">Forta fizica</h3>
+            <p>Progres <b>gradual</b>, dar constant. Obiectivul nu e performanta de powerlifter, ci <b>sanatate si longevitate</b>. Forta a crescut lent — un compromis acceptabil pentru beneficiile metabolice ale OMAD.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Analize de sange</h3>
+            <p>Toate rezultatele: <b>excelente</b>. Fara deficiente. Markeri de boala foarte scazuti: glicemie a jeun, insulina, trigliceride, IGF-1, markeri inflamatori. <b>TSH</b> (tiroida) la jumatatea intervalului normal — contrazicea mitul ca postul "distruge" tiroida.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Sanatate mentala</h3>
+            <p>Claritate mentala <b>excelenta</b>. Fara distractii, fara crahuri energetice. Productivitate ridicata. Nu se simte <b>privat</b> sau "lipsit" de a manca de 3 ori pe zi. Fericirea si starea de bine: <b>la cel mai bun nivel</b>.</p>
+          </div>
+        </div>
+
+        <div class="alert green">
+          <h4>Descoperirea #1: foamea dispare</h4>
+          <p>Cea mai mare diferenta fata de IF 16:8 — cu OMAD, <b>foamea efectiv dispare</b>. Dupa adaptarea la grasimi si ceto-adaptare, corpul apeleaza eficient la rezervele de grasime. Fara fluctuatii de zahar in sange, fara urgente alimentare. Chiar si dupa 3-5 zile de post, foamea e minima.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Cum functioneaza - foamea & energia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Adaptarea la grasimi si disparitia foamei</h2>
+          <p>Cum devine corpul "indiferent" la calorii si de ce energia e stabila toata ziua</p>
+        </div>
+        <span class="badge">MECANISM</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Adaptare la arderea grasimilor</h4>
+              <p>Dupa saptamani de post consistent, corpul devine expert in <b>mobilizarea acizilor grasi</b> din tesutul adipos. Cand nu mananci, pur si simplu "treci pe grasimi" — fara stres metabolic.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>Cetoza si ceto-adaptare</h4>
+              <p>Corpul produce <b>corpi cetonici</b> din grasimi, care alimenteaza creierul si muschii eficient. Devii <b>indiferent fata de calorii</b> — nu mai simti urcusurile si coborasurile glicemiei.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot teal"></div><div class="stepBar teal"></div></div>
+            <div class="stepContent">
+              <h4>Energie stabila non-stop</h4>
+              <p>Fara 3 mese pe zi, corpul nu mai trece prin <b>cicluri de zahar in sange</b>. Rezultat: energie constanta, fara somnolenta dupa-masa, fara nevoie de cafea pentru "un boost".</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Foamea — un mit depasit</h4>
+              <p>Studiu: efectele negative ale "saritului peste micul dejun" (iritabilitate, grasimi hepatice crescute) apar <b>doar la cei obisnuiti sa manance dimineata</b>. Daca esti adaptat la post, aceste efecte nu exista.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote green">
+          &laquo;Devii aproape indiferent fata de calorii. Nu mai simti urcusurile si coborasurile zaharului din sange. Nu ai crahuri energetice. Experimentezi o energie stabila pe tot parcursul zilei.&raquo;
+          <cite>— Siim Land, experienta OMAD de 4 ani</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Modificari & Protocol -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Modificarile protocolului OMAD</h2>
+          <p>Ajustari inteligente pentru durabilitate, crestere musculara si flexibilitate zilnica</p>
+        </div>
+        <span class="badge" style="border-color:rgba(34,211,238,.3);color:var(--teal);">PROTOCOL</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini">
+            <h3>Fara graba la masa</h3>
+            <p>Daca are putine calorii de consumat, termina in <b>30 minute</b>. Dupa antrenament, cand caloriile sunt mai multe, imparte in <b>2 mese mici pe 3 ore</b>. Nu cronometreaza rigid.</p>
+          </div>
+          <div class="mini">
+            <h3>Supa de os / cafea Bulletproof</h3>
+            <p>In unele zile, bea <b>supa de oase</b> sau <b>cafea cu grasimi</b> inainte de masa. Tehnic rupe postul, dar nu afecteaza semnificativ autofagia — momentul e calculat atent.</p>
+          </div>
+          <div class="mini">
+            <h3>Targeted IF pentru muschi</h3>
+            <p>La antrenament in stare de post, consuma un <b>shake proteic mic</b> (~100 kcal, 25g proteine) in timpul sesiunii. Protejeaza muschii de catabolism si stimuleaza <b>sinteza proteica musculara</b>.</p>
+          </div>
+        </div>
+
+        <!-- Protein shake calculator slider -->
+        <div class="sliderWrap">
+          <label>Cate zile pe saptamana faci OMAD? <b id="omadDays">6</b></label>
+          <input type="range" min="1" max="7" value="6" id="omadSlider" />
+          <div class="sliderResult" id="omadResult">Cu <b>6 zile</b> de OMAD pe saptamana, postesti <b>~132 ore/saptamana</b>. Asta inseamna <b>~79%</b> din timp in stare de post — suficient pentru beneficii metabolice semnificative, inclusiv autofagie si cetoza regulata.</div>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <h4>Principiu cheie: flexibilitatea</h4>
+          <p>Modificarile fac OMAD <b>sustenabil pe termen lung</b>. Nu fi rigid cu nicio abordare nutritionala. Daca ceva nu functioneaza, schimba. Daca functioneaza, nu incerca sa "repari" ce nu e stricat.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: PRO / CONTRA -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Avantaje si dezavantaje OMAD</h2>
+          <p>Bilantul sincer dupa 4 ani: ce functioneaza excelent si ce compromisuri exista</p>
+        </div>
+        <span class="badge">BILANT</span>
+      </div>
+      <div class="cardBody">
+        <div class="toggleGroup">
+          <button class="toggleBtn activeGreen" id="btnPro" onclick="showTab('pro')">Avantaje</button>
+          <button class="toggleBtn" id="btnCon" onclick="showTab('con')">Dezavantaje</button>
+        </div>
+
+        <div class="toggleContent show" id="tabPro">
+          <div class="grid2">
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Pierdere in greutate usoara</h3>
+              <p>Fereastra alimentara de 2-3 ore face aproape imposibil sa mananci in exces. <b>Slabesti fara efort constient</b>.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Autofagie reala (23-24h)</h3>
+              <p>Postul de 23-24h intra in <b>autofagie profunda</b>, cu efecte mult mai puternice decat IF simplu.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Imunitate la foame</h3>
+              <p>Dupa ceto-adaptare completa, foamea si poftele <b>dispar efectiv</b>. Corpul functioneaza pe pilot automat.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Eliberare mentala</h3>
+              <p>Fara decizii despre ce sa mananci de 3 ori pe zi. <b>Energia mentala si vointa</b> sunt eliberate pentru lucruri importante.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Digestie optima</h3>
+              <p>Sistemul digestiv primeste <b>pauze lungi de odihna</b>. Organele functioneaza corect pe termen lung.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(74,222,128,.2);">
+              <h3 style="color:var(--ok)">Carbohidrati in cetoza</h3>
+              <p>Surprinzator: poti manca <b>mai multi carbohidrati</b> si sa ramai partial ceto-adaptat, datorita ferestrei scurte.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="toggleContent" id="tabCon">
+          <div class="grid2">
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Crestere musculara lenta</h3>
+              <p>Dificil sa construiesti masa musculara semnificativa. Solutia: <b>Targeted IF</b> cu shake proteic in timpul antrenamentului.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Dificil de consumat caloriile</h3>
+              <p>Daca nu vrei sa slabesti, e greu sa mananci <b>suficiente calorii intr-o masa</b>. Necesita mese dense caloric.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Sinteza proteica suboptimala</h3>
+              <p>O singura doza de proteine pe zi nu e <b>ideala pentru hipertrofie</b>. Targeted IF compenseaza partial.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Risc de balonare</h3>
+              <p>Mancatul excesiv in volum la o singura masa poate cauza <b>disconfort digestiv</b>. Solutia: mese dense caloric, volum mic.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Somn afectat</h3>
+              <p>Daca mananci <b>prea aproape de culcare</b>, calitatea somnului scade. Ideal: masa cu 3-4 ore inainte de somn.</p>
+            </div>
+            <div class="mini" style="border-color:rgba(248,113,113,.2);">
+              <h3 style="color:var(--bad)">Adaptare metabolica</h3>
+              <p>Postul extins cronic poate cauza <b>stres metabolic excesiv</b>. Solutia: schimba ocazional rutina (o zi cu 2 mese, etc.).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Mituri despre mese frecvente -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Mitul meselor frecvente</h2>
+          <p>De ce "mananca des si putin" e un sfat depasit pentru multi oameni</p>
+        </div>
+        <span class="badge">MITURI</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini">
+            <h3 style="color:var(--warn)">Mitul metabolismului lent</h3>
+            <p>"Daca nu mananci des, metabolismul incetineste." <b>Fals</b> — TSH-ul (hormonul tiroidian) la 4 ani de OMAD era <b>la jumatatea intervalului normal</b>. Postul nu "distruge" tiroida.</p>
+          </div>
+          <div class="mini">
+            <h3 style="color:var(--warn)">Mitul binge eating</h3>
+            <p>"Daca saresti mese, vei manca compulsiv." Studiile arata ca asta se intampla <b>doar la cei neobisnuiti cu postul</b>. Daca esti adaptat, riscul e zero.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Daca nu esti obisnuit cu postul, e normal sa fii mai flamand dupa ce rupi postul. Dar asta nu e cauzat de post — e cauzat de faptul ca nu te-ai adaptat inca.&raquo;
+          <cite>— Siim Land</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Concluzii -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii: lectii din 4 ani de OMAD</h2>
+          <p>Ce trebuie sa stii daca vrei sa incerci postul cu o singura masa pe zi</p>
+        </div>
+        <span class="badge">CONCLUZII</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(251,146,60,.2);">
+            <h3 style="color:var(--glow)">Incepe gradual</h3>
+            <p>Nu sari direct la OMAD. Incepe cu <b>IF 16:8</b>, apoi 18:6, apoi 20:4, apoi 23:1. Fiecare etapa necesita <b>saptamani de adaptare</b> inainte de a trece mai departe.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Prioritizeaza sanatatea</h3>
+            <p>Scopul nu e sa fii cat mai mare muscular, ci <b>sanatate si longevitate</b>. OMAD ofera beneficii metabolice profunde care depasesc orice dieta clasica.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(34,211,238,.2);">
+            <h3 style="color:var(--teal)">Fii flexibil</h3>
+            <p>Nu transforma OMAD intr-o religie. Adapteaza-te la context: calatorii, evenimente, antrenamente. <b>90% consistenta</b> e mai bun decat 100% rigiditate cu abandon.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(167,139,250,.2);">
+            <h3 style="color:var(--purple)">Targeted IF</h3>
+            <p>Daca faci sport, foloseste <b>Targeted Intermittent Fasting</b> — un shake proteic mic in timpul antrenamentului. Combini beneficiile postului cu cresterea musculara.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Daca ceva nu e stricat, nu incerca sa-l repari. Dar daca nu obtii rezultatele dorite, schimba ceva. Abordarea ta poate si trebuie sa evolueze in timp.&raquo;
+          <cite>— Siim Land, filozofia OMAD</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Cronologia OMAD</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Anul 0</span><span class="tDesc">Incepe IF clasic <b>16:8</b> — 16 ore post, 8 ore mancat</span></div>
+        <div class="tEvent"><span class="tDate">Luna 3</span><span class="tDesc">Trece la <b>18:6</b> apoi <b>20:4</b> — adaptat la post lung</span></div>
+        <div class="tEvent"><span class="tDate">Luna 6</span><span class="tDesc">Prima zi de <b>OMAD</b> — o singura masa pe zi</span></div>
+        <div class="tEvent"><span class="tDate">Anul 1</span><span class="tDesc"><b>Ceto-adaptare</b> completa — foamea dispare</span></div>
+        <div class="tEvent"><span class="tDate">Anul 2</span><span class="tDesc">Introduce <b>Targeted IF</b> pentru antrenament</span></div>
+        <div class="tEvent"><span class="tDate">Anul 3</span><span class="tDesc">Analize sange: <b>excelente</b> pe toata linia</span></div>
+        <div class="tEvent"><span class="tDate">Anul 4</span><span class="tDesc">Greutate stabila <b>76-78 kg</b>, masa musculara crescuta</span></div>
+        <div class="tEvent"><span class="tDate">Prezent</span><span class="tDesc"><b>90%</b> OMAD, <b>10%</b> zile flexibile — sustenabil indefinit</span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu si Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>OMAD nu e pentru toata lumea</h4>
+          <p>Persoanele cu tulburari alimentare, femeile gravide sau cei cu diabet de tip 1 ar trebui sa <b>consulte un medic</b> inainte de orice forma de post extins. OMAD e o strategie avansata.</p>
+        </div>
+        <div class="comNote">
+          <h4>De ce 90% si nu 100%?</h4>
+          <p>Viata sociala, calatoriile si evenimentele nu se potrivesc mereu cu OMAD. <b>Flexibilitatea</b> e cheia sustenabilitatii pe termen lung — rigiditatea duce la abandon.</p>
+        </div>
+        <div class="comNote">
+          <h4>Mitul "starvation mode"</h4>
+          <p>Metabolismul nu incetineste dramatic dupa 24h de post. Corpul trece pe <b>ardere de grasimi</b>, nu pe "economie de energie". Starvation mode real apare dupa <b>zile intregi</b> de deficit caloric sever.</p>
+        </div>
+        <div class="comNote">
+          <h4>Rolul proteinelor</h4>
+          <p>Cheia succesului OMAD e <b>masa bogata in proteine</b>. Minim 1.2-1.6g/kg corp pe zi, concentrat intr-o masa. Targeted IF adauga inca 25g in timpul antrenamentului.</p>
+        </div>
+        <div class="comNote">
+          <h4>Cafea si apa in post</h4>
+          <p>In timpul postului se pot consuma: <b>apa</b>, <b>cafea neagra</b>, <b>ceai</b> — fara calorii. Acestea nu rup postul si nu afecteaza autofagia sau cetoza.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>OMAD (One Meal A Day)</dt>
+          <dd>Protocol de post intermitent extrem: o singura masa pe zi, cu o fereastra alimentara de 1-3 ore si post de 21-23 ore.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Autofagie</dt>
+          <dd>Proces celular de "auto-curatare" — celulele recicleaza componentele deteriorate in energie. Se activeaza puternic dupa 18-24h de post.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cetoza</dt>
+          <dd>Stare metabolica in care corpul arde grasimi si produce corpi cetonici ca sursa principala de energie, in loc de glucoza.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>BDNF</dt>
+          <dd>Brain-Derived Neurotrophic Factor — proteina care stimuleaza cresterea de noi neuroni. Creste semnificativ in timpul postului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>GH (Hormon de crestere)</dt>
+          <dd>Hormon eliberat in pulsuri mai frecvente in timpul postului. Favorizeaza arderea grasimilor si mentinerea masei musculare.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Targeted IF</dt>
+          <dd>Post intermitent cu interventie proteica tintita — un shake mic de proteine consumat in timpul antrenamentului, pentru protectie musculara.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>TSH</dt>
+          <dd>Hormon de stimulare tiroidiana. Nivel normal = metabolism normal. OMAD pe termen lung nu a afectat negativ TSH-ul autorului.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>IGF-1</dt>
+          <dd>Insulin-like Growth Factor 1 — nivel scazut asociat cu longevitate crescuta. Postul reduce IGF-1, activand mecanisme de reparare celulara.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=DVIa79YTrBs" target="_blank">Eating Once a Day for 4 Years — Siim Land (YouTube)</a> &middot;
+    Infografic educational bazat pe experienta personala a autorului &middot; Nu reprezinta sfat medical
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: metabolic cycle animation ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing metabolic processes
+  const particles = [];
+  const pCount = 55;
+  for(let i = 0; i < pCount; i++){
+    const angle = (i / pCount) * Math.PI * 2;
+    const radius = 0.12 + Math.random() * 0.35;
+    particles.push({
+      baseX: 0.5 + Math.cos(angle) * radius,
+      baseY: 0.5 + Math.sin(angle) * radius,
+      r: 1.5 + Math.random() * 3,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.004,
+      orbit: 0.02 + Math.random() * 0.04,
+      type: i < 15 ? 'fat' : i < 30 ? 'ketone' : i < 42 ? 'autophagy' : 'neuron'
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0,0,w,h);
+    t += 0.006;
+
+    // Central "body" glow
+    const cx = w * 0.5, cy = h * 0.5;
+    const coreR = 18 + Math.sin(t * 1.5) * 3;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR * 3);
+    grad.addColorStop(0, 'rgba(251,146,60,0.15)');
+    grad.addColorStop(0.5, 'rgba(251,146,60,0.04)');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, coreR * 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Core circle
+    ctx.beginPath();
+    ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(251,146,60,0.25)';
+    ctx.shadowColor = 'rgba(251,146,60,0.4)';
+    ctx.shadowBlur = 20;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Fasting clock ring
+    const ringR = 50 + Math.sin(t) * 2;
+    const fastArc = (21/24) * Math.PI * 2; // 21h fasting
+    ctx.beginPath();
+    ctx.arc(cx, cy, ringR, -Math.PI/2, -Math.PI/2 + fastArc);
+    ctx.strokeStyle = 'rgba(251,146,60,0.20)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    // Eating arc
+    ctx.beginPath();
+    ctx.arc(cx, cy, ringR, -Math.PI/2 + fastArc, -Math.PI/2 + Math.PI * 2);
+    ctx.strokeStyle = 'rgba(74,222,128,0.25)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Rotating marker on ring
+    const markerAngle = -Math.PI/2 + (t * 0.3) % (Math.PI * 2);
+    const mx = cx + Math.cos(markerAngle) * ringR;
+    const my = cy + Math.sin(markerAngle) * ringR;
+    ctx.beginPath();
+    ctx.arc(mx, my, 4, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(251,146,60,0.7)';
+    ctx.shadowColor = 'rgba(251,146,60,0.5)';
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Draw connections from particles to center
+    particles.forEach((p, i) => {
+      const px = p.baseX * w + Math.sin(t * 2 + p.phase) * p.orbit * w;
+      const py = p.baseY * h + Math.cos(t * 1.7 + p.phase) * p.orbit * h;
+      const alpha = 0.03 + Math.sin(t * 2 + i) * 0.015;
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(cx, cy);
+      const col = p.type === 'fat' ? `rgba(251,146,60,${alpha})` :
+                  p.type === 'ketone' ? `rgba(74,222,128,${alpha})` :
+                  p.type === 'autophagy' ? `rgba(34,211,238,${alpha})` :
+                  `rgba(167,139,250,${alpha})`;
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+    });
+
+    // Pulse waves (autophagy activation)
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 50) % 140);
+      const pulseAlpha = Math.max(0, 0.10 - pulseR / 1600);
+      ctx.beginPath();
+      ctx.arc(cx, cy, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(34,211,238,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw particles
+    particles.forEach(p => {
+      const px = p.baseX * w + Math.sin(t * 2 + p.phase) * p.orbit * w;
+      const py = p.baseY * h + Math.cos(t * 1.7 + p.phase) * p.orbit * h;
+      const glow = 0.3 + Math.sin(t * 2 + p.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'fat'){
+        ctx.fillStyle = `rgba(251,146,60,${glow})`;
+        ctx.shadowColor = 'rgba(251,146,60,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'ketone'){
+        ctx.fillStyle = `rgba(74,222,128,${glow + 0.05})`;
+        ctx.shadowColor = 'rgba(74,222,128,0.3)';
+        ctx.shadowBlur = 6;
+      } else if(p.type === 'autophagy'){
+        ctx.fillStyle = `rgba(34,211,238,${glow})`;
+        ctx.shadowColor = 'rgba(34,211,238,0.3)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(167,139,250,${glow})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+        ctx.shadowBlur = 5;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Labels
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(160,172,200,0.45)';
+    ctx.fillText('METABOLISM', cx - 28, cy + 5);
+
+    // Legend dots
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(251,146,60,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('grasimi', 15, ly+3);
+    ctx.fillStyle = 'rgba(74,222,128,0.7)'; ctx.beginPath(); ctx.arc(65, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('cetone', 72, ly+3);
+    ctx.fillStyle = 'rgba(34,211,238,0.7)'; ctx.beginPath(); ctx.arc(118, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('autofagie', 125, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(182, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('neuroni', 189, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── OMAD slider calculator ── */
+(function(){
+  const slider = document.getElementById('omadSlider');
+  const display = document.getElementById('omadDays');
+  const result = document.getElementById('omadResult');
+  if(!slider) return;
+  slider.addEventListener('input', function(){
+    const days = parseInt(this.value);
+    display.textContent = days;
+    const nonOmadDays = 7 - days;
+    const fastHours = days * 22 + nonOmadDays * 12;
+    const pct = Math.round((fastHours / 168) * 100);
+    const levels = pct >= 75
+      ? 'suficient pentru beneficii metabolice semnificative, inclusiv autofagie si cetoza regulata'
+      : pct >= 55
+      ? 'suficient pentru beneficii de baza ale postului intermitent, dar autofagia profunda va fi mai rara'
+      : 'beneficii limitate — postul intermitent clasic (16:8) ar fi o alternativa mai buna la acest nivel';
+    result.innerHTML = `Cu <b>${days} ${days === 1 ? 'zi' : 'zile'}</b> de OMAD pe saptamana, postesti <b>~${fastHours} ore/saptamana</b>. Asta inseamna <b>~${pct}%</b> din timp in stare de post — ${levels}.`;
+  });
+})();
+
+/* ── Pro/Con toggle ── */
+function showTab(tab){
+  document.getElementById('tabPro').classList.toggle('show', tab === 'pro');
+  document.getElementById('tabCon').classList.toggle('show', tab === 'con');
+  const bp = document.getElementById('btnPro');
+  const bc = document.getElementById('btnCon');
+  bp.className = 'toggleBtn' + (tab === 'pro' ? ' activeGreen' : '');
+  bc.className = 'toggleBtn' + (tab === 'con' ? ' activeBad' : '');
+}
+</script>
+</body>
+</html>

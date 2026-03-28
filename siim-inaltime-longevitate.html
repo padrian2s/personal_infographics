@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stiinta Surprinzatoare dintre Inaltime si Longevitate — IGF-1, Hormon de Crestere, Telomeri</title>
+  <meta name="description" content="Infografic interactiv: cum inaltimea, hormonul de crestere si IGF-1 influenteaza durata de viata. Studii pe oameni si animale, pleiotropie antagonista, nivele optime de IGF-1." />
+  <style>
+    :root{
+      --bg0:#060A10;
+      --bg1:#0A0F1A;
+      --panel:#101828cc;
+      --card:#0E1628;
+      --card2:#0B1224;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1A2540;
+      --glow:#34D399;
+      --glow2:#60A5FA;
+      --ok:#60A5FA;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(52,211,153,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(96,165,250,.09), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.06), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(52,211,153,.20);
+      background: linear-gradient(180deg, rgba(14,22,40,.75), rgba(10,15,26,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(52,211,153,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(96,165,250,.10), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(167,139,250,.07), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(6,10,16,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(6,10,16,.30),rgba(6,10,16,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,22,40,.75),rgba(11,18,36,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(6,10,16,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(6,10,16,.28),rgba(6,10,16,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(6,10,16,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(52,211,153,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.blue{border-color:var(--ok);background:rgba(96,165,250,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(52,211,153,.22),rgba(52,211,153,.04));}
+    .stepBar.blue{background:linear-gradient(180deg,rgba(96,165,250,.22),rgba(96,165,250,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(52,211,153,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.blue{border-color:var(--ok);background:rgba(96,165,250,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(52,211,153,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(52,211,153,.06);margin-top:12px;
+    }
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.warn h4{color:var(--warn);}
+    .alert.bad{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06);}
+    .alert.bad h4{color:var(--bad);}
+
+    /* SVG diagram */
+    .netDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(6,10,16,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .netDiag svg{width:100%;height:auto;display:block;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(52,211,153,.18);
+      background:linear-gradient(180deg,rgba(14,22,40,.80),rgba(10,15,26,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(52,211,153,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(52,211,153,.25);background:rgba(52,211,153,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(6,10,16,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Timeline sidebar */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,22,40,.75),rgba(11,18,36,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(14,22,40,.75),rgba(11,18,36,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(6,10,16,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    /* Interactive slider */
+    .sliderWrap{margin-top:14px;padding:14px;border:1px solid rgba(234,240,255,.10);border-radius:16px;background:rgba(6,10,16,.35);}
+    .sliderWrap label{font-size:13px;font-weight:600;display:block;margin-bottom:8px;}
+    .sliderWrap input[type=range]{width:100%;accent-color:var(--glow);cursor:pointer;}
+    .sliderOut{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted);}
+    .sliderOut .val{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--glow);}
+    .sliderOut .risk{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:999px;font-weight:600;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow2);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Stiinta Surprinzatoare dintre Inaltime si Longevitate
+          <small>Cum hormonul de crestere, IGF-1 si genetica influenteaza durata de viata — studii pe oameni si animale</small>
+        </h1>
+        <p class="sub">Persoanele mai inalte au niveluri mai ridicate de hormon de crestere si IGF-1 in anii de dezvoltare, ceea ce favorizeaza cresterea, dar studiile arata ca aceeasi factori cresc riscul de cancer, boli cardiace si mortalitate generala mai tarziu in viata. Este un exemplu clasic de <b>pleiotropie antagonista</b>: ce te ajuta devreme, te poate afecta tarziu.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>IGF-1</b> — factor de crestere insulinic</span>
+          <span class="chip"><i class="i2"></i> <b>GH</b> — hormon de crestere</span>
+          <span class="chip"><i class="i3"></i> <b>Pleiotropie</b> — compromis evolutiv</span>
+          <span class="chip"><i class="i4"></i> <b>Cancer</b> — risc crescut la IGF-1 ridicat</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Gigantism vs Laron -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Doua extreme: gigantismul si sindromul Laron</h2>
+          <p>Exces de hormon de crestere = viata scurta cu boli cronice. Deficit de hormon de crestere = viata normala cu risc scazut de cancer</p>
+        </div>
+        <span class="badge">EXTREME</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Gigantism & Acromegalie</h3>
+            <p>Andre the Giant — 224 cm, 236 kg — suferea de <b>gigantism</b>, productie excesiva de hormon de crestere. Acromegalia (cresterea anormala a extremitatilor) duce la <b>cardiomegalie</b>, cancer si insuficienta cardiaca.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--bad)">2x</span>
+              <span class="l">risc de mortalitate fata de populatia generala</span>
+            </div>
+            <p style="margin-top:8px;">Andre a murit la <b>46 de ani</b> din cauza insuficientei cardiace congestive.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--glow)">Sindromul Laron</h3>
+            <p>Productie insuficienta de GH si IGF-1 in anii de dezvoltare. Persoanele cu sindrom Laron au statura mica, dar traiesc <b>70-80 de ani</b> cu risc mult mai scazut de cancer si diabet.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--glow)">~0%</span>
+              <span class="l">cancer si diabet la persoanele cu sindrom Laron</span>
+            </div>
+            <p style="margin-top:8px;">Motivul: niveluri foarte scazute de <b>IGF-1</b> pe toata durata vietii.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Concluzia paradoxala</h4>
+          <p>Excesul de hormon de crestere = viata mai scurta + mai multe boli cronice (cancer, insuficienta cardiaca). Deficitul de hormon de crestere = durata normala de viata + mai putine boli cronice.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Animals -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Paradoxul dimensiunii: animale mari vs. mici</h2>
+          <p>Intre specii, animalele mari traiesc mai mult. In cadrul aceleiasi specii, indivizii mai mici traiesc mai mult.</p>
+        </div>
+        <span class="badge" style="border-color:rgba(96,165,250,.3);color:var(--ok);">ANIMALE</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">200 ani</div>
+            <span class="u">durata de viata a balenelor (animale mari)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">2-3 ani</div>
+            <span class="u">durata de viata a soarecilor (animale mici)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">6-8 ani</div>
+            <span class="u">speranta de viata a unui Dog German</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">10-18 ani</div>
+            <span class="u">speranta de viata a unui Chihuahua</span>
+          </div>
+        </div>
+
+        <!-- SVG: Dog size vs lifespan -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Title -->
+            <text x="350" y="22" fill="#A0ACC8" font-size="11" text-anchor="middle" font-weight="600">DIMENSIUNE vs. LONGEVITATE (in cadrul aceleiasi specii)</text>
+
+            <!-- Axis -->
+            <line x1="80" y1="220" x2="640" y2="220" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <line x1="80" y1="220" x2="80" y2="50" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <text x="360" y="248" fill="#6E7A9A" font-size="10" text-anchor="middle">Dimensiune corporala</text>
+            <text x="40" y="135" fill="#6E7A9A" font-size="10" text-anchor="middle" transform="rotate(-90 40 135)">Durata de viata</text>
+
+            <!-- Trend line (descending) -->
+            <line x1="110" y1="75" x2="610" y2="195" stroke="rgba(52,211,153,.3)" stroke-width="2" stroke-dasharray="8,4"/>
+
+            <!-- Data points - Dogs -->
+            <circle cx="140" cy="80" r="14" fill="rgba(52,211,153,.15)" stroke="rgba(52,211,153,.5)" stroke-width="1.5"/>
+            <text x="140" y="84" fill="#34D399" font-size="9" font-weight="700" text-anchor="middle">18a</text>
+            <text x="140" y="104" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Chihuahua</text>
+
+            <circle cx="260" cy="110" r="14" fill="rgba(96,165,250,.15)" stroke="rgba(96,165,250,.5)" stroke-width="1.5"/>
+            <text x="260" y="114" fill="#60A5FA" font-size="9" font-weight="700" text-anchor="middle">14a</text>
+            <text x="260" y="134" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Beagle</text>
+
+            <circle cx="390" cy="145" r="14" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.5)" stroke-width="1.5"/>
+            <text x="390" y="149" fill="#FBBF24" font-size="9" font-weight="700" text-anchor="middle">11a</text>
+            <text x="390" y="169" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Labrador</text>
+
+            <circle cx="520" cy="175" r="14" fill="rgba(167,139,250,.15)" stroke="rgba(167,139,250,.5)" stroke-width="1.5"/>
+            <text x="520" y="179" fill="#A78BFA" font-size="9" font-weight="700" text-anchor="middle">8a</text>
+            <text x="520" y="199" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Ciobanese G.</text>
+
+            <circle cx="610" cy="195" r="14" fill="rgba(248,113,113,.15)" stroke="rgba(248,113,113,.5)" stroke-width="1.5"/>
+            <text x="610" y="199" fill="#F87171" font-size="9" font-weight="700" text-anchor="middle">6a</text>
+            <text x="610" y="215" fill="#A0ACC8" font-size="8.5" text-anchor="middle">Dog German</text>
+
+            <!-- Arrow annotation -->
+            <text x="430" y="72" fill="#34D399" font-size="9.5" text-anchor="middle" font-weight="600">Mai mic = traieste mai mult</text>
+            <line x1="340" y1="65" x2="280" y2="65" stroke="rgba(52,211,153,.4)" stroke-width="1.5" marker-end="url(#arrowG)"/>
+            <defs><marker id="arrowG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="rgba(52,211,153,.5)"/></marker></defs>
+          </svg>
+        </div>
+
+        <div class="quote blue">
+          &laquo;Cainii mai mici traiesc de doua ori mai mult decat cainii mari. Cainii mari sunt, de asemenea, mai predispusi la cancer si osteoporoza.&raquo;
+          <cite>— Corelatie observata in studii veterinare multiple</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Human studies -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Dovezi la oameni: inaltime vs. longevitate</h2>
+          <p>Studii pe jucatori de baseball, veterani americani si populatia Spaniei arata ca oamenii mai scunzi traiesc mai mult</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow);">STUDII</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">+7.6 ani</div>
+            <span class="u">diferenta de viata (>170cm vs <160cm, Spania, 1835-1869)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">+4.95 ani</div>
+            <span class="u">barbati <175cm vs. barbati mai inalti (veterani SUA)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">+7.46 ani</div>
+            <span class="u">barbati <170cm vs. barbati >183cm (veterani SUA)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--purple)">+7.72 ani</div>
+            <span class="u">barbati <64kg vs. barbati >91kg (veterani SUA)</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Studiu Spania (1835-1939)</h4>
+              <p>In perioada 1835-1869, barbatii peste 170 cm traiau cu <b>7.6 ani mai mult</b> decat cei sub 160 cm, deoarece inaltimea reflecta statutul socioeconomic. Diferenta a <b>disparut</b> la cei nascuti 1900-1939, cand conditiile s-au imbunatatit pentru toti.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot blue"></div><div class="stepBar blue"></div></div>
+            <div class="stepContent">
+              <h4>Studiu pe jucatori de baseball (2002)</h4>
+              <p>Jucatorii de baseball mai scunzi (162 cm) au trait mai mult decat cei inalti (193 cm), atat la inceputul cat si la sfarsitul sec. XX. Toti aveau <b>acces egal la ingrijire medicala si finante</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple"></div></div>
+            <div class="stepContent">
+              <h4>Studiu pe veterani americani</h4>
+              <p>Barbatii sub <b>175 cm</b> au trait cu 4.95 ani mai mult decat cei mai inalti. Cei sub <b>170 cm</b> au trait cu 7.46 ani mai mult decat cei peste <b>183 cm</b>. Greutatea mai mica (<64 kg) conferea un avantaj similar: <b>+7.72 ani</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>Concluzia generala</h4>
+              <p>Exista o asociere clara: persoanele sub <b>175 cm</b> traiesc mai mult decat cele peste aceasta inaltime. Motivul: niveluri mai scazute de <b>IGF-1 si hormon de crestere</b> in anii de dezvoltare.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Antagonistic Pleiotropy -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Pleiotropia antagonista: compromisul evolutiei</h2>
+          <p>Ce favorizeaza reproducerea devreme poate fi daunator pentru longevitate — evolutia nu se preocupa de durata maxima de viata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">EVOLUTIE</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Pleiotropy diagram -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <!-- Central concept -->
+            <rect x="240" y="10" width="220" height="50" rx="14" fill="rgba(167,139,250,.12)" stroke="rgba(167,139,250,.35)" stroke-width="1.5"/>
+            <text x="350" y="32" fill="#A78BFA" font-size="12" font-weight="700" text-anchor="middle">PLEIOTROPIE ANTAGONISTA</text>
+            <text x="350" y="48" fill="#A0ACC8" font-size="9.5" text-anchor="middle">acelasi factor = efecte opuse in timp</text>
+
+            <!-- Arrows down -->
+            <line x1="280" y1="60" x2="180" y2="100" stroke="rgba(52,211,153,.4)" stroke-width="2"/>
+            <line x1="420" y1="60" x2="520" y2="100" stroke="rgba(248,113,113,.4)" stroke-width="2"/>
+
+            <!-- Early life benefit -->
+            <rect x="80" y="100" width="200" height="55" rx="12" fill="rgba(52,211,153,.10)" stroke="rgba(52,211,153,.30)" stroke-width="1.5"/>
+            <text x="180" y="122" fill="#34D399" font-size="11" font-weight="700" text-anchor="middle">Devreme in viata</text>
+            <text x="180" y="140" fill="#A0ACC8" font-size="9.5" text-anchor="middle">GH + IGF-1 = crestere, dezvoltare,</text>
+            <text x="180" y="152" fill="#A0ACC8" font-size="9.5" text-anchor="middle">succes reproductiv</text>
+
+            <!-- Late life cost -->
+            <rect x="420" y="100" width="200" height="55" rx="12" fill="rgba(248,113,113,.10)" stroke="rgba(248,113,113,.30)" stroke-width="1.5"/>
+            <text x="520" y="122" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">Tarziu in viata</text>
+            <text x="520" y="140" fill="#A0ACC8" font-size="9.5" text-anchor="middle">GH + IGF-1 = cancer, boli cardiace,</text>
+            <text x="520" y="152" fill="#A0ACC8" font-size="9.5" text-anchor="middle">mortalitate crescuta</text>
+
+            <!-- Evolution box -->
+            <rect x="200" y="185" width="300" height="45" rx="12" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.25)" stroke-width="1.5"/>
+            <text x="350" y="205" fill="#FBBF24" font-size="10.5" font-weight="600" text-anchor="middle">Evolutia favorizeaza reproducerea, nu longevitatea</text>
+            <text x="350" y="220" fill="#6E7A9A" font-size="9" text-anchor="middle">Succesul pe termen scurt reproductiv > durata maxima de viata</text>
+
+            <!-- UK study -->
+            <rect x="150" y="250" width="400" height="40" rx="10" fill="rgba(96,165,250,.08)" stroke="rgba(96,165,250,.20)" stroke-width="1"/>
+            <text x="350" y="267" fill="#60A5FA" font-size="10" font-weight="600" text-anchor="middle">Studiu pe 276.000 persoane din UK</text>
+            <text x="350" y="281" fill="#A0ACC8" font-size="9" text-anchor="middle">Scoruri genetice mai mari pentru reproductie = sanse mai mici de supravietuire pana la 76 ani</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>De ce exista acest compromis?</h3>
+            <p>Evolutia nu "isi pasa" de cat traiesti. Ii pasa doar de <b>succesul reproductiv pe termen scurt</b> — sa-ti transmiti genele generatiei urmatoare. De aceea, ce favorizeaza supravietuirea in anii reproductivi <b>nu e neaparat optim</b> pentru durata maxima de viata.</p>
+          </div>
+          <div class="mini">
+            <h3>Studiul UK (276.000 persoane)</h3>
+            <p>Indivizii cu <b>scoruri poligenice mai mari</b> pentru reproductie au avut o probabilitate mai mica de a supravietui pana la 76 de ani. Cei cu scoruri mici aveau cele mai mari sanse sa depaseasca 76 de ani.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: IGF-1 U-curve -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>IGF-1: curba in U a riscului</h2>
+          <p>Atat nivelurile prea scazute cat si cele prea ridicate de IGF-1 cresc mortalitatea — zona optima este undeva la mijloc</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow);">IGF-1</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: U-shaped curve -->
+        <div class="netDiag">
+          <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="350" y="22" fill="#A0ACC8" font-size="11" text-anchor="middle" font-weight="600">RISC DE MORTALITATE vs. NIVEL IGF-1 (ng/mL)</text>
+
+            <!-- Axes -->
+            <line x1="80" y1="230" x2="640" y2="230" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <line x1="80" y1="230" x2="80" y2="45" stroke="rgba(234,240,255,.15)" stroke-width="1"/>
+            <text x="360" y="258" fill="#6E7A9A" font-size="10" text-anchor="middle">Nivel IGF-1 (ng/mL)</text>
+            <text x="40" y="140" fill="#6E7A9A" font-size="10" text-anchor="middle" transform="rotate(-90 40 140)">Risc mortalitate</text>
+
+            <!-- X-axis labels -->
+            <text x="110" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">&lt;80</text>
+            <text x="200" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">100</text>
+            <text x="310" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">120</text>
+            <text x="400" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">160</text>
+            <text x="500" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">250</text>
+            <text x="610" y="245" fill="#6E7A9A" font-size="9" text-anchor="middle">&gt;400</text>
+
+            <!-- U-shaped curve -->
+            <path d="M110,80 Q150,95 200,140 Q260,190 310,200 Q360,205 400,200 Q460,185 500,140 Q560,90 610,70"
+                  fill="none" stroke="rgba(52,211,153,.5)" stroke-width="2.5"/>
+
+            <!-- Optimal zone highlight -->
+            <rect x="280" y="45" width="150" height="185" rx="8" fill="rgba(52,211,153,.06)" stroke="rgba(52,211,153,.15)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="355" y="62" fill="#34D399" font-size="9.5" font-weight="600" text-anchor="middle">ZONA OPTIMA</text>
+            <text x="355" y="74" fill="#34D399" font-size="9" text-anchor="middle">120-160 ng/mL</text>
+
+            <!-- Risk annotations -->
+            <text x="130" y="68" fill="#F87171" font-size="9" text-anchor="middle" font-weight="600">Fragilitate</text>
+            <text x="130" y="80" fill="#6E7A9A" font-size="8" text-anchor="middle">sarcopenie, fracturi</text>
+
+            <text x="575" y="58" fill="#F87171" font-size="9" text-anchor="middle" font-weight="600">Cancer</text>
+            <text x="575" y="70" fill="#6E7A9A" font-size="8" text-anchor="middle">boli cardiace</text>
+
+            <!-- Centenarian marker -->
+            <circle cx="140" cy="110" r="5" fill="rgba(251,191,36,.4)" stroke="rgba(251,191,36,.7)" stroke-width="1.5"/>
+            <text x="158" y="105" fill="#FBBF24" font-size="8.5" font-weight="600">Centenari</text>
+            <text x="158" y="116" fill="#6E7A9A" font-size="8">media: 64 ng/mL</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">IGF-1 prea scazut (<100 ng/mL)</h3>
+            <p>Riscuri: <b>fragilitate</b>, sarcopenie (pierderea masei musculare), fracturi osoase si posibil risc crescut de <b>neurodegenerare</b>. Adesea cauzat de malnutritie sau aport proteic insuficient. Sub 110 ng/mL — risc crescut de <b>Alzheimer</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--glow)">IGF-1 prea ridicat (>200 ng/mL)</h3>
+            <p>Riscuri: <b>cancer</b>, boli cardiovasculare si mortalitate generala crescuta. IGF-1 stimuleaza cresterea celulara — inclusiv a celor canceroase. Reamintiti-va: persoanele cu sindrom Laron (IGF-1 foarte scazut) <b>nu fac practic cancer</b>.</p>
+          </div>
+        </div>
+
+        <div class="alert">
+          <h4>Meta-analiza 2023</h4>
+          <p>Cel mai scazut risc de cancer, boli cardiovasculare si mortalitate generala se observa la un IGF-1 de <b>120-160 ng/mL</b>. Dar pentru longevitate maxima, IGF-1 sub 100 ng/mL ar putea fi si mai bun — daca se evita malnutritia.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: IGF-1 Interactive -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Explorator interactiv: IGF-1 si riscul tau</h2>
+          <p>Ajusteaza nivelul de IGF-1 pentru a vedea profilul de risc asociat, conform studiilor</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow);">INTERACTIV</span>
+      </div>
+      <div class="cardBody">
+        <div class="sliderWrap">
+          <label>Nivel IGF-1 (ng/mL): <span id="igfVal" style="color:var(--glow);font-family:var(--mono);">140</span></label>
+          <input type="range" id="igfSlider" min="40" max="450" value="140" step="5" />
+          <div class="sliderOut">
+            <span class="val" id="igfDisplay">140 ng/mL</span>
+            <span class="risk" id="igfRisk" style="background:rgba(52,211,153,.15);color:var(--glow);border:1px solid rgba(52,211,153,.3);">Zona optima</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" id="igfCancer">
+            <h3>Risc cancer</h3>
+            <p id="igfCancerText">Moderat-scazut. In zona optima 120-160 ng/mL.</p>
+            <div class="kpi">
+              <span class="n" id="igfCancerLevel" style="color:var(--glow)">Scazut</span>
+            </div>
+          </div>
+          <div class="mini" id="igfFrailty">
+            <h3>Risc fragilitate</h3>
+            <p id="igfFrailtyText">Minim. Masa musculara si densitatea osoasa sunt sustinute.</p>
+            <div class="kpi">
+              <span class="n" id="igfFrailtyLevel" style="color:var(--glow)">Minim</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="igfNote" class="quote" style="margin-top:14px;">
+          &laquo;Nivel optim conform meta-analizei din 2023. Cel mai scazut risc de cancer, boli cardiovasculare si mortalitate generala.&raquo;
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: IGF-1 by age -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Niveluri IGF-1 pe varste — declinul natural</h2>
+          <p>IGF-1 scade natural cu varsta, ceea ce este tehnic benefic din perspectiva pleiotropiei antagoniste</p>
+        </div>
+        <span class="badge">VARSTA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">200-400</div>
+            <span class="u">ng/mL la 15-25 ani (pubertate & tinerete)</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">150-250</div>
+            <span class="u">ng/mL la 40-60 ani</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">100-200</div>
+            <span class="u">ng/mL la 70-80 ani</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--glow)">~64</div>
+            <span class="u">ng/mL media centenarilor (peste 100 ani)</span>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini">
+            <h3>Declinul natural = protectie?</h3>
+            <p>Scaderea IGF-1 cu varsta este considerat un <b>mecanism protector</b> natural impotriva cancerului. Persoanele cu IGF-1 sub 100 ng/mL au sanse mai mari de a ajunge la <b>90+ ani</b>, in special cele cu istoric de cancer in familie.</p>
+          </div>
+          <div class="mini">
+            <h3>Centenarii — un model de longevitate</h3>
+            <p>Cei care traiesc peste 100 de ani au un IGF-1 mediu de doar <b>64 ng/mL</b>. Dar aceasta valoare poate fi si rezultatul varstei inaintate. Posibil <b>bias de supravietuire</b>: IGF-1 scade natural, iar ei au ajuns la 100+ ani.</p>
+          </div>
+        </div>
+
+        <div class="alert warn">
+          <h4>Controversa neurodegenarii</h4>
+          <p>IGF-1 sub 110 ng/mL a fost asociat cu risc crescut de <b>Alzheimer</b>, deoarece IGF-1 sustine cresterea neuronala. Nu este inca clar daca acest efect poate fi evitat prin evitarea malnutritiei si mentinerea masei musculare.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Practical takeaways -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzii practice: ce poti controla</h2>
+          <p>Nu poti schimba inaltimea sau genetica, dar poti influenta nivelul de IGF-1 prin stil de viata</p>
+        </div>
+        <span class="badge" style="border-color:rgba(52,211,153,.3);color:var(--glow);">PRACTIC</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid3">
+          <div class="mini" style="border-color:rgba(52,211,153,.2);">
+            <h3 style="color:var(--glow)">Procent scazut de grasime</h3>
+            <p>Mentinerea unei <b>greutati corporale moderate</b> si a unui procent de grasime in jur de 10% ajuta la mentinerea IGF-1 in zona optima.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(96,165,250,.2);">
+            <h3 style="color:var(--ok)">Aport caloric moderat</h3>
+            <p><b>Fara supraalimentare</b>. Un aport de 2.000-2.500 kcal/zi, cu proteine moderate (~1.6 g/kg), ajuta la mentinerea IGF-1 in limite optime.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Postul intermitent</h3>
+            <p>Alimentatia cu ferestre de timp restrictioneaza si <b>postul intermitent</b> scad IGF-1, deoarece mai mult timp in stare de post = mai putin IGF-1 circulant.</p>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="mini">
+            <h3>Exercitiu fizic regulat</h3>
+            <p>Exercitiul imbunatateste <b>sensibilitatea la insulina</b> si mentine glicemia optima. Glicemia ridicata creste IGF-1. De asemenea, construieste masa musculara si densitate osoasa — contracarand riscul de fragilitate la IGF-1 scazut.</p>
+          </div>
+          <div class="mini">
+            <h3>Proteina echilibrata</h3>
+            <p>Prea multa proteina creste IGF-1, prea putina duce la malnutritie. Nivelul optim: ~<b>1.6 g/kg greutate corporala</b>. Suficient pentru masa musculara, fara a ridica excesiv IGF-1.</p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Un IGF-1 in jurul valorii de 100 ng/mL pare optim pentru longevitate, atata timp cat eviti malnutritia, mentii masa musculara si densitatea osoasa adecvata. Pare optim si pentru minimizarea riscului de cancer.&raquo;
+          <cite>— Concluzia autorului, bazata pe studii observationale si date de la centenari</cite>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Key findings timeline -->
+    <div class="timeline">
+      <div class="tHead"><h2>Descoperiri-cheie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">Gigantism</span><span class="tDesc">Andre the Giant: 224 cm, mort la <b>46 ani</b> — insuficienta cardiaca</span></div>
+        <div class="tEvent"><span class="tDate">Laron</span><span class="tDesc">IGF-1 foarte scazut = <b>~0% cancer si diabet</b>, viata normala</span></div>
+        <div class="tEvent"><span class="tDate">Caini</span><span class="tDesc">Chihuahua: 10-18 ani vs. Dog German: <b>6-8 ani</b></span></div>
+        <div class="tEvent"><span class="tDate">Baseball</span><span class="tDesc">Jucatori scunzi (162cm) traiesc <b>mai mult</b> decat inalti (193cm)</span></div>
+        <div class="tEvent"><span class="tDate">Veterani</span><span class="tDesc">Sub 170cm: <b>+7.46 ani</b> vs. peste 183cm</span></div>
+        <div class="tEvent"><span class="tDate">UK 276k</span><span class="tDesc">Scor reproductiv mare = <b>supravietuire mai mica</b> la 76 ani</span></div>
+        <div class="tEvent"><span class="tDate">Meta 2023</span><span class="tDesc">IGF-1 optim: <b>120-160 ng/mL</b> — risc minim</span></div>
+        <div class="tEvent"><span class="tDate">Centenari</span><span class="tDesc">Media IGF-1: doar <b>64 ng/mL</b></span></div>
+        <div class="tEvent"><span class="tDate">Alzheimer</span><span class="tDesc">IGF-1 sub 110 ng/mL = risc crescut de <b>neurodegenerare</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Nuante</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>Nu poti schimba inaltimea</h4>
+          <p>Daca esti deja adult, inaltimea ta e fixata. Dar poti influenta nivelul de <b>IGF-1</b> prin dieta, exercitii si post intermitent — ceea ce afecteaza riscul de cancer si mortalitate.</p>
+        </div>
+        <div class="comNote">
+          <h4>Messi si GH terapeutic</h4>
+          <p>Lionel Messi a primit <b>hormon de crestere</b> in copilarie pentru ca nu producea suficient. Exista metode medicale de a compensa deficitul de GH, dar consecintele pe termen lung raman in discutie.</p>
+        </div>
+        <div class="comNote">
+          <h4>Bias de supravietuire la centenari</h4>
+          <p>IGF-1 de 64 ng/mL la centenari poate fi <b>un efect</b> al varstei inaintate, nu cauza longevitatii. IGF-1 scade natural — ei au scazut pur si simplu pentru ca au trait atat de mult.</p>
+        </div>
+        <div class="comNote">
+          <h4>Relatie in U, nu liniara</h4>
+          <p>Riscul nu scade liniar cu IGF-1. Atat <b>prea putin</b> (fragilitate, fracturi) cat si <b>prea mult</b> (cancer) sunt periculoase. Moderatia pare cheia.</p>
+        </div>
+        <div class="comNote">
+          <h4>Contextul personal conteaza</h4>
+          <p>Daca ai istoric familial de <b>cancer</b>, un IGF-1 mai scazut poate fi protector. Daca ai risc de <b>osteoporoza sau Alzheimer</b>, un IGF-1 prea scazut poate fi daunator. Discuta cu medicul.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>IGF-1 (Insulin-like Growth Factor 1)</dt>
+          <dd>Factor de crestere similar insulinei, produs in ficat ca raspuns la hormonul de crestere. Mediaza cresterea osoasa, masa musculara si dezvoltarea celulara.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Hormon de crestere (GH)</dt>
+          <dd>Hormon produs de glanda pituitara. Stimuleaza productia de IGF-1, esentiale pentru cresterea in copilarie si pubertate. Nivelul scade natural cu varsta.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Acromegalie</dt>
+          <dd>Productie excesiva de hormon de crestere la adulti, care cauzeaza cresterea anormala a mainilor, picioarelor si organelor interne. Creste riscul de cancer si boli cardiace.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sindromul Laron</dt>
+          <dd>Conditie genetica rara in care organismul nu raspunde la hormonul de crestere, rezultand in IGF-1 foarte scazut, statura mica, dar risc aproape zero de cancer si diabet.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Pleiotropie antagonista</dt>
+          <dd>Concept evolutiv: o trasatura genetica ce ofera avantaje devreme in viata (reproductie, crestere) poate avea efecte daunatoare tarziu (cancer, mortalitate crescuta).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Sarcopenie</dt>
+          <dd>Pierderea progresiva a masei si fortei musculare asociata cu imbatranirea. Riscul creste la niveluri foarte scazute de IGF-1 si malnutritie proteica.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Cardiomegalie</dt>
+          <dd>Marirea anormala a inimii, frecvent observata la persoanele cu gigantism sau acromegalie. Poate duce la insuficienta cardiaca congestiva.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Centenari</dt>
+          <dd>Persoane care traiesc peste 100 de ani. Studiile arata ca au un IGF-1 mediu foarte scazut (~64 ng/mL), desi acesta poate fi un efect al varstei.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=rwwXz4ygS7g" target="_blank">The Surprising Science Between Height and Longevity — YouTube</a> &middot;
+    Studii: meta-analiza 2023 (IGF-1 si mortalitate), studiu jucatori baseball (2002), studiu veterani SUA, studiu Spania, studiu UK Biobank (276.000 persoane) &middot;
+    Infografic educativ
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: height & longevity visualization ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles representing cells, IGF-1 molecules, growth factors
+  const particles = [];
+  const count = 55;
+  for(let i = 0; i < count; i++){
+    const type = i < 15 ? 'igf' : i < 30 ? 'cell' : i < 45 ? 'gh' : 'dna';
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.0008,
+      vy: (Math.random() - 0.5) * 0.0008,
+      r: type === 'dna' ? 2 + Math.random() * 2 : 2.5 + Math.random() * 3.5,
+      phase: Math.random() * Math.PI * 2,
+      type: type
+    });
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0, 0, w, h);
+    t += 0.006;
+
+    // Draw DNA helix in background
+    ctx.globalAlpha = 0.08;
+    for(let i = 0; i < 80; i++){
+      const y = (i / 80) * h;
+      const x1 = w * 0.5 + Math.sin(y * 0.04 + t * 2) * w * 0.18;
+      const x2 = w * 0.5 - Math.sin(y * 0.04 + t * 2) * w * 0.18;
+      ctx.beginPath();
+      ctx.moveTo(x1, y);
+      ctx.lineTo(x2, y);
+      ctx.strokeStyle = 'rgba(52,211,153,0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      // Strand dots
+      ctx.beginPath();
+      ctx.arc(x1, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(52,211,153,0.5)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(x2, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(96,165,250,0.5)';
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // Draw connections between nearby particles
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i + 1; j < particles.length; j++){
+        const a = particles[i], b = particles[j];
+        const dx = (a.x - b.x) * w, dy = (a.y - b.y) * h;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if(dist < 65){
+          const alpha = (1 - dist / 65) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(a.x * w, a.y * h);
+          ctx.lineTo(b.x * w, b.y * h);
+          ctx.strokeStyle = a.type === 'igf' ? `rgba(52,211,153,${alpha})` :
+                           a.type === 'gh' ? `rgba(96,165,250,${alpha})` :
+                           `rgba(167,139,250,${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Pulse waves
+    for(let p = 0; p < 3; p++){
+      const pulseR = ((t * 30 + p * 50) % 160);
+      const pulseAlpha = Math.max(0, 0.08 - pulseR / 2200);
+      ctx.beginPath();
+      ctx.arc(w * 0.5, h * 0.5, pulseR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(52,211,153,${pulseAlpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    // Draw & update particles
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t + p.phase) * 0.0002;
+      p.y += p.vy + Math.cos(t * 0.8 + p.phase) * 0.0002;
+      if(p.x < 0 || p.x > 1) p.vx *= -1;
+      if(p.y < 0 || p.y > 1) p.vy *= -1;
+      p.x = Math.max(0, Math.min(1, p.x));
+      p.y = Math.max(0, Math.min(1, p.y));
+
+      const px = p.x * w, py = p.y * h;
+      const glow = 0.35 + Math.sin(t * 2 + p.phase) * 0.15;
+
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+
+      if(p.type === 'igf'){
+        ctx.fillStyle = `rgba(52,211,153,${glow})`;
+        ctx.shadowColor = 'rgba(52,211,153,0.4)';
+        ctx.shadowBlur = 10;
+      } else if(p.type === 'gh'){
+        ctx.fillStyle = `rgba(96,165,250,${glow})`;
+        ctx.shadowColor = 'rgba(96,165,250,0.3)';
+        ctx.shadowBlur = 8;
+      } else if(p.type === 'cell'){
+        ctx.fillStyle = `rgba(251,191,36,${glow * 0.7})`;
+        ctx.shadowColor = 'rgba(251,191,36,0.2)';
+        ctx.shadowBlur = 6;
+      } else {
+        ctx.fillStyle = `rgba(167,139,250,${glow * 0.6})`;
+        ctx.shadowColor = 'rgba(167,139,250,0.2)';
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    // Legend
+    const ly = h - 12;
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    ctx.fillStyle = 'rgba(52,211,153,0.7)'; ctx.beginPath(); ctx.arc(8, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('IGF-1', 15, ly+3);
+    ctx.fillStyle = 'rgba(96,165,250,0.7)'; ctx.beginPath(); ctx.arc(58, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('GH', 65, ly+3);
+    ctx.fillStyle = 'rgba(251,191,36,0.7)'; ctx.beginPath(); ctx.arc(90, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('celule', 97, ly+3);
+    ctx.fillStyle = 'rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(140, ly, 3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('ADN', 147, ly+3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── IGF-1 Interactive Slider ── */
+(function(){
+  const slider = document.getElementById('igfSlider');
+  const valSpan = document.getElementById('igfVal');
+  const display = document.getElementById('igfDisplay');
+  const riskBadge = document.getElementById('igfRisk');
+  const cancerText = document.getElementById('igfCancerText');
+  const cancerLevel = document.getElementById('igfCancerLevel');
+  const frailtyText = document.getElementById('igfFrailtyText');
+  const frailtyLevel = document.getElementById('igfFrailtyLevel');
+  const note = document.getElementById('igfNote');
+
+  if(!slider) return;
+
+  function update(){
+    const v = parseInt(slider.value);
+    valSpan.textContent = v;
+    display.textContent = v + ' ng/mL';
+
+    if(v < 80){
+      riskBadge.textContent = 'Risc crescut — fragilitate';
+      riskBadge.style.background = 'rgba(248,113,113,.15)';
+      riskBadge.style.color = 'var(--bad)';
+      riskBadge.style.borderColor = 'rgba(248,113,113,.3)';
+      cancerText.textContent = 'Risc de cancer redus semnificativ. Niveluri similare cu cele ale persoanelor cu sindrom Laron.';
+      cancerLevel.textContent = 'Foarte scazut';
+      cancerLevel.style.color = 'var(--glow)';
+      frailtyText.textContent = 'Risc ridicat de sarcopenie, fracturi osoase si posibila neurodegenerare. Masa musculara si densitatea osoasa pot fi compromise.';
+      frailtyLevel.textContent = 'Ridicat';
+      frailtyLevel.style.color = 'var(--bad)';
+      note.innerHTML = '&laquo;Sub 80 ng/mL — similar cu centenarii (media: 64 ng/mL). Cancer minim, dar risc de fragilitate si Alzheimer daca exista malnutritie.&raquo;';
+    } else if(v < 100){
+      riskBadge.textContent = 'IGF-1 scazut — atentie la fragilitate';
+      riskBadge.style.background = 'rgba(251,191,36,.15)';
+      riskBadge.style.color = 'var(--warn)';
+      riskBadge.style.borderColor = 'rgba(251,191,36,.3)';
+      cancerText.textContent = 'Risc de cancer scazut. Poate prezice longevitate exceptionala (90+ ani), in special la cei cu istoric familial de cancer.';
+      cancerLevel.textContent = 'Scazut';
+      cancerLevel.style.color = 'var(--glow)';
+      frailtyText.textContent = 'Risc moderat de fragilitate. Important: mentine masa musculara prin exercitii si aport proteic adecvat.';
+      frailtyLevel.textContent = 'Moderat';
+      frailtyLevel.style.color = 'var(--warn)';
+      note.innerHTML = '&laquo;Sub 100 ng/mL poate fi optim pentru longevitate maxima, daca eviti malnutritia si mentii masa musculara si osoasa adecvata.&raquo;';
+    } else if(v <= 160){
+      riskBadge.textContent = 'Zona optima';
+      riskBadge.style.background = 'rgba(52,211,153,.15)';
+      riskBadge.style.color = 'var(--glow)';
+      riskBadge.style.borderColor = 'rgba(52,211,153,.3)';
+      cancerText.textContent = 'Risc de cancer la nivelul cel mai scazut conform meta-analizei 2023. Zona 120-160 ng/mL este cea optima.';
+      cancerLevel.textContent = 'Minim';
+      cancerLevel.style.color = 'var(--glow)';
+      frailtyText.textContent = 'Risc minim de fragilitate. IGF-1 suficient pentru mentinerea masei musculare si a densitatii osoase.';
+      frailtyLevel.textContent = 'Minim';
+      frailtyLevel.style.color = 'var(--glow)';
+      note.innerHTML = '&laquo;Nivel optim conform meta-analizei din 2023. Cel mai scazut risc de cancer, boli cardiovasculare si mortalitate generala.&raquo;';
+    } else if(v <= 250){
+      riskBadge.textContent = 'Moderat crescut';
+      riskBadge.style.background = 'rgba(251,191,36,.15)';
+      riskBadge.style.color = 'var(--warn)';
+      riskBadge.style.borderColor = 'rgba(251,191,36,.3)';
+      cancerText.textContent = 'Risc de cancer in crestere. IGF-1 stimuleaza cresterea celulara, inclusiv a celulelor canceroase.';
+      cancerLevel.textContent = 'Crescut';
+      cancerLevel.style.color = 'var(--warn)';
+      frailtyText.textContent = 'Risc minim de fragilitate. Masa musculara si osoasa bine sustinute la acest nivel.';
+      frailtyLevel.textContent = 'Minim';
+      frailtyLevel.style.color = 'var(--glow)';
+      note.innerHTML = '&laquo;Peste zona optima. Nivelul tipic pentru adulti 40-60 ani. Riscul de cancer si boli cardiovasculare incepe sa creasca.&raquo;';
+    } else {
+      riskBadge.textContent = 'Risc crescut — cancer & boli cardiace';
+      riskBadge.style.background = 'rgba(248,113,113,.15)';
+      riskBadge.style.color = 'var(--bad)';
+      riskBadge.style.borderColor = 'rgba(248,113,113,.3)';
+      cancerText.textContent = 'Risc semnificativ crescut de cancer. Niveluri tipice pentru pubertate sau acromegalie. Stimulare excesiva a cresterii celulare.';
+      cancerLevel.textContent = 'Ridicat';
+      cancerLevel.style.color = 'var(--bad)';
+      frailtyText.textContent = 'Risc inexistent de fragilitate, dar risc crescut de boli cardiace, cardiomegalie si mortalitate generala.';
+      frailtyLevel.textContent = 'Inexistent';
+      frailtyLevel.style.color = 'var(--glow)';
+      note.innerHTML = '&laquo;IGF-1 peste 250 ng/mL — niveluri asociate cu risc semnificativ crescut de cancer si mortalitate. Reamintiti-va: persoanele cu acromegalie au mortalitate dubla.&raquo;';
+    }
+  }
+
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>
