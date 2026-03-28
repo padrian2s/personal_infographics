@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ce se intampla daca mananci ovaz in fiecare zi timp de 30 de zile? — Dr. Sten Ekberg</title>
+  <meta name="description" content="Infografic: analiza nuantata a beneficiilor si dezavantajelor consumului zilnic de ovaz. 7 afirmatii verificate, indice glicemic, antinutrienti, tipuri de ovaz — bazat pe Dr. Sten Ekberg." />
+  <style>
+    :root{
+      --bg0:#0A0A0E;
+      --bg1:#0E0E14;
+      --panel:#12121Acc;
+      --card:#111118;
+      --card2:#0D0D14;
+      --ink:#EAF0FF;
+      --muted:#A0ACC8;
+      --muted2:#6E7A9A;
+      --line:#1E1E2A;
+      --glow:#D4A855;
+      --glow2:#B8924A;
+      --ok:#4ADE80;
+      --warn:#FBBF24;
+      --bad:#F87171;
+      --teal:#22D3EE;
+      --purple:#A78BFA;
+
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+      --shadow2: 0 16px 60px rgba(0,0,0,.65);
+      --radius: 18px;
+      --radius2: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(212,168,85,.07), transparent 65%),
+        radial-gradient(900px 700px at 70% 20%, rgba(74,222,128,.05), transparent 60%),
+        radial-gradient(1200px 900px at 40% 80%, rgba(167,139,250,.04), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:var(--glow);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .wrap{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      width:min(1280px, 93vw);
+      margin: 20px auto 42px auto;
+      align-items:start;
+    }
+
+    /* ── HERO ── */
+    .hero{
+      grid-column: 1 / -1;
+      position:relative;
+      border:1px solid rgba(212,168,85,.20);
+      background: linear-gradient(180deg, rgba(14,14,20,.75), rgba(10,10,14,.72));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding: 26px 26px 22px;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:-1px;
+      background:
+        radial-gradient(800px 280px at 15% 12%, rgba(212,168,85,.10), transparent 70%),
+        radial-gradient(700px 300px at 80% 30%, rgba(74,222,128,.07), transparent 68%),
+        radial-gradient(500px 260px at 45% 85%, rgba(248,113,113,.05), transparent 66%);
+      pointer-events:none;opacity:.9;
+    }
+    .heroInner{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:stretch;}
+    .title{display:flex;flex-direction:column;gap:10px;padding:8px 8px 0 8px;}
+    h1{margin:0;font-size:clamp(24px,2.8vw,38px);line-height:1.10;letter-spacing:-.02em;}
+    h1 small{display:block;font-size:.48em;color:var(--muted);font-weight:400;margin-top:6px;letter-spacing:0;}
+    .sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5;max-width:72ch;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+    .chip{
+      border:1px solid rgba(234,240,255,.12);background:rgba(10,10,14,.45);
+      padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+      display:flex;align-items:center;gap:7px;white-space:nowrap;
+    }
+    .chip b{color:var(--ink);font-weight:650;}
+    .chip i{width:9px;height:9px;border-radius:999px;display:inline-block;box-shadow:0 0 0 3px rgba(255,255,255,.04);}
+    .i1{background:var(--glow)} .i2{background:var(--ok)} .i3{background:var(--warn)} .i4{background:var(--bad)}
+
+    .heroViz{
+      position:relative;border:1px solid rgba(234,240,255,.12);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(10,10,14,.30),rgba(10,10,14,.60));
+      overflow:hidden;padding:16px;min-height:200px;display:flex;flex-direction:column;justify-content:center;
+    }
+    canvas#heroCanvas{width:100%;height:220px;display:block;border-radius:12px;}
+
+    /* ── CARDS ── */
+    .main{display:flex;flex-direction:column;gap:18px;}
+    .side{position:sticky;top:14px;display:flex;flex-direction:column;gap:18px;padding-bottom:18px;}
+
+    .card{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,24,.75),rgba(13,13,20,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      padding:16px 16px 10px;border-bottom:1px solid rgba(234,240,255,.07);
+      background:linear-gradient(180deg,rgba(10,10,14,.15),transparent);
+    }
+    .cardHeader h2{margin:0;font-size:16px;letter-spacing:-.01em;}
+    .cardHeader p{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.4;max-width:70ch;}
+    .cardBody{padding:14px 16px 16px;}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .mini{
+      border:1px solid rgba(234,240,255,.10);
+      background:linear-gradient(180deg,rgba(10,10,14,.28),rgba(10,10,14,.55));
+      border-radius:16px;padding:12px;min-height:100px;position:relative;overflow:hidden;
+    }
+    .mini h3{margin:0;font-size:13px;letter-spacing:-.01em;display:flex;align-items:center;gap:7px;}
+    .mini p{margin:7px 0 0;color:var(--muted);font-size:12.5px;line-height:1.42;}
+    .badge{
+      font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:999px;
+      border:1px solid rgba(234,240,255,.12);color:rgba(234,240,255,.85);
+      background:rgba(0,0,0,.22);white-space:nowrap;
+    }
+    .kpi{display:flex;align-items:baseline;gap:10px;margin-top:10px;}
+    .kpi .n{font-size:28px;letter-spacing:-.02em;font-weight:760;}
+    .kpi .l{font-size:11.5px;color:var(--muted2);line-height:1.25;max-width:34ch;}
+
+    .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+    .stat{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,10,14,.38);
+      border-radius:14px;padding:11px;text-align:center;
+    }
+    .stat .v{font-size:24px;font-weight:760;letter-spacing:-.02em;}
+    .stat .u{display:block;font-size:10.5px;color:var(--muted2);margin-top:3px;line-height:1.25;}
+
+    /* Flow */
+    .flow{display:flex;flex-direction:column;gap:0;margin-top:12px;}
+    .step{display:grid;grid-template-columns:44px 1fr;gap:0;min-height:58px;}
+    .stepLine{display:flex;flex-direction:column;align-items:center;}
+    .stepDot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--glow);background:rgba(212,168,85,.15);
+      flex:0 0 auto;margin-top:2px;
+    }
+    .stepDot.green{border-color:var(--ok);background:rgba(74,222,128,.15);}
+    .stepDot.warn{border-color:var(--warn);background:rgba(251,191,36,.15);}
+    .stepDot.bad{border-color:var(--bad);background:rgba(248,113,113,.15);}
+    .stepDot.purple{border-color:var(--purple);background:rgba(167,139,250,.15);}
+    .stepBar{width:2px;flex:1;background:linear-gradient(180deg,rgba(212,168,85,.22),rgba(212,168,85,.04));}
+    .stepBar.green{background:linear-gradient(180deg,rgba(74,222,128,.22),rgba(74,222,128,.04));}
+    .stepBar.warn{background:linear-gradient(180deg,rgba(251,191,36,.22),rgba(251,191,36,.04));}
+    .stepBar.bad{background:linear-gradient(180deg,rgba(248,113,113,.22),rgba(248,113,113,.04));}
+    .stepBar.purple{background:linear-gradient(180deg,rgba(167,139,250,.22),rgba(167,139,250,.04));}
+    .stepContent{padding:0 0 14px 8px;}
+    .stepContent h4{margin:0;font-size:13px;font-weight:650;}
+    .stepContent p{margin:4px 0 0;font-size:12.3px;color:var(--muted);line-height:1.42;}
+
+    /* Quote */
+    .quote{
+      border-left:3px solid var(--glow);padding:10px 14px;margin:12px 0 0;
+      background:rgba(212,168,85,.05);border-radius:0 12px 12px 0;
+      font-size:13px;color:var(--muted);line-height:1.45;font-style:italic;
+    }
+    .quote.green{border-color:var(--ok);background:rgba(74,222,128,.05);}
+    .quote.bad{border-color:var(--bad);background:rgba(248,113,113,.05);}
+    .quote cite{display:block;margin-top:5px;font-style:normal;font-size:11px;color:var(--muted2);}
+
+    /* Alert */
+    .alert{
+      border:1px solid rgba(212,168,85,.25);border-radius:14px;padding:12px 14px;
+      background:rgba(212,168,85,.06);margin-top:12px;
+    }
+    .alert.warn{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);}
+    .alert.bad{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.06);}
+    .alert h4{margin:0;font-size:12.5px;color:var(--glow);display:flex;align-items:center;gap:6px;}
+    .alert.warn h4{color:var(--warn);}
+    .alert.bad h4{color:var(--bad);}
+    .alert p{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* SVG diagrams */
+    .svgDiag{
+      border:1px solid rgba(234,240,255,.10);border-radius:16px;
+      background:rgba(10,10,14,.35);padding:16px;margin-top:14px;overflow:hidden;
+    }
+    .svgDiag svg{width:100%;height:auto;display:block;}
+
+    /* Slider */
+    .sliderWrap{margin-top:14px;padding:14px;border:1px solid rgba(234,240,255,.10);border-radius:16px;background:rgba(10,10,14,.35);}
+    .sliderWrap label{font-size:13px;font-weight:600;display:block;margin-bottom:8px;}
+    .sliderWrap input[type=range]{
+      width:100%;accent-color:var(--glow);height:6px;cursor:pointer;
+      -webkit-appearance:none;appearance:none;background:var(--line);border-radius:3px;outline:none;
+    }
+    .sliderWrap input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+      background:var(--glow);border:2px solid var(--bg0);cursor:pointer;box-shadow:0 0 10px rgba(212,168,85,.4);
+    }
+    .sliderResult{
+      display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;
+      text-align:center;
+    }
+    .sliderResult .sr{
+      border:1px solid rgba(234,240,255,.10);background:rgba(10,10,14,.4);
+      border-radius:12px;padding:10px;
+    }
+    .sliderResult .sr .sv{font-size:22px;font-weight:760;letter-spacing:-.02em;}
+    .sliderResult .sr .sl{display:block;font-size:10px;color:var(--muted2);margin-top:3px;}
+    .oatName{font-size:15px;font-weight:700;color:var(--glow);text-align:center;margin-top:8px;min-height:22px;}
+    .oatDesc{font-size:12px;color:var(--muted);text-align:center;margin-top:4px;min-height:36px;line-height:1.35;}
+
+    /* Commentary */
+    .comPanel{
+      border:1px solid rgba(212,168,85,.18);
+      background:linear-gradient(180deg,rgba(17,17,24,.80),rgba(13,13,20,.76));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .comHeader{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 16px;border-bottom:1px solid rgba(212,168,85,.12);
+      cursor:pointer;user-select:none;
+    }
+    .comHeader h2{margin:0;font-size:14.5px;}
+    .comToggle{
+      font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(212,168,85,.25);background:rgba(212,168,85,.07);color:var(--glow);cursor:pointer;
+    }
+    .comBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+    .comBody.hidden{display:none;}
+    .comNote{border:1px solid rgba(234,240,255,.08);border-radius:12px;padding:9px 11px;background:rgba(10,10,14,.25);}
+    .comNote h4{margin:0;font-size:12px;display:flex;align-items:center;gap:5px;}
+    .comNote p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.4;}
+
+    /* Sidebar timeline */
+    .timeline{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,24,.75),rgba(13,13,20,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .timeline .tHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .timeline .tHead h2{margin:0;font-size:14.5px;}
+    .timeline .tBody{padding:12px 16px 16px;display:flex;flex-direction:column;gap:0;}
+    .tEvent{display:grid;grid-template-columns:58px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid rgba(234,240,255,.05);}
+    .tEvent:last-child{border-bottom:0;}
+    .tDate{font-family:var(--mono);font-size:11px;color:var(--glow);padding-top:1px;}
+    .tDesc{font-size:12px;color:var(--muted);line-height:1.35;}
+    .tDesc b{color:var(--ink);}
+
+    /* Glossary */
+    .glossary{
+      border:1px solid rgba(234,240,255,.12);
+      background:linear-gradient(180deg,rgba(17,17,24,.75),rgba(13,13,20,.70));
+      border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
+    }
+    .glossary .gHead{padding:13px 16px;border-bottom:1px solid rgba(234,240,255,.07);}
+    .glossary .gHead h2{margin:0;font-size:14.5px;}
+    .glossary .gBody{padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;}
+    .gItem{border:1px solid rgba(234,240,255,.08);border-radius:11px;padding:7px 10px;background:rgba(10,10,14,.20);}
+    .gItem dt{font-size:11.5px;font-weight:700;color:var(--glow);margin:0;}
+    .gItem dd{margin:2px 0 0;font-size:11.5px;color:var(--muted);line-height:1.35;}
+
+    .footer{
+      grid-column:1/-1;text-align:center;padding:18px 0 0;
+      font-size:11.5px;color:var(--muted2);border-top:1px solid var(--line);
+    }
+    .footer a{color:var(--glow);}
+
+    /* Verdict pills */
+    .verdict{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:999px;font-weight:700;margin-left:6px;}
+    .verdict.partial{border:1px solid rgba(251,191,36,.3);color:var(--warn);background:rgba(251,191,36,.08);}
+    .verdict.mostly-false{border:1px solid rgba(248,113,113,.3);color:var(--bad);background:rgba(248,113,113,.08);}
+    .verdict.true-ish{border:1px solid rgba(74,222,128,.3);color:var(--ok);background:rgba(74,222,128,.08);}
+    .verdict.context{border:1px solid rgba(212,168,85,.3);color:var(--glow);background:rgba(212,168,85,.08);}
+
+    @media(max-width:980px){
+      .wrap{grid-template-columns:1fr;}
+      .hero{grid-column:1;}
+      .heroInner{grid-template-columns:1fr;}
+      .side{position:static;}
+      .statGrid{grid-template-columns:1fr 1fr;}
+      .grid3{grid-template-columns:1fr;}
+      .sliderResult{grid-template-columns:1fr;}
+      .footer{grid-column:1;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="heroInner">
+      <div class="title">
+        <h1>Ce se intampla daca mananci ovaz in fiecare zi timp de 30 de zile?
+          <small>Dr. Sten Ekberg — Analiza nuantata: beneficii reale vs. mituri exagerate despre consumul zilnic de ovaz</small>
+        </h1>
+        <p class="sub">Ovazul nu e un aliment rau, dar nici unul miraculos. Dr. Ekberg analizeaza <b>7 afirmatii populare</b> despre consumul zilnic de ovaz, explicand de ce <b>contextul conteaza enorm</b>: ce mancai inainte, cat de sensibil esti la insulina si ce tip de ovaz alegi. Concluzia: ovazul poate fi un aliment decent <b>ocazional</b>, dar nu ar trebui sa fie baza dietei zilnice.</p>
+        <div class="chips">
+          <span class="chip"><i class="i1"></i> <b>7 afirmatii</b> analizate critic</span>
+          <span class="chip"><i class="i2"></i> <b>Steel-cut</b> > Rolled > Instant</span>
+          <span class="chip"><i class="i3"></i> <b>Insulina</b> e cheia</span>
+          <span class="chip"><i class="i4"></i> <b>Acid fitic</b> — antinutrient</span>
+        </div>
+      </div>
+      <div class="heroViz">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <div class="main">
+
+    <!-- Card 1: Context — ce mancai inainte? -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Intrebarea esentiala: ce mancai inainte?</h2>
+          <p>Ovazul nu exista in vid — beneficiul depinde total de ce inlocuieste in dieta ta</p>
+        </div>
+        <span class="badge">CONTEXT</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Inlocuiesti alimente proaste?</h3>
+            <p>Daca mancai <b>toast cu gem si margarina</b>, clatite cu sirop, gogoasi, sau fast food cu biscuiti si cartofi, atunci <b>ovazul e vastly mai bun</b>. Chiar si ovazul instant ar fi o imbunatatire majora.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--ok)">&#10003;</span>
+              <span class="l">Da, treci la ovaz</span>
+            </div>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Inlocuiesti alimente bune?</h3>
+            <p>Daca mancai <b>oua, carne, peste</b> sau legume cu grasimi sanatoase, trecerea la ovaz ar putea fi de fapt un <b>pas inapoi</b>. Proteinele animale sunt superioare, iar grasimile stabilizeaza glicemia mai bine.</p>
+            <div class="kpi">
+              <span class="n" style="color:var(--bad)">&#10007;</span>
+              <span class="l">Nu abandona proteinele animale</span>
+            </div>
+          </div>
+        </div>
+        <div class="alert">
+          <h4>Micul dejun nu e obligatoriu</h4>
+          <p>Postul intermitent (a nu manca micul dejun) are <b>beneficii substantiale</b>: inversarea bolilor, prelungirea vietii, imbunatatirea starii generale. Majoritatea celor care practica postul intermitent sar peste micul dejun (ex: mananca la 12:00 si 18:00). Asa ca ovazul la micul dejun nu e neaparat cea mai buna optiune.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: 7 afirmatii analizate -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>7 afirmatii populare — verificate</h2>
+          <p>Ce promit sustinatorii ovazului vs. ce spune stiinta si contextul metabolic</p>
+        </div>
+        <span class="badge" style="border-color:rgba(212,168,85,.3);color:var(--glow);">FACT-CHECK</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>1. Piele mai frumoasa <span class="verdict mostly-false">EXAGERAT</span></h4>
+              <p>Ovazul coloidal functioneaza <b>topic</b> (pe piele) pentru eczeme si dermatite, dar <b>consumul oral nu ajuta direct pielea</b>. Mineralele din ovaz (zinc, fier, magneziu) sunt importante, dar daca nu ai deficiente, mai mult nu inseamna mai bine. Daca problema pielii are alte cauze, ovazul nu o va rezolva.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>2. Proteine pentru muschi <span class="verdict partial">PARTIAL</span></h4>
+              <p>O portie (45g uscate) contine <b>7g proteine</b> — 15% din doza zilnica. Dar proteinele vegetale au <b>valoare biologica mai mica</b>. Ouale, carnea si pestele sunt utilizate de organism mult mai eficient. Ovazul e mai bun decat alte cereale, dar nu inlocuieste proteinele animale.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>3. Plin de energie <span class="verdict mostly-false">INSELATOR</span></h4>
+              <p>Carbohidratii din ovaz <b>cresc glicemia</b> (IG ~55-79 in functie de tip), ceea ce poate cauza <b>fluctuatii de energie</b>. Grasimile sunt o sursa de energie <b>mai stabila si mai eficienta</b>. Ovazul tine de foame mai bine decat jeleurile sau cerealele pentru copii, dar nu mai bine decat alimentele cu grasimi sanatoase.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>4. Slabire <span class="verdict context">DEPINDE</span></h4>
+              <p>Fibra din ovaz ajuta la satietate, dar <b>carbohidratii stimuleaza insulina</b>, iar insulina e un hormon de <b>stocare</b>. Daca esti rezistent la insulina (diabet tip 2, prediabet), ovazul poate de fapt <b>impiedica pierderea in greutate</b>. Cheia: reducerea rezistentei la insulina, nu adaugarea de cereale.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4>5. Scade colesterolul <span class="verdict true-ish">PARTIAL ADEVARAT</span></h4>
+              <p>Beta-glucanul (fibra solubila) <b>scade putin LDL</b> prin reducerea reabsorbtiei colesterolului. Dar 1.6g fibra solubila pe portie nu e impresionant: <b>1 lingura de chia are de 3x mai multa</b> (5.4g). Plus ca <b>colesterolul nu e adevaratul vinovat</b> — inflamatia e problema reala.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>6. Probleme digestive rezolvate <span class="verdict mostly-false">RISCANT</span></h4>
+              <p>Fibra solubila ajuta <b>unele persoane</b>, dar ovazul poate <b>inrautati lucrurile</b> daca esti sensibil la gluten (contaminare incrucisata), ai SIBO, sau ai sensibilitate la ovaz (2-5% din oameni). Avenina poate declansa reactii la unii pacienti celiaci.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>7. Risc cardiovascular redus <span class="verdict partial">INDIRECT</span></h4>
+              <p>Daca inlocuiesti fast food cu ovaz, da — riscul scade. Dar <b>mecanismul nu e specific ovazului</b>. O portie are doar 0.9g grasimi mononesaturate — un avocado are <b>de 18 ori mai mult</b> (16.3g). Ovazul are mai putine grasimi bune decat nucile, semintele sau avocado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3: Tipuri de ovaz + Slider -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Tipuri de ovaz — nu toate sunt egale</h2>
+          <p>Procesarea creste indicele glicemic: steel-cut e mult mai bun decat instant</p>
+        </div>
+        <span class="badge">COMPARATIE</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Glycemic Index Comparison -->
+        <div class="svgDiag">
+          <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="340" y="20" fill="#A0ACC8" font-size="12" font-weight="600" text-anchor="middle">Indice Glicemic (IG) pe tipuri de ovaz</text>
+
+            <!-- Scale line -->
+            <line x1="60" y1="170" x2="640" y2="170" stroke="rgba(234,240,255,.12)" stroke-width="1"/>
+            <text x="60" y="190" fill="#6E7A9A" font-size="9" text-anchor="middle">0</text>
+            <text x="205" y="190" fill="#6E7A9A" font-size="9" text-anchor="middle">25</text>
+            <text x="350" y="190" fill="#6E7A9A" font-size="9" text-anchor="middle">50</text>
+            <text x="495" y="190" fill="#6E7A9A" font-size="9" text-anchor="middle">75</text>
+            <text x="640" y="190" fill="#6E7A9A" font-size="9" text-anchor="middle">100</text>
+
+            <!-- Low GI zone -->
+            <rect x="60" y="30" width="348" height="130" rx="6" fill="rgba(74,222,128,.04)" stroke="rgba(74,222,128,.1)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="234" y="46" fill="rgba(74,222,128,.4)" font-size="9" text-anchor="middle">IG SCAZUT (&lt;55)</text>
+
+            <!-- High GI zone -->
+            <rect x="466" y="30" width="174" height="130" rx="6" fill="rgba(248,113,113,.04)" stroke="rgba(248,113,113,.1)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="553" y="46" fill="rgba(248,113,113,.4)" font-size="9" text-anchor="middle">IG RIDICAT (&gt;70)</text>
+
+            <!-- Steel-cut bar -->
+            <rect x="60" y="60" width="319" height="24" rx="6" fill="rgba(74,222,128,.2)" stroke="rgba(74,222,128,.4)" stroke-width="1"/>
+            <text x="70" y="76" fill="#4ADE80" font-size="11" font-weight="700">Steel-cut</text>
+            <text x="370" y="76" fill="#4ADE80" font-size="11" font-weight="700">~55</text>
+
+            <!-- Rolled oats bar -->
+            <rect x="60" y="95" width="331" height="24" rx="6" fill="rgba(251,191,36,.2)" stroke="rgba(251,191,36,.4)" stroke-width="1"/>
+            <text x="70" y="111" fill="#FBBF24" font-size="11" font-weight="700">Fulgi (rolled)</text>
+            <text x="382" y="111" fill="#FBBF24" font-size="11" font-weight="700">~57</text>
+
+            <!-- Instant oats bar -->
+            <rect x="60" y="130" width="458" height="24" rx="6" fill="rgba(248,113,113,.2)" stroke="rgba(248,113,113,.4)" stroke-width="1"/>
+            <text x="70" y="146" fill="#F87171" font-size="11" font-weight="700">Instant</text>
+            <text x="509" y="146" fill="#F87171" font-size="11" font-weight="700">~79</text>
+
+            <!-- Arrow showing processing -->
+            <line x1="650" y1="68" x2="650" y2="148" stroke="rgba(234,240,255,.2)" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+            <text x="660" y="110" fill="#6E7A9A" font-size="8" transform="rotate(90, 660, 110)" text-anchor="middle">+ procesat</text>
+            <defs><marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,0 L5,10 Z" fill="rgba(234,240,255,.3)"/></marker></defs>
+          </svg>
+        </div>
+
+        <!-- Interactive slider -->
+        <div class="sliderWrap">
+          <label>Alege tipul de ovaz:</label>
+          <input type="range" min="0" max="2" step="1" value="0" id="oatSlider" />
+          <div class="oatName" id="oatName">Steel-cut (taiat la otel)</div>
+          <div class="oatDesc" id="oatDesc">Cel mai putin procesat. Bobul de ovaz e doar taiat in 2-3 bucati. Suprafata mica = absorbtie lenta = spike glicemic minim.</div>
+          <div class="sliderResult">
+            <div class="sr">
+              <div class="sv" id="srGI" style="color:var(--ok)">~55</div>
+              <span class="sl">Indice Glicemic</span>
+            </div>
+            <div class="sr">
+              <div class="sv" id="srProc" style="color:var(--ok)">Minim</div>
+              <span class="sl">Nivel procesare</span>
+            </div>
+            <div class="sr">
+              <div class="sv" id="srRec" style="color:var(--ok)">&#9733;&#9733;&#9733;</div>
+              <span class="sl">Recomandat</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Steel-cut</h3>
+            <p>Bobul e <b>doar taiat</b>. Suprafata mica, absorbtie lenta. Cel mai bun pentru glicemie. Timp de preparare: <b>20-30 min</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(251,191,36,.2);">
+            <h3 style="color:var(--warn)">Fulgi (rolled)</h3>
+            <p>Bobul e <b>aplatizat si pre-gatit cu abur</b>. Suprafata mai mare, absorbtie mai rapida. Timp: <b>5-10 min</b>.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Instant</h3>
+            <p>Cel mai <b>procesat</b>: aplatizat extrem, pre-gatit. Absorbtie foarte rapida, spike glicemic similar cu painea alba. Timp: <b>1-2 min</b>.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Nutrienti vs. Antinutrienti -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Nutrienti vs. Antinutrienti — balanta ascunsa</h2>
+          <p>Ovazul contine minerale valoroase, dar si acid fitic care blocheaza absorbtia lor</p>
+        </div>
+        <span class="badge" style="border-color:rgba(167,139,250,.3);color:var(--purple);">NUTRITIE</span>
+      </div>
+      <div class="cardBody">
+        <!-- SVG: Nutrient vs Antinutrient Balance -->
+        <div class="svgDiag">
+          <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="font-family:var(--sans);">
+            <text x="340" y="20" fill="#A0ACC8" font-size="12" font-weight="600" text-anchor="middle">Minerale in ovaz vs. Blocarea lor de acidul fitic</text>
+
+            <!-- Left: Nutrients -->
+            <rect x="30" y="35" width="290" height="220" rx="12" fill="rgba(74,222,128,.04)" stroke="rgba(74,222,128,.12)" stroke-width="1"/>
+            <text x="175" y="55" fill="#4ADE80" font-size="11" font-weight="700" text-anchor="middle">NUTRIENTI (per 45g ovaz uscat)</text>
+
+            <rect x="50" y="68" width="250" height="24" rx="6" fill="rgba(74,222,128,.08)"/>
+            <text x="60" y="84" fill="#EAF0FF" font-size="10.5">Fier</text>
+            <text x="290" y="84" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">2.5 mg (14% DZR)</text>
+
+            <rect x="50" y="98" width="250" height="24" rx="6" fill="rgba(74,222,128,.06)"/>
+            <text x="60" y="114" fill="#EAF0FF" font-size="10.5">Magneziu</text>
+            <text x="290" y="114" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">56 mg (13% DZR)</text>
+
+            <rect x="50" y="128" width="250" height="24" rx="6" fill="rgba(74,222,128,.08)"/>
+            <text x="60" y="144" fill="#EAF0FF" font-size="10.5">Zinc</text>
+            <text x="290" y="144" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">2.3 mg (21% DZR)</text>
+
+            <rect x="50" y="158" width="250" height="24" rx="6" fill="rgba(74,222,128,.06)"/>
+            <text x="60" y="174" fill="#EAF0FF" font-size="10.5">Fosfor</text>
+            <text x="290" y="174" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">210 mg (17% DZR)</text>
+
+            <rect x="50" y="188" width="250" height="24" rx="6" fill="rgba(74,222,128,.08)"/>
+            <text x="60" y="204" fill="#EAF0FF" font-size="10.5">Mangan</text>
+            <text x="290" y="204" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">2.0 mg (87% DZR)</text>
+
+            <rect x="50" y="218" width="250" height="24" rx="6" fill="rgba(74,222,128,.06)"/>
+            <text x="60" y="234" fill="#EAF0FF" font-size="10.5">Vitamine B1, B5</text>
+            <text x="290" y="234" fill="#4ADE80" font-size="10.5" font-weight="600" text-anchor="end">bune cantitati</text>
+
+            <!-- Center: Phytic acid blocking arrow -->
+            <rect x="330" y="100" width="30" height="90" rx="4" fill="rgba(248,113,113,.15)" stroke="rgba(248,113,113,.3)" stroke-width="1"/>
+            <text x="345" y="150" fill="#F87171" font-size="20" font-weight="800" text-anchor="middle">&#8644;</text>
+            <text x="345" y="80" fill="#F87171" font-size="9" font-weight="600" text-anchor="middle">ACID</text>
+            <text x="345" y="92" fill="#F87171" font-size="9" font-weight="600" text-anchor="middle">FITIC</text>
+            <text x="345" y="210" fill="#6E7A9A" font-size="8" text-anchor="middle">blocheaza</text>
+            <text x="345" y="222" fill="#6E7A9A" font-size="8" text-anchor="middle">absorbtia</text>
+
+            <!-- Right: What happens -->
+            <rect x="370" y="35" width="290" height="220" rx="12" fill="rgba(248,113,113,.04)" stroke="rgba(248,113,113,.12)" stroke-width="1"/>
+            <text x="515" y="55" fill="#F87171" font-size="11" font-weight="700" text-anchor="middle">EFECT ACID FITIC (fitati)</text>
+
+            <rect x="385" y="68" width="260" height="34" rx="6" fill="rgba(248,113,113,.06)"/>
+            <text x="395" y="83" fill="#EAF0FF" font-size="10">Cheleaza Fe, Zn, Ca, Mg</text>
+            <text x="395" y="96" fill="#6E7A9A" font-size="9">Leaga mineralele, le face indisponibile</text>
+
+            <rect x="385" y="110" width="260" height="34" rx="6" fill="rgba(248,113,113,.08)"/>
+            <text x="395" y="125" fill="#EAF0FF" font-size="10">Prezent in toate cerealele</text>
+            <text x="395" y="138" fill="#6E7A9A" font-size="9">Nu doar in ovaz — e o problema generala</text>
+
+            <rect x="385" y="152" width="260" height="34" rx="6" fill="rgba(248,113,113,.06)"/>
+            <text x="395" y="167" fill="#EAF0FF" font-size="10">Reduce biodisponibilitatea</text>
+            <text x="395" y="180" fill="#6E7A9A" font-size="9">Chiar daca ovazul "contine" minerale</text>
+
+            <rect x="385" y="194" width="260" height="50" rx="6" fill="rgba(74,222,128,.06)" stroke="rgba(74,222,128,.12)" stroke-width="1"/>
+            <text x="395" y="210" fill="#4ADE80" font-size="10" font-weight="600">Solutie: Inmuiere / Fermentare</text>
+            <text x="395" y="224" fill="#A0ACC8" font-size="9">Reduce semnificativ acidul fitic.</text>
+            <text x="395" y="236" fill="#A0ACC8" font-size="9">Inmuie ovazul 12-24h inainte de gatit.</text>
+          </svg>
+        </div>
+
+        <div class="grid2" style="margin-top:14px;">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Profil nutritional bun (pentru o cereala)</h3>
+            <p>Ovazul e <b>superior majoritatii cerealelor</b>: mai mult protein (19% din calorii), mai mult grasimi sanatoase (17% din calorii), mai multa fibra (4.5g/portie). E o cereala veche, cu ADN nemodificat de mii de ani.</p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Acidul fitic reduce beneficiile</h3>
+            <p>Faptul ca ovazul "contine" minerale nu inseamna ca le <b>absorbi pe toate</b>. Acidul fitic functioneaza ca un chelator — leaga mineralele inainte ca organismul sa le poata folosi. Inmuierea si fermentarea reduc acest efect.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5: Insulina — spectrul metabolic -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Spectrul metabolic — cine ar trebui sa manance ovaz?</h2>
+          <p>Raspunsul la insulina dicteaza daca ovazul e bun sau rau pentru tine</p>
+        </div>
+        <span class="badge" style="border-color:rgba(251,191,36,.3);color:var(--warn);">INSULINA</span>
+      </div>
+      <div class="cardBody">
+        <div class="statGrid">
+          <div class="stat">
+            <div class="v" style="color:var(--ok)">5.2</div>
+            <span class="u">A1C ideal = insulino-sensibil</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--warn)">5.8</div>
+            <span class="u">A1C = prediabet, limita</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--bad)">6.5+</div>
+            <span class="u">A1C = diabet tip 2</span>
+          </div>
+          <div class="stat">
+            <div class="v" style="color:var(--muted2)">3-5</div>
+            <span class="u">insulina ideala (mU/L)</span>
+          </div>
+        </div>
+
+        <div class="flow" style="margin-top:16px;">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot green"></div><div class="stepBar green"></div></div>
+            <div class="stepContent">
+              <h4 style="color:var(--ok)">Insulino-sensibil (A1C sub 5.2)</h4>
+              <p>Ovazul poate fi un aliment <b>decent ocazional</b>. Glicemia creste putin si revine rapid. Recomandat: <b>steel-cut cu lapte integral, seminte de chia si dovleac</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4 style="color:var(--warn)">Prediabetic (A1C ~5.8)</h4>
+              <p>Posibil sa inversezi rezistenta la insulina chiar daca mananci <b>ocazional</b> ovaz, <b>dar doar daca</b> restul dietei e predominant low-carb si alimentele sunt de calitate.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4 style="color:var(--bad)">Diabet tip 2 (A1C peste 6.5)</h4>
+              <p>Ovazul <b>nu e un aliment bun</b> pentru tine. Sistemul de procesare a carbohidratilor e "stricat". Insulina e prea mare (peste 20 mU/L), trigliceridele crescute. Trebuie sa reduci carbohidratii, nu sa adaugi cereale.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote">
+          &laquo;Insulina este un hormon de stocare. Cu cat insulina e mai mare, cu atat tendinta corpului e sa stocheze calorii ca grasime, nu sa le arda. Nr. 1 pentru slabire: scaderea rezistentei la insulina.&raquo;
+          <cite>— Dr. Sten Ekberg</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6: Reteta optimizata vs. tipica -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Cum sa mananci ovaz (daca insisti)</h2>
+          <p>Versiunea tipica vs. versiunea optimizata — diferente uriase in macronutrienti</p>
+        </div>
+        <span class="badge">RETETE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Varianta tipica (NU recomanda)</h3>
+            <p>Ovaz + lapte degresat + sirop/zahar + suc de portocale</p>
+            <div style="margin-top:8px;font-size:12px;">
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Calorii</span><span style="font-weight:700">369 kcal</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Grasimi</span><span style="font-weight:700;color:var(--bad)">9%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Proteine</span><span style="font-weight:700">14%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Carbohidrati</span><span style="font-weight:700;color:var(--bad)">77%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;">
+                <span style="color:var(--muted)">Fibra</span><span style="font-weight:700">4.5g</span>
+              </div>
+            </div>
+          </div>
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Varianta Ekberg (recomandata)</h3>
+            <p>Steel-cut + lapte integral + seminte chia + seminte dovleac</p>
+            <div style="margin-top:8px;font-size:12px;">
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Calorii</span><span style="font-weight:700">390 kcal</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Grasimi</span><span style="font-weight:700;color:var(--ok)">47%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Proteine</span><span style="font-weight:700;color:var(--ok)">20%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(234,240,255,.06);">
+                <span style="color:var(--muted)">Carbohidrati</span><span style="font-weight:700;color:var(--ok)">33%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:3px 0;">
+                <span style="color:var(--muted)">Fibra</span><span style="font-weight:700;color:var(--ok)">9.5g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert" style="border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);">
+          <h4 style="color:var(--ok)">Diferenta dramatica</h4>
+          <p>Aceleasi calorii (~390), dar varianta Ekberg are <b>de 5x mai mult grasimi bune</b>, <b>de 2x mai multa fibra</b> si <b>de 2.3x mai putini carbohidrati</b>. Curba glicemiei e dramatic mai lina, te tine de foame mult mai mult.</p>
+        </div>
+
+        <div class="quote green" style="margin-top:12px;">
+          &laquo;Alternativa si mai buna: iaurt fermentat de casa (din lapte 11.5% grasime), fermentat 36-40h — aproape zero zahar, 80% grasimi bune, 12g fibra cu chia si seminte de dovleac.&raquo;
+          <cite>— Reteta personala Dr. Ekberg, 470 kcal</cite>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7: Gluten & sensibilitati -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Gluten, avenina si sensibilitati ascunse</h2>
+          <p>Ovazul e natural fara gluten, dar asta nu inseamna ca e sigur pentru toata lumea</p>
+        </div>
+        <span class="badge" style="border-color:rgba(248,113,113,.3);color:var(--bad);">ATENTIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="flow">
+          <div class="step">
+            <div class="stepLine"><div class="stepDot"></div><div class="stepBar"></div></div>
+            <div class="stepContent">
+              <h4>Ovazul e natural fara gluten</h4>
+              <p>ADN-ul ovazului nu contine gene pentru gluten. E o cereala veche, nemodificata genetic. <b>Mai putin alergenic decat graul</b> — majoritatea oamenilor tolereaza bine ovazul.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot warn"></div><div class="stepBar warn"></div></div>
+            <div class="stepContent">
+              <h4>Contaminare incrucisata in fabrica</h4>
+              <p>Ovazul din comert e <b>procesat pe acelasi echipament</b> ca graul. Daca ai boala celiaca, trebuie sa cumperi <b>ovaz certificat "fara gluten"</b>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot bad"></div><div class="stepBar bad"></div></div>
+            <div class="stepContent">
+              <h4>Avenina — proteina proprie ovazului</h4>
+              <p>Chiar si ovazul pur contine <b>avenina</b>, o proteina care poate declansa reactii la <b>unii pacienti celiaci</b>. Exista reactii incrucisate: daca ai dezvoltat sensibilitate la grau, corpul poate reactiona si la ovaz, porumb sau orez.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="stepLine"><div class="stepDot purple"></div><div class="stepBar purple" style="background:transparent"></div></div>
+            <div class="stepContent">
+              <h4>2-5% din oameni sunt sensibili la ovaz</h4>
+              <p>Dr. Ekberg estimeaza ca <b>2-5% din pacientii</b> sai sunt sensibili la ovaz. Daca ai SIBO (supracrestere bacteriana intestinala), orice carbohidrat fermentabil — inclusiv ovazul — poate <b>inrautati simptomele</b>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8: Concluzia -->
+    <article class="card">
+      <div class="cardHeader">
+        <div>
+          <h2>Concluzia: ovazul nu e magic, dar nici rau</h2>
+          <p>Pozitia echilibrata a Dr. Ekberg — reguli simple pentru decizia ta</p>
+        </div>
+        <span class="badge">CONCLUZIE</span>
+      </div>
+      <div class="cardBody">
+        <div class="grid2">
+          <div class="mini" style="border-color:rgba(74,222,128,.2);">
+            <h3 style="color:var(--ok)">Cand e OK sa mananci ovaz</h3>
+            <p>&#10003; Esti <b>insulino-sensibil</b> (A1C sub 5.2)<br/>
+               &#10003; Alegi <b>steel-cut</b>, nu instant<br/>
+               &#10003; Adaugi <b>grasimi si seminte</b>, nu zahar<br/>
+               &#10003; Il mananci <b>ocazional</b>, nu zilnic<br/>
+               &#10003; Inlocuiesti <b>alimente mai proaste</b></p>
+          </div>
+          <div class="mini" style="border-color:rgba(248,113,113,.2);">
+            <h3 style="color:var(--bad)">Cand sa eviti ovazul</h3>
+            <p>&#10007; Ai <b>diabet tip 2</b> sau rezistenta la insulina<br/>
+               &#10007; Ai <b>boala celiaca</b> (fara certificare gluten-free)<br/>
+               &#10007; Ai <b>SIBO</b> sau sensibilitate la ovaz<br/>
+               &#10007; Il mananci cu <b>zahar, sirop, suc</b><br/>
+               &#10007; Il tratezi ca pe un <b>aliment miraculos</b></p>
+          </div>
+        </div>
+
+        <div class="quote" style="margin-top:14px;">
+          &laquo;Ovazul nu e un aliment rau. Dar nu e nici miraculos. E una dintre cele mai bune cereale — ceea ce nu inseamna ca cerealele sunt cele mai bune alimente. Contextul dietei tale conteaza enorm.&raquo;
+          <cite>— Dr. Sten Ekberg, sintetizat</cite>
+        </div>
+
+        <div class="alert warn" style="margin-top:12px;">
+          <h4>Ierarhia lui Ekberg pentru mic dejun</h4>
+          <p><b>1.</b> Postul intermitent (fara mic dejun) &rarr; <b>2.</b> Oua cu legume si avocado (75% grasimi, 10% carb) &rarr; <b>3.</b> Iaurt fermentat cu seminte (80% grasimi, 4.5% carb) &rarr; <b>4.</b> Ovaz steel-cut cu seminte si lapte integral (47% grasimi, 33% carb) &rarr; <b>5.</b> Ovaz instant cu zahar si suc (9% grasimi, 77% carb)</p>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /main -->
+
+  <!-- ═══════ SIDEBAR ═══════ -->
+  <div class="side">
+
+    <!-- Macro comparison sidebar -->
+    <div class="timeline">
+      <div class="tHead"><h2>Ovaz — macronutrienti (45g uscat)</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate">160</span><span class="tDesc"><b>kcal</b> per portie</span></div>
+        <div class="tEvent"><span class="tDate">17%</span><span class="tDesc"><b>grasimi</b> — bun pentru o cereala</span></div>
+        <div class="tEvent"><span class="tDate">19%</span><span class="tDesc"><b>proteine</b> — excelent pt. cereale</span></div>
+        <div class="tEvent"><span class="tDate">64%</span><span class="tDesc"><b>carbohidrati</b> — totusi dominant</span></div>
+        <div class="tEvent"><span class="tDate">4.5g</span><span class="tDesc"><b>fibra totala</b></span></div>
+        <div class="tEvent"><span class="tDate">1.6g</span><span class="tDesc"><b>fibra solubila</b> (beta-glucan)</span></div>
+        <div class="tEvent"><span class="tDate">0.9g</span><span class="tDesc"><b>grasimi mononesaturate</b></span></div>
+        <div class="tEvent"><span class="tDate">2.9g</span><span class="tDesc"><b>grasimi totale</b></span></div>
+      </div>
+    </div>
+
+    <!-- Fibra solubila comparison -->
+    <div class="timeline">
+      <div class="tHead"><h2>Fibra solubila — comparatie</h2></div>
+      <div class="tBody">
+        <div class="tEvent"><span class="tDate" style="color:var(--warn)">1.6g</span><span class="tDesc"><b>Ovaz</b> (1/2 cana, 45g uscat)</span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">5.4g</span><span class="tDesc"><b>Chia</b> (1 lingura, 15g) — <b>3.4x mai mult!</b></span></div>
+        <div class="tEvent"><span class="tDate" style="color:var(--ok)">3.0g</span><span class="tDesc"><b>Avocado</b> (1 buc, 150g) — <b>2x mai mult</b></span></div>
+      </div>
+    </div>
+
+    <!-- Commentary -->
+    <div class="comPanel">
+      <div class="comHeader" onclick="document.getElementById('comBody').classList.toggle('hidden')">
+        <h2>Comentariu & Context</h2>
+        <span class="comToggle" id="comBtn">ascunde / arata</span>
+      </div>
+      <div class="comBody" id="comBody">
+        <div class="comNote">
+          <h4>De ce "depinde"?</h4>
+          <p>Dr. Ekberg refuza raspunsurile simple. Ovazul e <b>mult mai bun decat 90% din cerealele de mic dejun</b>, dar mult mai slab decat oua, carne sau legume cu grasimi bune. Totul depinde de <b>ce inlocuieste</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Spectrul metabolic</h4>
+          <p>~88% din americani au un grad de rezistenta la insulina. Daca esti in aceasta majoritate, adaugarea de cereale (chiar si ovaz) poate <b>inrautati lucrurile</b>.</p>
+        </div>
+        <div class="comNote">
+          <h4>Fibra nu e unica la ovaz</h4>
+          <p>Cel mai puternic argument pro-ovaz e fibra solubila, dar <b>chia are de 3.4x mai multa</b> intr-o singura lingura. Avocado are de 2x mai multa. Ovazul nu e unic.</p>
+        </div>
+        <div class="comNote">
+          <h4>Industria cerealelor</h4>
+          <p>Promovarea ovazului ca "super-aliment" serveste mai ales <b>industriei alimentare</b>. E extrem de ieftin de produs, iar afirmatiile medicale il fac sa para premium.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glossary -->
+    <div class="glossary">
+      <div class="gHead"><h2>Glosar</h2></div>
+      <div class="gBody">
+        <dl class="gItem">
+          <dt>Indice glicemic (IG)</dt>
+          <dd>Masura a vitezei cu care un aliment creste glicemia. Sub 55 = scazut, 55-70 = mediu, peste 70 = ridicat. Ovazul variaza de la 55 la 79.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Beta-glucan</dt>
+          <dd>Fibra solubila din ovaz care formeaza un gel in intestin. Scade usor absorbtia colesterolului si incetineste digestia. E cel mai studiat nutrient din ovaz.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Acid fitic (fitati)</dt>
+          <dd>Antinutrient prezent in cereale, nuci si seminte. Leaga (cheleaza) mineralele (fier, zinc, calciu, magneziu), reducand absorbtia lor. Inmuierea si fermentarea il reduc.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Rezistenta la insulina</dt>
+          <dd>Stare in care celulele nu mai raspund eficient la insulina. Cauza principala a diabetului tip 2, obezitatii si bolilor metabolice. ~88% din americani au un grad de RI.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>A1C (hemoglobina glicata)</dt>
+          <dd>Test care masoara glicemia medie din ultimele 3-4 luni. Sub 5.2 = excelent, 5.7-6.4 = prediabet, peste 6.5 = diabet tip 2.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Steel-cut oats</dt>
+          <dd>Ovaz in care bobul e doar taiat in 2-3 bucati cu lame de otel. Cel mai putin procesat, cel mai scazut indice glicemic (~55).</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Avenina</dt>
+          <dd>Proteina specifica ovazului, inrudita cu glutenul. Poate provoca reactii la unii celiaci si la persoane cu sensibilitati incrucisate.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>SIBO</dt>
+          <dd>Small Intestinal Bacterial Overgrowth — supracrestere bacteriana in intestinul subtire. Carbohidratii fermentabili (inclusiv din ovaz) pot agrava simptomele.</dd>
+        </dl>
+        <dl class="gItem">
+          <dt>Post intermitent</dt>
+          <dd>Restrictionarea ferestrei de alimentare la 6-8 ore pe zi. Ajuta la scaderea insulinei, inversarea bolilor metabolice si prelungirea vietii.</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div><!-- /side -->
+
+  <footer class="footer">
+    Sursa: <a href="https://www.youtube.com/watch?v=9t38GRin1cg" target="_blank">What If You Start Eating OATS Every Day For 30 Days? — Dr. Sten Ekberg</a> &middot;
+    Infografic explicativ in romana, bazat pe analiza video
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Hero canvas: floating oat grains ── */
+(function(){
+  const c = document.getElementById('heroCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    const r = c.getBoundingClientRect();
+    c.width = W = r.width * devicePixelRatio;
+    c.height = H = r.height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Oat grains
+  const grains = [];
+  const grainCount = 55;
+  for(let i = 0; i < grainCount; i++){
+    grains.push({
+      x: Math.random(),
+      y: Math.random(),
+      size: 3 + Math.random() * 6,
+      speedY: 0.0003 + Math.random() * 0.0008,
+      speedX: (Math.random() - 0.5) * 0.0002,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.015,
+      phase: Math.random() * Math.PI * 2,
+      type: Math.random() < 0.4 ? 'steel' : Math.random() < 0.7 ? 'rolled' : 'instant',
+      opacity: 0.25 + Math.random() * 0.45
+    });
+  }
+
+  // Fiber strands (beta-glucan visualization)
+  const fibers = [];
+  for(let i = 0; i < 8; i++){
+    fibers.push({
+      startX: Math.random(),
+      startY: Math.random(),
+      length: 40 + Math.random() * 80,
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.003 + Math.random() * 0.005,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function drawOatGrain(cx, cy, size, rotation, type){
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(rotation);
+
+    // Oat grain shape (elongated oval)
+    ctx.beginPath();
+    ctx.ellipse(0, 0, size * 1.6, size * 0.7, 0, 0, Math.PI * 2);
+
+    if(type === 'steel'){
+      ctx.fillStyle = `rgba(212,168,85,${0.35})`;
+      ctx.strokeStyle = 'rgba(212,168,85,0.5)';
+    } else if(type === 'rolled'){
+      ctx.fillStyle = `rgba(251,191,36,${0.25})`;
+      ctx.strokeStyle = 'rgba(251,191,36,0.4)';
+    } else {
+      ctx.fillStyle = `rgba(248,113,113,${0.2})`;
+      ctx.strokeStyle = 'rgba(248,113,113,0.35)';
+    }
+    ctx.lineWidth = 0.8;
+    ctx.fill();
+    ctx.stroke();
+
+    // Center line (grain crease)
+    ctx.beginPath();
+    ctx.moveTo(-size * 1.2, 0);
+    ctx.lineTo(size * 1.2, 0);
+    ctx.strokeStyle = type === 'steel' ? 'rgba(212,168,85,0.2)' :
+                      type === 'rolled' ? 'rgba(251,191,36,0.15)' :
+                      'rgba(248,113,113,0.15)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function draw(){
+    const w = W / devicePixelRatio, h = H / devicePixelRatio;
+    ctx.clearRect(0, 0, w, h);
+    t += 0.01;
+
+    // Draw fiber strands (beta-glucan)
+    fibers.forEach(f => {
+      const sx = f.startX * w + Math.sin(t * f.speed + f.phase) * 20;
+      const sy = f.startY * h + Math.cos(t * f.speed * 0.7 + f.phase) * 15;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      for(let s = 0; s < f.length; s += 4){
+        const px = sx + Math.cos(f.angle + Math.sin(t + s * 0.05) * 0.3) * s;
+        const py = sy + Math.sin(f.angle + Math.cos(t + s * 0.05) * 0.3) * s;
+        ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = `rgba(74,222,128,${0.06 + Math.sin(t + f.phase) * 0.03})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+
+    // Gentle glow at center
+    const grd = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, w * 0.4);
+    grd.addColorStop(0, `rgba(212,168,85,${0.06 + Math.sin(t * 0.5) * 0.02})`);
+    grd.addColorStop(1, 'rgba(212,168,85,0)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, w, h);
+
+    // Draw and update grains
+    grains.forEach(g => {
+      g.y += g.speedY;
+      g.x += g.speedX + Math.sin(t + g.phase) * 0.00015;
+      g.rotation += g.rotSpeed;
+
+      // Wrap around
+      if(g.y > 1.05) { g.y = -0.05; g.x = Math.random(); }
+      if(g.x > 1.05) g.x = -0.05;
+      if(g.x < -0.05) g.x = 1.05;
+
+      const px = g.x * w;
+      const py = g.y * h;
+
+      ctx.globalAlpha = g.opacity;
+      drawOatGrain(px, py, g.size, g.rotation, g.type);
+      ctx.globalAlpha = 1;
+    });
+
+    // Legend
+    ctx.font = '9px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+    const ly = h - 12;
+    ctx.fillStyle = 'rgba(212,168,85,0.7)'; ctx.beginPath(); ctx.ellipse(12, ly, 6, 3, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('steel-cut', 22, ly + 3);
+    ctx.fillStyle = 'rgba(251,191,36,0.6)'; ctx.beginPath(); ctx.ellipse(82, ly, 6, 3, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('fulgi', 92, ly + 3);
+    ctx.fillStyle = 'rgba(248,113,113,0.5)'; ctx.beginPath(); ctx.ellipse(130, ly, 6, 3, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(160,172,200,0.4)'; ctx.fillText('instant', 140, ly + 3);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Oat type slider ── */
+(function(){
+  const slider = document.getElementById('oatSlider');
+  const nameEl = document.getElementById('oatName');
+  const descEl = document.getElementById('oatDesc');
+  const giEl = document.getElementById('srGI');
+  const procEl = document.getElementById('srProc');
+  const recEl = document.getElementById('srRec');
+  if(!slider) return;
+
+  const data = [
+    {
+      name: 'Steel-cut (taiat la otel)',
+      desc: 'Cel mai putin procesat. Bobul de ovaz e doar taiat in 2-3 bucati. Suprafata mica = absorbtie lenta = spike glicemic minim.',
+      gi: '~55', giColor: 'var(--ok)',
+      proc: 'Minim', procColor: 'var(--ok)',
+      rec: '\u2733\u2733\u2733', recColor: 'var(--ok)'
+    },
+    {
+      name: 'Fulgi (rolled oats)',
+      desc: 'Bobul e aplatizat cu role si pre-gatit cu abur. Suprafata mai mare, digestie mai rapida. Compromis intre convenienta si nutritie.',
+      gi: '~57', giColor: 'var(--warn)',
+      proc: 'Moderat', procColor: 'var(--warn)',
+      rec: '\u2733\u2733', recColor: 'var(--warn)'
+    },
+    {
+      name: 'Instant (fulgi extrem de subtiri)',
+      desc: 'Cel mai procesat: aplatizat extrem, pre-gatit complet. Se absoarbe aproape ca painea alba. Evita daca esti rezistent la insulina.',
+      gi: '~79', giColor: 'var(--bad)',
+      proc: 'Intens', procColor: 'var(--bad)',
+      rec: '\u2733', recColor: 'var(--bad)'
+    }
+  ];
+
+  function update(){
+    const v = parseInt(slider.value);
+    const d = data[v];
+    nameEl.textContent = d.name;
+    descEl.textContent = d.desc;
+    giEl.textContent = d.gi;
+    giEl.style.color = d.giColor;
+    procEl.textContent = d.proc;
+    procEl.style.color = d.procColor;
+    recEl.textContent = d.rec;
+    recEl.style.color = d.recColor;
+  }
+
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+</body>
+</html>
